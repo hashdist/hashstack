@@ -1,0 +1,9 @@
+extends:
+ - profile: common.yaml
+
+parameters:
+  platform: linux
+
+packages:
+  - zlib
+  - szlib

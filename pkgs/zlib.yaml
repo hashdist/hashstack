@@ -1,0 +1,22 @@
+sources:
+  - url: http://downloads.sourceforge.net/project/libpng/zlib/1.2.7/zlib-1.2.7.tar.bz2
+    key: tar.bz2:jhroszmn7mbwsag2n2qcm6ttp6r4j3xg
+
+build_stages:
+  - name: configure
+    handler: bash
+    bash: |
+      ./configure --prefix=$ARTIFACT
+
+  - name: make
+    after: configure
+    handler: bash
+    bash: |
+      make
+
+  - name: install
+    after: make
+    handler: bash
+    bash: |
+      make install
+
