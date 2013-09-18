@@ -3,6 +3,7 @@ extends:
 
 parameters:
   platform: linux
+  PATH: /usr/bin:/bin
 
 packages:
   - zlib
