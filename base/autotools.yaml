@@ -1,0 +1,20 @@
+build_stages:
+
+  - name: configure
+
+  - name: make
+    after: configure
+    handler: bash
+    bash: |
+      make
+
+  - name: install
+    after: make
+    handler: bash
+    bash: |
+      make install
+
+profile_links:
+
+  - name: everything
+    link: '*/**/*'

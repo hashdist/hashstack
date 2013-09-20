@@ -8,3 +8,5 @@ parameters:
 packages:
   - zlib
   - szlib
+  - hdf5
+  - launcher

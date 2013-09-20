@@ -3,3 +3,4 @@ base_dir: ../base
 
 parameters:
   BASH: /bin/bash
+  python_version_suffix: '2.7'

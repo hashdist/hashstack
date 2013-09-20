@@ -1,0 +1,31 @@
+extends: [autotools]
+
+sources:
+ - url: http://python.org/ftp/python/2.7.5/Python-2.7.5.tar.bz2
+   key: tar.bz2:hndxkvegjzqwuba64tl456mes5ixoc6h
+
+dependencies:
+  build: [zlib, launcher] #, bzip2, ncurses, readline, sqlite, openssl]
+  run: []
+
+build_stages:
+
+  - name: configure
+    handler: bash
+    bash: |
+      ./configure --prefix=${ARTIFACT} LDFLAGS="-L${ZLIB_DIR}/lib -Wl,-rpath=${ZLIB_DIR}/lib"
+
+profile_links:
+
+  - name: python_binaries
+    before: everything
+    launcher: 'bin/*'
+
+  - name: python_packages
+    link: 'lib/python${{python_version_suffix}}/site-packages/*'
+    dirs: true
+
+  - name: python_exclude
+    after: python_packages
+    before: everything
+    exclude: 'lib/python${{python_version_suffix}}/site-packages/**/*'

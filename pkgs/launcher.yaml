@@ -1,0 +1,14 @@
+sources:
+  - url: git://github.com/hashdist/hdist-launcher.git
+    key: git:941878d2387709a20d164b014d9155552448ce2b
+
+build_stages:
+
+  - name: make_and_install
+    handler: bash
+    bash: make install PREFIX=${ARTIFACT}
+
+when_build_dependency:
+
+  - set: LAUNCHER
+    value: ${ARTIFACT}/bin/launcher
