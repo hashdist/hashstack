@@ -8,5 +8,5 @@ parameters:
 packages:
   - zlib
   - szlib
-  - hdf5
+  - python
   - launcher
