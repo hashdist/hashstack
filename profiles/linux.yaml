@@ -12,3 +12,4 @@ packages:
       use: python-host
   - nose
   - launcher
+  - hdf5

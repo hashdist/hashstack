@@ -1,0 +1,12 @@
+extends: [autotools]
+dependencies:
+  build: [zlib, szlib]
+
+sources:
+  - url: http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.8.11.tar.bz2
+    key: tar.bz2:l2q3vax4o42q5zriw6k243w6ax7ov4og
+
+build_stages:
+  - name: configure
+    mode: override
+    extra: ['--with-zlib=${ZLIB_DIR}', '--with-szlib=${SZLIB_DIR}']
