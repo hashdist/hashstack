@@ -3,4 +3,5 @@ base_dir: ../base
 
 parameters:
   BASH: /bin/bash
-  python_version_suffix: '2.7'
+  pyver: '2.7'  # as in used in lib/pythonX.Y/site-packages
+  python_site_packages_rel: 'lib/python2.7/site-packages'

@@ -8,5 +8,7 @@ parameters:
 packages:
   - zlib
   - szlib
-  - python
+  - python:
+      use: python-host
+  - nose
   - launcher

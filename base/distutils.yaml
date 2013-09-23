@@ -1,0 +1,23 @@
+build_stages:
+
+  - name: install
+    handler: bash
+    bash: |
+      export PYTHONPATH=${ARTIFACT}/${{python_site_packages_rel}}
+      mkdir -p ${ARTIFACT}/${{python_site_packages_rel}}
+      ${PYTHON_DIR}/bin/python setup.py install --prefix=${ARTIFACT}
+
+
+profile_links:
+
+  - name: python_packages
+    link: 'lib/python${{pyver}}/site-packages/*'
+    dirs: true
+
+  - name: python_exclude
+    after: python_packages
+    before: everything
+    exclude: 'lib/python${{pyver}}/site-packages/**/*'
+
+  - name: everything
+    link: '*/**/*'

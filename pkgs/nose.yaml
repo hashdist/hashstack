@@ -1,0 +1,8 @@
+extends: [distutils]
+dependencies:
+  build: [python]
+
+sources:
+  - url: https://pypi.python.org/packages/source/n/nose/nose-1.3.0.tar.gz
+    key: tar.gz:jzr4ymzf3z247gh7vval44x2nf2t32be
+

@@ -22,10 +22,11 @@ profile_links:
     launcher: 'bin/*'
 
   - name: python_packages
-    link: 'lib/python${{python_version_suffix}}/site-packages/*'
+    link: 'lib/python${{pyver}}/site-packages/*'
     dirs: true
 
   - name: python_exclude
     after: python_packages
     before: everything
-    exclude: 'lib/python${{python_version_suffix}}/site-packages/**/*'
+
+    exclude: 'lib/python${{pyver}}/site-packages/**/*'
