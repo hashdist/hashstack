@@ -8,12 +8,6 @@ dependencies:
   build: [zlib, launcher] #, bzip2, ncurses, readline, sqlite, openssl]
   run: []
 
-build_stages:
-
-  - name: configure
-    handler: bash
-    bash: |
-      ./configure --prefix=${ARTIFACT} LDFLAGS="-L${ZLIB_DIR}/lib -Wl,-rpath=${ZLIB_DIR}/lib"
 
 profile_links:
 

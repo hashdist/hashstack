@@ -3,9 +3,3 @@ extends: [autotools]
 sources:
   - url: http://www.hdfgroup.org/ftp/lib-external/szip/2.1/src/szip-2.1.tar.gz
     key: tar.gz:valnsxkwmlucpfrfvpn6u7iomikx27i7
-
-build_stages:
-  - name: configure
-    handler: bash
-    bash: |
-      ./configure --prefix=$ARTIFACT
