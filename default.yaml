@@ -8,6 +8,10 @@ packages:
       use: host-python
   - numpy:
       use: host-numpy
+  - scipy:
+      use: host-scipy
   - nose
   - launcher
   - hdf5
+  - gmp
+  - mpfr
