@@ -1,0 +1,10 @@
+extends: [autotools]
+
+sources:
+  - url: ftp://ftp.gmplib.org/pub/gmp-5.1.2/gmp-5.1.2.tar.bz2
+    key: tar.bz2:ecm552te547frlblilvkuaugymrrimfi
+
+build_stages:
+  - name: configure
+    mode: override
+    extra: ['--enable-cxx']
