@@ -2,5 +2,5 @@
 *.pyc
 *.pyo
 
-/linux
 /default
+/default.yaml
