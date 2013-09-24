@@ -1,6 +1,0 @@
-extends: [autotools]
-
-sources:
-  - url: ftp://sourceware.org/pub/libffi/libffi-3.0.11.tar.gz
-    key: FIXME
-
