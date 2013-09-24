@@ -1,0 +1,14 @@
+sources:
+  - url: https://github.com/xianyi/OpenBLAS/archive/v0.2.8.tar.gz
+    key: tar.gz:gwpvzutaj3lw3f5qm2nzxbdklgq5akbq
+
+build_stages:
+  - handler: bash
+    bash: |
+      make -j${HASDIST_CPU_COUNT}
+      make PREFIX=${ARTIFACT} install
+
+profile_links:
+
+  - name: everything
+    link: '*/**/*'
