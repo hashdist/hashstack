@@ -1,6 +1,13 @@
 extends: [autotools]
+dependencies:
+  build: [gmp]
 
 sources:
   - url: http://www.mpfr.org/mpfr-3.1.2/mpfr-3.1.2.tar.bz2
     key: tar.bz2:phdt6yfpaefdbjocpkkvuhjnag5asw3s
+
+build_stages:
+  - name: configure
+    mode: override
+    extra: ['--with-gmp=${GMP_DIR}']
 
