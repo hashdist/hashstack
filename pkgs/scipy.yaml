@@ -1,4 +1,7 @@
 extends: [distutils]
+dependencies:
+  build: [numpy]
+  run: [numpy]
 
 sources:
   - url: http://downloads.sourceforge.net/scipy/scipy-0.12.0.tar.gz
