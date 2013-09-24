@@ -5,3 +5,5 @@ parameters:
   BASH: /bin/bash
   pyver: '2.7'  # as in used in lib/pythonX.Y/site-packages
   python_site_packages_rel: 'lib/python2.7/site-packages'
+
+  python_host_packages: '/usr/lib/python2.7/dist-packages'
