@@ -1,6 +1,29 @@
 extends: [distutils]
+dependencies:
+  build: [python, openblas]
+  run: [python, openblas]
 
 sources:
   - url: http://downloads.sourceforge.net/numpy/numpy-1.7.1.tar.gz
     key: tar.gz:kusqdgrqqxb5qyhgz7smbiypwzovm5rg
 
+build_stages:
+
+  - name: create-site.cfg
+    before: install
+    handler: bash
+    bash: |
+      cat > site.cfg << EOF
+      [atlas]
+      atlas_libs = openblas
+      library_dirs = ${OPENBLAS_DIR}/lib
+      EOF
+
+  - name: set-LDFLAGS
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${OPENBLAS_DIR}/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      #export ATLAS=None
+      export LAPACK=None
+      export BLAS=None
