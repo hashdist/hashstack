@@ -9,7 +9,7 @@ packages:
   - zlib
   - szlib
   - python:
-      use: python-host
+      use: host-python
   - nose
   - launcher
   - hdf5
