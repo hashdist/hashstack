@@ -6,17 +6,17 @@ packages:
   - szlib
   - python:
       use: host-python
-  - numpy:
-      use: host-numpy
-  - scipy:
-      use: host-scipy
+  
+  # numpy/scipy has some problems from modern Ubuntu; we'll add an OpenBLAS build shortly,
+  # the lines below work for older Ubuntu:
+  #- numpy:
+  #    use: host-numpy
+  #- scipy:
+  #    use: host-scipy
+
   - nose
   - launcher
   - hdf5
-
-  - gmp
-  - mpfr
-
   - jinja2
   - distribute
 
