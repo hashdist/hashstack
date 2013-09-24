@@ -1,0 +1,13 @@
+extends:
+  - profile: debian.yaml
+
+packages:
+  - zlib
+  - szlib
+  - python:
+      use: host-python
+  - numpy:
+      use: host-numpy
+  - nose
+  - launcher
+  - hdf5

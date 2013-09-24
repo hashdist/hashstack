@@ -1,4 +1,6 @@
 *~
 *.pyc
 *.pyo
-linux
+
+/linux
+/default
