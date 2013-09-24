@@ -13,7 +13,12 @@ packages:
   - nose
   - launcher
   - hdf5
+
   - gmp
   - mpfr
+
+  - jinja2
+  - distribute
+
   - mpi:
       use: host-mpi

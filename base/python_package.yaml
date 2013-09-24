@@ -1,0 +1,23 @@
+extends: [distutils]
+
+build_stages:
+
+  # We use setuptools with the --single-version-externally-managed flag,
+  # which is what e.g. Linux distros do to avoid egg-subdirectories. This
+  # particular code is lifted from pip to be compatible with both setuptools
+  # packages and distutils packages, so that the packages doesn't need to
+  # care about distutils vs. setuptools. The distutils.yaml file is then
+  # primarily useful to install 'distribute'.
+  #
+  # http://stackoverflow.com/questions/368636/questions-about-setuptools-and-alternatives
+  - name: install
+    mode: replace
+    handler: bash
+    bash: |
+      export PYTHONPATH=${ARTIFACT}/${{python_site_packages_rel}}:${PYTHONPATH}
+      mkdir -p ${ARTIFACT}/${{python_site_packages_rel}}
+      ${PYTHON} -c 'import setuptools; __file__="setup.py"; execfile(__file__)' \
+         install \
+         --prefix=. --root=${ARTIFACT} \
+         --single-version-externally-managed
+
