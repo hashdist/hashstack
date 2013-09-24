@@ -13,7 +13,3 @@ build_stages:
 sources:
   - url: https://pypi.python.org/packages/source/d/distribute/distribute-0.6.36.tar.gz
     key: tar.gz:er2ptudqnndwzyhbhemvzq23gyfnwzs5
-
-when_build_dependency:
-  - prepend_path: PYTHONPATH
-    value: '${ARTIFACT}/lib/python${{pyver}}/site-packages'
