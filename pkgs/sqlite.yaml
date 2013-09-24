@@ -1,6 +1,0 @@
-extends: [autotools]
-
-sources:
-  - url: http://www.sqlite.org/sqlite-autoconf-3070800.tar.gz
-    key: tar.gz:7wgh64g3pydlkemw57glsn7suzl2xr5s
-
