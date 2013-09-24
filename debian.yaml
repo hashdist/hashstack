@@ -3,3 +3,8 @@ extends:
 
 parameters:
   python_host_packages: '/usr/lib/python2.7/dist-packages'
+  MPICC: /usr/bin/mpicc
+  MPICXX: /usr/bin/mpic++
+  MPIF77: /usr/bin/mpif77
+  MPIF90: /usr/bin/mpif90
+  MPIEXEC: /usr/bin/mpiexec

@@ -11,3 +11,7 @@ packages:
   - nose
   - launcher
   - hdf5
+
+  - mpi:
+      use: host-mpi
+

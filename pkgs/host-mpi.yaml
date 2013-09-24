@@ -1,0 +1,6 @@
+when_build_dependency:
+  - {set: 'MPICC', value: '${{MPICC}}'}
+  - {set: 'MPICXX', value: '${{MPICXX}}'}
+  - {set: 'MPIF77', value: '${{MPIF77}}'}
+  - {set: 'MPIF90', value: '${{MPIF90}}'}
+  - {set: 'MPIEXEC', value: '${{MPIEXEC}}'}
