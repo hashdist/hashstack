@@ -27,6 +27,10 @@ build_stages:
       mkdir ${ARTIFACT}/lib/python${{pyver}}/site-packages
       cp -f _hashdist/site.py ${ARTIFACT}/lib/python${{pyver}}/site.py
 
+when_build_dependency:
+  - set: PYTHON
+    value: ${ARTIFACT}/bin/python
+
 profile_links:
 
   - name: python_binaries

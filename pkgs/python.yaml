@@ -8,9 +8,11 @@ dependencies:
   build: [zlib, launcher] #, bzip2, ncurses, readline, sqlite, openssl]
   run: []
 
+when_build_dependency:
+  - set: PYTHON
+    value: ${ARTIFACT}/bin/python
 
 profile_links:
-
   - name: python_binaries
     before: everything
     launcher: 'bin/*'

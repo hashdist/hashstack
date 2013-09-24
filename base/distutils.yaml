@@ -5,8 +5,7 @@ build_stages:
     bash: |
       export PYTHONPATH=${ARTIFACT}/${{python_site_packages_rel}}
       mkdir -p ${ARTIFACT}/${{python_site_packages_rel}}
-      ${PYTHON_DIR}/bin/python setup.py install --prefix=${ARTIFACT}
-
+      ${PYTHON} setup.py install --prefix=${ARTIFACT}
 
 profile_links:
 
