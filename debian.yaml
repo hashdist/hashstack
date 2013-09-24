@@ -2,4 +2,4 @@ extends:
   - profile: linux.yaml
 
 parameters:
-  python_host_packages: '/usr/lib/python2.7/dist-packages'
+  python_host_packages: '/usr/share/pyshared'
