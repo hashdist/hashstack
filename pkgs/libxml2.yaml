@@ -1,0 +1,6 @@
+extends: [autotools]
+
+sources:
+  - url: ftp://xmlsoft.org/libxml2/old/libxml2-2.6.2.tar.gz
+    key: tar.gz:v2xdoovivw3byclugm7cldu45ihqsimb
+

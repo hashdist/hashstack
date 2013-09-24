@@ -1,0 +1,6 @@
+extends: [cmake]
+
+sources:
+  - url: http://www.vtk.org/files/release/6.0/vtk-6.0.0.tar.gz
+    key: tar.gz:ijw7kq6p72wpeeku3xonfjxpxwi2lbsx
+

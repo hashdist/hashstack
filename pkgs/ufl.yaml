@@ -1,0 +1,6 @@
+extends: [distutils]
+
+sources:
+  - url: http://launchpad.net/ufl/1.2.x/1.2.0/+download/ufl-1.2.0.tar.gz
+    key: tar.gz:uyzww6qlwkmfe2liq27qf3ii5ukvqbil
+

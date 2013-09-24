@@ -1,0 +1,6 @@
+extends: [autotools]
+
+sources:
+  - url: ftp://ftpthep.physik.uni-mainz.de/pub/GiNaC/ginac-1.6.1.tar.bz2
+    key: FIXME
+

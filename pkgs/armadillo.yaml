@@ -1,0 +1,6 @@
+extends: [cmake]
+
+sources:
+  - url: http://downloads.sourceforge.net/arma/armadillo-3.910.1.tar.gz
+    key: tar.gz:6le4cj4auhiv47p2ssxtgmfqsyhkrh36
+

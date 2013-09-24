@@ -1,0 +1,6 @@
+extends: [autotools]
+
+sources:
+  - url: http://downloads.sourceforge.net/boost/boost_1_51_0.tar.bz2
+    key: tar.bz2:7mwsgnnct3t74bakdfzjfp6otavpqste
+

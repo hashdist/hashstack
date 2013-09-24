@@ -1,0 +1,6 @@
+extends: [distutils]
+
+sources:
+  - url: http://launchpad.net/instant/1.2.x/1.2.0/+download/instant-1.2.0.tar.gz
+    key: tar.gz:cjih7efxl55mjyrcwk2qjaqs7kcj4zil
+

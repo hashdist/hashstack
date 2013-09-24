@@ -1,0 +1,6 @@
+extends: [autotools]
+
+sources:
+  - url: http://www.grycap.upv.es/slepc/download/download.php?filename=slepc-3.4.2.tar.gz
+    key: tar.gz:kos4bnzmd7tqj3mci6m6y35csldnvvac
+

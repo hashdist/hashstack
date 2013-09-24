@@ -1,0 +1,6 @@
+extends: [distutils]
+
+sources:
+  - url: http://downloads.sourceforge.net/numpy/numpy-1.7.1.tar.gz
+    key: tar.gz:kusqdgrqqxb5qyhgz7smbiypwzovm5rg
+

@@ -1,0 +1,6 @@
+extends: [autotools]
+
+sources:
+  - url: http://ftp.gnome.org/pub/GNOME/sources/glib/2.32/glib-2.32.3.tar.xz
+    key: FIXME
+

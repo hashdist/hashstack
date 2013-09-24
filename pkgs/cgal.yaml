@@ -1,0 +1,6 @@
+extends: [cmake]
+
+sources:
+  - url: https://gforge.inria.fr/frs/download.php/32360/CGAL-4.2.tar.bz2
+    key: tar.bz2:67wy5ys57vr4ba36wltoptr3cbhflpad
+

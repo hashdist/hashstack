@@ -1,0 +1,6 @@
+extends: [cmake]
+
+sources:
+  - url: http://trilinos.sandia.gov/download/files/trilinos-11.4.1-Source.tar.gz
+    key: tar.gz:f75irrdmjj5sfvczu72gibqy7ktow2jp
+

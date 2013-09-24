@@ -1,0 +1,6 @@
+extends: [cmake]
+
+sources:
+  - url: http://launchpad.net/dolfin/1.2.x/1.2.0/+download/dolfin-1.2.0.tar.gz
+    key: tar.gz:p6btqaxyrmv35fnnxxawjkptx53iddst
+

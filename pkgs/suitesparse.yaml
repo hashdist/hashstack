@@ -1,0 +1,6 @@
+extends: [autotools]
+
+sources:
+  - url: http://www.cise.ufl.edu/research/sparse/SuiteSparse/SuiteSparse-4.0.2.tar.gz
+    key: tar.gz:so2zfcmh7yaqqcft7x7t47w66qx3fwgp
+

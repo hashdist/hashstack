@@ -1,0 +1,6 @@
+extends: [distutils]
+
+sources:
+  - url: http://www.dabeaz.com/ply/ply-3.4.tar.gz
+    key: tar.gz:v5bv6enxxxlj3jp7xq76zogxbjyhh3ev
+

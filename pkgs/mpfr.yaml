@@ -1,0 +1,6 @@
+extends: [autotools]
+
+sources:
+  - url: http://www.mpfr.org/mpfr-3.1.2/mpfr-3.1.2.tar.bz2
+    key: tar.bz2:phdt6yfpaefdbjocpkkvuhjnag5asw3s
+

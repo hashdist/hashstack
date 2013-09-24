@@ -1,0 +1,6 @@
+extends: [autotools]
+
+sources:
+  - url: http://fenicsproject.org/pub/software/contrib/scotch_6.0.0_esmumps.tar.gz
+    key: tar.gz:qidbe7idrpnindo2lrnh6yhpqispfy3i
+

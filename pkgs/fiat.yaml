@@ -1,0 +1,6 @@
+extends: [distutils]
+
+sources:
+  - url: https://launchpad.net/fiat/1.1.x/release-1.1/+download/fiat-1.1.tar.gz
+    key: tar.gz:ssuze32hrtu5clr7bt2n5yetpx54oumk
+

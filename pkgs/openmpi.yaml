@@ -1,0 +1,6 @@
+extends: [autotools]
+
+sources:
+  - url: http://www.open-mpi.org/software/ompi/v1.6/downloads/openmpi-1.6.5.tar.bz2
+    key: tar.bz2:7y33voe3l3zdjyfmqlohtaucykvqreal
+
