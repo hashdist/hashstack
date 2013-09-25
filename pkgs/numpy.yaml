@@ -27,3 +27,7 @@ build_stages:
       #export ATLAS=None
       export LAPACK=None
       export BLAS=None
+
+when_build_dependency:
+  - prepend_path: PYTHONPATH
+    value: '${ARTIFACT}/lib/python${{pyver}}/site-packages'
