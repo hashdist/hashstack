@@ -8,3 +8,4 @@ parameters:
   MPIF77: /usr/bin/mpif77
   MPIF90: /usr/bin/mpif90
   MPIEXEC: /usr/bin/mpiexec
+  SCOTCH_ARCH: pc_linux2
