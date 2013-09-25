@@ -1,7 +1,7 @@
 extends: [python_package]
 
 dependencies:
-  build: [python, distribute]
+  build: [distribute]
 
 sources:
   - url: https://pypi.python.org/packages/source/n/nose/nose-1.3.0.tar.gz

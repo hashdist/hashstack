@@ -1,23 +1,27 @@
+dependencies:
+  build: [python]
+  run: [python]
+
 build_stages:
 
-  - name: setup_dirs
-    handler: bash
-    bash: |
-      export PYTHONPATH=${ARTIFACT}/${{python_site_packages_rel}}:$PYTHONPATH
-      mkdir -p ${ARTIFACT}/${{python_site_packages_rel}}
+- name: setup_dirs
+  handler: bash
+  bash: |
+    export PYTHONPATH=${ARTIFACT}/${{python_site_packages_rel}}:$PYTHONPATH
+    mkdir -p ${ARTIFACT}/${{python_site_packages_rel}}
 
-  - name: install
-    after: setup_dirs
-    handler: bash
-    bash: |
-      ${PYTHON} setup.py install --prefix=${ARTIFACT}
+- name: install
+  after: setup_dirs
+  handler: bash
+  bash: |
+    ${PYTHON} setup.py install --prefix=${ARTIFACT}
 
-    # Remove easy_install pth files
-  - name: cleanup
-    after: install
-    handler: bash
-    bash: |
-      rm -rf ${ARTIFACT}/${{python_site_packages_rel}}/*.pth
+  # Remove easy_install pth files
+- name: cleanup
+  after: install
+  handler: bash
+  bash: |
+    rm -rf ${ARTIFACT}/${{python_site_packages_rel}}/*.pth
 
 profile_links:
 

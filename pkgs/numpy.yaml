@@ -1,7 +1,7 @@
 extends: [distutils]
 dependencies:
-  build: [python, openblas]
-  run: [python, openblas]
+  build: [openblas]
+  run: [openblas]
 
 sources:
   - url: http://downloads.sourceforge.net/numpy/numpy-1.7.1.tar.gz
@@ -27,7 +27,3 @@ build_stages:
       #export ATLAS=None
       export LAPACK=None
       export BLAS=None
-
-when_build_dependency:
-  - prepend_path: PYTHONPATH
-    value: '${ARTIFACT}/lib/python${{pyver}}/site-packages'
