@@ -1,3 +1,6 @@
+dependencies:
+  build: [mpi]
+
 sources:
   - url: http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/parmetis-4.0.2.tar.gz
     key: tar.gz:llf3oahuk7j33j6uxokewvm5p4q7a5n3
@@ -13,6 +16,7 @@ build_stages:
       make config prefix=${ARTIFACT} shared=1
 
   - name: make
+    after: configure
     handler: bash
     bash: |
       cd metis
@@ -21,6 +25,7 @@ build_stages:
       make -j ${HASHDIST_CPU_COUNT}
 
   - name: install
+    after: make
     handler: bash
     bash: |
       cd metis
