@@ -1,6 +1,16 @@
 extends: [autotools]
+dependencies:
+  build: [pcre]
 
 sources:
-  - url: http://downloads.sourceforge.net/swig/swig-2.0.11.tar.gz
-    key: tar.gz:mn4ax4u7kojxvu4zuh3ixtftomgjb5sx
+- url: http://downloads.sourceforge.net/swig/swig-2.0.11.tar.gz
+  key: tar.gz:mn4ax4u7kojxvu4zuh3ixtftomgjb5sx
 
+build_stages:
+- name: configure
+  mode: override
+  extra: ['--with-pcre-prefix=${PCRE_DIR}']
+
+when_build_dependency:
+- set: SWIG_EXECUTABLE
+  value: ${ARTIFACT}}/bin/swig

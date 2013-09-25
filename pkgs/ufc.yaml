@@ -1,6 +1,12 @@
 extends: [cmake]
+dependencies:
+  build: [swig]
 
 sources:
-  - url: http://launchpad.net/ufc/2.2.x/2.2.0/+download/ufc-2.2.0.tar.gz
-    key: tar.gz:5ggnjj2iiwp4mjzzknhiptz5mmvrrc2i
+- url: http://launchpad.net/ufc/2.2.x/2.2.0/+download/ufc-2.2.0.tar.gz
+  key: tar.gz:5ggnjj2iiwp4mjzzknhiptz5mmvrrc2i
 
+build_stages:
+- name: configure
+  mode: override
+  extra: ['-D SWIG_EXECUTABLE:FILEPATH=${SWIG_EXECUTABLE}']

@@ -1,6 +1,31 @@
 extends: [cmake]
+dependencies:
+  build: [swig, mpi, numpy, openblas, suitesparse]
 
 sources:
-  - url: http://trilinos.sandia.gov/download/files/trilinos-11.4.1-Source.tar.gz
-    key: tar.gz:f75irrdmjj5sfvczu72gibqy7ktow2jp
+- url: http://trilinos.sandia.gov/download/files/trilinos-11.4.1-Source.tar.gz
+  key: tar.gz:f75irrdmjj5sfvczu72gibqy7ktow2jp
 
+build_stages:
+- name: configure
+  mode: override
+  extra: ['-D CMAKE_CXX_COMPILER:FILEPATH=${MPICXX}',
+          '-D CMAKE_C_COMPILER:FILEPATH=${MPICC}',
+          '-D Trilinos_INSTALL_INCLUDE_DIR:PATH=include/trilinos',
+          '-D Trilinos_ENABLE_ALL_OPTIONAL_PACKAGES:BOOL=ON',
+          '-D Trilinos_ENABLE_Epetra:BOOL=ON',
+          '-D Trilinos_ENABLE_ML:BOOL=ON',
+          '-D Trilinos_ENABLE_PyTrilinos:BOOL=ON',
+          '-D Trilinos_ENABLE_TESTS:BOOL=OFF',
+          '-D Trilinos_ENABLE_EXAMPLES:BOOL=OFF',
+          '-D CMAKE_BUILD_TYPE:STRING=Release',
+          '-D BUILD_SHARED_LIBS:BOOL=ON',
+          '-D TPL_ENABLE_MPI:BOOL=ON',
+          '-D TPL_ENABLE_UMFPACK:BOOL=ON',
+          '-D BLAS_LIBRARY_NAMES=openblas',
+          '-D BLAS_LIBRARY_DIRS=${OPENBLAS_DIR}/lib',
+          '-D LAPACK_LIBRARY_DIRS=${ATLAS_LIB_DIR}',
+          '-D UMFPACK_INCLUDE_DIRS=${SUITESPARSE_DIR}/include/suitesparse',
+          '-D UMFPACK_LIBRARY_DIRS=${SUITESPARSE_DIR}/lib',
+          '-D UMFPACK_LIBRARY_NAMES="umfpack;cholmod;camd;ccolamd;colamd;amd;suitesparseconfig"',
+          '-D SWIG_EXECUTABLE:FILEPATH=${SWIG_EXECUTABLE}']
