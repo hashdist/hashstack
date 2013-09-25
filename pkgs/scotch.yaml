@@ -35,7 +35,6 @@ build_stages:
     bash: |
       make -j ${HASHDIST_CPU_COUNT} ptscotch
       make -j ${HASHDIST_CPU_COUNT} ptesmumps
-      #make -j ${HASHDIST_CPU_COUNT}
 
   - name: install
     after: make
