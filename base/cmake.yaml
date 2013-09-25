@@ -1,0 +1,27 @@
+build_stages:
+
+  - name: setup_builddir
+    handler: bash
+    bash: |
+      mkdir -p _build
+      cd _build
+
+  - name: configure
+    after: setup_builddir
+
+  - name: make
+    after: configure
+    handler: bash
+    bash: |
+      make -j ${HASHDIST_CPU_COUNT}
+
+  - name: install
+    after: make
+    handler: bash
+    bash: |
+      make install
+
+profile_links:
+
+  - name: everything
+    link: '*/**/*'
