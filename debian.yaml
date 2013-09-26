@@ -1,5 +1,5 @@
 extends:
-  - profile: linux.yaml
+  - file: linux.yaml
 
 parameters:
   python_host_packages: '/usr/share/pyshared'

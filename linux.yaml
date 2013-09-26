@@ -1,5 +1,5 @@
 extends:
- - profile: common.yaml
+ - file: common.yaml
 
 parameters:
   platform: linux
