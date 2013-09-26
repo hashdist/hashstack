@@ -13,4 +13,4 @@ build_stages:
 
 when_build_dependency:
 - set: SWIG_EXECUTABLE
-  value: ${ARTIFACT}}/bin/swig
+  value: ${ARTIFACT}/bin/swig
