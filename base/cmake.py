@@ -22,7 +22,7 @@ def configure(ctx, stage_args):
     """
     # FIXME:
     #conf_lines = ['${CMAKE} -D CMAKE_INSTALL_PREFIX:PATH="${ARTIFACT}"']
-    conf_lines = ['cmake -D CMAKE_INSTALL_PREFIX:PATH="${ARTIFACT}"']
+    conf_lines = ['cmake -DCMAKE_INSTALL_PREFIX:PATH="${ARTIFACT}"']
     if 'extra' in stage_args:
         conf_lines.append(' '.join('"%s"' % arg for arg in stage_args['extra']))
 
