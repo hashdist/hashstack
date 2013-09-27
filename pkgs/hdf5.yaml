@@ -9,4 +9,12 @@ sources:
 build_stages:
   - name: configure
     mode: override
-    extra: ['--with-zlib=${ZLIB_DIR}', '--with-szlib=${SZLIB_DIR}']
+    extra: ['--with-zlib=${ZLIB_DIR}',
+            '--with-szlib=${SZLIB_DIR}',
+            '--with-pthread',
+            '--enable-unsupported',
+            '--enable-shared',
+            '--enable-production=yes',
+            '--enable-parallel=yes',
+            '--enable-largefile=yes',
+            '--with-default-api-version=v18']
