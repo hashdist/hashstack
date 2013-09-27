@@ -1,4 +1,4 @@
-extends: [cmake]
+extends: [cmake_package]
 dependencies:
   build: [python, swig, mpi, numpy, openblas, suitesparse]
 
@@ -22,12 +22,12 @@ build_stages:
           '-DBUILD_SHARED_LIBS:BOOL=ON',
           '-DTPL_ENABLE_MPI:BOOL=ON',
           '-DTPL_ENABLE_UMFPACK:BOOL=ON',
-          '-DBLAS_LIBRARY_NAMES=openblas',
-          '-DBLAS_LIBRARY_DIRS=${OPENBLAS_DIR}/lib',
-          '-DLAPACK_LIBRARY_NAMES=openblas',
-          '-DLAPACK_LIBRARY_DIRS=${OPENBLAS_DIR}/lib',
-          '-DUMFPACK_INCLUDE_DIRS=${SUITESPARSE_DIR}/include/suitesparse',
-          '-DUMFPACK_LIBRARY_DIRS=${SUITESPARSE_DIR}/lib',
-          '-DUMFPACK_LIBRARY_NAMES=\"umfpack;cholmod;camd;ccolamd;colamd;amd;suitesparseconfig\"',
+          '-DBLAS_LIBRARY_NAMES:STRING=openblas',
+          '-DBLAS_LIBRARY_DIRS:PATH=${OPENBLAS_DIR}/lib',
+          '-DLAPACK_LIBRARY_NAMES:STRING=openblas',
+          '-DLAPACK_LIBRARY_DIRS:PATH=${OPENBLAS_DIR}/lib',
+          '-DUMFPACK_INCLUDE_DIRS:PATH=${SUITESPARSE_DIR}/include/suitesparse',
+          '-DUMFPACK_LIBRARY_DIRS:PATH=${SUITESPARSE_DIR}/lib',
+          '-DUMFPACK_LIBRARY_NAMES:STRING=\"umfpack;cholmod;camd;ccolamd;colamd;amd;suitesparseconfig\"',
           '-DSWIG_EXECUTABLE:FILEPATH=${SWIG_EXECUTABLE}',
           '-DPYTHON_EXECUTABLE:FILEPATH=${PYTHON}']

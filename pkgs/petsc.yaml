@@ -1,5 +1,6 @@
 extends: [autotools]
 dependencies:
+#  build: [openblas, mpi, scotch, parmetis, suitesparse, trilinos]
   build: [openblas, mpi, scotch, parmetis, suitesparse]
 
 sources:
@@ -26,3 +27,6 @@ build_stages:
                 --with-metis-dir=${PARMETIS_DIR} \
                 --with-parmetis=1 \
                 --with-parmetis-dir=${PARMETIS_DIR}
+#                --with-ml=1 \
+#                --with-ml-lib=${TRILINOS_DIR}/lib/libml.so \
+#                --with-ml-include=${TRILINOS_DIR}/include/trilinos
