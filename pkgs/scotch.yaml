@@ -33,8 +33,8 @@ build_stages:
     after: configure
     handler: bash
     bash: |
-      make -j ${HASHDIST_CPU_COUNT} ptscotch
-      make -j ${HASHDIST_CPU_COUNT} ptesmumps
+      make ptscotch
+      make ptesmumps
 
   - name: install
     after: make
