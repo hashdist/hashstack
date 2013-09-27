@@ -3,10 +3,10 @@ extends:
 
 parameters:
   python_host_packages: '/usr/share/pyshared'
-  MPICC: /usr/bin/mpicc
-  MPICXX: /usr/bin/mpic++
-  MPIF77: /usr/bin/mpif77
-  MPIF90: /usr/bin/mpif90
-  MPIEXEC: /usr/bin/mpiexec
+  HOST_MPICC: /usr/bin/mpicc
+  HOST_MPICXX: /usr/bin/mpic++
+  HOST_MPIF77: /usr/bin/mpif77
+  HOST_MPIF90: /usr/bin/mpif90
+  HOST_MPIEXEC: /usr/bin/mpiexec
   SCOTCH_ARCH: pc_linux2
   PETSC_ARCH: linux-gnu-cxx-opt
