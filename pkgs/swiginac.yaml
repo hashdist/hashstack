@@ -1,6 +1,0 @@
-extends: [distutils]
-
-sources:
-  - url: http://download.berlios.de/swiginac/swiginac-1.5.1.1.tgz
-    key: tar.gz:4am3idfmfgyhbzzegk4xzscxnaw2ifxf
-

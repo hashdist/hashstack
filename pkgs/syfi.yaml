@@ -1,6 +1,0 @@
-extends: [cmake]
-
-sources:
-  - url: http://launchpad.net/fenics-syfi/1.0.x/1.0.0/+download/syfi-1.0.0.tar.gz
-    key: tar.gz:2cz6nhkelsck2ynp6omf5isvwxjvxmaw
-
