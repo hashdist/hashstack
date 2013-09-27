@@ -1,6 +1,18 @@
 extends: [autotools]
 
 sources:
-  - url: http://bzip.org/1.0.6/bzip2-1.0.6.tar.gz
-    key: tar.gz:ukci6nh42xlm6r666acgd7fvfcqeqtmo
+- url: http://bzip.org/1.0.6/bzip2-1.0.6.tar.gz
+  key: tar.gz:ukci6nh42xlm6r666acgd7fvfcqeqtmo
 
+build_stages:
+- name: configure
+  mode: replace
+  handler: bash
+  bash: |
+    sed -i 's/^CFLAGS=-Wall/CFLAGS=-fPIC -Wall/g' Makefile
+
+- name: install
+  mode: replace
+  handler: bash
+  bash: |
+    make install PREFIX=${ARTIFACT}

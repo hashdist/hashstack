@@ -1,6 +1,34 @@
-extends: [autotools]
+dependencies:
+  build: [bzip2, mpi]
 
 sources:
-  - url: http://downloads.sourceforge.net/boost/boost_1_51_0.tar.bz2
-    key: tar.bz2:7mwsgnnct3t74bakdfzjfp6otavpqste
+- url: http://downloads.sourceforge.net/boost/boost_1_51_0.tar.bz2
+  key: tar.bz2:7mwsgnnct3t74bakdfzjfp6otavpqste
 
+build_stages:
+
+- name: bootstrap
+  handler: bash
+  bash: |
+    ./bootstrap.sh --prefix=${ARTIFACT}
+
+- name: bjam
+  after: bootstrap
+  handler: bash
+  bash: |
+    echo "using mpi ;" > user-config.jam
+    ./bjam -j ${HASHDIST_CPU_COUNT} --user-config=user-config.jam \
+           --build-dir=_build link=shared install \
+           -sNO_BZIP2=0 \
+           -sBZIP2_BINARY=bz2 \
+           -sBZIP2_INCLUDE=${BZIP2_DIR}/include \
+           -sBZIP2_LIBPATH=${BZIP2_DIR}/lib
+
+when_build_dependency:
+- set: BOOST_MULTITHREADED
+  value: "OFF"
+
+profile_links:
+
+  - name: everything
+    link: '*/**/*'
