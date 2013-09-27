@@ -1,6 +1,9 @@
 extends: [autotools]
 
 sources:
-  - url: http://www.cmake.org/files/v2.8/cmake-2.8.11.2.tar.gz
-    key: tar.gz:wmvmwsb27xiugomudrxe5qs7mm6zc2t2
+- url: http://www.cmake.org/files/v2.8/cmake-2.8.11.2.tar.gz
+  key: tar.gz:wmvmwsb27xiugomudrxe5qs7mm6zc2t2
 
+when_build_dependency:
+- set: CMAKE
+  value: ${ARTIFACT}/bin/cmake
