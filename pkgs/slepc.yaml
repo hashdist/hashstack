@@ -1,6 +1,29 @@
 extends: [autotools]
+dependencies:
+  build: [petsc]
 
 sources:
-  - url: http://www.grycap.upv.es/slepc/download/download.php?filename=slepc-3.4.2.tar.gz
-    key: tar.gz:kos4bnzmd7tqj3mci6m6y35csldnvvac
+- url: http://www.grycap.upv.es/slepc/download/download.php?filename=slepc-3.4.2.tar.gz
+  key: tar.gz:kos4bnzmd7tqj3mci6m6y35csldnvvac
 
+build_stages:
+- name: configure
+  mode: replace
+  handler: bash
+  bash: |
+    export SLEPC_DIR=${PWD}
+    export PETSC_DIR=${PETSC_DIR}
+    unset PETSC_ARCH
+    ./configure --prefix=${ARTIFACT}
+
+- name: make
+  mode: replace
+  handler: bash
+  bash: |
+    make PETSC_ARCH=arch-installed-petsc
+
+- name: install
+  mode: replace
+  handler: bash
+  bash: |
+    make PETSC_ARCH=arch-installed-petsc install
