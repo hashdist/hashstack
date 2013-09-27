@@ -1,6 +1,20 @@
-extends: [cmake]
+extends: [cmake_package]
+dependencies:
+  build: [zlib, boost, gmp, mpfr]
 
 sources:
-  - url: https://gforge.inria.fr/frs/download.php/32360/CGAL-4.2.tar.bz2
-    key: tar.bz2:67wy5ys57vr4ba36wltoptr3cbhflpad
+- url: https://gforge.inria.fr/frs/download.php/32360/CGAL-4.2.tar.bz2
+  key: tar.bz2:67wy5ys57vr4ba36wltoptr3cbhflpad
 
+build_stages:
+- name: configure
+  mode: override
+  extra: ['-DCMAKE_BUILD_TYPE:STRING=Release',
+          '-DBUILD_SHARED_LIBS:BOOL=ON',
+          '-DWITH_CGAL_Core:BOOL=OFF',
+          '-DWITH_CGAL_ImageIO:BOOL=OFF',
+          '-DWITH_CGAL_Qt3:BOOL=OFF',
+          '-DWITH_CGAL_Qt4:BOOL=OFF',
+          '-DZLIB_ROOT:PATH=${ZLIB_DIR}',
+          '-DBoost_USE_MULTITHREADED:BOOL=${BOOST_USE_MULTITHREADED}',
+          '-DBOOST_ROOT:PATH=${BOOST_DIR}']
