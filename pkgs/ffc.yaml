@@ -1,6 +1,6 @@
 extends: [distutils]
 dependencies:
-  build: [swig]
+  build: [numpy]
 
 sources:
 - url: https://bitbucket.org/fenics-project/ffc.git
