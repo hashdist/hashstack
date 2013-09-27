@@ -13,6 +13,7 @@ build_stages:
     handler: bash
     bash: |
       make install
+      rm -f ${ARTIFACT}/lib/*.la
 
 profile_links:
 
