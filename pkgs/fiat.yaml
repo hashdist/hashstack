@@ -1,6 +1,5 @@
 extends: [distutils]
 
 sources:
-  - url: https://launchpad.net/fiat/1.1.x/release-1.1/+download/fiat-1.1.tar.gz
-    key: tar.gz:ssuze32hrtu5clr7bt2n5yetpx54oumk
-
+- url: https://bitbucket.org/fenics-project/fiat.git
+  key: git:f110663e4bcee8dad41f42da7c0805b51341b449

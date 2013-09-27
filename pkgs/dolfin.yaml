@@ -1,6 +1,12 @@
-extends: [cmake]
+extends: [cmake_package]
+dependencies:
+  build: [python, boost, swig, openblas, mpi, scotch, parmetis, suitesparse, petsc]
 
 sources:
-  - url: http://launchpad.net/dolfin/1.2.x/1.2.0/+download/dolfin-1.2.0.tar.gz
-    key: tar.gz:p6btqaxyrmv35fnnxxawjkptx53iddst
+- url: https://bitbucket.org/fenics-project/dolfin.git
+  key: git:f6f6175364221fb4baf60cccdcfbfb426ab533c4
 
+build_stages:
+- name: configure
+  mode: override
+  extra: []

@@ -1,6 +1,7 @@
 extends: [distutils]
+dependencies:
+  build: [swig]
 
 sources:
-  - url: http://launchpad.net/ffc/1.2.x/1.2.0/+download/ffc-1.2.0.tar.gz
-    key: tar.gz:vr6muu35vrdbbaq4t3fqgodqbfynoe6q
-
+- url: https://bitbucket.org/fenics-project/ffc.git
+  key: git:96ed46bda623829083ebddea0559642ce8a65336

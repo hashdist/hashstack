@@ -1,6 +1,6 @@
-extends: [cmake]
+extends: [cmake_package]
 dependencies:
-  build: [python, swig]
+  build: [python, swig, boost]
 
 sources:
 - url: https://bitbucket.org/fenics-project/ufc.git
@@ -10,4 +10,5 @@ build_stages:
 - name: configure
   mode: override
   extra: ['-DSWIG_EXECUTABLE:FILEPATH=${SWIG_EXECUTABLE}',
-          '-DPYTHON_EXECUTABLE:FILEPATH=${PYTHON}']
+          '-DPYTHON_EXECUTABLE:FILEPATH=${PYTHON}',
+          '-DBOOST_ROOT:PATH=${BOOST_DIR}']
