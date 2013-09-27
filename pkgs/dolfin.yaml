@@ -1,6 +1,7 @@
 extends: [cmake_package]
 dependencies:
-  build: [python, boost, swig, openblas, mpi, scotch, parmetis, suitesparse, petsc]
+  build: [python, ffc, ufc, boost, swig, openblas, mpi,
+          scotch, parmetis, suitesparse, petsc, slepc, hdf5]
 
 sources:
 - url: https://bitbucket.org/fenics-project/dolfin.git
@@ -9,4 +10,9 @@ sources:
 build_stages:
 - name: configure
   mode: override
-  extra: []
+  extra: ['-DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo',
+          '-DCGAL_DISABLE_ROUNDING_MATH_CHECK:BOOL=ON',
+          '-DSWIG_EXECUTABLE:FILEPATH=${SWIG_EXECUTABLE}',
+          '-DPYTHON_EXECUTABLE:FILEPATH=${PYTHON}',
+          '-DBoost_USE_MULTITHREADED:BOOL=${BOOST_USE_MULTITHREADED}',
+          '-DHDF5_INCLUDE_DIRS=${HDF5_DIR}/include']

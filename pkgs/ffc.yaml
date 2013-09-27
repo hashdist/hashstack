@@ -5,3 +5,7 @@ dependencies:
 sources:
 - url: https://bitbucket.org/fenics-project/ffc.git
   key: git:96ed46bda623829083ebddea0559642ce8a65336
+
+when_build_dependency:
+  - prepend_path: PATH
+    value: '${ARTIFACT}/bin'
