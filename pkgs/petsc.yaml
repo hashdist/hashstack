@@ -30,3 +30,11 @@ build_stages:
 #                --with-ml=1 \
 #                --with-ml-lib=${TRILINOS_DIR}/lib/libml.so \
 #                --with-ml-include=${TRILINOS_DIR}/include/trilinos
+
+- name: make
+  mode: replace
+  after: configure
+  before: install
+  handler: bash
+  bash: |
+    make
