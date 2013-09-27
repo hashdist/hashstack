@@ -8,5 +8,6 @@ parameters:
   HOST_MPIF77: /usr/bin/mpif77
   HOST_MPIF90: /usr/bin/mpif90
   HOST_MPIEXEC: /usr/bin/mpiexec
+  HOST_CMAKE: /usr/bin/cmake
   SCOTCH_ARCH: pc_linux2
   PETSC_ARCH: linux-gnu-cxx-opt
