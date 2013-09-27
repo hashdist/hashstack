@@ -1,24 +1,24 @@
 extends:
-  - profile: debian.yaml
+- file: debian.yaml
 
 packages:
-  - zlib
-  - szlib
-  - python:
-      use: host-python
+  zlib:
+  szlib:
+  python:
+    use: host-python
   
   # numpy/scipy has some problems from modern Ubuntu; we'll add an OpenBLAS build shortly,
   # the lines below work for older Ubuntu:
-  #- numpy:
-  #    use: host-numpy
-  #- scipy:
-  #    use: host-scipy
+  #numpy:
+  #  use: host-numpy
+  #scipy:
+  #  use: host-scipy
 
-  - nose
-  - launcher
-  - hdf5
-  - jinja2
-  - distribute
+  nose:
+  launcher:
+  hdf5:
+  jinja2:
+  distribute:
 
-  - mpi:
-      use: host-mpi
+  mpi:
+    use: host-mpi
