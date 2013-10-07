@@ -19,9 +19,104 @@ build_stages:
         ln -s $i ${ARTIFACT}/lib/python{{pyver}}
       done
 
-      for i in /usr/include/python{{pyver}}/*; do
-        ln -s $i ${ARTIFACT}/include/python{{pyver}}
+      PYTHON_INCLUDE_FILES="
+      pyexpat.h
+      cStringIO.h
+      pyfpe.h
+      funcobject.h
+      stringobject.h
+      structseq.h
+      genobject.h
+      pystrtod.h
+      pydebug.h
+      token.h
+      warnings.h
+      longintrepr.h
+      complexobject.h
+      asdl.h
+      fileobject.h
+      pygetopt.h
+      memoryobject.h
+      compile.h
+      structmember.h
+      ucnhash.h
+      cellobject.h
+      rangeobject.h
+      moduleobject.h
+      pyarena.h
+      objimpl.h
+      bytearrayobject.h
+      pymacconfig.h
+      patchlevel.h
+      pgenheaders.h
+      pymath.h
+      cobject.h
+      opcode.h
+      ast.h
+      import.h
+      bitset.h
+      boolobject.h
+      frameobject.h
+      symtable.h
+      Python.h
+      parsetok.h
+      marshal.h
+      graminit.h
+      tupleobject.h
+      weakrefobject.h
+      enumobject.h
+      node.h
+      pystate.h
+      pyerrors.h
+      iterobject.h
+      pycapsule.h
+      pyctype.h
+      intrcheck.h
+      object.h
+      code.h
+      pyport.h
+      traceback.h
+      descrobject.h
+      unicodeobject.h
+      floatobject.h
+      modsupport.h
+      bufferobject.h
+      pystrcmp.h
+      abstract.h
+      pgen.h
+      sysmodule.h
+      Python-ast.h
+      errcode.h
+      metagrammar.h
+      classobject.h
+      codecs.h
+      py_curses.h
+      longobject.h
+      bytesobject.h
+      timefuncs.h
+      pymem.h
+      methodobject.h
+      pymactoolbox.h
+      dictobject.h
+      pythonrun.h
+      osdefs.h
+      setobject.h
+      sliceobject.h
+      pyconfig.h
+      listobject.h
+      ceval.h
+      pythread.h
+      dtoa.h
+      bytes_methods.h
+      datetime.h
+      eval.h
+      grammar.h
+      intobject.h
+      "
+      for i in ${PYTHON_INCLUDE_FILES}; do
+        ln -s /usr/include/python{{pyver}}/$i ${ARTIFACT}/include/python{{pyver}}
       done
+
       rm -f ${ARTIFACT}/lib/python{{pyver}}/dist-packages
       rm -f ${ARTIFACT}/lib/python{{pyver}}/site-packages
       mkdir ${ARTIFACT}/lib/python{{pyver}}/site-packages
