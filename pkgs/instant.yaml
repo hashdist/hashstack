@@ -1,4 +1,4 @@
-extends: [distutils]
+extends: [distutils_package]
 
 sources:
 - url: https://bitbucket.org/fenics-project/instant.git

@@ -1,4 +1,4 @@
-extends: [autotools]
+extends: [autotools_package]
 
 sources:
   - url: http://www.open-mpi.org/software/ompi/v1.6/downloads/openmpi-1.6.5.tar.bz2

@@ -1,4 +1,4 @@
-extends: [autotools]
+extends: [autotools_package]
 dependencies:
   build: [petsc]
 

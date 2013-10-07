@@ -1,4 +1,4 @@
-extends: [autotools]
+extends: [autotools_package]
 
 sources:
   - url: ftp://xmlsoft.org/libxml2/old/libxml2-2.6.2.tar.gz

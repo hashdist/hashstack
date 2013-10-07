@@ -1,4 +1,4 @@
-extends: [distutils]
+extends: [distutils_package]
 
 sources:
   - url: http://sourcesup.cru.fr/frs/download.php/2309/ScientificPython-2.8.tar.gz

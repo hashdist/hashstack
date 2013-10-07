@@ -1,4 +1,4 @@
-extends: [autotools]
+extends: [autotools_package]
 dependencies:
 #  build: [openblas, mpi, scotch, parmetis, suitesparse, trilinos]
   build: [openblas, mpi, scotch, parmetis, suitesparse]

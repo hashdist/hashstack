@@ -1,4 +1,4 @@
-extends: [autotools]
+extends: [autotools_package]
 
 sources:
   - url: http://downloads.sourceforge.net/pcre/pcre-8.21.tar.gz

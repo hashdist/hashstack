@@ -1,4 +1,4 @@
-extends: [autotools]
+extends: [autotools_package]
 
 sources:
   - url: http://downloads.sourceforge.net/project/libpng/zlib/1.2.7/zlib-1.2.7.tar.bz2

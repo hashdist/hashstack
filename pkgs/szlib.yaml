@@ -1,4 +1,4 @@
-extends: [autotools]
+extends: [autotools_package]
 
 sources:
   - url: http://www.hdfgroup.org/ftp/lib-external/szip/2.1/src/szip-2.1.tar.gz

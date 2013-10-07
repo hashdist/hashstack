@@ -1,4 +1,4 @@
-extends: [distutils]
+extends: [distutils_package]
 dependencies:
   build: [numpy]
   run: [numpy]
