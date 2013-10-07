@@ -11,7 +11,7 @@ build_stages:
     handler: bash
     bash: |
       export MPICC
-      SCOTCH_ARCH=${{SCOTCH_ARCH}}
+      SCOTCH_ARCH={{SCOTCH_ARCH}}
       cd src
       if [ "${SCOTCH_ARCH}" == "pc_linux2" ]
       then

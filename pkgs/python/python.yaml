@@ -18,11 +18,11 @@ profile_links:
     launcher: 'bin/*'
 
   - name: python_packages
-    link: 'lib/python${{pyver}}/site-packages/*'
+    link: 'lib/python{{pyver}}/site-packages/*'
     dirs: true
 
   - name: python_exclude
     after: python_packages
     before: everything
 
-    exclude: 'lib/python${{pyver}}/site-packages/**/*'
+    exclude: 'lib/python{{pyver}}/site-packages/**/*'

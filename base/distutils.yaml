@@ -7,8 +7,8 @@ build_stages:
 - name: setup_dirs
   handler: bash
   bash: |
-    export PYTHONPATH=${ARTIFACT}/${{python_site_packages_rel}}:$PYTHONPATH
-    mkdir -p ${ARTIFACT}/${{python_site_packages_rel}}
+    export PYTHONPATH=${ARTIFACT}/{{python_site_packages_rel}}:$PYTHONPATH
+    mkdir -p ${ARTIFACT}/{{python_site_packages_rel}}
 
 - name: install
   after: setup_dirs
@@ -21,22 +21,22 @@ build_stages:
   after: install
   handler: bash
   bash: |
-    rm -rf ${ARTIFACT}/${{python_site_packages_rel}}/*.pth
+    rm -rf ${ARTIFACT}/{{python_site_packages_rel}}/*.pth
 
 profile_links:
 
   - name: python_packages
-    link: 'lib/python${{pyver}}/site-packages/*'
+    link: 'lib/python{{pyver}}/site-packages/*'
     dirs: true
 
   - name: python_exclude
     after: python_packages
     before: everything
-    exclude: 'lib/python${{pyver}}/site-packages/**/*'
+    exclude: 'lib/python{{pyver}}/site-packages/**/*'
 
   - name: everything
     link: '*/**/*'
 
 when_build_dependency:
   - prepend_path: PYTHONPATH
-    value: '${ARTIFACT}/lib/python${{pyver}}/site-packages'
+    value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'

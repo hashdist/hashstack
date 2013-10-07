@@ -14,8 +14,8 @@ build_stages:
   mode: replace
   handler: bash
   bash: |
-    export PYTHONPATH=${ARTIFACT}/${{python_site_packages_rel}}:${PYTHONPATH}
-    mkdir -p ${ARTIFACT}/${{python_site_packages_rel}}
+    export PYTHONPATH=${ARTIFACT}/{{python_site_packages_rel}}:${PYTHONPATH}
+    mkdir -p ${ARTIFACT}/{{python_site_packages_rel}}
     ${PYTHON} -c 'import setuptools; __file__="setup.py"; execfile(__file__)' \
        install \
        --prefix=. --root=${ARTIFACT} \

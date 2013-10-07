@@ -1,6 +1,6 @@
 when_build_dependency:
-  - {set: 'MPICC', value: '${{HOST_MPICC}}'}
-  - {set: 'MPICXX', value: '${{HOST_MPICXX}}'}
-  - {set: 'MPIF77', value: '${{HOST_MPIF77}}'}
-  - {set: 'MPIF90', value: '${{HOST_MPIF90}}'}
-  - {set: 'MPIEXEC', value: '${{HOST_MPIEXEC}}'}
+  - {set: 'MPICC', value: '{{HOST_MPICC}}'}
+  - {set: 'MPICXX', value: '{{HOST_MPICXX}}'}
+  - {set: 'MPIF77', value: '{{HOST_MPIF77}}'}
+  - {set: 'MPIF90', value: '{{HOST_MPIF90}}'}
+  - {set: 'MPIEXEC', value: '{{HOST_MPIEXEC}}'}
