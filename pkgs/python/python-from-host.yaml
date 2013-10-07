@@ -1,10 +1,12 @@
+when: host
 build_stages:
 
-  # Set up links to system Python. Do not pull in site-packages (or dist-packages).
-  # Additionally, use our own fresh site.py (since at least Debian patches it
-  # to replace site-packages with dist-packages...).
-
-  - handler: bash
+  - when: not use_python_host_packages
+    # Set up links to system Python to create a "virtualenv"/clean
+    # environment. Do not pull in site-packages (or dist-packages).
+    # Additionally, use our own fresh site.py (since at least Debian
+    # patches it to replace site-packages with dist-packages...).
+    handler: bash
     files: [site.py]
     bash: |
       mkdir ${ARTIFACT}/bin
@@ -17,8 +19,6 @@ build_stages:
         ln -s $i ${ARTIFACT}/lib/python${{pyver}}
       done
 
-
-
       for i in /usr/include/python${{pyver}}/*; do
         ln -s $i ${ARTIFACT}/include/python${{pyver}}
       done
@@ -27,13 +27,25 @@ build_stages:
       mkdir ${ARTIFACT}/lib/python${{pyver}}/site-packages
       cp -f _hashdist/site.py ${ARTIFACT}/lib/python${{pyver}}/site.py
 
+  - when: use_python_host_packages
+    # Simply symlink to the system Python, and rely on PYTHONPATH being set up
+    # appropriately when using profile
+    handler: bash
+    bash: |
+      mkdir ${ARTIFACT}/bin
+      ln -s /usr/bin/python${{pyver}} ${ARTIFACT}/bin/python${{pyver}}
+      ln -s /usr/bin/python${{pyver}}-config ${ARTIFACT}/bin/python${{pyver}}-config
+      ln -s python${{pyver}} ${ARTIFACT}/bin/python
+      ln -s python${{pyver}}-config ${ARTIFACT}/bin/python-config
+
 when_build_dependency:
   - set: PYTHON
     value: ${ARTIFACT}/bin/python
 
 profile_links:
 
-  - name: python_binaries
+  - when: not use_python_host_packages
+    name: python_binaries
     before: everything
     launcher: 'bin/*'
 

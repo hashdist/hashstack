@@ -1,6 +1,7 @@
 package_dirs:
 - pkgs
 - base
+
 hook_import_dirs:
 - base
 
@@ -10,3 +11,5 @@ parameters:
   python_site_packages_rel: 'lib/python2.7/site-packages'
 
   python_host_packages: '/usr/lib/python2.7/dist-packages'
+  use_python_host_packages: false
+

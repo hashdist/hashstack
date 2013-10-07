@@ -11,3 +11,4 @@ parameters:
   HOST_CMAKE: /usr/bin/cmake
   SCOTCH_ARCH: pc_linux2
   PETSC_ARCH: linux-gnu-cxx-opt
+  HOST_PYTHON: /usr/bin/python
