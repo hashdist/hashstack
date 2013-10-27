@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: [petsc, numpy]
+  run: [petsc, numpy]
+
+sources:
+  - url: https://bitbucket.org/petsc/petsc4py/downloads/petsc4py-3.4.tar.gz
+    key: tar.gz:2xnpgviigzvthznmbpkxmazow2dlxywa
