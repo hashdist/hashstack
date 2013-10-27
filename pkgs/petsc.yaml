@@ -1,7 +1,7 @@
 extends: [autotools_package]
 dependencies:
 #  build: [openblas, mpi, scotch, parmetis, suitesparse, trilinos]
-  build: [openblas, mpi, scotch, parmetis, suitesparse]
+  build: [openblas, mpi, parmetis, suitesparse]
 
 sources:
 - url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.4.2.tar.gz
@@ -12,14 +12,10 @@ build_stages:
   mode: replace
   handler: bash
   bash: |
-    PETSC_DIR=${PWD} PETSC_ARCH={{PETSC_ARCH}} \
     ./configure --prefix=${ARTIFACT} COPTFLAGS=-O2 \
                 --with-debugging=0 --with-shared-libraries=1 \
                 --with-clanguage=cxx --with-c-support=1 \
                 --with-blas-lapack-lib=${OPENBLAS_DIR}/lib/libopenblas.so \
-                --with-ptscotch=1 \
-                --with-ptscotch-include=${SCOTCH_DIR}/include \
-                --with-ptscotch-lib=[${SCOTCH_DIR}/lib/libptesmumps.a,${SCOTCH_DIR}/lib/libptscotch.a,${SCOTCH_DIR}/lib/libptscotcherr.a,${SCOTCH_DIR}/lib/libscotch.a,${SCOTCH_DIR}/lib/libscotcherr.a] \
                 --with-umfpack=1 \
                 --with-umfpack-include=${SUITESPARSE_DIR}/include/suitesparse \
                 --with-umfpack-lib=[${SUITESPARSE_DIR}/lib/libumfpack.a,${SUITESPARSE_DIR}/lib/libcholmod.a,${SUITESPARSE_DIR}/lib/libcamd.a,${SUITESPARSE_DIR}/lib/libccolamd.a,${SUITESPARSE_DIR}/lib/libcolamd.a,${SUITESPARSE_DIR}/lib/libamd.a,${SUITESPARSE_DIR}/lib/libsuitesparseconfig.a] \
@@ -38,3 +34,7 @@ build_stages:
   handler: bash
   bash: |
     make
+
+when_build_dependency:
+  - set: PETSC_DIR
+    value: '${ARTIFACT}'
