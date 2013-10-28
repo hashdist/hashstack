@@ -1,0 +1,3 @@
+when_build_dependency:
+- set: PKG_CONFIG_EXECUTABLE
+  value: '{{HOST_PKG_CONFIG_EXECUTABLE}}'
