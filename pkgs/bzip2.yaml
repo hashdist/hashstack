@@ -1,18 +1,26 @@
-extends: [autotools_package]
+dependencies:
+  build: [patchelf]
 
 sources:
 - url: http://bzip.org/1.0.6/bzip2-1.0.6.tar.gz
   key: tar.gz:ukci6nh42xlm6r666acgd7fvfcqeqtmo
 
 build_stages:
-- name: configure
-  mode: replace
-  handler: bash
+- handler: bash
   bash: |
-    sed -i 's/^CFLAGS=-Wall/CFLAGS=-fPIC -Wall/g' Makefile
-
-- name: install
-  mode: replace
-  handler: bash
-  bash: |
+    make -f Makefile-libbz2_so
+    make clean
     make install PREFIX=${ARTIFACT}
+
+    cp -v bzip2-shared ${ARTIFACT}/bin/bzip2
+    cp -av libbz2.so* ${ARTIFACT}/lib
+    ln -sv ${ARTIFACT}/lib/libbz2.so.1.0 ${ARTIFACT}/lib/libbz2.so
+    rm -v ${ARTIFACT}/bin/{bunzip2,bzcat}
+    ln -sv bzip2 ${ARTIFACT}/bin/bunzip2
+    ln -sv bzip2 ${ARTIFACT}/bin/bzcat
+
+    ${PATCHELF} --set-rpath ${ARTIFACT}/lib ${ARTIFACT}/bin/bzip2
+
+profile_links:
+- name: everything
+  link: '*/**/*'
