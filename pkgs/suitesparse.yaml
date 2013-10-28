@@ -4,43 +4,43 @@ dependencies:
   run: [openblas]
 
 sources:
-  - url: http://www.cise.ufl.edu/research/sparse/SuiteSparse/SuiteSparse-4.0.2.tar.gz
-    key: tar.gz:so2zfcmh7yaqqcft7x7t47w66qx3fwgp
+- url: http://www.cise.ufl.edu/research/sparse/SuiteSparse/SuiteSparse-4.0.2.tar.gz
+  key: tar.gz:so2zfcmh7yaqqcft7x7t47w66qx3fwgp
 
 build_stages:
-  - name: configure
-    mode: replace
-    handler: bash
-    bash: |
-      cat > SuiteSparse_config/SuiteSparse_config.mk << EOF
-      #CF = \$(CFLAGS) \$(CPPFLAGS) \$(TARGET_ARCH) -O3 -fexceptions -fPIC
-      CF = \$(CFLAGS) \$(CPPFLAGS) \$(TARGET_ARCH) -O3 -fexceptions -fPIC -DNTIMER
-      RANLIB = ranlib
-      ARCHIVE = \$(AR) \$(ARFLAGS)
-      CP = cp -f
-      MV = mv -f
-      F77 = gfortran
-      F77FLAGS = \$(FFLAGS) -O
-      F77LIB =
-      #LIB = -lm -lrt
-      LIB = -lm
-      INSTALL_LIB = ${ARTIFACT}/lib
-      INSTALL_INCLUDE = ${ARTIFACT}/include/suitesparse
-      XERBLA =
-      BLAS = -L${OPENBLAS_DIR}/lib -lopenblas
-      LAPACK = \$(BLAS)
-      GPU_BLAS_PATH =
-      GPU_CONFIG =
-      UMFPACK_CONFIG =
-      CHOLMOD_CONFIG = \$(GPU_CONFIG) -DNPARTITION
-      SPQR_CONFIG =
-      TBB =
-      CLEAN = *.o *.obj *.ln *.bb *.bbg *.da *.tcov *.gcov gmon.out *.bak *.d *.gcda *.gcno
-      EOF
+- name: configure
+  mode: replace
+  handler: bash
+  bash: |
+    cat > SuiteSparse_config/SuiteSparse_config.mk << EOF
+    #CF = \$(CFLAGS) \$(CPPFLAGS) \$(TARGET_ARCH) -O3 -fexceptions -fPIC
+    CF = \$(CFLAGS) \$(CPPFLAGS) \$(TARGET_ARCH) -O3 -fexceptions -fPIC -DNTIMER
+    RANLIB = ranlib
+    ARCHIVE = \$(AR) \$(ARFLAGS)
+    CP = cp -f
+    MV = mv -f
+    F77 = gfortran
+    F77FLAGS = \$(FFLAGS) -O
+    F77LIB =
+    #LIB = -lm -lrt
+    LIB = -lm
+    INSTALL_LIB = ${ARTIFACT}/lib
+    INSTALL_INCLUDE = ${ARTIFACT}/include/suitesparse
+    XERBLA =
+    BLAS = -L${OPENBLAS_DIR}/lib -lopenblas
+    LAPACK = \$(BLAS)
+    GPU_BLAS_PATH =
+    GPU_CONFIG =
+    UMFPACK_CONFIG =
+    CHOLMOD_CONFIG = \$(GPU_CONFIG) -DNPARTITION
+    SPQR_CONFIG =
+    TBB =
+    CLEAN = *.o *.obj *.ln *.bb *.bbg *.da *.tcov *.gcov gmon.out *.bak *.d *.gcda *.gcno
+    EOF
 
-  - name: create-install-directories
-    before: install
-    handler: bash
-    bash: |
-      mkdir -p ${ARTIFACT}/include/suitesparse
-      mkdir -p ${ARTIFACT}/lib
+- name: create-install-directories
+  before: install
+  handler: bash
+  bash: |
+    mkdir -p ${ARTIFACT}/include/suitesparse
+    mkdir -p ${ARTIFACT}/lib
