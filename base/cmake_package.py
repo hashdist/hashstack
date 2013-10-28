@@ -20,11 +20,9 @@ def configure(ctx, stage_args):
     platform.
     If build_in_source is set, build directory will be the same as source directory.
     """
-    # FIXME:
-    #conf_lines = ['${CMAKE} -D CMAKE_INSTALL_PREFIX:PATH="${ARTIFACT}"']
-    conf_lines = ['cmake -DCMAKE_INSTALL_PREFIX:PATH="${ARTIFACT}"']
+    conf_lines = ['${CMAKE} -D CMAKE_INSTALL_PREFIX:PATH="${ARTIFACT}"']
     if 'extra' in stage_args:
-        conf_lines.append(' '.join('"%s"' % arg for arg in stage_args['extra']))
+        conf_lines.append(' '.join('%s' % arg for arg in stage_args['extra']))
 
     builddir = '..'
     if stage_args.get('build_in_source', False):

@@ -1,3 +1,6 @@
+dependencies:
+  build: [cmake]
+
 build_stages:
 
   - name: setup_builddir
