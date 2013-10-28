@@ -1,6 +1,9 @@
 extends: [autotools_package]
 
 sources:
-  - url: ftp://xmlsoft.org/libxml2/old/libxml2-2.6.2.tar.gz
-    key: tar.gz:v2xdoovivw3byclugm7cldu45ihqsimb
+- url: http://fenicsproject.org/pub/software/contrib/libxml2-2.6.26.tar.gz
+  key: tar.gz:gfcek7r4fh5t25ro7gs67eh6d6wgl3gd
 
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
