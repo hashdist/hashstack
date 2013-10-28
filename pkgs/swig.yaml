@@ -14,3 +14,7 @@ build_stages:
 when_build_dependency:
 - set: SWIG_EXECUTABLE
   value: ${ARTIFACT}/bin/swig
+- set: SWIG_LIB
+  value: ${ARTIFACT}/share/swig/2.0.11
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
