@@ -4,11 +4,14 @@ dependencies:
 
 sources:
 - url: https://bitbucket.org/fenics-project/ufc.git
-  key: git:46e82a9025d4dad7c1e1b5541a520a8e11235bcb
+  key: git:51a9a520e62845ef01509f1af2da9d010917c4f0
 
 build_stages:
 - name: configure
-  mode: override
-  extra: ['-DSWIG_EXECUTABLE:FILEPATH=${SWIG_EXECUTABLE}',
-          '-DPYTHON_EXECUTABLE:FILEPATH=${PYTHON}',
-          '-DBOOST_ROOT:PATH=${BOOST_DIR}']
+  extra: ['-D SWIG_EXECUTABLE:FILEPATH="${SWIG_EXECUTABLE}"',
+          '-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"',
+          '-D BOOST_ROOT:PATH="${BOOST_DIR}"']
+
+when_build_dependency:
+- prepend_path: PYTHONPATH
+  value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'

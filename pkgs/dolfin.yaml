@@ -1,18 +1,44 @@
 extends: [cmake_package]
 dependencies:
-  build: [python, ffc, ufc, boost, swig, openblas, mpi,
-          scotch, parmetis, suitesparse, petsc, slepc, hdf5]
+  build: [boost, cgal, eigen, ffc, fiat, hdf5, instant, libxml2, mpi,
+          numpy, openblas, parmetis, pastix, patchelf, petsc, petsc4py,
+          pkg-config, ply, python, scientificpython, scotch, slepc,
+          suitesparse, swig, trilinos, ufc, ufl, vtk, zlib]
 
 sources:
 - url: https://bitbucket.org/fenics-project/dolfin.git
-  key: git:f6f6175364221fb4baf60cccdcfbfb426ab533c4
+  key: git:9d8322e4d66e6c136d6955fd0b70c78f88f5aa79
 
 build_stages:
 - name: configure
-  mode: override
-  extra: ['-DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo',
-          '-DCGAL_DISABLE_ROUNDING_MATH_CHECK:BOOL=ON',
-          '-DSWIG_EXECUTABLE:FILEPATH=${SWIG_EXECUTABLE}',
-          '-DPYTHON_EXECUTABLE:FILEPATH=${PYTHON}',
-          '-DBoost_USE_MULTITHREADED:BOOL=${BOOST_USE_MULTITHREADED}',
-          '-DHDF5_INCLUDE_DIRS=${HDF5_DIR}/include']
+  extra: ['-D CMAKE_BUILD_TYPE:STRING=RelWithDebInfo',
+          '-D CGAL_DISABLE_ROUNDING_MATH_CHECK:BOOL=ON',
+          '-D SWIG_EXECUTABLE:FILEPATH="${SWIG_EXECUTABLE}"',
+          '-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"',
+          '-D BOOST_ROOT:PATH="${BOOST_DIR}"',
+          '-D Boost_USE_MULTITHREADED:BOOL=${BOOST_USE_MULTITHREADED}',
+          '-D HDF5_INCLUDE_DIRS="${HDF5_DIR}/include"',
+          '-D HDF5_DIR:PATH="${HDF5_DIR}"',
+          '-D HDF5_C_COMPILER_EXECUTABLE="${HDF5_DIR}/bin/h5pcc"',
+          '-D UMFPACK_DIR:PATH="${SUITESPARSE_DIR}"',
+          '-D LAPACK_LIBRARIES:FILEPATH="${OPENBLAS_DIR}/lib/libopenblas.so"',
+          '-D BLAS_LIBRARIES:FILEPATH="${OPENBLAS_DIR}/lib/libopenblas.so"',
+          '-D EIGEN3_INCLUDE_DIR:PATH="${EIGEN_DIR}/include/eigen3"',
+          '-D ZLIB_ROOT:PATH="${ZLIB_DIR}"',
+          '-D DOLFIN_ENABLE_DOCS:BOOL=OFF',
+          '-D DOLFIN_ENABLE_SPHINX:BOOL=OFF',
+          '-D DOLFIN_ENABLE_TAO:BOOL=OFF',
+          '-D DOLFIN_ENABLE_QT:BOOL=OFF',
+          '-D VTK_DIR:PATH="${VTK_DIR}"',
+          '-D PKG_CONFIG_EXECUTABLE:FILEPATH="${PKG_CONFIG_EXECUTABLE}"',
+          '-D CMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib"',
+          '-D CMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON']
+
+- name: fix-rpath
+  after: install
+  handler: bash
+  bash: |
+    for lib in ${ARTIFACT}/lib/python{{pyver}}/site-packages/dolfin/cpp/_*.so; do
+        oldRPath=$(${PATCHELF} --print-rpath ${lib})
+        ${PATCHELF} --set-rpath $oldRPath:${ARTIFACT}/lib ${lib}
+    done
