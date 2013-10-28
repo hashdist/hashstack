@@ -1,20 +1,31 @@
 extends: [autotools_package]
 dependencies:
-  build: [zlib, szlib]
+  build: [zlib, szlib, mpi]
 
 sources:
-  - url: http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.8.11.tar.bz2
-    key: tar.bz2:l2q3vax4o42q5zriw6k243w6ax7ov4og
+- url: http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.8.11.tar.bz2
+  key: tar.bz2:l2q3vax4o42q5zriw6k243w6ax7ov4og
 
 build_stages:
-  - name: configure
-    mode: override
-    extra: ['--with-zlib=${ZLIB_DIR}',
-            '--with-szlib=${SZLIB_DIR}',
-            '--with-pthread',
-            '--enable-unsupported',
-            '--enable-shared',
-            '--enable-production=yes',
-            '--enable-parallel=yes',
-            '--enable-largefile=yes',
-            '--with-default-api-version=v18']
+- name: set-cc-compiler
+  before: configure
+  handler: bash
+  bash: |
+    export CC=${MPICC}
+
+- name: configure
+  extra: ['--with-zlib=${ZLIB_DIR}',
+          '--with-szlib=${SZLIB_DIR}',
+          '--with-pthread',
+          '--enable-unsupported',
+          '--enable-shared',
+          '--enable-production=yes',
+          '--enable-parallel=yes',
+          '--enable-largefile=yes',
+          '--with-default-api-version=v18']
+
+when_build_dependency:
+- set: HDF5_ROOT
+  value: '${ARTIFACT}'
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
