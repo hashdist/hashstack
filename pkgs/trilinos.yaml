@@ -9,25 +9,29 @@ sources:
 build_stages:
 - name: configure
   mode: override
-  extra: ['-DCMAKE_CXX_COMPILER:FILEPATH=${MPICXX}',
-          '-DCMAKE_C_COMPILER:FILEPATH=${MPICC}',
-          '-DTrilinos_INSTALL_INCLUDE_DIR:PATH=include/trilinos',
-          '-DTrilinos_ENABLE_ALL_OPTIONAL_PACKAGES:BOOL=ON',
-          '-DTrilinos_ENABLE_Epetra:BOOL=ON',
-          '-DTrilinos_ENABLE_ML:BOOL=ON',
-          '-DTrilinos_ENABLE_PyTrilinos:BOOL=ON',
-          '-DTrilinos_ENABLE_TESTS:BOOL=OFF',
-          '-DTrilinos_ENABLE_EXAMPLES:BOOL=OFF',
-          '-DCMAKE_BUILD_TYPE:STRING=Release',
-          '-DBUILD_SHARED_LIBS:BOOL=ON',
-          '-DTPL_ENABLE_MPI:BOOL=ON',
-          '-DTPL_ENABLE_UMFPACK:BOOL=ON',
-          '-DBLAS_LIBRARY_NAMES:STRING=openblas',
-          '-DBLAS_LIBRARY_DIRS:PATH=${OPENBLAS_DIR}/lib',
-          '-DLAPACK_LIBRARY_NAMES:STRING=openblas',
-          '-DLAPACK_LIBRARY_DIRS:PATH=${OPENBLAS_DIR}/lib',
-          '-DUMFPACK_INCLUDE_DIRS:PATH=${SUITESPARSE_DIR}/include/suitesparse',
-          '-DUMFPACK_LIBRARY_DIRS:PATH=${SUITESPARSE_DIR}/lib',
-          '-DUMFPACK_LIBRARY_NAMES:STRING=\"umfpack;cholmod;camd;ccolamd;colamd;amd;suitesparseconfig\"',
-          '-DSWIG_EXECUTABLE:FILEPATH=${SWIG_EXECUTABLE}',
-          '-DPYTHON_EXECUTABLE:FILEPATH=${PYTHON}']
+  extra: ['-D CMAKE_CXX_COMPILER:FILEPATH=${MPICXX}',
+          '-D CMAKE_C_COMPILER:FILEPATH=${MPICC}',
+          '-D Trilinos_INSTALL_INCLUDE_DIR:PATH=include/trilinos',
+          '-D Trilinos_ENABLE_ALL_OPTIONAL_PACKAGES:BOOL=ON',
+          '-D Trilinos_ENABLE_Epetra:BOOL=ON',
+          '-D Trilinos_ENABLE_ML:BOOL=ON',
+          '-D Trilinos_ENABLE_PyTrilinos:BOOL=ON',
+          '-D Trilinos_ENABLE_TESTS:BOOL=OFF',
+          '-D Trilinos_ENABLE_EXAMPLES:BOOL=OFF',
+          '-D CMAKE_BUILD_TYPE:STRING=Release',
+          '-D BUILD_SHARED_LIBS:BOOL=ON',
+          '-D TPL_ENABLE_MPI:BOOL=ON',
+          '-D TPL_ENABLE_UMFPACK:BOOL=ON',
+          '-D BLAS_LIBRARY_NAMES:STRING=openblas',
+          '-D BLAS_LIBRARY_DIRS:PATH=${OPENBLAS_DIR}/lib',
+          '-D LAPACK_LIBRARY_NAMES:STRING=openblas',
+          '-D LAPACK_LIBRARY_DIRS:PATH=${OPENBLAS_DIR}/lib',
+          '-D UMFPACK_INCLUDE_DIRS:PATH=${SUITESPARSE_DIR}/include/suitesparse',
+          '-D UMFPACK_LIBRARY_DIRS:PATH=${SUITESPARSE_DIR}/lib',
+          '-D UMFPACK_LIBRARY_NAMES:STRING="umfpack;cholmod;camd;ccolamd;colamd;amd;suitesparseconfig"',
+          '-D SWIG_EXECUTABLE:FILEPATH=${SWIG_EXECUTABLE}',
+          '-D PYTHON_EXECUTABLE:FILEPATH=${PYTHON}']
+
+when_build_dependency:
+- prepend_path: PYTHONPATH
+  value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'
