@@ -9,6 +9,9 @@ parameters:
   HOST_MPIF90: /usr/bin/mpif90
   HOST_MPIEXEC: /usr/bin/mpiexec
   HOST_CMAKE: /usr/bin/cmake
+  HOST_PYTHON: /usr/bin/python
+  HOST_PKG_CONFIG_EXECUTABLE: /usr/bin/pkgconfig
+  HOST_SWIG_EXECUTABLE: /usr/bin/swig
   SCOTCH_ARCH: pc_linux2
   PETSC_ARCH: linux-gnu-cxx-opt
-  HOST_PYTHON: /usr/bin/python
+  PASTIX_ARCH: i686_pc_linux
