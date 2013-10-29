@@ -3,6 +3,8 @@ from hashdist import build_stage
 def rpath_flag(ctx, path):
    if ctx.parameters['platform'] == 'linux':
        return '-Wl,-rpath=%s' % path
+   else:
+       return ''
 
 @build_stage()
 def configure(ctx, stage_args):

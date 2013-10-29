@@ -1,8 +1,8 @@
 extends: [distutils_package]
 dependencies:
-  build: [petsc, numpy]
+  build: [petsc, numpy, cython]
   run: [petsc, numpy]
 
 sources:
-  - url: https://bitbucket.org/petsc/petsc4py/downloads/petsc4py-3.4.tar.gz
-    key: tar.gz:2xnpgviigzvthznmbpkxmazow2dlxywa
+  - url: https://bitbucket.org/petsc/petsc4py.git
+    key: git:f4c5dc2139024e671b3f09c2565e00320e8d51cc

@@ -1,7 +1,7 @@
 extends: [autotools_package]
 dependencies:
-  build: [openblas]
-  run: [openblas]
+  build: [blas]
+  run: [blas]
 
 sources:
   - url: http://www.cise.ufl.edu/research/sparse/SuiteSparse/SuiteSparse-4.0.2.tar.gz
@@ -27,7 +27,7 @@ build_stages:
       INSTALL_LIB = ${ARTIFACT}/lib
       INSTALL_INCLUDE = ${ARTIFACT}/include/suitesparse
       XERBLA =
-      BLAS = -L${OPENBLAS_DIR}/lib -lopenblas
+      BLAS = ${BLAS_LDFLAGS}
       LAPACK = \$(BLAS)
       GPU_BLAS_PATH =
       GPU_CONFIG =

@@ -1,13 +1,14 @@
 extends: [autotools_package]
 dependencies:
 #  build: [openblas, mpi, scotch, parmetis, suitesparse, trilinos]
-  build: [openblas, mpi, parmetis, suitesparse]
+  build: [blas, mpi, parmetis, suitesparse]
 
 sources:
 - url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.4.2.tar.gz
   key: tar.gz:iut5sf26il7kznsks7idenl4pffj4hxo
 
-build_stages:
+build_stages: 
+ 
 - name: configure
   mode: replace
   handler: bash
@@ -15,7 +16,7 @@ build_stages:
     ./configure --prefix=${ARTIFACT} COPTFLAGS=-O2 \
                 --with-debugging=0 --with-shared-libraries=1 \
                 --with-clanguage=cxx --with-c-support=1 \
-                --with-blas-lapack-lib=${OPENBLAS_DIR}/lib/libopenblas.so \
+                --with-blas-lapack-lib=${BLAS_LIBPATH} \
                 --with-umfpack=1 \
                 --with-umfpack-include=${SUITESPARSE_DIR}/include/suitesparse \
                 --with-umfpack-lib=[${SUITESPARSE_DIR}/lib/libumfpack.a,${SUITESPARSE_DIR}/lib/libcholmod.a,${SUITESPARSE_DIR}/lib/libcamd.a,${SUITESPARSE_DIR}/lib/libccolamd.a,${SUITESPARSE_DIR}/lib/libcolamd.a,${SUITESPARSE_DIR}/lib/libamd.a,${SUITESPARSE_DIR}/lib/libsuitesparseconfig.a] \
@@ -23,9 +24,26 @@ build_stages:
                 --with-metis-dir=${PARMETIS_DIR} \
                 --with-parmetis=1 \
                 --with-parmetis-dir=${PARMETIS_DIR}
-#                --with-ml=1 \
-#                --with-ml-lib=${TRILINOS_DIR}/lib/libml.so \
-#                --with-ml-include=${TRILINOS_DIR}/include/trilinos
+
+# Special case for OS X, don't use `--with-blas-lapack-lib` flag.
+# There is no sensible way to communicate the Accelerate Framework to PETSc.
+- when: platform == 'Darwin'
+  name: configure
+  mode: replace
+  handler: bash
+  bash: |
+    ./configure --prefix=${ARTIFACT} COPTFLAGS=-O2 \
+                --with-debugging=0 --with-shared-libraries=1 \
+                --with-c-support=1 \
+                --with-umfpack=1 \
+                --with-umfpack-include=${SUITESPARSE_DIR}/include/suitesparse \
+                --with-umfpack-lib=[${SUITESPARSE_DIR}/lib/libumfpack.a,${SUITESPARSE_DIR}/lib/libcholmod.a,${SUITESPARSE_DIR}/lib/libcamd.a,${SUITESPARSE_DIR}/lib/libccolamd.a,${SUITESPARSE_DIR}/lib/libcolamd.a,${SUITESPARSE_DIR}/lib/libamd.a,${SUITESPARSE_DIR}/lib/libsuitesparseconfig.a] \
+                --with-metis=1 \
+                --with-metis-dir=${PARMETIS_DIR} \
+                --with-parmetis=1 \
+                --with-parmetis-dir=${PARMETIS_DIR}
+
+# Disable Parallel Builds
 
 - name: make
   mode: replace
@@ -34,6 +52,16 @@ build_stages:
   handler: bash
   bash: |
     make
+
+# Special case for OS X, post-fix library rpaths with install_name_tool
+- when: platform == 'Darwin'
+  name: rpath_fix
+  handler: bash
+  after: install
+  bash: |
+    install_name_tool -change libmetis.dylib ${PARMETIS_DIR}/lib/libmetis.dylib ${ARTIFACT}/lib/libpetsc.dylib
+    install_name_tool -change libparmetis.dylib ${PARMETIS_DIR}/lib/libparmetis.dylib ${ARTIFACT}/lib/libpetsc.dylib
+
 
 when_build_dependency:
   - set: PETSC_DIR
