@@ -1,0 +1,20 @@
+extends:
+- file: linux.yaml
+
+packages:
+
+  launcher:
+  python:
+    host: false
+  mpi:
+    use: mpich
+  nose:
+  hdf5:
+  jinja2:
+  distribute:
+  petsc:
+  petsc4py:
+  szlib:
+  zlib:
+  blas:
+    use: host-blas
