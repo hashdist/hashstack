@@ -1,0 +1,5 @@
+extends: [autotools_package]
+
+sources:
+  - url: http://www.mpich.org/static/tarballs/3.0.3/mpich-3.0.3.tar.gz
+    key: tar.gz:jj5yo7oe3e45wwngkuqqn35bud5kdfkr
