@@ -1,7 +1,6 @@
 extends: [distutils_package]
 dependencies:
-  build: [python, distribute]
-  run: [python, docutils, jinja2, pygments]
+  run: [docutils, jinja2, pygments]
 
 sources:
   - url: https://pypi.python.org/packages/source/S/Sphinx/Sphinx-1.2b1.tar.gz
