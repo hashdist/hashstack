@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 sources:
-- url: ftp://ftp.gmplib.org/pub/gmp/gmp-5.1.3.tar.bz2
+- url: http://mirrors.kernel.org/gnu/gmp/gmp-5.1.3.tar.bz2
   key: tar.bz2:ouqhsuqli2ifgelr2d2fglsa6cdaaik7
 
 build_stages:
