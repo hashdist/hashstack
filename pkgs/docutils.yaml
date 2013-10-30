@@ -1,7 +1,4 @@
 extends: [distutils_package]
-dependencies:
-  build: [python]
-  run: [python]
 
 sources:
   - url: https://pypi.python.org/packages/source/d/docutils/docutils-0.10.tar.gz
