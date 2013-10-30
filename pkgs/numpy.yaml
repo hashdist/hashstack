@@ -1,7 +1,7 @@
 extends: [distutils_package]
 dependencies:
-  build: [openblas]
-  run: [openblas]
+  build: [blas]
+  run: [blas]
 
 sources:
   - url: http://downloads.sourceforge.net/numpy/numpy-1.7.1.tar.gz
@@ -9,7 +9,8 @@ sources:
 
 build_stages:
 
-  - name: create-site.cfg
+  - when: platform == 'linux'
+    name: create-site.cfg
     before: install
     handler: bash
     bash: |
@@ -19,7 +20,8 @@ build_stages:
       library_dirs = ${OPENBLAS_DIR}/lib
       EOF
 
-  - name: set-LDFLAGS
+  - when: platform == 'linux'
+    name: set-LDFLAGS
     before: install
     handler: bash
     bash: |

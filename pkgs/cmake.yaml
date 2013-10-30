@@ -7,3 +7,6 @@ sources:
 when_build_dependency:
 - set: CMAKE
   value: ${ARTIFACT}/bin/cmake
+
+- prepend_path: PATH
+  value: ${ARTIFACT}/bin

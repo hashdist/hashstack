@@ -1,0 +1,10 @@
+extends:
+  - file: linux.yaml
+
+parameters:
+  HOST_MPICC: /usr/local/bin/mpicc
+  HOST_MPICXX: /usr/local/bin/mpic++
+  HOST_MPIF77: /usr/local/bin/mpif77
+  HOST_MPIF90: /usr/local/bin/mpif90
+  HOST_MPIEXEC: /usr/local/bin/mpiexec
+  PATH: /usr/local/bin:/usr/bin:/bin

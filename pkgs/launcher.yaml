@@ -1,6 +1,6 @@
 sources:
   - url: git://github.com/hashdist/hdist-launcher.git
-    key: git:941878d2387709a20d164b014d9155552448ce2b
+    key: git:1ae18686890423e8e9948f0706103d4eac151296
 
 build_stages:
 

@@ -1,0 +1,6 @@
+extends:
+ - file: common.yaml
+
+parameters:
+  platform: Darwin
+  PATH: /usr/bin:/bin
