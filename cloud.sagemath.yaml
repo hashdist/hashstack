@@ -1,0 +1,15 @@
+extends:
+- file: linux.yaml
+
+packages:
+
+  launcher:
+  blas:
+    use: host-blas
+  mpi:
+    use: mpich
+  python:
+    host: false
+  ipython:
+  nose:
+  petsc4py:

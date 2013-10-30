@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: [python]
+  run: [python, pyzmq, python-readline, tornado, jinja2]
+
+sources:
+  - url: https://pypi.python.org/packages/source/i/ipython/ipython-1.0.0.tar.gz
+    key: tar.gz:budveg2hqtq3d5twwszsyh3qribgz44y
