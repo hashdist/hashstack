@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: [python]
+  run: [python]
+
+sources:
+  - url: https://pypi.python.org/packages/source/P/Pygments/Pygments-1.6.tar.gz
+    key: tar.gz:pgpnjsxxoulokrcaqbwy3hgyfj3apx67
