@@ -1,0 +1,18 @@
+extends: [autotools_package]
+dependencies:
+  build: [zlib]
+  run: [zlib]
+
+sources:
+- url: http://downloads.sourceforge.net/project/libpng/libpng16/1.6.6/libpng-1.6.6.tar.gz
+  key: tar.gz:dj4va2fjpzsuvcl3usxe76jiywh6phjz
+
+build_stages:
+
+  - when: platform == 'linux'
+    name: set-CPP-LDFLAGS
+    before: configure
+    handler: bash
+    bash: |
+      export CPPFLAGS="-I$ZLIB_DIR/include"
+      export LDFLAGS="-L$ZLIB_DIR/lib -Wl,-rpath=$ZLIB_DIR/lib"
