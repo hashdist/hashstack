@@ -18,3 +18,4 @@ packages:
   sphinx:
   scipy:
   sympy:
+  gmp:
