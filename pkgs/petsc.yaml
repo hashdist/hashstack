@@ -16,7 +16,8 @@ build_stages:
     ./configure --prefix=${ARTIFACT} COPTFLAGS=-O2 \
                 --with-debugging=0 --with-shared-libraries=1 \
                 --with-clanguage=cxx --with-c-support=1 \
-                --with-blas-lapack-lib=${BLAS_LIBPATH} \
+                --with-blas-dir=${BLAS_DIR} \
+                --with-lapack-dir=${LAPACK_DIR} \
                 --with-umfpack=1 \
                 --with-umfpack-include=${SUITESPARSE_DIR}/include/suitesparse \
                 --with-umfpack-lib=[${SUITESPARSE_DIR}/lib/libumfpack.a,${SUITESPARSE_DIR}/lib/libcholmod.a,${SUITESPARSE_DIR}/lib/libcamd.a,${SUITESPARSE_DIR}/lib/libccolamd.a,${SUITESPARSE_DIR}/lib/libcolamd.a,${SUITESPARSE_DIR}/lib/libamd.a,${SUITESPARSE_DIR}/lib/libsuitesparseconfig.a] \
