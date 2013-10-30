@@ -38,9 +38,9 @@ build_stages:
       CLEAN = *.o *.obj *.ln *.bb *.bbg *.da *.tcov *.gcov gmon.out *.bak *.d *.gcda *.gcno
       EOF
 
-- name: create-install-directories
-  before: install
-  handler: bash
-  bash: |
-    mkdir -p ${ARTIFACT}/include/suitesparse
-    mkdir -p ${ARTIFACT}/lib
+  - name: create-install-directories
+    before: install
+    handler: bash
+    bash: |
+      mkdir -p ${ARTIFACT}/include/suitesparse
+      mkdir -p ${ARTIFACT}/lib
