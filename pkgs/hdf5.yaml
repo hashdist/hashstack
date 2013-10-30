@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [zlib, szlib]
+  build: [mpi, zlib, szlib]
 
 sources:
   - url: http://www.hdfgroup.org/ftp/HDF5/current/src/hdf5-1.8.11.tar.bz2

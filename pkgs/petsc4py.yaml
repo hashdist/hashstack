@@ -1,7 +1,7 @@
 extends: [distutils_package]
 dependencies:
-  build: [petsc, numpy, cython]
-  run: [petsc, numpy]
+  build: [mpi, petsc, numpy, cython]
+  run: [mpi, petsc, numpy]
 
 sources:
   - url: https://bitbucket.org/petsc/petsc4py.git

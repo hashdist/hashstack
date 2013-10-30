@@ -1,5 +1,21 @@
 extends: [autotools_package]
 
+build_stages:
+  - name: configure
+    mode: override
+    extra: ['--enable-shared']
+
+
 sources:
   - url: http://www.mpich.org/static/tarballs/3.0.3/mpich-3.0.3.tar.gz
     key: tar.gz:jj5yo7oe3e45wwngkuqqn35bud5kdfkr
+
+when_build_dependency:
+  - {set: 'MPICC', value: "${ARTIFACT}/bin/mpicc"}
+  - {set: 'MPICXX', value: "${ARTIFACT}/bin/mpic++"}
+  - {set: 'MPIF77', value: "${ARTIFACT}/bin/mpif77"}
+  - {set: 'MPIF90', value: "${ARTIFACT}/bin/mpif90"}
+  - {set: 'MPIEXEC', value: "${ARTIFACT}/bin/mpiexec"}
+
+  - prepend_path: PATH
+    value: ${ARTIFACT}/bin
