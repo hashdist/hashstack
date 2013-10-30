@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: [python]
+  run: [python]
+
+sources:
+  - url: http://sympy.googlecode.com/files/sympy-0.7.2.tar.gz
+    key: tar.gz:emck5pjjrwf5izzhhizlsd6wniso4yol
