@@ -1,5 +1,6 @@
 extends: [distutils_package]
 dependencies:
+  build: [distribute, docutils, jinja2, pygments]
   run: [docutils, jinja2, pygments]
 
 sources:
