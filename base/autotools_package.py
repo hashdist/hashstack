@@ -15,7 +15,7 @@ def configure(ctx, stage_args):
 
         - name: configure
           extra: ['--enable-foo', '--with-zlib=${ZLIB_DIR}']
-          set_env_FLAGS: true # default
+          set_env_flags: true # default
 
     If set_env_flags is set, CPPFLAGS and LDFLAGS will be set, as appropriate for the
     platform.
@@ -28,7 +28,7 @@ def configure(ctx, stage_args):
         conf_lines[i + 1] = '  ' + conf_lines[i + 1]
 
     env_lines = []
-    if stage_args.get('set_env_FLAGS', True):
+    if stage_args.get('set_env_flags', True):
         CPPFLAGS = []
         LDFLAGS = []
         for dep_var in ctx.dependency_dir_vars:

@@ -34,7 +34,7 @@ def configure(ctx, stage_args):
         conf_lines[i + 1] = '  ' + conf_lines[i + 1]
 
     env_lines = []
-    if stage_args.get('set_env_FLAGS', True):
+    if stage_args.get('set_env_flags', True):
         CFLAGS = []
         LDFLAGS = []
         for dep_var in ctx.dependency_dir_vars:
