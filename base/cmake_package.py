@@ -16,8 +16,8 @@ def configure(ctx, stage_args):
           set_env_flags: true # default
           build_in_source: false # default
 
-    If set_env_flags is set, CFLAGS and LDFLAGS will be set, as appropriate for the
-    platform.
+    If set_env_flags is set, CPPFLAGS and LDFLAGS will be set, as appropriate
+    for the platform.
     If build_in_source is set, build directory will be the same as source directory.
     """
     conf_lines = ['${CMAKE} -D CMAKE_INSTALL_PREFIX:PATH="${ARTIFACT}"']
@@ -35,13 +35,13 @@ def configure(ctx, stage_args):
 
     env_lines = []
     if stage_args.get('set_env_flags', True):
-        CFLAGS = []
+        CPPFLAGS = []
         LDFLAGS = []
         for dep_var in ctx.dependency_dir_vars:
-            CFLAGS.append('-I${%s_DIR}/include' % dep_var)
+            CPPFLAGS.append('-I${%s_DIR}/include' % dep_var)
             LDFLAGS.append('-L${%s_DIR}/lib' % dep_var)
             LDFLAGS.append(rpath_flag(ctx, '${%s_DIR}/lib' % dep_var))
-        env_lines.append('export CFLAGS="%s"' % ' '.join(CFLAGS))
+        env_lines.append('export CPPFLAGS="%s"' % ' '.join(CPPFLAGS))
         env_lines.append('export LDFLAGS="%s"' % ' '.join(LDFLAGS))
 
     return ['('] + env_lines + conf_lines + [')']
