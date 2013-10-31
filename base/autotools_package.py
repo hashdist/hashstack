@@ -15,9 +15,9 @@ def configure(ctx, stage_args):
 
         - name: configure
           extra: ['--enable-foo', '--with-zlib=${ZLIB_DIR}']
-          set_env_flags: true # default
+          set_env_FLAGS: true # default
 
-    If set_env_flags is set, CFLAGS and LDFLAGS will be set, as appropriate for the
+    If set_env_flags is set, CPPFLAGS and LDFLAGS will be set, as appropriate for the
     platform.
     """
     conf_lines = ['./configure --prefix="${ARTIFACT}"']
@@ -29,13 +29,13 @@ def configure(ctx, stage_args):
 
     env_lines = []
     if stage_args.get('set_env_FLAGS', True):
-        CFLAGS = []
+        CPPFLAGS = []
         LDFLAGS = []
         for dep_var in ctx.dependency_dir_vars:
-            CFLAGS.append('-I${%s_DIR}/include' % dep_var)
+            CPPFLAGS.append('-I${%s_DIR}/include' % dep_var)
             LDFLAGS.append('-L${%s_DIR}/lib' % dep_var)
             LDFLAGS.append(rpath_flag(ctx, '${%s_DIR}/lib' % dep_var))
-        env_lines.append('export CFLAGS="%s"' % ' '.join(CFLAGS))
+        env_lines.append('export CPPFLAGS="%s"' % ' '.join(CPPFLAGS))
         env_lines.append('export LDFLAGS="%s"' % ' '.join(LDFLAGS))
 
     return ['('] + env_lines + conf_lines + [')']

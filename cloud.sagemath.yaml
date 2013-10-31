@@ -13,3 +13,9 @@ packages:
   ipython:
   nose:
   petsc4py:
+  matplotlib:
+  numpy:
+  sphinx:
+  scipy:
+  sympy:
+  gmp:
