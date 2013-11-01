@@ -43,7 +43,6 @@ packages:
     use: host-blas
 
   nose:
-  hdf5:
   jinja2:
   distribute:
   petsc:
@@ -51,5 +50,5 @@ packages:
   szlib:
   zlib:
 
-
-
+#  Currently fails:
+#  hdf5:
