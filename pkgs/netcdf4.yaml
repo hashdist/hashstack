@@ -1,0 +1,14 @@
+extends: [autotools_package]
+dependencies:
+  build: [hdf5]
+
+sources:
+- url: ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.0.tar.gz
+  key: tar.gz:fakgkhcnwra2sw5y3ukephgap4czr57d
+
+build_stages:
+- name: enter-src-directory
+  before: configure
+  handler: bash
+  bash: |
+    cd netcdf-4.3.0
