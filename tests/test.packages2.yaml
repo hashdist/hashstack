@@ -1,0 +1,23 @@
+# Tests some general configuration of packages
+
+extends:
+- file: linux.yaml
+
+packages:
+
+  launcher:
+
+  python:
+    host: false
+
+  mpi:
+    use: host-mpi
+  blas:
+    use: host-blas
+
+  nose:
+  jinja2:
+  distribute:
+  szlib:
+  zlib:
+  hdf5:
