@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [hdf5]
+  build: [mpi, hdf5]
 
 sources:
 - url: ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.0.tar.gz
