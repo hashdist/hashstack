@@ -25,15 +25,7 @@ build_stages:
 
 profile_links:
 
-  - name: mpl_packages
-    link: 'lib/python{{pyver}}/site-packages/mpl_toolkits/**/*'
-
-  - name: mpl_exclude
-    after: mpl_packages
-    exclude: 'lib/python{{pyver}}/site-packages/mpl_toolkits/**/*'
-
   - name: python_packages
-    after: mpl_exclude
     link: 'lib/python{{pyver}}/site-packages/*'
     dirs: true
 
