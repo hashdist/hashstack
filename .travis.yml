@@ -1,14 +1,18 @@
 language: python
 env:
-  - TEST_PROFILE="cloud.sagemath.yaml"
-  - TEST_PROFILE="default.example.yaml"
+  - TEST_PROFILE="test.packages1.yaml"
+  - TEST_PROFILE="test.packages2.yaml"
+  - TEST_PROFILE="test.host-scipy.yaml"
 python:
   - 2.7
 before_install:
-  - git clone https://github.com/hashdist/hashdist
+  - if [[ "${TEST_PROFILE}" == "test.host-scipy.yaml" ]]; then
+      sudo apt-get install python-scipy;
+    fi
 install:
+  - git clone https://github.com/hashdist/hashdist
   - export PATH=`pwd`/hashdist/bin:$PATH
 script:
-  - hit build -p $TEST_PROFILE -v
+  - hit build -p tests/$TEST_PROFILE -v
 notifications:
   email: false

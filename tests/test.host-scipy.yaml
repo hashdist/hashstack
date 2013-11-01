@@ -1,0 +1,15 @@
+# This test tests host installed Python, NumPy and SciPy
+
+extends:
+- file: suse.yaml
+
+packages:
+
+  launcher:
+
+  python:
+    host: true
+  numpy:
+    use: host-numpy
+  scipy:
+    use: host-scipy
