@@ -19,3 +19,4 @@ packages:
   scipy:
   sympy:
   gmp:
+  python-netcdf4:
