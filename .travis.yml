@@ -6,6 +6,8 @@ env:
 python:
   - 2.7
 before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install gfortran
   - if [[ "${TEST_PROFILE}" == "test.host-scipy.yaml" ]]; then
       sudo apt-get install python-scipy;
     fi
