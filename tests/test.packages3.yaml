@@ -1,0 +1,15 @@
+# Tests PETSc and petsc4py
+
+extends:
+- file: linux.yaml
+
+packages:
+
+  launcher:
+  blas:
+    use: host-blas
+  mpi:
+    use: mpich
+  python:
+    host: false
+  petsc4py:

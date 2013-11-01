@@ -1,3 +1,5 @@
+# This builds the IPython, NumPy, SciPy, Matplotlib, SymPy stack from scratch
+
 extends:
 - file: linux.yaml
 
@@ -12,10 +14,10 @@ packages:
     host: false
   ipython:
   nose:
-  petsc4py:
   matplotlib:
   numpy:
   sphinx:
-  scipy:
   sympy:
-  gmp:
+
+# Currently fails (https://github.com/hashdist/hashstack2/issues/23)
+#  scipy:
