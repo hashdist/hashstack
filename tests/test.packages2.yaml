@@ -1,7 +1,7 @@
 # Tests some general configuration of packages
 
 extends:
-- file: linux.yaml
+- file: debian.yaml
 
 packages:
 
