@@ -1,8 +1,8 @@
 language: python
 env:
-  - TEST_PROFILE="test.packages1.yaml"
-  - TEST_PROFILE="test.packages2.yaml"
-  - TEST_PROFILE="test.packages3.yaml"
+#  - TEST_PROFILE="test.packages1.yaml"
+#  - TEST_PROFILE="test.packages2.yaml"
+#  - TEST_PROFILE="test.packages3.yaml"
   - TEST_PROFILE="test.host-scipy.yaml"
 python:
   - 2.7
