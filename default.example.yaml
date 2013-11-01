@@ -39,6 +39,8 @@ packages:
 
   mpi:
     use: host-mpi
+  blas:
+    use: host-blas
 
   nose:
   hdf5:
