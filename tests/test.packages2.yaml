@@ -1,14 +1,14 @@
 # Tests some general configuration of packages
 
 extends:
-- file: suse.yaml
+- file: linux.yaml
 
 packages:
 
   launcher:
 
   python:
-    host: false 
+    host: false
 
   mpi:
     use: host-mpi
@@ -18,10 +18,6 @@ packages:
   nose:
   jinja2:
   distribute:
-  petsc:
-  petsc4py:
   szlib:
   zlib:
-
-#  Currently fails (https://github.com/hashdist/hashstack2/issues/24):
-#  hdf5:
+  hdf5:
