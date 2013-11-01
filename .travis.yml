@@ -1,0 +1,14 @@
+language: python
+env:
+  - TEST_PROFILE="cloud.sagemath.yaml"
+  - TEST_PROFILE="default.example.yaml"
+python:
+  - 2.7
+before_install:
+  - git clone https://github.com/hashdist/hashdist
+install:
+  - export PATH=`pwd`/hashdist/bin:$PATH
+script:
+  - hit build -p $TEST_PROFILE
+notifications:
+  email: false
