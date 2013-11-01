@@ -3,3 +3,7 @@ extends: [autotools_package]
 sources:
   - url: http://download.osgeo.org/geos/geos-3.4.2.tar.bz2
     key: tar.bz2:cxul7x36feehvfl3k2wfipvjvabscsa4
+
+when_build_dependency:
+  - set: GEOS_DIR
+    value: '${ARTIFACT}'
