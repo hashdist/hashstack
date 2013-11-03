@@ -1,3 +1,5 @@
+# Tests PETSc and petsc4py
+
 extends:
 - file: linux.yaml
 
@@ -10,14 +12,4 @@ packages:
     use: mpich
   python:
     host: false
-  ipython:
-  nose:
   petsc4py:
-  matplotlib:
-  numpy:
-  sphinx:
-  scipy:
-  sympy:
-  gmp:
-  matplotlib-basemap:
-  python-netcdf4:

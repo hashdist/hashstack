@@ -1,3 +1,5 @@
+# This builds the IPython, NumPy, SciPy, Matplotlib, SymPy stack from scratch
+
 extends:
 - file: linux.yaml
 
@@ -6,18 +8,12 @@ packages:
   launcher:
   blas:
     use: host-blas
-  mpi:
-    use: mpich
   python:
     host: false
   ipython:
   nose:
-  petsc4py:
   matplotlib:
   numpy:
   sphinx:
-  scipy:
   sympy:
-  gmp:
-  matplotlib-basemap:
-  python-netcdf4:
+  scipy:

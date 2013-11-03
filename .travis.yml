@@ -1,0 +1,31 @@
+language: python
+env:
+  - TEST_PROFILE="test.packages1.yaml"
+  - TEST_PROFILE="test.packages2.yaml"
+  - TEST_PROFILE="test.packages3.yaml"
+  - TEST_PROFILE="test.host-scipy.yaml"
+python:
+  - 2.7
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install gfortran
+  - if [[ "${TEST_PROFILE}" == "test.packages1.yaml" ]]; then
+      sudo apt-get install liblapack-dev;
+    fi
+  - if [[ "${TEST_PROFILE}" == "test.packages2.yaml" ]]; then
+      sudo apt-get install mpich2 liblapack-dev;
+    fi
+  - if [[ "${TEST_PROFILE}" == "test.packages3.yaml" ]]; then
+      sudo apt-get install liblapack-dev;
+    fi
+  - if [[ "${TEST_PROFILE}" == "test.host-scipy.yaml" ]]; then
+      sudo apt-get install python-scipy;
+    fi
+install:
+  - git clone https://github.com/hashdist/hashdist
+  - export PATH=`pwd`/hashdist/bin:$PATH
+script:
+  - cp tests/$TEST_PROFILE $TEST_PROFILE
+  - hit build -p $TEST_PROFILE
+notifications:
+  email: false
