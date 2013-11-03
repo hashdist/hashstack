@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: [numpy]
+  run: [numpy]
+
+sources:
+  - url: https://github.com/clawpack/clawpack/releases/download/5.0.0rc-beta/clawpack-rc-beta.tar.gz
+    key: tar.gz:enn2ynsscsxidwdhhhi6ar4tdmhzt4b4
