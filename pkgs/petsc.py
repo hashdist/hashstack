@@ -22,6 +22,8 @@ def configure(ctx, stage_args):
     flags.  Left unspecified by default.
     * link: Build shared or static libraries.  Shared by default.
     * debug: Enable/disable debugging.  true by default.
+    * download: A list of packages to instruct PETSc to download and
+    build.  These will not be readily available outside PETSc.
     """
     
     conf_lines = ['./configure --prefix="${ARTIFACT}"']
@@ -55,6 +57,10 @@ def configure(ctx, stage_args):
         conf_lines.append('--with-%s-dir=$%s_DIR' % 
                           (dep_var.lower(),
                            dep_var))
+
+    for package in stage_args['download'].split(','):
+        package_name = package.strip()
+        conf_lines.append('--download-%s=1' % package_name)
 
     # Multilinify
     for i in range(len(conf_lines) - 1):

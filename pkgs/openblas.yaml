@@ -11,3 +11,6 @@ build_stages:
 profile_links:
 - name: everything
   link: '*/**/*'
+
+when_build_dependency:
+  - {set: 'BLAS_LDFLAGS', value: '-L$ARTIFACT/lib -lblas'}
