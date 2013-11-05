@@ -7,9 +7,10 @@ hook_import_dirs:
 
 parameters:
   BASH: /bin/bash
+  PROLOGUE: | # by default, PROLOGUE is a no-op
+
   pyver: '2.7'  # as in used in lib/pythonX.Y/site-packages
   python_site_packages_rel: 'lib/python2.7/site-packages'
 
   python_host_packages: '/usr/lib/python2.7/dist-packages'
   use_python_host_packages: false
-

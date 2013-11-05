@@ -1,0 +1,5 @@
+build_stages:
+  - name: prologue
+    handler: bash
+    bash: |
+      {{PROLOGUE}}

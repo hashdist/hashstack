@@ -1,9 +1,12 @@
+extends: [base_package]
+
 dependencies:
   build: [cmake]
 
 build_stages:
 
   - name: setup_builddir
+    after: prologue
     handler: bash
     bash: |
       mkdir -p _build
