@@ -1,0 +1,12 @@
+extends: [distutils_package, libflags]
+dependencies:
+  build: [mpi, hdf5, netcdf4, numpy]
+  run: [netcdf4, numpy]
+
+sources:
+  - url: http://netcdf4-python.googlecode.com/files/netCDF4-1.0.4.tar.gz
+    key: tar.gz:th26v25of6xje5m5co3zbxpeejvsxded
+
+build_stages:
+- name: libflags
+  before: install

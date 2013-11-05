@@ -20,3 +20,4 @@ packages:
   sympy:
   gmp:
   matplotlib-basemap:
+  python-netcdf4:
