@@ -1,6 +1,9 @@
+extends: [base_package]
+
 build_stages:
 
   - name: configure
+    after: prologue
 
   - name: make
     after: configure

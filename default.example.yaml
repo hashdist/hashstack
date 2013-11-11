@@ -47,6 +47,7 @@ packages:
   jinja2:
   distribute:
   petsc:
+    build-with: parmetis
   petsc4py:
   szlib:
   zlib:
