@@ -3,8 +3,8 @@ dependencies:
   build: [blas, mpi, {{build_with}}]
 
 sources:
-- url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.4.2.tar.gz
-  key: tar.gz:iut5sf26il7kznsks7idenl4pffj4hxo
+- url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.4.3.tar.gz
+  key: tar.gz:o77yo4kbhzraantfztcddn4a6k7hgbpk
 
 
 build_stages: 
