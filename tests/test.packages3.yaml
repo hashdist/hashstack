@@ -12,4 +12,12 @@ packages:
     use: mpich
   python:
     host: false
+  petsc:
+    build_with: |
+
+    download: |
+
+    coptflags: -O2
+    link: shared
+    debug: false
   petsc4py:

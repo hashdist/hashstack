@@ -47,7 +47,11 @@ packages:
   jinja2:
   distribute:
   petsc:
-    build-with: parmetis
+    build_with: parmetis
+    download: superlu
+    coptflags: -O2
+    link: shared
+    debug: false
   petsc4py:
   szlib:
   zlib:
