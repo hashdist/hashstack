@@ -1,7 +1,7 @@
-extends: [distutils_package]
+extends: [distutils_package, libflags]
 dependencies:
-  build: [hdf5, numpy, numexpr, cython]
-  run: [hdf5, numpy, numexpr, cython]
+  build: [mpi, hdf5, numpy, numexpr, cython]
+  run: [mpi, hdf5, numpy, numexpr, cython]
 
 sources:
   - url: https://pypi.python.org/packages/source/t/tables/tables-2.4.0.tar.gz
