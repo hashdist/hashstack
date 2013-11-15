@@ -1,3 +1,22 @@
+diff --git a/conf/petscconf.py b/conf/petscconf.py
+index a44164d..bde2ecd 100644
+--- a/conf/petscconf.py
++++ b/conf/petscconf.py
+@@ -12,10 +12,10 @@ __all__ = ['setup',
+
+ # --------------------------------------------------------------------
+
+-from conf.baseconf import PetscConfig as BasePetscConfig
+-from conf.baseconf import setup, Extension
+-from conf.baseconf import config, build, build_src, build_ext
+-from conf.baseconf import test, sdist
++from .baseconf import PetscConfig as BasePetscConfig
++from .baseconf import setup, Extension
++from .baseconf import config, build, build_src, build_ext
++from .baseconf import test, sdist
+
+ # --------------------------------------------------------------------
+
 diff --git a/setup.py b/setup.py
 index a4c62f5..eef8009 100755
 --- a/setup.py
