@@ -6,9 +6,9 @@ sources:
 - url: https://github.com/erdc-cm/daetk.git
   key: git:9dfbdd3e231e7c5973046e897708b76c74747286
 
-build_stages: 
+build_stages:
 - when: platform == 'Darwin'
-  name: configure 
+  name: configure
   mode: replace
   files: [arch.darwin, archive.darwin, sources.darwin]
   after: prologue
@@ -19,6 +19,23 @@ build_stages:
     cp _hashdist/sources.darwin config/darwin.sources
     export DAETK_DIR=`pwd`
     export DAETK_ARCH=darwin
+    export PETSC_DIR=$PETSC_DIR
+    export PETSC=$PETSC_DIR
+    export MPI=$MPI_DIR
+    touch dep.txt
+
+- when: platform == 'linux'
+  name: configure
+  mode: replace
+  files: [arch.linux, archive.linux, sources.linux]
+  after: prologue
+  handler: bash
+  bash: |
+    cp _hashdist/arch.linux config/linux
+    cp _hashdist/archive.linux config/linux.archive
+    cp _hashdist/sources.linux config/linux.sources
+    export DAETK_DIR=`pwd`
+    export DAETK_ARCH=linux
     export PETSC_DIR=$PETSC_DIR
     export PETSC=$PETSC_DIR
     export MPI=$MPI_DIR

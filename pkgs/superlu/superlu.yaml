@@ -7,15 +7,26 @@ sources:
 - url: https://github.com/erdc-cm/superlu
   key: git:55f7d100d8a5ffa2222534126c2b52986d4ff5bb
 
-build_stages: 
+build_stages:
 - when: platform == 'Darwin'
-  name: configure 
+  name: configure
   mode: replace
   files: [make.inc.darwin]
   after: prologue
   handler: bash
   bash: |
     cp _hashdist/make.inc.darwin make.inc
+    export SuperLUroot=`pwd`
+    export BLASLIB=$BLAS_LDFLAGS
+
+- when: platform == 'linux'
+  name: configure
+  mode: replace
+  files: [make.inc.linux]
+  after: prologue
+  handler: bash
+  bash: |
+    cp _hashdist/make.inc.linux make.inc
     export SuperLUroot=`pwd`
     export BLASLIB=$BLAS_LDFLAGS
 
