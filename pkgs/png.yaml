@@ -4,5 +4,5 @@ dependencies:
   run: [zlib]
 
 sources:
-- url: http://downloads.sourceforge.net/project/libpng/libpng16/1.6.6/libpng-1.6.6.tar.gz
+- url: http://sourceforge.net/projects/libpng/files/libpng16/older-releases/1.6.6/libpng-1.6.6.tar.gz
   key: tar.gz:dj4va2fjpzsuvcl3usxe76jiywh6phjz
