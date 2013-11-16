@@ -6,7 +6,7 @@
 # the most *specific* file that matches your environment.
 
 extends:
-- file: homebrew.yaml
+- file: osx.yaml
 
 # The packages list specifies all the packages that you 
 # require installed.  <#> will ensure that all packages
@@ -17,7 +17,6 @@ packages:
 
   launcher:
   cmake:
-    use: host-cmake
   python:
     host: false 
   blas:
@@ -28,7 +27,6 @@ packages:
   nose:
   hdf5:
   ipython:
-  matplotlib:
   petsc:
     build_with: |
       parmetis      
@@ -45,4 +43,3 @@ packages:
   sympy:
   triangle:
   tetgen:
-
