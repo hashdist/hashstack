@@ -21,3 +21,4 @@ packages:
     link: shared
     debug: false
   petsc4py:
+    with_conf: true
