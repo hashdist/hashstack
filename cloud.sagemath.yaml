@@ -12,6 +12,15 @@ packages:
     host: false
   ipython:
   nose:
+  petsc:
+    build_with: |
+
+    download: |
+
+    coptflags: -O2
+    link: shared
+    debug: false
+
   petsc4py:
   matplotlib:
   numpy:
