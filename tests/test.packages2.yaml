@@ -21,3 +21,4 @@ packages:
   szlib:
   zlib:
   hdf5:
+  fabric-virtualenv:

@@ -1,0 +1,8 @@
+extends: [python_package]
+dependencies:
+  build: [distribute, paramiko]
+  run: [paramiko]
+
+sources:
+  - url: https://pypi.python.org/packages/source/F/Fabric/Fabric-1.8.0.tar.gz
+    key: tar.gz:ab3mo2v654775els4euq43sipyr2oiu3

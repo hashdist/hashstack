@@ -1,0 +1,8 @@
+extends: [python_package]
+dependencies:
+  build: [distribute, fabric, paramiko]
+  run: [fabric, paramiko]
+
+sources:
+  - url: https://pypi.python.org/packages/source/f/fabric-virtualenv/fabric-virtualenv-0.2.1.tar.gz
+    key: tar.gz:ieuohxfckg26ijsmrxwge6m3mxn2q62q
