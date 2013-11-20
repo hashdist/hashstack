@@ -5,8 +5,51 @@ sources:
    key: tar.bz2:hndxkvegjzqwuba64tl456mes5ixoc6h
 
 dependencies:
-  build: [zlib, launcher] #, bzip2, ncurses, readline, sqlite, openssl]
+  build: [zlib, launcher, ncurses, readline, sqlite, {{build_with}}]
   run: []
+
+build_stages:
+
+# Make sure extension modules were built correctly. This should be part of the
+# Python buildsystem, but unfortunately currently it will silently succeed even
+# if any of the modules below fail.
+  - name: test_modules
+    after: install
+    handler: bash
+    bash: |
+      echo "import math"
+      $ARTIFACT/bin/python -c "import math"
+      echo "    ok"
+
+      # Test bzip2:
+      echo "import bz2"
+      $ARTIFACT/bin/python -c "import bz2"
+      echo "    ok"
+
+      # Make sure sufficient crypto support is available in the built python.
+      echo "import hashlib"
+      $ARTIFACT/bin/python -c "import hashlib"
+      echo "    ok"
+
+      # Make sure SSL works
+      echo "import _ssl"
+      $ARTIFACT/bin/python -c "import _ssl"
+      echo "    ok"
+
+      echo "import _hashlib"
+      $ARTIFACT/bin/python -c "import _hashlib"
+      echo "    ok"
+
+      # Make sure HTTPS works
+      echo "Test https support in httplib"
+      $ARTIFACT/bin/python -c "import httplib; assert hasattr(httplib, 'HTTPS')"
+      echo "    ok"
+
+      # Test sqlite3
+      echo "import _sqlite3"
+      $ARTIFACT/bin/python -c "import _sqlite3"
+      echo "    ok"
+
 
 when_build_dependency:
   - set: PYTHON

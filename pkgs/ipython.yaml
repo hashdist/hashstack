@@ -1,7 +1,7 @@
 extends: [distutils_package]
 dependencies:
   build: [python]
-  run: [python, pyzmq, python-readline, tornado, jinja2]
+  run: [python, pyzmq, tornado, jinja2]
 
 sources:
   - url: https://pypi.python.org/packages/source/i/ipython/ipython-1.0.0.tar.gz
