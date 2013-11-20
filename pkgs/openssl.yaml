@@ -7,9 +7,16 @@ sources:
     key: tar.gz:65hrl2gi74i2upk3wxzhnuqc5qmnojdo
 
 build_stages:
-- name: configure
-  mode: replace
-  handler: bash
-  bash: |
-    #./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include -Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib
-    ./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include
+
+  - when: platform == 'linux'
+    name: set_flags
+    before: configure
+    handler: bash
+    bash: |
+      export OPENSSL_EXTRA_FLAGS="-Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib"
+
+  - name: configure
+    mode: replace
+    handler: bash
+    bash: |
+      ./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include $OPENSSL_EXTRA_FLAGS
