@@ -1,0 +1,12 @@
+extends:
+ - file: osx.yaml
+
+parameters:
+  PATH: /usr/bin:/bin:/opt/local/bin:/opt/local/lib/openmpi/bin
+  HOST_MPICC: /opt/local/bin/openmpicc
+  HOST_MPICXX: /opt/local/bin/openmpic++
+  HOST_MPIF77: /opt/local/bin/openmpif77
+  HOST_MPIF90: /opt/local/bin/openmpif90
+  HOST_MPIEXEC: /opt/local/bin/openmpiexec
+  HOST_CMAKE: /opt/local/bin/cmake
+  HOST_PYTHON: /opt/local/bin/python
