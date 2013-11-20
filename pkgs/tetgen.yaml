@@ -1,0 +1,25 @@
+extends: [base_package]
+
+sources:
+- url: http://tetgen.org/files/tetgen1.4.3.tar.gz
+  key: tar.gz:sutrdoygw73e7wcv5msmgpyi4p5pic65
+
+build_stages:
+- name: make
+  handler: bash
+  after: prologue
+  bash: |
+    make
+
+- name: install
+  handler: bash
+  after: make
+  bash: |
+    mkdir -p $ARTIFACT/bin
+    cp tetgen $ARTIFACT/bin/
+
+
+profile_links:
+
+  - name: everything
+    link: '*/**/*'

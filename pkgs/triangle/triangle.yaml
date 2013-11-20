@@ -1,0 +1,44 @@
+extends: [autotools_package]
+
+sources:
+- url: https://github.com/erdc-cm/triangle.git
+  key: git:7ecebd8389cf6bab52c0855a68efab98d5cf2383
+
+build_stages: 
+- when: platform == 'Darwin'
+  name: configure 
+  mode: replace
+  files: [makefile.darwin]
+  after: prologue
+  handler: bash
+  bash: |
+    cp _hashdist/makefile.darwin src/makefile
+
+- when: platform == 'linux'
+  name: configure
+  mode: replace
+  files: [makefile.linux]
+  after: prologue
+  handler: bash
+  bash: |
+    cp _hashdist/makefile.linux src/makefile
+
+- name: make
+  mode: replace
+  handler: bash
+  after: configure
+  bash: |
+    cd src
+    make install
+
+- name: install
+  handler: bash
+  mode: replace
+  after: make
+  bash: |
+    mkdir $ARTIFACT/bin
+    cp ../bin/triangle $ARTIFACT/bin
+    mkdir $ARTIFACT/lib
+    cp ../lib/libtri.a $ARTIFACT/lib
+    mkdir $ARTIFACT/include
+    cp triangle.h $ARTIFACT/include

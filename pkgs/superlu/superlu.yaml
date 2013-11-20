@@ -1,0 +1,49 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [blas]
+
+sources:
+- url: https://github.com/erdc-cm/superlu
+  key: git:55f7d100d8a5ffa2222534126c2b52986d4ff5bb
+
+build_stages:
+- when: platform == 'Darwin'
+  name: configure
+  mode: replace
+  files: [make.inc.darwin]
+  after: prologue
+  handler: bash
+  bash: |
+    cp _hashdist/make.inc.darwin make.inc
+    export SuperLUroot=`pwd`
+    export BLASLIB=$BLAS_LDFLAGS
+
+- when: platform == 'linux'
+  name: configure
+  mode: replace
+  files: [make.inc.linux]
+  after: prologue
+  handler: bash
+  bash: |
+    cp _hashdist/make.inc.linux make.inc
+    export SuperLUroot=`pwd`
+    export BLASLIB=$BLAS_LDFLAGS
+
+- name: make
+  mode: replace
+  handler: bash
+  after: configure
+  bash: |
+    mkdir lib
+    make lib
+
+- name: install
+  handler: bash
+  mode: replace
+  after: make
+  bash: |
+    mkdir ${ARTIFACT}/lib/
+    mkdir ${ARTIFACT}/include/
+    cp lib/libsuperlu_4.1.a ${ARTIFACT}/lib/
+    cp SRC/*.h ${ARTIFACT}/include/

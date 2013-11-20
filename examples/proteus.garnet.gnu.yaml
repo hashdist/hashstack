@@ -1,0 +1,55 @@
+# This profile file controls your <#> (HashDist) build environment.
+
+# In the future, we'll provide better incorporation of
+# automatic environment detection.  For now, have a look
+# at the YAML files in the top-level directory and choose
+# the most *specific* file that matches your environment.
+
+extends:
+- file: debian.yaml
+
+# The packages list specifies all the packages that you
+# require installed.  <#> will ensure that all packages
+# and their dependencies are installed when you build this
+# profile.
+
+parameters:
+  HOST_MPICC: cc
+  HOST_MPICXX: CC
+  HOST_MPIF77: ftn
+  HOST_MPIF90: ftn
+  HOST_MPIEXEC: aprun
+  PATH: /opt/cray/atp/1.6.3/bin:/opt/cray/switch/1.0-1.0401.36779.2.72.gem/bin:/opt/cray/shared-root/1.0-1.0401.37253.3.50.gem/bin:/opt/cray/pdsh/2.26-1.0401.37449.1.1.gem/bin:/opt/cray/nodehealth/5.0-1.0401.38460.12.18.gem/bin:/opt/cray/lbcd/2.1-1.0401.35360.1.2.gem/bin:/opt/cray/hosts/1.0-1.0401.35364.1.115.gem/bin:/opt/cray/configuration/1.0-1.0401.35391.1.2.gem/bin:/opt/cray/ccm/2.2.0-1.0401.37254.2.142/sbin:/opt/cray/ccm/2.2.0-1.0401.37254.2.142/bin:/opt/cray/audit/1.0.0-1.0401.37969.2.32.gem/bin:/opt/cray/rca/1.0.0-2.0401.38656.2.2.gem/bin:/opt/cray/dvs/1.8.6_0.9.0-1.0401.1401.1.120/sbin:/opt/cray/dvs/1.8.6_0.9.0-1.0401.1401.1.120/bin:/opt/cray/csa/3.0.0-1_2.0401.37452.4.50.gem/sbin:/opt/cray/csa/3.0.0-1_2.0401.37452.4.50.gem/bin:/opt/cray/job/1.5.5-0.1_2.0401.35380.1.10.gem/bin:/opt/cray/xpmem/0.1-2.0401.36790.4.3.gem/bin:/opt/cray/dmapp/3.2.1-1.0401.5983.4.5.gem/bin:/opt/cray/pmi/3.0.1-1.0000.8917.33.1.gem/bin:/opt/cray/ugni/4.0-1.0401.5928.9.5.gem/bin:/opt/cray/udreg/2.3.2-1.0401.5929.3.3.gem/bin:/opt/gcc/4.8.0/bin:/opt/cray/xt-asyncpe/5.21/bin:/usr/krb5/bin:/usr/krb5/openssl/bin:/opt/java/jdk1.7.0_07/bin:/usr/local/krb5/bin:/usr/local/krb5/openssl/bin:/opt/pbs/12.1.0.131281/bin:/usr/krb5/bin:/opt/cray/eslogin/eswrap/1.0.20-1.010101.433.0/bin:/opt/modules/3.2.6.7/bin:/u/cekees/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/krb5.20130423/bin:/usr/local/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/usr/lib/mit/bin:/usr/lib/mit/sbin:/sbin:/usr/sbin:/opt/cray/bin:/usr/local/bin:/usr/local/usp/bin:/usr/local/fta/bin:/usr/local/applic/COTS
+
+packages:
+
+  launcher:
+  cmake:
+    use: host-cmake
+  python:
+    host: false
+  blas:
+    use: host-blas
+  daetk:
+  mpi:
+    use: host-mpi
+  nose:
+  hdf5:
+  ipython:
+  matplotlib:
+  petsc:
+    build_with: |
+      parmetis
+    download: |
+      superlu, superlu_dist, spooles, hypre, blacs, scalapack, mumps
+    coptflags: -O2
+    link: shared
+    debug: false
+  petsc4py:
+    with_conf: true
+  pytables:
+  sphinx:
+  superlu:
+  sympy:
+  tetgen:
+  triangle:

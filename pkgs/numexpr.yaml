@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: [numpy]
+  run: [numpy]
+
+sources:
+  - url: https://pypi.python.org/packages/source/n/numexpr/numexpr-1.4.2.tar.gz
+    key: tar.gz:hd3t6bacxssskzqynw7muwdjrfqxyaxy

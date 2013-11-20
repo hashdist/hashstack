@@ -22,6 +22,8 @@ def configure(ctx, stage_args):
     flags.  Left unspecified by default.
     * link: Build shared or static libraries.  Shared by default.
     * debug: Enable/disable debugging.  true by default.
+    * download: A list of packages to instruct PETSc to download and
+    build.  These will not be readily available outside PETSc.
     """
     
     conf_lines = ['./configure --prefix="${ARTIFACT}"']
@@ -43,18 +45,19 @@ def configure(ctx, stage_args):
 
     # Special case, ParMETIS also provides METIS 
     if 'PARMETIS' in ctx.dependency_dir_vars:
-        conf_lines.append('--with-metis=1')
         conf_lines.append('--with-metis-dir=$PARMETIS_DIR')
-        conf_lines.append('--with-parmetis=1')
         conf_lines.append('--with-parmetis-dir=$PARMETIS_DIR')
         
     for dep_var in ctx.dependency_dir_vars:
         if dep_var in ['BLAS', 'LAPACK', 'PARMETIS']:
             continue
-        conf_lines.append('--with-%s=1' % dep_var.lower())
         conf_lines.append('--with-%s-dir=$%s_DIR' % 
                           (dep_var.lower(),
                            dep_var))
+
+    for package in stage_args['download']:
+        package_name = package.strip()
+        conf_lines.append('--download-%s=1' % package_name)
 
     # Multilinify
     for i in range(len(conf_lines) - 1):
