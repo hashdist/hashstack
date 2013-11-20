@@ -1,0 +1,8 @@
+extends: [python_package]
+dependencies:
+  build: [distribute, paramiko, jinja2, yaml]
+  run: [paramiko, jinja2, yaml]
+
+sources:
+  - url: https://github.com/ansible/ansible.git
+    key: git:07b59da99630b906b27461c7a6be9578864c85f7

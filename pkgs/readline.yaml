@@ -1,0 +1,18 @@
+extends: [autotools_package]
+dependencies:
+  build: [ncurses]
+
+sources:
+  - url: ftp://ftp.cwru.edu/pub/bash/readline-6.2.tar.gz
+    key: tar.gz:pgtjmbykawgcgpds3vvmnfycdtdevpk6
+
+build_stages:
+  - name: configure
+    mode: override
+    extra: ['--enable-shared', '--with-curses']
+
+  - name: make
+    mode: replace
+    handler: bash
+    bash: |
+      make SHOBJ_CFLAGS="-fPIC -D_REENTRANT" SHOBJ_LDFLAGS="-shared -Wl,-rpath=$NCURSES_DIR/lib" SHLIB_LIBS="-ltinfo"

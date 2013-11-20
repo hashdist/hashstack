@@ -1,4 +1,4 @@
-extends: [distutils_package]
+extends: [distutils_package, libflags]
 dependencies:
   build: [numpy, freetype, png]
   run: [numpy, freetype, png]
@@ -6,6 +6,17 @@ dependencies:
 sources:
   - url: https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-1.2.1/matplotlib-1.2.1.tar.gz
     key: tar.gz:klqys4vo3bptbmc455axpdwho2c56yas
+
+build_stages:
+
+- name: png_freetype_fix
+  before: install
+  handler: bash
+  bash: |
+    export PKG_CONFIG_PATH="$PNG_DIR/lib/pkgconfig:$FREETYPE_DIR/lib/pkgconfig"
+
+- name: libflags
+  before: install
 
 profile_links:
   - name: mpl_packages

@@ -9,6 +9,8 @@ packages:
 
   python:
     host: true
+    build_with: |
+
   numpy:
     use: host-numpy
   scipy:

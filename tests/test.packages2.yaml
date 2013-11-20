@@ -9,6 +9,8 @@ packages:
 
   python:
     host: false
+    build_with: |
+      bzip2, openssl
 
   mpi:
     use: host-mpi
@@ -21,3 +23,6 @@ packages:
   szlib:
   zlib:
   hdf5:
+  fabric-virtualenv:
+  sqlite:
+  openssl:

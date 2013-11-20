@@ -12,6 +12,8 @@ packages:
     use: mpich
   python:
     host: false
+    build_with: |
+      bzip2, openssl
   petsc:
     build_with: |
 

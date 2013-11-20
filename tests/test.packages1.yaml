@@ -10,6 +10,8 @@ packages:
     use: host-blas
   python:
     host: false
+    build_with: |
+      bzip2, openssl
   ipython:
   nose:
   matplotlib:
