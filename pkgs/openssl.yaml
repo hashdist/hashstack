@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [zlib]
+  build: [zlib, patchelf]
 
 sources:
   - url: https://www.openssl.org/source/openssl-1.0.1e.tar.gz
@@ -20,3 +20,11 @@ build_stages:
     handler: bash
     bash: |
       ./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include $OPENSSL_EXTRA_FLAGS
+
+  - when: platform == 'linux'
+    name: fix_rpath
+    after: install
+    handler: bash
+    bash: |
+      $PATCHELF --set-rpath $ARTIFACT/lib:$ZLIB_DIR/lib $ARTIFACT/lib/engines/libgost.so
+
