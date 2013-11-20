@@ -14,7 +14,7 @@ build_stages:
   coptflags: {{coptflags}}
   link: {{link}}
   debug: {{debug}}
-  download: {{download}}
+  download: [{{download}}]
 
 # Disable Parallel Builds
 

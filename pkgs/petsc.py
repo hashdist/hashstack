@@ -55,7 +55,7 @@ def configure(ctx, stage_args):
                           (dep_var.lower(),
                            dep_var))
 
-    for package in stage_args['download'].split(','):
+    for package in stage_args['download']:
         package_name = package.strip()
         conf_lines.append('--download-%s=1' % package_name)
 
