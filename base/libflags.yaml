@@ -1,3 +1,4 @@
 build_stages:
 
   - name: libflags
+    before: prologue
