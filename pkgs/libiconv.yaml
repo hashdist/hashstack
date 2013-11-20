@@ -1,0 +1,9 @@
+extends: [autotools_package]
+
+sources:
+  - url: http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz
+    key: tar.gz:okze33ix22drspbtm3ioxz6n4htlddyn
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'

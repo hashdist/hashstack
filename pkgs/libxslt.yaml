@@ -1,0 +1,9 @@
+extends: [autotools_package]
+
+sources:
+  - url: ftp://xmlsoft.org/libxml2/libxslt-1.1.28.tar.gz
+    key: tar.gz:gfcek7r4fh5t25ro7gs67eh6d6wgl3gd
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
