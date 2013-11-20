@@ -1,0 +1,5 @@
+extends: [distutils_package]
+
+sources:
+  - url: http://pypi.python.org/packages/source/P/PyYAML/PyYAML-3.10.tar.gz
+    key: tar.gz:44j5urojnsstuouljaka2qjag5g3miw7
