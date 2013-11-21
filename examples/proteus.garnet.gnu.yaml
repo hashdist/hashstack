@@ -28,6 +28,8 @@ packages:
     use: host-cmake
   python:
     host: false
+    build_with: |
+
   blas:
     use: host-blas
   daetk:
