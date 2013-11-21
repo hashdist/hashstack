@@ -19,7 +19,9 @@ packages:
   cmake:
     use: host-cmake
   python:
-    host: false 
+    host: false
+    build_with: |
+
   blas:
     use: host-osx-framework-accelerate
   daetk:
