@@ -1,6 +1,10 @@
 extends: [distutils_package]
 dependencies:
-  build: [python, cython]
+  build: 
+    - numpy
+    - cython
+    - when platform == 'Cygwin':
+        - zmq
   run: [python]
 
 sources:
@@ -9,8 +13,20 @@ sources:
 
 build_stages:
 
-- name: install
+- when: platform != 'Cygwin' 
+  name: install
   after: setup_dirs
   handler: bash
   bash: |
     ${PYTHON} setup.py install --prefix=${ARTIFACT} --zmq=bundled
+
+- when: platform == 'Cygwin' 
+  name: install
+  after: setup_dirs
+  handler: bash
+  bash: |
+    # inplace test build
+    PATH=$PATH:$ZMQ_DIR/bin $PYTHON setup.py build_ext --zmq=$ZMQ_DIR --inplace
+    PATH=$PATH:$ZMQ_DIR/bin $PYTHON setup.py test --zmq=$ZMQ_DIR;
+    # real build and install
+    PATH=$PATH:$ZMQ_DIR/bin $PYTHON setup.py install --zmq=$ZMQ_DIR --prefix=$ARTIFACT

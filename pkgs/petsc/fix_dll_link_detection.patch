@@ -1,0 +1,27 @@
+diff -rupN src/config/BuildSystem/config/setCompilers.py src-fix-dll-link-detection/config/BuildSystem/config/setCompilers.py
+--- src/config/BuildSystem/config/setCompilers.py	2013-07-02 10:33:06.000000000 -0400
++++ src-fix-dll-link-detection/config/BuildSystem/config/setCompilers.py	2013-09-25 08:55:03.467586500 -0400
+@@ -1193,6 +1193,7 @@ class Configure(config.base.Configure):
+       yield (self.CXX, ['-shared'], 'so')
+       yield (self.CXX, ['-dynamic'], 'so')
+     # C compiler default
++    yield (self.CC, ['-shared'], 'dll')
+     yield (self.CC, ['-shared'], 'so')
+     yield (self.CC, ['-dynamic'], 'so')
+     yield (self.CC, ['-qmkshrobj'], 'so')
+@@ -1201,13 +1202,8 @@ class Configure(config.base.Configure):
+       if hasattr(self, 'CXX') and self.mainLanguage == 'Cxx':
+         yield (self.CXX, ['-G'], 'so')
+       yield (self.CC, ['-G'], 'so')
+-    # Default to static linker
+-    self.setStaticLinker()
+-    self.staticLinker = self.AR
+-    self.staticLibraries = 1
+-    self.LDFLAGS = ''
+-    yield (self.AR, [], self.AR_LIB_SUFFIX)
+-    raise RuntimeError('Archiver failed static link check')
++    # No fall-back to static linker
++    raise RuntimeError('Failed shared link check')
+ 
+   def checkSharedLinker(self):
+     '''Check that the linker can produce shared libraries'''

@@ -24,7 +24,7 @@ build_stages:
     export MPI=$MPI_DIR
     touch dep.txt
 
-- when: platform == 'linux'
+- when: platform == 'linux' or platform == 'Cygwin'
   name: configure
   mode: replace
   files: [arch.linux, archive.linux, sources.linux]

@@ -1,0 +1,32 @@
+extends: [autotools_package]
+
+sources:
+  - url: http://download.zeromq.org/zeromq-3.2.4.tar.gz
+    key: tar.gz:36lkcqoilns4fs3mbwzceiysmyr2bhxm
+
+build_stages:
+- when: platform == 'Cygwin' 
+  name: make
+  mode: replace
+  after: configure
+  handler: bash
+  bash: |
+    make
+    gcc -shared -o cygzmq.dll -Wl,--out-implib=libzmq.dll.a -Wl,--export-all-symbols -Wl,--enable-auto-import -Wl,--whole-archive src/.libs/libzmq.a -Wl,--no-whole-archive -lstdc++
+
+
+- when: platform == 'Cygwin' 
+  name: install
+  mode: replace
+  after: make
+  handler: bash
+  bash: |
+    mkdir -p $ARTIFACT/include
+    install include/zmq.h  $ARTIFACT/include
+    install include/zmq_utils.h  $ARTIFACT/include
+
+    mkdir -p $ARTIFACT/bin
+    install cygzmq.dll $ARTIFACT/bin
+
+    mkdir -p $ARTIFACT/lib
+    install libzmq.dll.a $ARTIFACT/lib

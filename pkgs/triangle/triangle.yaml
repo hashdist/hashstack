@@ -14,7 +14,7 @@ build_stages:
   bash: |
     cp _hashdist/makefile.darwin src/makefile
 
-- when: platform == 'linux'
+- when: platform == 'linux' or platform == 'Cygwin'
   name: configure
   mode: replace
   files: [makefile.linux]
