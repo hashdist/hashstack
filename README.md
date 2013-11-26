@@ -18,6 +18,12 @@ ln -s ~/repos/hashdist/bin/hit .
 ```
 or you can execute in the `hashdist` directory: ``export PATH=`pwd`/bin:$PATH`` (but then you need to put this commnand somewhere in your `.bashrc` or reexecute it by hand each time).
 
+Now you can initialize HashDist with the following command:
+
+```
+hit init-home
+```
+
 ### Use Hashstack
 
 This will install one particular profile:
