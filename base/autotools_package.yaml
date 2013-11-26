@@ -17,8 +17,3 @@ build_stages:
     bash: |
       make install
       rm -f ${ARTIFACT}/lib/*.la
-
-profile_links:
-
-  - name: everything
-    link: '*/**/*'

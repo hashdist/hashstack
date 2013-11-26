@@ -37,9 +37,6 @@ profile_links:
     before: everything
     exclude: 'lib/python{{pyver}}/site-packages/**/*'
 
-  - name: everything
-    link: '*/**/*'
-
 when_build_dependency:
   - prepend_path: PYTHONPATH
     value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'

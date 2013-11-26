@@ -3,3 +3,7 @@ build_stages:
     handler: bash
     bash: |
       {{PROLOGUE}}
+
+profile_links:
+  - name: everything
+    link: '*/**/*'
