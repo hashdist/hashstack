@@ -5,5 +5,9 @@ build_stages:
       {{PROLOGUE}}
 
 profile_links:
+  - when: platform == 'Cygwin'
+    name: copy_dlls
+    copy: 'bin/*.dll'
+
   - name: everything
     link: '*/**/*'
