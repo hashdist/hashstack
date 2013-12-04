@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: [python, distribute, yaml]
+  run: [python, yaml]
+
+sources:
+  - url: https://pypi.python.org/packages/source/p/pybtex/pybtex-0.16.tar.bz2
+    key: tar.bz2:b7kxnz7zgmt4nhnggjvqrigoowjbxnzh
