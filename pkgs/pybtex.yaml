@@ -1,4 +1,4 @@
-extends: [distutils_package]
+extends: [python_package]
 dependencies:
   build: [python, distribute, yaml]
   run: [python, yaml]
