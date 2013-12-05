@@ -20,7 +20,7 @@ packages:
   nose:
   jinja2:
   distribute:
-  szlib:
+  szip:
   zlib:
   hdf5:
   fabric-virtualenv:
