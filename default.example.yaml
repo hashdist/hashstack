@@ -55,7 +55,7 @@ packages:
     debug: false
   petsc4py:
     with_conf: true
-  szlib:
+  szip:
   zlib:
 
 
