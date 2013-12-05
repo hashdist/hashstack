@@ -4,10 +4,11 @@ sources:
   - url: http://www.hdfgroup.org/ftp/lib-external/szip/2.1/src/szip-2.1.tar.gz
     key: tar.gz:valnsxkwmlucpfrfvpn6u7iomikx27i7
 
-- when: platform == 'Cygwin'
-  name: configure
-  handler: bash
-  mode: replace
-  bash: |
-    cmake -DCMAKE_INSTALL_PREFIX:PATH="$ARTIFACT" \
+build_stages:
+  - when: platform == 'Cygwin'
+    name: configure
+    handler: bash
+    mode: replace
+    bash: |
+      cmake -DCMAKE_INSTALL_PREFIX:PATH="$ARTIFACT" \
       -DBUILD_SHARED_LIBS=true .
