@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [mpi, zlib, szlib]
+  build: [mpi, zlib, szip]
 
 sources:
 - url: http://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.11/src/hdf5-1.8.11.tar.bz2
@@ -13,9 +13,30 @@ build_stages:
   bash: |
     export CC=${MPICC}
 
+- when: platform == 'Cygwin'
+  files: [fix_get_console.patch]
+  name: fix_get_console
+  handler: bash
+  before: configure
+  bash: |
+    patch -p2 < _hashdist/fix_get_console.patch
+    autoconf
+
+- when: platform == 'Cygwin'
+  name: configure
+  extra: ['--with-zlib=${ZLIB_DIR}',
+          '--with-szlib=${SZIP_DIR}',
+          '--with-pthread',
+          '--enable-unsupported',
+          '--enable-shared',
+          '--enable-production=yes',
+          '--disable-parallel',
+          '--enable-largefile=yes',
+          '--with-default-api-version=v18']
+
 - name: configure
   extra: ['--with-zlib=${ZLIB_DIR}',
-          '--with-szlib=${SZLIB_DIR}',
+          '--with-szlib=${SZIP_DIR}',
           '--with-pthread',
           '--enable-unsupported',
           '--enable-shared',

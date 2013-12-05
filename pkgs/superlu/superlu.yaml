@@ -19,7 +19,7 @@ build_stages:
     export SuperLUroot=`pwd`
     export BLASLIB=$BLAS_LDFLAGS
 
-- when: platform == 'linux'
+- when: platform == 'linux' or platform == 'Cygwin'
   name: configure
   mode: replace
   files: [make.inc.linux]

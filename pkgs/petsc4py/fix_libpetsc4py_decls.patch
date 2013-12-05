@@ -1,0 +1,34 @@
+diff -rupN src/src/libpetsc4py/libpetsc4py.h src-fix-libpetsc4py-decls/src/libpetsc4py/libpetsc4py.h
+--- src/src/libpetsc4py/libpetsc4py.h	2013-09-25 17:37:37.932555400 -0400
++++ src-fix-libpetsc4py-decls/src/libpetsc4py/libpetsc4py.h	2013-09-25 17:38:53.418590300 -0400
+@@ -12,18 +12,18 @@
+   #endif
+ #endif
+ 
+-__PYX_EXTERN_C DL_IMPORT(int) import_libpetsc4py(void);
+-__PYX_EXTERN_C DL_IMPORT(PetscErrorCode) MatPythonGetContext(Mat, void **);
+-__PYX_EXTERN_C DL_IMPORT(PetscErrorCode) MatPythonSetContext(Mat, void *);
+-__PYX_EXTERN_C DL_IMPORT(PetscErrorCode) PCPythonGetContext(PC, void **);
+-__PYX_EXTERN_C DL_IMPORT(PetscErrorCode) PCPythonSetContext(PC, void *);
+-__PYX_EXTERN_C DL_IMPORT(PetscErrorCode) KSPPythonGetContext(KSP, void **);
+-__PYX_EXTERN_C DL_IMPORT(PetscErrorCode) KSPPythonSetContext(KSP, void *);
+-__PYX_EXTERN_C DL_IMPORT(PetscErrorCode) SNESPythonGetContext(SNES, void **);
+-__PYX_EXTERN_C DL_IMPORT(PetscErrorCode) SNESPythonSetContext(SNES, void *);
+-__PYX_EXTERN_C DL_IMPORT(PetscErrorCode) TSPythonGetContext(TS, void **);
+-__PYX_EXTERN_C DL_IMPORT(PetscErrorCode) TSPythonSetContext(TS, void *);
+-__PYX_EXTERN_C DL_IMPORT(PetscErrorCode) PetscPythonRegisterAll(void);
++__PYX_EXTERN_C int import_libpetsc4py(void);
++__PYX_EXTERN_C PetscErrorCode MatPythonGetContext(Mat, void **);
++__PYX_EXTERN_C PetscErrorCode MatPythonSetContext(Mat, void *);
++__PYX_EXTERN_C PetscErrorCode PCPythonGetContext(PC, void **);
++__PYX_EXTERN_C PetscErrorCode PCPythonSetContext(PC, void *);
++__PYX_EXTERN_C PetscErrorCode KSPPythonGetContext(KSP, void **);
++__PYX_EXTERN_C PetscErrorCode KSPPythonSetContext(KSP, void *);
++__PYX_EXTERN_C PetscErrorCode SNESPythonGetContext(SNES, void **);
++__PYX_EXTERN_C PetscErrorCode SNESPythonSetContext(SNES, void *);
++__PYX_EXTERN_C PetscErrorCode TSPythonGetContext(TS, void **);
++__PYX_EXTERN_C PetscErrorCode TSPythonSetContext(TS, void *);
++__PYX_EXTERN_C PetscErrorCode PetscPythonRegisterAll(void);
+ 
+ #endif /* !__PYX_HAVE_API__libpetsc4py */
+ 

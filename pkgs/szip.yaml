@@ -5,10 +5,11 @@ sources:
     key: tar.gz:valnsxkwmlucpfrfvpn6u7iomikx27i7
 
 build_stages:
-  - when: platform == 'Cygwin'
-    name: configure
-    handler: bash
-    mode: replace
-    bash: |
-      cmake -DCMAKE_INSTALL_PREFIX:PATH="$ARTIFACT" \
+
+- when: platform == 'Cygwin'
+  name: configure
+  handler: bash
+  mode: replace
+  bash: |
+    cmake -DCMAKE_INSTALL_PREFIX:PATH="$ARTIFACT" \
       -DBUILD_SHARED_LIBS=true .

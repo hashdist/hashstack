@@ -4,12 +4,37 @@ dependencies:
   run: [mpi, petsc, numpy]
 
 build_stages:
+  - when: platform == 'Cygwin'
+    name: fix_libpetsc4py_decls_detection
+    files: [fix_libpetsc4py_decls.patch]
+    before: install
+    handler: bash
+    bash: |
+      ${PYTHON} conf/cythonize.py
+      patch -p1 < _hashdist/fix_libpetsc4py_decls.patch
+
   - when: with_conf
     handler: bash
     files: [petsc4py_install_conf.patch]
     before: install
     bash: |
       patch -up1 < _hashdist/petsc4py_install_conf.patch
+
+  - when: platform == 'Cygwin'
+    name: explicit_build
+    after: fix_libpetsc4py_decls_detection
+    handler: bash
+    bash: |
+      ${PYTHON} setup.py build
+      
+  - name: test
+    after: install
+    handler: bash
+    bash: |
+      (cd test; \
+      PYTHONPATH=$PYTHONPATH:$ARTIFACT/lib/python2.7/site-packages \
+      PATH=$PATH:$PETSC_DIR/bin \
+      $PYTHON runtests.py)
 
 sources:
   - url: https://bitbucket.org/petsc/petsc4py.git

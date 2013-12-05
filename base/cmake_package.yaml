@@ -27,7 +27,3 @@ build_stages:
     bash: |
       make install
 
-profile_links:
-
-  - name: everything
-    link: '*/**/*'

@@ -5,7 +5,7 @@ sources:
    key: tar.gz:thdimc3qs5567ikzaau7vyes3wyy3mow
 
 dependencies:
-  build: [zlib, launcher, ncurses, readline, sqlite, {{build_with}}]
+  build: [zlib, launcher, ncurses, readline, {{build_with}}]
   run: []
 
 build_stages:
