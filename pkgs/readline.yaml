@@ -3,7 +3,7 @@ dependencies:
   build: [ncurses]
 
 sources:
-  - url: ftp://ftp.cwru.edu/pub/bash/readline-6.2.tar.gz
+  - url: http://ftp.gnu.org/gnu/readline/readline-6.2.tar.gz
     key: tar.gz:pgtjmbykawgcgpds3vvmnfycdtdevpk6
 
 build_stages:
