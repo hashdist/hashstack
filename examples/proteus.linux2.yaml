@@ -21,7 +21,7 @@ packages:
   python:
     host: false
     build_with: |
-
+      bzip2, openssl, sqlite
   blas:
     use: host-blas
   daetk:
