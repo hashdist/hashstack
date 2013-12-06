@@ -24,6 +24,8 @@ before_install:
 install:
   - git clone https://github.com/hashdist/hashdist
   - export PATH=`pwd`/hashdist/bin:$PATH
+  - hit init-home
+  - wget https://www.dropbox.com/s/t209s2f6tlkbgyp/config.yaml -o ~/.hashdist/config.yaml
 script:
   - cp tests/$TEST_PROFILE $TEST_PROFILE
   - set -o pipefail
