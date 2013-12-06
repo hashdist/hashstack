@@ -5,4 +5,4 @@ parameters:
   platform: Darwin
   PATH: /usr/bin:/bin:/usr/local/bin
   PROLOGUE: |
-    export MACOSX_DEPLOYMENT_TARGET=10.9
+    export MACOSX_DEPLOYMENT_TARGET=$(sw_vers -productVersion)
