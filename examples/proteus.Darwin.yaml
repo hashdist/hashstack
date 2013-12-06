@@ -24,6 +24,8 @@ packages:
   blas:
     use: host-osx-framework-accelerate
   daetk:
+  freetype:
+    use: host-freetype
   mpi:
     use: mpich
   nose:
