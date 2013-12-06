@@ -6,3 +6,10 @@ dependencies:
 sources:
   - url: https://pypi.python.org/packages/source/t/tables/tables-2.4.0.tar.gz
     key: tar.gz:fpndwh734ihogxktg7mxa4p7if32o5bl
+
+build_stages:
+- name: install
+  after: setup_dirs
+  handler: bash
+  bash: |
+    CC=${MPICC} CXX=${MPICXX} ${PYTHON} setup.py install --prefix=${ARTIFACT}
