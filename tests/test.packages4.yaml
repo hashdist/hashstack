@@ -1,0 +1,13 @@
+# This builds the ruby from scratch
+
+extends:
+- file: debian.yaml
+
+packages:
+
+  launcher:
+  libxslt:
+  libxml2:
+  yaml:
+  bison:
+  ruby:
