@@ -8,6 +8,6 @@ packages:
   launcher:
   libxslt:
   libxml2:
-  yaml:
+  libyaml:
   bison:
   ruby:
