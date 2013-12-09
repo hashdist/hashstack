@@ -1,0 +1,2 @@
+when_build_dependency:
+  - {set: 'FREETYPE_LDFLAGS', value: '-lfreetype'}

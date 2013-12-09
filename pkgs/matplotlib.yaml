@@ -1,7 +1,7 @@
 extends: [distutils_package, libflags]
 dependencies:
-  build: [numpy, png]
-  run: [numpy, png]
+  build: [freetype, numpy, png]
+  run: [freetype, numpy, png]
 
 sources:
   - url: https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-1.2.1/matplotlib-1.2.1.tar.gz

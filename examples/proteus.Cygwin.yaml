@@ -25,6 +25,8 @@ packages:
   blas:
     use: host-blas
   daetk:
+  freetype:
+    use: host-freetype
   mpi:
     use: host-mpi
   nose:
