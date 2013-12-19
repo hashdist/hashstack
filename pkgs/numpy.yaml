@@ -29,3 +29,13 @@ build_stages:
       #export ATLAS=None
       export LAPACK=None
       export BLAS=None
+
+  - when: platform == 'Cygwin'
+    name: set-LDFLAGS
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=/usr/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      #export ATLAS=None
+      export LAPACK=None
+      export BLAS=None
