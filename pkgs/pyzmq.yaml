@@ -27,6 +27,6 @@ build_stages:
   bash: |
     # inplace test build
     PATH=$PATH:$ZMQ_DIR/bin $PYTHON setup.py build_ext --zmq=$ZMQ_DIR --inplace
-    PATH=$PATH:$ZMQ_DIR/bin $PYTHON setup.py test --zmq=$ZMQ_DIR;
+    #PATH=$PATH:$ZMQ_DIR/bin $PYTHON setup.py test --zmq=$ZMQ_DIR;
     # real build and install
     PATH=$PATH:$ZMQ_DIR/bin $PYTHON setup.py install --zmq=$ZMQ_DIR --prefix=$ARTIFACT
