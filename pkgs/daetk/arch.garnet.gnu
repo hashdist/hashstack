@@ -1,6 +1,6 @@
 include ${PETSC}/conf/variables
 PREFIX=${ARTIFACT}
-ARCHIVE_SUFFIX = .so
+ARCHIVE_SUFFIX = .a
 
 #setup options/compilers using petsc configuration
 
@@ -12,7 +12,7 @@ CXXFLAGS = -DF77_POST_UNDERSCORE -DUSE_BLAS -DCMRVEC_BOUNDS_CHECK -DMV_VECTOR_BO
 CC      = ${MPICC} -fPIC
 CCFLAGS = ${PETSC_CCPPFLAGS}
 
-FC = ${MPIF77} -fPIC
+FC = ${MPIF77} 
 FCFLAGS = ${PETSC_FCPPFLAGS}
 
 LD =  ${MPICXX} -fPIC
