@@ -1,8 +1,13 @@
 extends: [autotools_package]
 
+build_stages:
+  - name: configure
+    mode: override
+    extra: ['--without-python']
+
 sources:
-- url: http://fenicsproject.org/pub/software/contrib/libxml2-2.6.26.tar.gz
-  key: tar.gz:gfcek7r4fh5t25ro7gs67eh6d6wgl3gd
+- url: http://xmlsoft.org/sources/libxml2-2.9.1.tar.gz
+  key: tar.gz:7u6gjs3g6lcouj7jgtjhlecnslhmjffi
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
