@@ -9,5 +9,3 @@ parameters:
   HOST_MPIEXEC: /usr/local/bin/mpiexec
   HOST_CMAKE: /usr/local/bin/cmake
   PATH: /usr/local/bin:/usr/bin:/bin
-  PROLOGUE: |
-    export MACOSX_DEPLOYMENT_TARGET=10.9
