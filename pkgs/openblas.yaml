@@ -13,4 +13,4 @@ profile_links:
   link: '*/**/*'
 
 when_build_dependency:
-  - {set: 'BLAS_LDFLAGS', value: '-L$ARTIFACT/lib -lblas'}
+  - {set: 'BLAS_LDFLAGS', value: '-L${ARTIFACT}/lib -lblas'}
