@@ -1,8 +1,8 @@
 extends: [autotools_package]
 
 sources:
-  - url: ftp://xmlsoft.org/libxml2/libxslt-1.1.28.tar.gz
-    key: tar.gz:gfcek7r4fh5t25ro7gs67eh6d6wgl3gd
+  - url: http://xmlsoft.org/sources/libxslt-1.1.28.tar.gz
+    key: tar.gz:l7drkgsxxcoahv5yexpvud5obkgv6blh
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
