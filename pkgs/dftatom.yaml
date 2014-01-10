@@ -1,0 +1,28 @@
+extends: [cmake_package]
+dependencies:
+  build: [python, cython, numpy]
+  run: [python, numpy]
+
+sources:
+- url: http://github.com/certik/dftatom
+  key: git:c622fd9ff681c92455bcafa2dc29d9171ccc8948
+
+build_stages:
+- name: configure
+  extra: ['-D CMAKE_BUILD_TYPE:STRING=Release',
+          '-D WITH_PYTHON:BOOL=ON',
+          '-D CMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib"',
+          '-D CMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON',
+          ]
+  build_in_source: true
+
+- name: python-path
+  before: configure
+  handler: bash
+  bash: |
+      export PATH=$PYTHON_DIR/bin:$CYTHON_DIR/bin:$PATH
+
+- name: setup_builddir
+  mode: override
+  bash: |
+
