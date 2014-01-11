@@ -16,13 +16,6 @@ build_stages:
           ]
   build_in_source: true
 
-- name: python-path
-  before: configure
-  handler: bash
-  bash: |
-      export PATH=$PYTHON_DIR/bin:$CYTHON_DIR/bin:$PATH
-
 - name: setup_builddir
   mode: override
   bash: |
-
