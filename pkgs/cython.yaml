@@ -3,3 +3,7 @@ extends: [distutils_package]
 sources:
   - url: http://cython.org/release/Cython-0.19.2.tar.gz
     key: tar.gz:yw2vwc6ubyr2ts6nfqn557uxoh6fqnut
+
+when_build_dependency:
+  - prepend_path: PATH
+    value: '${ARTIFACT}/bin'
