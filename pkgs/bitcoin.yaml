@@ -1,0 +1,14 @@
+dependencies:
+  build: []
+
+sources:
+  - url: https://github.com/bitcoin/bitcoin/archive/v0.8.6.tar.gz
+    key: tar.gz:e36uqwbd5yk2qi6kkgs2y7wymzaht3yv
+
+build_stages:
+
+- name: make-install
+  handler: bash
+  bash: |
+    cd src
+    make -f makefile.unix
