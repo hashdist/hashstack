@@ -13,4 +13,4 @@ build_stages:
     cd src
     export BDB_INCLUDE_PATH=$BERKELEYDB_DIR/include
     export BDB_LIB_PATH=$BERKELEYDB_DIR/lib
-    make -f makefile.unix
+    make -f makefile.unix USE_UPNP=-
