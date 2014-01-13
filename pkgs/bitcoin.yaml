@@ -1,5 +1,5 @@
 dependencies:
-  build: [berkeleydb]
+  build: [berkeleydb, boost]
 
 sources:
   - url: https://github.com/bitcoin/bitcoin/archive/v0.8.6.tar.gz
@@ -13,4 +13,6 @@ build_stages:
     cd src
     export BDB_INCLUDE_PATH=$BERKELEYDB_DIR/include
     export BDB_LIB_PATH=$BERKELEYDB_DIR/lib
+    export BOOST_INCLUDE_PATH=$BOOST_DIR/include
+    export BOOST_LIB_PATH=$BOOST_DIR/lib
     make -f makefile.unix USE_UPNP=-
