@@ -7,7 +7,7 @@ sources:
 
 build_stages:
 
-- name: make-install
+- name: make
   handler: bash
   bash: |
     cd src
@@ -16,3 +16,10 @@ build_stages:
     export BOOST_INCLUDE_PATH=$BOOST_DIR/include
     export BOOST_LIB_PATH=$BOOST_DIR/lib
     make -j ${HASHDIST_CPU_COUNT} -f makefile.unix USE_UPNP=-
+
+- name: install
+  after: make
+  handler: bash
+  bash: |
+    mkdir -p $ARTIFACT/bin
+    cp -v bitcoind $ARTIFACT/bin/bitcoind
