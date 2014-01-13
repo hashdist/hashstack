@@ -15,4 +15,4 @@ build_stages:
     export BDB_LIB_PATH=$BERKELEYDB_DIR/lib
     export BOOST_INCLUDE_PATH=$BOOST_DIR/include
     export BOOST_LIB_PATH=$BOOST_DIR/lib
-    make -f makefile.unix USE_UPNP=-
+    make -j ${HASHDIST_CPU_COUNT} -f makefile.unix USE_UPNP=-
