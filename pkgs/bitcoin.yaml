@@ -1,5 +1,5 @@
 dependencies:
-  build: []
+  build: [berkeleydb]
 
 sources:
   - url: https://github.com/bitcoin/bitcoin/archive/v0.8.6.tar.gz
@@ -11,4 +11,6 @@ build_stages:
   handler: bash
   bash: |
     cd src
+    export BDB_INCLUDE_PATH=$BERKELEYDB_DIR/include
+    export BDB_LIB_PATH=$BERKELEYDB_DIR/lib
     make -f makefile.unix
