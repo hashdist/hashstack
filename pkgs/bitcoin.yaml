@@ -24,4 +24,4 @@ build_stages:
   handler: bash
   bash: |
     mkdir -p $ARTIFACT/bin
-    cp -v bitcoind $ARTIFACT/bin/bitcoind
+    install bitcoind $ARTIFACT/bin
