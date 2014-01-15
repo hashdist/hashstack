@@ -5,7 +5,7 @@ dependencies:
 
 sources:
 - url: ssh://git@github.com/cekees/adh.git
-  key: git:81943373d01faa539fdb1ae227200675856e33ee
+  key: git:9f83955ba74336d1b7e1cbff4cd21693dca87880
 
 build_stages:
 - name: configure

@@ -1,8 +1,8 @@
 extends: [distutils_package]
 dependencies:
-  build: [python]
-  run: [python]
+  build: [python,ipythonipep23]
+  run: [python,ipythonipep23]
 
 sources:
-  - url:https://github.com/arokem/python-matlab-bridge.git
-    key: tar.gz:c874dbe71ffece05f4351425535c272f66ab66b2
+  - url: https://github.com/arokem/python-matlab-bridge.git
+    key: git:c874dbe71ffece05f4351425535c272f66ab66b2

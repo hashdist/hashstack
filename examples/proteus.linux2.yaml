@@ -55,4 +55,6 @@ packages:
   pygrib:
   adh:  
   stwave:  
-
+  scipy:
+  ipythonipep23:
+  pymatbridge:

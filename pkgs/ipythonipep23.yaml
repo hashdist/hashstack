@@ -4,5 +4,15 @@ dependencies:
   run: [python, pyzmq, tornado, jinja2, pygments, sphinx]
 
 sources:
-  - url: https://dl.dropboxusercontent.com/s/wam01qyxw0q3s7d/ipython.tar.gz?dl=1&token_hash=AAEKVNa3QxiVdtyeN6q1Zgll6dTuaUvcyAx1XNprrKWJ2w
-    key: tar.gz:n6kir6bymjiomrsl6utqxny42676e7cm
+  - url: https://github.com/jdfreder/ipython.git
+    key: git:24a8179d36f334fc15a8994c810a56d9dc2a1d9c
+
+build_stages:
+-   name: get submodule
+    before: install
+    handler: bash
+    bash: |
+      git clone https://github.com/ipython/ipython-components.git IPython/html/static/components
+      cd IPython/html/static/components
+      git checkout --detach 1cb48cef3503448bc988a9c4c54c92bcbeb665d2
+      cd ${BUILD}
