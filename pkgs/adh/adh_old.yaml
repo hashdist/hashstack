@@ -1,0 +1,59 @@
+extends: [cmake_package]
+
+dependencies:
+  build: [python,mpi,parmetis]
+
+sources:
+- url: ssh://git@github.com/erdc-cm/adh.git
+  key: git:aacae182af573deb6cf292ec45de50dc7b66e773
+
+build_stages:
+- name: configure
+  extra: ['-D CMAKE_BUILD_TYPE:STRING=Release',
+          '-D BUILD_SHARED_LIBS:BOOL=ON',
+          '-D WITH_CGAL_Core:BOOL=OFF',
+          '-D WITH_CGAL_ImageIO:BOOL=OFF',
+          '-D WITH_CGAL_Qt3:BOOL=OFF',
+          '-D WITH_CGAL_Qt4:BOOL=OFF',
+          '-D ZLIB_ROOT:PATH=${ZLIB_DIR}',
+          '-D Boost_USE_MULTITHREADED:BOOL=${BOOST_USE_MULTITHREADED}',
+          '-D BOOST_ROOT:PATH=${BOOST_DIR}']
+
+build_stages:
+- when: platform == 'linux'
+  name: configure
+  mode: replace
+  files: [configure-linux.py]
+  after: prologue
+  handler: bash
+  bash: |
+    set -e
+    cp _hashdist/configure-linux.py configure.py
+    echo "configuring pre_adh"
+    python ./configure.py -V --pre-adh
+    python ./configure.py -V --pre-adh
+    python ./configure.py -V --pre-adh
+    echo "configuring adh"
+    python ./configure.py -V
+    python ./configure.py -V
+    python ./configure.py -V
+
+- name: make
+  mode: replace
+  handler: bash
+  after: configure
+  bash: |
+    set -e
+    echo "making pre_adh"
+    make pre_adh
+    echo "making adh"
+    make
+
+- name: install
+  handler: bash
+  mode: replace
+  after: make
+  bash: |
+    mkdir $ARTIFACT/bin
+    cp adh $ARTIFACT/bin
+    cp pre_adh $ARTIFACT/bin

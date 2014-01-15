@@ -1,0 +1,12 @@
+extends: [autotools_package]
+
+sources:
+  - url: http://www.ece.uvic.ca/~frodo/jasper/software/jasper-1.900.1.zip
+    key: zip:noifvhbkzixcovkeeetgn3x4j22e3foq
+
+build_stages:
+- name: configure
+  handler: bash
+  mode: replace
+  bash: |
+    bash configure --prefix=${ARTIFACT} --enable-shared

@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: [python,pyzmq, tornado, jinja2, pygments, sphinx]
+  run: [python, pyzmq, tornado, jinja2, pygments, sphinx]
+
+sources:
+  - url: https://dl.dropboxusercontent.com/s/wam01qyxw0q3s7d/ipython.tar.gz?dl=1&token_hash=AAEKVNa3QxiVdtyeN6q1Zgll6dTuaUvcyAx1XNprrKWJ2w
+    key: tar.gz:n6kir6bymjiomrsl6utqxny42676e7cm

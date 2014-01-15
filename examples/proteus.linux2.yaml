@@ -29,7 +29,9 @@ packages:
     use: mpich
   nose:
   hdf5:
-  ipython:
+  pygments:
+  tornado:
+  pyzmq:
   matplotlib:
   petsc:
     build_with: |
@@ -47,3 +49,10 @@ packages:
   sympy:
   tetgen:
   triangle:
+  jasper:
+  grib_api:
+  pyproj:
+  pygrib:
+  adh:  
+  stwave:  
+
