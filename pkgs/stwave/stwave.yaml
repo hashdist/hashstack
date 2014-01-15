@@ -4,7 +4,7 @@ dependencies:
   build: [mpi]
 
 sources:
-- url: ssh://git@github.com/erdc-cm/stwave.git
+- url: https://github.com/erdc-cm/stwave.git
   key: git:99a9e19704aca4490cdda89a01d88b4e2cf06135
 
 build_stages:
