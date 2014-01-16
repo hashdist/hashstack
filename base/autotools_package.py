@@ -1,4 +1,5 @@
 from hashdist import build_stage
+from os.path import join as pjoin
 
 def rpath_flag(ctx, path):
    if ctx.parameters['platform'] == 'linux':
@@ -9,18 +10,22 @@ def rpath_flag(ctx, path):
 @build_stage()
 def configure(ctx, stage_args):
     """
-    Generates ./configure line.
+    Generates configure line.
 
     Example::
 
         - name: configure
           extra: ['--enable-foo', '--with-zlib=${ZLIB_DIR}']
           set_env_flags: true # default
+          configure_path: . # default
 
     If set_env_flags is set, CPPFLAGS and LDFLAGS will be set, as appropriate for the
     platform.
     """
-    conf_lines = ['./configure --prefix="${ARTIFACT}"']
+
+    configure_path = stage_args.get('configure_path', '.')
+    conf_lines = [pjoin(configure_path, 'configure') + ' --prefix="${ARTIFACT}"']
+
     if 'extra' in stage_args:
         conf_lines.append(' '.join('"%s"' % arg for arg in stage_args['extra']))
     for i in range(len(conf_lines) - 1):
