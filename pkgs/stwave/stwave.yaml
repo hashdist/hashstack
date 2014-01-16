@@ -25,9 +25,9 @@ build_stages:
     set -e
     cd work
     make BUILDTYPE=stwave stwave
-    make BUILDTYPE=stwave_ep stwave_ep
-    make BUILDTYPE=stwave_p stwave_p
-    make BUILDTYPE=libstw.a libstw.a
+#    make BUILDTYPE=stwave_ep stwave_ep
+#    make BUILDTYPE=stwave_p stwave_p
+#    make BUILDTYPE=libstw.a libstw.a
 
 - name: install
   handler: bash
@@ -37,6 +37,6 @@ build_stages:
     mkdir $ARTIFACT/bin
     mkdir $ARTIFACT/lib
     cp stwave $ARTIFACT/bin
-    cp stwave_ep $ARTIFACT/bin
-    cp stwave_p $ARTIFACT/bin
-    cp libstw.a $ARTIFACT/lib
+#    cp stwave_ep $ARTIFACT/bin
+#    cp stwave_p $ARTIFACT/bin
+#    cp libstw.a $ARTIFACT/lib
