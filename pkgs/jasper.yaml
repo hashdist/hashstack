@@ -10,3 +10,11 @@ build_stages:
   mode: replace
   bash: |
     bash configure --prefix=${ARTIFACT} --enable-shared
+
+- when: platform == 'Cygwin'
+  name: configure
+  handler: bash
+  mode: replace
+  bash: |
+    cp /usr/share/automake-1.9/config.guess acaux
+    bash configure --prefix=${ARTIFACT} --enable-shared
