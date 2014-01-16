@@ -1,0 +1,12 @@
+diff --unified -r parmetis-4.0.2/metis/include/metis.h parmetis-4.0.2-64/metis/include/metis.h
+--- parmetis-4.0.2/metis/include/metis.h	2014-01-15 17:40:21.000000000 -0500
++++ parmetis-4.0.2-64/metis/include/metis.h	2014-01-15 17:40:46.000000000 -0500
+@@ -30,7 +30,7 @@
+  GCC does provides these definitions in stdint.h, but it may require some
+  modifications on other architectures.
+ --------------------------------------------------------------------------*/
+-#define IDXTYPEWIDTH 32
++#define IDXTYPEWIDTH 64
+ 
+ 
+ /*--------------------------------------------------------------------------

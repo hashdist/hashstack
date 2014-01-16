@@ -43,6 +43,10 @@ def configure(ctx, stage_args):
         conf_lines.append('--with-blas-dir=$BLAS_DIR')
         conf_lines.append('--with-lapack-dir=$LAPACK_DIR')
 
+    index_width = ctx.parameters.get('index_width', 32)
+    if index_width == 64:
+        conf_lines.append('--with-64-bit-indices')
+
     # Special case, ParMETIS also provides METIS 
     if 'PARMETIS' in ctx.dependency_dir_vars:
         conf_lines.append('--with-metis-dir=$PARMETIS_DIR')

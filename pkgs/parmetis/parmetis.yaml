@@ -9,6 +9,15 @@ sources:
 
 
 build_stages:
+- when: index_width == 64
+  name: switch_indices_from_32_to_64
+  files: [parmetis-32-to-64.patch]
+  before: setup_builddir
+  handler: bash
+  bash: |
+    patch -p1 < _hashdist/parmetis-32-to-64.patch
+
+
 - name: setup_builddir
   after: prologue
   handler: bash
