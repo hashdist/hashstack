@@ -3,8 +3,8 @@ dependencies:
   build: [python, swig, boost]
 
 sources:
-- url: https://bitbucket.org/fenics-project/ufc.git
-  key: git:51a9a520e62845ef01509f1af2da9d010917c4f0
+- url: https://bitbucket.org/fenics-project/ufc/downloads/ufc-2.3.0.tar.gz
+  key: tar.gz:4wgaam6c6slxme5lqwl4n24qb7phspbc
 
 build_stages:
 - name: configure
