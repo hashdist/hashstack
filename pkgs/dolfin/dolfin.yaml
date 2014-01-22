@@ -18,8 +18,8 @@ dependencies:
   run: [ply]
 
 sources:
-- url: https://bitbucket.org/fenics-project/dolfin.git
-  key: git:9d8322e4d66e6c136d6955fd0b70c78f88f5aa79
+- url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-1.3.0.tar.gz
+  key: tar.gz:ozm5ohbcbchvbug5rc4bdgdha7z5ggf6
 
 build_stages: 
 - name: configure ## See dolfin.py for details
