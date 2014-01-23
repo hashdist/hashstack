@@ -1,3 +1,5 @@
+extends: [base_package]
+
 dependencies:
   build: [mpi]
 
@@ -8,6 +10,7 @@ sources:
 build_stages:
 
   - name: configure
+    after: prologue
     handler: bash
     bash: |
       export MPICC
@@ -44,8 +47,3 @@ build_stages:
       make ptesmumps install prefix=${ARTIFACT}
       cp -f ../lib/*scotc*[^m].a ${ARTIFACT}/lib
       cp -f ../lib/*esmumps.a ${ARTIFACT}/lib
-
-profile_links:
-
-  - name: everything
-    link: '*/**/*'
