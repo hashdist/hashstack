@@ -27,6 +27,7 @@ packages:
   daetk:
   mpi:
     use: mpich
+  mpi4py:
   nose:
   hdf5:
   pygments:
