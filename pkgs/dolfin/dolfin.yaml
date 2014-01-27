@@ -1,0 +1,42 @@
+extends: [cmake_package]
+
+dependencies:
+  when platform == 'linux':
+    build: [boost, eigen, libxml2, ufc,
+            mpi, pkg-config, patchelf,
+            python, swig, numpy, ply, scientificpython,
+            ufl, ffc, fiat, instant,
+            {{build_with}}]
+
+  when platform == 'Darwin':
+    build: [boost, eigen, libxml2, ufc,
+            mpi, pkg-config,
+            python, swig, numpy, ply, scientificpython,
+            ufl, ffc, fiat, instant,
+            {{build_with}}]
+
+  run: [ply]
+
+sources:
+- url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-1.3.0.tar.gz
+  key: tar.gz:ozm5ohbcbchvbug5rc4bdgdha7z5ggf6
+
+build_stages: 
+- name: configure ## See dolfin.py for details
+  mode: replace
+  after: setup_builddir
+  build_type: {{build_type}}
+
+- name: fix-rpath
+  after: install
+  handler: bash
+  when platform == 'linux':
+    bash: |
+      for lib in ${ARTIFACT}/lib/python{{pyver}}/site-packages/dolfin/cpp/_*.so; do
+          oldRPath=$(${PATCHELF} --print-rpath ${lib})
+          ${PATCHELF} --set-rpath $oldRPath:${ARTIFACT}/lib ${lib}
+      done
+
+  when platform == 'Darwin':
+    bash: |
+      # FIXME: use install_name_tool to fix rpath

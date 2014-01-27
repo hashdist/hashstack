@@ -1,3 +1,5 @@
+extends: [base_package]
+
 dependencies:
   build: [bzip2, mpi]
 
@@ -8,6 +10,7 @@ sources:
 build_stages:
 
 - name: bootstrap
+  after: prologue
   handler: bash
   bash: |
     ./bootstrap.sh --prefix=${ARTIFACT}
@@ -27,8 +30,3 @@ build_stages:
 when_build_dependency:
 - set: BOOST_MULTITHREADED
   value: "OFF"
-
-profile_links:
-
-  - name: everything
-    link: '*/**/*'

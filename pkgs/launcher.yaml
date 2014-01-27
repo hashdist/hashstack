@@ -4,7 +4,13 @@ sources:
 
 build_stages:
 
+  - name: prologue
+    handler: bash
+    bash: |
+      {{PROLOGUE}}
+
   - name: make_and_install
+    after: prologue
     handler: bash
     bash: make install PREFIX=${ARTIFACT}
 
