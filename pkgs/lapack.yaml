@@ -1,0 +1,37 @@
+# This is the reference implementation of Lapack from
+# http://www.netlib.org/lapack/, written in Fortran. It doesn't have any
+# machine specific optimizations (use openblas, host-lapack and similar
+# packages for faster implementations).
+#
+# Note: if you use gfortran, define "compiler=gcc" in your yaml file in order
+# for this recipe to use optimal compiler flags, which are crucial for
+# good performance.
+
+extends: [cmake_package]
+
+sources:
+- url: http://www.netlib.org/lapack/lapack-3.4.2.tgz
+  key: tar.gz:mctf3kxrn3brka2gowkcmgfcemcsd2t2
+
+build_stages:
+- name: configure
+  when compiler == 'gcc':
+      extra: ['-D CMAKE_BUILD_TYPE:STRING=Release',
+              '-D CMAKE_Fortran_FLAGS_RELEASE:STRING="-O3 -fPIC -march=native -ffast-math -funroll-loops"',
+              '-D CMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib"',
+              '-D CMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON',
+              '-D BUILD_TESTING:BOOL=OFF',
+              '-D BUILD_SHARED_LIBS:BOOL=ON',
+              ]
+  when compiler != 'gcc':
+      extra: ['-D CMAKE_BUILD_TYPE:STRING=Release',
+              '-D CMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib"',
+              '-D CMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON',
+              '-D BUILD_TESTING:BOOL=OFF',
+              '-D BUILD_SHARED_LIBS:BOOL=ON',
+              ]
+  build_in_source: true
+
+- name: setup_builddir
+  mode: override
+  bash: |
