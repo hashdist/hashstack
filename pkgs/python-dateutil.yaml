@@ -1,5 +1,9 @@
 extends: [python_package]
 
+dependencies:
+  build: [distribute]
+  run: [distribute]
+
 sources:
   - url: http://labix.org/download/python-dateutil/python-dateutil-1.5.tar.gz
     key: tar.gz:ycfmu7mf7d4o5vq6qozueo4csjrmlfvj
