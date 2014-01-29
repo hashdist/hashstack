@@ -1,0 +1,5 @@
+extends: [distutils_package]
+
+sources:
+  - url: https://pypi.python.org/packages/source/p/pytz/pytz-2013b.tar.bz2
+    key: tar.bz2:mxvuttafw6ix7xogdyp6nwfekewcsxfv
