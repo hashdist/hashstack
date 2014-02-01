@@ -28,6 +28,7 @@ packages:
     use: host-freetype
   mpi:
     use: mpich
+  mpi4py:
   nose:
   hdf5:
   pygments:
@@ -60,3 +61,4 @@ packages:
   scipy:
   ipythonipep23:
   pymatbridge:
+  h5py:

@@ -59,3 +59,4 @@ packages:
   scipy:
   ipythonipep23:
   pymatbridge:
+  h5py:
