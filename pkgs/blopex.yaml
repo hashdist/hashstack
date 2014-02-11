@@ -1,0 +1,18 @@
+extends: [base_package]
+dependencies:
+  build: [lapack, mpi]
+
+sources:
+- url: https://certik@bitbucket.org/certik/blopex.git
+  key: git:0c14bf24b6fca17951304278f0f2a7072d26207d
+
+build_stages:
+
+- name: make-configure
+  after: prologue
+  handler: bash
+  bash: |
+    cd blopex_abstract
+    make
+    cd ../blopex_serial_double
+    make
