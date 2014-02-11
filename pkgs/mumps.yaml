@@ -1,0 +1,16 @@
+extends: [base_package]
+dependencies:
+  build: [scalapack, blas, mpi]
+
+sources:
+- url: http://ftp.de.debian.org/debian/pool/main/m/mumps/mumps_4.10.0.dfsg.orig.tar.gz
+  key: tar.gz:y5rtto5fc24wumbbv6j5tiy3b67vu2gp
+
+build_stages:
+
+- name: make-configure
+  after: prologue
+  handler: bash
+  bash: |
+    cp Make.inc/Makefile.gfortran.PAR Makefile.inc
+    make INCPAR=-I$MPI_DIR/include LIBPAR="$SCALAPACK_DIR/lib/libscalapack.so -L$MPI_DIR/lib -lmpich"
