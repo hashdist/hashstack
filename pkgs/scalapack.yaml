@@ -10,7 +10,7 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [blas, mpi]
+  build: [lapack, mpi]
 
 sources:
 - url: http://www.netlib.org/scalapack/scalapack.tgz
@@ -25,6 +25,8 @@ build_stages:
               '-D CMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON',
               '-D BUILD_TESTING:BOOL=OFF',
               '-D BUILD_SHARED_LIBS:BOOL=ON',
+              '-D LAPACK_LIBRARIES:STRING="${LAPACK_DIR}/lib/liblapack.so"',
+              '-D BLAS_LIBRARIES:STRING="${LAPACK_DIR}/lib/libblas.so"',
               ]
   when compiler != 'gcc':
       extra: ['-D CMAKE_BUILD_TYPE:STRING=Release',
@@ -32,6 +34,8 @@ build_stages:
               '-D CMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON',
               '-D BUILD_TESTING:BOOL=OFF',
               '-D BUILD_SHARED_LIBS:BOOL=ON',
+              '-D LAPACK_LIBRARIES:STRING="${LAPACK_DIR}/lib/liblapack.so"',
+              '-D BLAS_LIBRARIES:STRING="${LAPACK_DIR}/lib/libblas.so"',
               ]
   build_in_source: true
 
