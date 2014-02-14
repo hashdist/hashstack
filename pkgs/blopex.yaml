@@ -12,12 +12,17 @@ build_stages:
   after: prologue
   handler: bash
   bash: |
+    mkdir -p $ARTIFACT/include
     cd blopex_abstract
     make
     mkdir -p $ARTIFACT/lib
     cp lib/libBLOPEX.a $ARTIFACT/lib/
+    cp include/*.h $ARTIFACT/include
     cd ../blopex_serial_double
     make
     ar -rvcu libblopex_serial_double.a multivector/multi_vector.o pcg_multi/pcg_multi.o matmultivec/matmultivec.o
     ranlib libblopex_serial_double.a
     cp libblopex_serial_double.a $ARTIFACT/lib/
+    cp multivector/*.h $ARTIFACT/include
+    cp pcg_multi/*.h $ARTIFACT/include
+    cp matmultivec/*.h $ARTIFACT/include
