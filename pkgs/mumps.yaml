@@ -1,6 +1,6 @@
 extends: [base_package]
 dependencies:
-  build: [scalapack, blas, mpi]
+  build: [scalapack, blas, mpi, lapack]
 
 sources:
 - url: http://ftp.de.debian.org/debian/pool/main/m/mumps/mumps_4.10.0.dfsg.orig.tar.gz
@@ -13,7 +13,7 @@ build_stages:
   handler: bash
   bash: |
     cp Make.inc/Makefile.gfortran.PAR Makefile.inc
-    make INCPAR=-I$MPI_DIR/include LIBPAR="$SCALAPACK_DIR/lib/libscalapack.so -L$MPI_DIR/lib -lmpich"
+    make INCPAR=-I$MPI_DIR/include LIBPAR="$SCALAPACK_DIR/lib/libscalapack.so -L$MPI_DIR/lib -lmpich -L$LAPACK_DIR/lib"
     mkdir -p $ARTIFACT/include
     mkdir -p $ARTIFACT/lib
     cp include/* $ARTIFACT/include/
