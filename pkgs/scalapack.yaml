@@ -1,12 +1,3 @@
-# This is the reference implementation of Lapack from
-# http://www.netlib.org/lapack/, written in Fortran. It doesn't have any
-# machine specific optimizations (use openblas, host-lapack and similar
-# packages for faster implementations).
-#
-# Note: if you use gfortran, define "compiler=gcc" in your yaml file in order
-# for this recipe to use optimal compiler flags, which are crucial for
-# good performance.
-
 extends: [cmake_package]
 
 dependencies:
