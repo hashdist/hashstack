@@ -19,7 +19,7 @@ build_stages:
     cp lib/libBLOPEX.a $ARTIFACT/lib/
     cp include/*.h $ARTIFACT/include
     cd ../blopex_serial_double
-    make
+    make LAPACKLIB="-L$LAPACK_DIR/lib -llapack"
     ar -rvcu libblopex_serial_double.a multivector/multi_vector.o pcg_multi/pcg_multi.o matmultivec/matmultivec.o
     ranlib libblopex_serial_double.a
     cp libblopex_serial_double.a $ARTIFACT/lib/
