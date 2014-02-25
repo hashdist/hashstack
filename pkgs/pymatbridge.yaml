@@ -5,4 +5,5 @@ dependencies:
 
 sources:
   - url: https://github.com/arokem/python-matlab-bridge.git
-    key: git:c230b79cee2f8d3a8d482db0179f1763c2af4383
+    key: git:ca5c9f44afc07e0ebf44f0821d4b2306ad173687
+
