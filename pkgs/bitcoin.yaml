@@ -1,0 +1,29 @@
+extends: [base_package]
+
+dependencies:
+  build: [berkeleydb, boost]
+
+sources:
+  - url: https://github.com/bitcoin/bitcoin/archive/v0.8.6.tar.gz
+    key: tar.gz:e36uqwbd5yk2qi6kkgs2y7wymzaht3yv
+
+build_stages:
+
+- name: make
+  handler: bash
+  bash: |
+    cd src
+    export BDB_INCLUDE_PATH=$BERKELEYDB_DIR/include
+    export BDB_LIB_PATH=$BERKELEYDB_DIR/lib
+    export BOOST_INCLUDE_PATH=$BOOST_DIR/include
+    export BOOST_LIB_PATH=$BOOST_DIR/lib
+    export LDFLAGS="-Wl,-rpath=$BOOST_DIR/lib -Wl,-rpath=$BERKELEYDB_DIR/lib"
+    make -j ${HASHDIST_CPU_COUNT} -f makefile.unix USE_UPNP=-
+    strip bitcoind
+
+- name: install
+  after: make
+  handler: bash
+  bash: |
+    mkdir -p $ARTIFACT/bin
+    install bitcoind $ARTIFACT/bin

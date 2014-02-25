@@ -37,19 +37,49 @@ def configure(ctx, stage_args):
     if 'debug' in stage_args:
         conf_lines.append('--with-debugging=%d' % stage_args['debug'])
 
-    # Special case, no meaningful BLAS/LAPACK directories when using Accelerate
+    # Special case, --with-blas-dir does not work with OpenBLAS
+    if 'OPENBLAS' in ctx.dependency_dir_vars:
+        if ctx.parameters['platform'] == 'Darwin':
+            libopenblas = '${OPENBLAS_DIR}/lib/libopenblas.dylib'
+        else:
+            libopenblas = '${OPENBLAS_DIR}/lib/libopenblas.so'
+        conf_lines.append('--with-blas-lapack-lib=%s' % libopenblas)
+    else:
+        # Special case, no meaningful BLAS/LAPACK directories when using Accelerate
 
-    if ctx.parameters['platform'] != 'Darwin':
-        conf_lines.append('--with-blas-dir=$BLAS_DIR')
-        conf_lines.append('--with-lapack-dir=$LAPACK_DIR')
+        if ctx.parameters['platform'] != 'Darwin':
+            conf_lines.append('--with-blas-dir=$BLAS_DIR')
+            conf_lines.append('--with-lapack-dir=$LAPACK_DIR')
 
     # Special case, ParMETIS also provides METIS 
     if 'PARMETIS' in ctx.dependency_dir_vars:
         conf_lines.append('--with-metis-dir=$PARMETIS_DIR')
         conf_lines.append('--with-parmetis-dir=$PARMETIS_DIR')
-        
+
+    # Special case, SCOTCH also provides PTSCOTCH
+    if 'SCOTCH' in ctx.dependency_dir_vars:
+        conf_lines.append('--with-scotch-dir=${SCOTCH_DIR}')
+        conf_lines.append('--with-ptscotch-dir=${SCOTCH_DIR}')
+
+    # Special case, Trilinos provides ML
+    if 'TRILINOS' in ctx.dependency_dir_vars:
+        if ctx.parameters['platform'] == 'Darwin':
+            libml = '${TRILINOS_DIR}/lib/libml.dylib'
+        else:
+            libml = '${TRILINOS_DIR}/lib/libml.so'
+        conf_lines.append('--with-ml=1')
+        conf_lines.append('--with-ml-lib=%s' % libml)
+        conf_lines.append('--with-ml-include=${TRILINOS_DIR}/include/trilinos')
+
+    # Special case, SuiteSparse provides UMFPACK
+    if 'SUITESPARSE' in ctx.dependency_dir_vars:
+        conf_lines.append('--with-umfpack=1')
+        conf_lines.append('--with-umfpack-include=${SUITESPARSE_DIR}/include/suitesparse')
+        conf_lines.append('--with-umfpack-lib=[${SUITESPARSE_DIR}/lib/libumfpack.a,${SUITESPARSE_DIR}/lib/libcholmod.a,${SUITESPARSE_DIR}/lib/libcamd.a,${SUITESPARSE_DIR}/lib/libccolamd.a,${SUITESPARSE_DIR}/lib/libcolamd.a,${SUITESPARSE_DIR}/lib/libamd.a,${SUITESPARSE_DIR}/lib/libsuitesparseconfig.a]')
+
     for dep_var in ctx.dependency_dir_vars:
-        if dep_var in ['BLAS', 'LAPACK', 'PARMETIS']:
+        if dep_var in ['BLAS', 'LAPACK', 'OPENBLAS', 'PARMETIS',
+                       'SCOTCH', 'TRILINOS', 'SUITESPARSE']:
             continue
         conf_lines.append('--with-%s-dir=$%s_DIR' % 
                           (dep_var.lower(),

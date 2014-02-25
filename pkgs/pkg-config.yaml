@@ -11,3 +11,5 @@ build_stages:
 when_build_dependency:
 - prepend_path: PATH
   value: '${ARTIFACT}/bin'
+- set: PKG_CONFIG_EXECUTABLE
+  value: '${ARTIFACT}/bin/pkg-config'

@@ -1,0 +1,5 @@
+extends: [distutils_package]
+
+sources:
+  - url: https://pypi.python.org/packages/source/r/requests/requests-2.2.1.tar.gz
+    key: tar.gz:cjtjehy35vp36nsm3a6peonw26z6uxbs

@@ -1,5 +1,5 @@
 extends: [distutils_package]
 
 sources:
-- url: https://bitbucket.org/fenics-project/fiat.git
-  key: git:f110663e4bcee8dad41f42da7c0805b51341b449
+- url: https://bitbucket.org/fenics-project/fiat/downloads/fiat-1.3.0.tar.gz
+  key: tar.gz:oshf2nmcdvi6sdg4oxowlvo7gyu3plh7

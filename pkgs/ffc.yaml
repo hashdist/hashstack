@@ -3,8 +3,8 @@ dependencies:
   build: [numpy]
 
 sources:
-- url: https://bitbucket.org/fenics-project/ffc.git
-  key: git:e43faa028ae6f3493e5e4e1d33b1da9d6bb85bb8
+- url: https://bitbucket.org/fenics-project/ffc/downloads/ffc-1.3.0.tar.gz
+  key: tar.gz:6qqvuiin4rolx3w5kytafgocrt433fic
 
 when_build_dependency:
 - prepend_path: PATH

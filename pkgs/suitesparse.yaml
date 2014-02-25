@@ -10,6 +10,7 @@ sources:
 build_stages:
   - name: configure
     mode: replace
+    after: prologue
     handler: bash
     bash: |
       cat > SuiteSparse_config/SuiteSparse_config.mk << EOF
