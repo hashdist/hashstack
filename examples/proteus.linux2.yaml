@@ -22,6 +22,7 @@ packages:
     host: false
     build_with: |
       bzip2, sqlite
+    link: shared
   blas:
     use: host-blas
   daetk:
