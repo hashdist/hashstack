@@ -1,3 +1,5 @@
+extends: [base_package]
+
 when platform == 'linux':
   dependencies:
     build: [patchelf]
@@ -9,6 +11,7 @@ sources:
 build_stages:
 
 - name: make-configure
+  after: prologue
   handler: bash
   when platform == 'linux':  
     bash: |
@@ -42,7 +45,3 @@ build_stages:
       cp -v bzip2 $ARTIFACT/bin/bzip2
       ln -sv bzip2 ${ARTIFACT}/bin/bunzip2
       ln -sv bzip2 ${ARTIFACT}/bin/bzcat
-
-profile_links:
-- name: everything
-  link: '*/**/*'

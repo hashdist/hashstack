@@ -1,7 +1,4 @@
 extends: [distutils_package]
-dependencies:
-  build: [python]
-  run: [python]
 
 sources:
   - url: https://pypi.python.org/packages/source/t/tornado/tornado-3.1.1.tar.gz
