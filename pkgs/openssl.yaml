@@ -1,4 +1,5 @@
 extends: [autotools_package]
+
 dependencies:
   build: [zlib]
 
@@ -8,6 +9,7 @@ sources:
 
 build_stages:
 - name: configure
+  after: prologue
   mode: replace
   after: prologue
   handler: bash
