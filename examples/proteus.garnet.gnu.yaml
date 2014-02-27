@@ -33,6 +33,7 @@ packages:
     host: false
     build_with: |
       openssl,bzip2,sqlite
+    link: shared
   blas:
     use: host-acml-blas
   lapack:
@@ -42,7 +43,9 @@ packages:
     use: host-mpi
   nose:
   hdf5:
-  ipython:
+  pygments:
+  tornado:
+  pyzmq:
   matplotlib:
   petsc:
     build_with: |
@@ -60,3 +63,13 @@ packages:
   sympy:
   tetgen:
   triangle:
+  jasper:
+  grib_api:
+  pyproj:
+  pygrib:
+  adh:  
+  stwave:  
+  scipy:
+  ipythonipep23:
+  pymatbridge:
+  h5py:
