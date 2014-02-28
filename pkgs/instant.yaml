@@ -1,5 +1,5 @@
 extends: [distutils_package]
 
 sources:
-- url: https://bitbucket.org/fenics-project/instant.git
-  key: git:91daa8d35a2e8e3cd1efcd8e87acd8b063627a7c
+- url: https://bitbucket.org/fenics-project/instant/downloads/instant-1.3.0.tar.gz
+  key: tar.gz:jjy5q3yv3thqrqc63ld7wdsb3kx5zmxa
