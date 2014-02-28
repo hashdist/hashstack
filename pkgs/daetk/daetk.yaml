@@ -41,23 +41,6 @@ build_stages:
     export MPI=$MPI_DIR
     touch dep.txt
 
-- when: machine == 'garnet.gnu'
-  name: configure
-  mode: replace
-  files: [arch.linux, archive.linux, sources.linux]
-  after: prologue
-  handler: bash
-  bash: |
-    cp _hashdist/arch.garnet.gnu config/garnet.gnu
-    cp _hashdist/archive.garnet.gnu config/garnet.gnu.archive
-    cp _hashdist/sources.garnet.gnu config/garnet.gnu.sources
-    export DAETK_DIR=`pwd`
-    export DAETK_ARCH=garnet.gnu
-    export PETSC_DIR=$PETSC_DIR
-    export PETSC=$PETSC_DIR
-    export MPI=$MPI_DIR
-    touch dep.txt
-
 - name: make
   mode: replace
   handler: bash
