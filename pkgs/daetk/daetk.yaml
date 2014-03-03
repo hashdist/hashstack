@@ -54,7 +54,7 @@ build_stages:
   after: make
   bash: |
     mkdir $ARTIFACT/lib
-    cp libdaetk.so $ARTIFACT/lib
+    cp libdaetk.* $ARTIFACT/lib
     mkdir $ARTIFACT/include
     cp *.h $ARTIFACT/include
     cp -r pete/pete-2.1.0/src/PETE $ARTIFACT/include
