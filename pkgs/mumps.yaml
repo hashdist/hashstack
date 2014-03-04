@@ -1,0 +1,20 @@
+extends: [base_package]
+dependencies:
+  build: [scalapack, blas, mpi, lapack]
+
+sources:
+- url: http://ftp.de.debian.org/debian/pool/main/m/mumps/mumps_4.10.0.dfsg.orig.tar.gz
+  key: tar.gz:y5rtto5fc24wumbbv6j5tiy3b67vu2gp
+
+build_stages:
+
+- name: make-configure
+  after: prologue
+  handler: bash
+  bash: |
+    cp Make.inc/Makefile.gfortran.PAR Makefile.inc
+    make CC=$MPICC FC=$MPIF90 FL=$MPIF90 INCPAR= LIBPAR="$SCALAPACK_DIR/lib/libscalapack.so -L$LAPACK_DIR/lib"
+    mkdir -p $ARTIFACT/include
+    mkdir -p $ARTIFACT/lib
+    cp include/* $ARTIFACT/include/
+    cp lib/* $ARTIFACT/lib/
