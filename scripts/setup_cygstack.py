@@ -39,6 +39,8 @@ def get_installed_packages():
     packages = [p.split()[0] for p in packages if p]
     return packages
 
+cygstack = args.CYGSTACK
+
 print "Using %s as list of packages to install." % cygstack
 
 with open(cygstack) as packages:
