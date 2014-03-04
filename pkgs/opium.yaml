@@ -1,0 +1,22 @@
+extends: [autotools_package]
+
+sources:
+  - url: http://downloads.sourceforge.net/project/opium/opium/opium-v3.7/opium-v3.7-src.tgz
+    key: tar.gz:3gcxjnvjhrv6afk33lqpp7p5kbss6y64
+
+build_stages:
+  - name: make
+    after: configure
+    mode: override
+    handler: bash
+    bash: |
+      make -j ${HASHDIST_CPU_COUNT} NOOPT=
+
+
+  - name: install
+    after: make
+    mode: override
+    handler: bash
+    bash: |
+      mkdir -p $ARTIFACT/bin
+      cp opium $ARTIFACT/bin/

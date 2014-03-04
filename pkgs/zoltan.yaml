@@ -1,0 +1,21 @@
+extends: [autotools_package]
+dependencies:
+  build: [mpi, {{build_with}}]
+
+sources:
+- url: http://www.cs.sandia.gov/~kddevin/Zoltan_Distributions/zoltan_distrib_v3.8.tar.gz
+  key: tar.gz:lpoumvepxhdtwis3xtz5ebwfldbrrszj
+
+build_stages:
+
+  - name: setup_builddir
+    after: prologue
+    handler: bash
+    bash: |
+      mkdir -p _build
+      cd _build
+
+  - name: configure
+    after: setup_builddir
+    configure_path: ".."
+    extra: ['--with-cflags=-fPIC', '--with-cxxflags=-fPIC']

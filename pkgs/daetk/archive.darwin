@@ -1,2 +1,2 @@
 $(ARCHIVE): $(OBJS) $(OBJS_ADD)
-	    $(AR) $(ARFLAGS) $(ARCHIVE) $(OBJS) $(OBJS_ADD)
+	    $(CXX) -dynamiclib $(LDFLAGS) $(OBJS) $(OBJS_ADD) $(LDLIBS) -o $(ARCHIVE)
