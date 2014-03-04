@@ -1,2 +1,2 @@
 $(ARCHIVE): $(OBJS) $(OBJS_ADD)
-	    $(AR) $(ARFLAGS) $(ARCHIVE) $(OBJS) $(OBJS_ADD)
+	    $(LD) -shared $(OBJS) $(OBJS_ADD) $(LDLIBS) -o $(ARCHIVE)

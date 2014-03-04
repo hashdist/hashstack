@@ -12,9 +12,10 @@ build_stages:
     bash: |
       patch -up1 < _hashdist/clang-fix.patch
 
+
   - name: configure
     mode: override
     extra: ['--with-shared', '--without-profile', '--without-debug',
-        '--without-ada', '--without-tests', '--with-ticlib=tic',
-        '--with-termlib=tinfo']
+        '--without-ada', '--without-tests',
+        '--with-ticlib=tic', '--with-termlib=tinfo','--enable-rpath']
 

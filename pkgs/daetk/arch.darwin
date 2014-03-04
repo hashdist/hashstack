@@ -1,6 +1,6 @@
 include ${PETSC}/conf/variables
 PREFIX=${ARTIFACT}
-ARCHIVE_SUFFIX = .a
+ARCHIVE_SUFFIX = .dylib
 
 #setup options/compilers using petsc configuration
 

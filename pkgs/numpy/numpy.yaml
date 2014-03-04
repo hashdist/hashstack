@@ -20,6 +20,14 @@ build_stages:
       library_dirs = ${OPENBLAS_DIR}/lib
       EOF
 
+  - when: machine == 'CrayXE6'
+    name: support_cray_compilers
+    before: install
+    handler: bash
+    files: [numpy-1.7.1_support_cray_compilers.patch]
+    bash: |
+      patch -p1 < _hashdist/numpy-1.7.1_support_cray_compilers.patch
+
   - when: platform == 'linux'
     name: set-LDFLAGS
     before: install

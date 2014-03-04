@@ -1,4 +1,5 @@
 extends: [autotools_package]
+
 dependencies:
   build: [zlib]
 
@@ -8,9 +9,9 @@ sources:
 
 build_stages:
 - name: configure
-  mode: replace
   after: prologue
   handler: bash
+  mode: replace
   bash: |
     #./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include -Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib
     ./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include

@@ -8,6 +8,7 @@ sources:
 
 build_stages:
 - name: set-cc-compiler
+  after: prologue
   before: configure
   handler: bash
   bash: |
@@ -22,6 +23,28 @@ build_stages:
     patch -p2 < _hashdist/fix_get_console.patch
     autoconf
 
+- when: machine == 'CrayXE6'
+  name: make_exe_builds_static
+  handler: bash
+  after: configure
+  before: make
+  bash: |
+    for f in {test,testpar,tools/*,perform,hl/*,hl/*/*}/Makefile 
+    do 
+      sed -i 's/CCLD = $(CC)/CCLD = $(CC) -static/g' $f
+    done
+
+- name: configure
+  extra: ['--with-zlib=${ZLIB_DIR}',
+          '--with-szlib=${SZIP_DIR}',
+          '--with-pthread',
+          '--enable-unsupported',
+          '--enable-shared',
+          '--enable-production=yes',
+          '--enable-parallel=yes',
+          '--enable-largefile=yes',
+          '--with-default-api-version=v18']
+
 - when: platform == 'Cygwin'
   name: configure
   extra: ['--with-zlib=${ZLIB_DIR}',
@@ -34,8 +57,10 @@ build_stages:
           '--enable-largefile=yes',
           '--with-default-api-version=v18']
 
-- name: configure
-  extra: ['--with-zlib=${ZLIB_DIR}',
+- when: machine == 'CrayXE6'
+  name: configure
+  extra: ['--enable-static-exec',
+          '--with-zlib=${ZLIB_DIR}',
           '--with-szlib=${SZIP_DIR}',
           '--with-pthread',
           '--enable-unsupported',
@@ -44,6 +69,7 @@ build_stages:
           '--enable-parallel=yes',
           '--enable-largefile=yes',
           '--with-default-api-version=v18']
+
 
 when_build_dependency:
 - set: HDF5_ROOT
