@@ -28,7 +28,7 @@ install:
 script:
   - cp tests/$TEST_PROFILE $TEST_PROFILE
   - set -o pipefail
-  - hit build -p $TEST_PROFILE -v 2>&1 | pv -i 15 -n | cat > log.txt
+  - hit build $TEST_PROFILE -v 2>&1 | pv -i 15 -n | cat > log.txt
   - tail -n 60 log.txt
 notifications:
   email: false

@@ -1,0 +1,33 @@
+extends: [base_package]
+dependencies:
+  build: [mpi, lapack, mumps, blopex, parmetis, scalapack]
+
+sources:
+- url: https://github.com/certik/bddc.git
+  key: git:3d6cfa120682be5925861c022bd3a3f2c5d77940
+
+build_stages:
+
+- name: make-configure
+  after: prologue
+  handler: bash
+  bash: |
+    cp make.inc.example make.inc
+    make \
+        BDDCML_ROOT=$ARTIFACT \
+        BDDCML_INCPARMETIS=-I$PARMETIS_DIR/include \
+        BDDCML_LIBPARMETIS="-L$PARMETIS_DIR/lib -Wl,-rpath=${PARMETIS_DIR}/lib -lparmetis" \
+        BDDCML_INCMETIS= \
+        BDDCML_LIBMETIS="-lmetis" \
+        BDDCML_INCMUMPS=-I$MUMPS_DIR/include \
+        BDDCML_LIBMUMPS="-L$MUMPS_DIR/lib -ldmumps -lmumps_common -lpord" \
+        BDDCML_INCBLOPEX=-I$BLOPEX_DIR/include \
+        BDDCML_LIBBLOPEX="-L$BLOPEX_DIR/lib -lBLOPEX -lblopex_serial_double" \
+        BDDCML_OBJBLOPEX= \
+        BDDCML_LIBSCALAPACK="-L$SCALAPACK_DIR/lib -Wl,-rpath=${SCALAPACK_DIR}/lib -lscalapack" \
+        BDDCML_LIBLAPACK="-L$LAPACK_DIR/lib -Wl,-rpath=${LAPACK_DIR}/lib -llapack" \
+        BDDCML_LIBBLAS="-lblas" \
+        BDDCML_LIBBLACS=
+    mkdir -p $ARTIFACT/bin
+    cd examples
+    cp bddcml_global bddcml_local poisson_on_cube $ARTIFACT/bin/
