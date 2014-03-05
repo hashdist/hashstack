@@ -24,7 +24,7 @@ build_stages:
     export MPI=$MPI_DIR
     touch dep.txt
 
-- when: platform == 'linux' or platform == 'Cygwin'
+- when: platform == 'linux'
   name: configure
   mode: replace
   files: [arch.linux, archive.linux, sources.linux]
@@ -36,6 +36,23 @@ build_stages:
     cp _hashdist/sources.linux config/linux.sources
     export DAETK_DIR=`pwd`
     export DAETK_ARCH=linux
+    export PETSC_DIR=$PETSC_DIR
+    export PETSC=$PETSC_DIR
+    export MPI=$MPI_DIR
+    touch dep.txt
+
+- when: platform == 'Cygwin'
+  name: configure
+  mode: replace
+  files: [arch.cygwin, archive.cygwin, sources.cygwin]
+  after: prologue
+  handler: bash
+  bash: |
+    cp _hashdist/arch.cygwin config/cygwin
+    cp _hashdist/archive.cygwin config/cygwin.archive
+    cp _hashdist/sources.cygwin config/cygwin.sources
+    export DAETK_DIR=`pwd`
+    export DAETK_ARCH=cygwin
     export PETSC_DIR=$PETSC_DIR
     export PETSC=$PETSC_DIR
     export MPI=$MPI_DIR
@@ -54,6 +71,20 @@ build_stages:
   after: make
   bash: |
     mkdir $ARTIFACT/lib
+    cp libdaetk.* $ARTIFACT/lib
+    mkdir $ARTIFACT/include
+    cp *.h $ARTIFACT/include
+    cp -r pete/pete-2.1.0/src/PETE $ARTIFACT/include
+
+- when: platform == 'Cygwin'
+  name: install
+  handler: bash
+  mode: replace
+  after: make
+  bash: |
+    mkdir $ARTIFACT/lib
+    mkdir $ARTIFACT/bin
+    cp cygdaetk.dll $ARTIFACT/bin
     cp libdaetk.* $ARTIFACT/lib
     mkdir $ARTIFACT/include
     cp *.h $ARTIFACT/include
