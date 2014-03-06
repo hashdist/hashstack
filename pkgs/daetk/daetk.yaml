@@ -1,6 +1,8 @@
 extends: [autotools_package]
+
+# hardcode parmetis dependency to fix PETSc's improper linking of parmetis libraries
 dependencies:
-  build: [petsc, mpi]
+  build: [petsc, parmetis, mpi]
 
 sources:
 - url: https://github.com/erdc-cm/daetk.git
@@ -75,6 +77,16 @@ build_stages:
     mkdir $ARTIFACT/include
     cp *.h $ARTIFACT/include
     cp -r pete/pete-2.1.0/src/PETE $ARTIFACT/include
+
+# Special case for OS X, post-fix library rpaths with install_name_tool
+- when: platform == 'Darwin'
+  name: rpath_fix
+  handler: bash
+  after: install
+  bash: |
+    install_name_tool -change libmetis.dylib ${PARMETIS_DIR}/lib/libmetis.dylib ${ARTIFACT}/lib/libdaetk.dylib
+    install_name_tool -change libparmetis.dylib ${PARMETIS_DIR}/lib/libparmetis.dylib ${ARTIFACT}/lib/libdaetk.dylib
+
 
 - when: platform == 'Cygwin'
   name: install
