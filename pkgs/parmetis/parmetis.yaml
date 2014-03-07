@@ -17,13 +17,15 @@ build_stages:
     mkdir -p _build_metis
     mkdir -p _build_parmetis
 
-- when: platform == 'Darwin' and MACOSX_DEPLOYMENT_TARGET == 10.9
+- when: platform == 'Darwin'
   name: no_unused_but_set_variable
   files: [no_unused_but_set_variable.patch]
   before: configure
   handler: bash
   bash: |
-    patch -p1 < _hashdist/no_unused_but_set_variable.patch
+    if [$(sw_vers -productVersion | sed "s/\(10.[0-9]\).*/\1/") == 10.7]; then
+      patch -p1 < _hashdist/no_unused_but_set_variable.patch
+    fi
 
 - name: configure
   after: setup_builddir
