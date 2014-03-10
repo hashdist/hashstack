@@ -10,4 +10,9 @@ parameters:
 packages:
   blas:
     use: host-osx-framework-accelerate
+  lapack:
+    use: host-osx-framework-accelerate
+
   ipython:
+  mpi:
+    use: mpich

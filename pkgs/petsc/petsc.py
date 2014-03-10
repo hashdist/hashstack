@@ -62,13 +62,12 @@ def configure(ctx, stage_args):
     if ctx.parameters.get('machine','') == 'CrayXE6':
         preConfigureCrayXE6(ctx, conf_lines)
 
-    # this should be a function :)
-    if 'coptflags' in stage_args and stage_args['coptflags']:
+    if stage_args['coptflags']:
         conf_lines.append('COPTFLAGS=%s' % stage_args['coptflags'])
-    if 'link' in stage_args:
+    if stage_args['link']:
         conf_lines.append('--with-shared-libraries=%d' % 
                           bool(stage_args['link'] == 'shared'))
-    if 'debug' in stage_args:
+    if stage_args['debug']:
         conf_lines.append('--with-debugging=%d' % stage_args['debug'])
 
     # Special case, --with-blas-dir does not work with OpenBLAS

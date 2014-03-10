@@ -13,7 +13,7 @@ build_stages:
       ${PYTHON} conf/cythonize.py
       patch -p1 < _hashdist/fix_libpetsc4py_decls.patch
 
-  - when: with_conf
+  - name: with_conf
     handler: bash
     files: [petsc4py_install_conf.patch]
     before: install
