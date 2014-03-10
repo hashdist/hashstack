@@ -1,0 +1,28 @@
+extends: [base_package]
+dependencies:
+  build: [daetk, lapack, mpi, python, numpy, cmake, cython, petsc4py, petsc, superlu, triangle]
+  run: [daetk, hdf5, lapack, ipython, matplotlib, nose, petsc, petsc4py, pytables, python, sphinx, superlu, sympy, tetgen, triangle]
+
+sources:
+  - url: https://github.com/erdc-cm/proteus
+    key: git:f414952cd5041348db915e40c371d42bfb8228cb
+
+
+build_stages:
+- name: configure
+  after: prologue
+  files: [config.py.hashstack]
+  handler: bash
+  bash: |
+    cp _hashdist/config.py.hashstack config.py
+
+
+- name: install
+  after: configure
+  handler: bash
+  bash: |
+    export PROTEUS_PREFIX=${ARTIFACT}
+    ${PYTHON} setuppyx.py install
+    ${PYTHON} setupf.py install
+    ${PYTHON} setuppetsc.py build --petsc-dir=${PETSC_DIR} --petsc-arch='' install
+    ${PYTHON} setup.py install
