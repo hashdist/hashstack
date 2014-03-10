@@ -4,5 +4,5 @@ dependencies:
   run: [numpy]
 
 sources:
-  - url: https://github.com/clawpack/clawpack/releases/download/5.0.0rc-beta/clawpack-rc-beta.tar.gz
-    key: tar.gz:enn2ynsscsxidwdhhhi6ar4tdmhzt4b4
+  - url: https://github.com/clawpack/clawpack/releases/download/v5.1.0/clawpack-5.1.0.tar.gz
+    key: tar.gz:3lbzkt7xgmgb2xl6cvx5vduwoutmannv
