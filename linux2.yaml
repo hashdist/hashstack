@@ -1,0 +1,7 @@
+extends:
+  - file: linux.yaml
+
+packages:
+  blas:
+    use: openblas
+  ipython:
