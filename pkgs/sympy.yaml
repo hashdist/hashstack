@@ -1,5 +1,5 @@
 extends: [distutils_package]
 
 sources:
-  - url: http://sympy.googlecode.com/files/sympy-0.7.2.tar.gz
-    key: tar.gz:emck5pjjrwf5izzhhizlsd6wniso4yol
+  - url: https://github.com/sympy/sympy/releases/download/sympy-0.7.5/sympy-0.7.5.tar.gz
+    key: tar.gz:f34xasf27eiwt62zq7nd3rgvfbkaolfm

@@ -1,7 +1,7 @@
 extends: [distutils_package]
 dependencies:
-  build: [mpi, hdf5, numpy, numexpr, cython]
-  run: [mpi, hdf5, numpy, numexpr, cython]
+  build: [mpi, hdf5, numpy, numexpr, cython, zlib, szip]
+  run: [mpi, hdf5, numpy, numexpr, cython, zlib, szip]
 
 sources:
   - url: https://pypi.python.org/packages/source/t/tables/tables-2.4.0.tar.gz
@@ -13,3 +13,11 @@ build_stages:
   handler: bash
   bash: |
     CC=${MPICC} CXX=${MPICXX} ${PYTHON} setup.py install --prefix=${ARTIFACT}
+
+- when: platform == 'linux'
+  name: install
+  mode: replace
+  after: setup_dirs
+  handler: bash
+  bash: |
+    CC=${MPICC} CXX=${MPICXX} ${PYTHON} setup.py install --prefix=${ARTIFACT} --lflags="-Wl,-rpath,${HDF5_DIR}/lib -L${HDF5_DIR}/lib -lhdf5 -Wl,-rpath,${ZLIB_DIR}/lib -L${ZLIB_DIR} -lz -Wl,-rpath,${SZIP_DIR}/lib -L${SZIP_DIR}/lib -lszip"

@@ -1,0 +1,8 @@
+$(ARCHIVE): $(OBJS) $(OBJS_ADD)
+	    $(AR) $(ARFLAGS) libdaetk.a $(OBJS) $(OBJS_ADD) 
+	    $(LD) -shared -o cygdaetk.dll \
+	    -Wl,--out-implib=libdaetk.dll.a \
+	    -Wl,--export-all-symbols \
+	    -Wl,--enable-auto-import \
+	    -Wl,--whole-archive libdaetk.a \
+	    -Wl,--no-whole-archive $(LDLIBS)
