@@ -59,6 +59,6 @@ packages:
   adh:  
   stwave:  
   scipy:
-  ipythonipep23:
+  ipython:
   pymatbridge:
   h5py:
