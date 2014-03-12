@@ -1,0 +1,20 @@
+extends: [cmake_package]
+dependencies:
+  build: [boost, zmq]
+
+sources:
+- url: https://github.com/robertmaynard/Remus.git
+  key: git:42ab4e84e7769b3c3531ee378c6d95f342110d46
+
+build_stages:
+- name: configure
+  mode: override
+  extra: ['-DBUILD_SHARED_LIBS:BOOL=ON',
+          '-DRemus_ENABLE_EXAMPLES:BOOL=OFF',
+          '-DRemus_ENABLE_TESTING:BOOL=OFF',
+          '-DRemus_NO_SYSTEM_BOOST:BOOL=ON',
+          '-DZeroMQ_ROOT_DIR:PATH=${ZMQ_DIR}',
+          '-DZeroMQ_INCLUDE_DIR:PATH=${ZMQ_DIR}/include',
+          '-DZeroMQ_LIBRARY_DIR:PATH=${ZMQ_DIR}/lib',
+          '-DBOOST_ROOT:PATH=${BOOST_DIR}',
+          '-DBOOST_LIBRARYDIR:PATH=${BOOST_DIR}/lib']
