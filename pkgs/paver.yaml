@@ -1,0 +1,9 @@
+extends: [distutils_package]
+
+dependencies:
+    build: [distribute]
+    run: [distribute]
+
+sources:
+  - url: https://pypi.python.org/packages/source/P/Paver/Paver-1.2.2.tar.gz
+    key: tar.gz:dzvyiiupdv3zc33kmb5gaofyxuxapefe
