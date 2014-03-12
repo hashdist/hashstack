@@ -1,6 +1,6 @@
 extends: [distutils_package]
 dependencies:
-  build: [numpy]
+  build: [pcre,swig,numpy]
   run: [numpy]
 
 sources:

@@ -52,6 +52,7 @@ packages:
   tetgen:
   triangle:
   jasper:
+    use: host-jasper 
   grib_api:
   pyproj:
   pygrib:

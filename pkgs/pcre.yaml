@@ -4,3 +4,21 @@ sources:
   - url: http://downloads.sourceforge.net/pcre/pcre-8.21.tar.gz
     key: tar.gz:mlqrczkjzznrvwjjahye3azy2x33lh4s
 
+build_stages:
+- name: configure
+  handler: bash
+  mode: replace
+  bash: |
+    bash configure --prefix=${ARTIFACT} --enable-shared
+
+- when: platform == 'Cygwin'
+  name: configure
+  handler: bash
+  mode: replace
+  bash: |
+    cp /usr/share/automake-1.9/config.guess acaux
+    bash configure --prefix=${ARTIFACT} --enable-shared
+
+when_build_dependency:
+  - prepend_path: PATH
+    value: '${ARTIFACT}/bin'
