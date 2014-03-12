@@ -61,3 +61,4 @@ packages:
   scipy:
   ipython:
   pymatbridge:
+  pydap:
