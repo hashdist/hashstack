@@ -22,14 +22,18 @@ packages:
     host: false
     build_with: |
       bzip2, sqlite
+    link: shared
   blas:
     use: host-blas
   daetk:
   mpi:
     use: mpich
+  mpi4py:
   nose:
   hdf5:
-  ipython:
+  pygments:
+  tornado:
+  pyzmq:
   matplotlib:
   petsc:
     build_with: |
@@ -47,3 +51,13 @@ packages:
   sympy:
   tetgen:
   triangle:
+  jasper:
+  grib_api:
+  pyproj:
+  pygrib:
+  adh:  
+  stwave:  
+  scipy:
+  ipythonipep23:
+  pymatbridge:
+  h5py:

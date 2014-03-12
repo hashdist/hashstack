@@ -1,0 +1,16 @@
+extends: [distutils_package]
+
+dependencies:
+  build: [mpi,hdf5,python,cython,numpy]
+  run: [mpi,hdf5,python,cython,numpy]
+
+sources:
+  - url: https://pypi.python.org/packages/source/h/h5py/h5py-2.2.1.tar.gz
+    key: tar.gz:wriqzn2k54zsqr64rdr562iq26xwrryj
+
+build_stages:
+  - name: set-CFLAGS
+    before: install
+    handler: bash
+    bash: |
+      export CFLAGS="-I${MPI_DIR}/include"

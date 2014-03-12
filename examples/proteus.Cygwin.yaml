@@ -31,7 +31,9 @@ packages:
     use: host-mpi
   nose:
   hdf5:
-  ipython:
+  pygments:
+  tornado:
+  pyzmq:
   matplotlib:
   petsc:
     build_with: |
@@ -49,4 +51,13 @@ packages:
   sympy:
   tetgen:
   triangle:
-  zmq: 
+  jasper:
+    use: host-jasper 
+  grib_api:
+  pyproj:
+  pygrib:
+  adh:  
+  stwave:  
+  scipy:
+  ipythonipep23:
+  pymatbridge:

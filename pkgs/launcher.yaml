@@ -2,7 +2,7 @@ extends: [base_package]
 
 sources:
   - url: https://github.com/hashdist/hdist-launcher.git
-    key: git:e92c1fced2147c8579c99bbcf5cd9a456042064e
+    key: git:0306e4dcf00fca5baa14a25bf46f7400fccae9c5
 
 build_stages:
 

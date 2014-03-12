@@ -62,6 +62,7 @@ gzip                       1.4-1
 hostname                   3.13-1
 inputproto                 2.3-1
 ipc-utils                  1.0-2
+jasper                     1.900.1-13
 kbproto                    1.0.6-1
 lapack                     3.4.2-1
 less                       458-1
@@ -136,6 +137,7 @@ libidn11                   1.26-1
 libintl8                   0.18.1.1-3
 libiodbc2                  3.52.8-2
 libisl10                   0.11.1-2
+libjasper-devel            1.900.1-13
 libjpeg8                   1.2.1-2
 libjson-c-common           0.11-1
 libjson-c2                 0.11-1
@@ -226,6 +228,7 @@ libssp0                    4.8.1-3
 libstdc++6                 4.8.1-3
 libsybdb5                  0.91-4
 libtasn1_6                 3.3-1
+libtool			   2.4-1
 libtiff5                   3.9.7-3
 libuuid1                   2.21.2-1
 libvorbis                  1.3.3-1

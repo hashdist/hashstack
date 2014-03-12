@@ -28,9 +28,14 @@ packages:
     use: host-freetype
   mpi:
     use: mpich
+  mpi4py:
   nose:
   hdf5:
-  ipython:
+  pygments:
+  tornado:
+  pyzmq:
+  matplotlib:
+  parmetis:
   petsc:
     build_with: |
       parmetis      
@@ -45,5 +50,15 @@ packages:
   sphinx:
   superlu:
   sympy:
-  triangle:
   tetgen:
+  triangle:
+  jasper:
+  grib_api:
+  pyproj:
+  pygrib:
+  adh:  
+  stwave:  
+  scipy:
+  ipythonipep23:
+  pymatbridge:
+  h5py:
