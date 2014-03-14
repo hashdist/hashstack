@@ -1,0 +1,23 @@
+extends: [cmake_package]
+dependencies:
+  build: [qt]
+
+sources:
+- url: git://source.openchemistry.org/molequeue.git
+  key: git:e545ee25b4b79d5bae9e1cd0515fccb39f44d19d
+
+
+build_stages:
+- name: patch
+  before: configure
+  files: [header-fix.patch]
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/header-fix.patch
+
+- name: configure
+  mode: override
+  extra: ['-DBUILD_SHARED_LIBS:BOOL=ON',
+          '-DCMAKE_BUILD_TYPE:STRING=Release',
+          '-DENABLE_TESTING:BOOL=OFF'
+          ]

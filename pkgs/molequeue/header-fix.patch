@@ -1,0 +1,9 @@
+--- a/molequeue/transport/messageidmanager_p.cpp
++++ b/molequeue/transport/messageidmanager_p.cpp
+@@ -17,6 +17,7 @@
+ #include "messageidmanager_p.h"
+
+ #include "message.h"
++#include <stdlib.h>
+
+ namespace MoleQueue {
