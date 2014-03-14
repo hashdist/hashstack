@@ -1,0 +1,20 @@
+extends: [cmake_package]
+dependencies:
+  build: [qt, python]
+
+sources:
+- url: https://github.com/OpenGeoscience/shiboken.git
+  key: git:7f3bf07ee6c368a42edd8dcc1b3b0730b4809eaf
+
+
+build_stages:
+- name: configure
+  mode: override
+  extra: [
+        '-DSET_RPATH:BOOL=ON',
+        '-DBUILD_SHARED_LIBS:BOOL=ON',
+        '-DDISABLE_DOCSTRINGS:BOOL=ON',
+        '-DCMAKE_BUILD_TYPE:STRING=Release']
+
+
+
