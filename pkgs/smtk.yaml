@@ -1,0 +1,36 @@
+extends: [cmake_package]
+dependencies:
+  build: [shiboken, boost, qt]
+
+sources:
+- url: git@www.kitware.com:SMTK.git
+  key: git:9322a480c1e93de9f78d965183970ab843526d9d
+
+
+build_stages:
+- name: configure
+  mode: override
+  extra: ['-DBUILD_SHARED_LIBS:BOOL=ON',
+          '-DCMAKE_BUILD_TYPE:STRING=Release',
+          '-DSMTK_BUILD_QT:BOOL=ON',
+          '-DSMTK_BUILD_PYTHON_WRAPPINGS:BOOL=ON',
+          '-DShiboken_DIR=${SHIBOKEN_DIR}/lib/cmake/Shiboken-1.2.1/',
+          '-DBOOST_ROOT=${BOOST_DIR}']
+
+#Fixing missing include files and install files. Todo This needs alot of
+#work to convert over to hashdist, mainly since I need to convert
+#install_smtk_python_plugin.cmake
+# - name: install_fix
+#   handler: bash
+#   after: install
+#   bash: |
+#     ${CMAKE} \
+#       CMAKE_BUILD_TYPE:STRING=Release \
+#       -Dpv_version:STRING=4.1 \
+#       -Dpv_python_executable:PATH=${PYTHON_DIR/bin/python} \
+#       -DBUILD_SHARED_LIBS:BOOL=ON \
+#       -DSMTK_BIN_DIR:PATH=${ARTIFACT} \
+#       -DTMP_DIR:PATH=<TMP_DIR> \
+#       -P ${CMAKE_CURRENT_LIST_DIR}/install_smtk_python_plugin.cmake
+
+
