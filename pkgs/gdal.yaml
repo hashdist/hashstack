@@ -1,0 +1,7 @@
+extends: [cmake_package]
+
+sources:
+- url: http://vtk.org/files/support/gdal_5b8309b.tar.gz
+  key: tar.gz:gaxwgrpc6co6xhtqumnjpv6kgv5k5kxr
+
+
