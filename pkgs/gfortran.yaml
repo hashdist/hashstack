@@ -1,0 +1,15 @@
+# Binary gfortran package for OSX.9
+# Reuses Homebrew binary
+# /usr/local/Cellar/gfortran/4.8.2
+
+#when: binary-osx-9
+
+extends: [binary_package]
+
+sources:
+  - url: None
+    key: tar.bz2:2sa3bjvygqypd5ii3cnvyxafoqasnjun
+
+when_build_dependency:
+  - prepend_path: PATH
+    value: '${ARTIFACT}/bin'

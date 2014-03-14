@@ -1,7 +1,7 @@
 extends: [distutils_package]
 dependencies:
-  build: [numpy]
-  run: [numpy]
+  build: [numpy, gfortran]
+  run: [numpy, gfortran]
 
 sources:
   - url: http://downloads.sourceforge.net/scipy/scipy-0.13.3.tar.gz

@@ -1,7 +1,7 @@
 extends: [distutils_package]
 dependencies:
-  build: [blas]
-  run: [blas]
+  build: [blas, gfortran]
+  run: [blas, gfortran]
 
 sources:
   - url: http://downloads.sourceforge.net/numpy/numpy-1.7.1.tar.gz
