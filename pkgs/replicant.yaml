@@ -1,7 +1,17 @@
 extends: [autotools_package]
 dependencies:
-  build: [libe, busybee, libpo6, hyperleveldb]
-  run: [libe, busybee, libpo6, hyperleveldb]
+  build: [
+    libe,
+    busybee,
+    libpo6,
+    hyperleveldb,
+  ]
+  run: [
+    libe,
+    busybee,
+    libpo6,
+    hyperleveldb,
+  ]
 
 sources:
   - url: https://github.com/rescrv/Replicant

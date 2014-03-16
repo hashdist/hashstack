@@ -1,6 +1,9 @@
 extends: [autotools_package]
 dependencies:
-  build: [libe, libpo6]
+  build: [
+    libe,
+    libpo6,
+  ]
 
 sources:
   - url: https://github.com/rescrv/busybee.git

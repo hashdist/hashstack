@@ -1,7 +1,21 @@
 extends: [autotools_package]
 dependencies:
-  build: [libe, busybee, libpo6, hyperleveldb, replicant, cython-0.18, python]
-  run: [libe, busybee, libpo6, hyperleveldb, replicant]
+  build: [
+    libe,
+    busybee,
+    libpo6,
+    hyperleveldb,
+    replicant,
+    cython-0.18,  # https://github.com/rescrv/HyperDex/issues/139
+    python,
+  ]
+  run: [
+    libe,
+    busybee,
+    libpo6,
+    hyperleveldb,
+    replicant,
+  ]
 
 sources:
   - url: https://github.com/rescrv/HyperDex
