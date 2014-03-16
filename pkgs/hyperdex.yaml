@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [libe, busybee, libpo6, hyperleveldb, replicant, python]
+  build: [libe, busybee, libpo6, hyperleveldb, replicant, cython-0.18, python]
   run: [libe, busybee, libpo6, hyperleveldb, replicant]
 
 sources:
