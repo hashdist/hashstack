@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [libe, busybee, libpo6, hyperleveldb, replicant]
+  build: [libe, busybee, libpo6, hyperleveldb, replicant, python]
   run: [libe, busybee, libpo6, hyperleveldb, replicant]
 
 sources:
@@ -19,4 +19,10 @@ build_stages:
     autoheader
     automake --force-missing --add-missing
     autoconf || true
-    export PKG_CONFIG_PATH="$LIBPO6_DIR/lib/pkgconfig:$LIBE_DIR/lib/pkgconfig:$BUSYBEE_DIR/lib/pkgconfig:$HYPERLEVELDB_DIR/lib/pkgconfig:$REPLICANT_DIR/lib/pkgconfig"
+    export PKG_CONFIG_PATH="$LIBPO6_DIR/lib/pkgconfig:$LIBE_DIR/lib/pkgconfig:$BUSYBEE_DIR/lib/pkgconfig:$HYPERLEVELDB_DIR/lib/pkgconfig:$REPLICANT_DIR/lib/pkgconfig:$PYTHON_DIR/lib/pkgconfig"
+
+- name: configure
+  extra: [
+    '--enable-python-bindings',
+    'LDFLAGS="-lm"',
+  ]
