@@ -1,0 +1,22 @@
+extends: [autotools_package]
+dependencies:
+  build: [libe, busybee, libpo6, hyperleveldb]
+  run: [libe, busybee, libpo6, hyperleveldb]
+
+sources:
+  - url: https://github.com/rescrv/Replicant
+    key: git:5be43699aac90c4370d3f15b11016421d2a856b0
+
+build_stages:
+
+- name: autogen
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    libtoolize
+    aclocal
+    autoheader
+    automake --force-missing --add-missing
+    export PKG_CONFIG_PATH="$LIBPO6_DIR/lib/pkgconfig:$LIBE_DIR/lib/pkgconfig:$BUSYBEE_DIR/lib/pkgconfig:$HYPERLEVELDB_DIR/lib/pkgconfig"
+    autoconf

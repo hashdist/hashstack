@@ -1,0 +1,19 @@
+extends: [autotools_package]
+dependencies:
+  build: []
+
+sources:
+  - url: https://github.com/rescrv/po6
+    key: git:cfdbade039f3290255b98f37de9de87962097bd1
+
+build_stages:
+
+- name: autogen
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    libtoolize
+    aclocal
+    automake --force-missing --add-missing
+    autoconf || true

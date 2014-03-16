@@ -1,0 +1,21 @@
+extends: [autotools_package]
+dependencies:
+  build: [libe, libpo6]
+
+sources:
+  - url: https://github.com/rescrv/busybee.git
+    key: git:9841d43974f498f43c770104646fc15debdf92fa
+
+build_stages:
+
+- name: autogen
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    libtoolize
+    aclocal
+    autoheader
+    automake --force-missing --add-missing
+    export PKG_CONFIG_PATH="$LIBPO6_DIR/lib/pkgconfig:$LIBE_DIR/lib/pkgconfig"
+    autoconf
