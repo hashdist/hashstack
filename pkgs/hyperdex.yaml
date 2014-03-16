@@ -6,7 +6,7 @@ dependencies:
     libpo6,
     hyperleveldb,
     replicant,
-    cython-0.18,  # https://github.com/rescrv/HyperDex/issues/139
+    cython-0_18,  # https://github.com/rescrv/HyperDex/issues/139
     python,
   ]
   run: [
