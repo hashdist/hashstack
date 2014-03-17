@@ -9,7 +9,7 @@ packages:
   blas:
     use: host-blas
   mpi:
-    use: mpich
+    use: host-mpi
   python:
     host: false
     build_with: |
