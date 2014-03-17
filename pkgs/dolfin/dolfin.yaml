@@ -22,9 +22,15 @@ sources:
   key: tar.gz:ozm5ohbcbchvbug5rc4bdgdha7z5ggf6
 
 build_stages: 
+- name: set_python_version
+  after: setup_builddir
+  handler: bash
+  bash: |
+    export PYVER={{pyver}}
+
 - name: configure ## See dolfin.py for details
   mode: replace
-  after: setup_builddir
+  after: set_python_version
   build_type: {{build_type}}
 
 - name: fix-rpath
