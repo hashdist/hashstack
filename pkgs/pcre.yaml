@@ -9,7 +9,7 @@ build_stages:
   handler: bash
   mode: replace
   bash: |
-    bash configure --prefix=${ARTIFACT} --enable-shared
+    ./configure --prefix=${ARTIFACT} --enable-shared
 
 - when: platform == 'Cygwin'
   name: configure
