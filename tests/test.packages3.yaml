@@ -3,6 +3,13 @@
 extends:
 - file: linux.yaml
 
+parameters:
+  HOST_MPICC: /usr/bin/mpicc
+  HOST_MPICXX: /usr/bin/mpic++
+  HOST_MPIF77: /usr/bin/mpif77
+  HOST_MPIF90: /usr/bin/mpif90
+  HOST_MPIEXEC: /usr/bin/mpiexec
+
 packages:
 
   launcher:
