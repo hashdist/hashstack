@@ -39,9 +39,9 @@ def configure(ctx, stage_args):
 
     if 'extra' in stage_args:
         conf_lines.append(' '.join(format_style % arg for arg in stage_args['extra']))
-    if 'platform' in stage_args:
+    if stage_args['platform']:
       conf_lines.append(' -platform ' + stage_args['platform'])
-    if 'arch' in stage_args:
+    if stage_args['arch']:
       conf_lines.append(' -arch ' + stage_args['arch'])
 
     for i in range(len(conf_lines) - 1):
