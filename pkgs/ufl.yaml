@@ -1,5 +1,5 @@
 extends: [distutils_package]
 
 sources:
-- url: https://bitbucket.org/fenics-project/ufl/downloads/ufl-1.3.0.tar.gz
-  key: tar.gz:rwdalbmtflc7b2vv3dayoqmnz7u5su45
+- url: https://bitbucket.org/fenics-project/ufl.git
+  key: git:5aee174639eb48db330eea3195973be01778d056
