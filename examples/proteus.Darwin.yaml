@@ -26,6 +26,7 @@ packages:
   daetk:
   freetype:
     use: host-freetype
+  matplotlib:
   mpi:
     use: mpich
   nose:

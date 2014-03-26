@@ -1,5 +1,11 @@
 from hashdist import build_stage
 
+def rpath_flag(ctx, path):
+   if ctx.parameters['platform'] == 'linux':
+      return '-Wl,-rpath=%s' % path
+   else:
+      return ''
+
 @build_stage()
 def configure(ctx, stage_args):
     """
@@ -9,6 +15,7 @@ def configure(ctx, stage_args):
 
         - name: configure
           build_type: RelWithDebInfo
+          set_env_flags: true
 
     Note: this is a fairly sophisticated build stage that inspects
     the build artifacts available to decide what to enable in DOLFIN.
@@ -18,6 +25,8 @@ def configure(ctx, stage_args):
 
     * build_type: Release, Debug, RelWithDebInfo or Developer.
     RelWithDebInfo by default.
+    * set_env_flags: CPPFLAGS and LDFLAGS will be set, as appropriate
+    for the platform. Default is true.
     """
 
     conf_lines = ['${CMAKE} -D CMAKE_INSTALL_PREFIX:PATH="${ARTIFACT}"',
@@ -40,7 +49,13 @@ def configure(ctx, stage_args):
         conf_lines.append('-D SWIG_EXECUTABLE:FILEPATH="${SWIG_EXECUTABLE}"')
 
     if 'PYTHON' in ctx.dependency_dir_vars:
+        if ctx.parameters['platform'] == 'Darwin':
+            libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.dylib'
+        else:
+            libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.so'
         conf_lines.append('-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"')
+        conf_lines.append('-D PYTHON_INCLUDE_DIR:PATH="${PYTHON_DIR}/include/python${PYVER}"')
+        conf_lines.append('-D PYTHON_LIBRARY:FILEPATH="%s"' % libpython)
 
     # Some special variables are needed to find correct HDF5
     if 'HDF5' in ctx.dependency_dir_vars:
@@ -54,6 +69,10 @@ def configure(ctx, stage_args):
         conf_lines.append('-D DOLFIN_ENABLE_CHOLMOD:BOOL=ON')
         conf_lines.append('-D UMFPACK_DIR:PATH="${SUITESPARSE_DIR}"')
         conf_lines.append('-D CHOLMOD_DIR:PATH="${SUITESPARSE_DIR}"')
+        conf_lines.append('-D AMD_DIR:PATH="${SUITESPARSE_DIR}"')
+        conf_lines.append('-D CAMD_DIR:PATH="${SUITESPARSE_DIR}"')
+        conf_lines.append('-D COLAMD_DIR:PATH="${SUITESPARSE_DIR}"')
+        conf_lines.append('-D CCOLAMD_DIR:PATH="${SUITESPARSE_DIR}"')
     else:
         conf_lines.append('-D DOLFIN_ENABLE_UMFPACK:BOOL=OFF')
         conf_lines.append('-D DOLFIN_ENABLE_CHOLMOD:BOOL=OFF')
@@ -88,5 +107,16 @@ def configure(ctx, stage_args):
     for i in range(len(conf_lines) - 1):
         conf_lines[i] = conf_lines[i] + ' \\'
         conf_lines[i + 1] = '  ' + conf_lines[i + 1]
-        
-    return conf_lines
+
+    env_lines = []
+    if stage_args.get('set_env_flags', True):
+        CPPFLAGS = []
+        LDFLAGS = []
+        for dep_var in ctx.dependency_dir_vars:
+            CPPFLAGS.append('-I${%s_DIR}/include' % dep_var)
+            LDFLAGS.append('-L${%s_DIR}/lib' % dep_var)
+            LDFLAGS.append(rpath_flag(ctx, '${%s_DIR}/lib' % dep_var))
+        env_lines.append('export CPPFLAGS="%s"' % ' '.join(CPPFLAGS))
+        env_lines.append('export LDFLAGS="%s"' % ' '.join(LDFLAGS))
+
+    return ['('] + env_lines + conf_lines + [')']

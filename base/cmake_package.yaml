@@ -19,7 +19,7 @@ build_stages:
     after: configure
     handler: bash
     bash: |
-      make -j ${HASHDIST_CPU_COUNT}
+      cmake --build . -- -j ${HASHDIST_CPU_COUNT}
 
   - name: install
     after: make

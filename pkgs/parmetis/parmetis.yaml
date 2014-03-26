@@ -23,10 +23,7 @@ build_stages:
   before: configure
   handler: bash
   bash: |
-    MACOSX_DEPLOYMENT_TARGET=$(sw_vers -productVersion | sed "s/\(10.[0-9]\).*/\1/")
-    if [ $MACOSX_DEPLOYMENT_TARGET = 10.7 ]; then
-      patch -p1 < _hashdist/no_unused_but_set_variable.patch
-    fi
+    patch -p1 < _hashdist/no_unused_but_set_variable.patch
 
 - name: configure
   after: setup_builddir

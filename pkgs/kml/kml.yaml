@@ -1,0 +1,21 @@
+extends: [cmake_package]
+
+sources:
+- url: http://vtk.org/files/support/libkml_fa6c7d8.tar.gz
+  key: tar.gz:ee6dsu7ejszvoukjsx7o6gl72t2aba6j
+
+
+build_stages:
+
+- name: patch
+  before: configure
+  files: [header-fix.patch]
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/header-fix.patch
+
+- name: configure
+  mode: override
+  extra: ['-DBUILD_SHARED_LIBS:BOOL=OFF',
+          '-DCMAKE_BUILD_TYPE:STRING=Release']
+

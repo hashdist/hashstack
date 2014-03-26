@@ -1,0 +1,11 @@
+extends: [cmake_package]
+
+sources:
+- url: http://vtk.org/files/support/gdal_5b8309b.tar.gz
+  key: tar.gz:gaxwgrpc6co6xhtqumnjpv6kgv5k5kxr
+
+build_stages:
+- name: configure
+  mode: override
+  extra: ['-DBUILD_SHARED_LIBS:BOOL=ON',
+          '-DCMAKE_BUILD_TYPE:STRING=Release']
