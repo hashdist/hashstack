@@ -4,7 +4,7 @@ env:
   - TEST_PROFILE="test.packages2.yaml"
   - TEST_PROFILE="test.packages3.yaml"
   - TEST_PROFILE="test.packages4.yaml"
-  - TEST_PROFILE="test.packages5.yaml"
+  - TEST_PROFILE="test.qt.yaml"
   - TEST_PROFILE="test.host-scipy.yaml"
 python:
   - 2.7

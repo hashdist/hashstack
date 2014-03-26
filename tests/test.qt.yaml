@@ -3,7 +3,7 @@
 extends:
  - file: linux.yaml
 
- packages:
+packages:
   zlib:
   png:
   qt:
