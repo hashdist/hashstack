@@ -1,0 +1,12 @@
+extends:
+  - file: linux.yaml
+
+packages:
+  mpi:
+  zlib:
+  szip:
+  hdf5:
+  curl:
+  netcdf:
+  netcdfcpp:
+
