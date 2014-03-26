@@ -3,4 +3,5 @@ extends:
 
 parameters:
   platform: linux
-  PATH: /usr/bin:/bin
+  PATH: /home/jed/usr/bin:/usr/bin:/bin
+  HOST_PYTHON: /usr/bin/python2
