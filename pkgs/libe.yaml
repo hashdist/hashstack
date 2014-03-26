@@ -1,0 +1,21 @@
+extends: [autotools_package]
+dependencies:
+  build: [libpo6]
+
+sources:
+  - url: https://github.com/rescrv/e.git
+    key: git:7c01c80b56aee191a5d1bd249f7a0b2ab413c28b
+
+build_stages:
+
+- name: autogen
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    libtoolize
+    aclocal
+    autoheader
+    automake --force-missing --add-missing
+    export PKG_CONFIG_PATH="$LIBPO6_DIR/lib/pkgconfig"
+    autoconf || true
