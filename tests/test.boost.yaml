@@ -1,0 +1,14 @@
+
+
+# This test tests the ability to build boost
+extends:
+- file: linux.yaml
+
+packages:
+  mpi:
+    use: host-mpi
+  bzip2:
+  boost:
+    toolset: gcc
+    address_model: 64
+
