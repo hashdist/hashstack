@@ -1,0 +1,11 @@
+build_stages:
+  - handler: bash
+    bash: |
+      mkdir -p ${ARTIFACT}/{{python_site_packages_rel}}
+      ln -s {{python_host_packages}}/cython ${ARTIFACT}/{{python_site_packages_rel}}
+
+profile_links:
+
+  - name: python_packages
+    link: '{{python_site_packages_rel}}/*'
+    dirs: true
