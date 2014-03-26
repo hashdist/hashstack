@@ -1,0 +1,9 @@
+extends: [distutils_package]
+
+sources:
+  - url: http://cython.org/release/Cython-0.18.tar.gz
+    key: tar.gz:z5fnp6xnnph5w5w2ijeszytox6jhcko2
+
+when_build_dependency:
+  - prepend_path: PATH
+    value: '${ARTIFACT}/bin'
