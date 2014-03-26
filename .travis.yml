@@ -4,6 +4,7 @@ env:
   - TEST_PROFILE="test.packages2.yaml"
   - TEST_PROFILE="test.packages3.yaml"
   - TEST_PROFILE="test.packages4.yaml"
+  - TEST_PROFILE="test.boost.yaml"
   - TEST_PROFILE="test.host-scipy.yaml"
 python:
   - 2.7
@@ -18,6 +19,9 @@ before_install:
     fi
   - if [[ "${TEST_PROFILE}" == "test.packages3.yaml" ]]; then
       sudo apt-get install mpich2 liblapack-dev;
+    fi
+  - if [[ "${TEST_PROFILE}" == "test.boost.yaml" ]]; then
+      sudo apt-get install mpich2;
     fi
   - if [[ "${TEST_PROFILE}" == "test.host-scipy.yaml" ]]; then
       sudo apt-get install python-scipy;
