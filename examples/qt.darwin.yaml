@@ -1,0 +1,10 @@
+
+extends:
+ - file: osx.yaml
+
+ packages:
+  zlib:
+  png:
+  qt:
+    toolset: unsupported/macx-clang
+    arch: x86_64
