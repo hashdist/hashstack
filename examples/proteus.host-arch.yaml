@@ -1,0 +1,60 @@
+# This profile file controls your <#> (HashDist) build environment.
+
+# In the future, we'll provide better incorporation of
+# automatic environment detection.  For now, have a look
+# at the YAML files in the top-level directory and choose
+# the most *specific* file that matches your environment.
+
+extends:
+- file: arch.yaml
+
+parameters:
+  python_host_packages: '/usr/lib/python2.7/site-packages'
+  PATH: /home/jed/usr/bin:/usr/bin:/bin
+  HOST_MPICC: /opt/mpich/bin/mpicc
+  HOST_MPICXX: /opt/mpich/bin/mpic++
+  HOST_MPIF77: /opt/mpich/bin/mpif77
+  HOST_MPIF90: /opt/mpich/bin/mpif90
+  HOST_MPIEXEC: /opt/mpich/bin/mpiexec
+  HOST_CMAKE: /usr/bin/cmake
+  HOST_PKG_CONFIG_EXECUTABLE: /usr/bin/pkgconfig
+  HOST_SWIG_EXECUTABLE: /usr/bin/swig
+  SCOTCH_ARCH: pc_linux2
+  PETSC_ARCH: linux-gnu-cxx-opt
+  PASTIX_ARCH: i686_pc_linux
+  HOST_PETSC_DIR: /home/jed/petsc-maint
+  HOST_PETSC_ARCH: mpich
+
+# The packages list specifies all the packages that you
+# require installed.  <#> will ensure that all packages
+# and their dependencies are installed when you build this
+# profile.
+
+packages:
+
+  launcher:
+  cmake:
+    use: host-cmake
+  python:
+    host: true
+    use_python_host_packages: true
+    build_with: |
+      bzip2, sqlite
+  blas:
+    use: host-blas
+  daetk:
+  mpi:
+    use: host-mpi
+  hdf5:
+    use: host-hdf5
+  petsc:
+    use: host-petsc
+  petsc4py:
+    with_conf: true
+  superlu:
+  numpy:
+    use: host-numpy
+  pytables:
+    use: host-pytables
+  tetgen:
+  triangle:
