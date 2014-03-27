@@ -17,6 +17,6 @@ packages:
   szip:
   hdf5:
   curl:
-  netcdf:
-  netcdfcpp:
+  netcdf4:
+  netcdf4cpp:
 

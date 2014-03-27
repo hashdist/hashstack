@@ -7,7 +7,7 @@ env:
   - TEST_PROFILE="test.cmake.yaml"
   - TEST_PROFILE="test.boost.yaml"
   - TEST_PROFILE="test.clawpack.gitsubmodules.yaml"
-  - TEST_PROFILE="test.packages5.yaml"
+  - TEST_PROFILE="test.netcdf4.yaml"
   - TEST_PROFILE="test.host-scipy.yaml"
 python:
   - 2.7
@@ -32,7 +32,7 @@ before_install:
   - if [[ "${TEST_PROFILE}" == "test.clawpack.gitsubmodules.yaml" ]]; then
       sudo apt-get install liblapack-dev;
     fi
-  - if [[ "${TEST_PROFILE}" == "test.packages5.yaml" ]]; then
+  - if [[ "${TEST_PROFILE}" == "test.netcdf4.yaml" ]]; then
       sudo apt-get install mpich2;
     fi
   - if [[ "${TEST_PROFILE}" == "test.host-scipy.yaml" ]]; then
