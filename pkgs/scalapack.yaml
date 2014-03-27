@@ -9,21 +9,16 @@ sources:
 
 build_stages:
 - name: configure
+  debug: false #always build in release mode
   when compiler == 'gcc':
-      extra: ['-D CMAKE_BUILD_TYPE:STRING=Release',
-              '-D CMAKE_Fortran_FLAGS_RELEASE:STRING="-O3 -fPIC -march=native -ffast-math -funroll-loops"',
-              '-D CMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib"',
-              '-D CMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON',
+      extra: ['-D CMAKE_Fortran_FLAGS_RELEASE:STRING="-O3 -fPIC -march=native -ffast-math -funroll-loops"',
               '-D BUILD_TESTING:BOOL=OFF',
               '-D BUILD_SHARED_LIBS:BOOL=ON',
               '-D LAPACK_LIBRARIES:STRING="${LAPACK_DIR}/lib/liblapack.so"',
               '-D BLAS_LIBRARIES:STRING="${LAPACK_DIR}/lib/libblas.so"',
               ]
   when compiler != 'gcc':
-      extra: ['-D CMAKE_BUILD_TYPE:STRING=Release',
-              '-D CMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib"',
-              '-D CMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON',
-              '-D BUILD_TESTING:BOOL=OFF',
+      extra: ['-D BUILD_TESTING:BOOL=OFF',
               '-D BUILD_SHARED_LIBS:BOOL=ON',
               '-D LAPACK_LIBRARIES:STRING="${LAPACK_DIR}/lib/liblapack.so"',
               '-D BLAS_LIBRARIES:STRING="${LAPACK_DIR}/lib/libblas.so"',
