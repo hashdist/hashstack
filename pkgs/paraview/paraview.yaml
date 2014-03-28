@@ -25,7 +25,10 @@ build_stages:
 
 - name: configure
   mode: override
-  extra: ['-DBUILD_SHARED_LIBS:BOOL=ON',
+  extra: [
+          '-DCMAKE_C_COMPILER:FILEPATH={{HOST_MPICC}}',
+          '-DCMAKE_CXX_COMPILER:FILEPATH={{HOST_MPICXX}}',
+          '-DBUILD_SHARED_LIBS:BOOL=ON',
           '-DBUILD_TESTING:BOOL=OFF',
           '-DPARAVIEW_BUILD_WEB_DOCUMENTATION:BOOL=OFF',
           '-DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF',
@@ -37,6 +40,8 @@ build_stages:
           '-DPARAVIEW_ENABLE_FFMPEG:BOOL=OFF',
           '-DPARAVIEW_ENABLE_PYTHON:BOOL=ON',
           '-DPARAVIEW_USE_MPI:BOOL=ON',
+          '-DHDF5_ENABLE_PARALLEL:BOOL=ON',
+          '-DVTK_XDMF_USE_MPI:BOOL=ON',
           '-DPARAVIEW_USE_VISITBRIDGE:BOOL=ON',
           '-DVTK_USE_SYSTEM_ZLIB:BOOL=ON',
           '-DVTK_USE_SYSTEM_PNG:BOOL=ON',
