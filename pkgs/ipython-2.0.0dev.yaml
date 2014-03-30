@@ -1,0 +1,7 @@
+extends: [distutils_package]
+dependencies:
+  run: [pyzmq, tornado, jinja2, pygments, sphinx]
+
+sources:
+  - url: https://github.com/ipython/ipython
+    key: git:97e31c1085f2fdcae155267c4d88671bf1b89ae4
