@@ -8,6 +8,7 @@ env:
   - TEST_PROFILE="test.boost.yaml"
   - TEST_PROFILE="test.clawpack.gitsubmodules.yaml"
   - TEST_PROFILE="test.host-scipy.yaml"
+  - TEST_PROFILE="test.vxl.yaml"
 python:
   - 2.7
 before_install:
