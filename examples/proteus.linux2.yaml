@@ -59,6 +59,15 @@ packages:
   stwave:  
   scipy:
   ipython:
-  pymatbridge:
   h5py:
   pydap:
+## Uncomment these lines to activate pymatbridge
+
+##  pymatbridge:
+##  matlab:
+##    use: host-matlab
+
+
+parameters:
+## Uncomment this file and set the PATH to MATLAB here for pymatbridge
+##  HOST_MATLAB: /usr/local/bin/matlab

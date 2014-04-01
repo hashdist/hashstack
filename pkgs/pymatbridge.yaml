@@ -1,10 +1,24 @@
 extends: [distutils_package]
 dependencies:
-  build: [python,ipython]
-  run: [python,ipython]
+  build: [python, ipython, zmq, pyzmq, matlab]
+  run: [python, ipython, zmq, pyzmq, matlab]
 
 sources:
   - url: https://github.com/arokem/python-matlab-bridge.git
-    key: git:c230b79cee2f8d3a8d482db0179f1763c2af4383
+    key: git:2cbd90a3662226fd57836e85ae4727d49ef98b70
 
+build_stages:
+- name: config
+  after: setup_dirs
+  before: install
+  handler: bash
+  bash: |
+    (
+    cd messenger/mexa64
+    echo "MATLAB_BIN=$(dirname $MATLAB)" > local.cfg
+    echo "HEADER_PATH=$ZMQ_DIR/include" >> local.cfg
+    echo "LIB_PATH=$ZMQ_DIR/lib" >> local.cfg
+    $PYTHON make.py
+    cp messenger.mexa64 ../../pymatbridge/matlab
+    )
 
