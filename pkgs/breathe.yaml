@@ -1,0 +1,9 @@
+extends: [python_package]
+
+dependencies:
+  build: [distribute]
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/b/breathe/breathe-1.2.0.tar.gz
+   key: tar.gz:ct6te5lyy26tg43sp5vatkuzdtb25q2j
