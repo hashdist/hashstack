@@ -1,6 +1,19 @@
 extends: [autotools_package]
 
 sources:
-  - url: http://downloads.sourceforge.net/pcre/pcre-8.21.tar.gz
-    key: tar.gz:mlqrczkjzznrvwjjahye3azy2x33lh4s
+  - url: http://downloads.sourceforge.net/pcre/pcre-8.34.tar.gz
+    key: tar.bz2:wycdvyp7e4ql4zs77iunyivxyy343xuw
 
+build_stages:
+- name: configure
+  extra: [
+    "--disable-dependency-tracking",
+    "--enable-utf8",
+    "--enable-pcre8",
+    "--enable-pcre16",
+    "--enable-pcre32",
+    "--enable-unicode-properties",
+    # We need to figure out how to pass our own libz and bzip2:
+    #"--enable-pcregrep-libz",
+    #"--enable-pcregrep-libbz2",
+    "--enable-jit"]
