@@ -1,0 +1,5 @@
+extends: [autotools_package]
+
+sources:
+- url: http://ftp.stack.nl/pub/users/dimitri/doxygen-1.8.6.src.tar.gz
+  key: tar.gz:njyymjpqyda6wppopdwb7a2atne6pehu
