@@ -1,7 +1,7 @@
 extends: [base_package]
 
 dependencies:
-  build: [openblas, llvm, fftw, gmp, mpfr]
+  build: [openblas, llvm, fftw, gmp, mpfr, pcre]
 
 sources:
 - url: https://github.com/JuliaLang/julia
@@ -18,6 +18,7 @@ build_stages:
     cp $FFTW_DIR/lib/*.so usr/lib/
     cp $GMP_DIR/lib/*.so usr/lib/
     cp $MPFR_DIR/lib/*.so usr/lib/
+    cp $PCRE_DIR/lib/*.so usr/lib/
     make \
         prefix=$ARTIFACT \
         VERBOSE=1 \
@@ -36,7 +37,8 @@ build_stages:
         USE_SYSTEM_FFTW=1 \
         USE_SYSTEM_GMP=1 \
         USE_SYSTEM_MPFR=1 \
-        USE_SYSTEM_PCRE=0 \
+        USE_SYSTEM_PCRE=1 \
+        PCRE_CONFIG=$PCRE_DIR/bin/pcre-config \
         USE_SYSTEM_LIBUNWIND=0 \
         USE_SYSTEM_READLINE=0 \
         USE_SYSTEM_GRISU=0 \
