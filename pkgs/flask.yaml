@@ -1,0 +1,9 @@
+extends: [python_package]
+
+dependencies:
+  build: [python, distribute]
+  run: [jinja2, werkzeug, itsdangerous]
+
+sources:
+ - url: https://pypi.python.org/packages/source/F/Flask/Flask-0.10.1.tar.gz
+   key: tar.gz:jsbyfh7yhvaiwxq5jgkuoitfieosyqkb

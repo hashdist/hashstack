@@ -1,0 +1,10 @@
+--- a/src/kml/base/file_posix.cc
++++ b/src/kml/base/file_posix.cc
+@@ -27,6 +27,7 @@
+ // POSIX platforms.
+
+ #include "kml/base/file.h"
++#include <unistd.h>
+ #include <stdlib.h>
+ #include <string.h>
+ #include <sys/types.h>
