@@ -2,4 +2,4 @@ extends: [autotools_package]
 
 sources:
   - url: http://curl.haxx.se/download/curl-7.33.0.tar.gz
-    key: tar.gz:4w36y5oqxgrgkxmndbkmjithrgrxbw4h
+    key: tar.gz:oriktrzl2j65rhogtfvovwxtkt5etpb4

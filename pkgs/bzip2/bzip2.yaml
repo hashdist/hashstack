@@ -10,13 +10,20 @@ sources:
 
 build_stages:
 
+- name: patch
+  before: make-configure
+  files: [clang-fix.patch]
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/clang-fix.patch
+
 - name: make-configure
   after: prologue
   handler: bash
-  when platform == 'linux':  
+  when platform == 'linux':
     bash: |
       make -f Makefile-libbz2_so
-  when platform == 'Darwin':  
+  when platform == 'Darwin':
     bash: |
       make -f Makefile
 

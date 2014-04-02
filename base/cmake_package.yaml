@@ -14,12 +14,13 @@ build_stages:
 
   - name: configure
     after: setup_builddir
+    debug: {{debug}}
 
   - name: make
     after: configure
     handler: bash
     bash: |
-      make -j ${HASHDIST_CPU_COUNT}
+      cmake --build . -- -j ${HASHDIST_CPU_COUNT}
 
   - name: install
     after: make

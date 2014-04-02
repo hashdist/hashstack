@@ -1,10 +1,8 @@
 extends: [distutils_package]
-
 dependencies:
-  build: [mpi,numpy,cython]
-  run: [mpi,numpy]
+  build: [mpi, numpy, cython]
+  run: [mpi, numpy]
 
 sources:
   - url: https://bitbucket.org/mpi4py/mpi4py.git
-    key: git:f4619b5989a6d7cb4065a98018ec25cbfc856d8c
-
+    key: git:d5da39a2e334e585b97e83928995cca917610129

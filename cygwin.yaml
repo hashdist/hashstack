@@ -13,3 +13,8 @@ parameters:
   HOST_PYTHON: /usr/bin/python
   HOST_PKG_CONFIG_EXECUTABLE: /usr/bin/pkgconfig
   HOST_SWIG_EXECUTABLE: /usr/bin/swig
+
+packages:
+  blas:
+    use: host-blas
+  ipython:
