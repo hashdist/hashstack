@@ -1,0 +1,6 @@
+extends: [distutils_package]
+
+sources:
+ - url: https://pypi.python.org/packages/source/p/pyparsing/pyparsing-2.0.1.zip
+   key: zip:pylwn3tuptfht7qxfntq7vj66wh4kxjl
+

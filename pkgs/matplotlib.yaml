@@ -1,11 +1,12 @@
-extends: [distutils_package, libflags]
+extends: [python_package, libflags]
+
 dependencies:
-  build: [freetype, numpy, png]
-  run: [freetype, numpy, png]
+  build: [freetype, numpy, png,png,python-dateutil,pyparsing,tornado,nose,distribute]
+  run: [freetype, numpy, png,png,python-dateutil,pyparsing,tornado,nose]
 
 sources:
-  - url: https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-1.2.1/matplotlib-1.2.1.tar.gz
-    key: tar.gz:klqys4vo3bptbmc455axpdwho2c56yas
+  - url: https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-1.3.1/matplotlib-1.3.1.tar.gz
+    key: tar.gz:5ilgphmuo2vsovyqf2ade7zr5ohgylfq
 
 build_stages:
 
