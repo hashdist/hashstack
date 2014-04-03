@@ -1,0 +1,9 @@
+extends: [distutils_package]
+
+dependencies:
+  build: []
+  run: [pandas, numpy]
+
+sources:
+ - url: https://github.com/ahmadia/folium.git
+   key: git:19972e838d1fac428e63d0645122a550d53a340a
