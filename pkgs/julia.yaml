@@ -45,3 +45,8 @@ build_stages:
         USE_SYSTEM_OPENLIBM=0 \
         USE_SYSTEM_RMATH=0 \
         install
+    cp $OPENBLAS_DIR/lib/*.so $ARTIFACT/lib/
+    cp $FFTW_DIR/lib/*.so $ARTIFACT/lib/
+    cp $GMP_DIR/lib/*.so $ARTIFACT/lib/
+    cp $MPFR_DIR/lib/*.so $ARTIFACT/lib/
+    cp $PCRE_DIR/lib/*.so $ARTIFACT/lib/
