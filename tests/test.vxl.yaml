@@ -1,0 +1,9 @@
+# Tests cmake and cmake configured packages
+
+extends:
+- file: linux.yaml
+
+packages:
+  cmake:
+  png:
+  vxl:

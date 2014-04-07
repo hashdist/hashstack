@@ -1,0 +1,10 @@
+#Tests qt
+
+extends:
+ - file: linux.yaml
+
+packages:
+  zlib:
+  png:
+  qt:
+    arch: x86_64

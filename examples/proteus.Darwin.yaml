@@ -26,6 +26,7 @@ packages:
   daetk:
   freetype:
     use: host-freetype
+  matplotlib:
   mpi:
     use: mpich
   mpi4py:
@@ -34,7 +35,6 @@ packages:
   pygments:
   tornado:
   pyzmq:
-  matplotlib:
   parmetis:
   petsc:
     build_with: |

@@ -1,0 +1,30 @@
+# This profile file controls your <#> (HashDist) build environment.
+
+# In the future, we'll provide better incorporation of
+# automatic environment detection.  For now, have a look
+# at the YAML files in the top-level directory and choose
+# the most *specific* file that matches your environment.
+
+extends:
+- file: linux.yaml
+
+extends:
+ - name: hashstack
+   urls: ['https://github.com/hashdist/hashstack.git']
+   key: 'git:e735367c4d46c3ee03eb0ab7c80845650c06f9cd'
+   file: darwin.yaml
+
+
+packages:
+  blas:
+    use: openblas
+  cmake:
+    use: host-cmake
+  launcher:
+  mpi:
+    use: mpich
+  mpi4py:
+  python:
+    host: false
+    build_with: |
+      bzip2, sqlite

@@ -1,5 +1,5 @@
 extends: [autotools_package]
-dependancies:
+dependencies:
   build: [curl, zlib, openssl, bison, libyaml, libxml2, libxslt, libiconv, ncurses, readline]
   run: [curl, zlib, openssl, libyaml, libxml2, libxslt, libiconv, ncurses, readline]
 
