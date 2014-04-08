@@ -1,7 +1,7 @@
-extends: [python_package]
+extends: [setuptools_package]
 dependencies:
-  build: [distribute, docutils, jinja2, pygments]
-  run: [docutils, jinja2, pygments]
+  build: [docutils, jinja2, pygments]
+  run: [jinja2, pygments]
 
 sources:
   - url: https://pypi.python.org/packages/source/S/Sphinx/Sphinx-1.2b3.tar.gz

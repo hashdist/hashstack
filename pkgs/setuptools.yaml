@@ -1,5 +1,8 @@
 extends: [distutils_package]
 
+dependencies:
+  build: [python]
+
 build_stages:
   - name: install
     mode: override
