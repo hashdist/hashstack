@@ -17,7 +17,7 @@ build_stages:
   after: setup_dirs
   handler: bash
   bash: |
-    ${PYTHON} setup.py install --prefix=${ARTIFACT}
+    python setup.py install --prefix=${ARTIFACT}
 
   # Remove easy_install pth files
 - name: cleanup
