@@ -1,8 +1,20 @@
+dependencies:
+    build:
+      - when platform == 'linux' and package != 'patchelf':
+          - patchelf
+      - hit
+
 build_stages:
   - name: prologue
     handler: bash
     bash: |
       {{PROLOGUE}}
+
+  - name: relocatable-scripts
+    after: [install, prologue]
+    handler: bash
+    bash: |
+      $HIT_DIR/bin/hit build-postprocess --relative-sh-script='/bin/.*-config'
 
 profile_links:
   - when: platform == 'Cygwin'

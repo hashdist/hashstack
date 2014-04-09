@@ -7,6 +7,9 @@ sources:
   - url: https://www.openssl.org/source/openssl-1.0.1e.tar.gz
     key: tar.gz:65hrl2gi74i2upk3wxzhnuqc5qmnojdo
 
+defaults:
+  relocateable: false
+
 build_stages:
 - name: configure
   after: prologue
