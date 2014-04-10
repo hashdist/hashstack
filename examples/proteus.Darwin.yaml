@@ -63,3 +63,4 @@ packages:
   pymatbridge:
   h5py:
   pydap:
+  folium-drawpath:
