@@ -61,6 +61,7 @@ packages:
   ipython:
   h5py:
   pydap:
+  folium-drawpath:
 ## Uncomment these lines to activate pymatbridge
 
 ##  pymatbridge:
