@@ -1,3 +1,7 @@
+# setuptools_package.yaml
+# Use for Python packages that rely on a setuptools-based installer.
+# You should use the distutils_package.yaml base if you do not depend on setuptools.
+
 extends: [distutils_package]
 
 dependencies:
