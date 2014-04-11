@@ -1,7 +1,7 @@
-extends: [python_package]
+extends: [setuptools_package]
 dependencies:
-  build: [distribute, numpy, python-dateutil, pytz]
-  run: [distribute, numpy, python-dateutil, pytz]
+  build: [numpy, python-dateutil, pytz]
+  run: [numpy, python-dateutil, pytz]
 
 sources:
   - url: https://pypi.python.org/packages/source/p/pandas/pandas-0.13.0.tar.gz

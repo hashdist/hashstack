@@ -1,6 +1,6 @@
-extends: [python_package]
+extends: [setuptools_package]
 dependencies:
-  build: [setuptools, daetk, lapack, mpi, python, numpy, cmake, cython, petsc4py, petsc, superlu, triangle]
+  build: [daetk, lapack, mpi, python, numpy, cmake, cython, petsc4py, petsc, superlu, triangle]
   run: [daetk, hdf5, lapack, ipython, matplotlib, nose, petsc, petsc4py, pytables, python, sphinx, superlu, sympy, tetgen, triangle]
 
 sources:

@@ -1,8 +1,4 @@
-extends: [python_package]
-
-dependencies:
-  build: [distribute]
-  run: []
+extends: [setuptools_package]
 
 sources:
  - url: https://pypi.python.org/packages/source/b/breathe/breathe-1.2.0.tar.gz

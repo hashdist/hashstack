@@ -1,6 +1,6 @@
-extends: [python_package]
+extends: [setuptools_package]
 dependencies:
-  build: [distribute, paramiko, jinja2, yaml]
+  build: [paramiko, jinja2, yaml]
   run: [paramiko, jinja2, yaml]
 
 sources:
