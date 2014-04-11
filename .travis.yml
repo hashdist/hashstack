@@ -44,5 +44,9 @@ script:
   - set -o pipefail
   - hit build $TEST_PROFILE -v 2>&1 | pv -i 15 -n | cat > log.txt
   - tail -n 60 log.txt
+verify:
+  - if [[ "${TEST_PROFILE}" == "test.matplotlib.yaml" ]]; then
+      ./test.matplotlib/bin/python -c "from mpl_toolkits.mplot3d import Axes3D"
+    fi
 notifications:
   email: false
