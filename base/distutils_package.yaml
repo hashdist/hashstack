@@ -1,4 +1,4 @@
-# setuptools_package.yaml
+# distutils_package.yaml
 # Use for installing Python packages with the native distutils package
 # You should use the setuptools_package.yaml base if you depend on setuptools.
 
