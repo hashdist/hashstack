@@ -18,6 +18,11 @@ build_stages:
 - name: libflags
   before: install
 
+# The distutils deletes .pth files but we need them for namespace
+# packages:
+- name: cleanup
+  mode: remove
+
 profile_links:
   - name: mpl_packages
     link: 'lib/python{{pyver}}/site-packages/mpl_toolkits/**/*'
