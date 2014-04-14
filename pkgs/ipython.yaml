@@ -3,12 +3,5 @@ dependencies:
   run: [pyzmq, tornado, jinja2, pygments, sphinx]
 
 sources:
-  - url: https://github.com/ipython/ipython.git
-    key: git:bdd3bccd49070005d52fb233c6422625feafde46
-
-build_stages:
--   name: get submodule
-    before: install
-    handler: bash
-    bash: |
-      git clone https://github.com/ipython/ipython-components.git IPython/html/static/components
+  - url: https://pypi.python.org/packages/source/i/ipython/ipython-2.0.0.tar.gz
+    key: tar.gz:j2b4bd4nn7iorbemnd6a5mxzwbkptn2c

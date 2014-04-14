@@ -1,7 +1,7 @@
-extends: [python_package]
+extends: [setuptools_package]
 dependencies:
-  build: [python, distribute, yaml]
-  run: [python, yaml]
+  build: [yaml]
+  run: [yaml]
 
 sources:
   - url: https://pypi.python.org/packages/source/p/pybtex/pybtex-0.16.tar.bz2
