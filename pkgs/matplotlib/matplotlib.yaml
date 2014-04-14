@@ -15,6 +15,16 @@ build_stages:
   bash: |
     export PKG_CONFIG_PATH="$PNG_DIR/lib/pkgconfig:$FREETYPE_DIR/lib/pkgconfig"
 
+
+# This patch did not go into v1.3.1 :(
+- when: platform == 'Cygwin'
+  name: fix_cxx_reserved_identifiers
+  files: [fix_cxx_reserved_identifiers.patch]
+  before: install
+  handler: bash
+  bash: |
+    patch -p1 < _hashdist/fix_cxx_reserved_identifiers.patch
+
 - name: libflags
   before: install
 
