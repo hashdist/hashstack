@@ -1,4 +1,4 @@
-# This builds the IPython, NumPy, SciPy, SymPy stack from scratch
+# Isolated matplotlib test case
 
 extends:
 - file: linux.yaml
@@ -12,9 +12,4 @@ packages:
     host: false
     build_with: |
       bzip2, openssl
-  ipython:
-  nose:
-  numpy:
-  sphinx:
-  sympy:
-  scipy:
+  matplotlib:
