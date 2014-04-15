@@ -1,4 +1,4 @@
-extends: [setuptools_package]
+extends: [namespace_package]
 
 dependencies:
   build: [paver]
