@@ -1,4 +1,4 @@
-extends: [setuptools_package, libflags]
+extends: [namespace_package, libflags]
 dependencies:
   build: [freetype, numpy, png]
   run: [freetype, numpy, png, python-dateutil, pyparsing]
@@ -27,11 +27,6 @@ build_stages:
 
 - name: libflags
   before: install
-
-# The distutils deletes .pth files but we need them for namespace
-# packages:
-- name: cleanup
-  mode: remove
 
 profile_links:
   - name: mpl_packages
