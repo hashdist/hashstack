@@ -1,0 +1,11 @@
+# namespace_package.yaml
+# Use for Python installs that create namespace packages.
+
+extends: [setuptools_package]
+
+build_stages:
+
+# The distutils deletes .pth files but we need them for namespace
+# packages:
+- name: cleanup
+  mode: remove
