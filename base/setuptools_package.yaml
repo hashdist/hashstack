@@ -1,4 +1,11 @@
+# setuptools_package.yaml
+# Use for Python packages that rely on a setuptools-based installer.
+# You should use the distutils_package.yaml base if you do not depend on setuptools.
+
 extends: [distutils_package]
+
+dependencies:
+  build: [setuptools]
 
 build_stages:
 
@@ -6,8 +13,7 @@ build_stages:
   # which is what e.g. Linux distros do to avoid egg-subdirectories. This
   # particular code is lifted from pip to be compatible with both setuptools
   # packages and distutils packages, so that the packages doesn't need to
-  # care about distutils vs. setuptools. The distutils.yaml file is then
-  # primarily useful to install 'distribute'.
+  # care about distutils vs. setuptools.
   #
   # http://stackoverflow.com/questions/368636/questions-about-setuptools-and-alternatives
 - name: install
@@ -20,4 +26,3 @@ build_stages:
        install \
        --prefix=. --root=${ARTIFACT} \
        --single-version-externally-managed
-

@@ -1,7 +1,7 @@
-extends: [python_package]
+extends: [setuptools_package]
 
 dependencies:
-  build: [python, distribute]
+  build: []
   run: [jinja2, werkzeug, itsdangerous]
 
 sources:

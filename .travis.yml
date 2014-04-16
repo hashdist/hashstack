@@ -1,13 +1,14 @@
 language: python
 env:
+  - TEST_PROFILE="test.boost.yaml"
+  - TEST_PROFILE="test.clawpack.gitsubmodules.yaml"
+  - TEST_PROFILE="test.cmake.yaml"
+  - TEST_PROFILE="test.host-scipy.yaml"
+  - TEST_PROFILE="test.matplotlib.yaml"
   - TEST_PROFILE="test.packages1.yaml"
   - TEST_PROFILE="test.packages2.yaml"
   - TEST_PROFILE="test.packages3.yaml"
   - TEST_PROFILE="test.packages4.yaml"
-  - TEST_PROFILE="test.cmake.yaml"
-  - TEST_PROFILE="test.boost.yaml"
-  - TEST_PROFILE="test.clawpack.gitsubmodules.yaml"
-  - TEST_PROFILE="test.host-scipy.yaml"
   - TEST_PROFILE="test.vxl.yaml"
 python:
   - 2.7
@@ -43,5 +44,9 @@ script:
   - set -o pipefail
   - hit build $TEST_PROFILE -v 2>&1 | pv -i 15 -n | cat > log.txt
   - tail -n 60 log.txt
+verify:
+  - if [[ "${TEST_PROFILE}" == "test.matplotlib.yaml" ]]; then
+      ./test.matplotlib/bin/python -c "from mpl_toolkits.mplot3d import Axes3D"
+    fi
 notifications:
   email: false

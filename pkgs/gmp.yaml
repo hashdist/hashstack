@@ -1,5 +1,8 @@
 extends: [autotools_package]
 
+dependencies:
+  build: [m4]
+
 sources:
 - url: http://mirrors.kernel.org/gnu/gmp/gmp-5.1.3.tar.bz2
   key: tar.bz2:ouqhsuqli2ifgelr2d2fglsa6cdaaik7

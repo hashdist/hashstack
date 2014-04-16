@@ -60,6 +60,5 @@ packages:
   stwave:  
   scipy:
   ipython:
-  pymatbridge:
   pydap:
   folium-drawpath:

@@ -1,8 +1,8 @@
 extends: [autotools_package]
 
 sources:
-  - url: http://downloads.sourceforge.net/pcre/pcre-8.21.tar.gz
-    key: tar.gz:mlqrczkjzznrvwjjahye3azy2x33lh4s
+  - url: https://sourceforge.net/projects/pcre/files/pcre/8.34/pcre-8.34.tar.bz2
+    key: tar.bz2:wycdvyp7e4ql4zs77iunyivxyy343xuw
 
 build_stages:
 - name: configure

@@ -1,7 +1,7 @@
-extends: [distutils_package]
+extends: [namespace_package]
 
 dependencies:
-  build: [distribute,paver]
+  build: [paver]
   run: [httplib2]
 
 sources:

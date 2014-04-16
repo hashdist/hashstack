@@ -1,7 +1,4 @@
-extends: [python_package]
-dependencies:
-  build: [python, distribute]
-  run: [python]
+extends: [setuptools_package]
 
 sources:
   - url: https://pypi.python.org/packages/source/r/readline/readline-6.2.4.1.tar.gz

@@ -24,8 +24,6 @@ packages:
   blas:
     use: host-osx-framework-accelerate
   daetk:
-  freetype:
-    use: host-freetype
   matplotlib:
   mpi:
     use: mpich
@@ -60,7 +58,6 @@ packages:
   stwave:  
   scipy:
   ipython:
-  pymatbridge:
   h5py:
   pydap:
   folium-drawpath:
