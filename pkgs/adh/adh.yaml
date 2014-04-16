@@ -1,32 +1,39 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [python,mpi,parmetis]
+  build: [python,mpi,parmetis,umfpack3]
 
 sources:
 - url: https://github.com/cekees/adh.git
   key: git:ab5024c569e8bac972d706a3d354e43cce319ac3
 
 build_stages:
+
+- name: setup_builddir
+  after: prologue
+  handler: bash
+  bash: |
+    mkdir -p _build
+    cd _build
+
 - name: configure
-  handler: bash
-  mode: replace
-  bash: |
-    cmake -DCMAKE_CXX_COMPILER:PATH=${MPICXX} -DCMAKE_C_COMPILER:PATH=${MPICC} -DCMAKE_Fortran_COMPILER:PATH=${MPIF90} -DCMAKE_INSTALL_PREFIX:PATH=${ARTIFACT} -DPACKAGE_MPI:BOOL=ON -DPACKAGE_PARMETIS:BOOL=ON -DPARMETIS_INCLUDE_DIR:PATH=${PARMETIS_DIR}/include -DPARMETIS_LIBRARY:PATH=${PARMETIS_DIR}/lib/libparmetis.so -DMETIS_LIBRARY:PATH=${PARMETIS_DIR}/lib/libmetis.so
-
-- when: platform == 'Cygwin'
-  name: configure
-  handler: bash
-  mode: replace
-  bash: |
-    cmake -DCMAKE_CXX_COMPILER:PATH=${MPICXX} -DCMAKE_C_COMPILER:PATH=${MPICC} -DCMAKE_Fortran_COMPILER:PATH=${MPIF90} -DCMAKE_INSTALL_PREFIX:PATH=${ARTIFACT} -DPACKAGE_MPI:BOOL=ON -DPACKAGE_PARMETIS:BOOL=ON -DPARMETIS_INCLUDE_DIR:PATH=${PARMETIS_DIR}/include -DPARMETIS_LIBRARY:PATH=${PARMETIS_DIR}/lib/libparmetis.dll.a -DMETIS_LIBRARY:PATH=${PARMETIS_DIR}/lib/libmetis.dll.a
-
-- when: platform == 'Darwin'
-  name: configure
-  handler: bash
-  mode: replace
-  bash: |
-    cmake -DCMAKE_CXX_COMPILER:PATH=${MPICXX} -DCMAKE_C_COMPILER:PATH=${MPICC} -DCMAKE_Fortran_COMPILER:PATH=${MPIF90} -DCMAKE_INSTALL_PREFIX:PATH=${ARTIFACT} -DPACKAGE_MPI:BOOL=ON -DPACKAGE_PARMETIS:BOOL=ON -DPARMETIS_INCLUDE_DIR:PATH=${PARMETIS_DIR}/include -DPARMETIS_LIBRARY:PATH=${PARMETIS_DIR}/lib/libparmetis.dylib -DMETIS_LIBRARY:PATH=${PARMETIS_DIR}/lib/libmetis.dylib
+  mode: override
+  extra: [
+    '-DCMAKE_C_COMPILER:FILEPATH=${MPICC}',
+    '-DCMAKE_CXX_COMPILER:FILEPATH=${MPICXX}',
+    '-DCMAKE_Fortran_COMPILER:FILEPATH=${MPIF90}',
+    '-DCMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}',
+    '-DPACKAGE_MPI:BOOL=True',
+    '-DPACKAGE_PARMETIS:BOOL=True',
+    '-DPARMETIS_INCLUDE_DIR:PATH=${PARMETIS_DIR}/include',
+    '-DPARMETIS_LIBRARY:FILEPATH=${PARMETIS_DIR}/lib/libparmetis.so',
+    '-DMETIS_LIBRARY=${PARMETIS_DIR}/lib/libmetis.so',
+    '-DPACKAGE_UMFPACK:BOOL=True', 
+    '-DUMFPACK_INCLUDE_DIR:PATH=${UMFPACK_INCLUDE}',
+    '-DUMFPACK_VERSION:STRING=3',
+    '-DUMFPACK_INT_SIZE:STRING=32',
+    '-DUMFPACK_LIBRARY:FILEPATH=${UMFPACK_LIBRARY}'
+    ]
 
 - name: install
   handler: bash
