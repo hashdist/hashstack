@@ -1,8 +1,8 @@
 extends: [autotools_package]
 
 sources:
-- url: http://hydra.nixos.org/build/1524660/download/2/patchelf-0.6.tar.bz2
-  key: tar.bz2:7r7h7kk7fax4g6szdkacmkpa4hwqppbk
+- url: https://github.com/NixOS/patchelf/archive/0.6.tar.gz
+  key: tar.gz:637tcd47lcn3nzcq4ln3ruvda4bygb5j
 
 when_build_dependency:
 - set: PATCHELF
