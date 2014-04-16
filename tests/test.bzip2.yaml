@@ -1,0 +1,7 @@
+# Isolated bzip2 test case
+
+extends:
+- file: linux.yaml
+
+packages:
+  bzip2:

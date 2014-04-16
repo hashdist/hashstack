@@ -1,6 +1,7 @@
 language: python
 env:
   - TEST_PROFILE="test.boost.yaml"
+  - TEST_PROFILE="test.bzip2.yaml"
   - TEST_PROFILE="test.clawpack.gitsubmodules.yaml"
   - TEST_PROFILE="test.cmake.yaml"
   - TEST_PROFILE="test.host-scipy.yaml"
@@ -47,6 +48,9 @@ script:
 verify:
   - if [[ "${TEST_PROFILE}" == "test.matplotlib.yaml" ]]; then
       ./test.matplotlib/bin/python -c "from mpl_toolkits.mplot3d import Axes3D"
+    fi
+  - if [[ "${TEST_PROFILE}" == "test.bzip2.yaml" ]]; then
+      echo "test data" | test.bzip2/bin/bzip2 | test.bzip2/bin/bzcat
     fi
 notifications:
   email: false
