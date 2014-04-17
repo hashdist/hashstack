@@ -37,7 +37,7 @@ packages:
   matplotlib:
   petsc:
     build_with: |
-      
+
     download: |
       parmetis, metis
     coptflags: -O2
