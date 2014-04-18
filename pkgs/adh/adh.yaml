@@ -35,6 +35,24 @@ build_stages:
     '-DUMFPACK_LIBRARY:FILEPATH=${UMFPACK_LIBRARY}'
     ]
 
+# Disable metis/parmetis on Cygwin for now
+- when: platform == 'Cygwin' 
+  name: configure
+  mode: override
+  extra: [
+    '-DCMAKE_C_COMPILER:FILEPATH=${MPICC}',
+    '-DCMAKE_CXX_COMPILER:FILEPATH=${MPICXX}',
+    '-DCMAKE_Fortran_COMPILER:FILEPATH=${MPIF90}',
+    '-DCMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}',
+    '-DPACKAGE_MPI:BOOL=True',
+    '-DPACKAGE_PARMETIS:BOOL=False',
+    '-DPACKAGE_UMFPACK:BOOL=True', 
+    '-DUMFPACK_INCLUDE_DIR:PATH=${UMFPACK_INCLUDE}',
+    '-DUMFPACK_VERSION:STRING=3',
+    '-DUMFPACK_INT_SIZE:STRING=32',
+    '-DUMFPACK_LIBRARY:FILEPATH=${UMFPACK_LIBRARY}'
+    ]
+
 - name: install
   handler: bash
   mode: replace
