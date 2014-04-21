@@ -49,6 +49,8 @@ with open(cygstack) as packages:
     packages.readline()
 
     for package_line in packages.readlines():
+        if package_line.strip() == '':
+            continue
         installed_packages = get_installed_packages()
         package = package_line.split()[0]
 
