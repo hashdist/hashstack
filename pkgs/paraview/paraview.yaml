@@ -72,12 +72,19 @@ build_stages:
           '-DModule_vtkIOGDAL:BOOL=ON',
           '-DModule_vtkViewsInfovis:BOOL=ON',
 
-          #We need to specify external plugins so that we can let paraview properly
+          #We need to specify external plugins so that we can let ParaView properly
           #install the plugins. So we sneakily force a variable that is an
-          #implementation detail of paraview branding
+          #implementation detail of ParaView branding
           '-DBPC_OPTIONAL_PLUGINS:INTERNAL={{optional_plugins}}',
 
           #Disable webkit as generally webkit won't build even if requested with
           #qt everywhere.
-          '-DPQWIDGETS_DISABLE_QTWEBKIT:BOOL=ON'
+          '-DPQWIDGETS_DISABLE_QTWEBKIT:BOOL=ON',
+
+          #to properly setup ParaView like a linux application on the mac,
+          #instead of building a bundle, we need to enable this flag
+          '-DPARAVIEW_DO_UNIX_STYLE_INSTALLS:BOOL=ON',
+
+          #tell ParaView to install developer files
+          '-DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=ON'
           ]
