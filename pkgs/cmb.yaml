@@ -1,0 +1,24 @@
+extends: [cmake_package]
+dependencies:
+  build: [boost, png, qt, zlib, gdal, hdf5,
+          mpi, netcdf4, netcdf4cpp, freetype,
+          python, numpy, matplotlib, libxml2,
+          paraview, remus, vxl, kml, molequeue, smtk, zmq]
+
+sources:
+- url: git://public.kitware.com/CMB.git
+  key: git:ee35a7afc8e0ce0a6aa7c09d239e88cbee822f8a
+
+build_stages:
+- name: configure
+  mode: override
+  extra: [
+          '-DCMAKE_C_COMPILER:FILEPATH={{HOST_MPICC}}',
+          '-DCMAKE_CXX_COMPILER:FILEPATH={{HOST_MPICXX}}',
+          '-DBUILD_SHARED_LIBS:BOOL=ON',
+          '-DBUILD_TESTING:BOOL=OFF',
+          '-DKML_DIR:PATH=${KML_DIR}',
+          '-DGDAL_DIR:PATH=${GDAL_DIR}',
+          '-DParaView_DIR:PATH=${PARAVIEW_DIR}',
+          '-DMoleQueue_DIR:PATH=${MOLEQUEUE_DIR}'
+          ]
