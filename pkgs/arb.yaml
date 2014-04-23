@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [gmp, mpfr]
+  build: [gmp, mpfr, flint]
 
 sources:
   - url: https://github.com/fredrik-johansson/arb.git
@@ -9,5 +9,6 @@ sources:
 build_stages:
   - name: configure
     mode: override
-    extra: ['--with-gmp=${GMP_DIR}', '--with-mpfr=${MPFR_DIR}']
+    extra: ['--with-gmp=${GMP_DIR}', '--with-mpfr=${MPFR_DIR}',
+        '--with-flint=${FLINT_DIR}']
 
