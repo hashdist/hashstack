@@ -3,4 +3,3 @@ extends: [autotools_package]
 sources:
   - url: http://downloads.sourceforge.net/project/oprofile/oprofile/oprofile-0.9.9/oprofile-0.9.9.tar.gz
     key: tar.gz:dzjdiag2vot3rugrkju6s55arnao37vf
-
