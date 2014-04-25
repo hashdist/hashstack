@@ -1,5 +1,6 @@
 language: python
 env:
+  - TEST_PROFILE="test.autotools.yaml"
   - TEST_PROFILE="test.boost.yaml"
   - TEST_PROFILE="test.clawpack.gitsubmodules.yaml"
   - TEST_PROFILE="test.cmake.yaml"
