@@ -1,23 +1,39 @@
 extends: [distutils_package]
 dependencies:
-  build: [python,ipython,zmq,pyzmq]
-  run: [python,ipython,zmq,pyzmq]
+  build: [python, ipython, zmq, pyzmq, matlab]
+  run: [python, ipython, zmq, pyzmq, matlab]
 
 sources:
   - url: https://github.com/arokem/python-matlab-bridge.git
-    key: git:c79508e6ab31a2db20f9c33cadb1c530277012ba
+    key: git:1c589c39713218f38b9e59e882330b7a1355d8a1
 
 build_stages:
-- name: install
+- when: platform == 'linux'
+  name: config
   after: setup_dirs
+  before: install
   handler: bash
   bash: |
+    (
     cd messenger/mexa64
-    echo "MATLAB_BIN=/home/cekees/MATLAB/R2013b/bin" > local.cfg
+    echo "MATLAB_BIN=$(dirname $MATLAB)" > local.cfg
     echo "HEADER_PATH=$ZMQ_DIR/include" >> local.cfg
     echo "LIB_PATH=$ZMQ_DIR/lib" >> local.cfg
-    $PYTHON make.py
+    MATLAB=$(dirname $(dirname $MATLAB)) $PYTHON make.py
     cp messenger.mexa64 ../../pymatbridge/matlab
-    cd ../..
-    $PYTHON setup.py install --prefix=$ARTIFACT
+    )
 
+- when: platform == 'Darwin'
+  name: config
+  after: setup_dirs
+  before: install
+  handler: bash
+  bash: |
+    (
+    cd messenger/mexmaci64
+    echo "MATLAB_BIN=$(dirname $MATLAB)" > local.cfg
+    echo "HEADER_PATH=$ZMQ_DIR/include" >> local.cfg
+    echo "LIB_PATH=$ZMQ_DIR/lib" >> local.cfg
+    MATLAB=$(dirname $(dirname $MATLAB)) $PYTHON make.py
+    cp messenger.mexmaci64 ../../pymatbridge/matlab
+    )
