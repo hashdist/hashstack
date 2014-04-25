@@ -1,0 +1,39 @@
+extends: [autotools_package]
+dependencies:
+  build: [test_empty]
+
+build_stages:
+  - name: create_configure_script
+    before: configure
+    files: [configure]
+    handler: bash
+    bash: |
+      cp _hashdist/configure configure
+      chmod +x configure
+
+  - name: configure
+    extra: [--enable-shared]
+    append: {LDFLAGS: "-Wl,-rpath=${ARTIFACT}/lib"}
+
+  - name: inspect_build_script
+    handler: bash
+    bash: |
+      cat _hashdist/build.sh
+
+  - name: inspect_configure_input
+    after: configure
+    handler: bash
+    bash: |
+      cat configure_in.txt
+
+  - name: verify_configure_input
+    after: configure
+    handler: bash
+    bash: |
+      grep 'export LDFLAGS="-L${TEST_EMPTY_DIR}/lib -Wl,-rpath=${TEST_EMPTY_DIR}/lib -Wl,-rpath=${ARTIFACT}/lib"' _hashdist/build.sh
+
+  - name: make
+    mode: remove
+
+  - name: install
+    mode: remove
