@@ -1,7 +1,4 @@
-extends: [python_package]
-dependencies:
-  build: [python, distribute]
-  run: [python]
+extends: [setuptools_package]
 
 sources:
   - url: https://pypi.python.org/packages/source/l/latexcodec/latexcodec-0.3.0.zip

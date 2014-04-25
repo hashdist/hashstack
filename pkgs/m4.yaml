@@ -1,0 +1,11 @@
+extends: [autotools_package]
+dependencies:
+  build: []
+
+sources:
+  - url: http://ftp.gnu.org/gnu/m4/m4-1.4.16.tar.bz2
+    key: tar.bz2:ijiayh653ef4wfq6nnmn5ey5o2mstrev
+
+when_build_dependency:
+  - prepend_path: PATH
+    value: '${ARTIFACT}/bin'

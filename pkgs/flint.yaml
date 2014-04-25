@@ -1,0 +1,23 @@
+extends: [autotools_package]
+when platform == 'linux':
+  dependencies:
+    build: [patchelf, gmp, mpfr]
+when platform != 'linux':
+  dependencies:
+    build: [gmp, mpfr]
+
+sources:
+  - url: https://github.com/fredrik-johansson/flint2.git
+    key: git:b2a81eb7ee03bbffa28900f8de08bf4f7b248418
+
+build_stages:
+  - name: configure
+    mode: override
+    extra: ['--with-gmp=${GMP_DIR}', '--with-mpfr=${MPFR_DIR}']
+
+  - name: rpath_fix
+    after: install
+    handler: bash
+    when platform == 'linux':
+      bash: |
+        ${PATCHELF} --set-rpath ${GMP_DIR}/lib:${MPFR_DIR}/lib ${ARTIFACT}/lib/libflint.so

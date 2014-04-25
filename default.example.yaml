@@ -46,7 +46,6 @@ packages:
   nose:
   hdf5:
   jinja2:
-  distribute:
   petsc:
     build_with: parmetis
     download: superlu

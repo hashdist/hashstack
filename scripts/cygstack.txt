@@ -228,6 +228,7 @@ libsybdb5                  0.91-4
 libtasn1_6                 3.3-1
 libtiff5                   3.9.7-3
 libuuid1                   2.21.2-1
+libuuid-devel        2.21.2-1
 libvorbis                  1.3.3-1
 libvorbis0                 1.3.3-1
 libvorbisenc2              1.3.3-1

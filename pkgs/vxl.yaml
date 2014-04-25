@@ -1,0 +1,40 @@
+extends: [cmake_package]
+dependencies:
+  build: [png]
+
+sources:
+- url: http://git.code.sf.net/p/vxl/git
+  key: git:e456b35d322eea055567819408c6dff5c887d149
+
+build_stages:
+- name: configure
+  mode: override
+  extra: [
+          '-DBUILD_SHARED_LIBS:BOOL=OFF',
+          '-DCMAKE_FIND_FRAMEWORK=LAST',
+          # Options turned ON
+          '-DBUILD_CONTRIB=ON',
+          '-DBUILD_CORE_GEOMETRY=ON',
+          '-DBUILD_CORE_IMAGING=ON',
+          '-DBUILD_CORE_NUMERICS=ON',
+          '-DBUILD_CORE_SERIALISATION=ON',
+          '-DBUILD_CORE_UTILITIES=ON',
+          '-DBUILD_MUL=ON',
+          '-DBUILD_OXL=ON',
+          '-DBUILD_RPL=ON',
+          '-DBUILD_RPL_RGTL=ON',
+          # Options turned OFF
+          '-DBUILD_BRL=OFF',
+          '-DBUILD_CONVERSIONS=OFF',
+          '-DBUILD_CORE_VIDEO=OFF',
+          '-DBUILD_EXAMPLES=OFF',
+          '-DBUILD_FOR_VXL_DASHBOARD=OFF',
+          '-DBUILD_GEL=OFF',
+          '-DBUILD_MUL_TOOLS=OFF',
+          '-DBUILD_OUL=OFF',
+          '-DBUILD_OXL=OFF',
+          '-DBUILD_PRIP=OFF',
+          '-DBUILD_TBL=OFF',
+          '-DBUILD_TESTING=OFF',
+          '-DBUILD_UNMAINTAINED_LIBRARIES=OFF',
+          '-DBUILD_VGUI=OFF']
