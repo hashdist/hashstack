@@ -24,6 +24,7 @@ def configure(ctx, stage_args):
     If build_in_source is set, build directory will be the same as source directory.
     """
     conf_lines = ['${CMAKE} -DCMAKE_INSTALL_PREFIX:PATH="${ARTIFACT}"',
+                  '-DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON',
                   '-DCMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib"',
                   '-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON']
 
