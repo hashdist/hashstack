@@ -16,7 +16,28 @@ build_stages:
     mkdir -p _build
     cd _build
 
-- name: configure
+- when: platform == 'Darwin'
+  name: configure
+  mode: override
+  extra: [
+    '-DCMAKE_C_COMPILER:FILEPATH=${MPICC}',
+    '-DCMAKE_CXX_COMPILER:FILEPATH=${MPICXX}',
+    '-DCMAKE_Fortran_COMPILER:FILEPATH=${MPIF90}',
+    '-DCMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}',
+    '-DPACKAGE_MPI:BOOL=True',
+    '-DPACKAGE_PARMETIS:BOOL=True',
+    '-DPARMETIS_INCLUDE_DIR:PATH=${PARMETIS_DIR}/include',
+    '-DPARMETIS_LIBRARY:FILEPATH=${PARMETIS_DIR}/lib/libparmetis.dylib',
+    '-DMETIS_LIBRARY=${PARMETIS_DIR}/lib/libmetis.dylib',
+    '-DPACKAGE_UMFPACK:BOOL=True',
+    '-DUMFPACK_INCLUDE_DIR:PATH=${UMFPACK_INCLUDE}',
+    '-DUMFPACK_VERSION:STRING=3',
+    '-DUMFPACK_INT_SIZE:STRING=32',
+    '-DUMFPACK_LIBRARY:FILEPATH=${UMFPACK_LIBRARY}'
+    ]
+
+- when: platform == 'linux'
+  name: configure
   mode: override
   extra: [
     '-DCMAKE_C_COMPILER:FILEPATH=${MPICC}',
@@ -28,7 +49,7 @@ build_stages:
     '-DPARMETIS_INCLUDE_DIR:PATH=${PARMETIS_DIR}/include',
     '-DPARMETIS_LIBRARY:FILEPATH=${PARMETIS_DIR}/lib/libparmetis.so',
     '-DMETIS_LIBRARY=${PARMETIS_DIR}/lib/libmetis.so',
-    '-DPACKAGE_UMFPACK:BOOL=True', 
+    '-DPACKAGE_UMFPACK:BOOL=True',
     '-DUMFPACK_INCLUDE_DIR:PATH=${UMFPACK_INCLUDE}',
     '-DUMFPACK_VERSION:STRING=3',
     '-DUMFPACK_INT_SIZE:STRING=32',
@@ -36,7 +57,7 @@ build_stages:
     ]
 
 # Disable metis/parmetis on Cygwin for now
-- when: platform == 'Cygwin' 
+- when: platform == 'Cygwin'
   name: configure
   mode: override
   extra: [
@@ -46,7 +67,7 @@ build_stages:
     '-DCMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}',
     '-DPACKAGE_MPI:BOOL=True',
     '-DPACKAGE_PARMETIS:BOOL=False',
-    '-DPACKAGE_UMFPACK:BOOL=True', 
+    '-DPACKAGE_UMFPACK:BOOL=True',
     '-DUMFPACK_INCLUDE_DIR:PATH=${UMFPACK_INCLUDE}',
     '-DUMFPACK_VERSION:STRING=3',
     '-DUMFPACK_INT_SIZE:STRING=32',
