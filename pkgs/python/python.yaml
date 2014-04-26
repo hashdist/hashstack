@@ -61,6 +61,8 @@ when_build_dependency:
     value: ${ARTIFACT}/bin/python
   - prepend_path: PATH
     value: '${ARTIFACT}/bin'
+  - prepend_path: PKG_CONFIG_PATH
+    value: '${ARTIFACT}/lib/pkgconfig'
 
 profile_links:
   - name: python_binaries
