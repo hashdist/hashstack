@@ -6,3 +6,7 @@ dependencies:
 sources:
 - url: https://forge.imag.fr/frs/download.php/370/givaro-3.7.2.tar.gz'
   key: tar.gz:mosu5tvtqj7ttvbvl7tcvd5rfworjvs4
+
+build_stages:
+- name: configure
+  extra: ['--with-gmp=$GMP_DIR']
