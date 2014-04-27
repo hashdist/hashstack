@@ -1,0 +1,12 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [gmp]
+
+sources:
+- url: http://linalg.org/fflas-ffpack-1.6.0.tar.gz
+  key: tar.gz:jhsz3hdckjlvxhtahvcowukmhujdsqc2
+
+build_stages:
+- name: configure
+  extra: ['--with-gmp=$GMP_DIR']
