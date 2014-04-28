@@ -17,6 +17,7 @@ build_stages:
         SHARED=on \
         NTL_GMP_LIP=on \
         GMP_PREFIX=$GMP_DIR \
+        LDFLAGS="-Wl,-rpath=${GMP_DIR}/lib" \
         NTL_STD_CXX=on
     make
     make install
