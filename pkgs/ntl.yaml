@@ -1,5 +1,8 @@
 extends: [base_package]
 
+dependencies:
+  build: [gmp]
+
 sources:
 - url: http://www.shoup.net/ntl/ntl-6.1.0.tar.gz
   key: tar.gz:4fwdbtxpdvd6ss4kg6umjip3lbzjxd4e
@@ -10,6 +13,10 @@ build_stages:
   handler: bash
   bash: |
     cd src
-    ./configure DEF_PREFIX=$ARTIFACT SHARED=on NTL_GMP_LIP=on NTL_STD_CXX=on
+    ./configure DEF_PREFIX=$ARTIFACT \
+        SHARED=on \
+        NTL_GMP_LIP=on \
+        GMP_PREFIX=$GMP_DIR \
+        NTL_STD_CXX=on
     make
     make install
