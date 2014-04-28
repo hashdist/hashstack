@@ -1,0 +1,15 @@
+extends: [base_package]
+
+sources:
+- url: http://www.shoup.net/ntl/ntl-6.1.0.tar.gz
+  key: tar.gz:4fwdbtxpdvd6ss4kg6umjip3lbzjxd4e
+
+build_stages:
+
+- name: make-install
+  handler: bash
+  bash: |
+    cd src
+    ./configure DEF_PREFIX=$ARTIFACT SHARED=on NTL_GMP_LIP=on NTL_STD_CXX=on
+    make
+    make install
