@@ -61,4 +61,5 @@ packages:
   ipython:
   h5py:
   pydap:
-  folium-drawpath:
+  folium:
+  geojson:
