@@ -61,4 +61,5 @@ packages:
   scipy:
   ipython:
   pydap:
-  folium-drawpath:
+  folium:
+  geojson:
