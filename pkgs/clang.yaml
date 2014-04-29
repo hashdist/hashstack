@@ -1,0 +1,13 @@
+extends: [cmake_package]
+
+dependencies:
+  build: [llvm]
+
+
+sources:
+- url: http://llvm.org/releases/3.4/clang-3.4.src.tar.gz
+  key: tar.gz:ekuxqdntxbnh6lvz5ipx63qa3ibety6r
+
+build_stages:
+- name: configure
+  extra: ['-D CLANG_PATH_TO_LLVM_BUILD:PATH=$LLVM_DIR']
