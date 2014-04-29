@@ -10,4 +10,5 @@ sources:
 
 build_stages:
 - name: configure
-  extra: ['-D CLANG_PATH_TO_LLVM_BUILD:PATH=$LLVM_DIR']
+  extra: ['-D CLANG_PATH_TO_LLVM_BUILD:PATH=$LLVM_DIR',
+          '-D LLVM_MAIN_SRC_DIR:PATH=$LLVM_DIR']
