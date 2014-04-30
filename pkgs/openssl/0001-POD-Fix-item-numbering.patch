@@ -1,0 +1,426 @@
+From c8919dde09d56f03615a52031964bc9a77b26e90 Mon Sep 17 00:00:00 2001
+From: Lubomir Rintel <lkundrak@v3.sk>
+Date: Mon, 21 Oct 2013 11:03:01 +0200
+Subject: [PATCH] POD: Fix item numbering
+
+Newer pod2man considers =item [1-9] part of a numbered list, while =item
+0 starts an unnumbered list. Add a zero effect formatting mark to override
+this.
+
+doc/apps/smime.pod around line 315: Expected text after =item, not a
+number
+...
+
+PR#3146
+---
+ doc/apps/cms.pod                            | 12 ++++++------
+ doc/apps/smime.pod                          | 12 ++++++------
+ doc/ssl/SSL_COMP_add_compression_method.pod |  4 ++--
+ doc/ssl/SSL_CTX_add_session.pod             |  4 ++--
+ doc/ssl/SSL_CTX_load_verify_locations.pod   |  4 ++--
+ doc/ssl/SSL_CTX_set_client_CA_list.pod      |  4 ++--
+ doc/ssl/SSL_CTX_set_session_id_context.pod  |  4 ++--
+ doc/ssl/SSL_CTX_set_ssl_version.pod         |  4 ++--
+ doc/ssl/SSL_CTX_use_psk_identity_hint.pod   |  2 +-
+ doc/ssl/SSL_accept.pod                      |  4 ++--
+ doc/ssl/SSL_clear.pod                       |  4 ++--
+ doc/ssl/SSL_connect.pod                     |  4 ++--
+ doc/ssl/SSL_do_handshake.pod                |  4 ++--
+ doc/ssl/SSL_read.pod                        |  2 +-
+ doc/ssl/SSL_session_reused.pod              |  4 ++--
+ doc/ssl/SSL_set_fd.pod                      |  4 ++--
+ doc/ssl/SSL_set_session.pod                 |  4 ++--
+ doc/ssl/SSL_shutdown.pod                    |  4 ++--
+ doc/ssl/SSL_write.pod                       |  2 +-
+ 19 files changed, 43 insertions(+), 43 deletions(-)
+
+diff --git a/doc/apps/cms.pod b/doc/apps/cms.pod
+index dc33703..29720a8 100644
+--- a/doc/apps/cms.pod
++++ b/doc/apps/cms.pod
+@@ -463,28 +463,28 @@ remains DER.
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ the operation was completely successfully.
+ 
+-=item 1 
++=item Z<>1
+ 
+ an error occurred parsing the command options.
+ 
+-=item 2
++=item Z<>2
+ 
+ one of the input files could not be read.
+ 
+-=item 3
++=item Z<>3
+ 
+ an error occurred creating the CMS file or when reading the MIME
+ message.
+ 
+-=item 4
++=item Z<>4
+ 
+ an error occurred decrypting or verifying the message.
+ 
+-=item 5
++=item Z<>5
+ 
+ the message was verified correctly but an error occurred writing out
+ the signers certificates.
+diff --git a/doc/apps/smime.pod b/doc/apps/smime.pod
+index e4e89af..3aa6e84 100644
+--- a/doc/apps/smime.pod
++++ b/doc/apps/smime.pod
+@@ -308,28 +308,28 @@ remains DER.
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ the operation was completely successfully.
+ 
+-=item 1 
++=item Z<>1
+ 
+ an error occurred parsing the command options.
+ 
+-=item 2
++=item Z<>2
+ 
+ one of the input files could not be read.
+ 
+-=item 3
++=item Z<>3
+ 
+ an error occurred creating the PKCS#7 file or when reading the MIME
+ message.
+ 
+-=item 4
++=item Z<>4
+ 
+ an error occurred decrypting or verifying the message.
+ 
+-=item 5
++=item Z<>5
+ 
+ the message was verified correctly but an error occurred writing out
+ the signers certificates.
+diff --git a/doc/ssl/SSL_COMP_add_compression_method.pod b/doc/ssl/SSL_COMP_add_compression_method.pod
+index 42fa66b..f4d191c 100644
+--- a/doc/ssl/SSL_COMP_add_compression_method.pod
++++ b/doc/ssl/SSL_COMP_add_compression_method.pod
+@@ -53,11 +53,11 @@ SSL_COMP_add_compression_method() may return the following values:
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ The operation succeeded.
+ 
+-=item 1
++=item Z<>1
+ 
+ The operation failed. Check the error queue to find out the reason.
+ 
+diff --git a/doc/ssl/SSL_CTX_add_session.pod b/doc/ssl/SSL_CTX_add_session.pod
+index 82676b2..8e0abd3 100644
+--- a/doc/ssl/SSL_CTX_add_session.pod
++++ b/doc/ssl/SSL_CTX_add_session.pod
+@@ -52,13 +52,13 @@ The following values are returned by all functions:
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+  The operation failed. In case of the add operation, it was tried to add
+  the same (identical) session twice. In case of the remove operation, the
+  session was not found in the cache.
+ 
+-=item 1
++=item Z<>1
+  
+  The operation succeeded.
+ 
+diff --git a/doc/ssl/SSL_CTX_load_verify_locations.pod b/doc/ssl/SSL_CTX_load_verify_locations.pod
+index 84a799f..d1d8977 100644
+--- a/doc/ssl/SSL_CTX_load_verify_locations.pod
++++ b/doc/ssl/SSL_CTX_load_verify_locations.pod
+@@ -100,13 +100,13 @@ The following return values can occur:
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ The operation failed because B<CAfile> and B<CApath> are NULL or the
+ processing at one of the locations specified failed. Check the error
+ stack to find out the reason.
+ 
+-=item 1
++=item Z<>1
+ 
+ The operation succeeded.
+ 
+diff --git a/doc/ssl/SSL_CTX_set_client_CA_list.pod b/doc/ssl/SSL_CTX_set_client_CA_list.pod
+index 5e66133..5e97392 100644
+--- a/doc/ssl/SSL_CTX_set_client_CA_list.pod
++++ b/doc/ssl/SSL_CTX_set_client_CA_list.pod
+@@ -66,13 +66,13 @@ values:
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ A failure while manipulating the STACK_OF(X509_NAME) object occurred or
+ the X509_NAME could not be extracted from B<cacert>. Check the error stack
+ to find out the reason.
+ 
+-=item 1
++=item Z<>1
+ 
+ The operation succeeded.
+ 
+diff --git a/doc/ssl/SSL_CTX_set_session_id_context.pod b/doc/ssl/SSL_CTX_set_session_id_context.pod
+index 58fc685..7c9e515 100644
+--- a/doc/ssl/SSL_CTX_set_session_id_context.pod
++++ b/doc/ssl/SSL_CTX_set_session_id_context.pod
+@@ -64,13 +64,13 @@ return the following values:
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ The length B<sid_ctx_len> of the session id context B<sid_ctx> exceeded
+ the maximum allowed length of B<SSL_MAX_SSL_SESSION_ID_LENGTH>. The error
+ is logged to the error stack.
+ 
+-=item 1
++=item Z<>1
+ 
+ The operation succeeded.
+ 
+diff --git a/doc/ssl/SSL_CTX_set_ssl_version.pod b/doc/ssl/SSL_CTX_set_ssl_version.pod
+index 254f2b4..e254f96 100644
+--- a/doc/ssl/SSL_CTX_set_ssl_version.pod
++++ b/doc/ssl/SSL_CTX_set_ssl_version.pod
+@@ -42,11 +42,11 @@ and SSL_set_ssl_method():
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ The new choice failed, check the error stack to find out the reason.
+ 
+-=item 1
++=item Z<>1
+ 
+ The operation succeeded.
+ 
+diff --git a/doc/ssl/SSL_CTX_use_psk_identity_hint.pod b/doc/ssl/SSL_CTX_use_psk_identity_hint.pod
+index 7e60df5..9da7201 100644
+--- a/doc/ssl/SSL_CTX_use_psk_identity_hint.pod
++++ b/doc/ssl/SSL_CTX_use_psk_identity_hint.pod
+@@ -96,7 +96,7 @@ data to B<psk> and return the length of the random data, so the
+ connection will fail with decryption_error before it will be finished
+ completely.
+ 
+-=item 0
++=item Z<>0
+ 
+ PSK identity was not found. An "unknown_psk_identity" alert message
+ will be sent and the connection setup fails.
+diff --git a/doc/ssl/SSL_accept.pod b/doc/ssl/SSL_accept.pod
+index b1c34d1..2239444 100644
+--- a/doc/ssl/SSL_accept.pod
++++ b/doc/ssl/SSL_accept.pod
+@@ -44,13 +44,13 @@ The following return values can occur:
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ The TLS/SSL handshake was not successful but was shut down controlled and
+ by the specifications of the TLS/SSL protocol. Call SSL_get_error() with the
+ return value B<ret> to find out the reason.
+ 
+-=item 1
++=item Z<>1
+ 
+ The TLS/SSL handshake was successfully completed, a TLS/SSL connection has been
+ established.
+diff --git a/doc/ssl/SSL_clear.pod b/doc/ssl/SSL_clear.pod
+index d4df1bf..ba192bd 100644
+--- a/doc/ssl/SSL_clear.pod
++++ b/doc/ssl/SSL_clear.pod
+@@ -56,12 +56,12 @@ The following return values can occur:
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ The SSL_clear() operation could not be performed. Check the error stack to
+ find out the reason.
+ 
+-=item 1
++=item Z<>1
+ 
+ The SSL_clear() operation was successful.
+ 
+diff --git a/doc/ssl/SSL_connect.pod b/doc/ssl/SSL_connect.pod
+index 946ca89..68e2b82 100644
+--- a/doc/ssl/SSL_connect.pod
++++ b/doc/ssl/SSL_connect.pod
+@@ -41,13 +41,13 @@ The following return values can occur:
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ The TLS/SSL handshake was not successful but was shut down controlled and
+ by the specifications of the TLS/SSL protocol. Call SSL_get_error() with the
+ return value B<ret> to find out the reason.
+ 
+-=item 1
++=item Z<>1
+ 
+ The TLS/SSL handshake was successfully completed, a TLS/SSL connection has been
+ established.
+diff --git a/doc/ssl/SSL_do_handshake.pod b/doc/ssl/SSL_do_handshake.pod
+index 7f8cf24..b35ddf5 100644
+--- a/doc/ssl/SSL_do_handshake.pod
++++ b/doc/ssl/SSL_do_handshake.pod
+@@ -45,13 +45,13 @@ The following return values can occur:
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ The TLS/SSL handshake was not successful but was shut down controlled and
+ by the specifications of the TLS/SSL protocol. Call SSL_get_error() with the
+ return value B<ret> to find out the reason.
+ 
+-=item 1
++=item Z<>1
+ 
+ The TLS/SSL handshake was successfully completed, a TLS/SSL connection has been
+ established.
+diff --git a/doc/ssl/SSL_read.pod b/doc/ssl/SSL_read.pod
+index 7038cd2..8ca0ce5 100644
+--- a/doc/ssl/SSL_read.pod
++++ b/doc/ssl/SSL_read.pod
+@@ -86,7 +86,7 @@ The following return values can occur:
+ The read operation was successful; the return value is the number of
+ bytes actually read from the TLS/SSL connection.
+ 
+-=item 0
++=item Z<>0
+ 
+ The read operation was not successful. The reason may either be a clean
+ shutdown due to a "close notify" alert sent by the peer (in which case
+diff --git a/doc/ssl/SSL_session_reused.pod b/doc/ssl/SSL_session_reused.pod
+index da7d062..b09d8a7 100644
+--- a/doc/ssl/SSL_session_reused.pod
++++ b/doc/ssl/SSL_session_reused.pod
+@@ -27,11 +27,11 @@ The following return values can occur:
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ A new session was negotiated.
+ 
+-=item 1
++=item Z<>1
+ 
+ A session was reused.
+ 
+diff --git a/doc/ssl/SSL_set_fd.pod b/doc/ssl/SSL_set_fd.pod
+index e020b4c..35a2325 100644
+--- a/doc/ssl/SSL_set_fd.pod
++++ b/doc/ssl/SSL_set_fd.pod
+@@ -35,11 +35,11 @@ The following return values can occur:
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ The operation failed. Check the error stack to find out why.
+ 
+-=item 1
++=item Z<>1
+ 
+ The operation succeeded.
+ 
+diff --git a/doc/ssl/SSL_set_session.pod b/doc/ssl/SSL_set_session.pod
+index 5f54714..197b521 100644
+--- a/doc/ssl/SSL_set_session.pod
++++ b/doc/ssl/SSL_set_session.pod
+@@ -37,11 +37,11 @@ The following return values can occur:
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ The operation failed; check the error stack to find out the reason.
+ 
+-=item 1
++=item Z<>1
+ 
+ The operation succeeded.
+ 
+diff --git a/doc/ssl/SSL_shutdown.pod b/doc/ssl/SSL_shutdown.pod
+index 42a89b7..85d4a64 100644
+--- a/doc/ssl/SSL_shutdown.pod
++++ b/doc/ssl/SSL_shutdown.pod
+@@ -92,14 +92,14 @@ The following return values can occur:
+ 
+ =over 4
+ 
+-=item 0
++=item Z<>0
+ 
+ The shutdown is not yet finished. Call SSL_shutdown() for a second time,
+ if a bidirectional shutdown shall be performed.
+ The output of L<SSL_get_error(3)|SSL_get_error(3)> may be misleading, as an
+ erroneous SSL_ERROR_SYSCALL may be flagged even though no error occurred.
+ 
+-=item 1
++=item Z<>1
+ 
+ The shutdown was successfully completed. The "close notify" alert was sent
+ and the peer's "close notify" alert was received.
+diff --git a/doc/ssl/SSL_write.pod b/doc/ssl/SSL_write.pod
+index e013c12..a57617f 100644
+--- a/doc/ssl/SSL_write.pod
++++ b/doc/ssl/SSL_write.pod
+@@ -79,7 +79,7 @@ The following return values can occur:
+ The write operation was successful, the return value is the number of
+ bytes actually written to the TLS/SSL connection.
+ 
+-=item 0
++=item Z<>0
+ 
+ The write operation was not successful. Probably the underlying connection
+ was closed. Call SSL_get_error() with the return value B<ret> to find out,
+-- 
+1.9.1
+

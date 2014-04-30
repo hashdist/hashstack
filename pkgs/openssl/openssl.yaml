@@ -8,8 +8,20 @@ sources:
     key: tar.gz:kpfyddb3sdsqpkbur5hv5lw3axml7zjv
 
 build_stages:
-- name: configure
+# We need to patch the docs because openssl's documentation is invalid
+# and newer versions of pod2man fail on invalid input. See #244.
+# This is fixed in openssl 1.0.2 (unreleased) so we can remove this patch
+# when updating.
+- name: fix_docs
   after: prologue
+  before: configure
+  handler: bash
+  files: [0001-POD-Fix-item-numbering.patch]
+  bash: |
+    patch -p1 < _hashdist/0001-POD-Fix-item-numbering.patch
+
+- name: configure
+  after: fix_docs
   handler: bash
   mode: replace
   bash: |
