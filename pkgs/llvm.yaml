@@ -1,4 +1,4 @@
-extends: [autotools_package]
+extends: [cmake_package]
 
 sources:
 - url: http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz
@@ -6,5 +6,4 @@ sources:
 
 build_stages:
 - name: configure
-  extra: ['--enable-optimized', '--disable-bindings', '--enable-shared',
-      '--disable-assertions', '--enable-targets=host']
+  extra: ['-D BUILD_SHARED_LIBS:BOOL=ON']
