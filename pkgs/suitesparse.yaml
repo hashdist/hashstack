@@ -45,3 +45,29 @@ build_stages:
     bash: |
       mkdir -p ${ARTIFACT}/include/suitesparse
       mkdir -p ${ARTIFACT}/lib
+
+  - name: create-shared-libs
+    after: install
+    handler: bash
+    bash: |
+      #ifeq ($(OS), Darwin)
+      #  WHOLE_ARCHIVE = -Xlinker -all_load
+      #  NO_WHOLE_ARCHIVE =
+      #else
+      WHOLE_ARCHIVE="-Wl,--whole-archive"
+      NO_WHOLE_ARCHIVE="-Wl,--no-whole-archive"
+      #endif
+      cd ${ARTIFACT}/lib
+      CC=gcc
+      CXX=g++
+      SHLIB_EXT=so
+      LIBBLAS=-lblas
+      LIBLAPACK=-llapack
+      RPATH_ORIGIN=-Wl,-rpath=$ARTIFACT
+      $CC -shared $WHOLE_ARCHIVE libamd.a $NO_WHOLE_ARCHIVE -o libamd.$SHLIB_EXT
+      $CC -shared $WHOLE_ARCHIVE libcolamd.a $NO_WHOLE_ARCHIVE -o libcolamd.$SHLIB_EXT
+      $CC -shared $WHOLE_ARCHIVE libcamd.a $NO_WHOLE_ARCHIVE -o libcamd.$SHLIB_EXT
+      $CC -shared $WHOLE_ARCHIVE libccolamd.a $NO_WHOLE_ARCHIVE -o libccolamd.$SHLIB_EXT
+      $CXX -shared $WHOLE_ARCHIVE libsuitesparseconfig.a libcholmod.a  $NO_WHOLE_ARCHIVE -o libcholmod.$SHLIB_EXT -L. -lcolamd -lamd -lcamd -lccolamd $LIBBLAS $RPATH_ORIGIN
+      $CXX -shared $WHOLE_ARCHIVE libsuitesparseconfig.a libumfpack.a  $NO_WHOLE_ARCHIVE -o libumfpack.$SHLIB_EXT -L. -lcholmod -lcolamd -lamd $LIBBLAS $RPATH_ORIGIN
+      $CXX -shared $WHOLE_ARCHIVE libsuitesparseconfig.a libspqr.a $NO_WHOLE_ARCHIVE -o libspqr.$SHLIB_EXT -L. -lcholmod -lcolamd -lamd $LIBLAPACK $RPATH_ORIGIN
