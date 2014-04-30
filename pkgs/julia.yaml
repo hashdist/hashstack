@@ -1,7 +1,8 @@
 extends: [base_package, libflags]
 
 dependencies:
-  build: [openblas, llvm, fftw, gmp, mpfr, pcre]
+  build: [openblas, llvm, fftw, gmp, mpfr, pcre,
+    suitesparse]
 
 sources:
 - url: https://github.com/JuliaLang/julia
@@ -26,7 +27,7 @@ build_stages:
         USE_SYSTEM_LLVM=1 \
         LLVM_CONFIG=$LLVM_DIR/bin/llvm-config \
         USE_SYSTEM_ZLIB=0 \
-        USE_SYSTEM_SUITESPARSE=0 \
+        USE_SYSTEM_SUITESPARSE=1 \
         USE_SYSTEM_ARPACK=0 \
         USE_SYSTEM_FFTW=1 \
         USE_SYSTEM_GMP=1 \
