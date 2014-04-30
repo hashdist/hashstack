@@ -13,12 +13,6 @@ build_stages:
   after: prologue
   handler: bash
   bash: |
-    mkdir -p usr/lib
-    cp $OPENBLAS_DIR/lib/*.so usr/lib/
-    cp $FFTW_DIR/lib/*.so usr/lib/
-    cp $GMP_DIR/lib/*.so usr/lib/
-    cp $MPFR_DIR/lib/*.so usr/lib/
-    cp $PCRE_DIR/lib/*.so usr/lib/
     make \
         prefix=$ARTIFACT \
         VERBOSE=1 \
@@ -45,8 +39,3 @@ build_stages:
         USE_SYSTEM_OPENLIBM=0 \
         USE_SYSTEM_RMATH=0 \
         install
-    cp $OPENBLAS_DIR/lib/*.so $ARTIFACT/lib/
-    cp $FFTW_DIR/lib/*.so $ARTIFACT/lib/
-    cp $GMP_DIR/lib/*.so $ARTIFACT/lib/
-    cp $MPFR_DIR/lib/*.so $ARTIFACT/lib/
-    cp $PCRE_DIR/lib/*.so $ARTIFACT/lib/
