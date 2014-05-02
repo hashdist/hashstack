@@ -25,7 +25,7 @@ build_stages:
 
 - name: patch3
   before: configure
-  files: [visitbridge.patch]
+  files: [installCMakeFiles.patch]
   handler: bash
   bash: |
     patch -up1 < _hashdist/installCMakeFiles.patch
@@ -87,6 +87,11 @@ build_stages:
           #Disable webkit as generally webkit won't build even if requested with
           #qt everywhere.
           '-DPQWIDGETS_DISABLE_QTWEBKIT:BOOL=ON',
+
+          #Mac's don't support OBJC Garbage Collector nowadays, while
+          #this has been fixed on VTK master it hasn't made it into paraview
+          #so lets remove the flags manually for now
+          '-DVTK_REQUIRED_OBJCXX_FLAGS:STRING=""',
 
           #to properly setup ParaView like a linux application on the mac,
           #instead of building a bundle, we need to enable this flag
