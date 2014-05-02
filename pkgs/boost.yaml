@@ -1,7 +1,7 @@
 extends: [base_package]
 
 dependencies:
-  build: [bzip2, mpi]
+  build: [bzip2, mpi, zlib]
 
 sources:
 - url: http://downloads.sourceforge.net/boost/boost_1_55_0.tar.bz2
@@ -30,7 +30,11 @@ build_stages:
            -sNO_BZIP2=0 \
            -sBZIP2_BINARY=bz2 \
            -sBZIP2_INCLUDE=${BZIP2_DIR}/include \
-           -sBZIP2_LIBPATH=${BZIP2_DIR}/lib
+           -sBZIP2_LIBPATH=${BZIP2_DIR}/lib \
+           -sNO_ZLIB=0 \
+           -sZLIB_BINARY=z \
+           -sZLIB_INCLUDE=${ZLIB_DIR}/include \
+           -sZLIB_LIBPATH=${ZLIB_DIR}/lib
 
 when_build_dependency:
 - set: BOOST_MULTITHREADED
