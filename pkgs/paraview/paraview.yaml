@@ -23,6 +23,13 @@ build_stages:
   bash: |
     patch -up1 < _hashdist/visitbridge.patch
 
+- name: patch3
+  before: configure
+  files: [visitbridge.patch]
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/installCMakeFiles.patch
+
 - name: configure
   mode: override
   extra: [
