@@ -17,24 +17,46 @@ build_stages:
 - name: bjam
   after: bootstrap
   handler: bash
-  bash: |
-    echo "using mpi ;" > user-config.jam
-    ./bjam \
-           toolset={{toolset}} \
-           address-model={{address_model}} \
-           -j ${HASHDIST_CPU_COUNT} \
-           --user-config=user-config.jam \
-           --build-dir=_build\
-           link=shared \
-           install \
-           -sNO_BZIP2=0 \
-           -sBZIP2_BINARY=bz2 \
-           -sBZIP2_INCLUDE=${BZIP2_DIR}/include \
-           -sBZIP2_LIBPATH=${BZIP2_DIR}/lib \
-           -sNO_ZLIB=0 \
-           -sZLIB_BINARY=z \
-           -sZLIB_INCLUDE=${ZLIB_DIR}/include \
-           -sZLIB_LIBPATH=${ZLIB_DIR}/lib
+  when platform != 'Cygwin':
+    bash: |
+      echo "using mpi ;" > user-config.jam
+      ./bjam \
+             toolset={{toolset}} \
+             address-model={{address_model}} \
+             -j ${HASHDIST_CPU_COUNT} \
+             --user-config=user-config.jam \
+             --build-dir=_build\
+             link=shared \
+             install \
+             -sNO_BZIP2=0 \
+             -sBZIP2_BINARY=bz2 \
+             -sBZIP2_INCLUDE=${BZIP2_DIR}/include \
+             -sBZIP2_LIBPATH=${BZIP2_DIR}/lib \
+             -sNO_ZLIB=0 \
+             -sZLIB_BINARY=z \
+             -sZLIB_INCLUDE=${ZLIB_DIR}/include \
+             -sZLIB_LIBPATH=${ZLIB_DIR}/lib
+  when platform == 'Cygwin':
+    bash: |
+      ./bjam \
+             toolset={{toolset}} \
+             address-model={{address_model}} \
+             -j ${HASHDIST_CPU_COUNT} \
+             --without-context \
+             --without-coroutine \
+             --without-mpi \
+             --without-python \
+             --build-dir=_build\
+             link=shared \
+             install \
+             -sNO_BZIP2=0 \
+             -sBZIP2_BINARY=bz2 \
+             -sBZIP2_INCLUDE=${BZIP2_DIR}/include \
+             -sBZIP2_LIBPATH=${BZIP2_DIR}/lib \
+             -sNO_ZLIB=0 \
+             -sZLIB_BINARY=z \
+             -sZLIB_INCLUDE=${ZLIB_DIR}/include \
+             -sZLIB_LIBPATH=${ZLIB_DIR}/lib
 
 when_build_dependency:
 - set: BOOST_MULTITHREADED
