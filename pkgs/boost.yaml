@@ -4,8 +4,8 @@ dependencies:
   build: [bzip2, mpi]
 
 sources:
-- url: http://downloads.sourceforge.net/boost/boost_1_51_0.tar.bz2
-  key: tar.bz2:7mwsgnnct3t74bakdfzjfp6otavpqste
+- url: http://downloads.sourceforge.net/boost/boost_1_55_0.tar.bz2
+  key: tar.bz2:77yaai65pfeg2rcmryuzel2aolq5iup4
 
 build_stages:
 - name: bootstrap
