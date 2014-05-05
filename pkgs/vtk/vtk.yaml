@@ -7,6 +7,14 @@ sources:
   key: tar.gz:6grebqpv6dme4j5vp2lc7dskpcywnms3
 
 build_stages:
+- when: platform == 'Cygwin'
+  files: [vtk-5.10.1-cygwin.patch]
+  name: vtk_cygwin_patch
+  handler: bash
+  before: setup_builddir
+  bash: |
+    patch -p1 < _hashdist/vtk-5.10.1-cygwin.patch
+
 - name: configure
   extra: ['-D BUILD_TESTING:BOOL=OFF',
           '-D BUILD_EXAMPLES:BOOL=OFF',
