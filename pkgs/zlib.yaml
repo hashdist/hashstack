@@ -1,6 +1,0 @@
-extends: [autotools_package]
-
-sources:
-  - url: http://downloads.sourceforge.net/project/libpng/zlib/1.2.7/zlib-1.2.7.tar.bz2
-    key: tar.bz2:jhroszmn7mbwsag2n2qcm6ttp6r4j3xg
-
