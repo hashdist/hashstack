@@ -45,18 +45,6 @@ build_stages:
           '--enable-largefile=yes',
           '--with-default-api-version=v18']
 
-- when: platform == 'Cygwin'
-  name: configure
-  extra: ['--with-zlib=${ZLIB_DIR}',
-          '--with-szlib=${SZIP_DIR}',
-          '--with-pthread',
-          '--enable-unsupported',
-          '--enable-shared',
-          '--enable-production=yes',
-          '--disable-parallel',
-          '--enable-largefile=yes',
-          '--with-default-api-version=v18']
-
 - when: machine == 'CrayXE6'
   name: configure
   extra: ['--enable-static-exec',
