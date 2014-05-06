@@ -1,10 +1,10 @@
 extends: [distutils_package]
 dependencies:
-  build: [numpy]
+  build: [numpy, swig]
 
 sources:
 - url: https://bitbucket.org/fenics-project/ffc.git
-  key: git:b5a10ed762bf34d97353ce3f0ac01f3608ffd8c7
+  key: git:20fe3e466f08a6bfe1803410e7121001fdd03e20
 
 when_build_dependency:
 - prepend_path: PATH
