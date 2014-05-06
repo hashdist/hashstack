@@ -2,4 +2,4 @@ extends: [distutils_package]
 
 sources:
 - url: https://bitbucket.org/fenics-project/instant.git
-  key: git:01dbde95710a0b9751fa0378e165192e6e723cd6
+  key: git:92a0902f9ce50519f9e8379d0c2d44c9bcb31cb9
