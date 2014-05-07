@@ -63,3 +63,4 @@ packages:
   pydap:
   folium:
   geojson:
+  rdp:
