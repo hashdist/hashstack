@@ -30,6 +30,13 @@ build_stages:
   bash: |
     patch -up1 < _hashdist/installCMakeFiles.patch
 
+- name: patch4
+  before: configure
+  files: [installGenerateFiles.patch]
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/installGenerateFiles.patch
+
 - name: configure
   mode: override
   extra: [
@@ -38,7 +45,6 @@ build_stages:
           '-DBUILD_SHARED_LIBS:BOOL=ON',
           '-DBUILD_TESTING:BOOL=OFF',
           '-DPARAVIEW_BUILD_WEB_DOCUMENTATION:BOOL=OFF',
-          '-DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=OFF',
           '-DPARAVIEW_ENABLE_CATALYST:BOOL=OFF',
           '-DPARAVIEW_BUILD_PLUGIN_CoProcessingScriptGenerator:BOOL=ON',
           '-DPARAVIEW_BUILD_PLUGIN_EyeDomeLighting:BOOL=ON',
