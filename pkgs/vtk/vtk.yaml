@@ -1,12 +1,25 @@
 extends: [cmake_package]
 dependencies:
-  build: [python]
+  build:
+    - python
+    - setuptools
+    - when platform == 'linux':
+        - patchelf
 
 sources:
 - url: http://www.vtk.org/files/release/5.10/vtk-5.10.1.tar.gz
   key: tar.gz:6grebqpv6dme4j5vp2lc7dskpcywnms3
 
 build_stages:
+
+- name: setup_dirs
+  after: prologue
+  before: setup_builddir
+  handler: bash
+  bash: |
+    export PYTHONPATH=${ARTIFACT}/{{python_site_packages_rel}}:$PYTHONPATH
+    mkdir -p ${ARTIFACT}/{{python_site_packages_rel}}
+
 - when: platform == 'Cygwin'
   files: [vtk-5.10.1-cygwin.patch]
   name: vtk_cygwin_patch
@@ -23,9 +36,32 @@ build_stages:
           '-D VTK_USE_TK:BOOL=ON',
           '-D VTK_WRAP_TCL:BOOL=OFF',
           '-D VTK_USE_GL2PS:BOOL=ON',
-          '-D VTK_INSTALL_PYTHON_USING_CMAKE:BOOL=ON',
+          '-D VTK_PYTHON_SETUP_ARGS:STRING="--prefix=. --root=${ARTIFACT} --single-version-externally-managed"',
           '-D CMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib/vtk-5.10"',
           '-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"',
           '-D PYTHON_INCLUDE_PATH:PATH="${PYTHON_DIR}/include/python{{pyver}}"',
           #'-D PYTHON_LIBRARY:FILEPATH="${PYTHON_DIR}/lib/libpython{{pyver}}.so"'
           ]
+
+- when: platform == 'linux'
+  name: rpath_fix
+  after: install
+  handler: bash
+  bash: |
+    for lib in ${ARTIFACT}/lib/python{{pyver}}/site-packages/vtk/*.so; do
+        ${PATCHELF} --set-rpath ${ARTIFACT}/lib/vtk-5.10 ${lib}
+    done
+
+profile_links:
+- name: python_packages
+  link: 'lib/python{{pyver}}/site-packages/*'
+  dirs: true
+
+- name: python_exclude
+  after: python_packages
+  before: everything
+  exclude: 'lib/python{{pyver}}/site-packages/**/*'
+
+when_build_dependency:
+- prepend_path: PYTHONPATH
+  value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'
