@@ -3,5 +3,5 @@ dependencies:
   run: [pyzmq, tornado, jinja2, pygments, sphinx]
 
 sources:
-  - url: https://pypi.python.org/packages/source/i/ipython/ipython-2.0.0.tar.gz
-    key: tar.gz:j2b4bd4nn7iorbemnd6a5mxzwbkptn2c
+  - url: https://github.com/ipython/ipython.git
+    key: git:5381a42bc2716bfc311a01116011003d241461ab
