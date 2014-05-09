@@ -9,7 +9,8 @@ sources:
 
 build_stages:
 - name: configure
-  extra: ['-D WITH_PYTHON:BOOL=ON' ]
+  extra: ['-D WITH_PYTHON:BOOL=ON',
+          '-D PYTHON_INSTALL_PATH:PATH=$ARTIFACT/lib/python2.7/site-packages']
   build_in_source: true
 
 - name: setup_builddir
