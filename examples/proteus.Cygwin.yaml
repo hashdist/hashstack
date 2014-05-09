@@ -61,6 +61,6 @@ packages:
   scipy:
   ipython:
   pydap:
-  folium:
+  leafletwidget:
   geojson:
   rdp:

@@ -61,6 +61,6 @@ packages:
   ipython:
   h5py:
   pydap:
-  folium:
+  leafletwidget:
   geojson:
   rdp:
