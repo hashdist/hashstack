@@ -1,0 +1,7 @@
+extends: [distutils_package]
+dependencies:
+  run: [ipython]
+
+sources:
+  - url: https://github.com/ellisonbg/leaftletwidget
+    key: git:e98bf4d5fb902a23736c021a1f206a8a26372d95
