@@ -1,0 +1,10 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [ipython]
+  run: [ipython]
+
+sources:
+  - url: https://github.com/jdfreder/ipython-widgetmode
+    key: git:0f22b5d241279065ee5c20e05cfa3fd3292bcb8d
+

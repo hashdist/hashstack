@@ -63,3 +63,7 @@ packages:
   leafletwidget:
   geojson:
   rdp:
+  ipython-widgetmode:
+  ipython-d3plot:
+  ipython-gridwidget:
+  
