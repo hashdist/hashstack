@@ -3,5 +3,5 @@ dependencies:
   run: [pyzmq, tornado, jinja2, pygments, sphinx]
 
 sources:
-  - url: https://github.com/ipython/ipython.git
-    key: git:5381a42bc2716bfc311a01116011003d241461ab
+  - url: https://github.com/ellisonbg/ipython.git
+    key: git:68f6519cdfd23581ed7358fa1941ae1bbd76e5b3
