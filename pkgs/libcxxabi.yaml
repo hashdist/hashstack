@@ -14,8 +14,10 @@ build_stages:
   bash: |
     export CC=$CLANG_DIR/bin/clang
     export CXX=$CLANG_DIR/bin/clang++
-    # This variable is read by Clang for additional system libraries:
+    # This variable is read by Clang for additional system libraries (include)
     export CPLUS_INCLUDE_PATH=$LIBCXX_DIR/include/c++/v1/
+    # This variable is read by Clang for additional system libraries (lib)
+    export LIBRARY_PATH=$LIBCXX_DIR/lib
     cd lib
     ./buildit
     mkdir -p $ARTIFACT/lib
