@@ -8,5 +8,12 @@ sources:
   key: tar.gz:xwpsaatz6dvrt7bi5uwz2yd57u4ofz6z
 
 build_stages:
+- name: setup_compilers
+  before: configure
+  handler: bash
+  bash: |
+    export CC=$CLANG_DIR/bin/clang
+    export CXX=$CLANG_DIR/bin/clang++
+
 - name: configure
   extra: ['-D LIBCXX_CXX_ABI=libstdc++']
