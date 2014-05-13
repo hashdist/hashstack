@@ -16,4 +16,5 @@ build_stages:
     export CXX=$CLANG_DIR/bin/clang++
 
 - name: configure
-  extra: ['-D LIBCXX_CXX_ABI=libstdc++']
+  extra: ['-D LIBCXX_CXX_ABI=libstdc++',
+          '-D LIBCXX_LIBSUPCXX_INCLUDE_PATHS="/usr/include/c++/4.6/;/usr/include/c++/4.6/x86_64-linux-gnu/"']
