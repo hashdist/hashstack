@@ -1,6 +1,10 @@
 extends: [base_package]
-dependencies:
-  build: [clang, libcxx]
+when platform == 'linux':
+  dependencies:
+    build: [patchelf, clang, libcxx]
+when platform != 'linux':
+  dependencies:
+    build: [clang, libcxx]
 
 sources:
 - url: https://github.com/llvm-mirror/libcxxabi
@@ -24,3 +28,10 @@ build_stages:
     mkdir -p $ARTIFACT/include
     cp libc++abi.so.1.0 $ARTIFACT/lib/
     cp ../include/*.h $ARTIFACT/include/
+
+- name: rpath_fix
+  after: make-configure
+  handler: bash
+  when platform == 'linux':
+    bash: |
+      ${PATCHELF} --set-rpath ${LIBCXX_DIR}/lib ${ARTIFACT}/lib/libc++abi.so.1.0
