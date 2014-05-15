@@ -67,3 +67,4 @@ packages:
   ipython-widgetmode:
   ipython-d3plot:
   ipython-gridwidget:
+  shapely:

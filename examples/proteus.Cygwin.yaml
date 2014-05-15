@@ -64,3 +64,4 @@ packages:
   leafletwidget:
   geojson:
   rdp:
+  shapely:
