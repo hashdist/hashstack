@@ -5,6 +5,9 @@
 # at the YAML files in the top-level directory and choose
 # the most *specific* file that matches your environment.
 
+parameters:
+  airgap: True
+
 extends:
 - file: debian.yaml
 
