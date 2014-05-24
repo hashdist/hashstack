@@ -1,0 +1,14 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run:
+    - matplotlib
+    - six
+    - brewer2mpl
+
+sources:
+ - url: https://github.com/yhat/ggplot/
+   key: git:517463709f2e2253a4ebe2cc3d3ba8a8c9a15bf8
+
+licenses: [bsd-2-clause]
