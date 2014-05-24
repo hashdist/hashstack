@@ -1,0 +1,11 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/p/patsy/patsy-0.2.1.zip
+   key: zip:rfnrtchk4nwvolhq4h2djssny5zfix6w
+
+licenses: [bsd-2-clause]
