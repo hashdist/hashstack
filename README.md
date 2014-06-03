@@ -28,12 +28,12 @@ hit init-home
 
 This will install one particular profile:
 ```
-git clone https://github.com/hashdist/hashstack2
-cd hashstack2
+git clone https://github.com/hashdist/hashstack
+cd hashstack
 cp cloud.sagemath.yaml default.yaml
 hit build
 ```
 You can now for example run the IPython Notebook as follows:
 ```
-default/bin/ipython notebook
+./default/bin/ipython notebook
 ```
