@@ -1,0 +1,13 @@
+extends: [distutils_package]
+
+sources:
+  - url: https://github.com/html5lib/html5lib-python
+    key: git:e4d12b98f38189e55a57e6d37df2d1b43f206f3a
+
+dependencies:
+  build:
+    - six
+  run:
+    - six
+
+licenses: [mit]

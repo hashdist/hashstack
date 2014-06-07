@@ -1,0 +1,22 @@
+extends: [distutils_package]
+
+sources:
+  - url: https://github.com/lxml/lxml/
+    key: git:32337d2a820d77768de8f8b082119bf79c86ef93
+
+dependencies:
+  build:
+    - cython
+    - libxml2
+    - libxslt
+  run:
+    - html5lib-python
+    - libxml2
+    - libxslt
+    - beautifulsoup4
+
+licenses:
+  - bsd-3-clause
+  - gpl-2
+  - mit
+  - zope-public-license

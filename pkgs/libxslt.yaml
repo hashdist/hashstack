@@ -4,6 +4,14 @@ sources:
   - url: http://xmlsoft.org/sources/libxslt-1.1.28.tar.gz
     key: tar.gz:l7drkgsxxcoahv5yexpvud5obkgv6blh
 
+dependencies:
+  build:
+    - libxml2
+  run:
+    - libxml2
+
 when_build_dependency:
-- prepend_path: PKG_CONFIG_PATH
-  value: '${ARTIFACT}/lib/pkgconfig'
+  - prepend_path: PKG_CONFIG_PATH
+    value: '${ARTIFACT}/lib/pkgconfig'
+  - prepend_path: PATH
+    value: '${ARTIFACT}/bin'
