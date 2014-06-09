@@ -1,2 +1,3 @@
 when_build_dependency:
+  - {set: 'LAPACK_LIBRARY_NAME', value: '{{HOST_LAPACK_LIBRARY_NAME}}'}
   - {set: 'LAPACK_LDFLAGS', value: '-llapack'}

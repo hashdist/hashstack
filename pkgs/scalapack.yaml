@@ -1,7 +1,7 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [lapack, mpi]
+  build: [blas, lapack, mpi]
 
 sources:
 - url: http://www.netlib.org/scalapack/scalapack.tgz
@@ -14,14 +14,14 @@ build_stages:
       extra: ['-D CMAKE_Fortran_FLAGS_RELEASE:STRING="-O3 -fPIC -march=native -ffast-math -funroll-loops"',
               '-D BUILD_TESTING:BOOL=OFF',
               '-D BUILD_SHARED_LIBS:BOOL=ON',
-              '-D LAPACK_LIBRARIES:STRING="${LAPACK_DIR}/lib/liblapack.so"',
-              '-D BLAS_LIBRARIES:STRING="${LAPACK_DIR}/lib/libblas.so"',
+              '-D LAPACK_LIBRARIES:STRING="${LAPACK_LIBRARY_NAME}"',
+              '-D BLAS_LIBRARIES:STRING="${BLAS_LIBRARY_NAME}"',
               ]
   when compiler != 'gcc':
       extra: ['-D BUILD_TESTING:BOOL=OFF',
               '-D BUILD_SHARED_LIBS:BOOL=ON',
-              '-D LAPACK_LIBRARIES:STRING="${LAPACK_DIR}/lib/liblapack.so"',
-              '-D BLAS_LIBRARIES:STRING="${LAPACK_DIR}/lib/libblas.so"',
+              '-D LAPACK_LIBRARIES:STRING="${LAPACK_LIBRARY_NAME}"',
+              '-D BLAS_LIBRARIES:STRING="{BLAS_LIBRARY_NAME}"',
               ]
   build_in_source: true
 

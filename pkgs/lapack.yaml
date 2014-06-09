@@ -30,3 +30,6 @@ build_stages:
 - name: setup_builddir
   mode: override
   bash: |
+
+when_build_dependency:
+  - {set: 'LAPACK_LIBRARY_NAME', value: '${ARTIFACT}/lib/liblapack.so'}
