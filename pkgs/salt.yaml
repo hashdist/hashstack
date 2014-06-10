@@ -1,0 +1,9 @@
+extends: [distutils_package]
+
+dependencies:
+  build: [jinja2, pycrypto, pyzmq, requests, yaml, apache-libcloud, MarkupSafe, msgpack-python, M2Crypto]
+  run: [jinja2, pycrypto, pyzmq, requests, yaml, apache-libcloud, MarkupSafe, msgpack-python, M2Crypto]
+
+sources:
+ - url: https://pypi.python.org/packages/source/s/salt/salt-2014.1.4.tar.gz
+   key: tar.gz:xribyugo66xzz2cxw32kpq2lai4my2ri
