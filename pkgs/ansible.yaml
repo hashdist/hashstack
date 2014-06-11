@@ -5,4 +5,4 @@ dependencies:
 
 sources:
   - url: https://github.com/ansible/ansible.git
-    key: git:33053615a7af835d713d4cc5b5fabb1c0b2b735d
+    key: git:dffea7f8770e40e73880e07689232cecdac0126a
