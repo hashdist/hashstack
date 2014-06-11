@@ -26,7 +26,7 @@ packages:
     use: host-blas
   daetk:
   mpi:
-    use: mpich
+    use: host-mpi
   nose:
   hdf5:
   ipython:
@@ -51,3 +51,14 @@ packages:
   zoltan:
     build_with: |
       parmetis
+
+parameters:
+  HOST_MPICC: /usr/local/openmpi/1.4.3/bin/mpicc
+  HOST_MPICXX: /usr/local/openmpi/1.4.3/bin/mpic++
+  HOST_MPIF77: /usr/local/openmpi/1.4.3/bin/mpif77
+  HOST_MPIF90: /usr/local/openmpi/1.4.3/bin/mpif90
+  HOST_MPIEXEC: /usr/local/openmpi/1.4.3/bin/mpiexec
+  HOST_CMAKE: /usr/local/cmake/latest/bin/cmake
+  HOST_PYTHON: python
+  HOST_PKG_CONFIG_EXECUTABLE: pkg-config
+  PATH: /usr/bin:/bin:/usr/local/openmpi/1.4.3/bin/

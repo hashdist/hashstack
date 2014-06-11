@@ -3,8 +3,8 @@ dependencies:
   build: [mpi, parmetis, zoltan]
 
 sources:
-- url: http://www.scorec.rpi.edu/~chitak/Proteus/pumi.tar.gz
-  key: tar.gz:c2jxcxqvzqkt2vkcynnbjmpgbptfyapy
+- url: file:///space/cwsmith/pumi.tar.gz
+  key: tar.gz:yca4higs2toiokfvwk5pblfobmktfwbo
 
 build_stages:
 
@@ -12,7 +12,6 @@ build_stages:
   after: prologue
   handler: bash
   bash: |
-    cd pumi
     mkdir -p _build
     cd _build
 
@@ -25,6 +24,8 @@ build_stages:
   '-DPARMETIS_INCLUDE_DIR=${PARMETIS_DIR}/include',
   '-DZOLTAN_LIBRARY=${ZOLTAN_DIR}/lib/libzoltan.a',
   '-DZOLTAN_INCLUDE_DIR=${ZOLTAN_DIR}/include',
-  '-DBUILD_SHARED_LIBS=True'
+  '-DBUILD_SHARED_LIBS=True',
+  '-DPUMI_GEOM_MODEL=sim',
+  '-DSIM_MPI=openmpi'
   ]
 
