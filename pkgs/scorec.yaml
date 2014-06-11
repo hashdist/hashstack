@@ -3,8 +3,8 @@ dependencies:
   build: [mpi, parmetis, zoltan]
 
 sources:
-- url: file:///space/cwsmith/pumi.tar.gz
-  key: tar.gz:yca4higs2toiokfvwk5pblfobmktfwbo
+  - url: https://github.com/SCOREC/core.git
+    key: git:881e0079d6e9954d3927bb2b247214a1fbe3c824
 
 build_stages:
 
@@ -25,7 +25,5 @@ build_stages:
   '-DZOLTAN_LIBRARY=${ZOLTAN_DIR}/lib/libzoltan.a',
   '-DZOLTAN_INCLUDE_DIR=${ZOLTAN_DIR}/include',
   '-DBUILD_SHARED_LIBS=True',
-  '-DPUMI_GEOM_MODEL=sim',
-  '-DSIM_MPI=openmpi'
   ]
 
