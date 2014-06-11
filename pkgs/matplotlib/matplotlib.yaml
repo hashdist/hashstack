@@ -1,6 +1,6 @@
 extends: [namespace_package, libflags]
 dependencies:
-  build: [freetype, numpy, png]
+  build: [freetype, numpy, png, pkg-config]
   run: [freetype, numpy, png, python-dateutil, pyparsing]
 
 sources:
