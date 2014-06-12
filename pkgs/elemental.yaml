@@ -12,6 +12,7 @@ build_stages:
   debug: false #always build in release mode
   extra: ['-D CXX_FLAGS="-O3"',
           '-D CMAKE_BUILD_TYPE=PureRelease',
-          '-D MATH_LIBS="-L${SCALAPACK_DIR} -L${LAPACK_DIR}/lib -lscalapack -llapack -lblas"',
-          '-D ELEM_EXAMPLES=ON'
+          '-D MATH_LIBS="-L${SCALAPACK_DIR} -L${LAPACK_DIR}/lib -lscalapack ${LAPACK_LDFLAGS} ${BLAS_LDFLAGS}"',
+          '-D ELEM_EXAMPLES=ON',
+          '-D ELEM_TESTS=ON',
           ]
