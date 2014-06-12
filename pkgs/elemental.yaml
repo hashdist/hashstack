@@ -1,0 +1,17 @@
+extends: [cmake_package]
+
+dependencies:
+  build: [scalapack,lapack,mpi]
+
+sources:
+- url: http://libelemental.org/pub/releases/Elemental-0.84.tgz
+  key: tar.gz:4hwl7ea2vjavfi52eky77rnilx7ilu25
+
+build_stages:
+- name: configure
+  debug: false #always build in release mode
+  extra: ['-D CXX_FLAGS="-O3"',
+          '-D CMAKE_BUILD_TYPE=PureRelease',
+          '-D MATH_LIBS="-L${SCALAPACK_DIR} -L${LAPACK_DIR}/lib -lscalapack -llapack -lblas"',
+          '-D ELEM_EXAMPLES=ON'
+          ]
