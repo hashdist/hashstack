@@ -4,6 +4,7 @@ env:
   - TEST_PROFILE="test.boost.yaml"
   - TEST_PROFILE="test.clawpack.gitsubmodules.yaml"
   - TEST_PROFILE="test.cmake.yaml"
+  - TEST_PROFILE="test.elemental.yaml"
   - TEST_PROFILE="test.host-scipy.yaml"
   - TEST_PROFILE="test.matplotlib.yaml"
   - TEST_PROFILE="test.packages1.yaml"
@@ -34,6 +35,9 @@ before_install:
   - if [[ "${TEST_PROFILE}" == "test.clawpack.gitsubmodules.yaml" ]]; then
       sudo apt-get install liblapack-dev;
     fi
+  - if [[ "${TEST_PROFILE}" == "test.elemental.yaml" ]]; then
+      sudo apt-get install mpich2 liblapack-dev;
+    fi
   - if [[ "${TEST_PROFILE}" == "test.host-scipy.yaml" ]]; then
       sudo apt-get install python-scipy;
     fi
@@ -48,6 +52,9 @@ script:
 verify:
   - if [[ "${TEST_PROFILE}" == "test.matplotlib.yaml" ]]; then
       ./test.matplotlib/bin/python -c "from mpl_toolkits.mplot3d import Axes3D"
+    fi
+  - if [[ "${TEST_PROFILE}" == "test.elemental.yaml" ]]; then
+      ./test.elemental/bin/examples/lapack-like/BunchKaufman
     fi
 notifications:
   email: false

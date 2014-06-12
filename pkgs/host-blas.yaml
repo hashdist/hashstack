@@ -1,5 +1,5 @@
 when_build_dependency:
   - {set: 'BLAS_LIBRARY_NAME', value: '{{HOST_BLAS_LIBRARY_NAME}}'}
-  - {set: 'BLAS_LDFLAGS', value: '-lblas'}
+  - {set: 'BLAS_LDFLAGS', value: '{{HOST_BLAS_LDFLAGS}}'}
   - when platform == 'Cygwin':
     - {prepend_path: PATH, value: '/usr/lib/lapack'}

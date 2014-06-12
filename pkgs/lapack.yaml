@@ -33,3 +33,4 @@ build_stages:
 
 when_build_dependency:
   - {set: 'LAPACK_LIBRARY_NAME', value: '${ARTIFACT}/lib/liblapack.so'}
+  - {set: 'LAPACK_LDFLAGS', value: '-L${ARTIFACT}/lib -llapack'}

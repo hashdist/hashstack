@@ -3,6 +3,10 @@ extends:
 
 parameters:
   platform: Cygwin
+  HOST_BLAS_LIBRARY_NAME: /usr/lib/lapack/cygblas-0.dll
+  HOST_LAPACK_LIBRARY_NAME: /usr/lib/lapack/cyglapack-0.dll
+  HOST_BLAS_LDFLAGS: -lblas
+  HOST_LAPACK_LDFLAGS: -llapack
   HOST_MPICC: /usr/bin/mpicc
   HOST_MPICXX: /usr/bin/mpic++
   HOST_MPIF77: /usr/bin/mpif77

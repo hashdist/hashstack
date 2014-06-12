@@ -5,6 +5,8 @@ parameters:
   python_host_packages: '/usr/share/pyshared'
   HOST_BLAS_LIBRARY_NAME: /usr/lib/libblas.so
   HOST_LAPACK_LIBRARY_NAME: /usr/lib/liblapack.so
+  HOST_BLAS_LDFLAGS: -lblas
+  HOST_LAPACK_LDFLAGS: -llapack
   HOST_MPICC: /usr/bin/mpicc
   HOST_MPICXX: /usr/bin/mpic++
   HOST_MPIF77: /usr/bin/mpif77

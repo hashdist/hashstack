@@ -1,7 +1,7 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [scalapack,lapack,mpi]
+  build: [scalapack, lapack, blas, mpi]
 
 sources:
 - url: http://libelemental.org/pub/releases/Elemental-0.84.tgz
