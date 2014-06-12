@@ -21,7 +21,7 @@ build_stages:
       extra: ['-D BUILD_TESTING:BOOL=OFF',
               '-D BUILD_SHARED_LIBS:BOOL=ON',
               '-D LAPACK_LIBRARIES:STRING="${LAPACK_LIBRARY_NAME}"',
-              '-D BLAS_LIBRARIES:STRING="{BLAS_LIBRARY_NAME}"',
+              '-D BLAS_LIBRARIES:STRING="${BLAS_LIBRARY_NAME}"',
               ]
   build_in_source: true
 
