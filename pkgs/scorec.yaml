@@ -19,6 +19,7 @@ build_stages:
   extra: [
   '-DCMAKE_C_COMPILER=${MPICC}',
   '-DCMAKE_CXX_COMPILER=${MPICXX}',
+  '-DENABLE_ZOLTAN=ON',
   '-DMETIS_LIBRARY=${PARMETIS_DIR}/lib/libmetis.so',
   '-DPARMETIS_LIBRARY=${PARMETIS_DIR}/lib/libparmetis.so',
   '-DPARMETIS_INCLUDE_DIR=${PARMETIS_DIR}/include',
