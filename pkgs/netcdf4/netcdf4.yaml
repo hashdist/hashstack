@@ -10,7 +10,7 @@ build_stages:
 
 - name: set_mpi_wrapper
   handler: bash
-  before: make
+  before: configure 
   bash: |
     export CC=$MPICC
 
