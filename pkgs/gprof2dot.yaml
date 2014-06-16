@@ -1,0 +1,5 @@
+extends: [setuptools_package]
+
+sources:
+  - url: https://code.google.com/p/jrfonseca.gprof2dot/
+    key: git:ad5b49841672e5798116fdf8aeeb9c089e294be3

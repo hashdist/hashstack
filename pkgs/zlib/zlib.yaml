@@ -1,0 +1,35 @@
+extends: [autotools_package]
+
+sources:
+- url: http://downloads.sourceforge.net/project/libpng/zlib/1.2.7/zlib-1.2.7.tar.bz2
+  key: tar.bz2:jhroszmn7mbwsag2n2qcm6ttp6r4j3xg
+
+build_stages:
+
+- when: platform == 'Cygwin'
+  files: [zlib-cygwin.patch]
+  name: zlib-cygwin
+  handler: bash
+  before: configure
+  bash: |
+    patch -p1 < _hashdist/zlib-cygwin.patch
+
+- when: platform == 'Cygwin'
+  name: configure
+  mode: replace
+  after: prologue
+  handler: bash
+  bash: |
+    # nothing to configure...
+
+- when: platform == 'Cygwin'
+  name: make
+  handler: bash
+  bash: |
+    make -fwin32/Makefile.gcc
+
+- when: platform == 'Cygwin'
+  name: install
+  handler: bash
+  bash: |
+    make install -fwin32/Makefile.gcc SHARED_MODE=1 SHAREDLIB=cygz.dll DESTDIR=${ARTIFACT}/ BINARY_PATH=bin INCLUDE_PATH=include LIBRARY_PATH=lib

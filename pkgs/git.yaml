@@ -1,0 +1,23 @@
+extends: [base_package]
+
+dependencies:
+  build: [curl, pcre, openssl, libiconv, expat]
+
+sources:
+- url: http://www.kernel.org/pub/software/scm/git/git-2.0.0.tar.gz
+  key: tar.gz:y2rxb2ktezyban674mxy4zxtttosqvl4
+
+build_stages:
+
+- name: make
+  after: prologue
+  handler: bash
+  bash: |
+    export NO_GETTEXT=1
+    make prefix=${ARTIFACT}
+
+- name: install
+  after: make
+  handler: bash
+  bash: |
+    make install prefix=${ARTIFACT}

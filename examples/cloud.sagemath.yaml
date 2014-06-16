@@ -32,3 +32,5 @@ packages:
   gmp:
   matplotlib-basemap:
   python-netcdf4:
+  openblas:
+    extra_flags: TARGET=CORE2

@@ -1,5 +1,8 @@
 extends: [distutils_package]
 
+dependencies:
+  build: [python]
+
 build_stages:
   - name: install
     mode: override
@@ -8,5 +11,5 @@ build_stages:
       ${PYTHON} setup.py install --prefix=. --root=${ARTIFACT} --single-version-externally-managed
 
 sources:
-  - url: https://pypi.python.org/packages/source/d/distribute/distribute-0.6.36.tar.gz
-    key: tar.gz:er2ptudqnndwzyhbhemvzq23gyfnwzs5
+  - url: https://pypi.python.org/packages/source/s/setuptools/setuptools-3.4.3.tar.gz
+    key: tar.gz:yfr3o4jkjyuvq7cmwfn52gmjt7xmiopn

@@ -1,0 +1,15 @@
+# Isolated matplotlib test case
+
+extends:
+- file: linux.yaml
+
+packages:
+
+  launcher:
+  blas:
+    use: host-blas
+  python:
+    host: false
+    build_with: |
+      bzip2, openssl
+  matplotlib:

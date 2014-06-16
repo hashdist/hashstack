@@ -1,0 +1,33 @@
+# This example shows how to install Clang and libc++ on Linux.
+
+extends:
+- file: linux.yaml
+
+# The two paths below are the first two paths from (on Ubuntu 12.04):
+#
+#    $ echo | g++ -Wp,-v -x c++ - -fsyntax-only
+#    ignoring nonexistent directory "/usr/local/include/x86_64-linux-gnu"
+#    ignoring nonexistent directory "/usr/lib/gcc/x86_64-linux-gnu/4.6/../../../../x86_64-linux-gnu/include"
+#    #include "..." search starts here:
+#    #include <...> search starts here:
+#     /usr/include/c++/4.6
+#     /usr/include/c++/4.6/x86_64-linux-gnu/.
+#     /usr/include/c++/4.6/backward
+#     /usr/lib/gcc/x86_64-linux-gnu/4.6/include
+#     /usr/local/include
+#     /usr/lib/gcc/x86_64-linux-gnu/4.6/include-fixed
+#     /usr/include/x86_64-linux-gnu
+#     /usr/include
+#    End of search list.
+#
+# Unfortunately they are platform dependent so one has to specify them by hand
+# for the given platform.
+#
+parameters:
+  HOST_LIBCXX_LIBSUPCXX_INCLUDE_PATHS: /usr/include/c++/4.6/;/usr/include/c++/4.6/x86_64-linux-gnu/
+
+packages:
+  clang:
+  libstdcxx:
+    use: host-libstdcxx
+  libcxx:

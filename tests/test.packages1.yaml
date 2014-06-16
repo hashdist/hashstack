@@ -1,4 +1,4 @@
-# This builds the IPython, NumPy, SciPy, Matplotlib, SymPy stack from scratch
+# This builds the IPython, NumPy, SciPy, SymPy stack from scratch
 
 extends:
 - file: linux.yaml
@@ -14,7 +14,6 @@ packages:
       bzip2, openssl
   ipython:
   nose:
-  matplotlib:
   numpy:
   sphinx:
   sympy:

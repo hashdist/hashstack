@@ -1,0 +1,9 @@
+extends: [autotools_package]
+
+sources:
+- url: http://www.ginac.de/CLN/cln-1.3.3.tar.bz2
+  key: tar.bz2:k76c5y7mxmynia376mvjumyyatvh3lml
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
