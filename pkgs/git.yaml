@@ -13,6 +13,7 @@ build_stages:
   after: prologue
   handler: bash
   bash: |
+    export NO_GETTEXT=1
     make prefix=${ARTIFACT}
 
 - name: install
