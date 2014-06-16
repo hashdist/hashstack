@@ -1,0 +1,8 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [libiconv]
+
+sources:
+- url: http://ftp.gnu.org/pub/gnu/gettext/gettext-0.19.1.tar.gz
+  key: tar.gz:fb2hdwk335p6wsdcmjd73rjqmyhd2kig

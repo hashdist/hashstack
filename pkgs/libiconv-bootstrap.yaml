@@ -1,8 +1,5 @@
 extends: [autotools_package]
 
-dependencies:
-  build: [gettext-bootstrap]
-
 sources:
   - url: http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz
     key: tar.gz:okze33ix22drspbtm3ioxz6n4htlddyn
