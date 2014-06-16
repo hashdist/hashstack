@@ -7,6 +7,13 @@ sources:
   key: tar.gz:46lecpjh3jvqkpqhughvm6q5bqr5fiyx
 
 build_stages:
+
+- name: set_mpi_wrapper
+  handler: bash
+  before: make
+  bash: |
+    export CC=$MPICC
+
 # http://www.unidata.ucar.edu/software/netcdf/docs/known_problems.html#clang-ncgen3
 - when: platform == 'Darwin'
   files: [fix_genlib.patch]
