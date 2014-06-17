@@ -10,6 +10,7 @@ env:
   - TEST_PROFILE="test.packages2.yaml"
   - TEST_PROFILE="test.packages3.yaml"
   - TEST_PROFILE="test.packages4.yaml"
+  - TEST_PROFILE="test.netcdf4.yaml"
   - TEST_PROFILE="test.vxl.yaml"
 python:
   - 2.7
@@ -33,6 +34,9 @@ before_install:
     fi
   - if [[ "${TEST_PROFILE}" == "test.clawpack.gitsubmodules.yaml" ]]; then
       sudo apt-get install liblapack-dev;
+    fi
+  - if [[ "${TEST_PROFILE}" == "test.netcdf4.yaml" ]]; then
+      sudo apt-get install mpich2;
     fi
   - if [[ "${TEST_PROFILE}" == "test.host-scipy.yaml" ]]; then
       sudo apt-get install python-scipy;
