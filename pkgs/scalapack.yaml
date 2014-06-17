@@ -9,7 +9,6 @@ sources:
 
 build_stages:
 - name: configure
-  debug: false #always build in release mode
   when compiler == 'gcc':
       extra: ['-D CMAKE_Fortran_FLAGS_RELEASE:STRING="-O3 -fPIC -march=native -ffast-math -funroll-loops"',
               '-D BUILD_TESTING:BOOL=OFF',
