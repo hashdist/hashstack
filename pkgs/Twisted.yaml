@@ -1,0 +1,13 @@
+extends: [distutils_package]
+
+dependencies:
+  build: [zope-interface, setuptools]
+  run: [zope-interface]
+
+sources:
+ - url: https://pypi.python.org/packages/source/T/Twisted/Twisted-14.0.0.tar.bz2
+   key: tar.bz2:xx6zmgwcefxvyznqp4wduxsrc33hco4m
+
+when_build_dependency:
+ - prepend_path: PYTHONPATH
+   value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'
