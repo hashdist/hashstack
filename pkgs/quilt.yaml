@@ -8,11 +8,5 @@ sources:
   key: tar.gz:fbdhrarbvkeejrkpcarzy7f4l2eaggcz
 
 build_stages:
-
 - name: configure
-  handler: bash
-  bash: |
-    ./configure \
-      --prefix=$ARTIFACT \
-      --with-sed=$GNU_SED_DIR/bin/sed \
-      --without-getopt
+  extra: ['--with-sed=$GNU_SED_DIR/bin/sed', '--without-getopt']
