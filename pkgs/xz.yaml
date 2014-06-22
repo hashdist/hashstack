@@ -1,0 +1,5 @@
+extends: [autotools_package]
+
+sources:
+- url: http://tukaani.org/xz/xz-5.0.5.tar.bz2
+  key: tar.bz2:czweruueeum3yt4wgm577hrgl6gn3jcn
