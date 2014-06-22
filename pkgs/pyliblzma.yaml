@@ -1,8 +1,7 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: []
-  run: []
+  build: [xz]
 
 sources:
  - url: https://pypi.python.org/packages/source/p/pyliblzma/pyliblzma-0.5.3.tar.bz2
