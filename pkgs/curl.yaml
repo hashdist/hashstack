@@ -1,5 +1,8 @@
 extends: [autotools_package]
 
+dependencies:
+    build: [openssl]
+
 sources:
-  - url: http://curl.haxx.se/download/curl-7.33.0.tar.gz
+  - url: http://curl.haxx.se/download/curl-7.37.0.tar.gz
     key: tar.gz:oriktrzl2j65rhogtfvovwxtkt5etpb4
