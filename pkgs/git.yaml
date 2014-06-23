@@ -12,3 +12,7 @@ build_stages:
 - name: configure
   mode: override
   extra: ['--with-libpcre=${PCRE_DIR}', '--with-zlib=${ZLIB_DIR}', '--with-iconv=${LIBICONV_DIR}', '--with-expat=${EXPAT_DIR}', '--with-curl=${CURL_DIR}']
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
