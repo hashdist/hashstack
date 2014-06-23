@@ -4,6 +4,14 @@ sources:
   - url: http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz
     key: tar.gz:okze33ix22drspbtm3ioxz6n4htlddyn
 
+build_stages:
+  - name: patch
+    before: configure
+    files: [modern-glibc-workaround.patch]
+    handler: bash
+    bash: |
+      patch -up1 < _hashdist/modern-glibc-workaround.patch
+
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
   value: '${ARTIFACT}/lib/pkgconfig'
