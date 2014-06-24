@@ -8,7 +8,7 @@ when platform != 'linux':
 
 sources:
   - url: https://github.com/fredrik-johansson/arb.git
-    key: git:7c6b3fb932cacabc9fa42704e134fcaf8ac0bca4
+    key: git:9c3eab41ba48840139c05b3b01f00c073ee9b8e2
 
 build_stages:
   - name: configure
