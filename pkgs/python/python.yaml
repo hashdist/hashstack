@@ -9,6 +9,14 @@ dependencies:
   run: []
 
 build_stages:
+  - when: machine == 'IBM_BGQ'
+    name: patch_bgq
+    files: [Python-2.7.6_ppc64.patch]
+    handler: bash
+    before: configure
+    bash: |
+      patch -p1 < _hashdist/Python-2.7.6_ppc64.patch
+
   - when: link == 'shared'
     name: configure
     mode: override
