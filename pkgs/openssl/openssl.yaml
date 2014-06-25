@@ -27,3 +27,12 @@ build_stages:
   bash: |
     #./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include -Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib
     ./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include
+
+- when: platform == 'Darwin'
+  name: configure
+  after: fix_docs
+  handler: bash
+  mode: replace
+  bash: |
+    #./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include -Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib
+    ./Configure --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include darwin64-x86_64-cc enable-ec_nistp-64_gcc_128
