@@ -8,7 +8,8 @@ sources:
     key: tar.gz:okze33ix22drspbtm3ioxz6n4htlddyn
 
 build_stages:
-  - name: patch
+  - when: platform == 'linux'
+    name: patch
     before: configure
     files: [modern-glibc-workaround.patch]
     handler: bash
