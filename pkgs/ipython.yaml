@@ -1,6 +1,6 @@
 extends: [distutils_package]
 dependencies:
-  run: [pyzmq, tornado, jinja2, pygments, sphinx]
+  run: [pyzmq, tornado, jinja2, pygments, sphinx, jsonschema, jsonpointer]
 
 sources:
   - url: https://pypi.python.org/packages/source/i/ipython/ipython-2.0.0.tar.gz
