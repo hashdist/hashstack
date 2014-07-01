@@ -5,7 +5,7 @@ dependencies:
 
 sources:
 - url: https://github.com/bluescarni/piranha.git
-  key: git:5887526cae6409faa09481bd84c384ec55f6ba19
+  key: git:a871a25e79516bf4ee32064ea25fabbc85f386e0
 
 build_stages:
 - name: configure
