@@ -1,7 +1,7 @@
 when: host
 
 defaults:
-  relocateable: false
+  relocatable: false
 
 build_stages:
 

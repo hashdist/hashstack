@@ -9,7 +9,7 @@ dependencies:
   run: []
 
 defaults:
-  relocateable: false
+  relocatable: false
 
 build_stages:
   - when: link == 'shared'

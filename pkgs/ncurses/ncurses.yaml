@@ -5,7 +5,7 @@ sources:
     key: tar.gz:sbdctd5uiazezhkbgxwou6dz77wykrw5
 
 defaults:
-  relocateable: false
+  relocatable: false
 
 build_stages:
   - name: patch

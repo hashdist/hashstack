@@ -8,7 +8,7 @@ sources:
     key: tar.gz:65hrl2gi74i2upk3wxzhnuqc5qmnojdo
 
 defaults:
-  relocateable: false
+  relocatable: false
 
 build_stages:
 - name: configure
