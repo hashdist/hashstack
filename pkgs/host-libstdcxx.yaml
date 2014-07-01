@@ -1,0 +1,2 @@
+when_build_dependency:
+  - {set: 'LIBCXX_LIBSUPCXX_INCLUDE_PATHS', value: '{{HOST_LIBCXX_LIBSUPCXX_INCLUDE_PATHS}}'}

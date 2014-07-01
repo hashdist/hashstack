@@ -1,0 +1,24 @@
+extends: [autotools_package]
+dependencies:
+  build: [mpi, hdf5, curl]
+
+sources:
+- url: ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.0.tar.gz
+  key: tar.gz:46lecpjh3jvqkpqhughvm6q5bqr5fiyx
+
+build_stages:
+
+- name: set_mpi_wrapper
+  handler: bash
+  before: configure 
+  bash: |
+    export CC=$MPICC
+
+# http://www.unidata.ucar.edu/software/netcdf/docs/known_problems.html#clang-ncgen3
+- when: platform == 'Darwin'
+  files: [fix_genlib.patch]
+  name: fix_genlib
+  handler: bash
+  before: make
+  bash: |
+    patch -p1 < _hashdist/fix_genlib.patch

@@ -2,4 +2,4 @@ extends: [distutils_package]
 
 sources:
 - url: https://bitbucket.org/fenics-project/ufl.git
-  key: git:5aee174639eb48db330eea3195973be01778d056
+  key: git:13327a334a800bc4d27f0d2d263c4fec8cfdb7bd

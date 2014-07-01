@@ -34,10 +34,15 @@ def configure(ctx, stage_args):
                   '-D CMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON',
                   '-D DOLFIN_ENABLE_DOCS:BOOL=OFF',
                   '-D PKG_CONFIG_EXECUTABLE:FILEPATH="${PKG_CONFIG_EXECUTABLE}"',
-                  '-D UFC_DIR:PATH="${UFC_DIR}"',
                   '-D EIGEN3_INCLUDE_DIR:PATH="${EIGEN_DIR}/include/eigen3"',
                   '-D BOOST_ROOT:PATH="${BOOST_DIR}"',
-                  '-D Boost_USE_MULTITHREADED:BOOL=${BOOST_USE_MULTITHREADED}']
+                  '-D Boost_USE_MULTITHREADED:BOOL=${BOOST_USE_MULTITHREADED}',
+                  '-D DOLFIN_ENABLE_UNIT_TESTS:BOOL=OFF']
+
+    if ctx.parameters['platform'] == 'Cygwin':
+        libxml2 = '${LIBXML2_DIR}/lib/libxml2.dll.a'
+        conf_lines.append('-D LIBXML2_LIBRARIES:FILEPATH="%s"' % libxml2)
+        conf_lines.append('-D LIBXML2_INCLUDE_DIR:PATH="${LIBXML2_DIR}/include/libxml2"')
 
     build_type = stage_args.get('build_type', 'RelWithDebInfo')
     conf_lines.append('-D CMAKE_BUILD_TYPE:STRING="%s"' % build_type)
@@ -51,6 +56,9 @@ def configure(ctx, stage_args):
     if 'PYTHON' in ctx.dependency_dir_vars:
         if ctx.parameters['platform'] == 'Darwin':
             libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.dylib'
+        elif ctx.parameters['platform'] == 'Cygwin':
+            #libpython = '/usr/lib/libpython${PYVER}.dll.a'
+            libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.dll.a'
         else:
             libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.so'
         conf_lines.append('-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"')

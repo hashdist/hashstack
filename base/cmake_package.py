@@ -17,13 +17,14 @@ def configure(ctx, stage_args):
           extra: ['-D ENABLE_FOO:BOOL=ON', '-D ZLIB_DIR:PATH=${ZLIB_DIR}']
           set_env_flags: true # default
           build_in_source: false # default
-          debug:  false # defaults to global parameter debug
+          debug: false # default
 
     If set_env_flags is set, CPPFLAGS and LDFLAGS will be set, as appropriate
     for the platform.
     If build_in_source is set, build directory will be the same as source directory.
     """
     conf_lines = ['${CMAKE} -DCMAKE_INSTALL_PREFIX:PATH="${ARTIFACT}"',
+                  '-DCMAKE_POSITION_INDEPENDENT_CODE:BOOL=ON',
                   '-DCMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib"',
                   '-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON']
 
