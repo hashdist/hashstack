@@ -10,8 +10,14 @@ build_stages:
     bash: |
       {{PROLOGUE}}
 
+  - name: install
+    handler: bash
+    after: [prologue]
+    bash: |
+      echo 'The "install" build stage has not been redefined.'
+
   - name: relocatable-scripts
-    after: [install, prologue]
+    after: [install]
     handler: bash
     bash: |
       $HIT_DIR/bin/hit build-postprocess --relative-sh-script='/bin/.*-config'
