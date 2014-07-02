@@ -47,3 +47,4 @@ packages:
   sympy:
   tetgen:
   triangle:
+  memory_profiler:
