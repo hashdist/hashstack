@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [zlib, hit]
+  build: [zlib]
   run: [zlib]
 
 sources:

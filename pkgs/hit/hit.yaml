@@ -1,9 +1,0 @@
-# Package for letting package builds use tools in `hit`; really just links up
-# Hashdist using the called interpreter.
-
-defaults:
-  # Avoid patchelf dependency
-  relative_rpath: false
-
-build_stages:
-- name: setup_hit  # handled in Python hooks
