@@ -23,7 +23,7 @@ build_stages:
   when platform == 'linux':
     bash: |
       make -f Makefile-libbz2_so
-  when platform == 'Darwin':
+  when platform != 'linux':
     bash: |
       make -f Makefile
 
@@ -47,8 +47,8 @@ build_stages:
       ln -sv ${ARTIFACT}/lib/libbz2.so.1.0 ${ARTIFACT}/lib/libbz2.so
       ${PATCHELF} --set-rpath ${ARTIFACT}/lib ${ARTIFACT}/bin/bzip2
 
-  when platform == 'Darwin':
+  when platform != 'linux':
     bash: |
-      cp -v bzip2 $ARTIFACT/bin/bzip2
+      cp -v bzip2 ${ARTIFACT}/bin/bzip2
       ln -sv bzip2 ${ARTIFACT}/bin/bunzip2
       ln -sv bzip2 ${ARTIFACT}/bin/bzcat

@@ -1,0 +1,13 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [bison]
+
+sources:
+- url: https://github.com/doxygen/doxygen.git
+  key: git:1134237afe25f86fcf7c7e2a76a3542eee8acc79
+
+build_stages:
+  - name: configure
+    mode: override
+    extra: ['--bison=$BISON_DIR/bin/bison']

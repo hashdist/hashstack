@@ -1,0 +1,18 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [curl, pcre, openssl, libiconv, gettext, expat, zlib]
+
+sources:
+- url: http://www.kernel.org/pub/software/scm/git/git-2.0.0.tar.gz
+  key: tar.gz:y2rxb2ktezyban674mxy4zxtttosqvl4
+
+build_stages:
+
+- name: configure
+  mode: override
+  extra: ['--with-libpcre=${PCRE_DIR}', '--with-zlib=${ZLIB_DIR}', '--with-iconv=${LIBICONV_DIR}', '--with-expat=${EXPAT_DIR}', '--with-curl=${CURL_DIR}']
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

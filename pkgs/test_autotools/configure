@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+# Fake configure script that simply writes all
+# command line arguments to configure_in.txt
+
+echo "$@" > configure_in.txt

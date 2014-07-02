@@ -1,0 +1,7 @@
+extends:
+ - file: linux.yaml
+
+parameters:
+  platform: linux
+  PATH: /usr/bin:/bin
+  HOST_PYTHON: /usr/bin/python2

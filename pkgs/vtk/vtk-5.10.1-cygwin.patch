@@ -1,0 +1,61 @@
+diff -Nru VTK5.10.1.orig/Utilities/kwsys/SystemTools.cxx VTK5.10.1/Utilities/kwsys/SystemTools.cxx
+--- VTK5.10.1.orig/Utilities/kwsys/SystemTools.cxx	2014-04-04 14:27:14.174223800 +0200
++++ VTK5.10.1/Utilities/kwsys/SystemTools.cxx	2014-04-04 14:28:47.281549300 +0200
+@@ -79,7 +79,7 @@
+ #endif
+ 
+ #ifdef __CYGWIN__
+-extern "C" void cygwin_conv_to_win32_path(const char *path, char *win32_path);
++extern "C" void cygwin_conv_path(const char *path, char *win32_path);
+ #endif
+ 
+ // getpwnam doesn't exist on Windows and Cray Xt3/Catamount
+@@ -931,7 +931,7 @@
+     }
+   else
+     {
+-    cygwin_conv_to_win32_path(path, win32_path);
++    cygwin_conv_path(path, win32_path);
+     SystemToolsTranslationMap::value_type entry(path, win32_path);
+     SystemTools::Cyg2Win32Map->insert(entry);
+     }
+diff -Nru VTK5.10.1.orig/Utilities/LSDyna/LSDynaFamily.cxx VTK5.10.1/Utilities/LSDyna/LSDynaFamily.cxx
+--- VTK5.10.1.orig/Utilities/LSDyna/LSDynaFamily.cxx	2014-04-04 14:27:14.348233800 +0200
++++ VTK5.10.1/Utilities/LSDyna/LSDynaFamily.cxx	2014-04-04 14:34:27.700020100 +0200
+@@ -33,7 +33,7 @@
+ namespace
+ {
+ //Documentation on why the exemption
+-#define USE_STAT_64 VTK_SIZEOF_ID_TYPE==8 && !defined _DARWIN_FEATURE_64_BIT_INODE
++#define USE_STAT_64 (VTK_SIZEOF_ID_TYPE==8 && !defined _DARWIN_FEATURE_64_BIT_INODE) && !defined __CYGWIN__
+ //OSX uses stat instead of stat64
+ #if (USE_STAT_64)
+ //64bit
+diff -Nru VTK5.10.1.orig/Utilities/vtksqlite/vtk_sqlite3.c VTK5.10.1/Utilities/vtksqlite/vtk_sqlite3.c
+--- VTK5.10.1.orig/Utilities/vtksqlite/vtk_sqlite3.c	2014-04-04 14:27:23.349748600 +0200
++++ VTK5.10.1/Utilities/vtksqlite/vtk_sqlite3.c	2014-04-04 14:30:22.356987300 +0200
+@@ -28690,7 +28690,7 @@
+   
+ #if defined(__CYGWIN__)
+   UNUSED_PARAMETER(nFull);
+-  cygwin_conv_to_full_win32_path(zRelative, zFull);
++  cygwin_conv_path(CCP_POSIX_TO_WIN_A, zRelative, zFull, nFull);
+   return VTK_SQLITE_OK;
+ #endif
+ 
+diff -Nru VTK5.10.1.orig/Wrapping/Python/CMakeLists.txt VTK5.10.1/Wrapping/Python/CMakeLists.txt
+--- VTK5.10.1.orig/Wrapping/Python/CMakeLists.txt	2014-04-04 14:27:25.754886200 +0200
++++ VTK5.10.1/Wrapping/Python/CMakeLists.txt	2014-04-04 14:31:23.182466300 +0200
+@@ -55,10 +55,10 @@
+ # shared libraries that are linked or loaded.  On Windows and OSX we
+ # want to link to the python libray to resolve its symbols
+ # immediately.
+-IF(WIN32 OR APPLE)
++IF((WIN32 OR CYGWIN) OR APPLE)
+   TARGET_LINK_LIBRARIES (vtkPythonCore ${VTK_PYTHON_LIBRARIES})
+   TARGET_LINK_LIBRARIES (vtkPythonCore LINK_INTERFACE_LIBRARIES ${VTK_PYTHON_LIBRARIES})
+-ENDIF(WIN32 OR APPLE)
++ENDIF((WIN32 OR CYGWIN) OR APPLE)
+ 
+ # Apply user-defined properties to the library targets.
+ IF(VTK_LIBRARY_PROPERTIES)

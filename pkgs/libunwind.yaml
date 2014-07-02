@@ -1,0 +1,5 @@
+extends: [autotools_package]
+
+sources:
+  - url: http://download.savannah.gnu.org/releases/libunwind/libunwind-1.1.tar.gz
+    key: tar.gz:tx7a7sxcvbtn5hjzildgtfpewrqcgbcg

@@ -1,0 +1,12 @@
+extends:
+ - file: linux.yaml
+
+packages:
+  blas:
+    use: host-blas
+  python:
+    host: false
+    build_with: |
+      bzip2, openssl
+  clawpack:
+    github: https://github.com/clawpack/clawpack/commit/bd252ba6f835a255ca57cdc3b8848b31b550d428

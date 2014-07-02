@@ -15,7 +15,8 @@ build_stages:
   - when: link == 'shared'
     name: configure
     mode: override
-    extra: ['--enable-shared', 'LDFLAGS=-Wl,-rpath=${ARTIFACT}/lib']
+    append: {LDFLAGS: "-Wl,-rpath=${ARTIFACT}/lib"}
+    extra: ['--enable-shared']
 
 # Make sure extension modules were built correctly. This should be part of the
 # Python buildsystem, but unfortunately currently it will silently succeed even

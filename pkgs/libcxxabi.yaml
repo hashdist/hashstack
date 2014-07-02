@@ -1,0 +1,37 @@
+extends: [base_package]
+when platform == 'linux':
+  dependencies:
+    build: [patchelf, clang, libcxx]
+when platform != 'linux':
+  dependencies:
+    build: [clang, libcxx]
+
+sources:
+- url: https://github.com/llvm-mirror/libcxxabi
+  key: git:5db9aa48b796e95cf61ac02d31fd7a0c13a98bea
+
+build_stages:
+
+- name: make-configure
+  after: prologue
+  handler: bash
+  bash: |
+    export CC=$CLANG_DIR/bin/clang
+    export CXX=$CLANG_DIR/bin/clang++
+    # This variable is read by Clang for additional system libraries (include)
+    export CPLUS_INCLUDE_PATH=$LIBCXX_DIR/include/c++/v1/
+    # This variable is read by Clang for additional system libraries (lib)
+    export LIBRARY_PATH=$LIBCXX_DIR/lib
+    cd lib
+    ./buildit
+    mkdir -p $ARTIFACT/lib
+    mkdir -p $ARTIFACT/include
+    cp libc++abi.so.1.0 $ARTIFACT/lib/
+    cp ../include/*.h $ARTIFACT/include/
+
+- name: rpath_fix
+  after: make-configure
+  handler: bash
+  when platform == 'linux':
+    bash: |
+      ${PATCHELF} --set-rpath ${LIBCXX_DIR}/lib ${ARTIFACT}/lib/libc++abi.so.1.0

@@ -1,11 +1,11 @@
 extends: [autotools_package]
-dependancies:
+dependencies:
   build: [curl, zlib, openssl, bison, libyaml, libxml2, libxslt, libiconv, ncurses, readline]
   run: [curl, zlib, openssl, libyaml, libxml2, libxslt, libiconv, ncurses, readline]
 
 sources:
-  - url: http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.0.tar.bz2
-    key: tar.bz2:du7uvvpwdhwbkiusa23gm5mg3twhzsmg
+  - url: http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.bz2
+    key: tar.bz2:nfelajlqzx5ytkbrgz25jktgkqczadrh
 
 profile_links:
   - name: gem_binaries

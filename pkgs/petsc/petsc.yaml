@@ -3,8 +3,8 @@ dependencies:
   build: [cmake, blas, mpi, {{build_with}}]
 
 sources:
-- url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.4.3.tar.gz
-  key: tar.gz:o77yo4kbhzraantfztcddn4a6k7hgbpk
+- url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.4.4.tar.gz
+  key: tar.gz:hotnsuydbi6ok23sbfnn55ik7p323inj
 
 
 build_stages: 
@@ -68,3 +68,7 @@ build_stages:
   bash: |
     install $PETSC_ARCH/cyg*.dll $ARTIFACT/bin
     install $PETSC_ARCH/lib/cyg*.dll $ARTIFACT/bin
+
+when_build_dependency:
+- when platform == 'Cygwin':
+  - {prepend_path: PATH, value: '${ARTIFACT}/bin'}

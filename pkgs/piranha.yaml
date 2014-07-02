@@ -1,0 +1,17 @@
+extends: [cmake_package]
+dependencies:
+  build: [boost, gmp, mpfr]
+  run: [boost, gmp, mpfr]
+
+sources:
+- url: https://github.com/bluescarni/piranha.git
+  key: git:5887526cae6409faa09481bd84c384ec55f6ba19
+
+build_stages:
+- name: configure
+  extra: ['-D BOOST_ROOT=$BOOST_DIR',
+          '-D GMP_INCLUDE_DIR=$GMP_DIR/include',
+          '-D GMP_LIBRARIES=$GMP_DIR/lib/libgmp.so',
+          '-D MPFR_INCLUDE_DIR=$MPFR_DIR/include',
+          '-D MPFR_LIBRARIES=$MPFR_DIR/lib/libmpfr.so',
+          ]

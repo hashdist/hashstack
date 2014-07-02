@@ -1,0 +1,12 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [m4]
+
+sources:
+- url: http://downloads.sourceforge.net/project/flex/flex-2.5.39.tar.bz2
+  key: tar.bz2:vxjlkxz3yoglkevur6wx24xuhmi66jce
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

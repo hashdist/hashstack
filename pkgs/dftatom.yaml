@@ -9,11 +9,8 @@ sources:
 
 build_stages:
 - name: configure
-  extra: ['-D CMAKE_BUILD_TYPE:STRING=Release',
-          '-D WITH_PYTHON:BOOL=ON',
-          '-D CMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib"',
-          '-D CMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON',
-          ]
+  extra: ['-D WITH_PYTHON:BOOL=ON',
+          '-D PYTHON_INSTALL_PATH:PATH=$ARTIFACT/{{python_site_packages_rel}}']
   build_in_source: true
 
 - name: setup_builddir

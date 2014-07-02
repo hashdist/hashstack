@@ -1,0 +1,24 @@
+diff -Nru zlib-1.2.7.orig/gzlib.c zlib-1.2.7/gzlib.c
+--- zlib-1.2.7.orig/gzlib.c	2014-03-19 15:36:52.747250900 +0100
++++ zlib-1.2.7/gzlib.c	2014-03-19 15:37:31.155447700 +0100
+@@ -291,7 +291,7 @@
+ }
+ 
+ /* -- see zlib.h -- */
+-#ifdef _WIN32
++#if defined(_WIN32) || defined(__CYGWIN__)
+ gzFile ZEXPORT gzopen_w(path, mode)
+     const wchar_t *path;
+     const char *mode;
+diff -Nru zlib-1.2.7.orig/zconf.h zlib-1.2.7/zconf.h
+--- zlib-1.2.7.orig/zconf.h	2014-03-19 15:36:52.856257100 +0100
++++ zlib-1.2.7/zconf.h	2014-03-19 15:38:02.850260600 +0100
+@@ -73,7 +73,7 @@
+ #    define gzoffset64            z_gzoffset64
+ #    define gzopen                z_gzopen
+ #    define gzopen64              z_gzopen64
+-#    ifdef _WIN32
++#    if defined(_WIN32) || defined(__CYGWIN__)
+ #      define gzopen_w              z_gzopen_w
+ #    endif
+ #    define gzprintf              z_gzprintf

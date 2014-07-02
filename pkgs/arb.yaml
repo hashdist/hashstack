@@ -1,0 +1,24 @@
+extends: [autotools_package]
+when platform == 'linux':
+  dependencies:
+    build: [patchelf, gmp, mpfr, flint]
+when platform != 'linux':
+  dependencies:
+    build: [gmp, mpfr, flint]
+
+sources:
+  - url: https://github.com/fredrik-johansson/arb.git
+    key: git:9c3eab41ba48840139c05b3b01f00c073ee9b8e2
+
+build_stages:
+  - name: configure
+    mode: override
+    extra: ['--with-gmp=${GMP_DIR}', '--with-mpfr=${MPFR_DIR}',
+        '--with-flint=${FLINT_DIR}']
+
+  - name: rpath_fix
+    after: install
+    handler: bash
+    when platform == 'linux':
+      bash: |
+        ${PATCHELF} --set-rpath ${GMP_DIR}/lib:${MPFR_DIR}/lib:${FLINT_DIR}/lib ${ARTIFACT}/lib/libarb.so

@@ -2,41 +2,101 @@ extends: [cmake_package]
 
 dependencies:
   when platform == 'linux':
-    build: [boost, eigen, libxml2, ufc,
-            mpi, pkg-config, patchelf,
-            python, swig, numpy, ply, scientificpython,
-            ufl, ffc, fiat, instant,
+    build: [blas,
+            boost,
+            bzip2,
+            eigen,
+            ffc,
+            fiat,
+            instant,
+            libxml2,
+            mpi,
+            numpy,
+            patchelf,
+            pkg-config,
+            ply,
+            python,
+            scientificpython,
+            swig,
+            ufl,
+            zlib,
             {{build_with}}]
 
-  when platform == 'Darwin':
-    build: [boost, eigen, libxml2, ufc,
-            mpi, pkg-config,
-            python, swig, numpy, ply, scientificpython,
-            ufl, ffc, fiat, instant,
+  when platform != 'linux':
+    build: [blas,
+            boost,
+            bzip2,
+            eigen,
+            ffc,
+            fiat,
+            instant,
+            libxml2,
+            mpi,
+            numpy,
+            pkg-config,
+            ply,
+            python,
+            scientificpython,
+            swig,
+            ufl,
+            zlib,
             {{build_with}}]
 
   run: [ply]
 
 sources:
-- url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-1.3.0.tar.gz
-  key: tar.gz:ozm5ohbcbchvbug5rc4bdgdha7z5ggf6
+- url: https://bitbucket.org/fenics-project/dolfin.git
+  key: git:e172349cbe9221a98e08e484de13fae2ea9fe82f
 
 build_stages: 
+- name: set_python_version
+  after: setup_builddir
+  handler: bash
+  bash: |
+    export PYVER={{pyver}}
+
 - name: configure ## See dolfin.py for details
   mode: replace
-  after: setup_builddir
+  after: set_python_version
   build_type: {{build_type}}
 
-- name: fix-rpath
+- when: platform == 'linux' 
+  name: fix-rpath
   after: install
   handler: bash
-  when platform == 'linux':
-    bash: |
-      for lib in ${ARTIFACT}/lib/python{{pyver}}/site-packages/dolfin/cpp/_*.so; do
-          oldRPath=$(${PATCHELF} --print-rpath ${lib})
-          ${PATCHELF} --set-rpath $oldRPath:${ARTIFACT}/lib ${lib}
-      done
+  bash: |
+    for lib in ${ARTIFACT}/lib/python{{pyver}}/site-packages/dolfin/cpp/_*.so; do
+        oldRPath=$(${PATCHELF} --print-rpath ${lib})
+        ${PATCHELF} --set-rpath $oldRPath:${ARTIFACT}/lib ${lib}
+    done
 
-  when platform == 'Darwin':
-    bash: |
-      # FIXME: use install_name_tool to fix rpath
+- when: platform == 'Darwin'
+  name: fix-rpath
+  after: install
+  handler: bash
+  bash: |
+    # FIXME: use install_name_tool to fix rpath
+
+- when: platform == 'Cygwin'
+  name: dll_fix
+  handler: bash
+  after: install
+  bash: |
+    install dolfin/cyg*.dll ${ARTIFACT}/bin
+    install dolfin/swig/modules/**/*.dll ${ARTIFACT}/lib/python{{pyver}}/site-packages/dolfin/cpp
+
+when_build_dependency:
+- when platform == 'Cygwin':
+  - {prepend_path: PATH, value: '${ARTIFACT}/bin'}
+
+profile_links:
+- when: platform == 'Cygwin'
+  name: copy_dlls
+  copy: 'bin/*.dll'
+
+- when: platform == 'Cygwin'
+  name: copy_python_dlls
+  copy: 'lib/python{{pyver}}/site-packages/dolfin/cpp/*.dll'
+
+- name: everything
+  link: '*/**/*'
