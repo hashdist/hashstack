@@ -19,10 +19,10 @@ def setup_hit(ctx, stage_args):
     import os
     sys.path.insert(0, os.path.join(os.path.realpath(os.path.dirname(__file__)), '..', 'pypkg'))
     from hashdist.hdist_logging import Logger
-    from hashdist.cli.main import main, help_on_exceptions
+    from hashdist.cli.main import command_line_entry_point, help_on_exceptions
 
     logger = Logger()
-    sys.exit(help_on_exceptions(logger, main, sys.argv, os.environ, logger))
+    sys.exit(help_on_exceptions(logger, command_line_entry_point, sys.argv, os.environ, logger))
     END
     chmod +x "$ARTIFACT/bin/hit"
     mkdir "$ARTIFACT/pypkg"
