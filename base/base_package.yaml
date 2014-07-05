@@ -3,9 +3,6 @@ dependencies:
     - when platform == 'linux' and package != 'patchelf':
       - patchelf
 
-defaults:
-  relative-sh-script: ['/bin/.*-config']
-
 build_stages:
   - name: prologue
     handler: bash
@@ -17,8 +14,9 @@ post_process:
     hit: [shebang=multiline, write-protect]
 
   - name: config_script
+    when: relocatable == True
     after: [default]
-    hit: [relative-sh-script='/bin/.*-config']
+    hit: [relative-sh-script=/bin/.*-config]
 
   - name: relative_symlink
     when: relocatable == True
