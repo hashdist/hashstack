@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [openssl, swig]
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/M/M2Crypto/M2Crypto-0.22.3.tar.gz
+   key: tar.gz:mby37sax3fdsh2nulcqbbvlfgziqj6ck

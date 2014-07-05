@@ -1,0 +1,12 @@
+extends: [autotools_package]
+dependencies:
+  build: [gnu-sed]
+  run: [gnu-sed]
+
+sources:
+- url: http://download.savannah.gnu.org/releases/quilt/quilt-0.63.tar.gz
+  key: tar.gz:fbdhrarbvkeejrkpcarzy7f4l2eaggcz
+
+build_stages:
+- name: configure
+  extra: ['--with-sed=$GNU_SED_DIR/bin/sed', '--without-getopt']

@@ -24,8 +24,6 @@ packages:
   blas:
     use: host-osx-framework-accelerate
   daetk:
-  freetype:
-    use: host-freetype
   matplotlib:
   mpi:
     use: mpich
@@ -48,3 +46,4 @@ packages:
   sympy:
   triangle:
   tetgen:
+  memory_profiler:

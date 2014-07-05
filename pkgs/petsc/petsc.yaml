@@ -68,3 +68,7 @@ build_stages:
   bash: |
     install $PETSC_ARCH/cyg*.dll $ARTIFACT/bin
     install $PETSC_ARCH/lib/cyg*.dll $ARTIFACT/bin
+
+when_build_dependency:
+- when platform == 'Cygwin':
+  - {prepend_path: PATH, value: '${ARTIFACT}/bin'}

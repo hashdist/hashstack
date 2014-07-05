@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/M/MarkupSafe/MarkupSafe-0.23.tar.gz
+   key: tar.gz:utwbv72zxfnbjnc6wlrdoynac6pjqmm5

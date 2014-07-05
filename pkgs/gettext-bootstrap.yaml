@@ -1,0 +1,12 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [libiconv-bootstrap]
+
+sources:
+- url: http://ftp.gnu.org/pub/gnu/gettext/gettext-0.19.1.tar.gz
+  key: tar.gz:fb2hdwk335p6wsdcmjd73rjqmyhd2kig
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

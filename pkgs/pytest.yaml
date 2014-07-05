@@ -1,0 +1,8 @@
+extends: [setuptools_package]
+
+dependencies:
+  run: [py]
+
+sources:
+  - url: https://pypi.python.org/packages/source/p/pytest/pytest-2.5.2.tar.gz
+    key: tar.gz:sysfeyixtgdymfww35phm5gmfq2w7ebo

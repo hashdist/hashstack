@@ -1,0 +1,41 @@
+extends: [base_package, libflags]
+
+dependencies:
+  build: [openblas, llvm, fftw, gmp, mpfr, pcre]
+
+sources:
+- url: https://github.com/JuliaLang/julia
+  key: git:95c9f9bfa1c2d385f3d8ade99c572500a6294bd6
+
+build_stages:
+
+- name: make-configure
+  after: prologue
+  handler: bash
+  bash: |
+    make \
+        prefix=$ARTIFACT \
+        VERBOSE=1 \
+        USE_BLAS64=0 \
+        USE_SYSTEM_BLAS=1 \
+        LIBBLAS=-L$OPENBLAS_DIR/lib -lopenblas \
+        LIBBLASNAME=$OPENBLAS_DIR/lib/libopenblas.so \
+        USE_SYSTEM_LAPACK=1 \
+        LIBLAPACK=-L$OPENBLAS_DIR/lib -lopenblas \
+        LIBLAPACKNAME=$OPENBLAS_DIR/lib/libopenblas.so \
+        USE_SYSTEM_LLVM=1 \
+        LLVM_CONFIG=$LLVM_DIR/bin/llvm-config \
+        USE_SYSTEM_ZLIB=0 \
+        USE_SYSTEM_SUITESPARSE=0 \
+        USE_SYSTEM_ARPACK=0 \
+        USE_SYSTEM_FFTW=1 \
+        USE_SYSTEM_GMP=1 \
+        USE_SYSTEM_MPFR=1 \
+        USE_SYSTEM_PCRE=1 \
+        PCRE_CONFIG=$PCRE_DIR/bin/pcre-config \
+        USE_SYSTEM_LIBUNWIND=0 \
+        USE_SYSTEM_READLINE=0 \
+        USE_SYSTEM_GRISU=0 \
+        USE_SYSTEM_OPENLIBM=0 \
+        USE_SYSTEM_RMATH=0 \
+        install

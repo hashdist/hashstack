@@ -1,0 +1,12 @@
+when_build_dependency:
+  - {set: 'PETSC_DIR', value: '{{HOST_PETSC_DIR}}'}
+  - {set: 'PETSC_ARCH', value: '{{HOST_PETSC_ARCH}}'}
+
+build_stages:
+  - handler: bash
+    bash: |
+      cp -r {{HOST_PETSC_DIR}}/conf ${ARTIFACT}/
+
+profile_links:
+  - name: conf
+    link: '*/**/*'

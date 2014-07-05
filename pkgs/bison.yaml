@@ -1,5 +1,12 @@
 extends: [autotools_package]
 
+dependencies:
+  build: [m4]
+
 sources:
   - url: http://ftp.gnu.org/gnu/bison/bison-3.0.tar.gz
     key: tar.gz:4w36y5oqxgrgkxmndbkmjithrgrxbw4h
+
+when_build_dependency:
+  - prepend_path: PATH
+    value: '${ARTIFACT}/bin'

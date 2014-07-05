@@ -1,7 +1,4 @@
-extends: [python_package]
-
-dependencies:
-  build: [python, distribute]
+extends: [setuptools_package]
 
 sources:
  - url: https://pypi.python.org/packages/source/J/Jinja2/Jinja2-2.6.tar.gz

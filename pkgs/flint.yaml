@@ -1,0 +1,24 @@
+extends: [autotools_package]
+when platform == 'linux':
+  dependencies:
+    build: [patchelf, gmp, mpfr]
+when platform != 'linux':
+  dependencies:
+    build: [gmp, mpfr]
+
+sources:
+- url: http://www.flintlib.org/flint-2.4.4.tar.gz
+  key: tar.gz:yr4z5e4u54dnpodcl575os5c3dfbcxn3
+
+
+build_stages:
+  - name: configure
+    mode: override
+    extra: ['--with-gmp=${GMP_DIR}', '--with-mpfr=${MPFR_DIR}']
+
+  - name: rpath_fix
+    after: install
+    handler: bash
+    when platform == 'linux':
+      bash: |
+        ${PATCHELF} --set-rpath ${GMP_DIR}/lib:${MPFR_DIR}/lib ${ARTIFACT}/lib/libflint.so

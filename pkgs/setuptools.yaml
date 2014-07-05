@@ -1,0 +1,15 @@
+extends: [distutils_package]
+
+dependencies:
+  build: [python]
+
+build_stages:
+  - name: install
+    mode: override
+    handler: bash
+    bash: |
+      ${PYTHON} setup.py install --prefix=. --root=${ARTIFACT} --single-version-externally-managed
+
+sources:
+  - url: https://pypi.python.org/packages/source/s/setuptools/setuptools-3.4.3.tar.gz
+    key: tar.gz:yfr3o4jkjyuvq7cmwfn52gmjt7xmiopn

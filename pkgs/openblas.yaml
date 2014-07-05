@@ -9,8 +9,8 @@ build_stages:
   after: prologue
   handler: bash
   bash: |
-    make -j${HASDIST_CPU_COUNT}
-    make PREFIX=${ARTIFACT} install
+    make {{extra_flags}} -j${HASDIST_CPU_COUNT}
+    make {{extra_flags}} PREFIX=${ARTIFACT} install
 
 when_build_dependency:
   - {set: 'BLAS_LDFLAGS', value: '-L${ARTIFACT}/lib -lopenblas'}

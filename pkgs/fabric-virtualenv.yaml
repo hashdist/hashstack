@@ -1,6 +1,6 @@
-extends: [python_package]
+extends: [setuptools_package]
 dependencies:
-  build: [distribute, fabric, paramiko]
+  build: [fabric, paramiko]
   run: [fabric, paramiko]
 
 sources:

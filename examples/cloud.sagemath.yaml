@@ -1,0 +1,36 @@
+extends:
+- file: linux.yaml
+
+packages:
+
+  launcher:
+  blas:
+    use: host-blas
+  mpi:
+    use: mpich
+  python:
+    host: false
+    build_with: |
+      bzip2, openssl, sqlite
+  ipython:
+  nose:
+  petsc:
+    build_with: |
+
+    download: |
+
+    coptflags: -O2
+    link: shared
+    debug: false
+
+  petsc4py:
+  matplotlib:
+  numpy:
+  sphinx:
+  scipy:
+  sympy:
+  gmp:
+  matplotlib-basemap:
+  python-netcdf4:
+  openblas:
+    extra_flags: TARGET=CORE2
