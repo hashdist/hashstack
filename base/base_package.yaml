@@ -1,8 +1,49 @@
+dependencies:
+  build:
+    - when platform == 'linux' and package != 'patchelf':
+      - patchelf
+
 build_stages:
   - name: prologue
     handler: bash
     bash: |
       {{PROLOGUE}}
+
+post_process:
+  - name: default
+    hit: [shebang=multiline, write-protect]
+
+  - name: config_script
+    when: relocatable == True
+    after: [default]
+    hit: [relative-sh-script=/bin/.*-config]
+
+  - name: relative_symlink
+    when: relocatable == True
+    after: [default]
+    hit: [relative-symlinks]
+
+  - name: relative_rpath
+    when: relocatable == True and relative_rpath == True and platform == 'linux'
+    after: [default]
+    before: [check]
+    hit: [relative-rpath, relative-symlinks]
+
+  - name: relative_pkg_config
+    when: relocatable == True and platform == 'linux'
+    after: [default]
+    before: [check]
+    # workaround for now: delete pkg-config .pc files
+    hit: [remove-pkgconfig]
+
+  - name: check
+    when: relocatable == True and platform == 'linux'
+    after: [default, config_script, relative_symlink]
+    hit:
+      - check-relocatable
+      # Note: replacement \$ -> $ by the build spec runner in run_job.py
+      - "check-ignore=.*\\.pyc\\$"
+      - "check-ignore=.*\\.pyo\\$"
 
 profile_links:
   - when: platform == 'Cygwin'

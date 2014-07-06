@@ -7,6 +7,9 @@ sources:
   - url: https://www.openssl.org/source/openssl-1.0.1g.tar.gz
     key: tar.gz:kpfyddb3sdsqpkbur5hv5lw3axml7zjv
 
+defaults:
+  relocatable: false
+
 build_stages:
 # We need to patch the docs because openssl's documentation is invalid
 # and newer versions of pod2man fail on invalid input. See #244.
