@@ -6,3 +6,7 @@ dependencies:
 sources:
 - url: http://sourceforge.net/projects/libpng/files/libpng16/older-releases/1.6.6/libpng-1.6.6.tar.gz
   key: tar.gz:dj4va2fjpzsuvcl3usxe76jiywh6phjz
+
+when_build_dependency:
+  - prepend_path: PKG_CONFIG_PATH
+    value: '${ARTIFACT}/lib/pkgconfig'

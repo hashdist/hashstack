@@ -9,13 +9,6 @@ sources:
 
 build_stages:
 
-- name: png_freetype_fix
-  before: install
-  handler: bash
-  bash: |
-    export PKG_CONFIG_PATH="$PNG_DIR/lib/pkgconfig:$FREETYPE_DIR/lib/pkgconfig"
-
-
 # This patch did not go into v1.3.1 :(
 - when: platform == 'Cygwin'
   name: fix_cxx_reserved_identifiers
