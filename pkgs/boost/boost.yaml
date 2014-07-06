@@ -31,6 +31,14 @@ build_stages:
   bash: |
     patch -p2 < _hashdist/128bitIntegers2.patch
 
+- name: boost_1_55_fix_warnings
+  before: bjam
+  after: 128bitIntegerSupport2
+  handler: bash
+  files: [boost_1_55_fix_warnings.patch]
+  bash: |
+    patch -p2 < _hashdist/boost_1_55_fix_warnings.patch
+
 - name: bjam
   after: bootstrap
   handler: bash
