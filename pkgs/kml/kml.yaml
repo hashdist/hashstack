@@ -4,6 +4,9 @@ sources:
 - url: http://vtk.org/files/support/libkml_fa6c7d8.tar.gz
   key: tar.gz:ee6dsu7ejszvoukjsx7o6gl72t2aba6j
 
+defaults:
+  # /lib/cmake/KMLConfig.cmake contains absolute path
+  relocatable: false
 
 build_stages:
 
