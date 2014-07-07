@@ -31,6 +31,13 @@ build_stages:
     #./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include -Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib
     ./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include
 
+# parallel build is racy, can fail with "libcrypto.a(cryptlib.o) in archive is not an object"
+- name: make
+  after: configure
+  handler: bash
+  bash: |
+    make -j 1
+
 - when: platform == 'Darwin'
   name: configure
   after: fix_docs

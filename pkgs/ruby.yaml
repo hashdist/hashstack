@@ -7,6 +7,10 @@ sources:
   - url: http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.bz2
     key: tar.bz2:nfelajlqzx5ytkbrgz25jktgkqczadrh
 
+defaults:
+  # /bin/ruby contains hard-coded path
+  relocatable: false
+
 profile_links:
   - name: gem_binaries
     link: 'lib/ruby/gems/2.1.0/**/bin/*'

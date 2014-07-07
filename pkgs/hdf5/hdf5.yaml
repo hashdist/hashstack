@@ -6,6 +6,10 @@ sources:
 - url: http://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.11/src/hdf5-1.8.11.tar.bz2
   key: tar.bz2:l2q3vax4o42q5zriw6k243w6ax7ov4og
 
+defaults:
+  # /bin/h5pcc contains hard-coded path
+  relocatable: false
+
 build_stages:
 - name: set-cc-compiler
   after: prologue

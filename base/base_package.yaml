@@ -33,8 +33,7 @@ post_process:
     when: relocatable == True and platform == 'linux'
     after: [default]
     before: [check]
-    # workaround for now: delete pkg-config .pc files
-    hit: [remove-pkgconfig]
+    hit: [relative-pkgconfig]
 
   - name: check
     when: relocatable == True and platform == 'linux'
