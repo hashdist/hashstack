@@ -1,3 +1,5 @@
+# Note: do not inherit from base_package.yaml
+# Symlinking the launcher interferes with its operation
 
 sources:
   - url: https://github.com/hashdist/hdist-launcher.git
