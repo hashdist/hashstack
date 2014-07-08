@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [numpy, scipy, six]
+  run: [numpy, scipy, six]
+
+sources:
+ - url: https://pypi.python.org/packages/source/s/scikit-image/scikit-image-0.10.1.tar.gz
+   key: tar.gz:qoq27taw35276jzdp6ciiguvzd3fytqz
