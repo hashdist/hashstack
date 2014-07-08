@@ -7,6 +7,10 @@ sources:
 - url: http://www.netlib.org/scalapack/scalapack.tgz
   key: tar.gz:br2k5ltjb7s64tnxsjxutroqxnu44cpo
 
+defaults:
+  # lib/libscalapack.so contains hard-coded path
+  relocatable: false
+
 build_stages:
 - name: configure
   when compiler == 'gcc':

@@ -10,6 +10,10 @@ sources:
   - url: http://www.mpich.org/static/tarballs/3.0.3/mpich-3.0.3.tar.gz
     key: tar.gz:jj5yo7oe3e45wwngkuqqn35bud5kdfkr
 
+defaults:
+  # bin/mpicc contains hard-coded path
+  relocatable: false
+
 when_build_dependency:
   - {set: 'MPICC', value: "${ARTIFACT}/bin/mpicc"}
   - {set: 'MPICXX', value: "${ARTIFACT}/bin/mpic++"}
