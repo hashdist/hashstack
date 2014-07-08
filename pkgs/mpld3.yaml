@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [matplotlib, jinja2]
+  run: [matplotlib, jinja2]
+
+sources:
+ - url: https://pypi.python.org/packages/source/m/mpld3/mpld3-0.2.tar.gz
+   key: tar.gz:moep5rlkna4zdohuw7o3rn6iybwn3msu
