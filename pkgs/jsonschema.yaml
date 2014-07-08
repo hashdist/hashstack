@@ -1,0 +1,5 @@
+extends: [setuptools_package]
+
+sources:
+- key: tar.gz:u6o45y3wtv6posmdnwuebftkqpgs4m7d
+  url: https://pypi.python.org/packages/source/j/jsonschema/jsonschema-2.3.0.tar.gz
