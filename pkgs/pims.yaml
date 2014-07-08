@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+dependencies:
+  build: [numpy]
+  run: [numpy, six]
+
+sources:
+  - url: https://github.com/soft-matter/pims
+    key: git:b543a448c4175822b5a10f960d35b3d98394ad47
+

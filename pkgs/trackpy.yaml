@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+dependencies:
+  build: [numpy, scipy, matplotlib, pandas, yaml]
+  run: [numpy, scipy, matplotlib, pandas, yaml, pims]
+
+sources:
+  - url: https://github.com/soft-matter/trackpy
+    key: git:25beeb10c68f1a4fbcc3741d96c107a7e649ea19
+
