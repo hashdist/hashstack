@@ -7,6 +7,10 @@ sources:
 - url: http://github.com/sympy/csympy
   key: git:6af4e859ece7d58c71f3fa2cb702d9363b100d7d
 
+defaults:
+  # lib/python2.7/site-packages/csympy/lib/csympy_wrapper.so contains hard-coded path
+  relocatable: false
+
 build_stages:
 - name: configure
   extra: ['-D WITH_PYTHON:BOOL=ON',

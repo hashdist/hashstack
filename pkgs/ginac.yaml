@@ -7,6 +7,10 @@ sources:
 - url: git://www.ginac.de/ginac.git
   key: git:edfa67d26bac695b5ef9911f3cda3ff50232e35a
 
+defaults:
+  # lib/libginac.so.4.0.0 contains hard-coded path
+  relocatable: false
+
 build_stages:
 - name: configure
   extra: ['-D CLN_INCLUDE_DIR=$CLN_DIR/include',
