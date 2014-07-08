@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: [freetype, numpy, png]
+  run: [freetype, numpy, png]
+
+sources:
+- key: tar.gz:rfn4pqsjrshb7g4zsohruqg4q2z7cslu
+  url: http://effbot.org/downloads/Imaging-1.1.7.tar.gz
