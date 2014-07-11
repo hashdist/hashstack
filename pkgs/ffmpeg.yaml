@@ -1,0 +1,8 @@
+extends: [autotools_package]
+dependencies:
+  build: [openssl]
+  run: [openssl]
+
+sources:
+- key: tar.bz2:74molbgv3lfcfepvta4jzgikb5hmghdu
+  url: http://ffmpeg.org/releases/ffmpeg-2.2.4.tar.bz2

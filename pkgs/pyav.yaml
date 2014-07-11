@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [Cython]
+
+sources:
+  - url: https://github.com/mikeboers/PyAV.git
+    key: git:01d5dcb8f31d57eac36a41015c4209882cd03646
+
