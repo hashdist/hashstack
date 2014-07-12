@@ -1,10 +1,10 @@
 extends: [cmake_package]
 dependencies:
-  build: [mpi, parmetis, zoltan]
+  build: [mpi, parmetis, zoltan, simmetrix]
 
 sources:
-  - url: https://github.com/SCOREC/core.git
-    key: git:881e0079d6e9954d3927bb2b247214a1fbe3c824
+  - url: git@bitbucket.org:ibaned/scorec.git
+    key: git:ccd43aaab35fbc471f24f20860025985595a3b3a
 
 build_stages:
 
@@ -26,5 +26,8 @@ build_stages:
   '-DZOLTAN_LIBRARY=${ZOLTAN_DIR}/lib/libzoltan.a',
   '-DZOLTAN_INCLUDE_DIR=${ZOLTAN_DIR}/include',
   '-DBUILD_SHARED_LIBS=True',
+  '-DSIM_MPI=mpich',
+  '-DSIMMETRIX_LIB_DIR=${SIMMETRIX_LIB}',
+  '-DSIMMETRIX_INCLUDE_DIR=${SIMMETRIX_INCLUDE}'
   ]
 
