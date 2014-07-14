@@ -3,6 +3,9 @@ dependencies:
   build: [gnu-sed]
   run: [gnu-sed]
 
+defaults:
+  relocatable: false
+
 sources:
 - url: http://download.savannah.gnu.org/releases/quilt/quilt-0.63.tar.gz
   key: tar.gz:fbdhrarbvkeejrkpcarzy7f4l2eaggcz
