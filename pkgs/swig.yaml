@@ -6,6 +6,9 @@ sources:
 - url: http://downloads.sourceforge.net/swig/swig-2.0.11.tar.gz
   key: tar.gz:mn4ax4u7kojxvu4zuh3ixtftomgjb5sx
 
+defaults:
+  relocatable: false
+
 build_stages:
 - name: configure
   mode: override
