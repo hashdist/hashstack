@@ -14,3 +14,20 @@ defaults:
 profile_links:
   - name: gem_binaries
     link: 'lib/ruby/gems/2.1.0/**/bin/*'
+
+build_stages:
+  - name: test_modules
+    after: install
+    handler: bash
+    bash: |
+      echo "require 'digest'"
+      $ARTIFACT/bin/ruby -e "require 'digest'"
+      echo "    ok"
+
+      echo "require 'openssl'"
+      $ARTIFACT/bin/ruby -e "require 'openssl'"
+      echo "    ok"
+
+      echo "require 'yaml'"
+      $ARTIFACT/bin/ruby -e "require 'yaml'"
+      echo "    ok"
