@@ -5,6 +5,9 @@ dependencies:
   build: [mercurial, git, {{build_with}}]
   run: [mercurial, git, {{build_with}}]
 
+defaults:
+  relocatable: false
+
 sources:
 - url: http://golang.org/dl/go1.3.src.tar.gz
   key: tar.gz:5omd43c3fomdr5ecyvccwgwbqvxwcdzl
