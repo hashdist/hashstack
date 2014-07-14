@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-    build: [openssl]
+    build: [openssl, libidn, zlib]
 
 sources:
   - url: http://curl.haxx.se/download/curl-7.37.0.tar.gz
