@@ -71,15 +71,15 @@ def configure(ctx, stage_args):
 		if stage_args.get('set_env_flags', True):
 			CPPFLAGS = []
 			LDFLAGS = []
-			LD_LIBRARY_PATH = []
 			for dep_var in ctx.dependency_dir_vars:
 				CPPFLAGS.append('-I${%s_DIR}/include' % dep_var)
 				LDFLAGS.append('-L${%s_DIR}/lib' % dep_var)
 				LDFLAGS.append(rpath_flag(ctx, '${%s_DIR}/lib' % dep_var))
-				LD_LIBRARY_PATH.append('${%s_DIR}/lib' % dep_var)
 			env_lines.append('export CPPFLAGS="%s"' % ' '.join(CPPFLAGS))
 			env_lines.append('export LDFLAGS="%s"' % ' '.join(LDFLAGS))
-			env_lines.append('export LD_LIBRARY_PATH="%s"' % ':'.join(LD_LIBRARY_PATH))
+			# Tell configure about LDFLAGS for stage1 and stage2
+			conf_lines.append('--with-stage1-ldflags="%s"' % ' '.join(LDFLAGS))
+			conf_lines.append('--with-boot-ldflags="%s"' % ' '.join(LDFLAGS))
 
 	for i in range(len(conf_lines) - 1):
 		conf_lines[i] = conf_lines[i] + ' \\'
