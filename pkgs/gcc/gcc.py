@@ -40,8 +40,8 @@ def configure(ctx, stage_args):
 	conf_lines.append('--enable-threads=posix')
 	# just in case if locale is not complete
 	conf_lines.append('--enable-clocale=gnu')
-	conf_lines.append('--enable-checking=release')
 	# do only release tests
+	conf_lines.append('--enable-checking=release')
 	conf_lines.append('--enable-languages=fortran,c,c++')
 	#conf_lines.append('--enable-bootstrap')
 	#conf_lines.append('--with-local-prefix="${ARTIFACT}"')
@@ -66,6 +66,7 @@ def configure(ctx, stage_args):
 
 	# GCC has issues with finding the dependencies (LD_LIBRARY_PATH) in the stage2 build
 	if ctx.parameters['platform'] == 'linux':
+		# Build 64bit binaries only
 		conf_lines.append('--disable-multilib')
 		if stage_args.get('set_env_flags', True):
 			CPPFLAGS = []
