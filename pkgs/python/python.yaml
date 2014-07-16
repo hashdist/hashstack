@@ -77,9 +77,15 @@ when_build_dependency:
     value: '${ARTIFACT}/bin'
 
 profile_links:
-  - name: python_binaries
+  - when: not debug
+    name: python_binaries
     before: everything
     launcher: 'bin/*'
+
+  - when: debug
+    name: python_binaries
+    before: everything
+    copy: 'bin/*'
 
   - name: python_packages
     link: 'lib/python{{pyver}}/site-packages/*'
