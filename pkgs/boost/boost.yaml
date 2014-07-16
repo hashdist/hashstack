@@ -45,7 +45,7 @@ build_stages:
   when platform != 'Cygwin':
     bash: |
       echo "using mpi ;" > user-config.jam
-      ./bjam \
+      ./bjam -q \
              toolset={{toolset}} \
              address-model={{address_model}} \
              -j ${HASHDIST_CPU_COUNT} \
@@ -63,7 +63,7 @@ build_stages:
              -sZLIB_LIBPATH=${ZLIB_DIR}/lib
   when platform == 'Cygwin':
     bash: |
-      ./bjam \
+      ./bjam -q \
              toolset={{toolset}} \
              address-model={{address_model}} \
              -j ${HASHDIST_CPU_COUNT} \
