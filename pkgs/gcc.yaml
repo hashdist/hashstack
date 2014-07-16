@@ -10,17 +10,59 @@ sources:
 - key: tar.bz2:xgyepkl3vxu4dsezoc6i4ii76v5xxcmy
   url: http://ftpmirror.gnu.org/gcc/gcc-4.9.0/gcc-4.9.0.tar.bz2
 
-# users might need to do this on OSX mavericks
-#   xcode-select --install 
 build_stages:
+
+# see https://gcc.gnu.org/install/configure.html
   - name: configure
     mode: override
-    extra:
-      - --with-zlib=${ZLIB_DIR}
-      - --with-gmp=${GMP_DIR}
-      - --with-mpfr=${MPFR_DIR}
-      - --with-mpc=${MPC_DIR}
-      - --with-cloog=${CLOOG_DIR}
-      - --with-isl=${ISL_DIR}
-      - --enable-languages=fortran,c,c++
-      #- --disable-libada
+    when platform == 'linux':
+      extra:
+        - --with-zlib=${ZLIB_DIR}
+        - --with-gmp=${GMP_DIR}
+        - --with-mpfr=${MPFR_DIR}
+        - --with-mpc=${MPC_DIR}
+        - --with-cloog=${CLOOG_DIR}
+        - --with-isl=${ISL_DIR}
+        - --enable-languages=fortran,c,c++
+        #- --disable-libada
+        - --disable-multilib
+        # next three are needed for C++ compliance
+        - --enable-__cxa_atexit
+        - --enable-shared
+        - --enable-threads=posix
+        # just in case if locale is not complete
+        - --enable-clocale=gnu
+        - --enable-checking=release
+        - --with-local-prefix=${ARTIFACT}
+    # OSX 10.9 or newer will want to do 'xcode-select --install'
+    when platform == 'darwin':
+      extra:
+        - --with-zlib=${ZLIB_DIR}
+        - --with-gmp=${GMP_DIR}
+        - --with-mpfr=${MPFR_DIR}
+        - --with-mpc=${MPC_DIR}
+        - --with-cloog=${CLOOG_DIR}
+        - --with-isl=${ISL_DIR}
+        - --enable-languages=fortran,c,c++
+        #- --disable-libada
+        # next three are needed for C++ compliance
+        - --enable-__cxa_atexit
+        - --enable-shared
+        - --enable-threads=posix
+        # just in case if locale is not complete
+        - --enable-clocale=gnu
+        - --enable-checking=release
+
+  # the checks will continue to run and not stop if there are errors,
+  # this is here really for post build review.
+  - name: make_check
+    after: install
+    handler: bash
+    bash: |
+      echo "run gcc checks"
+      make -k check
+      echo "    ok"
+
+      echo "run test summary script"
+      ./contrib/test_summary
+      echo "    ok"
