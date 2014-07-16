@@ -57,8 +57,8 @@ def configure(ctx, stage_args):
         if ctx.parameters['platform'] == 'Darwin':
             libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.dylib'
         elif ctx.parameters['platform'] == 'Cygwin':
-            #libpython = '/usr/lib/libpython${PYVER}.dll.a'
-            libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.dll.a'
+            libpython = '/usr/lib/libpython${PYVER}.dll.a'
+            #libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.dll.a'
         else:
             libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.so'
         conf_lines.append('-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"')
