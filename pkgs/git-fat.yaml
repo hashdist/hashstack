@@ -1,0 +1,16 @@
+extends: [base_package]
+
+sources:
+- key: git:074e89199f880146c0402a8c24e1136bf2bf0414
+  url: https://github.com/jedbrown/git-fat
+
+build_stages:
+
+- name: make-install
+  handler: bash
+  bash: |
+    install -d ${ARTIFACT}/share/doc/git-fat
+    install -d ${ARTIFACT}/bin
+    install -m 755 git-fat ${ARTIFACT}/bin/git-fat
+    install -m 744 README.md ${ARTIFACT}/share/doc/git-fat/README.md
+    install -m 744 LICENSE ${ARTIFACT}/share/doc/git-fat/LICENSE
