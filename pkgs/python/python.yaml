@@ -15,6 +15,20 @@ build_stages:
     append: {LDFLAGS: "-Wl,-rpath=${ARTIFACT}/lib"}
     extra: ['--enable-shared']
 
+  - when: debug
+    name: configure
+    mode: override
+    extra: ['--with-pydebug', '--without-pymalloc']
+
+
+  - when: debug
+    name: make
+    after: configure
+    handler: bash
+    bash: |
+      make OPT=-g -j ${HASHDIST_CPU_COUNT}
+
+
 # Make sure extension modules were built correctly. This should be part of the
 # Python buildsystem, but unfortunately currently it will silently succeed even
 # if any of the modules below fail.
