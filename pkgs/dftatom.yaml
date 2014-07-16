@@ -7,6 +7,10 @@ sources:
 - url: http://github.com/certik/dftatom
   key: git:c622fd9ff681c92455bcafa2dc29d9171ccc8948
 
+defaults:
+  # lib/python2.7/site-packages/dftatom/lib/dftatom_wrapper.so contains hard-coded path
+  relocatable: false
+
 build_stages:
 - name: configure
   extra: ['-D WITH_PYTHON:BOOL=ON',
