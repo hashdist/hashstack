@@ -44,7 +44,7 @@ def configure(ctx, stage_args):
 	conf_lines.append('--enable-checking=release')
 	conf_lines.append('--enable-languages=fortran,c,c++')
 	#conf_lines.append('--enable-bootstrap')
-	#conf_lines.append('--with-local-prefix="${ARTIFACT}"')
+	conf_lines.append('--with-local-prefix="${ARTIFACT}"')
 	#conf_lines.append('--with-sysroot="${ARTIFACT}"')
 
 	env_lines = []
