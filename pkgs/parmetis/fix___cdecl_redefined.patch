@@ -1,0 +1,14 @@
+diff -Nru parmetis-4.0.3.orig/include/parmetis.h parmetis-4.0.3/include/parmetis.h
+--- parmetis-4.0.3.orig/include/parmetis.h	2014-05-09 12:17:19.605245600 +0200
++++ parmetis-4.0.3/include/parmetis.h	2014-05-09 12:18:44.806118800 +0200
+@@ -18,7 +18,9 @@
+ #include <metis.h>
+ 
+ #ifndef _MSC_VER
+-#define __cdecl
++#ifndef __cdecl
++  #define __cdecl
++#endif
+ #endif
+ 
+ #if IDXTYPEWIDTH == 32
