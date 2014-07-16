@@ -1,0 +1,9 @@
+#Tests gcc
+
+extends:
+ - file: linux.yaml
+
+packages:
+  gcc:
+    build_with: |
+      cloog, isl
