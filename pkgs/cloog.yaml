@@ -13,3 +13,9 @@ build_stages:
 sources:
 - key: tar.gz:ajiautw5csdv7fh6qtf63jbjaqs4wda4
   url: http://www.bastoul.net/cloog/pages/download/count.php3?url=./cloog-0.18.1.tar.gz
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
