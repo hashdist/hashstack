@@ -6,3 +6,7 @@ defaults:
 sources:
 - url: http://ftp.gnu.org/gnu/sed/sed-4.2.tar.bz2
   key: tar.bz2:5z3vly5laohh33woxx2e7vb22znjncij
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
