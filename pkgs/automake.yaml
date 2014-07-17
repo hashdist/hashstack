@@ -1,0 +1,11 @@
+extends: [autotools_package]
+
+#dependencies:
+#  build: [perl]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:pbduetkcatiwe7ast2obloa6crmdnl5c
+  url: http://ftp.heanet.ie/mirrors/gnu/automake/automake-1.14.tar.gz
