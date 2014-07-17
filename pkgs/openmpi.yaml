@@ -10,3 +10,13 @@ build_stages:
           '--enable-opal-multi-threads',
           '--with-threads=posix',
           '--disable-mpi-profile']
+
+when_build_dependency:
+- {set: 'MPICC', value: "${ARTIFACT}/bin/mpicc"}
+- {set: 'MPICXX', value: "${ARTIFACT}/bin/mpic++"}
+- {set: 'MPIF77', value: "${ARTIFACT}/bin/mpif77"}
+- {set: 'MPIF90', value: "${ARTIFACT}/bin/mpif90"}
+- {set: 'MPIEXEC', value: "${ARTIFACT}/bin/mpiexec"}
+
+- prepend_path: PATH
+  value: ${ARTIFACT}/bin
