@@ -1,0 +1,26 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [gmp, libunistring, pkg-config, libffi, ncurses, gc, libtool]
+  run: [libtool]
+
+defaults:
+  relocatable: false
+
+sources:
+#- key: tar.gz:wjfbcjcwoav7i6jzlinmbmby73fpzcrf
+#  url: http://ftp.heanet.ie/mirrors/gnu/guile/guile-2.0.9.tar.gz
+
+- key: tar.gz:4z4gze2di35c4ohenwgydjrcxmobnujq
+  url: http://ftp.heanet.ie/mirrors/gnu/guile/guile-2.0.11.tar.gz
+
+build_stages:
+- name: configure
+  extra: ['--disable-dependency-tracking']
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
+
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
