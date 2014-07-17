@@ -47,11 +47,11 @@ build_stages:
       -DCMAKE_CXX_COMPILER=$MPICXX
       -DCMAKE_EXE_LINKER_FLAGS={{DYNAMIC_EXE_LINKER_FLAGS}}"
     (
-    cd _build_metis && cmake ${BUILD}/metis $CMAKE_FLAGS
+    cd _build_metis && ${CMAKE} ${BUILD}/metis ${CMAKE_FLAGS}
     )
 
     (
-    cd _build_parmetis && cmake ${BUILD} $CMAKE_FLAGS \
+    cd _build_parmetis && ${CMAKE} ${BUILD} ${CMAKE_FLAGS} \
       -DMETIS_PATH=${BUILD}/metis
     )
 
