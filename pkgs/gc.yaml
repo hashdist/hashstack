@@ -1,0 +1,16 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [libatomic_ops]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:mmzavv6ekrqojjaoap22utdisn4d6inb
+  url: http://www.hboehm.info/gc/gc_source/gc-7.4.2.tar.gz
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
+
