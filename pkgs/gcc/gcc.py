@@ -68,6 +68,7 @@ def configure(ctx, stage_args):
 	if ctx.parameters['platform'] == 'linux':
 		# Build 64bit binaries only
 		conf_lines.append('--disable-multilib')
+		conf_lines.append('--libdir="${ARTIFACT}"/lib')
 		if stage_args.get('set_env_flags', True):
 			CPPFLAGS = []
 			LDFLAGS = []

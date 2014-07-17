@@ -13,7 +13,14 @@ sources:
 - key: tar.bz2:xgyepkl3vxu4dsezoc6i4ii76v5xxcmy
   url: http://ftpmirror.gnu.org/gcc/gcc-4.9.0/gcc-4.9.0.tar.bz2
 
-##WIP build_stages:
+build_stages:
+  - name: change_lib64_to_lib
+    when: platform == 'linux'
+    before: configure
+    handler: bash
+    bash: |
+        sed -i '/m64=/s/lib64/lib/' gcc/config/i386/t-linux64
+
 ##WIP   # the checks will continue to run and not stop if there are errors,
 ##WIP   # this is here really for post build review.
 ##WIP   - name: make_check
