@@ -27,10 +27,10 @@ build_stages:
     after: install
     handler: bash
     bash: |
-      echo | ${ARTIFACT}/gcc -v -x c -E -
-      echo | ${ARTIFACT}/gcc -v -x c++ -E -
-      ${ARTIFACT}/gcc -Wl,--verbose
-      ${ARTIFACT}/gfortran -Wl, --verbose
+      echo | ${ARTIFACT}/bin/gcc -v -x c -E -
+      echo | ${ARTIFACT}/bin/gcc -v -x c++ -E -
+      ${ARTIFACT}/bin/gcc -Wl,--verbose
+      ${ARTIFACT}/bin/gfortran -Wl, --verbose
 
 ##WIP       echo "run gcc checks"
 ##WIP       make -k check
