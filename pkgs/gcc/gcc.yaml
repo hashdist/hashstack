@@ -21,12 +21,17 @@ build_stages:
     bash: |
         sed -i '/m64=/s/lib64/lib/' gcc/config/i386/t-linux64
 
-##WIP   # the checks will continue to run and not stop if there are errors,
-##WIP   # this is here really for post build review.
-##WIP   - name: make_check
-##WIP     after: install
-##WIP     handler: bash
-##WIP     bash: |
+  # the checks will continue to run and not stop if there are errors,
+  # this is here really for post build review.
+  - name: make_check
+    after: install
+    handler: bash
+    bash: |
+      echo | ${ARTIFACT}/gcc -v -x c -E -
+      echo | ${ARTIFACT}/gcc -v -x c++ -E -
+      ${ARTIFACT}/gcc -Wl,--verbose
+      ${ARTIFACT}/gfortran -Wl, --verbose
+
 ##WIP       echo "run gcc checks"
 ##WIP       make -k check
 ##WIP       echo "    ok"
@@ -34,3 +39,4 @@ build_stages:
 ##WIP       echo "run test summary script"
 ##WIP       ./contrib/test_summary
 ##WIP       echo "    ok"
+##WIP
