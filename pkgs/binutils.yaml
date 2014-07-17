@@ -1,0 +1,11 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [zlib]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.bz2:4xumlpuwmtt7p6lobuezdeiqvnnnlf3z
+  url: http://ftp.heanet.ie/mirrors/gnu/binutils/binutils-2.24.tar.bz2
