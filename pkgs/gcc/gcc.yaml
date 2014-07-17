@@ -4,6 +4,9 @@ extends: [autotools_package]
 dependencies:
   build: [zlib, mpfr, mpc, gmp, {{build_with}}]
 
+defaults:
+  relocatable: false
+
 sources:
 #- key: tar.bz2:nkhe6enrqx2p4lwz276akpua7dd6op4a
 #  url: http://ftpmirror.gnu.org/gcc/gcc-4.8.3/gcc-4.8.3.tar.bz2
