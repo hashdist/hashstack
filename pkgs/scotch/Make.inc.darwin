@@ -1,0 +1,21 @@
+EXE		=
+LIB		= .a
+OBJ		= .o
+
+MAKE		= make
+AR		= ar
+ARFLAGS		= -ruv
+CAT		= cat
+CCS		= $(MPICC)
+CCP		= $(MPICC)
+CCD		= $(MPICC)
+CFLAGS		= -fPIC -O3 -Drestrict=__restrict -DCOMMON_PTHREAD -DCOMMON_RANDOM_FIXED_SEED -DCOMMON_TIMING_OLD -DCOMMON_PTHREAD_BARRIER -DSCOTCH_RENAME
+CLIBFLAGS	=
+LDFLAGS		= -lm
+CP		= cp
+LEX		= flex -Pscotchyy -olex.yy.c
+LN		= ln
+MKDIR		= mkdir
+MV		= mv
+RANLIB		= ranlib
+YACC		= bison -pscotchyy -y -b y
