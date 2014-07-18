@@ -40,3 +40,7 @@ build_stages:
 ##WIP       ./contrib/test_summary
 ##WIP       echo "    ok"
 ##WIP
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
