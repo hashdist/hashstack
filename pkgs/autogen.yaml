@@ -11,3 +11,7 @@ sources:
   url: http://ftp.heanet.ie/mirrors/gnu/autogen/rel5.17.4/autogen-5.17.4.tar.gz
 #- key: tar.gz:opifu2eraxvzxc7fj4zetdez3w6tmb3w
 #  url: http://ftp.heanet.ie/mirrors/gnu/autogen/rel5.18.3/autogen-5.18.3.tar.gz
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
