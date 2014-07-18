@@ -1,0 +1,22 @@
+extends: [autotools_package]
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build: [bison, flex, pcc-libs]
+
+sources:
+- key: tar.gz:labnxosg23vd7g5nvjk3sbckaqllwqia
+  url: http://pcc.ludd.ltu.se/ftp/pub/pcc-releases/pcc-1.0.0.tgz
+
+build_stages:
+- name: configure
+  after: prologue
+  mode: replace
+  when: platform == 'linux'
+  handler: bash
+  bash: |
+    export CPPFLAGS='-I${PCC_LIBS_DIR}/include}'
+    export LDFLAGS='-L${PCC_LIBS_DIR}/lib}'
+    ./configure --prefix=${ARTIFACT}
