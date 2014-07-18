@@ -20,3 +20,7 @@ build_stages:
     export CPPFLAGS='-I${PCC_LIBS_DIR}/include}'
     export LDFLAGS='-L${PCC_LIBS_DIR}/lib}'
     ./configure --prefix=${ARTIFACT}
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
