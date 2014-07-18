@@ -11,6 +11,14 @@ sources:
   url: http://ftp.heanet.ie/mirrors/gnu/glibc/glibc-2.19.tar.bz2
 
 build_stages:
+ - name: prologue
+   mode: replace
+   when: platform != 'linux'
+   handler: bash
+   bash: |
+     echo "Only works on Linux"
+     exit 1
+
  - name: configure
    after: prologue
    mode: replace
