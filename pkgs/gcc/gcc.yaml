@@ -2,7 +2,7 @@ extends: [autotools_package]
 
 # see https://gcc.gnu.org/install/prerequisites.html
 dependencies:
-  build: [zlib, mpfr, mpc, gmp, {{build_with}}]
+  build: [zlib, mpfr, mpc, gmp, isl, cloog, {{build_with}}]
 
 defaults:
   relocatable: false

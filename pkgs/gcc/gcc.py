@@ -34,12 +34,6 @@ def configure(ctx, stage_args):
 	# see https://gcc.gnu.org/install/configure.html
 	# Some of the following could be parameterised
 
-	# next three are needed for C++ compliance
-	conf_lines.append('--enable-__cxa_atexit')
-	conf_lines.append('--enable-shared')
-	conf_lines.append('--enable-threads=posix')
-	# just in case if locale is not complete
-	conf_lines.append('--enable-clocale=gnu')
 	# do only release tests
 	conf_lines.append('--enable-checking=release')
 	conf_lines.append('--enable-languages=fortran,c,c++')
@@ -66,6 +60,12 @@ def configure(ctx, stage_args):
 
 	# GCC has issues with finding the dependencies (LD_LIBRARY_PATH) in the stage2 build
 	if ctx.parameters['platform'] == 'linux':
+		# just in case if locale is not complete
+		conf_lines.append('--enable-clocale=gnu')
+		# next three are needed for C++ compliance
+		conf_lines.append('--enable-__cxa_atexit')
+		conf_lines.append('--enable-shared')
+		conf_lines.append('--enable-threads=posix')
 		# Build 64bit binaries only
 		conf_lines.append('--disable-multilib')
 		conf_lines.append('--libdir="${ARTIFACT}"/lib')
