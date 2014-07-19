@@ -1,5 +1,5 @@
 extends: [cmake_package]
 
 sources:
-- url: http://bitbucket.org/eigen/eigen/get/3.2.0.tar.bz2
-  key: tar.bz2:aepxrfqnsojcp6jhmfz5brgmabj3xhqk
+- key: tar.bz2:m3tpf3phruhpmufoswvfod2urqevnefq
+  url: http://bitbucket.org/eigen/eigen/get/3.2.1.tar.bz2
