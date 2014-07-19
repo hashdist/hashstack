@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [gmp, libunistring, pkg-config, libffi, ncurses, gc, libtool]
+  build: [gmp, libunistring, pkg-config, libffi, readline, gc, libtool]
   run: [libtool]
 
 defaults:
