@@ -6,6 +6,11 @@ sources:
 - key: tar.gz:rmkn3envfbrobg4onkldkb5xjpbfqb4h
   url: http://download.qt-project.org/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.tar.gz
 
+defaults:
+  # bin/qmake contains hard-coded path
+  relocatable: false
+
+
 #on the mac we need to pass the sdk and arch down
 build_stages:
 - name: configure
