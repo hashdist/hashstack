@@ -4,7 +4,7 @@ dependencies:
 
 sources:
 - key: tar.gz:rmkn3envfbrobg4onkldkb5xjpbfqb4h
-  url: http://download.qt-project.org/official_releases/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.tar.gz
+  url: http://download.qt-project.org/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.tar.gz
 
 #on the mac we need to pass the sdk and arch down
 build_stages:
