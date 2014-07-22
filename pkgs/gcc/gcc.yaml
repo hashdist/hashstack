@@ -8,10 +8,8 @@ defaults:
   relocatable: false
 
 sources:
-#- key: tar.bz2:nkhe6enrqx2p4lwz276akpua7dd6op4a
-#  url: http://ftpmirror.gnu.org/gcc/gcc-4.8.3/gcc-4.8.3.tar.bz2
-- key: tar.bz2:xgyepkl3vxu4dsezoc6i4ii76v5xxcmy
-  url: http://ftpmirror.gnu.org/gcc/gcc-4.9.0/gcc-4.9.0.tar.bz2
+- key: tar.bz2:2m2hqgqsjlng6ohghnkf4kr3rqqygbev
+  url: http://ftpmirror.gnu.org/gcc/gcc-4.9.1/gcc-4.9.1.tar.bz2
 
 build_stages:
   - name: change_lib64_to_lib
