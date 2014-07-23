@@ -9,8 +9,8 @@ dependencies:
     - ipython
 
 sources:
-  - url: https://github.com/ellisonbg/leaftletwidget
-    key: git:b03ddea2842b6939810b82ee93aa13e28d458456
+  - url: https://github.com/erdc-cm/leafletwidget
+    key: git:6aede6c2efd0f843d93335998a2a5d8aae355269
 
 
 # WARNING: This installs into user's .ipython directory
