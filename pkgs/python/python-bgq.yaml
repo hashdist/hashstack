@@ -1,0 +1,86 @@
+when: machine == 'IBM_BGQ'
+
+extends: [autotools_package]
+
+sources:
+ - url: http://python.org/ftp/python/2.7.5/Python-2.7.5.tgz
+   key: tar.gz:rynv7kd3sgbvv6zxnkoa2mm5ih7mub77
+
+dependencies:
+  build: []
+  run: []
+
+build_stages:
+  - name: patch_bgq
+    files: [Python-2.7.5.XL.diff]
+    handler: bash
+    before: configure
+    bash: |
+      patch -p0 < _hashdist/Python-2.7.5.XL.diff
+
+  - name: configure
+    mode: override
+    append: {LDFLAGS: "-R${ARTIFACT}/lib"}
+    extra: ['--enable-shared', '--with-gcc=/soft/compilers/ibmcmp-feb2014/vac/bg/12.1/bin/bgxlc', '--target=powerpc64-bgq-linux']
+
+# Make sure extension modules were built correctly. This should be part of the
+# Python buildsystem, but unfortunately currently it will silently succeed even
+# if any of the modules below fail.
+  - name: test_modules
+    after: install
+    handler: bash
+    bash: |
+      echo "import math"
+      $ARTIFACT/bin/hostpython -c "import math"
+      echo "    ok"
+
+      # Test bzip2:
+      echo "import bz2"
+      $ARTIFACT/bin/hostpython -c "import bz2"
+      echo "    ok"
+
+      # Make sure sufficient crypto support is available in the built python.
+      echo "import hashlib"
+      $ARTIFACT/bin/hostpython -c "import hashlib"
+      echo "    ok"
+
+      # Make sure SSL works
+      echo "import _ssl"
+      $ARTIFACT/bin/hostpython -c "import _ssl"
+      echo "    ok"
+
+      echo "import _hashlib"
+      $ARTIFACT/bin/hostpython -c "import _hashlib"
+      echo "    ok"
+
+      # Make sure HTTPS works
+      echo "Test https support in httplib"
+      $ARTIFACT/bin/hostpython -c "import httplib; assert hasattr(httplib, 'HTTPS')"
+      echo "    ok"
+
+      # Test sqlite3
+      echo "import _sqlite3"
+      $ARTIFACT/bin/hostpython -c "import _sqlite3"
+      echo "    ok"
+
+
+when_build_dependency:
+  - set: PYTHON
+    value: ${ARTIFACT}/bin/hostpython
+  - prepend_path: PATH
+    value: '${ARTIFACT}/bin'
+
+profile_links:
+  - name: python_binaries
+    before: everything
+    launcher: 'bin/*'
+
+  - name: python_packages
+    link: 'lib/python{{pyver}}/site-packages/*'
+    dirs: true
+
+  - name: python_exclude
+    after: python_packages
+    before: everything
+
+    exclude: 'lib/python{{pyver}}/site-packages/**/*'

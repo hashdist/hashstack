@@ -1,0 +1,7 @@
+#PBS -o out.log
+#PBS -n 4
+#PBS -t 00:10:00
+
+date
+runjob --block $COBALT_PARTNAME --np 16 --envs LD_LIBRARY_PATH=/home/aron/hashstack/proteus.bgq.gnu/lib64 : /home/aron/hashstack/proteus.bgq.gnu/bin/python -c "print 'hello'"
+date
