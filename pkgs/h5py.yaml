@@ -1,4 +1,4 @@
-extends: [setuptools_package]
+extends: [distutils_package]
 
 dependencies:
   build: [hdf5, mpi, numpy]
