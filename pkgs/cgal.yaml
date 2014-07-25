@@ -6,6 +6,10 @@ sources:
 - url: https://gforge.inria.fr/frs/download.php/32360/CGAL-4.2.tar.bz2
   key: tar.bz2:67wy5ys57vr4ba36wltoptr3cbhflpad
 
+defaults:
+  # lib/CGAL/CGALConfig.cmake contains hard-coded path
+  relocatable: false
+
 build_stages:
 - name: configure
   extra: ['-D BUILD_SHARED_LIBS:BOOL=ON',

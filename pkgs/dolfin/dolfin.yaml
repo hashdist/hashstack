@@ -48,6 +48,10 @@ sources:
 - url: https://bitbucket.org/fenics-project/dolfin.git
   key: git:e172349cbe9221a98e08e484de13fae2ea9fe82f
 
+defaults:
+  # share/dolfin/DOLFINConfig.cmake contains hard-coded path
+  relocatable: false
+
 build_stages: 
 - name: set_python_version
   after: setup_builddir
