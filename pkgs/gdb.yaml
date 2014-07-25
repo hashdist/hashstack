@@ -6,3 +6,14 @@ dependencies:
 sources:
 - key: tar.bz2:bw6veycan4nqy4h46at4msefe75n3ygn
   url: http://ftp.gnu.org/gnu/gdb/gdb-7.7.1.tar.bz2
+
+build_stages:
+  - name: fail_on_osx
+    before: prologue
+    mode: replace
+    when: platform == 'Darwin'
+    handler: bash
+    bash: |
+      echo "Does not work on OSX (well), unless users sign the binary, so not building on OSX"
+      echo "See http://wiki.lazarus.freepascal.org/GDB_on_OS_X_Mavericks_and_Xcode_5"
+      exit 1
