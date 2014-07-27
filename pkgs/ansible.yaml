@@ -5,5 +5,5 @@ dependencies:
   run: [paramiko, jinja2, yaml]
 
 sources:
-- key: tar.gz:xopvcrp7auptrmgvgo4g4p3gdlyyandj
-  url: https://pypi.python.org/packages/source/a/ansible/ansible-1.6.6.tar.gz
+- key: tar.gz:hub4iidtys3jitzd3qdocuerf5hra3lf
+  url: https://pypi.python.org/packages/source/a/ansible/ansible-1.6.10.tar.gz
