@@ -6,6 +6,10 @@ sources:
 - url: http://www.grycap.upv.es/slepc/download/download.php?filename=slepc-3.4.3.tar.gz
   key: tar.gz:ae4lzzujrgqt7hyjqwkdg3cfch6a7vfb
 
+defaults:
+  # include/slepcconf.h contains hard-coded path
+  relocatable: false
+
 build_stages:
 - name: pre-configure
   after: prologue
