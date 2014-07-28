@@ -8,6 +8,10 @@ sources:
 - url: https://github.com/Kitware/ParaView.git
   key: git:e90304c0053a68ab316790748e097d810cb17ed1
 
+defaults:
+  # lib/paraview-4.1/libvtkRenderingVolume-pv4.1.so.1 contains hard-coded path
+  relocatable: false
+
 build_stages:
 - name: patch
   before: configure
