@@ -1,16 +1,13 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [gmp, libunistring, pkg-config, libffi, readline, gc, libtool]
+  build: [gmp, libunistring, pkg-config, libffi, readline, gc, libtool, {{build_with}}]
   run: [libtool]
 
 defaults:
   relocatable: false
 
 sources:
-#- key: tar.gz:wjfbcjcwoav7i6jzlinmbmby73fpzcrf
-#  url: http://ftp.heanet.ie/mirrors/gnu/guile/guile-2.0.9.tar.gz
-
 - key: tar.gz:4z4gze2di35c4ohenwgydjrcxmobnujq
   url: http://ftp.heanet.ie/mirrors/gnu/guile/guile-2.0.11.tar.gz
 
@@ -23,7 +20,6 @@ build_stages:
 - name: configure
   when: platform == 'Darwin'
   extra: ['--disable-dependency-tracking', '--build=x86_64-apple-darwin10']
-
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
