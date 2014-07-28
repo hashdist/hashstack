@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [ply]
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/p/pycparser/pycparser-2.10.tar.gz
+   key: tar.gz:sv6zrntbyc3ewwakw34uwes6bg3hcqku
