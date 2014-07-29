@@ -1,6 +1,6 @@
 extends: [cmake_package]
 dependencies:
-  build: [boost, png, qt, zlib, gdal, hdf5,
+  build: [boost, png, qt, zlib, bzip2, gdal, hdf5,
           mpi, netcdf4, netcdf4cpp, freetype,
           python, numpy, matplotlib, libxml2, {{build_with}}]
 
