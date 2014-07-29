@@ -2,7 +2,7 @@ extends: [cmake_package]
 dependencies:
   build: [boost, png, qt, zlib, gdal, hdf5,
           mpi, netcdf4, netcdf4cpp, freetype,
-          python, numpy, matplotlib, libxml2, mesa]
+          python, numpy, matplotlib, libxml2, {{build_with}}]
 
 sources:
 - url: https://github.com/Kitware/ParaView.git
