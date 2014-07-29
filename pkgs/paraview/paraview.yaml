@@ -44,8 +44,8 @@ build_stages:
 - name: configure
   mode: override
   extra: [
-          '-DCMAKE_C_COMPILER:FILEPATH={{HOST_MPICC}}',
-          '-DCMAKE_CXX_COMPILER:FILEPATH={{HOST_MPICXX}}',
+          '-DCMAKE_C_COMPILER:FILEPATH=${MPICC}',
+          '-DCMAKE_CXX_COMPILER:FILEPATH=${MPICXX}',
           '-DBUILD_SHARED_LIBS:BOOL=ON',
           '-DBUILD_TESTING:BOOL=OFF',
           '-DPARAVIEW_BUILD_WEB_DOCUMENTATION:BOOL=OFF',
