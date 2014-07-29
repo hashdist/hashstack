@@ -1,0 +1,112 @@
+extends: [cmake_package]
+dependencies:
+  build: [boost, png, qt, zlib, gdal, hdf5,
+          mpi, netcdf4, netcdf4cpp, freetype,
+          python, numpy, matplotlib, libxml2, {{build_with}}]
+
+sources:
+- url: https://github.com/Kitware/ParaView.git
+  key: git:e90304c0053a68ab316790748e097d810cb17ed1
+
+defaults:
+  # lib/paraview-4.1/libvtkRenderingVolume-pv4.1.so.1 contains hard-coded path
+  relocatable: false
+
+build_stages:
+- name: patch
+  before: configure
+  files: [findnetcdf.patch]
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/findnetcdf.patch
+
+- name: patch2
+  before: configure
+  files: [visitbridge.patch]
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/visitbridge.patch
+
+- name: patch3
+  before: configure
+  files: [installCMakeFiles.patch]
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/installCMakeFiles.patch
+
+- name: patch4
+  before: configure
+  files: [installGenerateFiles.patch]
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/installGenerateFiles.patch
+
+- name: configure
+  mode: override
+  extra: [
+          '-DCMAKE_C_COMPILER:FILEPATH=${MPICC}',
+          '-DCMAKE_CXX_COMPILER:FILEPATH=${MPICXX}',
+          '-DBUILD_SHARED_LIBS:BOOL=ON',
+          '-DBUILD_TESTING:BOOL=OFF',
+          '-DPARAVIEW_BUILD_WEB_DOCUMENTATION:BOOL=OFF',
+          '-DPARAVIEW_ENABLE_CATALYST:BOOL=OFF',
+          '-DPARAVIEW_BUILD_PLUGIN_CoProcessingScriptGenerator:BOOL=ON',
+          '-DPARAVIEW_BUILD_PLUGIN_EyeDomeLighting:BOOL=ON',
+          '-DPARAVIEW_BUILD_PLUGIN_MantaView:BOOL=OFF',
+          '-DPARAVIEW_BUILD_QT_GUI:BOOL=ON',
+          '-DPARAVIEW_ENABLE_FFMPEG:BOOL=OFF',
+          '-DPARAVIEW_ENABLE_PYTHON:BOOL=ON',
+          '-DPARAVIEW_USE_MPI:BOOL=ON',
+          '-DHDF5_ENABLE_PARALLEL:BOOL=ON',
+          '-DVTK_XDMF_USE_MPI:BOOL=ON',
+          '-DPARAVIEW_USE_VISITBRIDGE:BOOL=ON',
+          '-DVTK_USE_SYSTEM_ZLIB:BOOL=ON',
+          '-DVTK_USE_SYSTEM_PNG:BOOL=ON',
+          '-DVTK_USE_SYSTEM_FREETYPE:BOOL=ON',
+          '-DVTK_USE_SYSTEM_LIBXML2:BOOL=OFF', #this seems broken in vtk
+          '-DVTK_USE_SYSTEM_HDF5:BOOL=ON',
+          '-DVTK_USE_SYSTEM_NETCDF:BOOL=ON',
+
+          #Setup the hashdist built dependencies
+          '-DZLIB_INCLUDE_DIR:PATH="${ZLIB_DIR}/include"',
+          '-DPNG_INCLUDE_DIR:PATH="${PNG_DIR}/include"',
+          '-DFREETYPE_INCLUDE_DIR:PATH="${FREETYPE_DIR}/include"',
+          '-DLIBXML2_INCLUDE_DIR:PATH="${LIBXML2_DIR}/include"',
+
+          #manualy setup the include and lib hints for netcdfcpp so we
+          #find the c++ bindings correctly, this overrides implementation
+          #detail variables to work properly
+          '-DNETCDF_USE_DEFAULT_PATHS=TRUE',
+          '-DNETCDF_DIR="${NETCDF4_DIR}"',
+          '-DNETCDF_CXX_ROOT="${NETCDF4CPP_DIR}"',
+          #Disable the SciberQuestPlugin support for cuda. If we are building on
+          #a machine with cuda installed, but needs to manually set the proper
+          #backend compiler (aka every linux and mac machine) this fails
+          '-DSQTK_CUDA:BOOL=OFF',
+
+          #We want geovis enabled to provide the gdal reader
+          '-DModule_vtkGeovisCore:BOOL=ON',
+          '-DModule_vtkIOGDAL:BOOL=ON',
+          '-DModule_vtkViewsInfovis:BOOL=ON',
+
+          #We need to specify external plugins so that we can let ParaView properly
+          #install the plugins. So we sneakily force a variable that is an
+          #implementation detail of ParaView branding
+          '-DBPC_OPTIONAL_PLUGINS:INTERNAL={{optional_plugins}}',
+
+          #Disable webkit as generally webkit won't build even if requested with
+          #qt everywhere.
+          '-DPQWIDGETS_DISABLE_QTWEBKIT:BOOL=ON',
+
+          #Mac's don't support OBJC Garbage Collector nowadays, while
+          #this has been fixed on VTK master it hasn't made it into paraview
+          #so lets remove the flags manually for now
+          '-DVTK_REQUIRED_OBJCXX_FLAGS:STRING=""',
+
+          #to properly setup ParaView like a linux application on the mac,
+          #instead of building a bundle, we need to enable this flag
+          '-DPARAVIEW_DO_UNIX_STYLE_INSTALLS:BOOL=ON',
+
+          #tell ParaView to install developer files
+          '-DPARAVIEW_INSTALL_DEVELOPMENT_FILES:BOOL=ON'
+          ]

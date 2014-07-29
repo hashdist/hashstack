@@ -1,0 +1,23 @@
+--- a/Utilities/VisItBridge/databases/CMakeLists.txt
++++ b/Utilities/VisItBridge/databases/CMakeLists.txt
+@@ -192,11 +192,16 @@ else(VISIT_PARALLEL)
+           visit_vtk vtkIOImage vtkRenderingOpenGL)
+ endif(VISIT_PARALLEL)
+
+-target_link_libraries(vtkIOVisItBridge LINK_PRIVATE vtkNetCDF)
++#To properly use thirdparty vtk libraries you shouldn't explicitly link to
++#the target itself. That won't work when the target is external, because in
++#that use case the target has no import libraries. Instead the best way to
++#use third party libraries is to use the global variable <module>_LIBRARIES.
++vtk_module_load(vtkhdf5)
++vtk_module_load(vtknetcdf)
+
+-if(PARAVIEW_HDF5_LIBRARIES)
+-  target_link_libraries(vtkIOVisItBridge LINK_PRIVATE ${PARAVIEW_HDF5_LIBRARIES})
+-endif(PARAVIEW_HDF5_LIBRARIES)
++target_link_libraries(vtkIOVisItBridge LINK_PRIVATE ${vtknetcdf_LIBRARIES} vtksys)
++
++target_link_libraries(vtkIOVisItBridge LINK_PRIVATE ${vtkhdf5_LIBRARIES})
+
+ if(HAVE_LIBSILO AND VISIT_BUILD_READER_Silo)
+   target_link_libraries(vtkIOVisItBridge LINK_PRIVATE ${SILO_LIBRARIES})
