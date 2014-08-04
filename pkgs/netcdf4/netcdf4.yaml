@@ -22,3 +22,16 @@ build_stages:
   before: make
   bash: |
     patch -p1 < _hashdist/fix_genlib.patch
+
+# HDF5 1.8.13 removes symbols related to MPI POSIX VFD, leading to
+# errors when linking hdf5 and netcdf4 such as "undefined reference to
+# `_H5Pset_fapl_mpiposix`". This patch fixes those errors, and has been
+# added upstream. It should be unnecessary once NetCDF releases a new
+# stable version.
+# https://github.com/Unidata/netcdf-c/commit/435d8a03ed28bb5ad63aff12cbc6ab91531b6bc8.diff
+- files: [hdf5-1.8.13_fix.patch]
+  name: hdf5-1.8.13_fix
+  handler: bash
+  before: make
+  bash: |
+    patch -p1 < _hashdist/hdf5-1.8.13_fix.patch
