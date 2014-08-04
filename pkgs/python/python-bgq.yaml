@@ -73,7 +73,7 @@ when_build_dependency:
 profile_links:
   - name: python_binaries
     before: everything
-    launcher: 'bin/*'
+    copy: 'bin/*'
 
   - name: python_packages
     link: 'lib/python{{pyver}}/site-packages/*'

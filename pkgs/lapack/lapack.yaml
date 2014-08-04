@@ -14,15 +14,32 @@ sources:
   key: tar.gz:mctf3kxrn3brka2gowkcmgfcemcsd2t2
 
 build_stages:
+- when: machine=='IBM_BGQ'
+  name: patch_xerbla
+  files: [lapack_xlf.patch]
+  handler: bash
+  before: configure
+  bash: |
+    patch -p1 <_hashdist/lapack_xlf.patch
+
 - name: configure
   when compiler == 'gcc':
       extra: ['-D CMAKE_Fortran_FLAGS_RELEASE:STRING="-O3 -fPIC -march=native -ffast-math -funroll-loops"',
               '-D BUILD_TESTING:BOOL=OFF',
               '-D BUILD_SHARED_LIBS:BOOL=ON',
               ]
-  when compiler != 'gcc':
+  when compiler != 'gcc' and machine != 'IBM_BGQ':
       extra: ['-D BUILD_TESTING:BOOL=OFF',
               '-D BUILD_SHARED_LIBS:BOOL=ON',
+              ]
+
+  when machine == 'IBM_BGQ':
+      extra: ['-D CMAKE_Fortran_COMPILER={{FC}}',
+              '-D CMAKE_Fortran_FLAGS_RELEASE:STRING="-O3 -qfixed -qnosave"',
+              '-D BLAS_LIBRARIES="-L/soft/libraries/essl/5.1.1-1/lib64 -R/soft/libraries/essl/5.1.1-1/lib64 -lesslbg"',
+              '-D BUILD_TESTING:BOOL=OFF',
+              '-D BUILD_SHARED_LIBS:BOOL=ON',
+              '-D LIB_SUFFIX=64'
               ]
   build_in_source: true
 

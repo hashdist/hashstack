@@ -1,0 +1,13 @@
+diff --unified --unified -r lapack/SRC/xerbla_array.f lapack-bgq/SRC/xerbla_array.f
+--- lapack/SRC/xerbla_array.f	2011-11-11 19:34:11.000000000 +0000
++++ lapack-bgq/SRC/xerbla_array.f	2014-08-04 17:42:58.214635298 +0000
+@@ -118,7 +118,7 @@
+       EXTERNAL XERBLA
+ *     ..
+ *     .. Executable Statements ..
+-      SRNAME = ''
++      SRNAME = ' '
+       DO I = 1, MIN( SRNAME_LEN, LEN( SRNAME ) )
+          SRNAME( I:I ) = SRNAME_ARRAY( I )
+       END DO
+Only in lapack-bgq/SRC: xerbla_array.f~
