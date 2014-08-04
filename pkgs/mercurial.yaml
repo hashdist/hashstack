@@ -1,8 +1,8 @@
 extends: [distutils_package]
 
 sources:
-  - url: http://mercurial.selenic.com/release/mercurial-2.9.1.tar.gz
-    key: tar.gz:uih3cq2ozpnqodxzkxd4few3t2zgo274
+- key: tar.gz:6ho4e6nmf5u7aextrj5e6htv3shsvdhz
+  url: http://mercurial.selenic.com/release/mercurial-3.1.tar.gz
 
 when_build_dependency:
   - prepend_path: PATH
