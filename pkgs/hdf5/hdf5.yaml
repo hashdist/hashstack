@@ -18,15 +18,6 @@ build_stages:
   bash: |
     export CC=${MPICC}
 
-- when: platform == 'Cygwin'
-  files: [fix_get_console.patch]
-  name: fix_get_console
-  handler: bash
-  before: configure
-  bash: |
-    patch -p2 < _hashdist/fix_get_console.patch
-    autoconf
-
 - when: machine == 'CrayXE6'
   name: make_exe_builds_static
   handler: bash
