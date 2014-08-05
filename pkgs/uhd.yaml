@@ -1,0 +1,20 @@
+extends: [cmake_package]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: git:9eb403f4299ea036a8fff2dc22209d3ae06374ed
+  url: https://github.com/EttusResearch/uhd.git
+
+build_stages:
+
+- name: configure
+  mode: override
+  builddir: ../host
+
+- name: download_firmware
+  after: install
+  handler: bash
+  bash: |
+    ${ARTIFACT}/lib/uhd/utils/uhd_images_downloader.py
