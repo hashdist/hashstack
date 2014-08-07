@@ -10,7 +10,7 @@ dependencies:
 
 sources:
   - url: https://github.com/erdc-cm/leafletwidget
-    key: git:6aede6c2efd0f843d93335998a2a5d8aae355269
+    key: git:f9147c5b13a69b80bc28d3574f7ba6b2c576aed2
 
 
 # WARNING: This installs into user's .ipython directory
