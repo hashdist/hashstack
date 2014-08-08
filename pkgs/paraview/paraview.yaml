@@ -5,35 +5,14 @@ dependencies:
           python, numpy, matplotlib, libxml2, {{build_with}}]
 
 sources:
-- url: https://github.com/Kitware/ParaView.git
-  key: git:e90304c0053a68ab316790748e097d810cb17ed1
+- key: git:08cb9fc8d27b24f1d581a98bccd01b8c8b834a19
+  url: https://github.com/Kitware/ParaView.git
 
 defaults:
   # lib/paraview-4.1/libvtkRenderingVolume-pv4.1.so.1 contains hard-coded path
   relocatable: false
 
 build_stages:
-- name: patch
-  before: configure
-  files: [findnetcdf.patch]
-  handler: bash
-  bash: |
-    patch -up1 < _hashdist/findnetcdf.patch
-
-- name: patch2
-  before: configure
-  files: [visitbridge.patch]
-  handler: bash
-  bash: |
-    patch -up1 < _hashdist/visitbridge.patch
-
-- name: patch3
-  before: configure
-  files: [installCMakeFiles.patch]
-  handler: bash
-  bash: |
-    patch -up1 < _hashdist/installCMakeFiles.patch
-
 - name: patch4
   before: configure
   files: [installGenerateFiles.patch]
