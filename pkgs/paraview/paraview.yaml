@@ -13,13 +13,6 @@ defaults:
   relocatable: false
 
 build_stages:
-- name: patch
-  before: configure
-  files: [findnetcdf.patch]
-  handler: bash
-  bash: |
-    patch -up1 < _hashdist/findnetcdf.patch
-
 - name: patch2
   before: configure
   files: [visitbridge.patch]
