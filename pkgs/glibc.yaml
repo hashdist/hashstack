@@ -1,0 +1,29 @@
+extends: [autotools_package]
+
+dependencies:
+   build: [{{build_with}}]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.bz2:fyut64kbq4cemmzgjtm44amdy4gdvkla
+  url: http://ftp.heanet.ie/mirrors/gnu/glibc/glibc-2.19.tar.bz2
+
+build_stages:
+ - name: prologue
+   mode: replace
+   when: platform != 'linux'
+   handler: bash
+   bash: |
+     echo "Only works on Linux"
+     exit 1
+
+ - name: configure
+   after: prologue
+   mode: replace
+   handler: bash
+   bash: |
+     mkdir build
+     cd build
+     ../configure --prefix=${ARTIFACT}

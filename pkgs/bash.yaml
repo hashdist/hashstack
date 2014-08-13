@@ -1,11 +1,14 @@
 extends: [autotools_package]
 
+dependencies:
+  build: [readline]
+
 defaults:
   relocatable: false
 
 sources:
-- url: http://ftp.gnu.org/gnu/sed/sed-4.2.tar.bz2
-  key: tar.bz2:5z3vly5laohh33woxx2e7vb22znjncij
+- key: tar.gz:v7dipiuobysnyinzrd5blh7z3phww7fk
+  url: http://ftp.heanet.ie/mirrors/gnu/bash/bash-4.3.tar.gz
 
 when_build_dependency:
 - prepend_path: PATH

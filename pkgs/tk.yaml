@@ -1,0 +1,40 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [zlib, tcl, freetype, {{build_with}}]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:w2i2f2cja44ssgdgl7qdudplse3ghibg
+  url: http://prdownloads.sourceforge.net/tcl/tk8.6.1-src.tar.gz
+
+build_stages:
+- name: configure
+  after: prologue
+  mode: replace
+  when: platform == 'linux'
+  handler: bash
+  bash: |
+    export CPPFLAGS='-I${TCL_DIR}/include -I${ZLIB_DIR}'
+    cd unix
+    ./configure --prefix=${ARTIFACT} --with-tcl=${TCL_DIR}/lib
+
+
+- name: create_symlinks
+  after: install
+  when: platform == 'linux'
+  handler: bash
+  bash: |
+    cd ${ARTIFACT}/lib && \
+    ln -fs libtk8.6.so libtk.so && \
+    ln -fs libtk8.6.so libtk8.so && \
+    ln -fs libtk8.6.a libtk.a && \
+    ln -fs libtk8.6.a libtk8.a && \
+    cd ${ARTIFACT}/bin && \
+    ln -fs wish8.6 wish
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
