@@ -12,6 +12,14 @@ sources:
   url: http://ftpmirror.gnu.org/gcc/gcc-4.9.1/gcc-4.9.1.tar.bz2
 
 build_stages:
+  - name: link_lib64_to_lib
+    after: install
+    handler: bash
+    bash: |
+      # Create symbolic links from lib64/* to lib/
+      cd ${ARTIFACT}/lib
+      cp -s ../lib64/* .
+
   # the checks will continue to run and not stop if there are errors,
   # this is here really for post build review.
   - name: make_check
