@@ -6,5 +6,5 @@ dependencies:
 
 sources:
   - url: https://github.com/erdc-cm/ipython-widgetmode
-    key: git:4707fa6552351fd5357700ffbda8055d925864ae
+    key: git:496b99eb35b9f6e322be41212be107f5a88c1de1
 
