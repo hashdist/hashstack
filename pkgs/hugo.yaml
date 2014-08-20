@@ -3,8 +3,11 @@ extends: [base_package]
 dependencies:
   build: [golang, {{build_with}}]
 
+defaults:
+  relocatable: false
+
 sources:
-- key: git:b10dea2955093ef82ff8707c4bdbc442d3ae1edb
+- key: git:cece27fa2e5b4c273bb763cefa749ff9b6c46636
   url: https://github.com/spf13/hugo.git
 
 build_stages:
