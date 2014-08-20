@@ -45,3 +45,7 @@ build_stages:
     # to decide on setting at least the GOPATH AND GOBIN
     mkdir -p ${ARTIFACT}/bin
     cp ${ARTIFACT}/go/bin/* ${ARTIFACT}/bin/
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
