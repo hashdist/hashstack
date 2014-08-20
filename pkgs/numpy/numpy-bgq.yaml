@@ -1,0 +1,40 @@
+when: machine == 'IBM_BGQ'
+
+extends: [distutils_package]
+dependencies:
+  build: [blas]
+  run: [blas]
+
+sources:
+  - url: http://downloads.sourceforge.net/numpy/numpy-1.7.1.tar.gz
+    key: tar.gz:kusqdgrqqxb5qyhgz7smbiypwzovm5rg
+
+build_stages:
+
+  - name: create-site.cfg               
+    before: install
+    handler: bash
+    bash: |
+      cat > site.cfg << EOF
+      [DEFAULT]
+      library_dirs = /soft/libraries/essl/5.1.1-1/lib64
+      include_dirs = /soft/libraries/essl/5.1.1-1/include
+      libraries = lesslsmpbg, mass_simd, x1, xlopt, xlf90_r, xlfmath, xlsmp
+      search_static_first = true
+      EOF
+
+  - name: support_ppc_lldbl
+    before: install
+    handler: bash
+    files: [numpy-1.7.1_support_ppc_ldbl.patch]
+    bash: |
+      patch -p1 < _hashdist/numpy-1.7.1_support_ppc_ldbl.patch
+
+  - name: set-LDFLAGS
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib64 -Wl,-rpath=/soft/libraries/essl/5.1.1-1/lib64 $(${PYTHON_DIR}/bin/hostpython ${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LAPACK=None
+      #export BLAS=None
+

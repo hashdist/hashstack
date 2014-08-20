@@ -2,6 +2,8 @@
 # Use for installing Python packages with the native distutils package
 # You should use the setuptools_package.yaml base if you depend on setuptools.
 
+when: machine== 'IBM_BGQ'
+
 extends: [base_package]
 
 dependencies:
@@ -33,14 +35,14 @@ build_stages:
 profile_links:
 
   - name: python_packages
-    link: 'lib/python{{pyver}}/site-packages/*'
+    link: 'lib64/python{{pyver}}/site-packages/*'
     dirs: true
 
   - name: python_exclude
     after: python_packages
     before: everything
-    exclude: 'lib/python{{pyver}}/site-packages/**/*'
+    exclude: 'lib64/python{{pyver}}/site-packages/**/*'
 
 when_build_dependency:
   - prepend_path: PYTHONPATH
-    value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'
+    value: '${ARTIFACT}/lib64/python{{pyver}}/site-packages'

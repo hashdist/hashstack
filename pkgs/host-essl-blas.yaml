@@ -1,0 +1,2 @@
+when_build_dependency:
+  - {set: 'BLAS_LDFLAGS', value: '-L/soft/libraries/essl/5.1.1-1/lib64 -R/soft/libraries/essl/5.1.1-1/lib64 -lesslbg'}

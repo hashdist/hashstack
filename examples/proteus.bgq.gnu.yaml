@@ -20,11 +20,18 @@ parameters:
   HOST_MPIF77: mpif77
   HOST_MPIF90: mpif90
   HOST_MPIEXEC: mpirun
+  FC: /bgsys/drivers/V1R2M2/ppc64/gnu-linux/bin/powerpc64-bgq-linux-gfortran
+  CC: /bgsys/drivers/V1R2M2/ppc64/gnu-linux/bin/powerpc64-bgq-linux-gcc
+  CXX: /bgsys/drivers/V1R2M2/ppc64/gnu-linux/bin/powerpc64-bgq-linux-g++
   PATH: |
     /usr/bin:/bin:/usr/sbin:/sbin
   PROLOGUE: |
   DYNAMIC_EXE_LINKER_FLAGS: -dynamic
 
 packages:
+  blas:
+    use: host-essl-blas 
+  lapack:
   python:
-
+  numpy:
+  nose:

@@ -1,0 +1,15 @@
+diff -rupN numpy-1.6.2/numpy/core/src/npymath/ieee754.c.src numpy-1.6.2_bgp/numpy/core/src/npymath/ieee754.c.src
+--- numpy-1.6.2/numpy/core/src/npymath/ieee754.c.src	    2012-05-19 16:51:54.000000000 +0300
++++ numpy-1.6.2_bgp/numpy/core/src/npymath/ieee754.c.src    2012-05-29 02:25:30.155294000 +0300
+@@ -7,6 +7,11 @@
+ #include "npy_math_common.h"
+ #include "npy_math_private.h"
+ 
++#ifndef __LDBL_DENORM_MIN__
++/* from mpicc -dM -E -xc /dev/null | grep __LDBL_DENORM_MIN__*/
++#define __LDBL_DENORM_MIN__ 4.94065645841246544176568792868221e-324L
++#endif
++
+ #ifndef HAVE_COPYSIGN
+ double npy_copysign(double x, double y)
+ {
