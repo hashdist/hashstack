@@ -3,12 +3,13 @@ extends: [cmake_package]
 dependencies:
   when platform == 'linux':
     build: [blas, boost, bzip2, eigen, ffc, fiat, instant, libxml2, mpi, numpy,
-            patchelf, pkg-config, ply, python, scientificpython, swig, ufl,
-            zlib, {{build_with}}]
+            pkg-config, ply, python, six, swig, ufl, zlib,
+            patchelf,
+            {{build_with}}]
 
   when platform != 'linux':
     build: [blas, boost, bzip2, eigen, ffc, fiat, instant, libxml2, mpi, numpy,
-            pkg-config, ply, python, scientificpython, swig, ufl, zlib,
+            pkg-config, ply, python, six, swig, ufl, zlib,
             {{build_with}}]
 
   run: [ply]

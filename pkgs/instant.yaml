@@ -1,4 +1,7 @@
 extends: [distutils_package]
+dependencies:
+  build: []
+  run: [cmake, numpy, swig]
 
 sources:
 - url: https://bitbucket.org/fenics-project/instant.git
