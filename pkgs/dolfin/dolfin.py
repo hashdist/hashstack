@@ -39,6 +39,19 @@ def configure(ctx, stage_args):
                   '-D Boost_USE_MULTITHREADED:BOOL=${BOOST_USE_MULTITHREADED}',
                   '-D DOLFIN_ENABLE_UNIT_TESTS:BOOL=OFF']
 
+    # CMake needs to be given all the dependency dirs as prefix paths
+    # so that we search the HashDist directories before the system directories.
+    # CMake doesn't use the CPPFLAGS implicitly to find libraries.
+    prefix_paths = []
+    CPPFLAGS = []
+    LDFLAGS = []
+    for dep_var in ctx.dependency_dir_vars:
+        prefix_paths.append('${%s_DIR}' % dep_var)
+        CPPFLAGS.append('-I${%s_DIR}/include' % dep_var)
+        LDFLAGS.append('-L${%s_DIR}/lib' % dep_var)
+        LDFLAGS.append(rpath_flag(ctx, '${%s_DIR}/lib' % dep_var))
+    conf_lines.append('-D CMAKE_PREFIX_PATH="%s"' % ';'.join(prefix_paths))
+
     if ctx.parameters['platform'] == 'Cygwin':
         libxml2 = '${LIBXML2_DIR}/lib/libxml2.dll.a'
         conf_lines.append('-D LIBXML2_LIBRARIES:FILEPATH="%s"' % libxml2)
@@ -118,12 +131,6 @@ def configure(ctx, stage_args):
 
     env_lines = []
     if stage_args.get('set_env_flags', True):
-        CPPFLAGS = []
-        LDFLAGS = []
-        for dep_var in ctx.dependency_dir_vars:
-            CPPFLAGS.append('-I${%s_DIR}/include' % dep_var)
-            LDFLAGS.append('-L${%s_DIR}/lib' % dep_var)
-            LDFLAGS.append(rpath_flag(ctx, '${%s_DIR}/lib' % dep_var))
         env_lines.append('export CPPFLAGS="%s"' % ' '.join(CPPFLAGS))
         env_lines.append('export LDFLAGS="%s"' % ' '.join(LDFLAGS))
 
