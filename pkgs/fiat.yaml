@@ -4,5 +4,5 @@ dependencies:
   run: [numpy, sympy]
 
 sources:
-- url: https://bitbucket.org/fenics-project/fiat.git
-  key: git:fbac61d3513b5e95552571b8faa9576ff567c385
+- key: git:d88253e16bce0dc84d148be65a83538cc3a4844c
+  url: https://bitbucket.org/fenics-project/fiat.git
