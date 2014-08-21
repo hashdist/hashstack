@@ -1,0 +1,5 @@
+extends: [autotools_package]
+
+sources:
+- key: tar.bz2:sxdyt4xrohcmppmdfgm2ek72srq2yr52
+  url: http://ftp.mozilla.org/pub/mozilla.org/firefox/releases/31.0/source/firefox-31.0.source.tar.bz2
