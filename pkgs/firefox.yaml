@@ -1,4 +1,7 @@
-extends: [base_package]
+extends: [base_package, libflags]
+
+dependencies:
+  build: [python]
 
 sources:
 - key: tar.bz2:sxdyt4xrohcmppmdfgm2ek72srq2yr52
