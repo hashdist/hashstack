@@ -13,6 +13,7 @@ build_stages:
   bash: |
     mkdir build2 # build exists
     cd build2
+    export SHELL=/bin/bash
     ../configure --prefix=$ARTIFACT
     make -j ${HASHDIST_CPU_COUNT}
 
