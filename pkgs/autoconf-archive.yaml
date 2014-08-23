@@ -1,0 +1,9 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [autoconf]
+  run: [autoconf]
+
+sources:
+- key: tar.bz2:vza5dtgp5slciig3ey7czooeb74emkxv
+  url: http://ftp.heanet.ie/mirrors/gnu/autoconf-archive/autoconf-archive-2014.02.28.tar.bz2

@@ -4,8 +4,8 @@ defaults:
   relocatable: false
 
 sources:
-- url: http://ftp.gnu.org/gnu/sed/sed-4.2.tar.bz2
-  key: tar.bz2:5z3vly5laohh33woxx2e7vb22znjncij
+- key: tar.gz:ybpsqzumgr2lyy5nzvekxlusduk6ohbf
+  url: http://ftp.heanet.ie/mirrors/gnu/patch/patch-2.7.1.tar.gz
 
 when_build_dependency:
 - prepend_path: PATH

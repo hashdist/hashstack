@@ -2,51 +2,21 @@ extends: [cmake_package]
 
 dependencies:
   when platform == 'linux':
-    build: [blas,
-            boost,
-            bzip2,
-            eigen,
-            ffc,
-            fiat,
-            instant,
-            libxml2,
-            mpi,
-            numpy,
+    build: [blas, boost, bzip2, eigen, ffc, fiat, instant, libxml2, mpi, numpy,
+            pkg-config, ply, python, six, swig, ufl, zlib,
             patchelf,
-            pkg-config,
-            ply,
-            python,
-            scientificpython,
-            swig,
-            ufl,
-            zlib,
             {{build_with}}]
 
   when platform != 'linux':
-    build: [blas,
-            boost,
-            bzip2,
-            eigen,
-            ffc,
-            fiat,
-            instant,
-            libxml2,
-            mpi,
-            numpy,
-            pkg-config,
-            ply,
-            python,
-            scientificpython,
-            swig,
-            ufl,
-            zlib,
+    build: [blas, boost, bzip2, eigen, ffc, fiat, instant, libxml2, mpi, numpy,
+            pkg-config, ply, python, six, swig, ufl, zlib,
             {{build_with}}]
 
   run: [ply]
 
 sources:
-- url: https://bitbucket.org/fenics-project/dolfin.git
-  key: git:e172349cbe9221a98e08e484de13fae2ea9fe82f
+- key: git:f03924aa7441d33fea7de560d3d0e261b549b04b
+  url: https://bitbucket.org/fenics-project/dolfin.git
 
 defaults:
   # share/dolfin/DOLFINConfig.cmake contains hard-coded path

@@ -1,5 +1,8 @@
 extends: [distutils_package]
+dependencies:
+  build: []
+  run: [numpy, six]
 
 sources:
-- url: https://bitbucket.org/fenics-project/ufl.git
-  key: git:13327a334a800bc4d27f0d2d263c4fec8cfdb7bd
+- key: git:f2f3d5e69c312806a6ffd079a9f54dce88fdfc65
+  url: https://bitbucket.org/fenics-project/ufl.git

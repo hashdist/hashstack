@@ -9,8 +9,8 @@ defaults:
   relocatable: false
 
 sources:
-- url: http://golang.org/dl/go1.3.src.tar.gz
-  key: tar.gz:5omd43c3fomdr5ecyvccwgwbqvxwcdzl
+- key: tar.gz:7x5bjdgbf4pe5jc2kvssmg7uhwfc47i7
+  url: http://golang.org/dl/go1.3.1.src.tar.gz
 
 build_stages:
 - name: make-install
@@ -45,3 +45,7 @@ build_stages:
     # to decide on setting at least the GOPATH AND GOBIN
     mkdir -p ${ARTIFACT}/bin
     cp ${ARTIFACT}/go/bin/* ${ARTIFACT}/bin/
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
