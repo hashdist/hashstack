@@ -118,7 +118,7 @@ def configure(ctx, stage_args):
             conf_lines.append('--with-mpi-compilers')
             conf_lines.append('CC=$MPICC')
             conf_lines.append('CXX=$MPICXX')
-            if ctx.parameters['platform'] != 'Darwin':
+            if ctx.parameters['fortran']:
                 conf_lines.append('F77=$MPIF77')
                 conf_lines.append('F90=$MPIF90')
                 conf_lines.append('FC=$MPIF90')

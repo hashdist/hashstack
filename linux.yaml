@@ -3,4 +3,5 @@ extends:
 
 parameters:
   platform: linux
+  fortran: true
   PATH: /usr/bin:/bin
