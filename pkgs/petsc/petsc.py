@@ -118,9 +118,10 @@ def configure(ctx, stage_args):
             conf_lines.append('--with-mpi-compilers')
             conf_lines.append('CC=$MPICC')
             conf_lines.append('CXX=$MPICXX')
-            conf_lines.append('F77=$MPIF77')
-            conf_lines.append('F90=$MPIF90')
-            conf_lines.append('FC=$MPIF90')
+            if ctx.parameters['fortran']:
+                conf_lines.append('F77=$MPIF77')
+                conf_lines.append('F90=$MPIF90')
+                conf_lines.append('FC=$MPIF90')
             continue
         conf_lines.append('--with-%s-dir=$%s_DIR' % 
                           (dep_var.lower(),

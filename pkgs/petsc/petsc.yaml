@@ -9,6 +9,7 @@ sources:
 defaults:
   # /include/petscconfiginfo.h contains absolute path
   relocatable: false
+  fortran: false
 
 build_stages: 
 
@@ -63,7 +64,7 @@ build_stages:
     install_name_tool -change libmetis.dylib ${PARMETIS_DIR}/lib/libmetis.dylib ${ARTIFACT}/lib/libpetsc.dylib
     install_name_tool -change libparmetis.dylib ${PARMETIS_DIR}/lib/libparmetis.dylib ${ARTIFACT}/lib/libpetsc.dylib
 
-# Special case for need to move DLLs into appropriate directories
+# Special case for Cygwin, move DLLs into appropriate directories
 - when: platform == 'Cygwin'
   name: dll_fix
   handler: bash
