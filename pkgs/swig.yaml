@@ -3,8 +3,8 @@ dependencies:
   build: [pcre]
 
 sources:
-- url: http://downloads.sourceforge.net/swig/swig-2.0.11.tar.gz
-  key: tar.gz:mn4ax4u7kojxvu4zuh3ixtftomgjb5sx
+- key: tar.gz:ujtjmv6kxtw4g4pwhqcfoqd2da7aw2zo
+  url: http://downloads.sourceforge.net/swig/swig-3.0.2.tar.gz
 
 defaults:
   relocatable: false
@@ -18,6 +18,6 @@ when_build_dependency:
 - set: SWIG_EXECUTABLE
   value: ${ARTIFACT}/bin/swig
 - set: SWIG_LIB
-  value: ${ARTIFACT}/share/swig/2.0.11
+  value: ${ARTIFACT}/share/swig/3.0.2
 - prepend_path: PATH
   value: '${ARTIFACT}/bin'
