@@ -13,7 +13,8 @@ build_stages:
   extra: ['--enable-mpi-thread-multiple',
           '--enable-opal-multi-threads',
           '--with-threads=posix',
-          '--disable-mpi-profile']
+          '--disable-mpi-profile',
+          '--with-wrapper-ldflags=-Wl,-rpath=${ARTIFACT}/lib']
 
 when_build_dependency:
 - {set: 'MPICC', value: "${ARTIFACT}/bin/mpicc"}
