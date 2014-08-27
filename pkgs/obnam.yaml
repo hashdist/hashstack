@@ -1,7 +1,7 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: [cliapp, larch, tracing, ttystatus, paramiko, pycrypto]
+  build: [cliapp, larch, tracing, ttystatus, paramiko, pycrypto, coverage-test-runner]
 
 sources:
 - key: tar.gz:64cgtqu6hulmocan762dhsacp2s7f64p
