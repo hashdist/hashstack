@@ -14,7 +14,7 @@ def configure(ctx, stage_args):
     Example::
 
         - name: configure
-          build_type: RelWithDebInfo
+          build_type: Release
           set_env_flags: true
 
     Note: this is a fairly sophisticated build stage that inspects
@@ -24,7 +24,7 @@ def configure(ctx, stage_args):
     following extra keys are relevant:
 
     * build_type: Release, Debug, RelWithDebInfo or Developer.
-    RelWithDebInfo by default.
+    Release by default.
     * set_env_flags: CPPFLAGS and LDFLAGS will be set, as appropriate
     for the platform. Default is true.
     """
@@ -57,8 +57,10 @@ def configure(ctx, stage_args):
         conf_lines.append('-D LIBXML2_LIBRARIES:FILEPATH="%s"' % libxml2)
         conf_lines.append('-D LIBXML2_INCLUDE_DIR:PATH="${LIBXML2_DIR}/include/libxml2"')
 
-    build_type = stage_args.get('build_type', 'RelWithDebInfo')
-    conf_lines.append('-D CMAKE_BUILD_TYPE:STRING="%s"' % build_type)
+    if 'build_type' in stage_args and stage_args['build_type'] is not None:
+        conf_lines.append('-D CMAKE_BUILD_TYPE:STRING="%s"' % stage_args['build_type'])
+    else:
+        conf_lines.append('-D CMAKE_BUILD_TYPE:STRING="Release"')
 
     if 'CGAL' in ctx.dependency_dir_vars:
         conf_lines.append('-D CGAL_DISABLE_ROUNDING_MATH_CHECK:BOOL=ON')
