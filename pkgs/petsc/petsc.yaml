@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [cmake, blas, mpi, {{build_with}}]
+  build: [cmake, blas, mpi, python, {{build_with}}]
 
 sources:
 - url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.4.4.tar.gz
