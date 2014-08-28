@@ -83,6 +83,15 @@ build_stages:
              -sZLIB_INCLUDE=${ZLIB_DIR}/include \
              -sZLIB_LIBPATH=${ZLIB_DIR}/lib
 
+- when: platform == 'linux'
+  name: rpath_fix
+  after: bjam
+  handler: bash
+  bash: |
+    for lib in ${ARTIFACT}/lib/*.so; do
+        ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BZIP2_DIR}/lib:${ZLIB_DIR}/lib ${lib}
+    done
+
 when_build_dependency:
 - set: BOOST_MULTITHREADED
   value: "OFF"
