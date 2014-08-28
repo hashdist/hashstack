@@ -1,7 +1,10 @@
 extends: [base_package]
 
 dependencies:
-  build: [bzip2, mpi, zlib]
+  when platform == 'linux':
+    build: [bzip2, mpi, zlib, patchelf]
+  when platform != 'linux':
+    build: [bzip2, mpi, zlib]
 
 sources:
 - url: http://downloads.sourceforge.net/boost/boost_1_55_0.tar.bz2
