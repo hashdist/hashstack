@@ -67,7 +67,7 @@ def configure(ctx, stage_args):
     if stage_args['link']:
         conf_lines.append('--with-shared-libraries=%d' % 
                           bool(stage_args['link'] == 'shared'))
-    if stage_args['debug']:
+    if 'debug' in stage_args:
         conf_lines.append('--with-debugging=%d' % stage_args['debug'])
 
     # Special case, --with-blas-dir does not work with OpenBLAS
