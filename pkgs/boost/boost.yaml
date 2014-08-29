@@ -1,7 +1,10 @@
 extends: [base_package]
 
 dependencies:
-  build: [bzip2, mpi, zlib]
+  when platform == 'linux':
+    build: [bzip2, mpi, zlib, patchelf]
+  when platform != 'linux':
+    build: [bzip2, mpi, zlib]
 
 sources:
 - url: http://downloads.sourceforge.net/boost/boost_1_55_0.tar.bz2
@@ -82,6 +85,15 @@ build_stages:
              -sZLIB_BINARY=z \
              -sZLIB_INCLUDE=${ZLIB_DIR}/include \
              -sZLIB_LIBPATH=${ZLIB_DIR}/lib
+
+- when: platform == 'linux'
+  name: rpath_fix
+  after: bjam
+  handler: bash
+  bash: |
+    for lib in ${ARTIFACT}/lib/*.so; do
+        ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BZIP2_DIR}/lib:${ZLIB_DIR}/lib ${lib}
+    done
 
 when_build_dependency:
 - set: BOOST_MULTITHREADED
