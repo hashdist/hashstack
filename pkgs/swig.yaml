@@ -1,9 +1,13 @@
 extends: [autotools_package]
 dependencies:
-  build: [pcre]
+  build: [pcre, python]
 
 sources:
-- key: tar.gz:ujtjmv6kxtw4g4pwhqcfoqd2da7aw2zo
+- when: version == '2.0.8'
+  key: tar.gz:v3xpuif34hadxlhsh4fptz6wde7ixad3
+  url: http://downloads.sourceforge.net/swig/swig-2.0.8.tar.gz
+- when: version != '2.0.8'
+  key: tar.gz:ujtjmv6kxtw4g4pwhqcfoqd2da7aw2zo
   url: http://downloads.sourceforge.net/swig/swig-3.0.2.tar.gz
 
 defaults:
@@ -12,12 +16,17 @@ defaults:
 build_stages:
 - name: configure
   mode: override
-  extra: ['--with-pcre-prefix=${PCRE_DIR}']
+  extra: ['--with-pcre-prefix=${PCRE_DIR}',
+          '--without-octave']
 
 when_build_dependency:
 - set: SWIG_EXECUTABLE
   value: ${ARTIFACT}/bin/swig
-- set: SWIG_LIB
+- when: version == '2.0.8'
+  set: SWIG_LIB
+  value: ${ARTIFACT}/share/swig/2.0.8
+- when: version != '2.0.8'
+  set: SWIG_LIB
   value: ${ARTIFACT}/share/swig/3.0.2
 - prepend_path: PATH
   value: '${ARTIFACT}/bin'
