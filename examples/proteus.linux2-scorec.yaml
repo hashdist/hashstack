@@ -54,14 +54,10 @@ packages:
       parmetis
 
 parameters:
-  HOST_MPICC: /usr/local/openmpi/1.4.3/bin/mpicc
-  HOST_MPICXX: /usr/local/openmpi/1.4.3/bin/mpic++
-  HOST_MPIF77: /usr/local/openmpi/1.4.3/bin/mpif77
-  HOST_MPIF90: /usr/local/openmpi/1.4.3/bin/mpif90
-  HOST_MPIEXEC: /usr/local/openmpi/1.4.3/bin/mpiexec
+  HOST_MPI_DIR: /usr/local/openmpi/1.6.5-ib
   HOST_CMAKE: /usr/local/cmake/latest/bin/cmake
-  HOST_SIMMETRIX_LIB: /net/common/meshSim/8.0-140608/lib/x64_rhel5_gcc41
-  HOST_SIMMETRIX_INCLUDE: /net/common/meshSim/8.0-140608/include
+  HOST_SIMMETRIX_LIB: /net/common/meshSim/9.0-140816/lib/x64_rhel5_gcc41
+  HOST_SIMMETRIX_INCLUDE: /net/common/meshSim/9.0-140816/include
   HOST_PYTHON: python
   HOST_PKG_CONFIG_EXECUTABLE: pkg-config
-  PATH: /usr/bin:/bin:/usr/local/openmpi/1.4.3/bin/
+  PATH: /usr/bin:/bin:/usr/local/openmpi/1.6.5-ib/bin/
