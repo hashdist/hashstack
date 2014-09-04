@@ -4,8 +4,8 @@ dependencies:
   run: [blas]
 
 sources:
-  - url: http://downloads.sourceforge.net/numpy/numpy-1.7.1.tar.gz
-    key: tar.gz:kusqdgrqqxb5qyhgz7smbiypwzovm5rg
+  - key: tar.gz:zzluhi5cjpyt4a3t7lvsicyi4sgrhhtd
+    url: http://downloads.sourceforge.net/numpy/numpy-1.8.2.tar.gz
 
 build_stages:
 
@@ -19,14 +19,6 @@ build_stages:
       atlas_libs = openblas
       library_dirs = ${OPENBLAS_DIR}/lib
       EOF
-
-  - when: machine == 'CrayXE6'
-    name: support_cray_compilers
-    before: install
-    handler: bash
-    files: [numpy-1.7.1_support_cray_compilers.patch]
-    bash: |
-      patch -p1 < _hashdist/numpy-1.7.1_support_cray_compilers.patch
 
   - when: platform == 'linux'
     name: set-LDFLAGS
