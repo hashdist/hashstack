@@ -19,8 +19,7 @@ build_stages:
     after: setup_builddir
     handler: bash
     bash: |
-      export LD_LIBRARY_PATH=/usr/local/openmpi/1.4.3/lib
-      export MPI_DIR=/usr/local/openmpi/1.4.3/
+      export MPI_DIR=$MPI_ROOT
 
   - name: configure
     after: setEnv
