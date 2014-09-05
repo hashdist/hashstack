@@ -4,7 +4,7 @@ dependencies:
 
 sources:
   - url: git@github.com:SCOREC/core-sim.git
-    key: git:9b0ccfd77e60289eefe12f4fcde8c9483ed27e78
+    key: git:2e0d82751886445a258458d8fc0c2da19508cf52
 
 build_stages:
 
@@ -20,13 +20,12 @@ build_stages:
   '-DCMAKE_C_COMPILER=${MPICC}',
   '-DCMAKE_CXX_COMPILER=${MPICXX}',
   '-DENABLE_ZOLTAN=ON',
-  '-DMETIS_LIBRARY=${PARMETIS_DIR}/lib/libmetis.so',
-  '-DPARMETIS_LIBRARY=${PARMETIS_DIR}/lib/libparmetis.so',
+  '-DMETIS_LIBRARY=${PARMETIS_DIR}/lib/libmetis.a',
+  '-DPARMETIS_LIBRARY=${PARMETIS_DIR}/lib/libparmetis.a',
   '-DPARMETIS_INCLUDE_DIR=${PARMETIS_DIR}/include',
   '-DZOLTAN_LIBRARY=${ZOLTAN_DIR}/lib/libzoltan.a',
   '-DZOLTAN_INCLUDE_DIR=${ZOLTAN_DIR}/include',
-  '-DBUILD_SHARED_LIBS=True',
-  '-DSIM_MPI=mpich',
+  '-DSIM_MPI=mpich3',
   '-DSIMMETRIX_LIB_DIR=${SIMMETRIX_LIB}',
   '-DSIMMETRIX_INCLUDE_DIR=${SIMMETRIX_INCLUDE}'
   ]
