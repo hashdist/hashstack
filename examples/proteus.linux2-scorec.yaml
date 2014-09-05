@@ -54,10 +54,10 @@ packages:
       parmetis
 
 parameters:
-  HOST_MPI_DIR: /usr/local/openmpi/1.6.5-ib
+  HOST_MPI_DIR: /usr/local/mpich3/3.1.2-thread-multiple
   HOST_CMAKE: /usr/local/cmake/latest/bin/cmake
   HOST_SIMMETRIX_LIB: /net/common/meshSim/9.0-140816/lib/x64_rhel5_gcc41
   HOST_SIMMETRIX_INCLUDE: /net/common/meshSim/9.0-140816/include
   HOST_PYTHON: python
   HOST_PKG_CONFIG_EXECUTABLE: pkg-config
-  PATH: /usr/bin:/bin:/usr/local/openmpi/1.6.5-ib/bin/
+  PATH: /usr/bin:/bin:/usr/local/mpich3/3.1.2-thread-multiple/bin/
