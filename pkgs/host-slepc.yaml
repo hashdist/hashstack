@@ -1,0 +1,11 @@
+when_build_dependency:
+- {set: 'SLEPC_DIR', value: '{{HOST_SLEPC_DIR}}'}
+
+build_stages:
+- handler: bash
+  bash: |
+    cp -r {{HOST_SLEPC_DIR}}/conf ${ARTIFACT}/
+
+profile_links:
+- name: conf
+  link: '*/**/*'
