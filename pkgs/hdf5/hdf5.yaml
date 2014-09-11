@@ -51,7 +51,8 @@ build_stages:
           '--enable-production=yes',
           '--enable-parallel=yes',
           '--enable-largefile=yes',
-          '--with-default-api-version=v18']
+          '--with-default-api-version=v18',
+          '--with-pic']
 
 
 when_build_dependency:

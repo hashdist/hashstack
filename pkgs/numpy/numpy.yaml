@@ -30,6 +30,29 @@ build_stages:
       export LAPACK=None
       export BLAS=None
 
+  - when: machine == 'CrayXE6'
+    name: create-site.cfg
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      cat > site.cfg << EOF
+      [DEFAULT]
+      library_dirs = ${ACML_DIR}/gfortran64/lib
+      libraries = acml
+      EOF
+
+  - when: machine == 'CrayXE6'
+    name: set-LDFLAGS
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${ACML_DIR}/gfortran64/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LAPACK=acml
+      export BLAS=acml
+      export ATLAS=None
+
   - when: platform == 'Cygwin'
     name: set-LDFLAGS
     before: install
