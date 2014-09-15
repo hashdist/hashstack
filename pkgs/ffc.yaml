@@ -4,7 +4,7 @@ dependencies:
   run: [fiat, instant, numpy, six, ufl]
 
 sources:
-- key: git:90a647deafec3343efd06d30f9818a54e13c97ad
+- key: git:df1862de2c401aa8986a9c4808d0aed0a772fe86
   url: https://bitbucket.org/fenics-project/ffc.git
 
 defaults:
