@@ -15,7 +15,7 @@ dependencies:
   run: [ply]
 
 sources:
-- key: git:f03924aa7441d33fea7de560d3d0e261b549b04b
+- key: git:5983c35652456a0a56f515f7f14d7c358c214ea5
   url: https://bitbucket.org/fenics-project/dolfin.git
 
 defaults:
