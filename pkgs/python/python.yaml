@@ -12,6 +12,13 @@ defaults:
   relocatable: false
 
 build_stages:
+  - name: patch
+    before: configure
+    files: [ncurses.patch]
+    handler: bash
+    bash: |
+      patch -up1 < _hashdist/ncurses.patch
+
   - when: link == 'shared'
     name: configure
     mode: override
