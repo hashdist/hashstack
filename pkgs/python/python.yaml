@@ -22,8 +22,13 @@ build_stages:
   - when: link == 'shared'
     name: configure
     mode: override
-    append: {LDFLAGS: "-Wl,-rpath=${ARTIFACT}/lib"}
+    append: {LDFLAGS: "-Wl,-rpath=${ARTIFACT}/lib", CPPFLAGS: "-I${NCURSES_DIR}/include/ncurses"}
     extra: ['--enable-shared']
+
+  - when: link != 'shared'
+    name: configure
+    mode: override
+    append: {CPPFLAGS: "-I${NCURSES_DIR}/include/ncurses"}
 
 # Make sure extension modules were built correctly. This should be part of the
 # Python buildsystem, but unfortunately currently it will silently succeed even
