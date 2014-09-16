@@ -58,6 +58,11 @@ build_stages:
       $ARTIFACT/bin/python -c "import _sqlite3"
       echo "    ok"
 
+      # Test curses
+      echo "import _curses"
+      $ARTIFACT/bin/python -c "import _curses"
+      echo "    ok"
+
 
 when_build_dependency:
   - set: PYTHON
