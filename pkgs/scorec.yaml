@@ -4,7 +4,7 @@ dependencies:
 
 sources:
   - url: git@github.com:SCOREC/core-sim.git
-    key: git:2e0d82751886445a258458d8fc0c2da19508cf52
+    key: git:f839e1154a3039a61049eb9fd8434ca9ac8c3770
 
 build_stages:
 
