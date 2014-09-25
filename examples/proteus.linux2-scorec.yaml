@@ -35,7 +35,7 @@ packages:
     build_with: |
       parmetis
     download: |
-      hypre, blacs, scalapack
+      hypre, blacs, scalapack, superlu, superlu_dist
     coptflags: -O2
     link: shared
     debug: true
