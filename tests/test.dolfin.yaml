@@ -12,17 +12,9 @@ packages:
     use: host-mpi
   blas:
     use: host-blas
-  petsc:
-    build_with: |
-      parmetis
-    coptflags: -O2
-    link: shared
-    debug: false
   swig:
     use: host-swig
   boost:
     toolset: gcc
     address_model: 64
   dolfin:
-    build_with: |
-      petsc, parmetis
