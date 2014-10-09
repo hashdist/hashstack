@@ -69,16 +69,8 @@ def configure(ctx, stage_args):
         conf_lines.append('-D SWIG_EXECUTABLE:FILEPATH="${SWIG_EXECUTABLE}"')
 
     if 'PYTHON' in ctx.dependency_dir_vars:
-        if ctx.parameters['platform'] == 'Darwin':
-            libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.dylib'
-        elif ctx.parameters['platform'] == 'Cygwin':
-            libpython = '/usr/lib/libpython${PYVER}.dll.a'
-            #libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.dll.a'
-        else:
-            libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.so'
         conf_lines.append('-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"')
         conf_lines.append('-D PYTHON_INCLUDE_DIR:PATH="${PYTHON_DIR}/include/python${PYVER}"')
-        conf_lines.append('-D PYTHON_LIBRARY:FILEPATH="%s"' % libpython)
 
     # Some special variables are needed to find correct HDF5
     if 'HDF5' in ctx.dependency_dir_vars:

@@ -1,0 +1,13 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [pyOpenSSL, pyasn1, pyasn1-modules, characteristic]
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/s/service_identity/service_identity-1.0.0.tar.gz
+   key: tar.gz:m6pdt7bvxqmjw5be3hgvkrpxkwzocj6e
+
+when_build_dependency:
+ - prepend_path: PYTHONPATH
+   value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'

@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: []
+  run: [numpy]
+
+sources:
+- key: git:208a515cad054f147e75de47aec8926649b6a659
+  url: https://bitbucket.org/fenics-project/ferari.git

@@ -11,6 +11,10 @@ sources:
 - url: http://www.vtk.org/files/release/5.10/vtk-5.10.1.tar.gz
   key: tar.gz:6grebqpv6dme4j5vp2lc7dskpcywnms3
 
+defaults:
+  # lib/vtk-5.10/libvtkHybrid.so.5.10.1 contains hard-coded path
+  relocatable: false
+
 build_stages:
 
 - name: setup_dirs

@@ -1,0 +1,7 @@
+extends:
+ - file: common.yaml
+
+parameters:
+  platform: Darwin
+  fortran: false
+  PATH: /usr/bin:/bin:/usr/sbin:/sbin

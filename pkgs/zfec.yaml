@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/z/zfec/zfec-1.4.24.tar.gz
+   key: tar.gz:4puz43thvsnpolapsghqhuqfdyl5ih2i

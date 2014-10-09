@@ -15,3 +15,7 @@ build_stages:
 - name: configure
   extra: ['-D CLN_INCLUDE_DIR=$CLN_DIR/include',
           '-D CLN_LIBRARIES=$CLN_DIR/lib/libcln.so']
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'

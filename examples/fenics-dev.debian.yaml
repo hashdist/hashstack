@@ -1,0 +1,60 @@
+# This profile file controls your <#> (HashDist) build environment.
+
+# In the future, we'll provide better incorporation of
+# automatic environment detection.  For now, have a look
+# at the YAML files in the top-level directory and choose
+# the most *specific* file that matches your environment.
+
+extends:
+- file: debian.yaml
+
+# The packages list specifies all the packages that you
+# require installed.  <#> will ensure that all packages
+# and their dependencies are installed when you build this
+# profile.
+
+packages:
+  launcher:
+  python:
+    host: true
+  mpi:
+    use: host-mpi
+  cmake:
+    use: host-cmake
+  blas:
+    use: host-blas
+  petsc:
+    build_with: |
+       parmetis, openblas, scotch, suitesparse
+    download: |
+      hypre, mumps, scalapack, blacs
+    coptflags: -O2
+    link: shared
+    debug: false
+  swig:
+  boost:
+    toolset: gcc
+    address_model: 64
+  fiat:
+    sources:
+      - key: git:d88253e16bce0dc84d148be65a83538cc3a4844c
+        url: https://bitbucket.org/fenics-project/fiat.git
+  ufl:
+    sources:
+      - key: git:18f8afc58fe02588336fafc4c74bc4d4c9fdfe1a
+        url: https://bitbucket.org/fenics-project/ufl.git
+  ffc:
+    sources:
+      - key: git:86d4931c8d6062806b06305beb5adf9f4d1edc94
+        url: https://bitbucket.org/fenics-project/ffc.git
+  instant:
+    sources:
+      - key: git:df4ca503985853a7ed83ecffe2ac1a6168fa0752
+        url: https://bitbucket.org/fenics-project/instant.git
+  dolfin:
+    sources:
+      - key: git:04e0f27510d409e0e3d3ac6e9feef7ba50279529
+        url: https://bitbucket.org/fenics-project/dolfin.git
+    build_with: |
+      suitesparse, scotch, parmetis, petsc, slepc, zlib, hdf5, vtk
+    build_type: Developer
