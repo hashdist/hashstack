@@ -2,7 +2,8 @@ extends: [distutils_package]
 
 sources:
   - url: https://github.com/lxml/lxml/
-    key: git:4bbc11f847dfc30c783c0d54103efe37ebaa090d
+    #key: git:4bbc11f847dfc30c783c0d54103efe37ebaa090d
+    key: git:4c325e12ae20a600fa59dc9820cf62abc5ca62c9
 
 dependencies:
   build:
@@ -20,3 +21,8 @@ licenses:
   - gpl-2
   - mit
   - zope-public-license
+
+
+when_build_dependency:
+  - prepend_path: PYTHONPATH
+    value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'
