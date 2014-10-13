@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/m/msgpack-python/msgpack-python-0.4.2.tar.gz
+   key: tar.gz:ar3or7oxtznwjczutpio327qnzasohxc

@@ -1,0 +1,8 @@
+extends: [autotools_package]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:kvsgjpjojpc2b6wukjvvsyr6jpsawtbp
+  url: http://ftp.heanet.ie/mirrors/gnu/gawk/gawk-4.1.1.tar.gz

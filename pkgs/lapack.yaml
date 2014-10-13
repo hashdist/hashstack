@@ -13,9 +13,12 @@ sources:
 - url: http://www.netlib.org/lapack/lapack-3.4.2.tgz
   key: tar.gz:mctf3kxrn3brka2gowkcmgfcemcsd2t2
 
+defaults:
+  # lib/liblapack.so contains hard-coded path
+  relocatable: false
+
 build_stages:
 - name: configure
-  debug: false #always build in release mode
   when compiler == 'gcc':
       extra: ['-D CMAKE_Fortran_FLAGS_RELEASE:STRING="-O3 -fPIC -march=native -ffast-math -funroll-loops"',
               '-D BUILD_TESTING:BOOL=OFF',

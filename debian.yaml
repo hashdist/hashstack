@@ -12,6 +12,8 @@ parameters:
   HOST_PYTHON: /usr/bin/python
   HOST_PKG_CONFIG_EXECUTABLE: /usr/bin/pkgconfig
   HOST_SWIG_EXECUTABLE: /usr/bin/swig
+  HOST_PETSC_DIR: /usr/lib/petsc
+  HOST_PETSC_ARCH: linux-gnu-c-opt
+  HOST_SLEPC_DIR: /usr/lib/slepc
   SCOTCH_ARCH: pc_linux2
-  PETSC_ARCH: linux-gnu-cxx-opt
   PASTIX_ARCH: i686_pc_linux

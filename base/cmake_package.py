@@ -17,7 +17,7 @@ def configure(ctx, stage_args):
           extra: ['-D ENABLE_FOO:BOOL=ON', '-D ZLIB_DIR:PATH=${ZLIB_DIR}']
           set_env_flags: true # default
           build_in_source: false # default
-          debug:  false # defaults to global parameter debug
+          debug: false # default
 
     If set_env_flags is set, CPPFLAGS and LDFLAGS will be set, as appropriate
     for the platform.
@@ -51,7 +51,7 @@ def configure(ctx, stage_args):
     if 'extra' in stage_args:
         conf_lines.append(' '.join('%s' % arg for arg in stage_args['extra']))
 
-    builddir = '..'
+    builddir = stage_args.get('builddir', '..')
     if stage_args.get('build_in_source', False):
         builddir = '.'
     conf_lines.append(builddir)

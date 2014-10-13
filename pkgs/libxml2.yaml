@@ -2,6 +2,10 @@ extends: [autotools_package]
 dependencies:
   build: [zlib]
 
+defaults:
+  # /lib/xml2Conf.sh contains absolute path
+  relocatable: false
+
 build_stages:
   - name: configure
     mode: override

@@ -1,0 +1,8 @@
+extends: [autotools_package]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:inhtfulrzpaklzzm7rjxfrx4jsyonapy
+  url: http://ftp.heanet.ie/mirrors/gnu/findutils/findutils-4.4.2.tar.gz

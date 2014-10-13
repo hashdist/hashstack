@@ -1,6 +1,6 @@
 extends: [namespace_package, libflags]
 dependencies:
-  build: [freetype, numpy, png]
+  build: [bzip2, freetype, numpy, png, pkg-config, zlib]
   run: [freetype, numpy, png, python-dateutil, pyparsing]
 
 sources:
@@ -8,13 +8,6 @@ sources:
     key: tar.gz:5ilgphmuo2vsovyqf2ade7zr5ohgylfq
 
 build_stages:
-
-- name: png_freetype_fix
-  before: install
-  handler: bash
-  bash: |
-    export PKG_CONFIG_PATH="$PNG_DIR/lib/pkgconfig:$FREETYPE_DIR/lib/pkgconfig"
-
 
 # This patch did not go into v1.3.1 :(
 - when: platform == 'Cygwin'

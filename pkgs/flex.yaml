@@ -1,0 +1,24 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [m4]
+
+defaults:
+  relocatable: false
+
+sources:
+- url: http://downloads.sourceforge.net/project/flex/flex-2.5.39.tar.bz2
+  key: tar.bz2:vxjlkxz3yoglkevur6wx24xuhmi66jce
+
+build_stages:
+- when: platform == 'Darwin'
+  name: remove-no-undefined
+  after: configure
+  before: make
+  handler: bash
+  bash: |
+    sed -i.bak -e 's/-no-undefined//;' Makefile
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

@@ -3,6 +3,7 @@ extends:
 
 parameters:
   platform: Darwin
+  fortran: false
   PATH: /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
   PROLOGUE: |
     export MACOSX_DEPLOYMENT_TARGET=$(sw_vers -productVersion | sed "s/\(10.[0-9]\).*/\1/")

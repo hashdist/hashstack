@@ -1,0 +1,16 @@
+extends: [base_package]
+
+sources:
+- url: https://github.com/funtoo/keychain.git
+  key: git:3032484eee8abe886a0506922d915c2b5f54790e
+
+build_stages:
+
+- name: make-install
+  handler: bash
+  bash: |
+    make
+    install -d ${ARTIFACT}/bin
+    install -d ${ARTIFACT}/share/man/man1
+    install -m 0755 keychain ${ARTIFACT}/bin/keychain
+    install -m 0755 keychain.1 ${ARTIFACT}/share/man/man1/keychain.1
