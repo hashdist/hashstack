@@ -12,6 +12,7 @@ defaults:
 dependencies:
   build:
     - libxml2
+    - zlib
   run:
     - libxml2
 
