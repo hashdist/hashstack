@@ -9,6 +9,15 @@ defaults:
   # why is a .la file there to start with?
   relocatable: false
 
+dependencies:
+  build:
+    - libxml2
+    - zlib
+  run:
+    - libxml2
+
 when_build_dependency:
-- prepend_path: PKG_CONFIG_PATH
-  value: '${ARTIFACT}/lib/pkgconfig'
+  - prepend_path: PKG_CONFIG_PATH
+    value: '${ARTIFACT}/lib/pkgconfig'
+  - prepend_path: PATH
+    value: '${ARTIFACT}/bin'
