@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: [blas, numpy]
+  run: [blas, numpy]
+
+sources:
+  - url: http://downloads.sourceforge.net/scipy/scipy-0.13.3.tar.gz
+    key: tar.gz:vhrty7xamdbvzvog5y5mtzpjxo4zegox

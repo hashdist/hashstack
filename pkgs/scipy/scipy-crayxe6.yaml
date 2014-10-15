@@ -1,16 +1,16 @@
+when: machine == 'CrayXE6'
 
 extends: [distutils_package]
 dependencies:
-  build: [blas,lapack,numpy]
-  run: [numpy]
+  build: [blas, lapack, numpy]
+  run: [blas, lapack, numpy]
 
 sources:
   - url: http://downloads.sourceforge.net/scipy/scipy-0.13.3.tar.gz
     key: tar.gz:vhrty7xamdbvzvog5y5mtzpjxo4zegox
 
 build_stages:
-  - when: machine == 'CrayXE6'
-    name: create-site.cfg
+  - name: create-site.cfg
     after: prologue
     before: install
     handler: bash
@@ -21,8 +21,7 @@ build_stages:
       libraries = acml
       EOF
 
-  - when: machine == 'CrayXE6'
-    name: set-LDFLAGS
+  - name: set-LDFLAGS
     after: prologue
     before: install
     handler: bash
