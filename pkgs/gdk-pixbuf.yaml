@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [pkg-config, glib2, fontconfig, libtiff, cairo]
+  build: [pkg-config, python, glib2, fontconfig, libtiff, cairo]
   run: [pkg-config]
 
 defaults:

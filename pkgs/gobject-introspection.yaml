@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [pkg-config, glib2, cairo, freetype, fontconfig, libffi]
+  build: [pkg-config, python, glib2, cairo, freetype, fontconfig, libffi]
   run: [pkg-config]
 
 defaults:
