@@ -1,0 +1,22 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [pkg-config, freetype, libxml2, zlib]
+  run: [pkg-config]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:7ivby3xkmvgz7tt2jmjcb4imthg6zben
+  url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.8.0.tar.gz
+#- key: tar.gz:zj7ckby46bcl3tnppreiiusdyek3sju3
+#  url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.9.0.tar.gz
+#- key: tar.bz2:3rrei5jtxsueirr2hq75icb3k7eq6gfh
+#  url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.11.1.tar.bz2
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

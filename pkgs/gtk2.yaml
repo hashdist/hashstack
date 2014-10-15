@@ -1,0 +1,34 @@
+extends: [autotools_package]
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build:
+    - atk
+    - cairo
+    - gdk-pixbuf
+    - gettext
+    - glib2
+    - gobject-introspection
+    - libiconv
+    - pango
+    - pkg-config
+    - png
+    - fontconfig
+    - pixman
+    - freetype
+  run:
+    - pkg-config
+
+sources:
+- key: tar.bz2:vqrsljstckjcuzzcu7acuoe7h5ahfv46
+  url: http://ftp.gnome.org/pub/gnome/sources/gtk+/2.24/gtk+-2.24.8.tar.bz2
+#- key: tar.bz2:rwm3w6cvln6uvhdnikberfp3jujn3opt
+#  url: http://ftp.gnome.org/pub/gnome/sources/gtk+/2.23/gtk+-2.23.3.tar.bz2
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
