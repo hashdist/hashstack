@@ -1,7 +1,7 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [boost]
+  build: [boost, cheetah, python]
 
 defaults:
   relocatable: false
