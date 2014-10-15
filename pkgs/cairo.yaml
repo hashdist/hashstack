@@ -4,7 +4,7 @@ defaults:
   relocatable: false
 
 dependencies:
-  build: [pkg-config, png, pixman, fontconfig, freetype]
+  build: [python, pkg-config, png, pixman, fontconfig, freetype, zlib]
   run: [pkg-config]
 
 sources:
