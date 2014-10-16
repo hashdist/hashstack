@@ -10,3 +10,11 @@ sources:
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
   value: '${ARTIFACT}/lib/pkgconfig'
+
+build_stages:
+  - name: link_lib64_to_lib
+    before: configure
+    handler: bash
+    bash: |
+      # Always use /lib instead of sometimes /lib64
+      sed -i 's:@toolexeclibdir@:$(libdir):g' Makefile.in
