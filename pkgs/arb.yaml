@@ -7,8 +7,8 @@ when platform != 'linux':
     build: [gmp, mpfr, flint]
 
 sources:
-  - url: https://github.com/fredrik-johansson/arb.git
-    key: git:7c6b3fb932cacabc9fa42704e134fcaf8ac0bca4
+  - key: git:ae7b68d6c0ddd125f578fbe9c878a176586ad441
+    url: https://github.com/fredrik-johansson/arb.git
 
 build_stages:
   - name: configure

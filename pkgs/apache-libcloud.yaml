@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/a/apache-libcloud/apache-libcloud-0.14.1.zip
+   key: zip:m2e4zbhmnv27h3qpqsexwpcio6yp5ewg

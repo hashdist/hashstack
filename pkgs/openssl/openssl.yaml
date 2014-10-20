@@ -7,6 +7,9 @@ sources:
   - url: https://www.openssl.org/source/openssl-1.0.1g.tar.gz
     key: tar.gz:kpfyddb3sdsqpkbur5hv5lw3axml7zjv
 
+defaults:
+  relocatable: false
+
 build_stages:
 # We need to patch the docs because openssl's documentation is invalid
 # and newer versions of pod2man fail on invalid input. See #244.
@@ -27,3 +30,19 @@ build_stages:
   bash: |
     #./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include -Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib
     ./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include
+
+# parallel build is racy, can fail with "libcrypto.a(cryptlib.o) in archive is not an object"
+- name: make
+  after: configure
+  handler: bash
+  bash: |
+    make -j 1
+
+- when: platform == 'Darwin'
+  name: configure
+  after: fix_docs
+  handler: bash
+  mode: replace
+  bash: |
+    #./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include -Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib
+    ./Configure --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include darwin64-x86_64-cc enable-ec_nistp-64_gcc_128

@@ -1,0 +1,6 @@
+extends: [setuptools_package]
+
+sources:
+- key: tar.gz:67eyri5g2arn47czimgw66r5ynmniq5a
+  url: http://code.liw.fi/debian/pool/main/p/python-cliapp/python-cliapp_1.20140719.orig.tar.gz
+

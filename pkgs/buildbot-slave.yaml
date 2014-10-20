@@ -1,0 +1,9 @@
+extends: [distutils_package]
+
+dependencies:
+  build: [Twisted, zope-interface, setuptools]
+  run: [Twisted, zope-interface]
+
+sources:
+ - url: https://pypi.python.org/packages/source/b/buildbot-slave/buildbot-slave-0.8.9.zip
+   key: zip:ryypfqdzfjb72vbevndbzvxuyue7rxcs

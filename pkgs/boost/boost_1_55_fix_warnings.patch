@@ -1,0 +1,84 @@
+diff -Nru a/include/boost/concept/detail/general.hpp b/include/boost/concept/detail/general.hpp
+--- a/include/boost/concept/detail/general.hpp	2014-04-18 23:15:07.292579965 +0200
++++ b/include/boost/concept/detail/general.hpp	2014-07-06 02:05:54.414061466 +0200
+@@ -65,10 +65,19 @@
+   
+ # endif
+ 
++// Version check from https://svn.boost.org/trac/boost/changeset/82886
++// (boost/static_assert.hpp)
++#if defined(__GNUC__) && ((__GNUC__ > 4) || ((__GNUC__ == 4) && (__GNUC_MINOR__ >= 7))) 
++#define BOOST_CONCEPT_UNUSED_TYPEDEF __attribute__((unused))
++#else
++#define BOOST_CONCEPT_UNUSED_TYPEDEF /**/
++#endif
++
+ #  define BOOST_CONCEPT_ASSERT_FN( ModelFnPtr )             \
+     typedef ::boost::concepts::detail::instantiate<          \
+     &::boost::concepts::requirement_<ModelFnPtr>::failed>    \
+-      BOOST_PP_CAT(boost_concept_check,__LINE__)
++      BOOST_PP_CAT(boost_concept_check,__LINE__)             \
++      BOOST_CONCEPT_UNUSED_TYPEDEF
+ 
+ }}
+ 
+diff -Nru a/include/boost/math/policies/error_handling.hpp b/include/boost/math/policies/error_handling.hpp
+--- a/include/boost/math/policies/error_handling.hpp	2014-04-18 23:15:07.282580443 +0200
++++ b/include/boost/math/policies/error_handling.hpp	2014-07-06 02:48:22.924246589 +0200
+@@ -108,7 +108,7 @@
+   msg += ": ";
+   msg += message;
+ 
+-  int prec = 2 + (boost::math::policies::digits<T, boost::math::policies::policy<> >() * 30103UL) / 100000UL;
++  int prec = static_cast<int>(2 + (boost::math::policies::digits<T, boost::math::policies::policy<> >() * 30103UL) / 100000UL);
+   msg = do_format(boost::format(msg), boost::io::group(std::setprecision(prec), val));
+ 
+   E e(msg);
+diff -Nru a/include/boost/mpl/aux_/integral_wrapper.hpp b/include/boost/mpl/aux_/integral_wrapper.hpp
+--- a/include/boost/mpl/aux_/integral_wrapper.hpp	2014-04-18 23:15:05.519331468 +0200
++++ b/include/boost/mpl/aux_/integral_wrapper.hpp	2014-07-06 02:47:46.959228356 +0200
+@@ -69,8 +69,32 @@
+     typedef AUX_WRAPPER_INST( BOOST_MPL_AUX_STATIC_CAST(AUX_WRAPPER_VALUE_TYPE, (N + 1)) ) next;
+     typedef AUX_WRAPPER_INST( BOOST_MPL_AUX_STATIC_CAST(AUX_WRAPPER_VALUE_TYPE, (N - 1)) ) prior;
+ #else
++
++#if defined(__GNUC__) && (__GNUC__ > 4 || (__GNUC__ == 4 && __GNUC_MINOR__ >= 6))
++
++// Taken from:
++// https://svn.boost.org/trac/boost/wiki/Guidelines/WarningsGuidelines
++// These are available apparently only from GCC 4.6 onwards, hence the guard above.
++
++#define BOOST_PRAGMA_WCONVERSION_START _Pragma("GCC diagnostic push[[BR]]") \
++_Pragma("GCC diagnostic ignored \"-Wconversion\"")
++#define BOOST_PRAGMA_WCONVERSION_END _Pragma("GCC diagnostic pop")
++
++#else
++
++#define BOOST_PRAGMA_WCONVERSION_START
++#define BOOST_PRAGMA_WCONVERSION_END
++
++#endif
++
++BOOST_PRAGMA_WCONVERSION_START
+     typedef AUX_WRAPPER_INST( BOOST_MPL_AUX_STATIC_CAST(AUX_WRAPPER_VALUE_TYPE, (value + 1)) ) next;
+     typedef AUX_WRAPPER_INST( BOOST_MPL_AUX_STATIC_CAST(AUX_WRAPPER_VALUE_TYPE, (value - 1)) ) prior;
++BOOST_PRAGMA_WCONVERSION_END
++
++#undef BOOST_PRAGMA_WCONVERSION_START
++#undef BOOST_PRAGMA_WCONVERSION_END
++
+ #endif
+ 
+     // enables uniform function call syntax for families of overloaded 
+diff -Nru a/include/boost/mpl/aux_/preprocessed/gcc/template_arity.hpp b/include/boost/mpl/aux_/preprocessed/gcc/template_arity.hpp
+--- a/include/boost/mpl/aux_/preprocessed/gcc/template_arity.hpp	2014-04-18 23:15:10.159109499 +0200
++++ b/include/boost/mpl/aux_/preprocessed/gcc/template_arity.hpp	2014-07-06 02:08:34.887145747 +0200
+@@ -81,7 +81,7 @@
+ struct template_arity_impl
+ {
+     BOOST_STATIC_CONSTANT(int, value =
+-          sizeof(::boost::mpl::aux::arity_helper(type_wrapper<F>(), arity_tag<N>())) - 1
++          static_cast<int>(sizeof(::boost::mpl::aux::arity_helper(type_wrapper<F>(), arity_tag<N>()))) - 1
+         );
+ };
+ 

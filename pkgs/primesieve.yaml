@@ -1,0 +1,5 @@
+extends: [autotools_package]
+
+sources:
+- key: tar.gz:mvk5jvfkexcmn7l25nyunb24all26jw4
+  url: http://dl.bintray.com/kimwalisch/primesieve/primesieve-5.2.tar.gz

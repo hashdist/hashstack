@@ -1,0 +1,38 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [zlib, {{build_with}}]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:c3xhnesi4zf2dsxgwsbu7tcoj3oxi4gy
+  url: http://prdownloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz
+
+build_stages:
+- name: configure
+  after: prologue
+  mode: replace
+  when: platform == 'linux'
+  handler: bash
+  bash: |
+    cd unix
+    ./configure --prefix=${ARTIFACT}
+
+- name: create_symlinks
+  after: install
+  when: platform == 'linux'
+  handler: bash
+  bash: |
+    cd ${ARTIFACT}/lib && \
+    ln -fs libtcl8.6.so libtcl.so && \
+    ln -fs libtcl8.6.so libtcl8.so && \
+    ln -fs libtcl8.6.a libtcl.a && \
+    ln -fs libtcl8.6.a libtcl8.a && \
+    cd ${ARTIFACT}/bin && \
+    ln -fs tclsh8.6 tclsh
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

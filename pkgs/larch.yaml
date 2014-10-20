@@ -1,0 +1,8 @@
+extends: [setuptools_package]
+ 
+dependencies:
+  build: [tracing]
+
+sources:
+- key: tar.gz:e4l6qun54rnwn2fs2raydbq7eqjv2gc2
+  url: http://code.liw.fi/debian/pool/main/p/python-larch/python-larch_1.20131130.orig.tar.gz

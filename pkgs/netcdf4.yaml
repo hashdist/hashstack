@@ -1,7 +1,0 @@
-extends: [autotools_package]
-dependencies:
-  build: [mpi, hdf5]
-
-sources:
-- url: ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.0.tar.gz
-  key: tar.gz:46lecpjh3jvqkpqhughvm6q5bqr5fiyx

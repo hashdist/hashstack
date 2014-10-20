@@ -1,0 +1,22 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [openssl, pkg-config, zlib, {{build_with}}]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:p4u3tuvnm4vob6pb3s77q4p4lqxgbimu
+  url: http://ftp.heanet.ie/pub/OpenBSD/OpenSSH/portable/openssh-6.2p2.tar.gz
+
+build_stages:
+- name: patch
+  before: configure
+  files: [openssh-6.2p2-hpn14v1.diff]
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/openssh-6.2p2-hpn14v1.diff
+
+- name: configure
+  extra: ['--sysconfdir="${ARTIFACT}"/etc/ssh', '--with-privsep-path="${ARTIFACT}"/var/empty', '--with-ssl-dir="${OPENSSL_DIR}"', '--with-zlib="${ZLIB_DIR}"']

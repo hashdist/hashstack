@@ -1,0 +1,23 @@
+extends: [autotools_package]
+
+defaults:
+    relocatable: false
+
+dependencies:
+    build: [pkg-config]
+
+sources:
+- key: tar.gz:ev3s6zj2ywzohtxlrhpvbzdirci6eh3s
+  url: http://download.savannah.gnu.org/releases/attr/attr-2.4.47.src.tar.gz
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
+
+build_stages:
+- name: install
+  after: make
+  mode: replace
+  handler: bash
+  bash: |
+    make install install-lib install-dev

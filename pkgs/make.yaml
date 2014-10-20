@@ -1,0 +1,12 @@
+extends: [autotools_package]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.bz2:4ydinr5p5xtczsginljqclhqqhverb62
+  url: http://ftp.heanet.ie/mirrors/gnu/make/make-4.0.tar.bz2
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

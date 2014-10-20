@@ -1,4 +1,4 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 
 sources:
   - url: http://www.dabeaz.com/ply/ply-3.4.tar.gz

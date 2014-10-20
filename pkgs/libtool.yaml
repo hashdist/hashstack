@@ -1,0 +1,12 @@
+extends: [autotools_package]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:wog6isdcvgdsspgt3dp24hcatviuw3co
+  url: http://ftp.heanet.ie/mirrors/gnu/libtool/libtool-2.4.2.tar.gz
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
