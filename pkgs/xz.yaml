@@ -1,8 +1,8 @@
 extends: [autotools_package]
 
 sources:
-  - url: http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz
-    key: tar.gz:okze33ix22drspbtm3ioxz6n4htlddyn
+- url: http://tukaani.org/xz/xz-5.0.5.tar.bz2
+  key: tar.bz2:czweruueeum3yt4wgm577hrgl6gn3jcn
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

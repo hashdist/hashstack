@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [zope-interface, pycrypto, Twisted, pyasn1, pycryptopp, foolscap, zfec, pyOpenSSL, pyutil, argparse, zbase32, mock, Nevow, simplejson]
+  run: [zope-interface, pycrypto, Twisted, pyasn1, pycryptopp, foolscap, zfec, pyOpenSSL, pyutil, argparse, zbase32, mock, Nevow, simplejson]
+
+sources:
+ - url: https://pypi.python.org/packages/source/a/allmydata-tahoe/allmydata-tahoe-1.10.0.tar.gz
+   key: tar.gz:r2qujoh5fezzbrwt3xxfj26icrfq2cvy

@@ -1,0 +1,59 @@
+# This profile file controls your <#> (HashDist) build environment.
+
+# In the future, we'll provide better incorporation of
+# automatic environment detection.  For now, have a look
+# at the YAML files in the top-level directory and choose
+# the most *specific* file that matches your environment.
+
+extends:
+- file: debian.yaml
+
+parameters:
+  HOST_MPICC: /scinet/gpc/mpi/openmpi/1.6.4-gcc-v4.7.2/bin/mpicc
+  HOST_MPICXX: /scinet/gpc/mpi/openmpi/1.6.4-gcc-v4.7.2/bin/mpic++
+  HOST_MPIF77: /scinet/gpc/mpi/openmpi/1.6.4-gcc-v4.7.2/bin/mpif77
+  HOST_MPIF90: /scinet/gpc/mpi/openmpi/1.6.4-gcc-v4.7.2/bin/mpif90
+  HOST_MPIEXEC: /scinet/gpc/mpi/openmpi/1.6.4-gcc-v4.7.2/bin/mpiexec
+  HOST_CMAKE: /scinet/gpc/tools/cmake/2.8.8/bin/cmake
+  PROLOGUE: |
+    source /scinet/gpc/etc6/profile.d/00-modules.sh || true; source /scinet/gpc/etc6/profile.d/03-scinetlogin.sh; echo "loading modules"; module load gcc/4.7.2; module load openmpi/gcc/1.6.4; module load cmake/2.8.8; module load extras/64; echo "setting default compilers"; export CC=gcc; export CXX=g++; export FC=gfortran; export F77=gfortran; export F90=gfortran; export CPP=cpp;
+
+# The packages list specifies all the packages that you
+# require installed.  <#> will ensure that all packages
+# and their dependencies are installed when you build this
+# profile.
+
+packages:
+  launcher:
+  cmake:
+    sources:
+    - key: tar.gz:nnhkmhvnxpm35qgmwob4fhi7islovtas
+      url: http://www.cmake.org/files/v3.0/cmake-3.0.2.tar.gz
+  python:
+    host: false
+    build_with: |
+      openssl, bzip2, sqlite
+    link: shared
+  mpi:
+    use: host-mpi
+  blas:
+    use: openblas
+  petsc:
+    build_with: |
+      parmetis, openblas, scotch, suitesparse
+    download: |
+      hypre, superlu, superlu_dist
+    coptflags: -O2
+    link: shared
+    debug: false
+  boost:
+    toolset: gcc
+    address_model: 64
+  dolfin:
+    build_with: |
+      openblas, suitesparse, scotch, parmetis, petsc, slepc, zlib, hdf5, vtk, cgal, bzip2
+  h5py:
+  pyvtk:
+  matplotlib:
+  scipy:
+  ferari:

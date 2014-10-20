@@ -1,0 +1,8 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [coverage]
+
+sources:
+- key: tar.gz:kuh377rcaadwbdtkuqmqie2dehjpwmvp
+  url: http://code.liw.fi/debian/pool/main/p/python-coverage-test-runner/python-coverage-test-runner_1.10.orig.tar.gz

@@ -1,11 +1,15 @@
 extends: [autotools_package]
 dependencies:
-  build: [cmake, blas, mpi, {{build_with}}]
+  build: [cmake, blas, mpi, python, {{build_with}}]
 
 sources:
 - url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.4.4.tar.gz
   key: tar.gz:hotnsuydbi6ok23sbfnn55ik7p323inj
 
+defaults:
+  # /include/petscconfiginfo.h contains absolute path
+  relocatable: false
+  fortran: false
 
 build_stages: 
 
@@ -60,14 +64,13 @@ build_stages:
     install_name_tool -change libmetis.dylib ${PARMETIS_DIR}/lib/libmetis.dylib ${ARTIFACT}/lib/libpetsc.dylib
     install_name_tool -change libparmetis.dylib ${PARMETIS_DIR}/lib/libparmetis.dylib ${ARTIFACT}/lib/libpetsc.dylib
 
-# Special case for need to move DLLs into appropriate directories
+# Special case for Cygwin, move DLLs into appropriate directories
 - when: platform == 'Cygwin'
   name: dll_fix
   handler: bash
   after: install
   bash: |
-    install $PETSC_ARCH/cyg*.dll $ARTIFACT/bin
-    install $PETSC_ARCH/lib/cyg*.dll $ARTIFACT/bin
+    find ${PETSC_ARCH} -name "*.dll" -exec install -v {} ${ARTIFACT}/bin \;
 
 when_build_dependency:
 - when platform == 'Cygwin':

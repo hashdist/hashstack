@@ -1,0 +1,13 @@
+extends: [distutils_package]
+
+dependencies:
+  build: [setuptools]
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/z/zope.interface/zope.interface-4.1.1.tar.gz
+   key: tar.gz:shf2pn6nps4c632oai76o74u3q67jlss
+
+when_build_dependency:
+ - prepend_path: PYTHONPATH
+   value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'

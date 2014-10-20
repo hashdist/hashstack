@@ -4,8 +4,12 @@ dependencies:
   run: [python, numpy]
 
 sources:
-- url: http://github.com/certik/dftatom
-  key: git:c622fd9ff681c92455bcafa2dc29d9171ccc8948
+- key: git:c622fd9ff681c92455bcafa2dc29d9171ccc8948
+  url: https://github.com/certik/dftatom
+
+defaults:
+  # lib/python2.7/site-packages/dftatom/lib/dftatom_wrapper.so contains hard-coded path
+  relocatable: false
 
 build_stages:
 - name: configure

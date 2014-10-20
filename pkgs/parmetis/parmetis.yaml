@@ -25,6 +25,14 @@ build_stages:
   bash: |
     patch -p1 < _hashdist/no_unused_but_set_variable.patch
 
+- when: platform == 'Cygwin'
+  name: fix___cdecl_redefined
+  files: [fix___cdecl_redefined.patch]
+  before: configure
+  handler: bash
+  bash: |
+    patch -p1 < _hashdist/fix___cdecl_redefined.patch
+
 - name: configure
   after: setup_builddir
   handler: bash
@@ -39,11 +47,11 @@ build_stages:
       -DCMAKE_CXX_COMPILER=$MPICXX
       -DCMAKE_EXE_LINKER_FLAGS={{DYNAMIC_EXE_LINKER_FLAGS}}"
     (
-    cd _build_metis && cmake ${BUILD}/metis $CMAKE_FLAGS
+    cd _build_metis && ${CMAKE} ${BUILD}/metis ${CMAKE_FLAGS}
     )
 
     (
-    cd _build_parmetis && cmake ${BUILD} $CMAKE_FLAGS \
+    cd _build_parmetis && ${CMAKE} ${BUILD} ${CMAKE_FLAGS} \
       -DMETIS_PATH=${BUILD}/metis
     )
 
@@ -62,6 +70,14 @@ build_stages:
     make -C _build_metis install
     make -C _build_parmetis install
 
-profile_links:
-- name: everything
-  link: '*/**/*'
+- when: platform == 'Cygwin'
+  name: copy_dlls
+  after: install
+  handler: bash
+  bash: |
+    install _build_metis/libmetis/cygmetis.dll ${ARTIFACT}/bin
+    install _build_parmetis/libparmetis/cygparmetis.dll ${ARTIFACT}/bin
+
+when_build_dependency:
+- when platform == 'Cygwin':
+  - {prepend_path: PATH, value: '${ARTIFACT}/bin'}

@@ -1,0 +1,15 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [readline]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:v7dipiuobysnyinzrd5blh7z3phww7fk
+  url: http://ftp.heanet.ie/mirrors/gnu/bash/bash-4.3.tar.gz
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

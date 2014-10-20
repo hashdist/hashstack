@@ -11,7 +11,9 @@ env:
   - TEST_PROFILE="test.packages2.yaml"
   - TEST_PROFILE="test.packages3.yaml"
   - TEST_PROFILE="test.packages4.yaml"
+  - TEST_PROFILE="test.netcdf4.yaml"
   - TEST_PROFILE="test.vxl.yaml"
+  - TEST_PROFILE="test.dolfin.yaml"
 python:
   - 2.7
 before_install:
@@ -38,8 +40,14 @@ before_install:
   - if [[ "${TEST_PROFILE}" == "test.elemental.yaml" ]]; then
       sudo apt-get install mpich2 liblapack-dev;
     fi
+  - if [[ "${TEST_PROFILE}" == "test.netcdf4.yaml" ]]; then
+      sudo apt-get install mpich2;
+    fi
   - if [[ "${TEST_PROFILE}" == "test.host-scipy.yaml" ]]; then
       sudo apt-get install python-scipy;
+    fi
+  - if [[ "${TEST_PROFILE}" == "test.dolfin.yaml" ]]; then
+      sudo apt-get install cmake libopenmpi-dev python-dev libblas-dev liblapack-dev swig wget;
     fi
 install:
   - git clone https://github.com/hashdist/hashdist
@@ -55,6 +63,8 @@ verify:
     fi
   - if [[ "${TEST_PROFILE}" == "test.elemental.yaml" ]]; then
       ./test.elemental/bin/examples/lapack-like/BunchKaufman
+  - if [[ "${TEST_PROFILE}" == "test.dolfin.yaml" ]]; then
+      ./test.dolfin/bin/python -c "from dolfin import *"
     fi
 notifications:
   email: false

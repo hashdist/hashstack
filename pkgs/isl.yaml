@@ -1,0 +1,19 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [gmp, pkg-config]
+  run: [gmp, pkg-config]
+
+sources:
+- key: tar.bz2:6sz5x3uxckcqabxej4g3eebuigvt2e5u
+  url: http://isl.gforge.inria.fr/isl-0.12.2.tar.bz2
+
+build_stages:
+  - name: configure
+    mode: override
+    extra:
+      - --with-gmp-prefix=${GMP_DIR}
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'

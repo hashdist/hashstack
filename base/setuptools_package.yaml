@@ -17,6 +17,7 @@ build_stages:
   #
   # http://stackoverflow.com/questions/368636/questions-about-setuptools-and-alternatives
 - name: install
+  after: prologue
   mode: replace
   handler: bash
   bash: |

@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/s/superlance/superlance-0.9.tar.gz
+   key: tar.gz:f5mlz2ujvyhusiato6qmsllsbfxu6vmo

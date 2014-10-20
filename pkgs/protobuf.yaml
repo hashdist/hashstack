@@ -1,0 +1,13 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [pkg-config]
+  run: [pkg-config]
+
+sources:
+- key: tar.bz2:co74llsuhtz2ugakyjefyc6issk6hltr
+  url: http://protobuf.googlecode.com/files/protobuf-2.5.0.tar.bz2
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'

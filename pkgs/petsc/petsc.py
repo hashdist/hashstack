@@ -67,7 +67,7 @@ def configure(ctx, stage_args):
     if stage_args['link']:
         conf_lines.append('--with-shared-libraries=%d' % 
                           bool(stage_args['link'] == 'shared'))
-    if stage_args['debug']:
+    if 'debug' in stage_args:
         conf_lines.append('--with-debugging=%d' % stage_args['debug'])
 
     # Special case, --with-blas-dir does not work with OpenBLAS
@@ -118,9 +118,10 @@ def configure(ctx, stage_args):
             conf_lines.append('--with-mpi-compilers')
             conf_lines.append('CC=$MPICC')
             conf_lines.append('CXX=$MPICXX')
-            conf_lines.append('F77=$MPIF77')
-            conf_lines.append('F90=$MPIF90')
-            conf_lines.append('FC=$MPIF90')
+            if ctx.parameters['fortran']:
+                conf_lines.append('F77=$MPIF77')
+                conf_lines.append('F90=$MPIF90')
+                conf_lines.append('FC=$MPIF90')
             continue
         conf_lines.append('--with-%s-dir=$%s_DIR' % 
                           (dep_var.lower(),

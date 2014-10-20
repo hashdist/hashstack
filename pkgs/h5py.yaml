@@ -1,0 +1,16 @@
+extends: [distutils_package]
+
+dependencies:
+  build: [hdf5, mpi, numpy]
+  run: [numpy]
+
+sources:
+- key: tar.gz:ir7flvmjhsriluiylkjyksfbf47x2sxu
+  url: https://pypi.python.org/packages/source/h/h5py/h5py-2.3.1.tar.gz
+
+build_stages:
+- name: install
+  after: setup_dirs
+  handler: bash
+  bash: |
+    CC=${MPICC} ${PYTHON} setup.py install --prefix=${ARTIFACT}
