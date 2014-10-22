@@ -8,9 +8,8 @@ packages:
   launcher:
 
   python:
-    host: false
-    build_with: |
-      bzip2, openssl
+  sqlite:
+    use: host-sqlite
 
   mpi:
     use: host-mpi
