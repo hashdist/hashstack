@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [pkg-config, freetype, libxml2, zlib, bzip2]
+  build: [pkg-config, freetype, libxml2, zlib, bzip2, python]
   run: [pkg-config]
 
 defaults:
