@@ -22,5 +22,4 @@ packages:
   zlib:
   hdf5:
   fabric-virtualenv:
-  sqlite:
   openssl:
