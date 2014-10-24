@@ -29,6 +29,7 @@ packages:
     use: host-freetype
   mpi:
     use: host-mpi
+  mpi4py:
   nose:
   hdf5:
   ipython:
