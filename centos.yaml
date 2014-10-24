@@ -1,10 +1,2 @@
 extends:
   - file: linux.yaml
-
-parameters:
-  HOST_MPICC: /apps/openmpi/1.6.4/gcc/4.4.6/bin/mpicc
-  HOST_MPICXX: /apps/openmpi/1.6.4/gcc/4.4.6/bin/mpic++
-  HOST_MPIF77: /apps/openmpi/1.6.4/gcc/4.4.6/bin/mpif77
-  HOST_MPIF90: /apps/openmpi/1.6.4/gcc/4.4.6/bin/mpif90
-  HOST_MPIEXEC: /apps/openmpi/1.6.4/gcc/4.4.6/bin/mpiexec
-  PATH: /usr/local/bin:/usr/bin:/bin
