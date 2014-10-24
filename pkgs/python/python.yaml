@@ -5,7 +5,7 @@ sources:
    key: tar.gz:otlqxeknurehviozoirlfhuvktief6bf
 
 dependencies:
-  build: [zlib, bzip2, sqlite, openssl, launcher, ncurses, readline]
+  build: [zlib, bzip2, sqlite, openssl, launcher, ncurses, readline, {{build_with}}]
   run: []
 
 defaults:
