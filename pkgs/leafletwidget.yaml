@@ -1,0 +1,25 @@
+extends: [distutils_package]
+
+dependencies:
+  build:
+    - ipython
+    - when airgap:
+      - requests
+  run:
+    - ipython
+
+sources:
+  - url: https://github.com/ellisonbg/leaftletwidget
+    key: git:b03ddea2842b6939810b82ee93aa13e28d458456
+
+
+# WARNING: This installs into user's .ipython directory
+# This is not properly isolated yet.
+
+build_stages:
+  - when: airgap
+    name: airgap
+    after: install
+    handler: bash
+    bash: |
+      unset IPYTHON_DIR && ${PYTHON} install-nbextension.py
