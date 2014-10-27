@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+- key: git:426437d8af16aeeb18f2e1454129c9207e9a02f4
+  url: https://github.com/madduck/reclass.git
