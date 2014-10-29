@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
-- key: git:426437d8af16aeeb18f2e1454129c9207e9a02f4
+- key: git:25cb8f5b40a63ce8c083abcd2bc74c7f0281f76c
   url: https://github.com/madduck/reclass.git
