@@ -11,7 +11,7 @@ build_stages:
 - name: make
   handler: bash
   bash: |
-    mkdir build2 # build exists
+    mkdir build2 # the 'build' directory already exists, so we name it 'build2'
     cd build2
     export SHELL=/bin/bash
     ../configure --prefix=$ARTIFACT
