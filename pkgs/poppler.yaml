@@ -1,0 +1,18 @@
+extends: [autotools_package]
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build: [pkg-config, fontconfig, freetype, png, libtiff, zlib, glib2, cairo]
+  run: [pkg-config]
+
+sources:
+- key: tar.gz:65bkhehrx5fgqjcs6wlhrzq23u5i6k4y
+  url: http://poppler.freedesktop.org/poppler-0.22.5.tar.gz
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

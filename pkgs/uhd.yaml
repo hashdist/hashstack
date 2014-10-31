@@ -1,5 +1,8 @@
 extends: [cmake_package]
 
+dependencies:
+  build: [boost, cheetah, python]
+
 defaults:
   relocatable: false
 
@@ -13,8 +16,8 @@ build_stages:
   mode: override
   builddir: ../host
 
-- name: download_firmware
-  after: install
-  handler: bash
-  bash: |
-    ${ARTIFACT}/lib/uhd/utils/uhd_images_downloader.py
+#- name: download_firmware
+#  after: install
+#  handler: bash
+#  bash: |
+#    ${ARTIFACT}/lib/uhd/utils/uhd_images_downloader.py

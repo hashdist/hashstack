@@ -1,0 +1,35 @@
+extends: [autotools_package]
+
+defaults:
+  relocatable: false
+
+dependencies:
+    build: [gtk2, glib2, pkg-config, pygobject, gobject-introspection, pycairo, pkg-config, pango, atk, cairo, python, numpy, gdk-pixbuf, freetype, fontconfig, libcanberra]
+    run: [libcanberra]
+
+sources:
+- url: https://pypi.python.org/packages/source/P/PyGTK/pygtk-2.24.0.tar.bz2
+  key: tar.bz2:zuob5itfxvr76zu6skrnhqvir2zgxtm6
+#- key: tar.bz2:motjmbeeou2q2l6dhetbd7v3ytbgtnrg
+#  url: http://ftp.gnome.org/pub/gnome/sources/pygtk/2.11/pygtk-2.11.0.tar.bz2
+#- key: tar.bz2:ydin4p7mrpuigzfwhz5teukx63qnvcqv
+#  url: http://ftp.gnome.org/pub/gnome/sources/pygtk/2.10/pygtk-2.10.0.tar.bz2
+
+build_stages:
+- name: configure
+  extra: 
+    - 'PYGOBJECT_CFLAGS=-I${PYGOBJECT_DIR}/include/pygtk-2.0 -I${GLIB2_DIR}/include/glib-2.0 -I${GLIB2_DIR}/lib/glib-2.0/include'
+    - 'PANGOCAIRO_CFLAGS=-I${PANGO_DIR}/include/pango-1.0 -I${CAIRO_DIR}/include/cairo -I${ATK_DIR}/include/atk-1.0'
+    - 'PYCAIRO_CFLAGS=-I${PANGO_DIR}/include/pango-1.0 -I${PYCAIRO_DIR}/include/pycairo'
+    - 'PANGO_CFLAGS=-I${PANGO_DIR}/include/pango-1.0'
+    - 'ATK_CFLAGS=-I${ATK_DIR}/include/atk-1.0 -I${PANGO_DIR}/include/pango-1.0'
+    - 'CFLAGS=-I${GTK2_DIR}/include/gtk-2.0 -I${GTK2_DIR}/lib/gtk-2.0/include -I${GTK2_DIR}/include/gtk-unix-print-2.0 -I${GLIB2_DIR}/include/glib-2.0 -I${GLIB2_DIR}/lib/glib-2.0/include -I${ATK_DIR}/include/atk-1.0 -I${PANGO_DIR}/include/pango-1.0 -I${CAIRO_DIR}/include/cairo -I${GDK_PIXBUF_DIR}/include/gdk-pixbuf-2.0'
+    - 'GTK_CFLAGS=-I${GTK2_DIR}/include/gtk-2.0 -I${GTK2_DIR}/lib/gtk-2.0/include -I${GTK2_DIR}/include/gtk-unix-print-2.0 -I${GLIB2_DIR}/include/glib-2.0 -I${GLIB2_DIR}/lib/glib-2.0/include -I${ATK_DIR}/include/atk-1.0 -I${PANGO_DIR}/include/pango-1.0 -I${CAIRO_DIR}/include/cairo -I${GDK_PIXBUF_DIR}/include/gdk-pixbuf-2.0'
+
+when_build_dependency:
+- prepend_path: PYTHONPATH
+  value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

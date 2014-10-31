@@ -1,0 +1,33 @@
+extends: [cmake_package]
+
+dependencies:
+  build:
+    - pkg-config
+    - boost
+    - qt
+    - qwt
+    - python
+    - gsl
+    - sphinx
+    - numpy
+    - fftw
+    - swig
+    - cheetah
+    - lxml
+    - uhd
+    - pygtk
+    - gtk2
+  run: [python]
+
+defaults:
+  relocatable: false
+
+build_stages:
+# try and force gnuradio to build gnuradio-companion - this requires pygtk and libcanberra-gtk-module to be built
+- name: configure
+  extra:
+    - '-DENABLE_GRC=ON'
+
+sources:
+- key: git:a7b3a9339106aaba72195b693dfeaa98f194e0d5
+  url: http://git.gnuradio.org/git/gnuradio.git/

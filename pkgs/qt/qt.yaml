@@ -41,3 +41,7 @@ build_stages:
           '-I${PNG_DIR}/include',
           '-I${ZLIB_DIR}/include',
           ]
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

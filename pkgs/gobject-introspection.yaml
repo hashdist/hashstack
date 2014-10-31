@@ -1,15 +1,15 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [pkg-config, libffi, zlib, python]
+  build: [pkg-config, python, glib2, cairo, freetype, fontconfig, libffi]
   run: [pkg-config]
 
 defaults:
   relocatable: false
 
 sources:
-- key: tar.bz2:szhzitzjjzh7cxzktos4zaxhi3pf6lf3
-  url: http://ftp.gnome.org/pub/gnome/sources/glib/2.31/glib-2.31.2.tar.bz2
+- key: tar.bz2:hgpnmy6g6ca4cerhoehebwzyi2p34yat
+  url: http://ftp.gnome.org/pub/gnome/sources/gobject-introspection/1.31/gobject-introspection-1.31.0.tar.bz2
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
