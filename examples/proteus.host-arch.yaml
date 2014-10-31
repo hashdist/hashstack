@@ -51,6 +51,7 @@ packages:
     use: host-petsc
   petsc4py:
     with_conf: true
+  mpi4py:
   superlu:
   numpy:
     use: host-numpy

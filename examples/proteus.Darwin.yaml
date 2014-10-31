@@ -30,6 +30,7 @@ packages:
   matplotlib:
   mpi:
     use: mpich
+  mpi4py:
   nose:
   hdf5:
   ipython:
