@@ -3,3 +3,7 @@ extends: [autotools_package]
 sources:
   - url: http://pyyaml.org/download/libyaml/yaml-0.1.4.tar.gz
     key: tar.gz:pp4bkvfolkzntnuxpwrzr2tys4robw3v
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
