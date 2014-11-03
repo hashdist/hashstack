@@ -1,12 +1,12 @@
-extends: [cmake_package]
+extends: [autotools_package]
 
 dependencies:
   build: [pkg-config]
   run: [pkg-config]
 
 sources:
-- key: tar.gz:imxn5tubal6bihbogoa6f226voy445qu
-  url: https://github.com/schuhschuh/gflags/archive/v2.1.1.tar.gz
+- key: tar.gz:qal6pn4ed2a7nlcunjlzalob7eg7crhq
+  url: https://github.com/schuhschuh/gflags/archive/v2.0.tar.gz
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
