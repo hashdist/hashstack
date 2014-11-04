@@ -29,3 +29,7 @@ build_stages:
 #
 #    ${ARTIFACT}/bin/perl -MCPAN -e 'install local::lib'
 #    ${ARTIFACT}/bin/perl -MCPAN -Mlocal::lib -e 'CPAN::install(LWP)'
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
