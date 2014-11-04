@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [zlib, sqlite, apr]
+  build: [zlib, sqlite, apr, apr-util]
   run: []
 
 sources:
@@ -11,4 +11,4 @@ sources:
 build_stages:
   - name: configure
     mode: override
-    extra: ['--with-apr=$APR_DIR']
+    extra: ['--with-apr=$APR_DIR', '--with-apr-util=$APR_UTIL_DIR']
