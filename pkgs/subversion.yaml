@@ -1,9 +1,14 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [zlib, sqlite]
+  build: [zlib, sqlite, apr]
   run: []
 
 sources:
 - key: tar.bz2:dteqbsfhs5btpq7nhco4nnofsajoysgh
   url: http://www.apache.org/dist/subversion/subversion-1.8.10.tar.bz2
+
+build_stages:
+  - name: configure
+    mode: override
+    extra: ['--with-apr=$APR_DIR']
