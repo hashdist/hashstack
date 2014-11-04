@@ -18,7 +18,7 @@ build_stages:
     bash: |
       # Create symbolic links from lib64/* to lib/
       cd ${ARTIFACT}/lib
-      cp -s ../lib64/* .
+      ln -s ../lib64/* .
 
   # the checks will continue to run and not stop if there are errors,
   # this is here really for post build review.
