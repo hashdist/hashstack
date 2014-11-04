@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [zlib, sqlite, apr, apr-util]
+  build: [zlib, sqlite, apr, apr-util, perl]
   run: []
 
 sources:
