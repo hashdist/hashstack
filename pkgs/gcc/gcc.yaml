@@ -12,12 +12,13 @@ sources:
   url: http://ftpmirror.gnu.org/gcc/gcc-4.9.1/gcc-4.9.1.tar.bz2
 
 build_stages:
-  - name: change_lib64_to_lib
-    when: platform == 'linux'
-    before: configure
+  - name: link_lib64_to_lib
+    after: install
     handler: bash
     bash: |
-        sed -i '/m64=/s/lib64/lib/' gcc/config/i386/t-linux64
+      # Create symbolic links from lib64/* to lib/
+      cd ${ARTIFACT}/lib
+      ln -s ../lib64/* .
 
   # the checks will continue to run and not stop if there are errors,
   # this is here really for post build review.
