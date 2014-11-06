@@ -13,6 +13,12 @@ defaults:
 
 build_stages:
 
+- name: perl_path
+  before: configure
+  handler: bash
+  bash: |
+    export PERL_PATH="/usr/bin/env perl"
+
 - name: configure
   mode: override
   extra: ['--with-libpcre=${PCRE_DIR}', '--with-zlib=${ZLIB_DIR}', '--with-iconv=${LIBICONV_DIR}', '--with-expat=${EXPAT_DIR}', '--with-curl=${CURL_DIR}']
