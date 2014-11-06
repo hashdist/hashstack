@@ -1,8 +1,8 @@
 extends: [base_package]
 
 sources:
-- url: https://github.com/xianyi/OpenBLAS/archive/v0.2.8.tar.gz
-  key: tar.gz:gwpvzutaj3lw3f5qm2nzxbdklgq5akbq
+- key: tar.gz:wqpxd5dpvkyscx3pnulvieit3qa72tmp
+  url: https://github.com/xianyi/OpenBLAS/archive/v0.2.12.tar.gz
 
 build_stages:
 - name: make_and_install
