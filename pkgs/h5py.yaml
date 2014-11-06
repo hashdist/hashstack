@@ -1,7 +1,7 @@
 extends: [distutils_package]
 
 dependencies:
-  build: [hdf5, mpi, numpy]
+  build: [hdf5, mpi4py, mpi, numpy, cython]
   run: [numpy]
 
 sources:
@@ -13,4 +13,4 @@ build_stages:
   after: setup_dirs
   handler: bash
   bash: |
-    CC=${MPICC} ${PYTHON} setup.py install --prefix=${ARTIFACT}
+    CC=${MPICC} ${PYTHON} setup.py install --mpi --prefix=${ARTIFACT} 
