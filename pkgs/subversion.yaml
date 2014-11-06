@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [zlib, sqlite, apr, apr-util, perl, swig]
+  build: [zlib, sqlite, apr, apr-util, perl, swig, patchelf]
   run: []
 
 sources:
@@ -30,3 +30,9 @@ build_stages:
     cd subversion/bindings/swig/perl/native
     perl Makefile.PL PREFIX=$ARTIFACT
     make install
+
+    # Patch the RPATH
+    for X in Client Core Delta Fs Ra Repos Wc
+    do
+        ${PATCHELF} --set-rpath $ARTIFACT/lib $ARTIFACT/lib/site_perl/*/*/auto/SVN/_$X/_$X.so
+    done
