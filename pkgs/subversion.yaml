@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [zlib, sqlite, apr, apr-util, perl, swig, patchelf]
+  build: [zlib, sqlite, apr, apr-util, perl, swig, patchelf, serf]
   run: []
 
 sources:
@@ -15,7 +15,8 @@ defaults:
 build_stages:
 - name: configure
   mode: override
-  extra: ['--with-apr=$APR_DIR', '--with-apr-util=$APR_UTIL_DIR']
+  extra: ['--with-apr=$APR_DIR', '--with-apr-util=$APR_UTIL_DIR',
+    '--with-serf=$SERF_DIR']
 
 - name: install
   after: make
