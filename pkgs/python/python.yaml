@@ -1,11 +1,11 @@
 extends: [autotools_package]
 
 sources:
- - url: http://python.org/ftp/python/2.7.6/Python-2.7.6.tgz
-   key: tar.gz:thdimc3qs5567ikzaau7vyes3wyy3mow
+ - url: http://python.org/ftp/python/2.7.8/Python-2.7.8.tgz
+   key: tar.gz:otlqxeknurehviozoirlfhuvktief6bf
 
 dependencies:
-  build: [zlib, launcher, ncurses, readline, {{build_with}}]
+  build: [zlib, bzip2, sqlite, openssl, launcher, ncurses, readline, {{build_with}}]
   run: []
 
 defaults:

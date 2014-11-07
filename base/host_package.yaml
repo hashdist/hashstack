@@ -1,0 +1,7 @@
+
+build_stages:
+
+  - name: host_package_information
+    handler: bash
+    bash: |
+      echo "This is a virtual package"

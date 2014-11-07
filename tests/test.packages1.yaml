@@ -9,9 +9,8 @@ packages:
   blas:
     use: host-blas
   python:
-    host: false
-    build_with: |
-      bzip2, openssl
+  sqlite:
+    use: host-sqlite
   ipython:
   nose:
   numpy:

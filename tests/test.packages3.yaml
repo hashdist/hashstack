@@ -18,9 +18,8 @@ packages:
   mpi:
     use: host-mpi
   python:
-    host: false
-    build_with: |
-      bzip2, openssl
+  sqlite:
+    use: host-sqlite
   petsc:
     build_with: |
 
