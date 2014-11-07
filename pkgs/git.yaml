@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [curl, pcre, openssl, libiconv, gettext, expat, zlib]
+  build: [curl, pcre, openssl, libiconv, gettext, expat, zlib, perl]
 
 sources:
 - key: tar.gz:7qfpquhpqltot3jjia4x4zp3iubu7oth
