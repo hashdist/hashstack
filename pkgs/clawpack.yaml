@@ -4,5 +4,5 @@ dependencies:
   run: [numpy, matplotlib]
 
 sources:
-- key: tar.gz:kvzdrghek5akpm55l52s27bytxczlvxr
-  url: https://pypi.python.org/packages/source/c/clawpack/clawpack-5.2.0.tar.gz
+- key: tar.gz:ths6trvj5trqhvsgfjwnj5oopcml3oui
+  url: https://pypi.python.org/packages/source/c/clawpack/clawpack-5.2.2.tar.gz
