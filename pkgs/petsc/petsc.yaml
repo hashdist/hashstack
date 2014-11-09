@@ -3,8 +3,8 @@ dependencies:
   build: [cmake, blas, mpi, python, {{build_with}}]
 
 sources:
-- url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.4.4.tar.gz
-  key: tar.gz:hotnsuydbi6ok23sbfnn55ik7p323inj
+- key: tar.gz:ygj3gebgevuuwg5evyrgenkhf3ry5b2d
+  url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.5.2.tar.gz
 
 defaults:
   # /include/petscconfiginfo.h contains absolute path
