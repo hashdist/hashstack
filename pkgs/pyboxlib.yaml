@@ -1,0 +1,17 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [mpi, numpy]
+  run: [mpi, numpy]
+
+build_stages:
+- name: enter_pyboxlib_dir
+  after: prologue
+  before: install
+  handler: bash
+  bash: |
+    cd Src/Python
+
+sources:
+- url: https://ccse.lbl.gov/pub/Downloads/BoxLib.git
+  key: git:9abcfa56867347305f3a0ad9674fb5ae1ec98ef6
