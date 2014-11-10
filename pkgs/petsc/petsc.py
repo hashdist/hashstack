@@ -109,6 +109,9 @@ def configure(ctx, stage_args):
         conf_lines.append('--with-umfpack=1')
         conf_lines.append('--with-umfpack-include=${SUITESPARSE_DIR}/include/suitesparse')
         conf_lines.append('--with-umfpack-lib=[${SUITESPARSE_DIR}/lib/libumfpack.a,${SUITESPARSE_DIR}/lib/libcholmod.a,${SUITESPARSE_DIR}/lib/libcamd.a,${SUITESPARSE_DIR}/lib/libccolamd.a,${SUITESPARSE_DIR}/lib/libcolamd.a,${SUITESPARSE_DIR}/lib/libamd.a,${SUITESPARSE_DIR}/lib/libsuitesparseconfig.a]')
+        conf_lines.append('--with-suitesparse=1')
+        conf_lines.append('--with-suitesparse-include=${SUITESPARSE_DIR}/include/suitesparse')
+        conf_lines.append('--with-suitesparse-lib=[${SUITESPARSE_DIR}/lib/libumfpack.a,libklu.a,libcholmod.a,libbtf.a,libccolamd.a,libcolamd.a,libcamd.a,libamd.a,libsuitesparseconfig.a]')
 
     for dep_var in ctx.dependency_dir_vars:
         if dep_var in ['BLAS', 'LAPACK', 'OPENBLAS', 'PARMETIS',

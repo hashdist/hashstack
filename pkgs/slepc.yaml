@@ -3,8 +3,8 @@ dependencies:
   build: [petsc]
 
 sources:
-- url: http://www.grycap.upv.es/slepc/download/download.php?filename=slepc-3.4.3.tar.gz
-  key: tar.gz:ae4lzzujrgqt7hyjqwkdg3cfch6a7vfb
+- key: tar.gz:un55l3qom6iunhqqlbhrtqcauo5u7fac
+  url: http://www.grycap.upv.es/slepc/download/download.php?filename=slepc-3.5.2.tar.gz
 
 defaults:
   # include/slepcconf.h contains hard-coded path
@@ -20,16 +20,3 @@ build_stages:
     export PETSC_DIR=${PETSC_DIR}
     unset PETSC_ARCH
 
-- name: make
-  mode: replace
-  after: configure
-  handler: bash
-  bash: |
-    make PETSC_ARCH=arch-installed-petsc all
-
-- name: install
-  mode: replace
-  after: make
-  handler: bash
-  bash: |
-    make PETSC_ARCH=arch-installed-petsc install
