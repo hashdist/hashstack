@@ -1,4 +1,4 @@
-extends: [setuptools_package]
+extends: [distutils_package]
 
 dependencies:
   build: [mpi, numpy]
@@ -14,4 +14,4 @@ build_stages:
 
 sources:
 - url: https://ccse.lbl.gov/pub/Downloads/BoxLib.git
-  key: git:9abcfa56867347305f3a0ad9674fb5ae1ec98ef6
+  key: git:fdf0b26be5b5e0a54d13c38cbc880f3da5ae2fe0
