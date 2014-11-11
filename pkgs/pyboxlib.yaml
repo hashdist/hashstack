@@ -13,5 +13,5 @@ build_stages:
     cd Src/Python
 
 sources:
-- url: https://ccse.lbl.gov/pub/Downloads/BoxLib.git
+- url: https://github.com/memmett/BoxLib.git
   key: git:743096788d200afe20c25d8bf7f421601508924d
