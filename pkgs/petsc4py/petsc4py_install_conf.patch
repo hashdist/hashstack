@@ -1,28 +1,25 @@
 diff --git a/conf/petscconf.py b/conf/petscconf.py
-index a44164d..bde2ecd 100644
+index 2ef0a82..bb0828a 100644
 --- a/conf/petscconf.py
 +++ b/conf/petscconf.py
-@@ -12,10 +12,10 @@ __all__ = ['setup',
+@@ -12,8 +12,8 @@ __all__ = ['setup',
 
  # --------------------------------------------------------------------
 
--from conf.baseconf import PetscConfig as BasePetscConfig
 -from conf.baseconf import setup, Extension
 -from conf.baseconf import config, build, build_src, build_ext
 -from conf.baseconf import test, sdist
-+from .baseconf import PetscConfig as BasePetscConfig
 +from .baseconf import setup, Extension
 +from .baseconf import config, build, build_src, build_ext
 +from .baseconf import test, sdist
 
  # --------------------------------------------------------------------
-
 diff --git a/setup.py b/setup.py
-index a4c62f5..eef8009 100755
+index 68fb515..c82039c 100755
 --- a/setup.py
 +++ b/setup.py
-@@ -107,9 +107,11 @@ def run_setup():
-             metadata['install_requires'] += ["petsc>=3.4,<3.5"]
+@@ -106,9 +106,11 @@ def run_setup():
+             metadata['install_requires'] += ["petsc>=3.5,<3.6"]
      #
      setup(packages     = ['petsc4py',
 -                          'petsc4py.lib',],
