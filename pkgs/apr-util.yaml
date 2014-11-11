@@ -1,0 +1,18 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [apr]
+  run: []
+
+# lib/libaprutil-1.so.0.5.4 contains hardwired path
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.bz2:u3hte4mjzig7f645kyz5omtmiyh6fnqw
+  url: http://apache.spinellicreations.com/apr/apr-util-1.5.4.tar.bz2
+
+build_stages:
+  - name: configure
+    mode: override
+    extra: ['--with-apr=$APR_DIR']

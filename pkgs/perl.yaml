@@ -16,7 +16,7 @@ build_stages:
   mode: replace
   handler: bash
   bash: |
-    ./Configure -de -Dprefix=${ARTIFACT}
+    ./Configure -de -Dprefix=${ARTIFACT} -Duserelocatableinc
 
 #- name: make_test
 #  after: make
@@ -29,3 +29,12 @@ build_stages:
 #
 #    ${ARTIFACT}/bin/perl -MCPAN -e 'install local::lib'
 #    ${ARTIFACT}/bin/perl -MCPAN -Mlocal::lib -e 'CPAN::install(LWP)'
+
+profile_links:
+  - name: perl_binary
+    before: everything
+    copy: 'bin/perl'
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [pcre, python]
+  build: [pcre, python, {{build_with}}]
 
 sources:
 - when: version == '2.0.8'
