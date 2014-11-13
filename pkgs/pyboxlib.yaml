@@ -5,13 +5,14 @@ dependencies:
   run: [mpi, numpy]
 
 build_stages:
-- name: enter_pyboxlib_dir
+- name: build_pyboxlib
   after: prologue
   before: install
   handler: bash
   bash: |
-    cd Src/Python
+    cd Src/Python/F90
+    make OUT=build/lib CC=mpicc FC=mpif90 MPIHOME=$(dirname $(dirname $(which mpicc)))
 
 sources:
 - url: https://github.com/memmett/BoxLib.git
-  key: git:743096788d200afe20c25d8bf7f421601508924d
+  key: git:6bccf4f5f6987584fa7227057cc8f396520aa989
