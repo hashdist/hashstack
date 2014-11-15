@@ -24,6 +24,16 @@ build_stages:
     extra: ['--enable-framework=${ARTIFACT}']
 
   - when: python_framework
+    name: install
+    after: make
+    mode: replace
+    handler: bash
+    bash: |
+      make install PYTHONAPPSDIR=${ARTIFACT}
+      rm -f ${ARTIFACT}/lib/*.la
+
+
+  - when: python_framework
     name: add_links
     files: [sitecustomize.py]
     after: install
