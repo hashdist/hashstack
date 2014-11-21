@@ -1,0 +1,26 @@
+extends: [cmake_package]
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build: [doxygen, swig, fftw, python]
+  run: [fftw, python]
+
+sources:
+- key: tar.gz:ptxuz5m2urk5vmurmi36vyhgl6ldoedj
+  url: https://github.com/pandegroup/openmm/archive/6.2beta1.tar.gz
+
+# just build the cpu platform for now...
+build_stages:
+- name: configure
+  extra: ['-DOPENMM_BUILD_CUDA_LIB=OFF', '-DOPENMM_BUILD_OPENCL_LIB=OFF']
+
+- name: install-python-openmm
+  after: make
+  handler: bash
+  bash: |
+    cd python
+    export OPENMM_INCLUDE_PATH=${ARTIFACT}/include
+    export OPENMM_LIB_PATH=${ARTIFACT}/lib
+    ${PYTHON} setup.py install --prefix=. --root=${ARTIFACT}
