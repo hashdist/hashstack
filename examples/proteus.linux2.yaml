@@ -49,3 +49,5 @@ packages:
   tetgen:
   triangle:
   memory_profiler:
+  ipdb:
+  pip:

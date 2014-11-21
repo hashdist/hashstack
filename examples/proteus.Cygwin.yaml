@@ -52,3 +52,5 @@ packages:
   triangle:
   zmq: 
   memory_profiler:
+  ipdb:
+  pip:
