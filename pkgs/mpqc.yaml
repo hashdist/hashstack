@@ -1,0 +1,17 @@
+extends: [cmake_package]
+
+dependencies:
+  build: [mpi, lapack]
+
+sources:
+- key: git:f15663dbdeed58492f3c07c90c586acb5fa34662
+  url: https://github.com/ValeevGroup/mpqc
+
+defaults:
+  # include/mpqc/mpqc_config.h contains hard-coded path
+  relocatable: false
+
+build_stages:
+
+- name: configure
+  extra: ['-D LAPACK_LIBRARIES:PATH="${LAPACK_DIR}/lib/liblapack.so;${LAPACK_DIR}/lib/libblas.so"']

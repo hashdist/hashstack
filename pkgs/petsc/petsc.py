@@ -67,7 +67,7 @@ def configure(ctx, stage_args):
     if stage_args['link']:
         conf_lines.append('--with-shared-libraries=%d' % 
                           bool(stage_args['link'] == 'shared'))
-    if 'debug' in stage_args:
+    if stage_args['debug']:
         conf_lines.append('--with-debugging=%d' % stage_args['debug'])
 
     # Special case, --with-blas-dir does not work with OpenBLAS
@@ -104,11 +104,10 @@ def configure(ctx, stage_args):
         conf_lines.append('--with-ml-lib=%s' % libml)
         conf_lines.append('--with-ml-include=${TRILINOS_DIR}/include/trilinos')
 
-    # Special case, SuiteSparse provides UMFPACK
     if 'SUITESPARSE' in ctx.dependency_dir_vars:
-        conf_lines.append('--with-umfpack=1')
-        conf_lines.append('--with-umfpack-include=${SUITESPARSE_DIR}/include/suitesparse')
-        conf_lines.append('--with-umfpack-lib=[${SUITESPARSE_DIR}/lib/libumfpack.a,${SUITESPARSE_DIR}/lib/libcholmod.a,${SUITESPARSE_DIR}/lib/libcamd.a,${SUITESPARSE_DIR}/lib/libccolamd.a,${SUITESPARSE_DIR}/lib/libcolamd.a,${SUITESPARSE_DIR}/lib/libamd.a,${SUITESPARSE_DIR}/lib/libsuitesparseconfig.a]')
+        conf_lines.append('--with-suitesparse=1')
+        conf_lines.append('--with-suitesparse-include=${SUITESPARSE_DIR}/include/suitesparse')
+        conf_lines.append('--with-suitesparse-lib=[${SUITESPARSE_DIR}/lib/libumfpack.a,libklu.a,libcholmod.a,libbtf.a,libccolamd.a,libcolamd.a,libcamd.a,libamd.a,libsuitesparseconfig.a]')
 
     for dep_var in ctx.dependency_dir_vars:
         if dep_var in ['BLAS', 'LAPACK', 'OPENBLAS', 'PARMETIS',
@@ -122,6 +121,8 @@ def configure(ctx, stage_args):
                 conf_lines.append('F77=$MPIF77')
                 conf_lines.append('F90=$MPIF90')
                 conf_lines.append('FC=$MPIF90')
+            else:
+                conf_lines.append('--with-fc=0')
             continue
         conf_lines.append('--with-%s-dir=$%s_DIR' % 
                           (dep_var.lower(),

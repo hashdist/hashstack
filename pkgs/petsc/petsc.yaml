@@ -3,13 +3,14 @@ dependencies:
   build: [cmake, blas, mpi, python, {{build_with}}]
 
 sources:
-- url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.4.4.tar.gz
-  key: tar.gz:hotnsuydbi6ok23sbfnn55ik7p323inj
+- key: tar.gz:ygj3gebgevuuwg5evyrgenkhf3ry5b2d
+  url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.5.2.tar.gz
 
 defaults:
   # /include/petscconfiginfo.h contains absolute path
   relocatable: false
   fortran: false
+  debug: false
 
 build_stages: 
 
@@ -38,22 +39,20 @@ build_stages:
   debug: {{debug}}
   download: [{{download}}]
 
-# Disable Parallel Builds
-
-# PETSc 3.4 does not allow the use of the -j option to make
-- name: make
-  mode: replace
-  handler: bash
-  after: configure
-  bash: |
-    PETSC_DIR=$(pwd) make
-
-- name: install
-  mode: replace
-  handler: bash
-  after: make
-  bash: |
-    PETSC_DIR=$(pwd) make install
+# PETSc 3.5 does not allow the use of the -j option to make
+-  name: make
+   mode: replace
+   handler: bash
+   after: configure
+   bash: |
+     make
+ 
+-  name: install
+   mode: replace
+   handler: bash
+   after: make
+   bash: |
+     make install
 
 # Special case for OS X, post-fix library rpaths with install_name_tool
 - when: platform == 'Darwin'

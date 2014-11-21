@@ -1,0 +1,20 @@
+extends: [distutils_package, libflags]
+dependencies:
+  build: [lapack, numpy]
+  run: [lapack, numpy]
+
+sources:
+  - url: http://downloads.sourceforge.net/scipy/scipy-0.13.3.tar.gz
+    key: tar.gz:vhrty7xamdbvzvog5y5mtzpjxo4zegox
+
+build_stages:
+  - when: platform == 'linux'
+    name: set-lapack-paths
+    after: libflags
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="$LDFLAGS -shared"
+      export ATLAS=$LAPACK_DIR
+      export BLAS=$LAPACK_DIR
+      export LAPACK=$LAPACK_DIR

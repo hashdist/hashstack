@@ -14,6 +14,12 @@ build_stages:
   bash: |
     export CC=$MPICC
 
+- when: machine == 'CrayXE6'
+  name: configure
+  mode: override
+  append: {LDFLAGS: {{DYNAMIC_EXE_LINKER_FLAGS}}}
+  extra: ['--host=cray','--with-pic']
+
 # http://www.unidata.ucar.edu/software/netcdf/docs/known_problems.html#clang-ncgen3
 - when: platform == 'Darwin'
   files: [fix_genlib.patch]

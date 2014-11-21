@@ -1,0 +1,8 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [libcircle, attr]
+
+sources:
+- key: git:0560ff7c700c143c018f4beb5ec243a3ff61c66e
+  url: https://github.com/hpc/dcp.git

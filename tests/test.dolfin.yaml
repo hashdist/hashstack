@@ -1,0 +1,20 @@
+extends:
+- file: debian.yaml
+
+packages:
+  launcher:
+  cmake:
+    use: host-cmake
+  python:
+    host: true
+    use_python_host_packages: true
+  mpi:
+    use: host-mpi
+  blas:
+    use: host-blas
+  swig:
+    use: host-swig
+  boost:
+    toolset: gcc
+    address_model: 64
+  dolfin:

@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: []
+  run: [dolfin, numpy, petsc4py, scipy, trilinos, ufl]
+
+sources:
+- key: git:a678b8f6f2f0184af6709fe6d7a179aecacd6672
+  url: https://bitbucket.org/fenics-apps/cbc.block.git

@@ -6,7 +6,7 @@ dependencies:
 
 sources:
 - url: https://github.com/erdc-cm/daetk.git
-  key: git:9dfbdd3e231e7c5973046e897708b76c74747286
+  key: git:48b9fefce28c7b4c0a6b10e417c5b385914f6d9d
 
 build_stages:
 - when: platform == 'Darwin'

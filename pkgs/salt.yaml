@@ -5,5 +5,5 @@ dependencies:
   run: [jinja2, pycrypto, pyzmq, requests, yaml, apache-libcloud, MarkupSafe, msgpack-python, M2Crypto]
 
 sources:
- - url: https://pypi.python.org/packages/source/s/salt/salt-2014.1.4.tar.gz
-   key: tar.gz:xribyugo66xzz2cxw32kpq2lai4my2ri
+- key: tar.gz:bkzxi6hbrzsjb3go6tplt532edez77gg
+  url: https://pypi.python.org/packages/source/s/salt/salt-2014.1.13.tar.gz

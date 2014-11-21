@@ -1,0 +1,13 @@
+extends: [autotools_package]
+
+dependencies:
+  build: []
+  run: []
+
+# build-1/apr_rules.mk contains hardwired path
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.bz2:5ffl4qy5jwsiijp4ztnspndjxuhycuki
+  url: http://apache.spinellicreations.com/apr/apr-1.5.1.tar.bz2

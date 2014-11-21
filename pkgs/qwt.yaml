@@ -1,0 +1,17 @@
+extends: [base_package]
+
+dependencies:
+  build: [qt]
+
+sources:
+    #- key: tar.bz2:tlbkp4pwtgrezpkmngybfdhdq667vhwz
+#  url: http://downloads.sourceforge.net/project/qwt/qwt/6.1.1/qwt-6.1.1.tar.bz2
+- key: tar.bz2:g77k6mdhkmrqwdmfhc2p7gzflrx53kr5
+  url: http://downloads.sourceforge.net/project/qwt/qwt/5.2.3/qwt-5.2.3.tar.bz2
+build_stages:
+- name: make_install
+  handler: bash
+  bash: |
+    qmake
+    make
+    make INSTALL_ROOT=${ARTIFACT} install 
