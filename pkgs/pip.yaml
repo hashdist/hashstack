@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/p/pip/pip-1.5.6.tar.gz
+   key: tar.gz:wgsk4zv26inx5mc2lzhtprime4dpukhk

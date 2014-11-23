@@ -18,9 +18,56 @@ build_stages:
     append: {LDFLAGS: "-Wl,-rpath=${ARTIFACT}/lib"}
     extra: ['--enable-shared']
 
+  - when: python_framework
+    name: configure
+    mode: override
+    extra: ['--enable-framework=${ARTIFACT}']
+
+  - when: python_framework
+    name: install
+    after: make
+    mode: replace
+    handler: bash
+    bash: |
+      make install PYTHONAPPSDIR=${ARTIFACT}
+      rm -f ${ARTIFACT}/lib/*.la
+
+
+  - when: python_framework
+    name: add_links
+    files: [sitecustomize.py]
+    after: install
+    before: test_modules
+    handler: bash
+    bash: |
+      # This is needed to get site-packages to resolve correctly
+      # replace the python binaries with a hardlink to the Python "Framework" binary
+      rm ${ARTIFACT}/bin/python
+      rm ${ARTIFACT}/bin/pythonw
+      rm ${ARTIFACT}/bin/python2
+      rm ${ARTIFACT}/bin/pythonw2
+      rm ${ARTIFACT}/bin/python2.7
+      rm ${ARTIFACT}/bin/pythonw2.7
+      ln ${ARTIFACT}/Python.framework/Versions/{{pyver}}/Resources/Python.app/Contents/MacOS/Python ${ARTIFACT}/bin/python
+      ln ${ARTIFACT}/Python.framework/Versions/{{pyver}}/Resources/Python.app/Contents/MacOS/Python ${ARTIFACT}/bin/pythonw
+      ln ${ARTIFACT}/Python.framework/Versions/{{pyver}}/Resources/Python.app/Contents/MacOS/Python ${ARTIFACT}/bin/python2
+      ln ${ARTIFACT}/Python.framework/Versions/{{pyver}}/Resources/Python.app/Contents/MacOS/Python ${ARTIFACT}/bin/pythonw2
+      ln ${ARTIFACT}/Python.framework/Versions/{{pyver}}/Resources/Python.app/Contents/MacOS/Python ${ARTIFACT}/bin/python2.7
+      ln ${ARTIFACT}/Python.framework/Versions/{{pyver}}/Resources/Python.app/Contents/MacOS/Python ${ARTIFACT}/bin/pythonw2.7
+
+      cp -f _hashdist/sitecustomize.py ${ARTIFACT}/Python.framework/Versions/{{pyver}}/lib/python{{pyver}}/site-packages/sitecustomize.py
+
+
+      # These are needed to get top-level installation root semantics when needed.
+      ln -s ./Python.framework/Versions/{{pyver}}/include ${ARTIFACT}/include
+      ln -s ./Python.framework/Versions/{{pyver}}/lib ${ARTIFACT}/lib
+      ln -s ./Python.framework/Versions/{{pyver}}/share ${ARTIFACT}/share
+
+
 # Make sure extension modules were built correctly. This should be part of the
 # Python buildsystem, but unfortunately currently it will silently succeed even
 # if any of the modules below fail.
+
   - name: test_modules
     after: install
     handler: bash
