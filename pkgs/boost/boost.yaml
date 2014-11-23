@@ -2,7 +2,7 @@ extends: [base_package]
 
 dependencies:
   when platform == 'linux':
-    build: [bzip2, mpi, zlib, patchelf, {{build_with}}]
+    build: [python,bzip2, mpi, zlib, patchelf, {{build_with}}]
   when platform != 'linux':
     build: [bzip2, mpi, zlib, {{build_with}}]
 
