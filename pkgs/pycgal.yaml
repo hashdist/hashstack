@@ -1,0 +1,49 @@
+extends: [cmake_package]
+
+dependencies:
+  build: [cgal,python]
+
+sources:
+- url: http://code.google.com/p/cgal-bindings
+  key: git:c1309859d56a3a4583b6ae2570e5a00dfcdc3035
+
+build_stages:
+- name: setup_dirs
+  after: prologue
+  handler: bash
+  bash: |
+    export PYTHONPATH=${ARTIFACT}/{{python_site_packages_rel}}:$PYTHONPATH
+    mkdir -p ${ARTIFACT}/{{python_site_packages_rel}}
+- name: configure
+  extra: ['-D BUILD_PYTHON:BOOL=ON',
+          '-D BUILD_JAVA:BOOL=OFF',
+          '-D CGAL_DIR:PATH=${CGAL_DIR}',
+          '-D PYTHON_OUTDIR_PREFIX:PATH=${ARTIFACT}/{{python_site_packages_rel}}']
+- name: install
+  mode: replace
+  handler: bash
+  after: make
+  bash: |
+    echo "The build state installs the Python module"
+
+  # Remove easy_install pth files
+- name: cleanup
+  after: install
+  handler: bash
+  bash: |
+    rm -rf ${ARTIFACT}/{{python_site_packages_rel}}/*.pth
+
+profile_links:
+
+  - name: python_packages
+    link: 'lib/python{{pyver}}/site-packages/*'
+    dirs: true
+
+  - name: python_exclude
+    after: python_packages
+    before: everything
+    exclude: 'lib/python{{pyver}}/site-packages/**/*'
+
+when_build_dependency:
+  - prepend_path: PYTHONPATH
+    value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'
