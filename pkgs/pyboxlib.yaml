@@ -1,17 +1,27 @@
-extends: [setuptools_package]
+extends: [distutils_package]
 
 dependencies:
   build: [mpi, numpy]
   run: [mpi, numpy]
 
 build_stages:
-- name: enter_pyboxlib_dir
+- name: build_pyboxlib
   after: prologue
   before: install
   handler: bash
   bash: |
-    cd Src/Python
+    cd Src/Python/F90
+    mkdir build
+    make OUT=build CC=mpicc FC=mpif90 MPIHOME=$(dirname $(dirname $(which mpicc)))
+
+- name: test
+  after: install
+  handler: bash
+  bash: |
+    cd tests
+    export PYTHONPATH=$PYTHONPATH:$ARTIFACT/lib/python2.7/site-packages
+    $PYTHON regrid.py
 
 sources:
-- url: https://ccse.lbl.gov/pub/Downloads/BoxLib.git
-  key: git:9abcfa56867347305f3a0ad9674fb5ae1ec98ef6
+- url: https://github.com/memmett/BoxLib.git
+  key: git:5fb46d4995ff74a97a0803e4fe008c44da37f743
