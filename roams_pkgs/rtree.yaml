@@ -1,0 +1,17 @@
+extends: [setuptools_package]
+dependencies:
+  build: [libspatialindex]
+  run: [libspatialindex]
+
+# rtree currently looks for libspatialindex using CDLL, which doesn't know how to do a local search...
+# note, this is a decent build-time hack, but will require another hack to make this build relocatable.
+build_stages:
+- name: patch_library_path
+  before: install
+  handler: bash
+  bash: |
+    sed -i -e "s|CDLL(lib_name)|CDLL('${LIBSPATIALINDEX_DIR}/lib/'+lib_name)|g" rtree/core.py
+
+sources:
+- url: https://pypi.python.org/packages/source/R/Rtree/Rtree-0.7.0.tar.gz
+  key: tar.gz:z6kqsl4g4znjefsflhsu6cbegpon6g6t

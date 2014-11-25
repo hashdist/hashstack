@@ -1,0 +1,23 @@
+extends: [autotools_package]
+
+sources:
+  - url: http://www.ece.uvic.ca/~frodo/jasper/software/jasper-1.900.1.zip
+    key: zip:noifvhbkzixcovkeeetgn3x4j22e3foq
+
+defaults:
+  relocatable: false
+
+build_stages:
+- name: configure
+  handler: bash
+  mode: replace
+  bash: |
+    bash configure --prefix=${ARTIFACT} --enable-shared
+
+- when: platform == 'Cygwin'
+  name: configure
+  handler: bash
+  mode: replace
+  bash: |
+    cp /usr/share/automake-1.9/config.guess acaux
+    bash configure --prefix=${ARTIFACT} --enable-shared
