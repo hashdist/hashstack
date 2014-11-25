@@ -11,8 +11,17 @@ build_stages:
   handler: bash
   bash: |
     cd Src/Python/F90
-    make OUT=build/lib CC=mpicc FC=mpif90 MPIHOME=$(dirname $(dirname $(which mpicc)))
+    mkdir build
+    make OUT=build CC=mpicc FC=mpif90 MPIHOME=$(dirname $(dirname $(which mpicc)))
+
+- name: test
+  after: install
+  handler: bash
+  bash: |
+    cd tests
+    export PYTHONPATH=$PYTHONPATH:$ARTIFACT/lib/python2.7/site-packages
+    $PYTHON regrid.py
 
 sources:
 - url: https://github.com/memmett/BoxLib.git
-  key: git:6bccf4f5f6987584fa7227057cc8f396520aa989
+  key: git:5fb46d4995ff74a97a0803e4fe008c44da37f743
