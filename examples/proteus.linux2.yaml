@@ -53,6 +53,8 @@ packages:
   boost:
     toolset: gcc
     address_model: 64
+    build_with: |
+      python
   cgal:
   pycgal:
   ipdb:

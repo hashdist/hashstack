@@ -4,8 +4,8 @@ dependencies:
   build: [cgal,python]
 
 sources:
-- url: http://code.google.com/p/cgal-bindings
-  key: git:c1309859d56a3a4583b6ae2570e5a00dfcdc3035
+- key: git:c1309859d56a3a4583b6ae2570e5a00dfcdc3035
+  url: http://code.google.com/p/cgal-bindings
 
 build_stages:
 - name: setup_dirs
