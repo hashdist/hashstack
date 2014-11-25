@@ -97,3 +97,4 @@ packages:
   matlab:
     use: host-matlab
   pymatbridge:
+  ode:

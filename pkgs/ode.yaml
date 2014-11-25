@@ -1,0 +1,27 @@
+extends: [autotools_package]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:76y7d3stirmjjzqe5ioftrhbr4ui3wj5
+  url: http://sourceforge.net/projects/opende/files/ODE/0.13/ode-0.13.tar.gz
+
+dependencies:
+  build: [python,cython,pkg-config]
+  run: [python,cython,pkg-config]
+
+build_stages:
+- name: configure
+  extra: [
+    "--enable-double-precision",
+    "--with-trimesh=opcode",
+    "--enable-new-trimesh",
+    "--enable-shared"]
+
+- name: instal_python_bindings
+  after: install
+  handler: bash
+  bash: |
+    cd bindings/python
+    PKG_CONFIG_PATH=../.. ${PYTHON} setup.py install --prefix=${ARTIFACT}
