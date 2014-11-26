@@ -50,12 +50,5 @@ packages:
   tetgen:
   triangle:
   memory_profiler:
-  boost:
-    toolset: gcc
-    address_model: 64
-    build_with: |
-      python
-  cgal:
-  pycgal:
   ipdb:
   pip:
