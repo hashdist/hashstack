@@ -19,7 +19,7 @@ build_stages:
     "--enable-new-trimesh",
     "--enable-shared"]
 
-- name: instal_python_bindings
+- name: install_python_bindings
   after: install
   handler: bash
   bash: |
