@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: []
+  run: [mpi4py, numpy, python-netcdf4, pyvtk]
+
+sources:
+- key: git:cca3ed1cc39215636ebd3e2449dae44d5bb5781a
+  url: https://github.com/mikaem/fenicstools.git
