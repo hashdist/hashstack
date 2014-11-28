@@ -1,0 +1,12 @@
+extends: [distutils_package]
+dependencies:
+  build: [gccxml, libadjoint, petsc, slepc]
+  run: [dolfin, ffc, fiat, instant, libadjoint, numpy, scipy, ufl]
+
+sources:
+- key: tar.gz:yb7drsbpg4gzafuizj4adq235eednif7
+  url: https://bitbucket.org/dolfin-adjoint/dolfin-adjoint/downloads/dolfin-adjoint-1.4.tar.gz
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
