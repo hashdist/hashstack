@@ -8,8 +8,8 @@ defaults:
   relocatable: false
 
 sources:
-- key: tar.bz2:2m2hqgqsjlng6ohghnkf4kr3rqqygbev
-  url: http://ftpmirror.gnu.org/gcc/gcc-4.9.1/gcc-4.9.1.tar.bz2
+- key: tar.bz2:eaqmtauvqvvkcp62b4xtur4ujedvp7be
+  url: http://ftpmirror.gnu.org/gcc/gcc-4.9.2/gcc-4.9.2.tar.bz2
 
 build_stages:
   - name: link_lib64_to_lib
