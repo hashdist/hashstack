@@ -42,5 +42,5 @@ packages:
     debug: false
   dolfin:
     build_with: |
-      petsc, scotch, suitesparse, petsc, slepc, vtk
+      petsc, scotch, suitesparse, slepc, vtk
   opentidalfarm:
