@@ -1,8 +1,14 @@
 extends: [autotools_package]
 
-sources:
- - url: http://python.org/ftp/python/2.7.8/Python-2.7.8.tgz
-   key: tar.gz:otlqxeknurehviozoirlfhuvktief6bf
+when pyver == '3.3':
+    sources:
+    - key: tar.gz:bjmk2hy555hmzefrrmgeccr2bynert3w
+      url: https://www.python.org/ftp/python/3.3.6/Python-3.3.6.tgz
+when pyver == '2.7':
+    sources:
+    - url: http://python.org/ftp/python/2.7.8/Python-2.7.8.tgz
+      key: tar.gz:otlqxeknurehviozoirlfhuvktief6bf
+
 
 dependencies:
   build: [zlib, bzip2, sqlite, openssl, launcher, ncurses, readline, {{build_with}}]
@@ -68,6 +74,15 @@ build_stages:
 # Python buildsystem, but unfortunately currently it will silently succeed even
 # if any of the modules below fail.
 
+
+  - when: pyver == '3.3'
+    name: python_binary
+    after: install
+    before: test_modules
+    handler: bash
+    bash: |
+      cp $ARTIFACT/bin/python3 $ARTIFACT/bin/python
+
   - name: test_modules
     after: install
     handler: bash
@@ -97,7 +112,13 @@ build_stages:
 
       # Make sure HTTPS works
       echo "Test https support in httplib"
-      $ARTIFACT/bin/python -c "import httplib; assert hasattr(httplib, 'HTTPS')"
+      $ARTIFACT/bin/python << EOF
+      try:
+          import httplib
+      except ImportError:
+          import http.client as httplib
+      assert hasattr(httplib, 'HTTPSConnection')
+      EOF
       echo "    ok"
 
       # Test sqlite3
