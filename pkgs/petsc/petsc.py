@@ -2,11 +2,9 @@ from hashdist import build_stage
 
 def preConfigureCrayXE6(ctx, conf_lines):
     conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
-               '--with-cmake=${CMAKE}',
-               '--with-batch',
-               '--with-clanguage=C',
-               '--known-level1-dcache-size=16384',
                '--known-mpi-shared-libraries=1',
+               '--with-batch',
+               '--known-level1-dcache-size=16384',
                '--known-level1-dcache-linesize=64',
                '--known-level1-dcache-assoc=4',
                '--known-memcmp-ok=1',
@@ -24,6 +22,7 @@ def preConfigureCrayXE6(ctx, conf_lines):
                '--known-sizeof-MPI_Fint=4',
                '--known-mpi-long-double=1',
                '--known-mpi-c-double-complex=1',
+               '--known-mpi-int64_t=1',
                '--with-pthread=1']
 
 @build_stage()
