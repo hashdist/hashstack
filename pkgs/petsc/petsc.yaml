@@ -18,18 +18,10 @@ build_stages:
 - when: platform == 'Cygwin'
   name: fix_dll_detection
   files: [fix_dll_link_detection.patch]
-  before: set_petsc_arch
-  handler: bash
-  bash: |
-    patch -p1 < _hashdist/fix_dll_link_detection.patch
-
-# Need to explicitly provide a PETSc arch to use later
-- when: platform == 'Cygwin'
-  name: set_petsc_arch
   before: configure
   handler: bash
   bash: |
-    export PETSC_ARCH=arch-mswin-c-opt
+    patch -p1 < _hashdist/fix_dll_link_detection.patch
 
 - name: configure ## See petsc.py for details
   mode: replace
@@ -69,7 +61,7 @@ build_stages:
   handler: bash
   after: install
   bash: |
-    find ${PETSC_ARCH} -name "*.dll" -exec install -v {} ${ARTIFACT}/bin \;
+    find arch-mswin-*/ -name "*.dll" -exec install -v {} ${ARTIFACT}/bin \;
 
 when_build_dependency:
 - when platform == 'Cygwin':

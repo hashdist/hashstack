@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: [numpy, matplotlib]
+  run: [numpy, matplotlib]
+
+sources:
+- key: tar.gz:zojgvnzjw7buksyledf7h6tbwscdusle
+  url: https://scitools.googlecode.com/archive/435f3410c3043cff39746857cb682cdc3c99bb7b.tar.gz

@@ -1,3 +1,4 @@
+
 extends: [distutils_package]
 dependencies:
   build: [blas]
@@ -39,7 +40,7 @@ build_stages:
       cat > site.cfg << EOF
       [DEFAULT]
       library_dirs = ${ACML_DIR}/gfortran64/lib
-      libraries = acml
+      libraries = acml,c
       EOF
 
   - when: machine == 'CrayXE6'

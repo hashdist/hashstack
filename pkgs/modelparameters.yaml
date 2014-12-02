@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: []
+  run: [numpy, sympy]
+
+sources:
+- key: git:d7cf2148d6a2cf8703d2deb0d72514f4f0323827
+  url: https://bitbucket.org/johanhake/modelparameters.git

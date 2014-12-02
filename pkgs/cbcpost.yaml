@@ -1,0 +1,8 @@
+extends: [setuptools_package]
+dependencies:
+  build: [dolfin, ffc, fiat, instant, numpy, scipy, ufl]
+  run: [dolfin, ffc, fiat, instant, numpy, scipy, ufl, fenicstools, mpi4py]
+
+sources:
+- key: git:fe075e5e7cf4eabc2d4bd7e33d426ae1a9e95c00
+  url: https://bitbucket.org/simula_cbc/cbcpost.git

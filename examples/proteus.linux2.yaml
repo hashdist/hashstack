@@ -98,3 +98,5 @@ packages:
     use: host-matlab
   pymatbridge:
   ode:
+  ipdb:
+  pip:
