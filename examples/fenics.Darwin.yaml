@@ -28,7 +28,7 @@ packages:
     build_with: |
       parmetis, scotch, suitesparse
     download: |
-      superlu, superlu_dist
+      superlu_dist
     coptflags: -O2
     link: shared
     debug: false
