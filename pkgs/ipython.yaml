@@ -5,3 +5,13 @@ dependencies:
 sources:
   - url: https://pypi.python.org/packages/source/i/ipython/ipython-2.3.0.tar.gz
     key: tar.gz:ul4bv7r6zjoiwlum6twdkump2ad2herr
+
+build_stages:
+-   name: get submodule
+    before: install
+    handler: bash
+    bash: |
+      git clone https://github.com/ipython/ipython-components.git IPython/html/static/components
+      cd IPython/html/static/components
+      git checkout --detach d153657b19789ceeb3108f11e871e153d8f6c2d9
+      cd ${BUILD}

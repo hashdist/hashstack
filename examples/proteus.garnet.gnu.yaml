@@ -54,8 +54,8 @@ packages:
   petsc:
     build_with: |
       parmetis
-    download: |
-      ptscotch, superlu, superlu_dist, spooles, hypre, blacs, scalapack, mumps
+#    download: |
+#      ptscotch, superlu, superlu_dist, spooles, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
     debug: false
@@ -68,14 +68,14 @@ packages:
   tetgen:
   triangle:
   memory_profiler:
-  boost:
-    toolset: gcc
-    address_model: 64
-    build_with: |
-      python
-
-  cgal:
-  pycgal:
+#  boost:
+#    toolset: gcc
+#    address_model: 64
+#    build_with: |
+#      python
+#
+#  cgal:
+#  pycgal:
   netcdf4:
   netcdf4f:
   python-netcdf4:
@@ -88,27 +88,27 @@ packages:
   #  link: shared  
   stwave:  
   scipy:
-  ipython:
-    sources:
-      - key: git:68f6519cdfd23581ed7358fa1941ae1bbd76e5b3
-        url: https://github.com/ellisonbg/ipython.git
-
+#  ipython:
+#    sources:
+#      - key: git:68f6519cdfd23581ed7358fa1941ae1bbd76e5b3
+#        url: https://github.com/ellisonbg/ipython.git
+#
   h5py:
   pydap:
-  leafletwidget: 
-    sources:
-      - key: git:f9147c5b13a69b80bc28d3574f7ba6b2c576aed2
-        url: https://github.com/erdc-cm/leafletwidget.git
+#  leafletwidget: 
+#    sources:
+#      - key: git:f9147c5b13a69b80bc28d3574f7ba6b2c576aed2
+#        url: https://github.com/erdc-cm/leafletwidget.git
   geojson:
   rdp:
-  ipython-widgetmode:
-  ipython-d3plot:
-  ipython-gridwidget:
-  shapely:
-  rtree:
-  matlab:
-    use: host-matlab
-  pymatbridge:
+#  ipython-widgetmode:
+#  ipython-d3plot:
+#  ipython-gridwidget:
+#  shapely:
+#  rtree:
+#  matlab:
+#    use: host-matlab
+#  pymatbridge:
   ode:
-  ipdb:
+#  ipdb:
   pip:
