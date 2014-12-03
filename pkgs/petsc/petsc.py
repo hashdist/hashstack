@@ -24,6 +24,7 @@ def preConfigureCrayXE6(ctx, conf_lines):
                '--known-sizeof-MPI_Fint=4',
                '--known-mpi-long-double=1',
                '--known-mpi-c-double-complex=1',
+               '--known-mpi-int64_t=1',
                '--with-pthread=1']
 
 @build_stage()

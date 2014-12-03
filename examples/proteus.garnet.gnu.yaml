@@ -54,8 +54,8 @@ packages:
   petsc:
     build_with: |
       parmetis
-#    download: |
-#      ptscotch, superlu, superlu_dist, spooles, hypre, blacs, scalapack, mumps
+    download: |
+      ptscotch, superlu, superlu_dist, spooles, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
     debug: false
