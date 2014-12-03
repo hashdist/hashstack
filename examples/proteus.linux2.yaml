@@ -4,6 +4,8 @@ package_dirs:
 
 parameters:
   HOST_MATLAB: '/home/cekees/MATLAB/R2013b/bin/matlab'
+  HOST_SIMMETRIX_LIB: /usr/local/simmetrix/9.0-140607/lib/x64_rhel5_gcc41
+  HOST_SIMMETRIX_INCLUDE: /usr/local/simmetrix/9.0-140607/include
 
 # In the future, we'll provide better incorporation of
 # automatic environment detection.  For now, have a look
@@ -63,8 +65,6 @@ packages:
 
   cgal:
   pycgal:
-  ipdb:
-  pip:
   netcdf4:
   netcdf4f:
   python-netcdf4:
@@ -100,3 +100,8 @@ packages:
   ode:
   ipdb:
   pip:
+  scorec:
+  simmetrix:
+  zoltan:
+    build_with: |
+      parmetis
