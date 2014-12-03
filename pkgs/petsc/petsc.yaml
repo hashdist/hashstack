@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [cmake, blas, mpi, python, {{build_with}}]
+  build: [blas, mpi, python, {{build_with}}]
 
 sources:
 - key: tar.gz:ygj3gebgevuuwg5evyrgenkhf3ry5b2d
