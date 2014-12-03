@@ -139,6 +139,9 @@ build_stages:
 when_build_dependency:
   - set: PYTHON
     value: ${ARTIFACT}/bin/python
+  - when: pyver != '2.7'
+    set: PYTHONDONTWRITEBYTECODE
+    value: 'yes'
   - prepend_path: PATH
     value: '${ARTIFACT}/bin'
   - prepend_path: PKG_CONFIG_PATH
