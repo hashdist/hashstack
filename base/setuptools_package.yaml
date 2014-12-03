@@ -21,7 +21,7 @@ build_stages:
   mode: replace
   handler: bash
   bash: |
-    ${PYTHON} -c 'import setuptools; __file__="setup.py"; execfile(__file__)' \
+    ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
        install \
        --prefix=. --root=${ARTIFACT} \
        --single-version-externally-managed
