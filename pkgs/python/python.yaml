@@ -4,6 +4,10 @@ when pyver == '2.7':
     sources:
     - key: tar.gz:otlqxeknurehviozoirlfhuvktief6bf
       url: http://python.org/ftp/python/2.7.8/Python-2.7.8.tgz
+when pyver == '3.2':
+    sources:
+    - key: tar.gz:7qpecklofhkhn5uwga5mvyutvz5cgehq
+      url: https://www.python.org/ftp/python/3.2.6/Python-3.2.6.tgz
 when pyver == '3.3':
     sources:
     - key: tar.gz:bjmk2hy555hmzefrrmgeccr2bynert3w
@@ -80,15 +84,7 @@ build_stages:
 # if any of the modules below fail.
 
 
-  - when: pyver == '3.3'
-    name: python_binary
-    after: install
-    before: test_modules
-    handler: bash
-    bash: |
-      cp $ARTIFACT/bin/python3 $ARTIFACT/bin/python
-
-  - when: pyver == '3.4'
+  - when: pyver != '2.7'
     name: python_binary
     after: install
     before: test_modules
