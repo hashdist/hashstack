@@ -1,13 +1,18 @@
 extends: [autotools_package]
 
+when pyver == '2.7':
+    sources:
+    - key: tar.gz:otlqxeknurehviozoirlfhuvktief6bf
+      url: http://python.org/ftp/python/2.7.8/Python-2.7.8.tgz
 when pyver == '3.3':
     sources:
     - key: tar.gz:bjmk2hy555hmzefrrmgeccr2bynert3w
       url: https://www.python.org/ftp/python/3.3.6/Python-3.3.6.tgz
-when pyver == '2.7':
+when pyver == '3.4':
     sources:
-    - url: http://python.org/ftp/python/2.7.8/Python-2.7.8.tgz
-      key: tar.gz:otlqxeknurehviozoirlfhuvktief6bf
+    - key: tar.gz:isr4d3y4psr6j7jfeqvpqdwxfwuucib4
+      url: https://www.python.org/ftp/python/3.4.2/Python-3.4.2.tgz
+
 
 
 dependencies:
@@ -76,6 +81,14 @@ build_stages:
 
 
   - when: pyver == '3.3'
+    name: python_binary
+    after: install
+    before: test_modules
+    handler: bash
+    bash: |
+      cp $ARTIFACT/bin/python3 $ARTIFACT/bin/python
+
+  - when: pyver == '3.4'
     name: python_binary
     after: install
     before: test_modules
