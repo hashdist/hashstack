@@ -35,6 +35,8 @@ build_stages:
     when link == 'shared' and pyver == '3.4':
       append: {LDFLAGS: "-Wl,-rpath=${ARTIFACT}/lib"}
       extra: ['--enable-shared', '--without-ensurepip']
+    when link != 'shared' and pyver == '3.4':
+      extra: ['--without-ensurepip']
     when python_framework and pyver != '3.4':
       extra: ['--enable-framework=${ARTIFACT}']
     when python_framework and pyver == '3.4':
