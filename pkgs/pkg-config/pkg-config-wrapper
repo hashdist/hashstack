@@ -41,7 +41,7 @@ class PkgConfigWrapper(object):
         except CalledProcessError as err:
             log.debug('caught error: rc = %s', err.returncode)
             raise SystemExit(err.returncode)
-        output = output.rstrip()
+        output = output.rstrip().decode("utf-8")
         log.debug('intercepted: %s', output)
         return output
 
