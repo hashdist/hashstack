@@ -8,14 +8,14 @@ sources:
     key: tar.gz:fpndwh734ihogxktg7mxa4p7if32o5bl
 
 build_stages:
-- name: install
-  after: setup_dirs
+- name: fix_setup_paths
+  files: [pytables_fix_setup_paths.patch]
+  before: install
   handler: bash
   bash: |
-    CC=${MPICC} CXX=${MPICXX} ${PYTHON} setup.py install --prefix=${ARTIFACT}
+    patch -p1 < _hashdist/pytables_fix_setup_paths.patch
 
-- when: platform == 'linux'
-  name: install
+- name: install
   mode: replace
   after: setup_dirs
   handler: bash
