@@ -27,16 +27,18 @@ defaults:
   relocatable: false
 
 build_stages:
-  - when: link == 'shared'
-    name: configure
+  - name: configure
     mode: override
-    append: {LDFLAGS: "-Wl,-rpath=${ARTIFACT}/lib"}
-    extra: ['--enable-shared']
-
-  - when: python_framework
-    name: configure
-    mode: override
-    extra: ['--enable-framework=${ARTIFACT}']
+    when link == 'shared' and pyver != '3.4':
+      append: {LDFLAGS: "-Wl,-rpath=${ARTIFACT}/lib"}
+      extra: ['--enable-shared']
+    when link == 'shared' and pyver == '3.4':
+      append: {LDFLAGS: "-Wl,-rpath=${ARTIFACT}/lib"}
+      extra: ['--enable-shared', '--without-ensurepip']
+    when python_framework and pyver != '3.4':
+      extra: ['--enable-framework=${ARTIFACT}']
+    when python_framework and pyver == '3.4':
+      extra: ['--enable-framework=${ARTIFACT}', '--without-ensurepip']
 
   - when: python_framework
     name: install
