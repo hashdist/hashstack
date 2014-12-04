@@ -17,9 +17,6 @@ packages:
   mpi:
     use: mpich
   python:
-    host: false
-    build_with: |
-      bzip2, openssl, sqlite
     link: shared
   swig:
     build_with: |
