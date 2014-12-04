@@ -42,7 +42,7 @@ class PkgConfigWrapper(object):
             log.debug('caught error: rc = %s', err.returncode)
             raise SystemExit(err.returncode)
         output = output.rstrip()
-        log.debug('intercepted: %s', output.rstrip())
+        log.debug('intercepted: %s', output)
         return output
 
     def __call__(self, *args):
