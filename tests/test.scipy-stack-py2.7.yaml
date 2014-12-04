@@ -3,6 +3,10 @@
 extends:
 - file: linux.yaml
 
+parameters:
+  # This is already set to 2.7 in common.yaml, but we set it again for clarity:
+  pyver: '2.7'
+
 packages:
 
   launcher:

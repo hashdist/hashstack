@@ -1,0 +1,22 @@
+# This builds the IPython, NumPy, SciPy, SymPy stack from scratch
+
+extends:
+- file: linux.yaml
+
+parameters:
+  pyver: '3.4'
+
+packages:
+
+  launcher:
+  blas:
+    use: host-blas
+  python:
+  sqlite:
+    use: host-sqlite
+  ipython:
+  nose:
+  numpy:
+  sphinx:
+  sympy:
+  scipy:
