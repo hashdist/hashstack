@@ -17,7 +17,7 @@ def setup_logging(level):
 
 
 class PkgConfigWrapper(object):
-    
+
     def __init__(self, wrapped_binary):
         self._wrapped = wrapped_binary
 
@@ -28,7 +28,7 @@ class PkgConfigWrapper(object):
         for key, value in os.environ.items():
             if key.endswith('_DIR'):
                 yield key, value
-                
+
     def pc_variables(self):
         return ['--define-variable={0}="{1}"'.format(key, value)
                 for key, value in self.package_dir_iter()]
