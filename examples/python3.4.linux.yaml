@@ -25,3 +25,7 @@ packages:
   nose:
   sympy:
   scipy:
+  breathe:
+  gprof2dot:
+  pandas:
+  selenium:
