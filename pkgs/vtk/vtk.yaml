@@ -33,6 +33,14 @@ build_stages:
   bash: |
     patch -p1 < _hashdist/vtk-5.10.1-cygwin.patch
 
+- when: platform == 'Darwin'
+  files: [vtk-disable-gc.patch]
+  name: vtk_disable_gc_patch
+  handler: bash
+  before: setup_builddir
+  bash: |
+    patch -p1 < _hashdist/vtk-disable-gc.patch
+
 - name: configure
   extra: 
     - '-D BUILD_TESTING:BOOL=OFF'
