@@ -4,8 +4,10 @@ extends:
 - file: linux.yaml
 
 parameters:
-  # This is already set to 2.7 in common.yaml, but we set it again for clarity:
+  # These are already set in config.yaml, but we set them again for clarity:
   pyver: '2.7'
+  python_site_packages_rel: 'lib/python2.7/site-packages'
+  python_host_packages: '/usr/lib/python2.7/dist-packages'
 
 packages:
 
