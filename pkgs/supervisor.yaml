@@ -1,7 +1,7 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 
 dependencies:
-  build: [meld3, superlance, setuptools]
+  build: [meld3, superlance]
   run: [meld3, superlance]
 
 sources:
