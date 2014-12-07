@@ -25,6 +25,13 @@ build_stages:
     export PYTHONPATH=${ARTIFACT}/{{python_site_packages_rel}}:$PYTHONPATH
     mkdir -p ${ARTIFACT}/{{python_site_packages_rel}}
 
+- name: glx_glext_legacy_patch
+  files: [GLX_GLEXT_LEGACY.patch]
+  handler: bash
+  before: setup_builddir
+  bash: |
+    patch -p1 < _hashdist/GLX_GLEXT_LEGACY.patch
+
 - when: platform == 'Cygwin'
   files: [vtk-5.10.1-cygwin.patch]
   name: vtk_cygwin_patch
