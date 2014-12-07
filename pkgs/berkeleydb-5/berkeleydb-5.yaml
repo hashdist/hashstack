@@ -5,6 +5,15 @@ sources:
   url: http://download.oracle.com/berkeley-db/db-5.3.28.tar.gz
 
 build_stages:
+- name: xcode_4_6
+  when: platform == 'Darwin'
+  after: prologue
+  before: configure
+  handler: bash
+  files: [xcode_4_6.patch]
+  bash: |
+    patch -p1 < _hashdist/xcode_4_6.patch
+
 - name: configure
   after: prologue
   mode: replace
