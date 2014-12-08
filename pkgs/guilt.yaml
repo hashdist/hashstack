@@ -1,7 +1,7 @@
 extends: [base_package]
 
 sources:
-- key: git:65a5566a335783b3097ecef2156033dbe41a3506
+- key: git:6fe15cb073f5a26b5e0b75451b6ee3013676b34d
   url: http://repo.or.cz/guilt.git
 
 build_stages:

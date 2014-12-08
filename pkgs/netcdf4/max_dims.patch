@@ -1,0 +1,24 @@
+commit c3e8003955febdb8e46c760d21fe891f958dd245
+Author: Ondřej Čertík <ondrej.certik@gmail.com>
+Date:   Sun Dec 7 23:11:01 2014 -0700
+
+    Increase max dimensions
+
+    In order to handle larger meshes in libraries like ExodusII and Moab.
+
+diff --git a/include/netcdf.h b/include/netcdf.h
+index 5d556bc..a642b71 100644
+--- a/include/netcdf.h
++++ b/include/netcdf.h
+@@ -225,9 +225,9 @@ created with the ::NC_CLASSIC_MODEL flag.
+ As a rule, NC_MAX_VAR_DIMS <= NC_MAX_DIMS.
+ */
+ /**@{*/
+-#define NC_MAX_DIMS	1024	
++#define NC_MAX_DIMS	65536
+ #define NC_MAX_ATTRS	8192	
+-#define NC_MAX_VARS	8192	
++#define NC_MAX_VARS	524288
+ #define NC_MAX_NAME	256	
+ #define NC_MAX_VAR_DIMS	1024 /**< max per variable dimensions */
+ /**@}*/
