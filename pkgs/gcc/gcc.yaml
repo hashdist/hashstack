@@ -40,6 +40,13 @@ build_stages:
 ##WIP       echo "    ok"
 ##WIP
 
+  - files: [fix_bug60255.patch]
+    name: fix_bug60255
+    handler: bash
+    before: configure
+    bash: |
+      patch -p1 < _hashdist/fix_bug60255.patch
+
 when_build_dependency:
 - prepend_path: PATH
   value: '${ARTIFACT}/bin'

@@ -1,0 +1,73 @@
+--- a/gcc/fortran/class.c   
++++ a/gcc/fortran/class.c   
+@@ -2415,18 +2415,9 @@ find_intrinsic_vtab (gfc_typespec *ts)
+   gfc_symbol *copy = NULL, *src = NULL, *dst = NULL;
+   int charlen = 0;
+ 
+-  if (ts->type == BT_CHARACTER)
+-    {
+-      if (ts->deferred)
+-   {
+-     gfc_error ("TODO: Deferred character length variable at %C cannot "
+-            "yet be associated with unlimited polymorphic entities");
+-     return NULL;
+-   }
+-      else if (ts->u.cl && ts->u.cl->length
+-          && ts->u.cl->length->expr_type == EXPR_CONSTANT)
+-   charlen = mpz_get_si (ts->u.cl->length->value.integer);
+-    }
++  if (ts->type == BT_CHARACTER && !ts->deferred && ts->u.cl && ts->u.cl->length
++      && ts->u.cl->length->expr_type == EXPR_CONSTANT)
++    charlen = mpz_get_si (ts->u.cl->length->value.integer);
+ 
+   /* Find the top-level namespace.  */
+   for (ns = gfc_current_ns; ns; ns = ns->parent)
+@@ -2437,10 +2428,16 @@ find_intrinsic_vtab (gfc_typespec *ts)
+     {
+       char name[GFC_MAX_SYMBOL_LEN+1], tname[GFC_MAX_SYMBOL_LEN+1];
+ 
+-      if (ts->type == BT_CHARACTER)
+-   sprintf (tname, "%s_%d_%d", gfc_basic_typename (ts->type),
+-        charlen, ts->kind);
+-      else
++      if (ts->type == BT_CHARACTER) {
++        if (!ts->deferred)
++          sprintf (tname, "%s_%d_%d", gfc_basic_typename (ts->type),
++                   charlen, ts->kind);
++        else
++          /* The type is deferred here. Ensure that this is easily seen in the 
++             vtable. */
++          sprintf (tname, "%s_DEFERRED_%d", gfc_basic_typename (ts->type),
++                   ts->kind);
++      } else
+    sprintf (tname, "%s_%d_", gfc_basic_typename (ts->type), ts->kind);
+ 
+       sprintf (name, "__vtab_%s", tname);
+--- a/gcc/testsuite/gfortran.dg/unlimited_polymorphic_19.f90    
++++ a/gcc/testsuite/gfortran.dg/unlimited_polymorphic_19.f90    
+@@ -0,0 +1,14 @@ 
++! { dg-do compile }
++! Testing fix for 
++! PR fortran/60255 
++!
++program test
++    character(LEN=:), allocatable :: S
++    call subP(S)
++contains
++
++subroutine subP(P)
++        class(*) :: P
++end subroutine
++ 
++end program
+--- a/gcc/testsuite/gfortran.dg/unlimited_polymorphic_2.f03 
++++ a/gcc/testsuite/gfortran.dg/unlimited_polymorphic_2.f03 
+@@ -5,7 +5,7 @@ 
+ ! Contributed by Paul Thomas  <pault@gcc.gnu.org>
+ !            and Tobias Burnus <burnus@gcc.gnu.org>
+ !
+-  CHARACTER(:), allocatable, target :: chr ! { dg-error "TODO: Deferred character length variable" }
++  CHARACTER(:), allocatable, target :: chr 
+ ! F2008: C5100
+   integer :: i(2)
+   logical :: flag
