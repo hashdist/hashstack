@@ -21,7 +21,11 @@ packages:
   swig:
     build_with: |
       perl
-  ipython:
+  ipython: # Note: ipython doesn't work with Python 3.2
   nose:
   sympy:
   scipy:
+  breathe:
+  gprof2dot:
+  pandas:
+  selenium:
