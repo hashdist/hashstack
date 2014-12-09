@@ -5,5 +5,5 @@ extends:
 
 packages:
   curl:
-    build_with: ca-bundle
+    use_ca_bundle: true
   golang:

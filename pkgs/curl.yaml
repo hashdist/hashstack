@@ -4,15 +4,23 @@ extends: [autotools_package]
 # trust hashstack's ca-bundle and want to squash the errors/warnings about
 # not being able to verify ssl connections and your system does not come
 # with an appropriate certificate bundle you can use or trust.
-dependencies:
+when use_ca_bundle:
+  dependencies:
+    build: [openssl, libidn, zlib, ca-bundle, {{build_with}}]
+when not use_ca_bundle:
+  dependencies:
     build: [openssl, libidn, zlib, {{build_with}}]
+
+defaults:
+  use_ca_bundle: false
 
 sources:
   - url: http://curl.haxx.se/download/curl-7.37.0.tar.gz
     key: tar.gz:dl6tespqw6zufuqodtfmxpasggdziyrs
 
 build_stages:
-- name: configure
+- when: use_ca_bundle
+  name: configure
   mode: override
   extra: ['--with-ca-bundle=${CA_BUNDLE_DIR}/etc/ca-bundle/ca-bundle.crt']
 
