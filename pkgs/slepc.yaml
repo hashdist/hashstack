@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [petsc]
+  build: [petsc, python]
 
 sources:
 - key: tar.gz:un55l3qom6iunhqqlbhrtqcauo5u7fac
