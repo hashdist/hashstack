@@ -1,5 +1,5 @@
 extends:
- - file: common.yaml
+ - file: config.yaml
 
 parameters:
   platform: Darwin

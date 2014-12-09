@@ -5,6 +5,8 @@ extends:
 
 parameters:
   pyver: '3.3'
+  python_site_packages_rel: 'lib/python3.3/site-packages'
+  python_host_packages: '/usr/lib/python3.3/dist-packages'
 
 packages:
 
