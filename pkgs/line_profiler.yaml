@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [cython]
+  run: []
+
+sources:
+  - key: git:99891e5c0415da66019dd56c42b0a96e58fec78d
+    url: https://github.com/rkern/line_profiler
