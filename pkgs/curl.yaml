@@ -6,10 +6,10 @@ extends: [autotools_package]
 # with an appropriate certificate bundle you can use or trust.
 when use_ca_bundle:
   dependencies:
-    build: [openssl, libidn, zlib, ca-bundle, {{build_with}}]
+    build: [openssl, libidn, zlib, ca-bundle]
 when not use_ca_bundle:
   dependencies:
-    build: [openssl, libidn, zlib, {{build_with}}]
+    build: [openssl, libidn, zlib]
 
 defaults:
   use_ca_bundle: false
