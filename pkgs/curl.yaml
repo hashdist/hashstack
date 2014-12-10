@@ -4,6 +4,12 @@ extends: [autotools_package]
 # trust hashstack's ca-bundle and want to squash the errors/warnings about
 # not being able to verify ssl connections and your system does not come
 # with an appropriate certificate bundle you can use or trust.
+#
+# curl is built with openssl and does not automatically make use of
+# CRL's to check for revoked certificates. Users can manually tell curl
+# to use a CRL file when making https requests with the --crlfile command
+# option. Please refer to the curl man page and also http://curl.haxx.se/docs/ssl-compared.html
+# and http://curl.haxx.se/docs/sslcerts.html
 when use_ca_bundle:
   dependencies:
     build: [openssl, libidn, zlib, ca-bundle]
