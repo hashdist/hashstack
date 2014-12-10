@@ -1,66 +1,8 @@
-extends: [setuptools_package]
+extends: [distutils_package]
 dependencies:
   build: [daetk, lapack, mpi, python, numpy, cmake, cython, petsc4py, petsc, superlu, triangle]
-  run: [daetk, hdf5, lapack, ipython, matplotlib, nose, petsc, petsc4py, pytables, python, sphinx, superlu, sympy, tetgen, triangle]
+  run: [daetk, hdf5, lapack, ipython, matplotlib, nose, petsc, petsc4py, pytables, sphinx, superlu, sympy, tetgen, triangle]
 
 sources:
   - url: https://github.com/erdc-cm/proteus
-    key: git:d5432ee27a6d4332d028d5be1db747e12e715ba0
-
-
-build_stages:
-- name: configure
-  after: prologue
-  files: [config.py.hashstack]
-  handler: bash
-  bash: |
-    cp _hashdist/config.py.hashstack config.py
-
-
-- name: install
-  after: configure
-  handler: bash
-  bash: |
-    export PROTEUS_PREFIX=${ARTIFACT}
-    export PYTHONPATH=${ARTIFACT}/{{python_site_packages_rel}}:${PYTHONPATH}
-    mkdir -p ${ARTIFACT}/{{python_site_packages_rel}}
-    ${PYTHON} -c 'import setuptools; __file__="setuppyx.py"; execfile(__file__)' \
-       install \
-       --prefix=. --root=${ARTIFACT} \
-       --single-version-externally-managed
-    ${PYTHON} -c 'import setuptools; __file__="setupf.py"; execfile(__file__)' \
-       install \
-       --prefix=. --root=${ARTIFACT} \
-       --single-version-externally-managed
-    # work around petsc4py's no-arch PETSc detection issues
-    ${PYTHON} -c 'import setuptools; __file__="setuppetsc.py"; execfile(__file__)' \
-       build \
-       --petsc-dir=${PETSC_DIR} \
-       --petsc-arch=''\
-       install \
-       --prefix=. --root=${ARTIFACT} \
-       --single-version-externally-managed
-    ${PYTHON} -c 'import setuptools; __file__="setup.py"; execfile(__file__)' \
-       install \
-       --prefix=. --root=${ARTIFACT} \
-       --single-version-externally-managed
-
-- name: cleanup
-  after: install
-  handler: bash
-  bash: |
-        rm -rf ${ARTIFACT}/{{python_site_packages_rel}}/*.egg-info
-
-
-profile_links:
-
-  - name: python_packages
-    mode: replace
-    link: 'lib/python{{pyver}}/site-packages/proteus'
-    dirs: true
-
-  - name: python_exclude
-    mode: replace
-    after: python_packages
-    before: everything
-    exclude: 'lib/python{{pyver}}/site-packages'
+    key: git:3f9c3de17771feb60579e3634f36005805699ba9
