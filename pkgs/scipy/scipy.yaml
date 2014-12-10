@@ -1,4 +1,7 @@
-extends: [distutils_package, libflags]
+when platform != 'linux':
+  extends: [distutils_package]
+when platform == 'linux':
+  extends: [distutils_package, libflags]
 dependencies:
   build: [lapack, numpy]
   run: [lapack, numpy]
