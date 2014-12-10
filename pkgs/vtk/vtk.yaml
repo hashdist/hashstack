@@ -47,7 +47,10 @@ build_stages:
     - '-D BUILD_EXAMPLES:BOOL=OFF'
     - '-D BUILD_SHARED_LIBS:BOOL=ON'
     - '-D VTK_WRAP_PYTHON:BOOL=ON'
-    - '-D VTK_USE_TK:BOOL=ON'
+    - when vtk_use_tk:
+      - '-D VTK_USE_TK:BOOL=ON'
+    - when not vtk_use_tk:
+      - '-D VTK_USE_TK:BOOL=OFF'
     - '-D VTK_WRAP_TCL:BOOL=OFF'
     - '-D VTK_USE_GL2PS:BOOL=ON'
     - '-D VTK_PYTHON_SETUP_ARGS:STRING="--prefix=. --root=${ARTIFACT} --single-version-externally-managed"'
