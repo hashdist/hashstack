@@ -1,7 +1,7 @@
 extends: [namespace_package, libflags]
 dependencies:
   build: [bzip2, freetype, numpy, png, pkg-config, zlib]
-  run: [freetype, numpy, png, python-dateutil, pyparsing]
+  run: [freetype, numpy, png, python-dateutil, pyparsing, six]
 
 sources:
 - key: tar.gz:c6r4ofkpcuwy37wr6n2rpqfiyxnwvxsp
