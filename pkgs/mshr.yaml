@@ -1,8 +1,17 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [boost, dolfin, gmp, mpfr, mpi, vtk, {{build_with}}]
+  build: [boost, dolfin, gmp, mpfr, mpi, swig, vtk, {{build_with}}]
 
 sources:
-- key: git:817fd67f52a7a5eb4b3339d9b510b2ad8c471e39
+- key: git:10439cd2bffe536a22e96f84062d21dc791df850
   url: https://bitbucket.org/benjamik/mshr.git
+
+defaults:
+  # lib/CMake/mshr/mshr-config.cmake contains hard-coded path
+  relocatable: false
+
+build_stages:
+- name: configure
+  extra: ['-D BUILD_SHARED_LIBS:BOOL=ON',
+          '-D BOOST_ROOT:PATH="${BOOST_DIR}"']
