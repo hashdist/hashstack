@@ -9,8 +9,8 @@ defaults:
   relocatable: false
 
 sources:
-- key: tar.gz:do3p32e472fzovviowxvlwmuztqjssdb
-  url: http://golang.org/dl/go1.3.3.src.tar.gz
+- key: tar.gz:hlu7m7sfuxfhabfsraenvcytm7jsri3r
+  url: http://golang.org/dl/go1.4.src.tar.gz
 
 build_stages:
 - name: make-install
