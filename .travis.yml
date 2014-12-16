@@ -6,9 +6,9 @@ env:
   - TEST_PROFILE="test.cmake.yaml"
   - TEST_PROFILE="test.host-scipy.yaml"
   - TEST_PROFILE="test.matplotlib.yaml"
-  - TEST_PROFILE="test.scipy-stack-py2.7.yaml"
-  - TEST_PROFILE="test.scipy-stack-py3.3.yaml"
-  - TEST_PROFILE="test.scipy-stack-py3.4.yaml"
+  - TEST_PROFILE="test.scipy-stack.yaml" PYVER="2.7"
+  - TEST_PROFILE="test.scipy-stack.yaml" PYVER="3.3"
+  - TEST_PROFILE="test.scipy-stack.yaml" PYVER="3.4"
   - TEST_PROFILE="test.packages2.yaml"
   - TEST_PROFILE="test.packages3.yaml"
   - TEST_PROFILE="test.packages4.yaml"
@@ -31,7 +31,7 @@ before_install:
     fi
   - if [[ "${TEST_PROFILE}" == "test.cmake.yaml" ]]; then
        sudo apt-get install mpich2;
-     fi
+    fi
   - if [[ "${TEST_PROFILE}" == "test.boost.yaml" ]]; then
       sudo apt-get install mpich2;
     fi
@@ -53,7 +53,12 @@ install:
 script:
   - cp tests/$TEST_PROFILE $TEST_PROFILE
   - set -o pipefail
-  - hit build $TEST_PROFILE -v 2>&1 | pv -i 15 -n | cat > log.txt
+  - if [ ! "${PYVER}" ]; then
+      hit build -v $TEST_PROFILE 2>&1 | pv -i 15 -n | cat > log.txt
+    fi
+  - if [ "${PYVER}" ]; then
+      hit build -v $TEST_PROFILE pyver=$PYVER python_site_packages_rel=lib/python${PYVER}/site-packages 2>&1 | pv -i 15 -n | cat > log.txt
+    fi
   - tail -n 60 log.txt
 verify:
   - if [[ "${TEST_PROFILE}" == "test.matplotlib.yaml" ]]; then
