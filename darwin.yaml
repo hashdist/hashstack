@@ -14,5 +14,3 @@ packages:
     use: host-osx-framework-accelerate
 
   ipython:
-  mpi:
-    use: mpich
