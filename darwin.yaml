@@ -5,7 +5,7 @@ parameters:
   platform: Darwin
   PATH: /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
   PROLOGUE: |
-    export MACOSX_DEPLOYMENT_TARGET=$(sw_vers -productVersion | sed "s/\(10.[0-9]\).*/\1/")
+    export MACOSX_DEPLOYMENT_TARGET=$(sw_vers -productVersion | sed -E "s/([0-9]+\.[0-9]+).*/\1/")
 
 packages:
   blas:
