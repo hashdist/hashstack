@@ -53,10 +53,10 @@ install:
 script:
   - cp tests/$TEST_PROFILE $TEST_PROFILE
   - set -o pipefail
-  - if [ ! "${PYVER}" ]; then
+  - if [ -n "${PYVER}" ]; then
       hit build -v $TEST_PROFILE 2>&1 | pv -i 15 -n | cat > log.txt
     fi
-  - if [ "${PYVER}" ]; then
+  - if [ -z "${PYVER}" ]; then
       hit build -v $TEST_PROFILE pyver=$PYVER python_site_packages_rel=lib/python${PYVER}/site-packages 2>&1 | pv -i 15 -n | cat > log.txt
     fi
   - tail -n 60 log.txt
