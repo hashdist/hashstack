@@ -40,9 +40,9 @@ def configure(ctx, stage_args):
             env['CPPFLAGS'].append('-I${%s_DIR}/include' % dep_var)
             env['LDFLAGS'].append('-L${%s_DIR}/lib' % dep_var)
             env['LDFLAGS'].append(rpath_flag(ctx, '${%s_DIR}/lib' % dep_var))
-        for var, value in stage_args.get('append', {}).iteritems():
+        for var, value in stage_args.get('append', {}).items():
             env.get(var, []).append(value)
-        for env_var, value in env.iteritems():
+        for env_var, value in env.items():
             env_lines.append('export %s="%s"' % (env_var, ' '.join(value)))
 
     return ['('] + env_lines + conf_lines + [')']

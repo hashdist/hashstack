@@ -41,7 +41,7 @@ def get_installed_packages():
 
 cygstack = args.CYGSTACK
 
-print "Using %s as list of packages to install." % cygstack
+print("Using %s as list of packages to install." % cygstack)
 
 with open(cygstack) as packages:
     # header_data
@@ -55,9 +55,9 @@ with open(cygstack) as packages:
         package = package_line.split()[0]
 
         if package in installed_packages:
-            print 'already installed', package_line
+            print('already installed', package_line)
             continue
 
-        print 'installing', package
+        print('installing', package)
         call = ['setup-x86_64.exe', '-q', '-P', package]
         subprocess.check_call(call)
