@@ -8,6 +8,7 @@ commonly installed packages within HashStack.  This script is mostly
 scaffolding to get users up and running on HashStack and is a first
 effort.  Improvements and suggestions welcome!
 """
+from __future__ import print_function
 
 import sys
 import subprocess
