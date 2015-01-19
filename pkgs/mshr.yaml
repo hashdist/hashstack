@@ -4,7 +4,7 @@ dependencies:
   build: [boost, dolfin, gmp, mpfr, mpi, swig, vtk, {{build_with}}]
 
 sources:
-- key: git:84bd4fc3f547692deed3f7c577963413fa490976
+- key: git:a997b3c3b7fd6a2dd103369b133d6065b7f7da42
   url: https://bitbucket.org/benjamik/mshr.git
 
 defaults:
