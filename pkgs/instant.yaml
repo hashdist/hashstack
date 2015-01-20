@@ -4,5 +4,5 @@ dependencies:
   run: [cmake, numpy, swig]
 
 sources:
-- key: git:48e352e612c560a0fe13c382b84c37b678d8087e
-  url: https://bitbucket.org/fenics-project/instant.git
+- key: tar.gz:g3qefxrg3f7v4pkd6l2skrgzdoqpctq4
+  url: https://bitbucket.org/fenics-project/instant/downloads/instant-1.5.0.tar.gz
