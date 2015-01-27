@@ -62,8 +62,6 @@ build_stages:
     - '-D VTK_PYTHON_SETUP_ARGS:STRING="--prefix=. --root=${ARTIFACT} --single-version-externally-managed"'
     - '-D CMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib/vtk-5.10"'
     - '-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"'
-    - '-D PYTHON_INCLUDE_PATH:PATH="${PYTHON_DIR}/include/python{{pyver}}"'
-    #- '-D PYTHON_LIBRARY:FILEPATH="${PYTHON_DIR}/lib/libpython{{pyver}}.so"'
     - '-D VTK_USE_SYSTEM_TIFF:BOOL=ON'
 
 - when: vtk_use_tk
