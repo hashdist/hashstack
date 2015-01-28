@@ -1,0 +1,10 @@
+extends: [autotools_package]
+dependencies:
+  build: [python]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:xhl5dubjjphem2dlcoqf3jx4lmphoq5v
+  url: http://nodejs.org/dist/v0.10.36/node-v0.10.36.tar.gz
