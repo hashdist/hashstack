@@ -7,7 +7,11 @@ sources:
 - url: http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/parmetis-4.0.3.tar.gz
   key: tar.gz:6lm2emnxz6l7d7xg5dewmmit5p3meqgu
 
-
+defaults:
+  # lib/libmetis.so contains hard-coded path
+  relocatable: false
+  # Skip build-time tests (not recommended)
+  without_check: false
 
 build_stages:
 - name: setup_builddir
@@ -45,7 +49,9 @@ build_stages:
       -DOPENMP=0
       -DCMAKE_C_COMPILER=$MPICC
       -DCMAKE_CXX_COMPILER=$MPICXX
-      -DCMAKE_EXE_LINKER_FLAGS={{DYNAMIC_EXE_LINKER_FLAGS}}"
+      -DCMAKE_EXE_LINKER_FLAGS={{DYNAMIC_EXE_LINKER_FLAGS}}
+      -DCMAKE_INSTALL_RPATH:STRING=${ARTIFACT}/lib
+      -DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON"
     (
     cd _build_metis && ${CMAKE} ${BUILD}/metis ${CMAKE_FLAGS}
     )
@@ -73,10 +79,18 @@ build_stages:
 - when: platform == 'Cygwin'
   name: copy_dlls
   after: install
+  before: check
   handler: bash
   bash: |
     install _build_metis/libmetis/cygmetis.dll ${ARTIFACT}/bin
     install _build_parmetis/libparmetis/cygparmetis.dll ${ARTIFACT}/bin
+
+- when: not without_check
+  name: check
+  after: install
+  handler: bash
+  bash: |
+    ${MPIEXEC} -np 4 ${ARTIFACT}/bin/ptest ${BUILD}/Graphs/rotor.graph
 
 when_build_dependency:
 - when platform == 'Cygwin':
