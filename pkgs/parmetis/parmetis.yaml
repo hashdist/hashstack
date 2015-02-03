@@ -105,5 +105,4 @@ build_stages:
     ${MPIEXEC} -np 4 ${ARTIFACT}/bin/ptest ${BUILD}/Graphs/rotor.graph
 
 when_build_dependency:
-- when platform == 'Cygwin':
-  - {prepend_path: PATH, value: '${ARTIFACT}/bin'}
+- {prepend_path: PATH, value: '${ARTIFACT}/bin'}
