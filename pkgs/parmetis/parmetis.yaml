@@ -37,7 +37,7 @@ build_stages:
   bash: |
     patch -p1 < _hashdist/fix___cdecl_redefined.patch
 
-- name: configure
+- name: cmake-flags
   after: setup_builddir
   handler: bash
   bash: |
@@ -47,11 +47,24 @@ build_stages:
       -DCMAKE_INSTALL_PREFIX=${ARTIFACT}
       -DSHARED=1
       -DOPENMP=0
-      -DCMAKE_C_COMPILER=$MPICC
-      -DCMAKE_CXX_COMPILER=$MPICXX
+      -DCMAKE_C_COMPILER=${MPICC}
+      -DCMAKE_CXX_COMPILER=${MPICXX}
       -DCMAKE_EXE_LINKER_FLAGS={{DYNAMIC_EXE_LINKER_FLAGS}}
       -DCMAKE_INSTALL_RPATH:STRING=${ARTIFACT}/lib
       -DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON"
+
+- when: platform == "Darwin"
+  name: cmake-flags-Darwin
+  after: cmake-flags
+  before: configure
+  handler: bash
+  bash: |
+    CMAKE_FLAGS="${CMAKE_FLAGS} -DCMAKE_MACOSX_RPATH:BOOL=ON"
+
+- name: configure
+  after: cmake-flags
+  handler: bash
+  bash: |
     (
     cd _build_metis && ${CMAKE} ${BUILD}/metis ${CMAKE_FLAGS}
     )
@@ -60,7 +73,6 @@ build_stages:
     cd _build_parmetis && ${CMAKE} ${BUILD} ${CMAKE_FLAGS} \
       -DMETIS_PATH=${BUILD}/metis
     )
-
 
 - name: make
   after: configure
