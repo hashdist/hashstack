@@ -7,7 +7,11 @@ sources:
 - url: http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/parmetis-4.0.3.tar.gz
   key: tar.gz:6lm2emnxz6l7d7xg5dewmmit5p3meqgu
 
-
+defaults:
+  # lib/libmetis.so contains hard-coded path
+  relocatable: false
+  # Skip build-time tests (not recommended)
+  without_check: false
 
 build_stages:
 - name: setup_builddir
@@ -33,7 +37,7 @@ build_stages:
   bash: |
     patch -p1 < _hashdist/fix___cdecl_redefined.patch
 
-- name: configure
+- name: cmake-flags
   after: setup_builddir
   handler: bash
   bash: |
@@ -43,9 +47,24 @@ build_stages:
       -DCMAKE_INSTALL_PREFIX=${ARTIFACT}
       -DSHARED=1
       -DOPENMP=0
-      -DCMAKE_C_COMPILER=$MPICC
-      -DCMAKE_CXX_COMPILER=$MPICXX
-      -DCMAKE_EXE_LINKER_FLAGS={{DYNAMIC_EXE_LINKER_FLAGS}}"
+      -DCMAKE_C_COMPILER=${MPICC}
+      -DCMAKE_CXX_COMPILER=${MPICXX}
+      -DCMAKE_EXE_LINKER_FLAGS={{DYNAMIC_EXE_LINKER_FLAGS}}
+      -DCMAKE_INSTALL_RPATH:STRING=${ARTIFACT}/lib
+      -DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON"
+
+- when: platform == "Darwin"
+  name: cmake-flags-Darwin
+  after: cmake-flags
+  before: configure
+  handler: bash
+  bash: |
+    CMAKE_FLAGS="${CMAKE_FLAGS} -DCMAKE_MACOSX_RPATH:BOOL=ON"
+
+- name: configure
+  after: cmake-flags
+  handler: bash
+  bash: |
     (
     cd _build_metis && ${CMAKE} ${BUILD}/metis ${CMAKE_FLAGS}
     )
@@ -54,7 +73,6 @@ build_stages:
     cd _build_parmetis && ${CMAKE} ${BUILD} ${CMAKE_FLAGS} \
       -DMETIS_PATH=${BUILD}/metis
     )
-
 
 - name: make
   after: configure
@@ -73,11 +91,18 @@ build_stages:
 - when: platform == 'Cygwin'
   name: copy_dlls
   after: install
+  before: check
   handler: bash
   bash: |
     install _build_metis/libmetis/cygmetis.dll ${ARTIFACT}/bin
     install _build_parmetis/libparmetis/cygparmetis.dll ${ARTIFACT}/bin
 
+- when: not without_check
+  name: check
+  after: install
+  handler: bash
+  bash: |
+    ${MPIEXEC} -np 4 ${ARTIFACT}/bin/ptest ${BUILD}/Graphs/rotor.graph
+
 when_build_dependency:
-- when platform == 'Cygwin':
-  - {prepend_path: PATH, value: '${ARTIFACT}/bin'}
+- {prepend_path: PATH, value: '${ARTIFACT}/bin'}
