@@ -1,8 +1,8 @@
 extends: [autotools_package]
 
 sources:
-- url: http://www.open-mpi.org/software/ompi/v1.6/downloads/openmpi-1.6.5.tar.bz2
-  key: tar.bz2:7y33voe3l3zdjyfmqlohtaucykvqreal
+- key: tar.bz2:emky3eloslea4kjeafvxi2utse52p6xj
+  url: http://www.open-mpi.org/software/ompi/v1.8/downloads/openmpi-1.8.4.tar.bz2
 
 defaults:
   # lib/openmpi/mca_carto_auto_detect.la contains hard-coded path
