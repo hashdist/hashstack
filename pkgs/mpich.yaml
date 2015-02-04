@@ -2,9 +2,13 @@ extends: [autotools_package]
 
 build_stages:
   - name: configure
-    mode: override
+    mode: update
     extra: ['--enable-shared']
 
+  - when: not fortran
+    name: configure
+    mode: update
+    extra: ['--disable-f77', '--disable-fc']
 
 sources:
   - url: http://www.mpich.org/static/tarballs/3.0.3/mpich-3.0.3.tar.gz
