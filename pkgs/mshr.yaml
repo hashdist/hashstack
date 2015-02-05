@@ -4,8 +4,8 @@ dependencies:
   build: [boost, dolfin, gmp, mpfr, mpi, swig, vtk, {{build_with}}]
 
 sources:
-- key: git:a997b3c3b7fd6a2dd103369b133d6065b7f7da42
-  url: https://bitbucket.org/benjamik/mshr.git
+- key: tar.gz:6nto4vmuuwnifcj6li7p7iv4mxzzdso4
+  url: https://bitbucket.org/fenics-project/mshr/downloads/mshr-1.5.0.tar.gz
 
 defaults:
   # lib/CMake/mshr/mshr-config.cmake contains hard-coded path
