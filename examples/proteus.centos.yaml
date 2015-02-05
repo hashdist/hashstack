@@ -39,6 +39,7 @@ packages:
   daetk:
   mpi:
     use: host-mpi
+  mpi4py:
   nose:
   hdf5:
   ipython:
