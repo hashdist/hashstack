@@ -1,0 +1,16 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [zlib, gmp]
+
+sources:
+- key: git:5275487cb3e4bc6897029e06b5c172eb7be715b4
+  url: https://github.com/vermaseren/form.git
+
+build_stages:
+- name: create_configure
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    autoreconf -i
