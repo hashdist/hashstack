@@ -8,8 +8,8 @@ defaults:
   without_check: false
 
 sources:
-- url: https://bitbucket.org/petsc/pkg-superlu_dist.git
-  key: git:749f33d8104157767d443ff1a1d151642751486d
+- key: git:749f33d8104157767d443ff1a1d151642751486d
+  url: https://bitbucket.org/petsc/pkg-superlu_dist.git
 
 build_stages:
 - when: platform == 'Darwin'
