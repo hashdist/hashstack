@@ -53,7 +53,7 @@ build_stages:
   bash: |
     cd EXAMPLE
     make -j ${HASHDIST_CPU_COUNT}
-    ${MPIEXEC} -np 4 pddrive -r 2 -c 2 g20.rua
-    ${MPIEXEC} -np 10 pddrive4 g20.rua
-    ${MPIEXEC} -np 4 pzdrive -r 2 -c 2 cg20.cua
-    ${MPIEXEC} -np 10 pzdrive4 cg20.cua
+    ${MPIEXEC} -np 4 ./pddrive -r 2 -c 2 g20.rua
+    ${MPIEXEC} -np 10 ./pddrive4 g20.rua
+    ${MPIEXEC} -np 4 ./pzdrive -r 2 -c 2 cg20.cua
+    ${MPIEXEC} -np 10 ./pzdrive4 cg20.cua
