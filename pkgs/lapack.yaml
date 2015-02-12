@@ -33,3 +33,7 @@ build_stages:
 - name: setup_builddir
   mode: override
   bash: |
+
+when_build_dependency:
+- {set: 'LAPACK_LDFLAGS', value: '-Wl,-rpath,${ARTIFACT}/lib -L${ARTIFACT}/lib -llapack'}
+- {set: 'BLAS_LDFLAGS', value: '-Wl,-rpath,${ARTIFACT}/lib -L${ARTIFACT}/lib -lblas'}
