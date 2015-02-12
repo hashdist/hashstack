@@ -96,8 +96,12 @@ build_stages:
   extra: ["--without-babel",
           "--without-mli",
           "--without-fei",
-          "--without-superlu",
-          "--enable-shared"]
+          "--without-superlu"]
+
+- when: platform != 'Darwin'
+  name: configure
+  mode: update
+  extra: ["--enable-shared"]
 
 - when: platform == 'linux' 
   name: rpath-fix
