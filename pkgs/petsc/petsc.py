@@ -36,7 +36,7 @@ def configure(ctx, stage_args):
           coptflags: -O2
           link: shared
           debug: false
-        
+
     Note: this is a fairly sophisticated build stage that inspects
     the build artifacts available to decide what to enable in PETSc.
     By default, this package builds PETSc with all required artifacts,
@@ -64,7 +64,7 @@ def configure(ctx, stage_args):
     if stage_args['coptflags']:
         conf_lines.append('COPTFLAGS=%s' % stage_args['coptflags'])
     if stage_args['link']:
-        conf_lines.append('--with-shared-libraries=%d' % 
+        conf_lines.append('--with-shared-libraries=%d' %
                           bool(stage_args['link'] == 'shared'))
     # must explicitly set --with-debugging=0 to disable debugging
     conf_lines.append('--with-debugging=%d' % stage_args['debug'])
@@ -83,7 +83,7 @@ def configure(ctx, stage_args):
             conf_lines.append('--with-blas-dir=$BLAS_DIR')
             conf_lines.append('--with-lapack-dir=$LAPACK_DIR')
 
-    # Special case, ParMETIS also provides METIS 
+    # Special case, ParMETIS also provides METIS
     if 'PARMETIS' in ctx.dependency_dir_vars:
         conf_lines.append('--with-metis-dir=$PARMETIS_DIR')
         conf_lines.append('--with-parmetis-dir=$PARMETIS_DIR')
@@ -108,8 +108,17 @@ def configure(ctx, stage_args):
         conf_lines.append('--with-suitesparse-include=${SUITESPARSE_DIR}/include/suitesparse')
         conf_lines.append('--with-suitesparse-lib=[${SUITESPARSE_DIR}/lib/libumfpack.a,libklu.a,libcholmod.a,libbtf.a,libccolamd.a,libcolamd.a,libcamd.a,libamd.a,libsuitesparseconfig.a]')
 
+    if 'HYPRE' in ctx.dependency_dir_vars:
+        if ctx.parameters['platform'] == 'Darwin':
+            libHYPRE = '${HYPRE_DIR}/lib/libHYPRE.dylib'
+        else:
+            libHYPRE = '${HYPRE_DIR}/lib/libHYPRE.so'
+        conf_lines.append('--with-hypre=1')
+        conf_lines.append('--with-hypre-include=${HYPRE_DIR}/include')
+        conf_lines.append('--with-hypre-lib=%s' % libHYPRE)
+
     for dep_var in ctx.dependency_dir_vars:
-        if dep_var in ['BLAS', 'LAPACK', 'OPENBLAS', 'PARMETIS',
+        if dep_var in ['BLAS', 'HYPRE', 'LAPACK', 'OPENBLAS', 'PARMETIS',
                        'SCOTCH', 'TRILINOS', 'SUITESPARSE']:
             continue
         if dep_var == 'MPI':
@@ -123,7 +132,7 @@ def configure(ctx, stage_args):
             else:
                 conf_lines.append('--with-fc=0')
             continue
-        conf_lines.append('--with-%s-dir=$%s_DIR' % 
+        conf_lines.append('--with-%s-dir=$%s_DIR' %
                           (dep_var.lower(),
                            dep_var))
     for package in stage_args['download']:
