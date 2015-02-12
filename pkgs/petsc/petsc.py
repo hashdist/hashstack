@@ -110,7 +110,7 @@ def configure(ctx, stage_args):
 
     if 'HYPRE' in ctx.dependency_dir_vars:
         if ctx.parameters['platform'] == 'Darwin':
-            libHYPRE = '${HYPRE_DIR}/lib/libHYPRE.dylib'
+            libHYPRE = '${HYPRE_DIR}/lib/libHYPRE.a'
         else:
             libHYPRE = '${HYPRE_DIR}/lib/libHYPRE.so'
         conf_lines.append('--with-hypre=1')
