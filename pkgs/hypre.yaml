@@ -117,7 +117,7 @@ build_stages:
   handler: bash
   bash: |
 
-- when: not without_check
+- when: not without_check and platform == 'Linux'
   name: check
   after: rpath-fix
   handler: bash
@@ -127,6 +127,17 @@ build_stages:
     ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib test/ij
     ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib test/struct
     ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib test/sstruct
+    ./test/ij
+    ./test/struct
+    ./test/sstruct -in test/sstruct.in.default -solver 40 -rhsone
+
+- when: not without_check and platform != 'Linux'
+  name: check
+  after: rpath-fix
+  handler: bash
+  bash: |
+    make check
+    make test
     ./test/ij
     ./test/struct
     ./test/sstruct -in test/sstruct.in.default -solver 40 -rhsone
