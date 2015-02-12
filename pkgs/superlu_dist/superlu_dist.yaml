@@ -43,8 +43,10 @@ build_stages:
   bash: |
     mkdir -p ${ARTIFACT}/lib/
     mkdir -p ${ARTIFACT}/include/superlu_dist
-    cp -f lib/*.a ${ARTIFACT}/lib/
+    cp -f lib/libsuperlu_dist.a ${ARTIFACT}/lib/
+    ln -s ./libsuperlu_dist.a ${ARTIFACT}/lib/libsuperlu_dist_3.3.a
     cp -f SRC/*.h ${ARTIFACT}/include/superlu_dist/
+    cp -f SRC/*.h ${ARTIFACT}/include/
 
 - when: not without_check
   name: check

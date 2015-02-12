@@ -108,14 +108,9 @@ def configure(ctx, stage_args):
         conf_lines.append('--with-suitesparse-include=${SUITESPARSE_DIR}/include/suitesparse')
         conf_lines.append('--with-suitesparse-lib=[${SUITESPARSE_DIR}/lib/libumfpack.a,libklu.a,libcholmod.a,libbtf.a,libccolamd.a,libcolamd.a,libcamd.a,libamd.a,libsuitesparseconfig.a]')
 
-    if 'SUPERLU_DIST' in ctx.dependency_dir_vars:
-        conf_lines.append('--with-superlu_dist=1')
-        conf_lines.append('--with-superlu_dist-include=${SUPERLU_DIST_DIR}/include/superlu_dist')
-        conf_lines.append('--with-superlu_dist-lib=[${SUPERLU_DIST_DIR}/lib/libsuperlu_dist.a]')
-
     for dep_var in ctx.dependency_dir_vars:
         if dep_var in ['BLAS', 'LAPACK', 'OPENBLAS', 'PARMETIS',
-                       'SCOTCH', 'TRILINOS', 'SUITESPARSE', 'SUPERLU_DIST']:
+                       'SCOTCH', 'TRILINOS', 'SUITESPARSE']:
             continue
         if dep_var == 'MPI':
             conf_lines.append('--with-mpi-compilers')
