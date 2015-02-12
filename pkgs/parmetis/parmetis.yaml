@@ -97,6 +97,14 @@ build_stages:
     install _build_metis/libmetis/cygmetis.dll ${ARTIFACT}/bin
     install _build_parmetis/libparmetis/cygparmetis.dll ${ARTIFACT}/bin
 
+- when: platform == 'Darwin'
+  name: rpath_fix
+  handler: bash
+  after: install
+  bash: |
+    install_name_tool -id ${ARTIFACT}/lib/libmetis.dylib ${ARTIFACT}/lib/libmetis.dylib
+    install_name_tool -id ${ARTIFACT}/lib/libparmetis.dylib ${ARTIFACT}/lib/libparmetis.dylib
+
 - when: not without_check
   name: check
   after: install
