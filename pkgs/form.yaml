@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [autoconf, zlib, gmp]
+  build: [autoconf, automake, zlib, gmp]
 
 sources:
 - key: git:5275487cb3e4bc6897029e06b5c172eb7be715b4
