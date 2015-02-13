@@ -35,6 +35,15 @@ build_stages:
   bash: |
      cd src
 
+- name: set-compiler
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    export CC=${MPICC}
+    export CXX=${MPICXX}
+    export F77=${MPIF77}
+
 - when: with_openblas
   name: configure
   mode: update
