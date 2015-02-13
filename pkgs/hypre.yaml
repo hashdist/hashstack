@@ -103,7 +103,7 @@ build_stages:
   mode: update
   extra: ["--enable-shared"]
 
-- when: platform == 'linux' 
+- when: platform == 'linux'
   name: rpath-fix
   after: install
   handler: bash
@@ -111,7 +111,7 @@ build_stages:
     oldRPath=$(${PATCHELF} --print-rpath ${ARTIFACT}/lib/libHYPRE.so)
     ${PATCHELF} --set-rpath ${oldRPath}:${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib ${ARTIFACT}/lib/libHYPRE.so
 
-- when: platform != 'linux' 
+- when: platform != 'linux'
   name: rpath-fix
   after: install
   handler: bash
