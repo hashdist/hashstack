@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
-#dependencies:
-#  build: [perl]
+dependencies:
+  build: [autoconf]
 
 defaults:
   relocatable: false
