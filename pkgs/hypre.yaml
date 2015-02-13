@@ -117,7 +117,7 @@ build_stages:
   handler: bash
   bash: |
 
-- when: not without_check and platform == 'Linux'
+- when: not without_check and platform == 'linux'
   name: check
   after: rpath-fix
   handler: bash
@@ -131,7 +131,7 @@ build_stages:
     ./test/struct
     ./test/sstruct -in test/sstruct.in.default -solver 40 -rhsone
 
-- when: not without_check and platform != 'Linux'
+- when: not without_check and platform != 'linux'
   name: check
   after: rpath-fix
   handler: bash
