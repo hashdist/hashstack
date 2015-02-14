@@ -4,5 +4,5 @@ defaults:
   relocatable: false
 
 sources:
-- key: tar.gz:vkmr7jbjnmrp7eu2ggs4wvjixn4dzbgn
-  url: http://ftp.heanet.ie/mirrors/gnu/coreutils/coreutils-8.9.tar.gz
+- key: tar.xz:5rb4uw6pyyreflgli237cipww2co4ipm
+  url: http://ftp.gnu.org/gnu/coreutils/coreutils-8.23.tar.xz
