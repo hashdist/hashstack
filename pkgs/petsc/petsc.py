@@ -69,6 +69,14 @@ def configure(ctx, stage_args):
     # must explicitly set --with-debugging=0 to disable debugging
     conf_lines.append('--with-debugging=%d' % stage_args['debug'])
 
+    # Special case, openssl provides ssl
+    if 'OPENSSL' in ctx.dependency_dir_vars:
+        conf_lines.append('--with-ssl=1')
+        conf_lines.append('--with-ssl-dir=${OPENSSL_DIR}')
+    else:
+        # Disable ssl when not a dependency
+        conf_lines.append('--with-ssl=0')
+
     # Special case, --with-blas-dir does not work with OpenBLAS
     if 'OPENBLAS' in ctx.dependency_dir_vars:
         if ctx.parameters['platform'] == 'Darwin':
