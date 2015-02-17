@@ -1,0 +1,5 @@
+extends: [distutils_package]
+
+sources:
+  - url: https://github.com/takluyver/terminado.git
+    key: git:d54c7b9e750bcceeca8806622fbf8177edb4ab22
