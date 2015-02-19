@@ -12,6 +12,8 @@ sources:
   url: http://ftpmirror.gnu.org/gcc/gcc-4.9.2/gcc-4.9.2.tar.bz2
 
 build_stages:
+  # Make gcc automatically embed RPATH to the proper libstdc++, libgfortran,
+  # libgcc and libquadmath libraries:
   - name: rpath_patch
     before: configure
     files: [rpath.patch]
