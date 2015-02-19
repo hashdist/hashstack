@@ -13,16 +13,11 @@ sources:
 
 build_stages:
   - name: rpath_patch
-    before: rpath_sed
+    before: configure
     files: [rpath.patch]
     handler: bash
     bash: |
       patch -up1 < _hashdist/rpath.patch
-
-  - name: rpath_sed
-    before: configure
-    handler: bash
-    bash: |
       sed -i "s|@@ARTIFACT@@|${ARTIFACT}|g" gcc/config/i386/gnu-user.h gcc/config/i386/gnu-user64.h
 
   - name: link_lib64_to_lib
