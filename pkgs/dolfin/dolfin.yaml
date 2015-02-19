@@ -22,7 +22,15 @@ defaults:
   # share/dolfin/DOLFINConfig.cmake contains hard-coded path
   relocatable: false
 
-build_stages: 
+build_stages:
+- when: with_find_path
+  name: cmake-find_path
+  before: setup_builddir
+  handler: bash
+  files: [dolfin-cmake-find_path.patch]
+  bash: |
+    patch -p1 < _hashdist/dolfin-cmake-find_path.patch
+
 - name: set_python_version
   after: setup_builddir
   handler: bash
@@ -34,7 +42,7 @@ build_stages:
   after: set_python_version
   build_type: {{build_type}}
 
-- when: platform == 'linux' 
+- when: platform == 'linux'
   name: fix-rpath
   after: install
   handler: bash
