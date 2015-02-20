@@ -45,6 +45,8 @@ packages:
   hdf5:
   ipython:
   matplotlib:
+  parmetis:
+    without_check: true
   petsc:
     build_with: |
       parmetis
