@@ -1,24 +1,28 @@
 diff --git a/gcc/config/i386/gnu-user.h b/gcc/config/i386/gnu-user.h
-index e1163c9..dc09728 100644
+index e1163c9..b881ce2 100644
 --- a/gcc/config/i386/gnu-user.h
 +++ b/gcc/config/i386/gnu-user.h
-@@ -79,6 +79,7 @@ along with GCC; see the file COPYING3.  If not see
+@@ -79,7 +79,8 @@ along with GCC; see the file COPYING3.  If not see
      %{!static: \
        %{rdynamic:-export-dynamic} \
        -dynamic-linker %(dynamic_linker)} \
-+      -rpath @@ARTIFACT@@/lib \
-       %{static:-static}}"
+-      %{static:-static}}"
++      %{static:-static}} \
++      -rpath @@ARTIFACT@@/lib"
  
  #undef	LINK_SPEC
+ #define LINK_SPEC GNU_USER_TARGET_LINK_SPEC
 diff --git a/gcc/config/i386/gnu-user64.h b/gcc/config/i386/gnu-user64.h
-index 1c72b41..457639b 100644
+index 1c72b41..07894ad 100644
 --- a/gcc/config/i386/gnu-user64.h
 +++ b/gcc/config/i386/gnu-user64.h
-@@ -63,6 +63,7 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+@@ -63,7 +63,8 @@ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
        %{" SPEC_32 ":-dynamic-linker " GNU_USER_DYNAMIC_LINKER32 "} \
        %{" SPEC_64 ":-dynamic-linker " GNU_USER_DYNAMIC_LINKER64 "} \
        %{" SPEC_X32 ":-dynamic-linker " GNU_USER_DYNAMIC_LINKERX32 "}} \
-+      -rpath @@ARTIFACT@@/lib \
-     %{static:-static}}"
+-    %{static:-static}}"
++    %{static:-static}} \
++    -rpath @@ARTIFACT@@/lib"
  
  #undef	LINK_SPEC
+ #define LINK_SPEC GNU_USER_TARGET_LINK_SPEC
