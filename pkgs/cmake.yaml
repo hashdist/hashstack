@@ -1,8 +1,8 @@
 extends: [autotools_package]
 
 sources:
-- url: http://www.cmake.org/files/v2.8/cmake-2.8.12.2.tar.gz
-  key: tar.gz:rrsxj2npvpfz7rtpiy53d4xqkgky3bwi
+- key: tar.gz:kcrzjtzo7wnjfxkbctv6fgmurgmezzxg
+  url: http://www.cmake.org/files/v3.2/cmake-3.2.0-rc1.tar.gz
 
 when_build_dependency:
 - set: CMAKE
