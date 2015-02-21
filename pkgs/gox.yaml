@@ -1,0 +1,28 @@
+extends: [base_package]
+
+dependencies:
+  build: [golang, {{build_with}}]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: git:e8e6fd4fe12510cc46893dff18c5188a6a6dc549
+  url: https://github.com/mitchellh/gox.git
+
+build_stages:
+- name: make-install
+  handler: bash
+  bash: |
+    export GOROOT=${GOLANG_DIR}/go
+    export GOPATH=${ARTIFACT}/go-gox
+    export GOBIN=${ARTIFACT}/bin
+    mkdir -p $GOBIN $GOPATH
+    mkdir -p ${GOPATH}/src/github.com/mitchellh
+    cp -a ${BUILD} ${GOPATH}/src/github.com/mitchellh/gox
+    cd ${GOPATH}/src/github.com/mitchellh/gox
+    go get -v
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
