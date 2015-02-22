@@ -104,7 +104,7 @@ def configure(ctx, stage_args):
         conf_lines.append('-D ZLIB_ROOT="${ZLIB_DIR}"')
 
     optional_deps = ['CGAL', 'HDF5', 'PETSC', 'PETSC4PY', 'SLEPC',
-                     'TAO', 'TRILINOS', 'PASTIX', 'SCOTCH', 'PARMETIS',
+                     'TRILINOS', 'PASTIX', 'SCOTCH', 'PARMETIS',
                      'CGAL', 'ZLIB', 'PYTHON','SPHINX', 'VTK', 'QT']
 
     for dep in optional_deps:
