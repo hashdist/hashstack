@@ -1,0 +1,5 @@
+extends: [setuptools_package]
+
+sources:
+- key: tar.gz:a5aq475qtkvxxwxv4ymn4zwd3lee4lr5
+  url: https://pypi.python.org/packages/source/b/backports.ssl_match_hostname/backports.ssl_match_hostname-3.4.0.2.tar.gz
