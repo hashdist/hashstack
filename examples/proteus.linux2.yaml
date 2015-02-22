@@ -31,8 +31,9 @@ packages:
   mpi4py:
   nose:
   hdf5:
-  ipython:
   matplotlib:
+  pyzmq:
+  parmetis:
   petsc:
     build_with: |
       parmetis
@@ -52,3 +53,29 @@ packages:
   memory_profiler:
   ipdb:
   pip:
+  boost:
+    toolset: gcc
+    address_model: 64
+    build_with: |
+      python
+
+  cgal:
+  pycgal:
+  netcdf4:
+  netcdf4f:
+  python-netcdf4:
+  scipy:
+  ipython:
+    sources:
+      - key: git:02da130cb4fa7e545854b73e5afa6a4aec7476be
+        url: https://github.com/ipython/ipython.git
+  h5py:
+  geojson:
+  ode:
+  tornado:
+    sources:
+      - key: tar.gz:tgv5hlw6ixetoojun3ttqttraeqbehbx
+        url: https://pypi.python.org/packages/source/t/tornado/tornado-4.1.tar.gz
+  terminado:
+  ssl_match_hostname:
+  jsonschema:
