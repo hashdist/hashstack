@@ -1,0 +1,9 @@
+extends: [distutils_package]
+
+dependencies:
+  build: [ptyprocess,tornado]
+  run: [ptyprocess,tornado]
+
+sources:
+  - key: git:d54c7b9e750bcceeca8806622fbf8177edb4ab22
+    url: https://github.com/takluyver/terminado.git
