@@ -1,0 +1,5 @@
+extends: [distutils_package]
+
+sources:
+  - key: git:2637f3ceb982fe1298553671ddf10812560629de
+    url: https://github.com/pexpect/ptyprocess.git
