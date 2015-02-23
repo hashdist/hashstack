@@ -8,12 +8,8 @@ dependencies:
   run: [pkg-config]
 
 sources:
-#- key: tar.gz:k4v23ikvs3wiocbzfwy27c4tugxxlssh
-#  url: http://cairographics.org/releases/cairo-1.8.10.tar.gz
-#- key: tar.gz:giayy6mygwhoxqvnk6h7rwcvtu2pzabf
-#  url: http://cairographics.org/releases/cairo-1.10.2.tar.gz
-- key: tar.gz:v5s3ozw76en46pf2d6jnskq3ykhxrxbj
-  url: http://www.cairographics.org/releases/cairo-1.12.0.tar.gz
+- key: tar.xz:ft27qfbs457kinm27honb5h26n6qcwju
+  url: http://cairographics.org/releases/cairo-1.14.0.tar.xz
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
