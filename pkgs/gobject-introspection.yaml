@@ -8,8 +8,8 @@ defaults:
   relocatable: false
 
 sources:
-- key: tar.bz2:hgpnmy6g6ca4cerhoehebwzyi2p34yat
-  url: http://ftp.gnome.org/pub/gnome/sources/gobject-introspection/1.31/gobject-introspection-1.31.0.tar.bz2
+- key: tar.xz:zdqaqmojot5flm77djgcvdgtw7b67tfv
+  url: http://ftp.gnome.org/pub/GNOME/sources/gobject-introspection/1.43/gobject-introspection-1.43.3.tar.xz
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
