@@ -14,7 +14,8 @@ sources:
 
 build_stages:
 - name: configure
-  extra: ['CAIRO_CFLAGS=-I${CAIRO_DIR}/include/cairo']
+  extra: ['CAIRO_CFLAGS=-I${CAIRO_DIR}/include/cairo -I${GLIB2_DIR}/include/glib-2.0']
+  global_flags: true
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

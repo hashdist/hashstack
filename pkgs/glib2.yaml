@@ -7,6 +7,10 @@ dependencies:
 defaults:
   relocatable: false
 
+build_stages:
+- name: configure
+  global_flags: true
+
 sources:
 - key: tar.xz:r47qqzjibzc3rtuebylw56b3z7krcfej
   url: http://ftp.gnome.org/pub/gnome/sources/glib/2.42/glib-2.42.1.tar.xz
