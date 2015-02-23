@@ -19,6 +19,7 @@ def configure(ctx, stage_args):
           set_env_flags: true # default
           env_flags_append: {'LDFLAGS', '-Wl,-rpath=${ARTIFACT}/lib'} # only meaningful if set_env_flags: true
           configure_path: . # default
+          global_flags: false # default
 
     If set_env_flags is set, CPPFLAGS and LDFLAGS will be set, as appropriate for the
     platform.
@@ -45,4 +46,8 @@ def configure(ctx, stage_args):
         for env_var, value in env.items():
             env_lines.append('export %s="%s"' % (env_var, ' '.join(value)))
 
-    return ['('] + env_lines + conf_lines + [')']
+    r = env_lines + conf_lines
+    if not stage_args.get('global_flags', False):
+        r = ['('] + r + [')']
+
+    return r
