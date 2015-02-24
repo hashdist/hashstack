@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [pkg-config, png]
+  build: [pkg-config, png, zlib]
   run: [pkg-config]
 
 defaults:
