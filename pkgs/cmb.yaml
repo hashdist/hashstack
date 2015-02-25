@@ -7,7 +7,7 @@ dependencies:
 
 sources:
 - url: git://public.kitware.com/CMB.git
-  key: git:ee35a7afc8e0ce0a6aa7c09d239e88cbee822f8a
+  key: git:b24225a52187a124f5f83bdb7212d363f9254519
 
 build_stages:
 - name: configure
