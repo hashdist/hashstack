@@ -13,6 +13,13 @@ defaults:
   relocatable: false
 
 build_stages:
+- name: patch3
+  before: configure
+  files: [installCMakeFiles.patch]
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/installCMakeFiles.patch
+
 - name: patch4
   before: configure
   files: [installGenerateFiles.patch]
