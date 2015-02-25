@@ -3,7 +3,7 @@ dependencies:
   build: [boost, png, qt, zlib, bzip2, gdal, hdf5,
           mpi, netcdf4, netcdf4cpp, freetype,
           python, numpy, matplotlib, libxml2,
-          paraview, remus, vxl, kml, molequeue, smtk, zmq]
+          paraview, remus, vxl, kml, molequeue, smtk, zmq, {{build_with}}]
 
 sources:
 - key: git:b24225a52187a124f5f83bdb7212d363f9254519
