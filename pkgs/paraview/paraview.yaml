@@ -5,7 +5,7 @@ dependencies:
           python, numpy, matplotlib, libxml2, {{build_with}}]
 
 sources:
-- key: git:08cb9fc8d27b24f1d581a98bccd01b8c8b834a19
+- key: git:e90304c0053a68ab316790748e097d810cb17ed1
   url: https://github.com/Kitware/ParaView.git
 
 defaults:
