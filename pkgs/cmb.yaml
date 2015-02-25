@@ -20,5 +20,6 @@ build_stages:
           '-DKML_DIR:PATH=${KML_DIR}',
           '-DGDAL_DIR:PATH=${GDAL_DIR}',
           '-DParaView_DIR:PATH=${PARAVIEW_DIR}',
-          '-DMoleQueue_DIR:PATH=${MOLEQUEUE_DIR}'
+          '-DMoleQueue_DIR:PATH=${MOLEQUEUE_DIR}',
+          '-DCMAKE_CXX_FLAGS:STRING="${CPPFLAGS}"',
           ]
