@@ -1,6 +1,6 @@
 extends: [cmake_package]
 dependencies:
-  build: [png]
+  build: [png, zlib]
 
 sources:
 - url: http://git.code.sf.net/p/vxl/git
