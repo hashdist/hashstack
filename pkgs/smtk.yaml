@@ -3,8 +3,8 @@ dependencies:
   build: [shiboken, boost, qt]
 
 sources:
-- url: git@www.kitware.com:SMTK.git
-  key: git:9322a480c1e93de9f78d965183970ab843526d9d
+- key: git:9322a480c1e93de9f78d965183970ab843526d9d
+  url: https://github.com/Kitware/SMTK
 
 
 build_stages:
