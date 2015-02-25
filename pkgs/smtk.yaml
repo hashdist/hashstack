@@ -6,6 +6,9 @@ sources:
 - key: git:9322a480c1e93de9f78d965183970ab843526d9d
   url: https://github.com/Kitware/SMTK
 
+defaults:
+  # python/smtk.py contains hard-coded path
+  relocatable: false
 
 build_stages:
 - name: configure
