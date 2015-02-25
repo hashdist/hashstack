@@ -6,6 +6,9 @@ sources:
 - url: https://github.com/OpenGeoscience/shiboken.git
   key: git:7f3bf07ee6c368a42edd8dcc1b3b0730b4809eaf
 
+defaults:
+  # lib/cmake/Shiboken-1.2.1/ShibokenConfig.cmake contains hard-coded path
+  relocatable: false
 
 build_stages:
 - name: configure
