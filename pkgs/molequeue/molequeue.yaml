@@ -3,8 +3,8 @@ dependencies:
   build: [qt]
 
 sources:
-- url: git://source.openchemistry.org/molequeue.git
-  key: git:e545ee25b4b79d5bae9e1cd0515fccb39f44d19d
+- key: git:e545ee25b4b79d5bae9e1cd0515fccb39f44d19d
+  url: git://source.openchemistry.org/molequeue.git
 
 defaults:
   # lib/cmake/molequeue/MoleQueueConfig.cmake contains hard-coded path

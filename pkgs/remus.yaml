@@ -3,8 +3,8 @@ dependencies:
   build: [boost, zmq]
 
 sources:
-- url: https://github.com/robertmaynard/Remus.git
-  key: git:42ab4e84e7769b3c3531ee378c6d95f342110d46
+- key: git:42ab4e84e7769b3c3531ee378c6d95f342110d46
+  url: https://github.com/robertmaynard/Remus.git
 
 build_stages:
 - name: configure
