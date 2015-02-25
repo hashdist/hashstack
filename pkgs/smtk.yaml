@@ -1,6 +1,6 @@
 extends: [cmake_package]
 dependencies:
-  build: [shiboken, boost, qt]
+  build: [shiboken, boost, qt, python]
 
 sources:
 - key: git:9322a480c1e93de9f78d965183970ab843526d9d
