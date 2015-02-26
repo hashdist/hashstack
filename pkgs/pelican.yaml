@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [feedgenerator, jinja2, pygments, docutils, pytz, blinker, unidecode, six, python-dateutil]
+  run: [feedgenerator, jinja2, pygments, docutils, pytz, blinker, unidecode, six, python-dateutil]
+
+sources:
+ - url: https://pypi.python.org/packages/source/p/pelican/pelican-3.5.0.tar.gz
+   key: tar.gz:w7w2vchelc4z4ras4sselscofu4hhb7n
