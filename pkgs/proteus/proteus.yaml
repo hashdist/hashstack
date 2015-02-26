@@ -5,7 +5,7 @@ dependencies:
 
 sources:
   - url: https://github.com/erdc-cm/proteus
-    key: git:97997c0b396ef7d99ee0096a00b96f35a672f259
+    key: git:ff1fc269798dc7e2cc0e1604c8524d7ae154409c
 
 
 build_stages:
