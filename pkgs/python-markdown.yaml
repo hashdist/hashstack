@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/M/Markdown/Markdown-2.6.zip
+   key: zip:twdfrwawe3ad52oz37f3kfryfxmqmtrb
