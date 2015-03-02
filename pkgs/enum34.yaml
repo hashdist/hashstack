@@ -1,0 +1,14 @@
+extends: [distutils_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+# The proper sources should be:
+#- key: tar.gz:2paz6jvgundctqmmo5pvtx6f3vmvozgh
+#  url: https://pypi.python.org/packages/source/e/enum34/enum34-1.0.4.tar.gz
+# But they don't work due to https://github.com/hashdist/hashdist/issues/310,
+# so we use this equivalent git repository:
+- key: git:dc35e72a5b4c6da1f0caaab1aaa13553e481e173
+  url: https://github.com/certik/enum34
