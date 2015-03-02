@@ -1,0 +1,15 @@
+extends: [base_package, libflags]
+
+dependencies:
+  build: [llvm, gmp, gcc]
+
+sources:
+- key: tar.xz:mxtzosruibsghtp3rqf23vg74kj6xz3r
+  url: http://llvm.org/releases/3.5.1/dragonegg-3.5.1.src.tar.xz
+
+build_stages:
+- name: make
+  after: prologue
+  handler: bash
+  bash: |
+    make
