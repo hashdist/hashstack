@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: [llvm]
+  run: []
+
+sources:
+  - key: git:317245a28a26056cb2eef48831329ed8eb76491e
+    url: https://github.com/numba/llvmlite

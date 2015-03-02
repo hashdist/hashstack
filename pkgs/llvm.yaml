@@ -6,3 +6,7 @@ sources:
 
 defaults:
   relocatable: false
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
