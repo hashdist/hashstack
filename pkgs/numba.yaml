@@ -1,7 +1,7 @@
 extends: [distutils_package]
 dependencies:
   build: [llvmlite, numpy]
-  run: []
+  run: [numpy, argparse, funcsigs]
 
 sources:
   - key: git:772e4c0ad4bb07b329d65f6b9c40f097149431cd

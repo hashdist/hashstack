@@ -1,7 +1,7 @@
 extends: [distutils_package]
 dependencies:
   build: [llvm]
-  run: []
+  run: [enum34]
 
 sources:
   - key: git:317245a28a26056cb2eef48831329ed8eb76491e
