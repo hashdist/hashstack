@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+- key: tar.gz:3a6onxylb2tgdbya7yo3gu2smoi2ri5n
+  url: https://pypi.python.org/packages/source/f/funcsigs/funcsigs-0.4.tar.gz
