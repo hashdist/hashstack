@@ -4,5 +4,5 @@ dependencies:
   run: [numpy, argparse, funcsigs]
 
 sources:
-  - key: git:772e4c0ad4bb07b329d65f6b9c40f097149431cd
+  - key: git:8267aed50bf0505de0689ae3cc45faa01353e4cc
     url: https://github.com/numba/numba
