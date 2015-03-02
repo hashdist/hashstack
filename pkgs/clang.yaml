@@ -3,10 +3,9 @@ extends: [cmake_package]
 dependencies:
   build: [llvm]
 
-
 sources:
-- url: http://llvm.org/releases/3.4/clang-3.4.src.tar.gz
-  key: tar.gz:ekuxqdntxbnh6lvz5ipx63qa3ibety6r
+- key: tar.xz:m5z7h6opqflddtd6o6pmcng52iunzdu2
+  url: http://llvm.org/releases/3.5.1/cfe-3.5.1.src.tar.xz
 
 defaults:
   # lib/libclang.so.3.4 contains hard-coded path
