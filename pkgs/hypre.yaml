@@ -52,7 +52,7 @@ build_stages:
           "--with-blas-lib-dirs=${BLAS_DIR}/lib",
           "--with-lapack=yes",
           "--with-lapack-libs=openblas",
-          "--with-lapack-lib-dirs=${BLAS_DIR}/lib"]
+          "--with-lapack-lib-dirs=${LAPACK_DIR}/lib"]
 
 - when: with_accelerate and not with_openblas
 # Libraries used for linking to Accelerate framework; `otool -L`
