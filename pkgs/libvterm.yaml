@@ -1,0 +1,17 @@
+extends: [base_package]
+
+sources:
+- key: git:20ad1396c178c72873aeeb2870bd726f847acb70
+  url: https://github.com/neovim/libvterm.git
+
+build_stages:
+- name: make_and_install
+  after: prologue
+  handler: bash
+  bash: |
+    make
+    make install PREFIX=${ARTIFACT}
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
