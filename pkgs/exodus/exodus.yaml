@@ -1,0 +1,37 @@
+extends: [cmake_package]
+
+dependencies:
+  build: [zlib, curl, netcdf4, hdf5, python, openssl, mpi]
+  run: [numpy]
+
+sources:
+- key: tar.gz:4fg3jqpczketyrqcavidnobhxazsorsd
+  url: http://downloads.sourceforge.net/project/exodusii/exodus-6.09.tar.gz
+
+defaults:
+  # lib/python2.7/site-packages/exodus.py contains hard-coded path
+  relocatable: false
+
+build_stages:
+
+- name: patch
+  before: switch_dir
+  files: [include_path_fix.patch]
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/include_path_fix.patch
+
+- name: switch_dir
+  after: prologue
+  before: setup_builddir
+  handler: bash
+  bash: |
+    cd exodus
+
+- name: configure
+  extra: ['-D BUILD_SHARED=ON',
+          '-D NETCDF_SO_ROOT:PATH="${NETCDF4_DIR}/lib"',
+          '-D PYTHON_INSTALL:PATH="${ARTIFACT}/{{python_site_packages_rel}}"',
+          ]
+
+licenses: [bsd-2-clause]
