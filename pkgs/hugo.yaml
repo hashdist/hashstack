@@ -7,7 +7,7 @@ defaults:
   relocatable: false
 
 sources:
-- key: git:a0d956c2ad7371d989fc192e122f0097b07a5b01
+- key: git:ecb2aca6a2f75a703d64a88e30a8a11e2fe6eaac
   url: https://github.com/spf13/hugo.git
 
 build_stages:
