@@ -8,8 +8,8 @@ defaults:
   relocatable: false
 
 sources:
-- key: tar.bz2:szhzitzjjzh7cxzktos4zaxhi3pf6lf3
-  url: http://ftp.gnome.org/pub/gnome/sources/glib/2.31/glib-2.31.2.tar.bz2
+- key: tar.xz:r47qqzjibzc3rtuebylw56b3z7krcfej
+  url: http://ftp.gnome.org/pub/gnome/sources/glib/2.42/glib-2.42.1.tar.xz
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
