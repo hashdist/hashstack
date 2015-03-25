@@ -1,5 +1,25 @@
 extends: [autotools_package]
 
+dependencies:
+  build: [autoconf, automake, gmp, boost]
+
 sources:
-- key: git:5d9c42dccebed2e9207616794a933764ec4151ae
-  url: https://github.com/qsnake/libint.git
+# When https://github.com/evaleev/libint/pull/30 is merged, we can switch to
+# use the original repository, until then we use a clone with the necessary
+# patches:
+#- key: git:c1be4f680ada1797e71741fa882b68e926fc05a9
+#  url: https://github.com/evaleev/libint
+- key: git:c0a83fa7e2554ea71a14dbae47bce0a3559e1a54
+  url: https://github.com/certik/libint-1
+
+defaults:
+  # include/libint2/basis.h contains hard-coded path
+  relocatable: false
+
+build_stages:
+- name: create_configure
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    ./autogen.sh
