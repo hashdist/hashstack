@@ -1,0 +1,5 @@
+extends: [autotools_package]
+
+sources:
+- key: git:5d9c42dccebed2e9207616794a933764ec4151ae
+  url: https://github.com/qsnake/libint.git
