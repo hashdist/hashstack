@@ -6,6 +6,9 @@ sources:
 - key: tar.gz:k4egwq4dz2jdf4c2vvyhmhbkma2ldiga
   url: ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.2.tar.gz
 
+defaults:
+  increase_max_dims: false
+
 build_stages:
 
 - name: set_mpi_wrapper
@@ -41,3 +44,11 @@ build_stages:
   before: make
   bash: |
     patch -p1 < _hashdist/hdf5-1.8.13_fix.patch
+
+- when: increase_max_dims
+  files: [max_dims.patch]
+  name: max_dims
+  handler: bash
+  before: make
+  bash: |
+    patch -p1 < _hashdist/max_dims.patch

@@ -51,6 +51,7 @@ packages:
   matplotlib:
   pyzmq:
   parmetis:
+    without_check: true
   petsc:
     build_with: |
       parmetis

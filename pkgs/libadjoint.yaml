@@ -3,8 +3,8 @@ dependencies:
   build: [gccxml, mpi, petsc, slepc, {{build_with}}]
 
 sources:
-- key: tar.gz:ihznekfx5k5igxf7zhg65racz7npbcsn
-  url: https://bitbucket.org/dolfin-adjoint/libadjoint/downloads/libadjoint-1.4.tar.gz
+- key: tar.gz:pvs4t2nxqssi6mwagvg5oqqhryhhj7ft
+  url: https://bitbucket.org/dolfin-adjoint/libadjoint/get/libadjoint-1.5.tar.gz
 
 defaults:
   # lib/python2.7/site-packages/libadjoint/clibadjoint.py contains hard-coded path

@@ -4,8 +4,8 @@ defaults:
   relocatable: false
 
 sources:
-- key: tar.gz:fkvox33blpt5ynsta2quzks5e45e7qlu
-  url: http://ftp.heanet.ie/mirrors/gnu/diffutils/diffutils-3.2.tar.gz
+- key: tar.xz:ujpitkflmx662fzr4qmgxyn3exg2sz4d
+  url: http://ftp.gnu.org/gnu/diffutils/diffutils-3.3.tar.xz
 
 when_build_dependency:
 - prepend_path: PATH

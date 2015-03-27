@@ -1,0 +1,9 @@
+# This example shows how to install golang on Linux.
+
+extends:
+- file: linux.yaml
+
+packages:
+  curl:
+    use_ca_bundle: true
+  golang:

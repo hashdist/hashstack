@@ -1,8 +1,37 @@
 extends: [autotools_package]
 
-dependencies:
+# optionally build with ca-bundle package as a parameter if you want to
+# trust hashstack's ca-bundle and want to squash the errors/warnings about
+# not being able to verify ssl connections and your system does not come
+# with an appropriate certificate bundle you can use or trust.
+#
+# curl is built with openssl and does not automatically make use of
+# CRL's to check for revoked certificates. Users can manually tell curl
+# to use a CRL file when making https requests with the --crlfile command
+# option. Please refer to the curl man page and also http://curl.haxx.se/docs/ssl-compared.html
+# and http://curl.haxx.se/docs/sslcerts.html
+when use_ca_bundle:
+  dependencies:
+    build: [openssl, libidn, zlib, ca-bundle]
+when not use_ca_bundle:
+  dependencies:
     build: [openssl, libidn, zlib]
+
+defaults:
+  use_ca_bundle: false
 
 sources:
   - url: http://curl.haxx.se/download/curl-7.37.0.tar.gz
     key: tar.gz:dl6tespqw6zufuqodtfmxpasggdziyrs
+
+build_stages:
+- when: use_ca_bundle
+  name: configure
+  mode: override
+  extra: ['--with-ca-bundle=${CA_BUNDLE_DIR}/etc/ca-bundle/ca-bundle.crt']
+
+- name: install_mk-ca-bundle.pl
+  after: install
+  handler: bash
+  bash:
+    cp lib/mk-ca-bundle.pl ${ARTIFACT}/lib/

@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [zlib]
+  build: [pkg-config, zlib]
 
 sources:
   - url: https://www.openssl.org/source/openssl-1.0.1g.tar.gz
@@ -46,3 +46,7 @@ build_stages:
   bash: |
     #./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include -Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib
     ./Configure --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include darwin64-x86_64-cc enable-ec_nistp-64_gcc_128
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'

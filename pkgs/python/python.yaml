@@ -1,11 +1,26 @@
 extends: [autotools_package]
 
-sources:
- - url: http://python.org/ftp/python/2.7.8/Python-2.7.8.tgz
-   key: tar.gz:otlqxeknurehviozoirlfhuvktief6bf
+when pyver == '2.7':
+    sources:
+    - key: tar.gz:otlqxeknurehviozoirlfhuvktief6bf
+      url: http://python.org/ftp/python/2.7.8/Python-2.7.8.tgz
+when pyver == '3.2':
+    sources:
+    - key: tar.gz:7qpecklofhkhn5uwga5mvyutvz5cgehq
+      url: https://www.python.org/ftp/python/3.2.6/Python-3.2.6.tgz
+when pyver == '3.3':
+    sources:
+    - key: tar.gz:bjmk2hy555hmzefrrmgeccr2bynert3w
+      url: https://www.python.org/ftp/python/3.3.6/Python-3.3.6.tgz
+when pyver == '3.4':
+    sources:
+    - key: tar.gz:isr4d3y4psr6j7jfeqvpqdwxfwuucib4
+      url: https://www.python.org/ftp/python/3.4.2/Python-3.4.2.tgz
+
+
 
 dependencies:
-  build: [zlib, bzip2, sqlite, openssl, launcher, ncurses, readline, {{build_with}}]
+  build: [zlib, bzip2, sqlite, openssl, launcher, ncurses, readline, gdbm, {{build_with}}]
   run: []
 
 defaults:
@@ -14,13 +29,18 @@ defaults:
 build_stages:
   - when: link == 'shared'
     name: configure
-    mode: override
-    append: {LDFLAGS: "-Wl,-rpath=${ARTIFACT}/lib"}
+    mode: update
+    append: {LDFLAGS: "-Wl,-rpath,${ARTIFACT}/lib"}
     extra: ['--enable-shared']
+
+  - when: pyver == '3.4'
+    name: configure
+    mode: update
+    extra: ['--without-ensurepip']
 
   - when: python_framework
     name: configure
-    mode: override
+    mode: update
     extra: ['--enable-framework=${ARTIFACT}']
 
   - when: python_framework
@@ -68,6 +88,15 @@ build_stages:
 # Python buildsystem, but unfortunately currently it will silently succeed even
 # if any of the modules below fail.
 
+
+  - when: pyver != '2.7'
+    name: python_binary
+    after: install
+    before: test_modules
+    handler: bash
+    bash: |
+      cp $ARTIFACT/bin/python3 $ARTIFACT/bin/python
+
   - name: test_modules
     after: install
     handler: bash
@@ -97,7 +126,13 @@ build_stages:
 
       # Make sure HTTPS works
       echo "Test https support in httplib"
-      $ARTIFACT/bin/python -c "import httplib; assert hasattr(httplib, 'HTTPS')"
+      $ARTIFACT/bin/python << EOF
+      try:
+          import httplib
+      except ImportError:
+          import http.client as httplib
+      assert hasattr(httplib, 'HTTPSConnection')
+      EOF
       echo "    ok"
 
       # Test sqlite3
@@ -109,6 +144,9 @@ build_stages:
 when_build_dependency:
   - set: PYTHON
     value: ${ARTIFACT}/bin/python
+  - when: pyver != '2.7'
+    set: PYTHONDONTWRITEBYTECODE
+    value: 'yes'
   - prepend_path: PATH
     value: '${ARTIFACT}/bin'
   - prepend_path: PKG_CONFIG_PATH

@@ -12,7 +12,7 @@ build_stages:
   bash: |
     cd Src/Python/F90
     mkdir build
-    make OUT=build CC=mpicc FC=mpif90 MPIHOME=$(dirname $(dirname $(which mpicc)))
+    make OUT=build CC=mpicc FC=mpif90 MPIHOME=$(dirname $(dirname $(which mpif90)))
 
 - name: test
   after: install
@@ -24,4 +24,4 @@ build_stages:
 
 sources:
 - url: https://github.com/memmett/BoxLib.git
-  key: git:5fb46d4995ff74a97a0803e4fe008c44da37f743
+  key: git:a235af87d30cbfc721d4d7eb4da9b8daadeded7d

@@ -1,0 +1,5 @@
+extends: [setuptools_package]
+
+sources:
+- key: tar.gz:awfgrcw5i5v4mjbwf2gjcp7rg4rgtuo3
+  url: https://pypi.python.org/packages/source/s/selenium/selenium-2.44.0.tar.gz

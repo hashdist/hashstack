@@ -5,5 +5,5 @@ dependencies:
   run: [SQLAlchemy, SQLAlchemy-Migrate, jinja2, Twisted, sqlite, python-dateutil]
 
 sources:
- - url: https://pypi.python.org/packages/source/b/buildbot/buildbot-0.8.9.zip
-   key: zip:53c3foncopvumycuoujxryzudlzgmzqh
+- key: zip:tsyafdgdsontllm5ujazrcbcnysx3o2g
+  url: https://pypi.python.org/packages/source/b/buildbot/buildbot-0.8.10.zip

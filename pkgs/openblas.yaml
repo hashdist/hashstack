@@ -1,8 +1,12 @@
 extends: [base_package]
 
 sources:
-- key: tar.gz:wqpxd5dpvkyscx3pnulvieit3qa72tmp
-  url: https://github.com/xianyi/OpenBLAS/archive/v0.2.12.tar.gz
+- key: tar.gz:l4pzq2qzackjawfvpddbyk3fwtpdetyz
+  url: https://github.com/xianyi/OpenBLAS/archive/v0.2.13.tar.gz
+
+defaults:
+  # cmake/OpenBLASConfig.cmake contains hard-coded path
+  relocatable: false
 
 build_stages:
 - name: make_and_install
@@ -13,4 +17,5 @@ build_stages:
     make {{extra_flags}} PREFIX=${ARTIFACT} install
 
 when_build_dependency:
-  - {set: 'BLAS_LDFLAGS', value: '-L${ARTIFACT}/lib -lopenblas'}
+- {set: 'BLAS_LDFLAGS', value: '-Wl,-rpath,${ARTIFACT}/lib -L${ARTIFACT}/lib -lopenblas'}
+- {set: 'LAPACK_LDFLAGS', value: '-Wl,-rpath,${ARTIFACT}/lib -L${ARTIFACT}/lib -lopenblas'}

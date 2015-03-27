@@ -1,0 +1,53 @@
+diff --unified -r pytables/setup.py pytables-fix-setup-paths/setup.py
+--- pytables/setup.py	2012-07-15 15:15:24.000000000 -0400
++++ pytables-fix-setup-paths/setup.py	2014-12-04 17:43:30.000000000 -0500
+@@ -102,9 +102,9 @@
+ optional_libs = []
+ data_files = []    # list of data files to add to packages (mainly for DLL's)
+ 
+-default_header_dirs = None
+-default_library_dirs = None
+-default_runtime_dirs = None
++default_header_dirs = [] 
++default_library_dirs = [] 
++default_runtime_dirs = [] 
+ 
+ def add_from_path(envname, dirs):
+     try:
+@@ -117,22 +117,7 @@
+         if flag.startswith(flag_key):
+             dirs.append(flag[len(flag_key):])
+ 
+-if os.name == 'posix':
+-    default_header_dirs = []
+-    add_from_path("CPATH", default_header_dirs)
+-    add_from_path("C_INCLUDE_PATH", default_header_dirs)
+-    add_from_flags("CPPFLAGS", "-I", default_header_dirs)
+-    default_header_dirs.extend(['/usr/include', '/usr/local/include'])
+-
+-    default_library_dirs = []
+-    add_from_flags("LDFLAGS", "-L", default_library_dirs)
+-    default_library_dirs.extend(
+-        os.path.join(_tree, _arch)
+-        for _tree in ('/', '/usr', '/usr/local')
+-        for _arch in ('lib64', 'lib') )
+-    default_runtime_dirs = default_library_dirs
+-
+-elif os.name == 'nt':
++if os.name == 'nt':
+     default_header_dirs = []  # no default, must be given explicitly
+     default_library_dirs = []  # no default, must be given explicitly
+     default_runtime_dirs = [  # look for DLL files in ``%PATH%``
+@@ -146,12 +131,6 @@
+ from numpy.distutils.misc_util import get_numpy_include_dirs
+ inc_dirs.extend(get_numpy_include_dirs())
+ 
+-# Gcc 4.0.1 on Mac OS X 10.4 does not seem to include the default
+-# header and library paths.  See ticket #18.
+-if sys.platform.lower().startswith('darwin'):
+-    inc_dirs.extend(default_header_dirs)
+-    lib_dirs.extend(default_library_dirs)
+-
+ def _find_file_path(name, locations, prefixes=[''], suffixes=['']):
+     for prefix in prefixes:
+         for suffix in suffixes:

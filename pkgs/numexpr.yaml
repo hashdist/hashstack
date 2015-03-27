@@ -4,5 +4,5 @@ dependencies:
   run: [numpy]
 
 sources:
-  - url: https://pypi.python.org/packages/source/n/numexpr/numexpr-1.4.2.tar.gz
-    key: tar.gz:hd3t6bacxssskzqynw7muwdjrfqxyaxy
+  - key: tar.gz:wpk7tggr4se4ny7gollvyltljkdr2z76
+    url: https://github.com/pydata/numexpr/archive/v2.4.tar.gz

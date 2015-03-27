@@ -15,8 +15,8 @@ dependencies:
   run: [ply]
 
 sources:
-- key: git:5983c35652456a0a56f515f7f14d7c358c214ea5
-  url: https://bitbucket.org/fenics-project/dolfin.git
+- key: tar.gz:2omag5d7u5jyxnjmz7bepbcn7wqkxcs5
+  url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-1.5.0.tar.gz
 
 defaults:
   # share/dolfin/DOLFINConfig.cmake contains hard-coded path

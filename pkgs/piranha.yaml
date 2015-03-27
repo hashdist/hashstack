@@ -4,12 +4,14 @@ dependencies:
   run: [boost, gmp, mpfr]
 
 sources:
-- url: https://github.com/bluescarni/piranha.git
-  key: git:a871a25e79516bf4ee32064ea25fabbc85f386e0
+- key: git:4c4f9c841bb17648dbe040aab766cb53d173afda
+  url: https://github.com/bluescarni/piranha.git
 
 build_stages:
 - name: configure
-  extra: ['-D BOOST_ROOT=$BOOST_DIR',
+  extra: ['-D CMAKE_BUILD_TYPE=Release',
+          '-D BUILD_TESTS=OFF',
+          '-D BOOST_ROOT=$BOOST_DIR',
           '-D GMP_INCLUDE_DIR=$GMP_DIR/include',
           '-D GMP_LIBRARIES=$GMP_DIR/lib/libgmp.so',
           '-D MPFR_INCLUDE_DIR=$MPFR_DIR/include',
