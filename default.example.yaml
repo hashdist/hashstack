@@ -42,6 +42,8 @@ packages:
     use: host-mpi
   blas:
     use: host-blas
+  lapack:
+    use: host-lapack
 
   nose:
   hdf5:
@@ -56,6 +58,3 @@ packages:
     with_conf: true
   szip:
   zlib:
-
-
-

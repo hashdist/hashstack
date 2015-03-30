@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/U/Unidecode/Unidecode-0.04.17.tar.gz
+   key: tar.gz:6d4nkpjzq562jbesspkur3wllz4tms2x

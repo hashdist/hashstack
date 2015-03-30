@@ -1,0 +1,23 @@
+extends: [autotools_package]
+
+sources:
+- key: tar.gz:5mpywlflvv7qpnxejvqgveoxhyppzjfu
+  url: http://pkgs.fedoraproject.org/repo/pkgs/libcanberra/libcanberra-0.28.tar.gz/c198b4811598c4c161ff505e4531b02c/libcanberra-0.28.tar.gz
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build: [gtk2, pkg-config, libvorbis]
+
+build_stages:
+- name: configure
+  extra:
+    - 'GTK_CFLAGS=-I${GTK2_DIR}/include/gtk-2.0 -I${GTK2_DIR}/lib/gtk-2.0/include -I${GTK2_DIR}/include/gtk-unix-print-2.0'
+    - '--disable-schemas-install'
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

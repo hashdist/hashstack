@@ -3,8 +3,11 @@ dependencies:
   build: [mpi, hdf5, curl]
 
 sources:
-- url: ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.0.tar.gz
-  key: tar.gz:46lecpjh3jvqkpqhughvm6q5bqr5fiyx
+- key: tar.gz:k4egwq4dz2jdf4c2vvyhmhbkma2ldiga
+  url: ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.2.tar.gz
+
+defaults:
+  increase_max_dims: false
 
 build_stages:
 
@@ -14,6 +17,12 @@ build_stages:
   bash: |
     export CC=$MPICC
 
+- when: machine == 'CrayXE6'
+  name: configure
+  mode: override
+  append: {LDFLAGS: {{DYNAMIC_EXE_LINKER_FLAGS}}}
+  extra: ['--host=cray','--with-pic']
+
 # http://www.unidata.ucar.edu/software/netcdf/docs/known_problems.html#clang-ncgen3
 - when: platform == 'Darwin'
   files: [fix_genlib.patch]
@@ -22,3 +31,24 @@ build_stages:
   before: make
   bash: |
     patch -p1 < _hashdist/fix_genlib.patch
+
+# HDF5 1.8.13 removes symbols related to MPI POSIX VFD, leading to
+# errors when linking hdf5 and netcdf4 such as "undefined reference to
+# `_H5Pset_fapl_mpiposix`". This patch fixes those errors, and has been
+# added upstream. It should be unnecessary once NetCDF releases a new
+# stable version.
+# https://github.com/Unidata/netcdf-c/commit/435d8a03ed28bb5ad63aff12cbc6ab91531b6bc8.diff
+- files: [hdf5-1.8.13_fix.patch]
+  name: hdf5-1.8.13_fix
+  handler: bash
+  before: make
+  bash: |
+    patch -p1 < _hashdist/hdf5-1.8.13_fix.patch
+
+- when: increase_max_dims
+  files: [max_dims.patch]
+  name: max_dims
+  handler: bash
+  before: make
+  bash: |
+    patch -p1 < _hashdist/max_dims.patch

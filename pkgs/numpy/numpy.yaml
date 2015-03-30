@@ -4,8 +4,8 @@ dependencies:
   run: [blas]
 
 sources:
-  - url: http://downloads.sourceforge.net/numpy/numpy-1.7.1.tar.gz
-    key: tar.gz:kusqdgrqqxb5qyhgz7smbiypwzovm5rg
+  - key: tar.gz:zzluhi5cjpyt4a3t7lvsicyi4sgrhhtd
+    url: http://downloads.sourceforge.net/numpy/numpy-1.8.2.tar.gz
 
 build_stages:
 
@@ -20,14 +20,6 @@ build_stages:
       library_dirs = ${OPENBLAS_DIR}/lib
       EOF
 
-  - when: machine == 'CrayXE6'
-    name: support_cray_compilers
-    before: install
-    handler: bash
-    files: [numpy-1.7.1_support_cray_compilers.patch]
-    bash: |
-      patch -p1 < _hashdist/numpy-1.7.1_support_cray_compilers.patch
-
   - when: platform == 'linux'
     name: set-LDFLAGS
     before: install
@@ -37,6 +29,29 @@ build_stages:
       #export ATLAS=None
       export LAPACK=None
       export BLAS=None
+
+  - when: machine == 'CrayXE6'
+    name: create-site.cfg
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      cat > site.cfg << EOF
+      [DEFAULT]
+      library_dirs = ${ACML_DIR}/gfortran64/lib
+      libraries = acml
+      EOF
+
+  - when: machine == 'CrayXE6'
+    name: set-LDFLAGS
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${ACML_DIR}/gfortran64/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LAPACK=acml
+      export BLAS=acml
+      export ATLAS=None
 
   - when: platform == 'Cygwin'
     name: set-LDFLAGS

@@ -20,6 +20,7 @@ packages:
     use: host-cmake
   python:
     host: false
+    link: shared
     build_with: |
       bzip2, sqlite
   blas:
@@ -27,6 +28,7 @@ packages:
   daetk:
   mpi:
     use: mpich
+  mpi4py:
   nose:
   hdf5:
   ipython:
@@ -48,3 +50,5 @@ packages:
   tetgen:
   triangle:
   memory_profiler:
+  ipdb:
+  pip:

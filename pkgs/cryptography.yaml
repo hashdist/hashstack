@@ -1,0 +1,17 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [six, cffi, cryptography-vectors, openssl, pytest]
+  run: []
+
+sources:
+- key: tar.gz:kz2zthzxitf4gktazmf3uzg6efafvphn
+  url: https://pypi.python.org/packages/source/c/cryptography/cryptography-0.5.4.tar.gz
+
+build_stages:
+- name: install
+  after: setup_dirs
+  #when: platform == 'Darwin'
+  handler: bash
+  bash: |
+    env LDFLAGS="-L${OPENSSL_DIR}/lib -Wl,-rpath,${OPENSSL_DIR}/lib" CFLAGS="-I${OPENSSL_DIR}/include" ARCHFLAGS="-arch x86_64" $PYTHON setup.py install --prefix=${ARTIFACT}

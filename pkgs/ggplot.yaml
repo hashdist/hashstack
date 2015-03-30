@@ -6,9 +6,20 @@ dependencies:
     - matplotlib
     - six
     - brewer2mpl
+    - pandas
+    - patsy
+    - statsmodels
+    - scipy
 
 sources:
  - url: https://github.com/yhat/ggplot/
-   key: git:517463709f2e2253a4ebe2cc3d3ba8a8c9a15bf8
+   key: git:0f3774e6a645796b843d3ce77fb388958773338e
 
 licenses: [bsd-2-clause]
+
+build_stages:
+- name: test
+  after: install
+  handler: bash
+  bash: |
+    $PYTHON -c 'from ggplot import *'

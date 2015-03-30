@@ -1,0 +1,29 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [gmp, libunistring, pkg-config, libffi, readline, gc, libtool, {{build_with}}]
+  run: [libtool]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:4z4gze2di35c4ohenwgydjrcxmobnujq
+  url: http://ftp.heanet.ie/mirrors/gnu/guile/guile-2.0.11.tar.gz
+
+build_stages:
+- name: configure
+  extra: ['--disable-dependency-tracking']
+
+# On OSX you may need to have gcc installed from homebrew or otherwise
+# Also do something like this - https://gist.githubusercontent.com/alghanmi/8853646/raw/gcc-default-fix.sh
+- name: configure
+  when: platform == 'Darwin'
+  extra: ['--disable-dependency-tracking', '--build=x86_64-apple-darwin10']
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
+
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

@@ -1,0 +1,17 @@
+extends: [cmake_package]
+
+sources:
+- key: zip:e36lwwjfw5fnl7eme2yesxp4sy2t6tkv
+  url: https://googlemock.googlecode.com/files/gmock-1.7.0.zip
+
+build_stages:
+- name: configure
+  extra: ['-D BUILD_SHARED_LIBS:BOOL=ON']
+
+- name: install
+  handler: bash
+  bash: |
+    mkdir -p ${ARTIFACT}/include
+    mkdir -p ${ARTIFACT}/lib
+    cp -rv ../include/gmock ${ARTIFACT}/include/
+    cp -v libgmock* ${ARTIFACT}/lib/

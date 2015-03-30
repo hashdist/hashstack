@@ -1,0 +1,49 @@
+# This profile file controls your <#> (HashDist) build environment.
+
+# In the future, we'll provide better incorporation of
+# automatic environment detection.  For now, have a look
+# at the YAML files in the top-level directory and choose
+# the most *specific* file that matches your environment.
+
+extends:
+- file: osx_clt.yaml
+
+# The packages list specifies all the packages that you
+# require installed.  <#> will ensure that all packages
+# and their dependencies are installed when you build this
+# profile.
+
+packages:
+  launcher:
+  cmake:
+  python:
+    host: true
+  blas:
+    use: host-osx-framework-accelerate
+  lapack:
+    use: host-osx-framework-accelerate
+  mpi:
+    use: openmpi
+  petsc:
+    build_with: |
+      parmetis, scotch, suitesparse
+    download: |
+      superlu_dist
+    coptflags: -O2
+    link: shared
+    debug: false
+    disable_fortran: true
+  boost:
+    toolset: clang
+    address_model: 64
+  ipython:
+  ffc:
+  fiat:
+  instant:
+  ufl:
+  dolfin:
+    build_with: |
+      hdf5, parmetis, petsc, scotch, slepc, suitesparse, vtk, zlib
+  h5py:
+  pyvtk:
+  matplotlib:

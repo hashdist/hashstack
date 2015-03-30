@@ -1,0 +1,24 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [pkg-config, python, glib2, fontconfig, libtiff, cairo]
+  run: [pkg-config]
+
+defaults:
+  relocatable: false
+
+sources:
+#- key: tar.bz2:hdjggayu43mrs5v77wbtenxyj7x2iqfj
+#  url: http://ftp.gnome.org/pub/gnome/sources/gdk-pixbuf/2.24/gdk-pixbuf-2.24.0.tar.bz2
+#- key: tar.bz2:cylruhlmqxfpwzbsqbtmg4tmbcy4myq5
+#  url: http://ftp.gnome.org/pub/gnome/sources/gdk-pixbuf/2.23/gdk-pixbuf-2.23.5.tar.bz2
+- key: tar.bz2:3zrfcmywdrsrydzsyh3ufatlvbyamn6i
+  url: http://ftp.gnome.org/pub/gnome/sources/gdk-pixbuf/2.21/gdk-pixbuf-2.21.6.tar.bz2
+#- key: tar.bz2:bjtxg7erjmx5lq3eqh5khlk2otrrqoqd
+#  url: http://ftp.gnome.org/pub/gnome/sources/gdk-pixbuf/2.21/gdk-pixbuf-2.21.7.tar.bz2
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

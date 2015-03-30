@@ -1,0 +1,27 @@
+extends: [cmake_package]
+dependencies:
+  build: [itk, python, tetgen, vtk]
+
+sources:
+- key: git:2a5d96575d033c514a49641dfd9bf119bbf0b14c
+  url: https://github.com/vmtk/vmtk.git
+
+defaults:
+  # lib/vmtk/vmtk/libvtkvmtkITKPython.so contains hard-coded path
+  relocatable: false
+
+build_stages:
+- name: configure
+  extra: 
+    - '-D BUILD_EXAMPLES:BOOL=OFF'
+    - '-D BUILD_TESTING:BOOL=OFF'
+    - '-D BUILD_DOCUMENTATION:BOOL=OFF'
+    - '-D BUILD_SHARED_LIBS:BOOL=ON'
+    - '-D CMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib/vmtk"'
+    - '-D VTK_VMTK_WRAP_PYTHON:BOOL=ON'
+    - '-D VMTK_USE_SUPERBUILD:BOOL=OFF'
+    - '-D VMTK_CONTRIB_SCRIPTS:BOOL=ON'
+    - '-D VTK_VMTK_CONTRIB:BOOL=ON'
+    - '-D VMTK_SCRIPTS_ENABLED:BOOL=ON'
+    - '-D VMTK_MINIMAL_INSTALL:BOOL=OFF'
+    - '-D VMTK_BUILD_TETGEN:BOOL=OFF'

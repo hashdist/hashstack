@@ -3,8 +3,12 @@ dependencies:
   build: [python, swig, mpi, numpy, openblas, suitesparse]
 
 sources:
-- url: http://trilinos.sandia.gov/download/files/trilinos-11.4.1-Source.tar.gz
-  key: tar.gz:f75irrdmjj5sfvczu72gibqy7ktow2jp
+- key: tar.bz2:uqktsqkffhdfsbjgbm567y5o4ty52eav
+  url: http://trilinos.org/oldsite/download/files/trilinos-11.12.1-Source.tar.bz2
+
+defaults:
+  # include/trilinos/Makefile.export.Trilinos contains hard-coded path
+  relocatable: false
 
 build_stages:
 - name: configure

@@ -51,7 +51,7 @@ def configure(ctx, stage_args):
     if 'extra' in stage_args:
         conf_lines.append(' '.join('%s' % arg for arg in stage_args['extra']))
 
-    builddir = '..'
+    builddir = stage_args.get('builddir', '..')
     if stage_args.get('build_in_source', False):
         builddir = '.'
     conf_lines.append(builddir)

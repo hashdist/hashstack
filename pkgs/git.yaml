@@ -1,13 +1,23 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [curl, pcre, openssl, libiconv, gettext, expat, zlib]
+  build: [curl, pcre, openssl, libiconv, gettext, expat, zlib, perl]
 
 sources:
-- url: http://www.kernel.org/pub/software/scm/git/git-2.0.0.tar.gz
-  key: tar.gz:y2rxb2ktezyban674mxy4zxtttosqvl4
+- key: tar.gz:xix6qfhhbgs5b4bu5pucba74477o2cez
+  url: http://www.kernel.org/pub/software/scm/git/git-2.3.0.tar.gz
+
+defaults:
+  # /bin/git contains hard-coded path
+  relocatable: false
 
 build_stages:
+
+- name: perl_path
+  before: configure
+  handler: bash
+  bash: |
+    export PERL_PATH="/usr/bin/env perl"
 
 - name: configure
   mode: override

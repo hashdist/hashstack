@@ -4,9 +4,30 @@ dependencies:
   run: [curl, zlib, openssl, libyaml, libxml2, libxslt, libiconv, ncurses, readline]
 
 sources:
-  - url: http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.2.tar.bz2
-    key: tar.bz2:nfelajlqzx5ytkbrgz25jktgkqczadrh
+- key: tar.bz2:g3hhf6ck4qjj63ggnyzqo6tz3b5qddvh
+  url: http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.3.tar.bz2
+
+defaults:
+  # /bin/ruby contains hard-coded path
+  relocatable: false
 
 profile_links:
   - name: gem_binaries
     link: 'lib/ruby/gems/2.1.0/**/bin/*'
+
+build_stages:
+  - name: test_modules
+    after: install
+    handler: bash
+    bash: |
+      echo "require 'digest'"
+      $ARTIFACT/bin/ruby -e "require 'digest'"
+      echo "    ok"
+
+      echo "require 'openssl'"
+      $ARTIFACT/bin/ruby -e "require 'openssl'"
+      echo "    ok"
+
+      echo "require 'yaml'"
+      $ARTIFACT/bin/ruby -e "require 'yaml'"
+      echo "    ok"

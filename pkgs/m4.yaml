@@ -2,6 +2,10 @@ extends: [autotools_package]
 dependencies:
   build: []
 
+defaults:
+  # /bin/m4 contains hard-coded path
+  relocatable: false
+
 sources:
   - url: http://ftp.gnu.org/gnu/m4/m4-1.4.17.tar.bz2
     key: tar.bz2:rzhb7frzgijw5vc5zvnpwddoen7jnjx4

@@ -1,0 +1,27 @@
+extends: [distutils_package]
+
+dependencies:
+  build: [mpi, numpy]
+  run: [mpi, numpy]
+
+build_stages:
+- name: build_pyboxlib
+  after: prologue
+  before: install
+  handler: bash
+  bash: |
+    cd Src/Python/F90
+    mkdir build
+    make OUT=build CC=mpicc FC=mpif90 MPIHOME=$(dirname $(dirname $(which mpif90)))
+
+- name: test
+  after: install
+  handler: bash
+  bash: |
+    cd tests
+    export PYTHONPATH=$PYTHONPATH:$ARTIFACT/lib/python2.7/site-packages
+    $PYTHON regrid.py
+
+sources:
+- url: https://github.com/memmett/BoxLib.git
+  key: git:a235af87d30cbfc721d4d7eb4da9b8daadeded7d

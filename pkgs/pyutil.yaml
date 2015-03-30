@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/p/pyutil/pyutil-2.0.0.tar.gz
+   key: tar.gz:bsuvzocyipc3bh33mw2323cc2gka4glg

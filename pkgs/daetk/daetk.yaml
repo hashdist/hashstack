@@ -5,8 +5,8 @@ dependencies:
   build: [petsc, parmetis, mpi]
 
 sources:
-- key: zip:yawhbsslqygw5lq5sps4xsyoco72jabt
-  url: https://github.com/erdc-cm/daetk/archive/ahmadia/petsc_3_5.zip
+- url: https://github.com/erdc-cm/daetk/archive/ahmadia/petsc_3_5.zip
+  key: zip:yawhbsslqygw5lq5sps4xsyoco72jabt
 
 build_stages:
 - when: platform == 'Darwin'

@@ -1,0 +1,7 @@
+extends: [host_package]
+
+when_build_dependency:
+- set: BOOST_ROOT
+  value: "{{HOST_BOOST_ROOT}}"
+- set: BOOST_DIR
+  value: "{{HOST_BOOST_ROOT}}"

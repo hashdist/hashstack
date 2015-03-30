@@ -8,6 +8,10 @@ sources:
 - url: http://llvm.org/releases/3.4/clang-3.4.src.tar.gz
   key: tar.gz:ekuxqdntxbnh6lvz5ipx63qa3ibety6r
 
+defaults:
+  # lib/libclang.so.3.4 contains hard-coded path
+  relocatable: false
+
 build_stages:
 - name: configure
   extra: ['-D CLANG_PATH_TO_LLVM_BUILD:PATH=$LLVM_DIR',

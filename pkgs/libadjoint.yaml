@@ -1,0 +1,37 @@
+extends: [cmake_package]
+dependencies:
+  build: [gccxml, mpi, petsc, slepc, {{build_with}}]
+
+sources:
+- key: tar.gz:pvs4t2nxqssi6mwagvg5oqqhryhhj7ft
+  url: https://bitbucket.org/dolfin-adjoint/libadjoint/get/libadjoint-1.5.tar.gz
+
+defaults:
+  # lib/python2.7/site-packages/libadjoint/clibadjoint.py contains hard-coded path
+  relocatable: false
+
+build_stages:
+- name: configure
+  mode: override
+  extra: ['-D CMAKE_CXX_COMPILER:FILEPATH=${MPICXX}',
+          '-D CMAKE_C_COMPILER:FILEPATH=${MPICC}',
+          '-D CMAKE_Fortran_COMPILER:FILEPATH=${MPIF90}']
+
+# There is a bug when using -j option to make, so disable it for now.
+- name: make
+  mode: replace
+  handler: bash
+  after: configure
+  bash: |
+    make
+
+- name: install
+  mode: replace
+  handler: bash
+  after: make
+  bash: |
+    make install
+
+when_build_dependency:
+- prepend_path: PYTHONPATH
+  value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'

@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: []
+  run: [numpy, python-netcdf4]
+
+sources:
+- key: git:0f13da16a3ccfd73fc10a0b50d02aa1a652ee52a
+  url:  https://github.com/stephankramer/uptide.git

@@ -7,3 +7,16 @@ dependencies:
 sources:
  - url: https://pypi.python.org/packages/source/M/M2Crypto/M2Crypto-0.22.3.tar.gz
    key: tar.gz:mby37sax3fdsh2nulcqbbvlfgziqj6ck
+
+build_stages:
+
+- name: install
+  after: setup_dirs
+  handler: bash
+  bash: |
+    mkdir -p $ARTIFACT/lib/python2.7/site-packages
+    export PYTHONPATH=$PYTHONPATH:$ARTIFACT/lib/python2.7/site-packages
+    # build
+    $PYTHON setup.py build build_ext --openssl=${OPENSSL_DIR}
+    # install
+    $PYTHON setup.py install --prefix=${ARTIFACT}

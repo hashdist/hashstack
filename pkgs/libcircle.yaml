@@ -1,0 +1,15 @@
+extends: [autotools_package]
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build: [mpi, pkg-config]
+
+sources:
+- key: git:e400567d7d2fca0c81a7fbdcba1c25b8eab8cc81
+  url: https://github.com/hpc/libcircle.git
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'

@@ -8,6 +8,9 @@
 extends:
 - file: osx.yaml
 
+parameters:
+  fortran: true
+
 # The packages list specifies all the packages that you 
 # require installed.  <#> will ensure that all packages
 # and their dependencies are installed when you build this
@@ -27,6 +30,7 @@ packages:
   matplotlib:
   mpi:
     use: mpich
+  mpi4py:
   nose:
   hdf5:
   ipython:
@@ -47,3 +51,5 @@ packages:
   triangle:
   tetgen:
   memory_profiler:
+  ipdb:
+  pip:

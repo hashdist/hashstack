@@ -1,0 +1,22 @@
+extends: [distutils_package, libflags]
+
+dependencies:
+  build: [gmp, mpfr, mpc]
+
+sources:
+- key: zip:afhl7oib7xq5qi57u265ocv5pgw76nwa
+  url: https://pypi.python.org/packages/source/g/gmpy2/gmpy2-2.0.5.zip
+
+build_stages:
+- name: install
+  mode: replace
+  after: setup_dirs
+  handler: bash
+  bash: |
+    # The gmpy's setup.py overrides --prefix to specify where dependencies are
+    # found (!), so we have to use --home instead, but --home installs into
+    # ${ARTIFACT}/lib/python, so we then have to move the installed files into
+    # the proper location by hand.
+    ${PYTHON} setup.py install --home=${ARTIFACT}
+    mv ${ARTIFACT}/lib/python/* ${ARTIFACT}/{{python_site_packages_rel}}
+    rm -r ${ARTIFACT}/lib/python

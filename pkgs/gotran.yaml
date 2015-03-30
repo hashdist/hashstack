@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: []
+  run: [instant, modelparameters, numpy, sympy]
+
+sources:
+- key: git:6b600fd9cb4bda8666e6b628430d34546fc1f9f2
+  url: https://bitbucket.org/johanhake/gotran.git

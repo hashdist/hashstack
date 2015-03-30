@@ -1,0 +1,9 @@
+extends: [cmake_package]
+
+sources:
+- key: git:a0ecdde0c042b9256170f2f8890dd9451a4240aa
+  url: https://github.com/lloyd/yajl
+
+defaults:
+  # share/pkgconfig/yajl.pc contains hard-coded path
+  relocatable: false
