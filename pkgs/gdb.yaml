@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [python, expat, xz, ncurses, libiconv, zlib, {{build_with}}]
+  build: [python, expat, xz, ncurses, libiconv, zlib, readline, {{build_with}}]
 
 sources:
 - key: tar.bz2:bw6veycan4nqy4h46at4msefe75n3ygn
@@ -14,6 +14,7 @@ defaults:
 build_stages:
   - name: configure
     global_flags: true
+    extra: ['--with-system-readline']
 
   - name: fail_on_osx
     before: prologue
