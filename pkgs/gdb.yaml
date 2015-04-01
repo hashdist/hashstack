@@ -8,6 +8,9 @@ sources:
   url: http://ftp.gnu.org/gnu/gdb/gdb-7.7.1.tar.bz2
 
 build_stages:
+  - name: configure
+    global_flags: true
+
   - name: fail_on_osx
     before: prologue
     mode: replace
