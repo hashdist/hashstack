@@ -7,6 +7,10 @@ sources:
 - key: tar.bz2:bw6veycan4nqy4h46at4msefe75n3ygn
   url: http://ftp.gnu.org/gnu/gdb/gdb-7.7.1.tar.bz2
 
+defaults:
+  # lib/libbfd.a contains hard-coded path
+  relocatable: false
+
 build_stages:
   - name: configure
     global_flags: true
