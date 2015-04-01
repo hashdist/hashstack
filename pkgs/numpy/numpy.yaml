@@ -30,7 +30,7 @@ build_stages:
       export LAPACK=None
       export BLAS=None
 
-  - when: machine == 'CrayXE6'
+  - when: machine == 'CrayXE6' or machine == 'viutill'
     name: create-site.cfg
     after: prologue
     before: install
@@ -42,7 +42,7 @@ build_stages:
       libraries = acml
       EOF
 
-  - when: machine == 'CrayXE6'
+  - when: machine == 'CrayXE6' or machine == 'viutill'
     name: set-LDFLAGS
     after: prologue
     before: install
