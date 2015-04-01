@@ -140,6 +140,11 @@ build_stages:
       $ARTIFACT/bin/python -c "import _sqlite3"
       echo "    ok"
 
+      # Test ctypes
+      echo "import _ctypes"
+      $ARTIFACT/bin/python -c "import _ctypes"
+      echo "    ok"
+
 
 when_build_dependency:
   - set: PYTHON
@@ -166,3 +171,5 @@ profile_links:
     before: everything
 
     exclude: 'lib/python{{pyver}}/site-packages/**/*'
+
+

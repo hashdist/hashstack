@@ -1,8 +1,8 @@
 extends: [autotools_package]
 
 sources:
-- url: https://github.com/erdc-cm/triangle.git
-  key: git:7ecebd8389cf6bab52c0855a68efab98d5cf2383
+- key: zip:o7nx2phmkqftlmbclqbpue5xrnfiimyj
+  url: https://github.com/erdc-cm/triangle/archive/master.zip
 
 build_stages: 
 - when: platform == 'Darwin'

@@ -16,6 +16,6 @@ build_stages:
   handler: bash
   bash: |
     # build
-    PATH=$PATH:$ZMQ_DIR/bin $PYTHON setup.py build_ext --zmq=$ZMQ_DIR
+    LD_LIBRARY_PATH=$ZMQ_DIR/lib:$LD_LIBRARY_PATH PATH=$PATH:$ZMQ_DIR/bin $PYTHON setup.py build_ext --zmq=$ZMQ_DIR
     # install
-    PATH=$PATH:$ZMQ_DIR/bin $PYTHON setup.py install --zmq=$ZMQ_DIR --prefix=$ARTIFACT
+    LD_LIBRARY_PATH=$ZMQ_DIR/lib:$LD_LIBRARY_PATH PATH=$PATH:$ZMQ_DIR/bin $PYTHON setup.py install --zmq=$ZMQ_DIR --prefix=$ARTIFACT
