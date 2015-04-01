@@ -4,13 +4,8 @@ dependencies:
   build: [autoconf, automake, gmp, boost]
 
 sources:
-# When https://github.com/evaleev/libint/pull/30 is merged, we can switch to
-# use the original repository, until then we use a clone with the necessary
-# patches:
-#- key: git:c1be4f680ada1797e71741fa882b68e926fc05a9
-#  url: https://github.com/evaleev/libint
-- key: git:c0a83fa7e2554ea71a14dbae47bce0a3559e1a54
-  url: https://github.com/certik/libint-1
+- key: git:807677f7b7f0de46d9cc515ca0c75b0c4db3d2be
+  url: https://github.com/evaleev/libint
 
 defaults:
   # include/libint2/basis.h contains hard-coded path
