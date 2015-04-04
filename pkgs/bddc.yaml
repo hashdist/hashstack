@@ -29,6 +29,7 @@ build_stages:
         BDDCML_LIBBLAS="-lblas" \
         BDDCML_LIBBLACS= \
         -j 1 # The BDDC's makefile system doesn't work in parallel
-    mkdir -p $ARTIFACT/bin
+    mkdir -p $ARTIFACT/bin $ARTIFACT/include
+    cp src/bddcml_interface_fortran.mod $ARTIFACT/include/
     cd examples
     cp bddcml_global bddcml_local poisson_on_cube $ARTIFACT/bin/
