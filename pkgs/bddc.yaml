@@ -3,8 +3,8 @@ dependencies:
   build: [mpi, lapack, mumps, blopex, parmetis, scalapack]
 
 sources:
-- url: https://github.com/certik/bddc.git
-  key: git:3d6cfa120682be5925861c022bd3a3f2c5d77940
+- key: git:e2b1c6e14fa96c2c53b5d8ec21e81cdea86001a0
+  url: https://github.com/certik/bddc.git
 
 build_stages:
 
