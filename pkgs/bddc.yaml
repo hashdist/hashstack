@@ -6,7 +6,29 @@ sources:
 - key: git:e2b1c6e14fa96c2c53b5d8ec21e81cdea86001a0
   url: https://github.com/certik/bddc.git
 
+defaults:
+  # Build in Debug mode (debug symbols, bounds checks, ...)
+  debug: false
+
 build_stages:
+
+- when: debug
+  name: debug-flags
+  after: prologue
+  before: make-configure
+  handler: bash
+  bash: |
+    FFLAGS="-g -C -Wall -fbounds-check"
+    CFLAGS="-g -Wall"
+
+- when: not debug
+  name: debug-flags
+  after: prologue
+  before: make-configure
+  handler: bash
+  bash: |
+    FFLAGS="-C -Wall -O3 -march=native -ffast-math -funroll-loops"
+    CFLAGS="-Wall -O3 -march=native -ffast-math -funroll-loops"
 
 - name: make-configure
   after: prologue
@@ -15,6 +37,8 @@ build_stages:
     cp make.inc.example make.inc
     make \
         BDDCML_ROOT=$ARTIFACT \
+        BDDCML_MPFFLAGS="$FFLAGS" \
+        BDDCML_MPCFLAGS="$CFLAGS" \
         BDDCML_INCPARMETIS=-I$PARMETIS_DIR/include \
         BDDCML_LIBPARMETIS="-L$PARMETIS_DIR/lib -Wl,-rpath=${PARMETIS_DIR}/lib -lparmetis" \
         BDDCML_INCMETIS= \
