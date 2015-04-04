@@ -27,7 +27,8 @@ build_stages:
         BDDCML_LIBSCALAPACK="-L$SCALAPACK_DIR/lib -Wl,-rpath=${SCALAPACK_DIR}/lib -lscalapack" \
         BDDCML_LIBLAPACK="-L$LAPACK_DIR/lib -Wl,-rpath=${LAPACK_DIR}/lib -llapack" \
         BDDCML_LIBBLAS="-lblas" \
-        BDDCML_LIBBLACS=
+        BDDCML_LIBBLACS= \
+        -j 1 # The BDDC's makefile system doesn't work in parallel
     mkdir -p $ARTIFACT/bin
     cd examples
     cp bddcml_global bddcml_local poisson_on_cube $ARTIFACT/bin/
