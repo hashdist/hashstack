@@ -1,5 +1,8 @@
 extends: [base_package]
 
+defaults:
+  relocatable: false
+
 sources:
 - key: git:0d473861e930e91a4a85a1770d926a62c05b8268
   url: https://github.com/DandyDev/pelican-bootstrap3
