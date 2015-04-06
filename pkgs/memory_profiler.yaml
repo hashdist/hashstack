@@ -1,4 +1,4 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 
 dependencies:
   run:
@@ -7,4 +7,4 @@ dependencies:
 
 sources:
   - url: https://github.com/fabianp/memory_profiler.git
-    key: git:3fa7aafb0ac9c05c83fd9726ba1ffd6a7c27ec82
+    key: git:8d72e54c395d7d721bd4101a7f8fed3c6ecc9b41
