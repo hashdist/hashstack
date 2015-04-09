@@ -34,7 +34,7 @@ build_stages:
   after: configure
   bash: |
     mkdir -p lib
-    make -j ${HASHDIST_CPU_COUNT} lib LAAUX=""
+    make lib LAAUX=""
 
 - name: install
   mode: replace
