@@ -8,6 +8,8 @@ sources:
 
 defaults:
   increase_max_dims: false
+  # lib/libnetcdf.settings contains hard-coded path
+  relocatable: false
 
 build_stages:
 
