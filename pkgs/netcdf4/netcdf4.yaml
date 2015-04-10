@@ -3,8 +3,8 @@ dependencies:
   build: [mpi, hdf5, curl]
 
 sources:
-- key: tar.gz:k4egwq4dz2jdf4c2vvyhmhbkma2ldiga
-  url: ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.2.tar.gz
+- key: tar.gz:xxpd3cyojdxnffeovvs7qlc47n2zamj3
+  url: ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.3.1.tar.gz
 
 defaults:
   increase_max_dims: false
