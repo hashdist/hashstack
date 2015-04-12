@@ -1,0 +1,20 @@
+extends: [base_package]
+dependencies:
+  build: [node]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:uwx36n3nhdu7dwxtwp46sffv3t3orhtw
+  url: https://github.com/jashkenas/coffeescript/archive/1.9.1.tar.gz
+
+build_stages:
+-  name: install
+   mode: replace
+   handler: bash
+   after: prologue
+   bash: |
+     "$NODE_DIR"/bin/npm --proxy 127.0.0.1:2 --production --global \
+         --prefix="$ARTIFACT" install .
+
