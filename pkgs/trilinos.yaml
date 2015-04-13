@@ -1,14 +1,18 @@
 extends: [cmake_package]
 dependencies:
-  build: [python, swig, mpi, numpy, openblas, suitesparse]
+  build: [python, swig, mpi, numpy, openblas, suitesparse, boost, netcdf4,
+          hdf5, glm]
 
 sources:
-- key: tar.bz2:uqktsqkffhdfsbjgbm567y5o4ty52eav
-  url: http://trilinos.org/oldsite/download/files/trilinos-11.12.1-Source.tar.bz2
+- key: tar.bz2:wdbi4nvxaxpwimfb6p5cvszc4v52xnc5
+  url: http://trilinos.org/oldsite/download/files/trilinos-11.14.2-Source.tar.bz2
 
 defaults:
   # include/trilinos/Makefile.export.Trilinos contains hard-coded path
   relocatable: false
+  # Build Teuchos in Debug mode (RCP/Ptr dangling pointer checks, bounds
+  # checks, ...)
+  teuchos_debug: false
 
 build_stages:
 - name: configure
@@ -33,7 +37,13 @@ build_stages:
           '-D UMFPACK_LIBRARY_DIRS:PATH=${SUITESPARSE_DIR}/lib',
           '-D UMFPACK_LIBRARY_NAMES:STRING="umfpack;cholmod;camd;ccolamd;colamd;amd;suitesparseconfig"',
           '-D SWIG_EXECUTABLE:FILEPATH=${SWIG_EXECUTABLE}',
+          '-D Trilinos_ENABLE_DEVELOPMENT_MODE:BOOL=OFF',
           '-D PYTHON_EXECUTABLE:FILEPATH=${PYTHON}']
+
+- when: teuchos_debug
+  name: configure
+  mode: update
+  extra: ['-D Teuchos_ENABLE_DEBUG:BOOL=ON']
 
 when_build_dependency:
 - prepend_path: PYTHONPATH
