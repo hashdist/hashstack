@@ -29,6 +29,6 @@ build_stages:
   files: [max_dims.patch]
   name: max_dims
   handler: bash
-  before: make
+  before: configure
   bash: |
     patch -p1 < _hashdist/max_dims.patch
