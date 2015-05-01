@@ -12,6 +12,12 @@ defaults:
   relocatable: false
 
 build_stages:
+- name: cxx_flags
+  before: configure
+  handler: bash
+  bash: |
+    export CXXFLAGS="-Wa,-q"
+
 - name: configure
   extra: ['-D WITH_PYTHON:BOOL=ON',
           '-D PYTHON_INSTALL_PATH:PATH=$ARTIFACT/{{python_site_packages_rel}}']
