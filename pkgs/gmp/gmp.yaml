@@ -8,6 +8,12 @@ sources:
   url: http://mirrors.kernel.org/gnu/gmp/gmp-6.0.0a.tar.bz2
 
 build_stages:
+- name: rpath_patch
+  before: configure
+  files: [osx_10_10_fix.patch]
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/osx_10_10_fix.patch
 - name: configure
   extra: ['--enable-cxx']
 
