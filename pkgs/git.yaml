@@ -10,6 +10,7 @@ sources:
 defaults:
   # /bin/git contains hard-coded path
   relocatable: false
+  disable_crypto: false
 
 build_stages:
 
@@ -18,6 +19,13 @@ build_stages:
   handler: bash
   bash: |
     export PERL_PATH="/usr/bin/env perl"
+
+- when: platform == 'Darwin' and disable_crypto
+  name: fix_crypto_compile_failure
+  before: configure
+  handler: bash
+  bash: |
+    export NO_APPLE_COMMON_CRYPTO=1
 
 - name: configure
   mode: override
