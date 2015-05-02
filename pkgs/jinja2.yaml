@@ -1,4 +1,6 @@
 extends: [setuptools_package]
+dependencies:
+  run: [MarkupSafe]
 
 sources:
 - key: tar.gz:fyskyxiajw2xcslwubfmb2amnx3oi7uy
