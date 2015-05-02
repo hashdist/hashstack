@@ -1,0 +1,22 @@
+extends: [cmake_package]
+
+# version 1.5 of openjpeg
+# later versions should go in openjpeg2
+
+dependencies:
+  build: []
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:nt5tbf5bzduvkajrwf3ghwxze72cob54
+  url: https://openjpeg.googlecode.com/files/openjpeg-1.5.1.tar.gz
+
+#build_stages:
+#
+#- name: 
+#  after: prologue
+#  mode: replace
+#  handler: bash
+

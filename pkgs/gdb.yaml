@@ -1,13 +1,21 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [python, expat, xz, ncurses, libiconv, zlib, {{build_with}}]
+  build: [python, expat, xz, ncurses, libiconv, zlib, readline, {{build_with}}]
 
 sources:
-- key: tar.bz2:bw6veycan4nqy4h46at4msefe75n3ygn
-  url: http://ftp.gnu.org/gnu/gdb/gdb-7.7.1.tar.bz2
+- key: tar.xz:tmyvmunbmuuppl4mpwbii2m7wdewlxzr
+  url: https://ftp.gnu.org/gnu/gdb/gdb-7.9.tar.xz
+
+defaults:
+  # lib/libbfd.a contains hard-coded path
+  relocatable: false
 
 build_stages:
+  - name: configure
+    global_flags: true
+    extra: ['--with-system-readline']
+
   - name: fail_on_osx
     before: prologue
     mode: replace

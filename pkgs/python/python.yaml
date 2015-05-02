@@ -2,8 +2,10 @@ extends: [autotools_package]
 
 when pyver == '2.7':
     sources:
-    - key: tar.gz:otlqxeknurehviozoirlfhuvktief6bf
-      url: http://python.org/ftp/python/2.7.8/Python-2.7.8.tgz
+    - key: tar.gz:zc52gptgvqzadwv5yvlpb2t47zvmcgkg
+      url: https://www.python.org/ftp/python/2.7.9/Python-2.7.9.tgz
+#    - key: tar.gz:otlqxeknurehviozoirlfhuvktief6bf
+#      url: http://python.org/ftp/python/2.7.8/Python-2.7.8.tgz
 when pyver == '3.2':
     sources:
     - key: tar.gz:7qpecklofhkhn5uwga5mvyutvz5cgehq
