@@ -3,7 +3,7 @@ package_dirs:
 - roams_pkgs
 
 parameters:
-  HOST_MATLAB: '/home/cekees/MATLAB/R2013b/bin/matlab'
+  HOST_MATLAB: '/home/cekees/MATLAB/R2014a/bin/matlab'
   HOST_SIMMETRIX_LIB: /usr/local/simmetrix/9.0-140607/lib/x64_rhel5_gcc41
   HOST_SIMMETRIX_INCLUDE: /usr/local/simmetrix/9.0-140607/include
 
@@ -77,10 +77,6 @@ packages:
   stwave:  
   scipy:
   ipython:
-    sources:
-      - key: git:68f6519cdfd23581ed7358fa1941ae1bbd76e5b3
-        url: https://github.com/ellisonbg/ipython.git
-
   h5py:
   pydap:
   leafletwidget: 
