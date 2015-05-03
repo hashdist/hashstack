@@ -50,6 +50,7 @@ packages:
     debug: false
   petsc4py:
     with_conf: true
+  pillow:
   pytables:
   sphinx:
   superlu:
