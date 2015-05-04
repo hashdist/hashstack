@@ -86,7 +86,6 @@ packages:
         url: https://github.com/erdc-cm/leafletwidget.git
   geojson:
   rdp:
-  ipython-widgetmode:
   ipython-d3plot:
   ipython-gridwidget:
   shapely:
