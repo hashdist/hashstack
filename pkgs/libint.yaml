@@ -1,0 +1,20 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [autoconf, automake, gmp, boost]
+
+sources:
+- key: git:807677f7b7f0de46d9cc515ca0c75b0c4db3d2be
+  url: https://github.com/evaleev/libint
+
+defaults:
+  # include/libint2/basis.h contains hard-coded path
+  relocatable: false
+
+build_stages:
+- name: create_configure
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    ./autogen.sh

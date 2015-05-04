@@ -7,7 +7,7 @@ defaults:
   relocatable: false
 
 sources:
-- key: git:751822b53f9a3d08fed3983e7037008c5034f263
+- key: git:cc7f4edd27ae79f08c11aaafa0b9abb2838a0a1e
   url: https://github.com/hashicorp/terraform.git
 
 build_stages:

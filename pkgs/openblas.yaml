@@ -7,15 +7,34 @@ sources:
 defaults:
   # cmake/OpenBLASConfig.cmake contains hard-coded path
   relocatable: false
+  # build single threaded version as default
+  use_thread: false
 
 build_stages:
+- when: use_thread
+  name: use_thread
+  after: prologue
+  before: make_and_install
+  handler: bash
+  bash: |
+    export USE_THREAD=1
+
+- when: not use_thread
+  name: use_thread
+  after: prologue
+  before: make_and_install
+  handler: bash
+  bash: |
+    export USE_THREAD=0
+
 - name: make_and_install
   after: prologue
   handler: bash
   bash: |
-    make {{extra_flags}} -j${HASDIST_CPU_COUNT}
+    make USE_THREAD=${USE_THREAD} {{extra_flags}} -j${HASDIST_CPU_COUNT}
     make {{extra_flags}} PREFIX=${ARTIFACT} install
 
 when_build_dependency:
 - {set: 'BLAS_LDFLAGS', value: '-Wl,-rpath,${ARTIFACT}/lib -L${ARTIFACT}/lib -lopenblas'}
 - {set: 'LAPACK_LDFLAGS', value: '-Wl,-rpath,${ARTIFACT}/lib -L${ARTIFACT}/lib -lopenblas'}
+- {set: 'OPENBLAS_DIR', value: '${ARTIFACT}'}
