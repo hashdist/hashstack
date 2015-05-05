@@ -1,7 +1,7 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: [six, cffi, cryptography-vectors, openssl, pytest]
+  build: [six, cffi, cryptography-vectors, openssl, pytest, pycparser]
   run: []
 
 sources:

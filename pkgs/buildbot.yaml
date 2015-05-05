@@ -1,8 +1,8 @@
 extends: [distutils_package]
 
 dependencies:
-  build: [SQLAlchemy, SQLAlchemy-Migrate, jinja2, Twisted, sqlite, python-dateutil, setuptools]
-  run: [SQLAlchemy, SQLAlchemy-Migrate, jinja2, Twisted, sqlite, python-dateutil]
+  build: [SQLAlchemy, SQLAlchemy-Migrate, jinja2, Twisted, sqlite, python-dateutil, Tempita, decorator, MarkupSafe, zope-interface, setuptools]
+  run: [SQLAlchemy, SQLAlchemy-Migrate, jinja2, Twisted, sqlite, python-dateutil, Tempita, decorator, MarkupSafe, zope-interface]
 
 sources:
 - key: zip:tsyafdgdsontllm5ujazrcbcnysx3o2g

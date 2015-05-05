@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:ha4sxnyiueasqqm7ox5jcifg2lencnyb
+   url: https://pypi.python.org/packages/source/T/Tempita/Tempita-0.5.3dev.tar.gz

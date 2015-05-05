@@ -5,6 +5,9 @@ dependencies:
 dependencies:
   run: [MarkupSafe]
 
+dependencies:
+  run: [MarkupSafe]
+
 sources:
 - key: tar.gz:fyskyxiajw2xcslwubfmb2amnx3oi7uy
   url: https://pypi.python.org/packages/source/J/Jinja2/Jinja2-2.7.3.tar.gz

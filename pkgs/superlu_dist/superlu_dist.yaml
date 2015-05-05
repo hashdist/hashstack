@@ -34,7 +34,7 @@ build_stages:
   after: configure
   bash: |
     mkdir -p lib
-    make -j ${HASHDIST_CPU_COUNT} lib LAAUX=""
+    make lib LAAUX=""
 
 - name: install
   mode: replace
@@ -54,7 +54,7 @@ build_stages:
   handler: bash
   bash: |
     cd EXAMPLE
-    make -j ${HASHDIST_CPU_COUNT}
+    make
     ${MPIEXEC} -np 4 ./pddrive -r 2 -c 2 g20.rua
     ${MPIEXEC} -np 10 ./pddrive4 g20.rua
     ${MPIEXEC} -np 4 ./pzdrive -r 2 -c 2 cg20.cua
