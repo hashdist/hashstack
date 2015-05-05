@@ -1,0 +1,7 @@
+extends: [setuptools_package]
+dependencies:
+  build: [png]
+
+sources:
+- key: tar.gz:q5qmcgfaefplufr7o6bbcdt67tn3cx4k
+  url: https://pypi.python.org/packages/source/P/Pillow/Pillow-2.8.1.tar.gz
