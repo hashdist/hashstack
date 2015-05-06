@@ -4,8 +4,8 @@ dependencies:
   build: [python]
 
 sources:
-- key: git:3309498174411e02e7680ea8b470bb7d1d70bdb8
-  url: https://github.com/martine/ninja
+- key: tar.gz:psktwwt4e3h42cbiqlr7hywnbd7orbek
+  url: https://github.com/martine/ninja/archive/v1.5.3.tar.gz
 
 build_stages:
 - name: build
