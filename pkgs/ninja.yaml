@@ -1,0 +1,17 @@
+extends: [base_package]
+
+dependencies:
+  build: [python]
+
+sources:
+- key: git:3309498174411e02e7680ea8b470bb7d1d70bdb8
+  url: https://github.com/martine/ninja
+
+build_stages:
+- name: build
+  after: prologue
+  handler: bash
+  bash: |
+    ./configure.py --bootstrap
+    mkdir -p $ARTIFACT/bin
+    cp ninja $ARTIFACT/bin/
