@@ -1,7 +1,21 @@
 extends: [setuptools_package]
 dependencies:
-  build: [png]
+  build: [zlib,png,freetype]
 
 sources:
 - key: tar.gz:q5qmcgfaefplufr7o6bbcdt67tn3cx4k
   url: https://pypi.python.org/packages/source/P/Pillow/Pillow-2.8.1.tar.gz
+
+build_stages:
+- name: install
+  mode: replace
+  handler: bash
+  bash: |
+       ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
+       build_ext \
+       --enable-zlib --enable-freetype \
+       --include-dirs="[${ZLIB_DIR}/include, ${PNG_DIR}/include, ${FREETYPE_DIR}/include]" \
+       --library-dirs="[${ZLIB_DIR}/lib, ${PNG_DIR}/lib, ${FREETYPE_DIR}/lib]" \
+       install \
+       --prefix=. --root=${ARTIFACT} \
+       --single-version-externally-managed
