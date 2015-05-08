@@ -21,6 +21,7 @@ extends:
 # profile.
 
 packages:
+  clawpack:
   launcher:
   cmake:
     use: host-cmake
@@ -78,6 +79,7 @@ packages:
   stwave:  
   scipy:
   ipython:
+  terminado:
   h5py:
   pydap:
   leafletwidget: 
@@ -96,6 +98,7 @@ packages:
   ode:
   ipdb:
   pip:
+  pexpect:
   scorec:
   simmetrix:
   zoltan:
