@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+- key: zip:lrupabyl3nnmb7kdcric42o77blww42n
+  url: https://github.com/pexpect/pexpect/archive/3.3.zip
