@@ -1,0 +1,24 @@
+extends: [cmake_package]
+
+# version 1.5 of openjpeg
+# later versions should go in openjpeg2
+
+dependencies:
+  build: []
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:nt5tbf5bzduvkajrwf3ghwxze72cob54
+  url: https://openjpeg.googlecode.com/files/openjpeg-1.5.1.tar.gz
+
+build_stages:
+
+# grib_api, at least, expects not to find this namespaced
+- name: fix_include
+  after: install
+  handler: bash
+  bash: |
+    ln -s ${ARTIFACT}/include/openjpeg-1.5/openjpeg.h ${ARTIFACT}/include/openjpeg.h
+
