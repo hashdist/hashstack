@@ -1,5 +1,0 @@
-extends: [autotools_package]
-
-sources:
-- url: http://download.osgeo.org/libspatialindex/spatialindex-src-1.8.1.tar.bz2
-  key: tar.bz2:tzl3a7gnmszjicwee44tqluejetrn4mg

@@ -1,8 +1,0 @@
-extends: [setuptools_package]
-
-dependencies:
-  build: [gdal]
-
-sources:
-- key: tar.gz:zwdszwufyivezzpltv6j6t5vntntdbgb
-  url: https://pypi.python.org/packages/source/G/GDAL/GDAL-1.11.1.tar.gz

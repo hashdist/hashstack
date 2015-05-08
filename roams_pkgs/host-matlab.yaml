@@ -1,2 +1,0 @@
-when_build_dependency:
-  - {set: 'MATLAB', value: '{{HOST_MATLAB}}'}
