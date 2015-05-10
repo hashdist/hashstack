@@ -1,6 +1,6 @@
 extends: [setuptools_package]
 dependencies:
-  build: [zlib,png,freetype]
+  build: [zlib,png,freetype,openjpeg]
 
 sources:
 - key: tar.gz:q5qmcgfaefplufr7o6bbcdt67tn3cx4k
@@ -13,9 +13,9 @@ build_stages:
   bash: |
        ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
        build_ext \
-       --enable-zlib --enable-freetype \
-       --include-dirs="[${ZLIB_DIR}/include, ${PNG_DIR}/include, ${FREETYPE_DIR}/include]" \
-       --library-dirs="[${ZLIB_DIR}/lib, ${PNG_DIR}/lib, ${FREETYPE_DIR}/lib]" \
+       --enable-zlib --enable-freetype --enable-jpeg2000 \
+       --include-dirs="${ZLIB_DIR}/include:${PNG_DIR}/include:${FREETYPE_DIR}/include:${OPENJPEG_DIR}/include" \
+       --library-dirs="${ZLIB_DIR}/lib:${PNG_DIR}/lib:${FREETYPE_DIR}/lib:${OPENJPEG_DIR}/lib" \
        install \
        --prefix=. --root=${ARTIFACT} \
        --single-version-externally-managed
