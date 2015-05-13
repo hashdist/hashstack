@@ -1,0 +1,21 @@
+extends: [distutils_package]
+
+dependencies:
+  build: [python, jasper, grib_api, pyproj, numpy]
+  run: [python, pyproj]
+
+sources:
+- key: git:db179ce3dccee59bb41ca812c4b02750be74239f
+  url: https://github.com/jswhit/pygrib.git
+
+build_stages:
+- name: create-setup.cfg
+  before: install
+  handler: bash
+  bash: |
+    cat > setup.cfg << EOF
+    [directories]
+    grib_api_dir=${GRIB_API_DIR}
+    jasper_dir=${JASPER_DIR}
+    EOF
+
