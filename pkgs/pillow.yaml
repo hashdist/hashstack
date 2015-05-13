@@ -7,15 +7,12 @@ sources:
   url: https://pypi.python.org/packages/source/P/Pillow/Pillow-2.8.1.tar.gz
 
 build_stages:
-- name: install
+- name: build_ext_options
   mode: replace
+  before: install
   handler: bash
   bash: |
-       ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
-       build_ext \
+       SETUPTOOLS_PACKAGE_EXTRA_OPTIONS=build_ext \
        --enable-zlib --enable-freetype --enable-jpeg2000 \
        --include-dirs="${ZLIB_DIR}/include:${PNG_DIR}/include:${FREETYPE_DIR}/include:${OPENJPEG_DIR}/include" \
-       --library-dirs="${ZLIB_DIR}/lib:${PNG_DIR}/lib:${FREETYPE_DIR}/lib:${OPENJPEG_DIR}/lib" \
-       install \
-       --prefix=. --root=${ARTIFACT} \
-       --single-version-externally-managed
+       --library-dirs="${ZLIB_DIR}/lib:${PNG_DIR}/lib:${FREETYPE_DIR}/lib:${OPENJPEG_DIR}/lib"
