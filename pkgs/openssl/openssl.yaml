@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [pkg-config, zlib]
+  build: [pkg-config, zlib, patchelf]
 
 sources:
   - url: https://www.openssl.org/source/openssl-1.0.1g.tar.gz
@@ -23,13 +23,20 @@ build_stages:
   bash: |
     patch -p1 < _hashdist/0001-POD-Fix-item-numbering.patch
 
+- when: platform == 'linux'
+  name: set_flags
+  before: configure
+  handler: bash
+  bash: |
+    export OPENSSL_EXTRA_FLAGS="-Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib"
+
 - name: configure
   after: fix_docs
   handler: bash
   mode: replace
   bash: |
     #./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include -Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib
-    ./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include
+    ./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include $OPENSSL_EXTRA_FLAGS
 
 # parallel build is racy, can fail with "libcrypto.a(cryptlib.o) in archive is not an object"
 - name: make
@@ -47,6 +54,14 @@ build_stages:
     #./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include -Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib
     ./Configure --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include darwin64-x86_64-cc enable-ec_nistp-64_gcc_128
 
+- when: platform == 'linux'
+  name: fix_rpath
+  after: install
+  handler: bash
+  bash: |
+    $PATCHELF --set-rpath $ARTIFACT/lib:$ZLIB_DIR/lib $ARTIFACT/lib/engines/libgost.so
+
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
   value: '${ARTIFACT}/lib/pkgconfig'
+
