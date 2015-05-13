@@ -1,6 +1,6 @@
 extends: [setuptools_package]
 dependencies:
-  build: [zlib,png,freetype,openjpeg]
+  build: [zlib, png, freetype, openjpeg]
 
 sources:
 - key: tar.gz:q5qmcgfaefplufr7o6bbcdt67tn3cx4k
