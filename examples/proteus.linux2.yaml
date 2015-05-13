@@ -99,8 +99,8 @@ packages:
   ipdb:
   pip:
   pexpect:
-  scorec:
-  simmetrix:
-  zoltan:
-    build_with: |
-      parmetis
+#  scorec:
+#  simmetrix:
+#  zoltan:
+#    build_with: |
+#      parmetis
