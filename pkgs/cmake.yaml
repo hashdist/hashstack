@@ -1,12 +1,24 @@
 extends: [autotools_package]
 
+dependencies:
+  build: [zlib, bzip2, curl]
+
 sources:
 - key: tar.gz:vxuu43rwaodxivs7flwyqzsbkrbuit5x
   url: http://www.cmake.org/files/v3.2/cmake-3.2.2.tar.gz
 
 build_stages:
 - name: configure
-  extra: ['--parallel=${HASHDIST_CPU_COUNT}']
+  extra: ['--parallel=${HASHDIST_CPU_COUNT}',
+          '--system-bzip2',
+          '--system-curl',
+          #'--system-expat',
+          #'--system-jsoncpp',
+          #'--system-libarchive',
+          '--system-zlib',
+          '--',
+          '-DCMAKE_PREFIX_PATH=${CURL_DIR}/lib;${ZLIB_DIR}/lib;${BZIP2_DIR}/lib',
+          ]
 
 when_build_dependency:
 - set: CMAKE
