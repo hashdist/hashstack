@@ -98,6 +98,7 @@ packages:
   ode:
   ipdb:
   pip:
+  jupyter-pip:
   pexpect:
 #  scorec:
 #  simmetrix:
