@@ -1,0 +1,44 @@
+# This profile builds the whole Hashstack on OS X 10.10, using the 'hd_base'
+# profile as its basis (mainly the gcc, g++ and gfortran compilers are needed
+# from it).
+#
+# Change the hash of your 'hd_base' profile in the PROLOGUE below.
+
+extends:
+ - file: config.yaml
+
+parameters:
+  platform: Darwin
+  fortran: true
+  PATH: /usr/bin:/bin:/usr/sbin:/sbin
+  PROLOGUE: |
+    export MACOSX_DEPLOYMENT_TARGET=$(sw_vers -productVersion | sed -E "s/([0-9]+\.[0-9]+).*/\1/"); export PATH="/Users/certik/.hashdist/bld/profile/px524wdzacsz/bin:$PATH"; export CC=gcc CXX=g++ FC=gfortran
+
+packages:
+
+  launcher:
+  blas:
+    use: host-osx-framework-accelerate
+  lapack:
+    use: host-osx-framework-accelerate
+  mpi:
+    use: mpich
+  python:
+    link: shared
+  swig:
+    build_with: |
+      perl
+  ipython:
+  nose:
+  numpy:
+  sphinx:
+  sympy:
+  gmp:
+  doxygen:
+  breathe:
+  git:
+    disable_crypto: true
+  perl:
+  pyliblzma:
+  csympy:
+  pytest:
