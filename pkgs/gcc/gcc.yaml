@@ -27,8 +27,10 @@ build_stages:
     before: configure
     handler: bash
     bash: |
-      mkdir -p "$ARTIFACT/include/dispatch"
-      sed 's+typedef void (\^dispatch_block_t)(void)+typedef void* dispatch_block_t+' /usr/include/dispatch/object.h > "$ARTIFACT/include/dispatch/object.h"
+      if [ -f /usr/include/dispatch/object.h ]; then
+        mkdir -p "$ARTIFACT/include/dispatch"
+        sed 's+typedef void (\^dispatch_block_t)(void)+typedef void* dispatch_block_t+' /usr/include/dispatch/object.h > "$ARTIFACT/include/dispatch/object.h"
+      fi
 
   - name: link_lib64_to_lib
     after: install
