@@ -27,8 +27,8 @@ build_stages:
   before: make-configure
   handler: bash
   bash: |
-    FFLAGS="-C -Wall -O3 -march=native -ffast-math -funroll-loops"
-    CFLAGS="-Wall -O3 -march=native -ffast-math -funroll-loops"
+    FFLAGS="-Wa,-q -C -Wall -O3 -march=native -ffast-math -funroll-loops"
+    CFLAGS="-Wa,-q -Wall -O3 -march=native -ffast-math -funroll-loops"
 
 - name: make-configure
   after: prologue
