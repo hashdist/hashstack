@@ -60,6 +60,7 @@ build_stages:
   handler: bash
   bash: |
     CMAKE_FLAGS="${CMAKE_FLAGS} -DCMAKE_MACOSX_RPATH:BOOL=ON"
+    unset MACOSX_DEPLOYMENT_TARGET
 
 - name: configure
   after: cmake-flags
