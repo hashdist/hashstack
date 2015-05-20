@@ -4,5 +4,5 @@ dependencies:
    run: [git, mercurial, pyliblzma]
 
 sources:
- - url: https://github.com/hashdist/hashdist.git
-   key: git:62f7b05ffe4b8c26ef744b2c1bf0fddbeb632ce0
+ - key: git:a1ee86476a7c3c533e47f40cf0a39e516cd9ed6c
+   url: https://github.com/hashdist/hashdist
