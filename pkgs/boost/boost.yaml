@@ -91,7 +91,7 @@ build_stages:
   after: bjam
   handler: bash
   bash: |
-    for lib in ${ARTIFACT}/lib/*.so; do
+    for lib in ${ARTIFACT}/lib/*.so.*; do
         ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BZIP2_DIR}/lib:${ZLIB_DIR}/lib ${lib}
     done
 

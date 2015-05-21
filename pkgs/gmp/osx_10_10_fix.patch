@@ -1,0 +1,34 @@
+commit 4519b66df0c8a175270c2caf4338c44159e594cb
+Author: Ondřej Čertík <ondrej.certik@gmail.com>
+Date:   Fri May 1 00:08:15 2015 -0600
+
+    Make configure scripts detect OS X 10.10 properly
+    
+    Previously it treated 10.10 as 10.1.
+
+diff --git a/aclocal.m4 b/aclocal.m4
+index 11222f5..37c1162 100644
+--- a/aclocal.m4
++++ b/aclocal.m4
+@@ -1066,7 +1066,7 @@ _LT_EOF
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[[91]]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[[012]]*)
++	10.[[012]][[,.]]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+diff --git a/configure b/configure
+index 60c6bd5..b223c18 100755
+--- a/configure
++++ b/configure
+@@ -14809,7 +14809,7 @@ $as_echo "$lt_cv_ld_force_load" >&6; }
+       case ${MACOSX_DEPLOYMENT_TARGET-10.0},$host in
+ 	10.0,*86*-darwin8*|10.0,*-darwin[91]*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;
+-	10.[012]*)
++	10.[012][,.]*)
+ 	  _lt_dar_allow_undefined='${wl}-flat_namespace ${wl}-undefined ${wl}suppress' ;;
+ 	10.*)
+ 	  _lt_dar_allow_undefined='${wl}-undefined ${wl}dynamic_lookup' ;;

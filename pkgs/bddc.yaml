@@ -3,10 +3,32 @@ dependencies:
   build: [mpi, lapack, mumps, blopex, parmetis, scalapack]
 
 sources:
-- url: https://github.com/certik/bddc.git
-  key: git:3d6cfa120682be5925861c022bd3a3f2c5d77940
+- key: git:acd093697417f49ec856b69e2d8b442e5adbbe85
+  url: https://github.com/certik/bddc.git
+
+defaults:
+  # Build in Debug mode (debug symbols, bounds checks, ...)
+  debug: false
 
 build_stages:
+
+- when: debug
+  name: debug-flags
+  after: prologue
+  before: make-configure
+  handler: bash
+  bash: |
+    FFLAGS="-g -C -Wall -fbounds-check"
+    CFLAGS="-g -Wall"
+
+- when: not debug
+  name: debug-flags
+  after: prologue
+  before: make-configure
+  handler: bash
+  bash: |
+    FFLAGS="-C -Wall -O3 -march=native -ffast-math -funroll-loops"
+    CFLAGS="-Wall -O3 -march=native -ffast-math -funroll-loops"
 
 - name: make-configure
   after: prologue
@@ -15,6 +37,8 @@ build_stages:
     cp make.inc.example make.inc
     make \
         BDDCML_ROOT=$ARTIFACT \
+        BDDCML_MPFFLAGS="$FFLAGS" \
+        BDDCML_MPCFLAGS="$CFLAGS" \
         BDDCML_INCPARMETIS=-I$PARMETIS_DIR/include \
         BDDCML_LIBPARMETIS="-L$PARMETIS_DIR/lib -Wl,-rpath=${PARMETIS_DIR}/lib -lparmetis" \
         BDDCML_INCMETIS= \
@@ -27,7 +51,9 @@ build_stages:
         BDDCML_LIBSCALAPACK="-L$SCALAPACK_DIR/lib -Wl,-rpath=${SCALAPACK_DIR}/lib -lscalapack" \
         BDDCML_LIBLAPACK="-L$LAPACK_DIR/lib -Wl,-rpath=${LAPACK_DIR}/lib -llapack" \
         BDDCML_LIBBLAS="-lblas" \
-        BDDCML_LIBBLACS=
-    mkdir -p $ARTIFACT/bin
+        BDDCML_LIBBLACS= \
+        -j 1 # The BDDC's makefile system doesn't work in parallel
+    mkdir -p $ARTIFACT/bin $ARTIFACT/include
+    cp src/bddcml_interface_fortran.mod $ARTIFACT/include/
     cd examples
     cp bddcml_global bddcml_local poisson_on_cube $ARTIFACT/bin/

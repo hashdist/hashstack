@@ -1,5 +1,8 @@
 extends: [distutils_package]
+dependencies:
+  run: [backports-ssl_match_hostname]
+
 
 sources:
-  - url: https://pypi.python.org/packages/source/t/tornado/tornado-3.1.1.tar.gz
-    key: tar.gz:grmqjp7eudhf22dsap3yhgdkoph5pxb2
+  - url: https://pypi.python.org/packages/source/t/tornado/tornado-4.1.tar.gz
+    key: tar.gz:tgv5hlw6ixetoojun3ttqttraeqbehbx
