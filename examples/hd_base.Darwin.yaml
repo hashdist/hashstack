@@ -1,0 +1,41 @@
+# This profile builds with the default clang compiler on Mac OS X 10.10
+# Yosemite. In particular it builds gcc (g++, gcc, gfortran). This profile can
+# then be used as a base for building the rest of Hashstack.
+
+extends:
+ - file: config.yaml
+
+parameters:
+  platform: Darwin
+  fortran: false
+  PATH: /usr/bin:/bin:/usr/sbin:/sbin
+  PROLOGUE: |
+    export MACOSX_DEPLOYMENT_TARGET=$(sw_vers -productVersion | sed -E "s/([0-9]+\.[0-9]+).*/\1/")
+
+packages:
+
+  launcher:
+  blas:
+    use: host-osx-framework-accelerate
+  lapack:
+    use: host-osx-framework-accelerate
+  mpi:
+    use: mpich
+  python:
+    link: shared
+  swig:
+    build_with: |
+      perl
+  ipython:
+  nose:
+  numpy:
+  sphinx:
+  sympy:
+  gmp:
+  matplotlib:
+  doxygen:
+  breathe:
+  gcc:
+  git:
+  perl:
+  pyliblzma:

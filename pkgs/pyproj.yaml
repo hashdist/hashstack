@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: [python]
+  run: [python]
+
+sources:
+- key: git:bb005aca2d933d77b78c0018f8b5d04c471b4608
+  url: https://github.com/jswhit/pyproj.git
