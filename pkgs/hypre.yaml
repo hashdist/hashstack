@@ -112,13 +112,14 @@ build_stages:
   mode: update
   extra: ["--enable-shared"]
 
+### needs to fix rpath on the real library not the link
 - when: platform == 'linux'
   name: rpath-fix
   after: install
   handler: bash
   bash: |
-    oldRPath=$(${PATCHELF} --print-rpath ${ARTIFACT}/lib/libHYPRE.so)
-    ${PATCHELF} --set-rpath ${oldRPath}:${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib ${ARTIFACT}/lib/libHYPRE.so
+    oldRPath=$(${PATCHELF} --print-rpath ${ARTIFACT}/lib/libHYPRE-*.so)
+    ${PATCHELF} --set-rpath ${oldRPath}:${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib ${ARTIFACT}/lib/libHYPRE-*.so
 
 - when: platform != 'linux'
   name: rpath-fix

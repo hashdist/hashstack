@@ -24,4 +24,4 @@ build_stages:
   handler: bash
   bash: |
     cd bindings/python
-    PKG_CONFIG_PATH=../.. ${PYTHON} setup.py install --prefix=${ARTIFACT}
+    PKG_CONFIG_PATH=../.. ${PYTHON} setup.py build_ext -R ${ARTIFACT}/lib install --prefix=${ARTIFACT}

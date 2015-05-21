@@ -34,6 +34,9 @@ def configure(ctx, stage_args):
     else:
         conf_lines.append('-DCMAKE_BUILD_TYPE:STRING=Release')
 
+    if ctx.parameters['platform'] == 'Darwin':
+        conf_lines.append('-DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=""')
+
     #cmake needs to be given all the dependency dirs as prefix paths
     #so that we search the hashdist directories before the system directories
     #CMake doesn't use the CPPFLAGS implicitly to find libraries
