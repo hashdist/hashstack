@@ -1,0 +1,8 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [pbr, pip]
+
+sources:
+ - url: https://pypi.python.org/packages/source/l/lockfile/lockfile-0.10.2.tar.gz
+   key: tar.gz:tzbcklyx2hoyt3rrorpayt56lcdcyjiu

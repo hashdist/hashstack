@@ -23,7 +23,7 @@ parameters:
   PATH: |
     /usr/bin:/bin:/usr/sbin:/sbin
   PROLOGUE: |
-    source /opt/modules/default/init/bash; export MODULEPATH=/opt/cray/gem/modulefiles:/opt/cray/xt-asyncpe/default/modulefiles:/opt/modulefiles:/opt/cray/modulefiles:/cm/local/modulefiles:/cm/shared/modulefiles:/usr/local/modulefiles/COTS:/usr/local/modulefiles/unsupported; export MODULESHOME=/opt/modules/3.2.6.7; export MODULE_VERSION=3.2.6.7; export MODULE_VERSION_STACK=3.2.6.7; echo "unloading modules"; module unload PrgEnv-pgi; echo "loading modules"; module load PrgEnv-gnu; module load cray-mpich/6.0.0; module unload cray-libsci; module load acml; echo "setting default compilers"; export CC=gcc; export CXX=g++; export FC=gfortran; export F77=gfortran; export F90=gfortran; export CPP=cpp;
+    source /opt/modules/default/init/bash; export MODULEPATH=/opt/cray/gem/modulefiles:/opt/cray/xt-asyncpe/default/modulefiles:/opt/modulefiles:/opt/cray/modulefiles:/cm/local/modulefiles:/cm/shared/modulefiles:/usr/local/modulefiles/COTS:/usr/local/modulefiles/unsupported; export MODULESHOME=/opt/modules/3.2.6.7; export MODULE_VERSION=3.2.6.7; export MODULE_VERSION_STACK=3.2.6.7; echo "unloading modules"; module unload PrgEnv-pgi; echo "loading modules"; module load PrgEnv-gnu/4.2.34; module load cray-mpich/6.0.0; module unload cray-libsci; module load acml/5.3.1; echo "setting default compilers"; export CC=gcc; export CXX=g++; export FC=gfortran; export F77=gfortran; export F90=gfortran; export CPP=cpp;
   DYNAMIC_EXE_LINKER_FLAGS: -dynamic
 
 packages:
@@ -40,10 +40,13 @@ packages:
   daetk:
   mpi:
     use: host-mpi
+  mpi4py:
   nose:
   hdf5:
   ipython:
   matplotlib:
+  parmetis:
+    without_check: true
   petsc:
     build_with: |
       parmetis
@@ -61,3 +64,10 @@ packages:
   tetgen:
   triangle:
   memory_profiler:
+  scipy:
+  netcdf4f:
+  python-netcdf4:
+ # ode:
+ # pyode:
+ # vtk:
+ # pyvtk:

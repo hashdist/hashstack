@@ -1,0 +1,24 @@
+extends: [base_package]
+
+dependencies:
+  build: [golang, {{build_with}}]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: git:cc7f4edd27ae79f08c11aaafa0b9abb2838a0a1e
+  url: https://github.com/hashicorp/terraform.git
+
+build_stages:
+- name: make-install
+  handler: bash
+  bash: |
+    export GOROOT=${GOLANG_DIR}/go
+    export GOPATH=${ARTIFACT}/go-terraform
+    export GOBIN=${ARTIFACT}/bin
+    mkdir -p $GOBIN $GOPATH
+    mkdir -p ${GOPATH}/src/github.com/hashicorp
+    cp -a ${BUILD} ${GOPATH}/src/github.com/hashicorp/terraform
+    cd ${GOPATH}/src/github.com/hashicorp/terraform
+    go get -v

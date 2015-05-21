@@ -1,13 +1,31 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [curl, pcre, openssl, libiconv, gettext, expat, zlib]
+  build: [curl, pcre, openssl, libiconv, gettext, expat, zlib, perl]
 
 sources:
-- url: http://www.kernel.org/pub/software/scm/git/git-2.0.0.tar.gz
-  key: tar.gz:y2rxb2ktezyban674mxy4zxtttosqvl4
+- key: tar.gz:2wghm2ua3bvf4gcgybghiymotc76yfmh
+  url: https://www.kernel.org/pub/software/scm/git/git-2.4.0.tar.gz
+
+defaults:
+  # /bin/git contains hard-coded path
+  relocatable: false
+  disable_crypto: false
 
 build_stages:
+
+- name: perl_path
+  before: configure
+  handler: bash
+  bash: |
+    export PERL_PATH="/usr/bin/env perl"
+
+- when: platform == 'Darwin' and disable_crypto
+  name: fix_crypto_compile_failure
+  before: configure
+  handler: bash
+  bash: |
+    export NO_APPLE_COMMON_CRYPTO=1
 
 - name: configure
   mode: override

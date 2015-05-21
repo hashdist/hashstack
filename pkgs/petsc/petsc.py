@@ -2,11 +2,9 @@ from hashdist import build_stage
 
 def preConfigureCrayXE6(ctx, conf_lines):
     conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
-               '--with-cmake=${CMAKE}',
-               '--with-batch',
-               '--with-clanguage=C',
-               '--known-level1-dcache-size=16384',
                '--known-mpi-shared-libraries=1',
+               '--with-batch',
+               '--known-level1-dcache-size=16384',
                '--known-level1-dcache-linesize=64',
                '--known-level1-dcache-assoc=4',
                '--known-memcmp-ok=1',
@@ -24,6 +22,7 @@ def preConfigureCrayXE6(ctx, conf_lines):
                '--known-sizeof-MPI_Fint=4',
                '--known-mpi-long-double=1',
                '--known-mpi-c-double-complex=1',
+               '--known-mpi-int64_t=1',
                '--with-pthread=1']
 
 @build_stage()
@@ -37,7 +36,7 @@ def configure(ctx, stage_args):
           coptflags: -O2
           link: shared
           debug: false
-        
+
     Note: this is a fairly sophisticated build stage that inspects
     the build artifacts available to decide what to enable in PETSc.
     By default, this package builds PETSc with all required artifacts,
@@ -65,10 +64,18 @@ def configure(ctx, stage_args):
     if stage_args['coptflags']:
         conf_lines.append('COPTFLAGS=%s' % stage_args['coptflags'])
     if stage_args['link']:
-        conf_lines.append('--with-shared-libraries=%d' % 
+        conf_lines.append('--with-shared-libraries=%d' %
                           bool(stage_args['link'] == 'shared'))
-    if stage_args['debug']:
-        conf_lines.append('--with-debugging=%d' % stage_args['debug'])
+    # must explicitly set --with-debugging=0 to disable debugging
+    conf_lines.append('--with-debugging=%d' % stage_args['debug'])
+
+    # Special case, openssl provides ssl
+    if 'OPENSSL' in ctx.dependency_dir_vars:
+        conf_lines.append('--with-ssl=1')
+        conf_lines.append('--with-ssl-dir=${OPENSSL_DIR}')
+    else:
+        # Disable ssl when not a dependency
+        conf_lines.append('--with-ssl=0')
 
     # Special case, --with-blas-dir does not work with OpenBLAS
     if 'OPENBLAS' in ctx.dependency_dir_vars:
@@ -84,7 +91,7 @@ def configure(ctx, stage_args):
             conf_lines.append('--with-blas-dir=$BLAS_DIR')
             conf_lines.append('--with-lapack-dir=$LAPACK_DIR')
 
-    # Special case, ParMETIS also provides METIS 
+    # Special case, ParMETIS also provides METIS
     if 'PARMETIS' in ctx.dependency_dir_vars:
         conf_lines.append('--with-metis-dir=$PARMETIS_DIR')
         conf_lines.append('--with-parmetis-dir=$PARMETIS_DIR')
@@ -104,25 +111,36 @@ def configure(ctx, stage_args):
         conf_lines.append('--with-ml-lib=%s' % libml)
         conf_lines.append('--with-ml-include=${TRILINOS_DIR}/include/trilinos')
 
-    # Special case, SuiteSparse provides UMFPACK
     if 'SUITESPARSE' in ctx.dependency_dir_vars:
-        conf_lines.append('--with-umfpack=1')
-        conf_lines.append('--with-umfpack-include=${SUITESPARSE_DIR}/include/suitesparse')
-        conf_lines.append('--with-umfpack-lib=[${SUITESPARSE_DIR}/lib/libumfpack.a,${SUITESPARSE_DIR}/lib/libcholmod.a,${SUITESPARSE_DIR}/lib/libcamd.a,${SUITESPARSE_DIR}/lib/libccolamd.a,${SUITESPARSE_DIR}/lib/libcolamd.a,${SUITESPARSE_DIR}/lib/libamd.a,${SUITESPARSE_DIR}/lib/libsuitesparseconfig.a]')
+        conf_lines.append('--with-suitesparse=1')
+        conf_lines.append('--with-suitesparse-include=${SUITESPARSE_DIR}/include/suitesparse')
+        conf_lines.append('--with-suitesparse-lib=[${SUITESPARSE_DIR}/lib/libumfpack.a,libklu.a,libcholmod.a,libbtf.a,libccolamd.a,libcolamd.a,libcamd.a,libamd.a,libsuitesparseconfig.a]')
+
+    if 'HYPRE' in ctx.dependency_dir_vars:
+        if ctx.parameters['platform'] == 'Darwin':
+            libHYPRE = '${HYPRE_DIR}/lib/libHYPRE.a'
+        else:
+            libHYPRE = '${HYPRE_DIR}/lib/libHYPRE.so'
+        conf_lines.append('--with-hypre=1')
+        conf_lines.append('--with-hypre-include=${HYPRE_DIR}/include')
+        conf_lines.append('--with-hypre-lib=%s' % libHYPRE)
 
     for dep_var in ctx.dependency_dir_vars:
-        if dep_var in ['BLAS', 'LAPACK', 'OPENBLAS', 'PARMETIS',
+        if dep_var in ['BLAS', 'HYPRE', 'LAPACK', 'OPENBLAS', 'PARMETIS',
                        'SCOTCH', 'TRILINOS', 'SUITESPARSE']:
             continue
         if dep_var == 'MPI':
             conf_lines.append('--with-mpi-compilers')
             conf_lines.append('CC=$MPICC')
             conf_lines.append('CXX=$MPICXX')
-            conf_lines.append('F77=$MPIF77')
-            conf_lines.append('F90=$MPIF90')
-            conf_lines.append('FC=$MPIF90')
+            if ctx.parameters['fortran']:
+                conf_lines.append('F77=$MPIF77')
+                conf_lines.append('F90=$MPIF90')
+                conf_lines.append('FC=$MPIF90')
+            else:
+                conf_lines.append('--with-fc=0')
             continue
-        conf_lines.append('--with-%s-dir=$%s_DIR' % 
+        conf_lines.append('--with-%s-dir=$%s_DIR' %
                           (dep_var.lower(),
                            dep_var))
     for package in stage_args['download']:

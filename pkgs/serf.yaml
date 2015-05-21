@@ -1,0 +1,20 @@
+extends: [base_package]
+
+dependencies:
+  build: [apr, apr-util, openssl, scons, python]
+  run: []
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.bz2:4biaxydf3o6ojeceta33wkvwetsg2zh4
+  url: http://serf.googlecode.com/svn/src_releases/serf-1.3.8.tar.bz2
+
+build_stages:
+- name: build-install
+  after: prologue
+  handler: bash
+  bash: |
+    scons APR=$APR_DIR APU=$APR_UTIL_DIR OPENSSL=$OPENSSL_DIR PREFIX=$ARTIFACT
+    scons PREFIX=$ARTIFACT install

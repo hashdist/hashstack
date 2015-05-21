@@ -1,0 +1,8 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [gmp, mpfr]
+
+sources:
+- key: tar.gz:wvq7ktmki6oo4o6ishxfe427dd7ym4jl
+  url: ftp://ftp.gnu.org/gnu/mpc/mpc-1.0.2.tar.gz

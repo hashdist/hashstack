@@ -1,0 +1,20 @@
+extends: [cmake_package]
+dependencies:
+  build: []
+
+sources:
+- key: tar.gz:5vbpstamb36ohtc4xthhgbjnwqbj75kp
+  url: http://downloads.sourceforge.net/project/itk/itk/4.6/InsightToolkit-4.6.1.tar.gz
+
+defaults:
+  # lib/libITKIOIPL-4.6.so.1 contains hard-coded path
+  relocatable: false
+
+build_stages:
+- name: configure
+  extra: ['-D BUILD_EXAMPLES:BOOL=OFF',
+          '-D BUILD_TESTING:BOOL=OFF',
+          '-D BUILD_SHARED_LIBS:BOOL=ON',
+          '-D ITK_USE_REVIEW:BOOL=ON',
+          '-D ITK_USE_REVIEW_STATISTICS:BOOL=ON',
+          '-D ITK_USE_OPTIMIZED_REGISTRATION_METHODS:BOOL=ON']

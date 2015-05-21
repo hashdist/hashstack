@@ -1,0 +1,33 @@
+when: machine == 'CrayXE6'
+
+extends: [distutils_package]
+dependencies:
+  build: [blas, lapack, numpy]
+  run: [blas, lapack, numpy]
+
+sources:
+  - url: http://downloads.sourceforge.net/scipy/scipy-0.13.3.tar.gz
+    key: tar.gz:vhrty7xamdbvzvog5y5mtzpjxo4zegox
+
+build_stages:
+  - name: create-site.cfg
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      cat > site.cfg << EOF
+      [DEFAULT]
+      library_dirs = ${ACML_DIR}/gfortran64/lib
+      libraries = acml
+      EOF
+
+  - name: set-LDFLAGS
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${ACML_DIR}/gfortran64/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export ATLAS=None
+      export LAPACK=acml
+      export BLAS=acml
+

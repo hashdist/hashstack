@@ -1,0 +1,17 @@
+diff --git a/Qt/Components/CMakeLists.txt b/Qt/Components/CMakeLists.txt
+index 0f68586..ba1d1f9 100644
+--- a/Qt/Components/CMakeLists.txt
++++ b/Qt/Components/CMakeLists.txt
+@@ -751,6 +751,12 @@ vtk_module_library(${vtk-module}
+   ${__Module_MOC_SRCS}
+   ${__Module_UI_SRCS})
+
++if(PARAVIEW_INSTALL_DEVELOPMENT_FILES)
++ install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/"
++     DESTINATION ${VTK_INSTALL_INCLUDE_DIR}
++     FILES_MATCHING PATTERN "*.h")
++endif()
++
+ #IF (NOT PV_INSTALL_NO_DEVELOPMENT)
+ #  # Headers
+ #  GLOB_INSTALL_DEVELOPMENT(

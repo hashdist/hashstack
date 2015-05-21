@@ -1,0 +1,70 @@
+# This profile file controls your <#> (HashDist) build environment.
+
+# In the future, we'll provide better incorporation of
+# automatic environment detection.  For now, have a look
+# at the YAML files in the top-level directory and choose
+# the most *specific* file that matches your environment.
+
+extends:
+- file: linux.yaml
+
+# The packages list specifies all the packages that you
+# require installed.  <#> will ensure that all packages
+# and their dependencies are installed when you build this
+# profile.
+
+packages:
+  launcher:
+  cmake:
+  python:
+    host: false
+    build_with: |
+      bzip2, openssl, sqlite
+    link: shared
+  mpi:
+    use: openmpi
+  blas:
+    use: openblas
+  hdf5:
+  petsc:
+    build_with: |
+      parmetis, openblas, scotch, suitesparse, trilinos
+    download: |
+      superlu, superlu_dist, hypre, scalapack, blacs, mumps
+    coptflags: -O2
+    link: shared
+    debug: false
+  petsc4py:
+  boost:
+    toolset: gcc
+    address_model: 64
+  swig:
+    version: '2.0.8'
+  ipython:
+  ffc:
+    sources:
+      - key: tar.gz:hzo7qkkl2lfaeq7jds6nt6kluwclsug4
+        url: https://bitbucket.org/fenics-project/ffc/downloads/ffc-1.4.0.tar.gz
+  fiat:
+    sources:
+      - key: tar.gz:3xlgx6q2bmykwgv3cldx7cxwn5ig7wm3
+        url: https://bitbucket.org/fenics-project/fiat/downloads/fiat-1.4.0.tar.gz
+  instant:
+    sources:
+      - key: tar.gz:oixr3enzf2twr6i427sltkzsfzzk7rl2
+        url: https://bitbucket.org/fenics-project/instant/downloads/instant-1.4.0.tar.gz
+  ufl:
+    sources:
+      - key: tar.gz:nmtleignol3cwwbcmdophuep577ltwyg
+        url: https://bitbucket.org/fenics-project/ufl/downloads/ufl-1.4.0.tar.gz
+  dolfin:
+    sources:
+      - key: tar.gz:oosphzpataikfud5cgeizmnpilk4m7t7
+        url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-1.4.0.tar.gz
+    build_with: |
+      bzip2, hdf5, openblas, parmetis, petsc, petsc4py, scientificpython, scotch, slepc, suitesparse, trilinos, vtk, zlib
+  h5py:
+  pyvtk:
+  matplotlib:
+  scipy:
+  cbcblock:

@@ -1,0 +1,15 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [autoconf]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.xz:teemowvl2sorgzq5nxfrxq4ceuwsftdx
+  url: http://ftp.gnu.org/gnu/automake/automake-1.15.tar.xz
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

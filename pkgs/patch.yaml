@@ -1,0 +1,12 @@
+extends: [autotools_package]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:ybpsqzumgr2lyy5nzvekxlusduk6ohbf
+  url: http://ftp.heanet.ie/mirrors/gnu/patch/patch-2.7.1.tar.gz
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

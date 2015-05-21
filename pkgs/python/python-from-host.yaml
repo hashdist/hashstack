@@ -1,4 +1,8 @@
 when: host
+
+defaults:
+  relocatable: false
+
 build_stages:
 
   - when: not use_python_host_packages

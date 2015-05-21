@@ -1,0 +1,35 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [pkg-config, glib2, gobject-introspection, libffi, pycairo, cairo, python]
+  run: []
+
+defaults:
+  relocatable: false
+
+sources:
+#- url: https://pypi.python.org/packages/source/P/PyGObject/pygobject-2.28.3.tar.bz2
+#  key: tar.bz2:pwuiyfu2k3x4zriwz26zen62h7srri2d
+#- key: tar.bz2:uhp7xyvi4dkjawkfktwy2bxq5zfdogwl
+#  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.27/pygobject-2.27.91.tar.bz2
+#- key: tar.bz2:kvkkz744e63eofcbioyele2zqzheu3zp
+#  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.26/pygobject-2.26.0.tar.bz2
+#- key: tar.bz2:ctochpmk3m3cnt52u6356edqzdncmdta
+- key: tar.bz2:gwr5yoozqi2gwviqb72truih7wakdr5n
+  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.21/pygobject-2.21.3.tar.bz2
+#  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.21/pygobject-2.21.5.tar.bz2
+#- key: tar.bz2:ihushi7uijvd4gpw2fkmijhd3ldphhpp
+#  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.20/pygobject-2.20.0.tar.bz2
+#- key: tar.bz2:iz7lhhygmzh3ro5zvnahufny2vvghkjk
+#  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.90/pygobject-2.90.4.tar.bz2
+
+build_stages:
+- name: configure
+  extra: ['CFLAGS=-I${CAIRO_DIR}/include/cairo',
+          'PYCAIRO_CFLAGS=-I${PYCAIRO_DIR}/include/pycairo']
+
+when_build_dependency:
+- prepend_path: PYTHONPATH
+  value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'

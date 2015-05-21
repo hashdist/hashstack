@@ -1,0 +1,22 @@
+extends: [distutils_package]
+dependencies:
+  build: [cln, ginac, pkg-config, swig]
+
+sources:
+- key: tar.gz:4am3idfmfgyhbzzegk4xzscxnaw2ifxf
+  url: http://downloads.sourceforge.net/swiginac.berlios/swiginac-1.5.1.1.tgz
+
+build_stages:
+- name: build
+  after: setup_dirs
+  before: install
+  handler: bash
+  bash: |
+    ${PYTHON} setup.py build
+
+- when: platform == 'linux' 
+  name: fix-rpath
+  after: install
+  handler: bash
+  bash: |
+    ${PATCHELF} --set-rpath ${CLN_DIR}/lib:${GINAC_DIR}/lib ${ARTIFACT}/lib/python{{pyver}}/site-packages/_swiginac.so

@@ -1,0 +1,56 @@
+#!/usr/bin/env python
+
+from __future__ import print_function
+
+import sys
+import os
+import logging
+from subprocess import check_output, CalledProcessError
+
+log = logging.getLogger()
+
+
+def setup_logging(level):
+    handler = logging.StreamHandler(stream=sys.stderr)
+    log.addHandler(handler)
+    log.setLevel(level)
+
+
+class PkgConfigWrapper(object):
+
+    def __init__(self, wrapped_binary):
+        self._wrapped = wrapped_binary
+
+    def package_dir_iter(self):
+        """
+        Iterate over ``<package>_DIR`` environment variables.
+        """
+        for key, value in os.environ.items():
+            if key.endswith('_DIR'):
+                yield key, value
+
+    def pc_variables(self):
+        return ['--define-variable={0}="{1}"'.format(key, value)
+                for key, value in self.package_dir_iter()]
+
+    def _exec(self, *args):
+        cmd = [self._wrapped] + self.pc_variables() + list(args)[1:]
+        log.debug('executing: %s', ' '.join(cmd))
+        try:
+            output = check_output(cmd)
+        except CalledProcessError as err:
+            log.debug('caught error: rc = %s', err.returncode)
+            raise SystemExit(err.returncode)
+        output = output.rstrip().decode("utf-8")
+        log.debug('intercepted: %s', output)
+        return output
+
+    def __call__(self, *args):
+        output = self._exec(*args)
+        print(output)
+
+if __name__ == '__main__':
+    setup_logging(logging.WARNING)
+    binary = os.path.join(os.path.dirname(__file__), 'pkgconf')
+    pkg_config = PkgConfigWrapper(binary)
+    pkg_config(*sys.argv)

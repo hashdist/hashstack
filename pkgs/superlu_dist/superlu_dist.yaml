@@ -1,0 +1,61 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [blas, lapack, mpi, parmetis]
+
+defaults:
+  # Skip build-time tests (not recommended)
+  without_check: false
+
+sources:
+- key: git:749f33d8104157767d443ff1a1d151642751486d
+  url: https://bitbucket.org/petsc/pkg-superlu_dist.git
+
+build_stages:
+- when: platform == 'Darwin'
+  name: configure
+  mode: replace
+  files: [make.inc.darwin]
+  handler: bash
+  bash: |
+    cp _hashdist/make.inc.darwin make.inc
+
+- when: platform == 'linux' or platform == 'Cygwin'
+  name: configure
+  mode: replace
+  files: [make.inc.linux]
+  handler: bash
+  bash: |
+    cp _hashdist/make.inc.linux make.inc
+
+- name: make
+  mode: replace
+  handler: bash
+  after: configure
+  bash: |
+    mkdir -p lib
+    make lib LAAUX=""
+
+- name: install
+  mode: replace
+  handler: bash
+  after: make
+  bash: |
+    mkdir -p ${ARTIFACT}/lib/
+    mkdir -p ${ARTIFACT}/include/superlu_dist
+    cp -f lib/libsuperlu_dist.a ${ARTIFACT}/lib/
+    ln -s ./libsuperlu_dist.a ${ARTIFACT}/lib/libsuperlu_dist_3.3.a
+    cp -f SRC/*.h ${ARTIFACT}/include/superlu_dist/
+    cp -f SRC/*.h ${ARTIFACT}/include/
+
+- when: not without_check
+  name: check
+  after: install
+  handler: bash
+  bash: |
+    cd EXAMPLE
+    make
+    ${MPIEXEC} -np 4 ./pddrive -r 2 -c 2 g20.rua
+    ${MPIEXEC} -np 10 ./pddrive4 g20.rua
+    ${MPIEXEC} -np 4 ./pzdrive -r 2 -c 2 cg20.cua
+    ${MPIEXEC} -np 10 ./pzdrive4 cg20.cua

@@ -1,0 +1,15 @@
+extends: [cmake_package]
+dependencies:
+  build: [{{build_with}}]
+
+sources:
+- key: git:ab651a2aa866351bdd089a4bf1d57f6a9bec2a66
+  url: https://github.com/gccxml/gccxml.git
+
+defaults:
+  # bin/gccxml_cc1plus contains hard-coded path
+  relocatable: false
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

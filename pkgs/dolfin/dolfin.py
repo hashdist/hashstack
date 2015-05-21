@@ -14,7 +14,7 @@ def configure(ctx, stage_args):
     Example::
 
         - name: configure
-          build_type: RelWithDebInfo
+          build_type: Release
           set_env_flags: true
 
     Note: this is a fairly sophisticated build stage that inspects
@@ -24,7 +24,7 @@ def configure(ctx, stage_args):
     following extra keys are relevant:
 
     * build_type: Release, Debug, RelWithDebInfo or Developer.
-    RelWithDebInfo by default.
+    Release by default.
     * set_env_flags: CPPFLAGS and LDFLAGS will be set, as appropriate
     for the platform. Default is true.
     """
@@ -39,13 +39,28 @@ def configure(ctx, stage_args):
                   '-D Boost_USE_MULTITHREADED:BOOL=${BOOST_USE_MULTITHREADED}',
                   '-D DOLFIN_ENABLE_UNIT_TESTS:BOOL=OFF']
 
+    # CMake needs to be given all the dependency dirs as prefix paths
+    # so that we search the HashDist directories before the system directories.
+    # CMake doesn't use the CPPFLAGS implicitly to find libraries.
+    prefix_paths = []
+    CPPFLAGS = []
+    LDFLAGS = []
+    for dep_var in ctx.dependency_dir_vars:
+        prefix_paths.append('${%s_DIR}' % dep_var)
+        CPPFLAGS.append('-I${%s_DIR}/include' % dep_var)
+        LDFLAGS.append('-L${%s_DIR}/lib' % dep_var)
+        LDFLAGS.append(rpath_flag(ctx, '${%s_DIR}/lib' % dep_var))
+    conf_lines.append('-D CMAKE_PREFIX_PATH="%s"' % ';'.join(prefix_paths))
+
     if ctx.parameters['platform'] == 'Cygwin':
         libxml2 = '${LIBXML2_DIR}/lib/libxml2.dll.a'
         conf_lines.append('-D LIBXML2_LIBRARIES:FILEPATH="%s"' % libxml2)
         conf_lines.append('-D LIBXML2_INCLUDE_DIR:PATH="${LIBXML2_DIR}/include/libxml2"')
 
-    build_type = stage_args.get('build_type', 'RelWithDebInfo')
-    conf_lines.append('-D CMAKE_BUILD_TYPE:STRING="%s"' % build_type)
+    if 'build_type' in stage_args and stage_args['build_type'] is not None:
+        conf_lines.append('-D CMAKE_BUILD_TYPE:STRING="%s"' % stage_args['build_type'])
+    else:
+        conf_lines.append('-D CMAKE_BUILD_TYPE:STRING="Release"')
 
     if 'CGAL' in ctx.dependency_dir_vars:
         conf_lines.append('-D CGAL_DISABLE_ROUNDING_MATH_CHECK:BOOL=ON')
@@ -54,16 +69,8 @@ def configure(ctx, stage_args):
         conf_lines.append('-D SWIG_EXECUTABLE:FILEPATH="${SWIG_EXECUTABLE}"')
 
     if 'PYTHON' in ctx.dependency_dir_vars:
-        if ctx.parameters['platform'] == 'Darwin':
-            libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.dylib'
-        elif ctx.parameters['platform'] == 'Cygwin':
-            #libpython = '/usr/lib/libpython${PYVER}.dll.a'
-            libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.dll.a'
-        else:
-            libpython = '${PYTHON_DIR}/lib/libpython${PYVER}.so'
         conf_lines.append('-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"')
         conf_lines.append('-D PYTHON_INCLUDE_DIR:PATH="${PYTHON_DIR}/include/python${PYVER}"')
-        conf_lines.append('-D PYTHON_LIBRARY:FILEPATH="%s"' % libpython)
 
     # Some special variables are needed to find correct HDF5
     if 'HDF5' in ctx.dependency_dir_vars:
@@ -97,7 +104,7 @@ def configure(ctx, stage_args):
         conf_lines.append('-D ZLIB_ROOT="${ZLIB_DIR}"')
 
     optional_deps = ['CGAL', 'HDF5', 'PETSC', 'PETSC4PY', 'SLEPC',
-                     'TAO', 'TRILINOS', 'PASTIX', 'SCOTCH', 'PARMETIS',
+                     'TRILINOS', 'PASTIX', 'SCOTCH', 'PARMETIS',
                      'CGAL', 'ZLIB', 'PYTHON','SPHINX', 'VTK', 'QT']
 
     for dep in optional_deps:
@@ -118,12 +125,6 @@ def configure(ctx, stage_args):
 
     env_lines = []
     if stage_args.get('set_env_flags', True):
-        CPPFLAGS = []
-        LDFLAGS = []
-        for dep_var in ctx.dependency_dir_vars:
-            CPPFLAGS.append('-I${%s_DIR}/include' % dep_var)
-            LDFLAGS.append('-L${%s_DIR}/lib' % dep_var)
-            LDFLAGS.append(rpath_flag(ctx, '${%s_DIR}/lib' % dep_var))
         env_lines.append('export CPPFLAGS="%s"' % ' '.join(CPPFLAGS))
         env_lines.append('export LDFLAGS="%s"' % ' '.join(LDFLAGS))
 

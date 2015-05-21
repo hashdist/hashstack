@@ -1,6 +1,8 @@
 extends: [setuptools_package]
 
-sources:
- - url: https://pypi.python.org/packages/source/J/Jinja2/Jinja2-2.6.tar.gz
-   key: tar.gz:vbpbqu3v3n24ccpzt3g6hvkucxydlzyg
+dependencies:
+  run: [MarkupSafe]
 
+sources:
+- key: tar.gz:fyskyxiajw2xcslwubfmb2amnx3oi7uy
+  url: https://pypi.python.org/packages/source/J/Jinja2/Jinja2-2.7.3.tar.gz
