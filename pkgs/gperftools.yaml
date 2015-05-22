@@ -8,6 +8,15 @@ sources:
 - key: tar.gz:tavdoitowqxua4koe24ao2av2xvgo6sc
   url: https://googledrive.com/host/0B6NtGsLhIcf7MWxMMF9JdTN3UVk/gperftools-2.4.tar.gz
 
+build_stages:
+- when: compiler == 'gcc'
+  name: optimization_flags
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    export CXXFLAGS="-fPIC -O3 -march=native -ffast-math -funroll-loops"
+
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
   value: '${ARTIFACT}/lib/pkgconfig'
