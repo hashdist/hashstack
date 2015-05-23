@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:mwgzvoufgof6rqorkmwj7nmapm4b3ryw
+   url: https://pypi.python.org/packages/source/r/requests-oauthlib/requests-oauthlib-0.5.0.tar.gz
