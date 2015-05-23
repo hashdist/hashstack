@@ -100,6 +100,8 @@ packages:
   pip:
   jupyter-pip:
   pexpect:
+  pcs_api:
+  #pythreejs:
 #  scorec:
 #  simmetrix:
 #  zoltan:
