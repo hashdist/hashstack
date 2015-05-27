@@ -2,7 +2,6 @@ extends: [setuptools_package]
 
 dependencies:
   build: [requests, oauthlib, requests_oauthlib]
-  run: []
 
 sources:
  - key: zip:3wtk6la7p2coqy4ps6t2rzh46ob6k5ja
