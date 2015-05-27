@@ -1,8 +1,7 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: []
-  run: []
+  build: [requests, oauthlib]
 
 sources:
  - key: tar.gz:mwgzvoufgof6rqorkmwj7nmapm4b3ryw
