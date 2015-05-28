@@ -10,12 +10,8 @@ extends: [autotools_package]
 # to use a CRL file when making https requests with the --crlfile command
 # option. Please refer to the curl man page and also http://curl.haxx.se/docs/ssl-compared.html
 # and http://curl.haxx.se/docs/sslcerts.html
-when use_ca_bundle:
-  dependencies:
-    build: [openssl, libidn, zlib, ca-bundle]
-when not use_ca_bundle:
-  dependencies:
-    build: [openssl, libidn, zlib]
+dependencies:
+    build: [openssl, libidn, zlib, +ca-bundle]
 
 defaults:
   use_ca_bundle: false
@@ -25,7 +21,7 @@ sources:
     key: tar.gz:dl6tespqw6zufuqodtfmxpasggdziyrs
 
 build_stages:
-- when: use_ca_bundle
+- when: locals()['ca-bundle']
   name: configure
   mode: override
   extra: ['--with-ca-bundle=${CA_BUNDLE_DIR}/etc/ca-bundle/ca-bundle.crt']

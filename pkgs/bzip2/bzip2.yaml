@@ -1,8 +1,8 @@
 extends: [base_package]
 
-when platform == 'linux':
-  dependencies:
-    build: [patchelf]
+#when platform == 'linux':
+dependencies:
+  build: [patchelf]
 
 sources:
 - url: http://bzip.org/1.0.6/bzip2-1.0.6.tar.gz
@@ -20,11 +20,10 @@ build_stages:
 - name: make-configure
   after: prologue
   handler: bash
-  when platform == 'linux':
-    bash: |
+  bash:
+    when platform == 'linux': |
       make -f Makefile-libbz2_so
-  when platform != 'linux':
-    bash: |
+    when platform != 'linux': |
       make -f Makefile
 
 - name: make-install
@@ -39,16 +38,14 @@ build_stages:
 - name: final
   after: make-install
   handler: bash
-  when platform == 'linux':
-    bash: |
+  bash:
+    when platform == 'linux': |
       cp -v bzip2-shared ${ARTIFACT}/bin/bzip2
       ln -sv bzip2 ${ARTIFACT}/bin/bunzip2
       ln -sv bzip2 ${ARTIFACT}/bin/bzcat
       ln -sv ${ARTIFACT}/lib/libbz2.so.1.0 ${ARTIFACT}/lib/libbz2.so
       ${PATCHELF} --set-rpath ${ARTIFACT}/lib ${ARTIFACT}/bin/bzip2
-
-  when platform != 'linux':
-    bash: |
+    when platform != 'linux': |
       cp -v bzip2 ${ARTIFACT}/bin/bzip2
       ln -sv bzip2 ${ARTIFACT}/bin/bunzip2
       ln -sv bzip2 ${ARTIFACT}/bin/bzcat

@@ -1,6 +1,12 @@
 # Note: do not inherit from base_package.yaml
 # Symlinking the launcher interferes with its operation
 
+parameters:
+  - name: PROLOGUE
+    default: ""
+
+  - name: PATH
+
 sources:
   - url: https://github.com/hashdist/hdist-launcher.git
     key: git:8119797b5d21df5cc9609771029d29a51c44c882

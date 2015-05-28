@@ -1,7 +1,11 @@
 when: host
 
-defaults:
-  relocatable: false
+parameters:
+  - name: pyver
+    default: '2.7'
+
+  - name: use_python_host_packages
+    type: bool
 
 build_stages:
 
