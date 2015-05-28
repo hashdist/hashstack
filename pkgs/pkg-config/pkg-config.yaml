@@ -2,7 +2,7 @@ extends: [autotools_package]
 
 dependencies:
   # for the pkg-config wrapper
-  run: [python]
+#  run: [python]
 
 defaults:
   # has a compiled-in default search path
@@ -12,13 +12,13 @@ sources:
 - key: tar.bz2:yqfhovb74xdslg4bh5yn3lzctqtwbisq
   url: http://rabbit.dereferenced.org/~nenolod/distfiles/pkgconf-0.9.6.tar.bz2
 
-build_stages:
-- name: install_wrapper
-  after: install
-  files: [pkg-config-wrapper]
-  handler: bash
-  bash: |
-    install -c -m 755 _hashdist/pkg-config-wrapper "${ARTIFACT}"/bin/pkg-config
+#build_stages:
+# - name: install_wrapper
+#   after: install
+#   files: [pkg-config-wrapper]
+#   handler: bash
+#   bash: |
+#     install -c -m 755 _hashdist/pkg-config-wrapper "${ARTIFACT}"/bin/pkg-config
 
 when_build_dependency:
 - prepend_path: PATH
