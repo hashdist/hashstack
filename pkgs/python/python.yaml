@@ -2,8 +2,14 @@ parameters:
   - name: pyver
     default: '2.7'
 
-  - name: use_python_host_packages
+  - name: link
+
+  - name: version
+    default: 2.7.9
+
+  - name: python_framework
     type: bool
+    default: false
 
 extends: [autotools_package]
 
