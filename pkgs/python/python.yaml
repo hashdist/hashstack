@@ -5,15 +5,6 @@ parameters:
   - name: use_python_host_packages
     type: bool
 
-  - name: link
-
-  - name: version
-    default: 2.7.9
-
-  - name: python_framework
-    type: bool
-    default: false
-
 extends: [autotools_package]
 
 sources:
