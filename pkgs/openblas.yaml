@@ -1,14 +1,16 @@
+parameters:
+- name: extra_flags
+  default: ''
+  # build single threaded version as default
+- name: use_thread
+  type: bool
+  default: false
+
 extends: [base_package]
 
 sources:
 - key: tar.gz:l4pzq2qzackjawfvpddbyk3fwtpdetyz
   url: https://github.com/xianyi/OpenBLAS/archive/v0.2.13.tar.gz
-
-defaults:
-  # cmake/OpenBLASConfig.cmake contains hard-coded path
-  relocatable: false
-  # build single threaded version as default
-  use_thread: false
 
 build_stages:
 - when: use_thread

@@ -1,17 +1,39 @@
 parameters:
   - name: PROLOGUE
     default: ''
+
   - name: platform
+
   - name: package
+
   - name: relocatable
     type: bool
     default: false
+
+  - name: relative_rpath
+    type: bool
+    default: true
+
   - name: version
     default: 'latest'
+
   - name: host
     type: bool
     default: false
+
   - name: PATH
+
+  - name: fortran
+    type: bool
+    default: true
+
+  - name: python_framework
+    type: bool
+    default: false
+
+  - name: pyver
+    default: '2.7'
+
 #  - name: MAKE
 #    default: 'make'
 

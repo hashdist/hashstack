@@ -7,6 +7,10 @@ parameters:
   - name: use_python_host_packages
     type: bool
 
+  - name: relocatable
+    type: bool
+    default: false
+
 build_stages:
 
   - when: not use_python_host_packages

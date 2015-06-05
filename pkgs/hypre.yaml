@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [blas, gnu-sed, lapack, mpi]
+  build: [blas, gnu-sed, lapack, mpi, patchelf]
 
 sources:
 - key: tar.gz:qs6kil25x247lxjlzlvwdhsgbv5tpcye

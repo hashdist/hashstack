@@ -1,16 +1,26 @@
+parameters:
+# include/petscconfiginfo.h contains absolute path
+- name: relocatable
+  type: bool
+  default: false
+
+- name: coptflags
+  default: '-O2'
+
+- name: link
+  default: 'shared'
+
+- name: debug
+  type: bool
+  default: false
+
 extends: [autotools_package]
 dependencies:
-  build: [blas, mpi, python, {{build_with}}]
+  build: [blas, mpi, python, +parmetis, +scotch, +suitesparse, +superlu_dist, +hypre, +mumps, +scalapack, +blacs, +ml]
 
 sources:
 - key: tar.gz:ygj3gebgevuuwg5evyrgenkhf3ry5b2d
   url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.5.2.tar.gz
-
-defaults:
-  # /include/petscconfiginfo.h contains absolute path
-  relocatable: false
-  fortran: false
-  debug: false
 
 build_stages: 
 
@@ -29,7 +39,7 @@ build_stages:
   coptflags: {{coptflags}}
   link: {{link}}
   debug: {{debug}}
-  download: [{{download}}]
+#  download: [{{download}}]
 
 # PETSc 3.5 does not allow the use of the -j option to make
 -  name: make

@@ -14,6 +14,10 @@ parameters:
     type: bool
     default: false
 
+  - name: relocatable
+    type: bool
+    default: false
+
 extends: [autotools_package]
 
 sources:

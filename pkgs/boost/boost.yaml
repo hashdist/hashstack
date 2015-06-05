@@ -1,10 +1,13 @@
+parameters:
+- name: toolset
+
+- name: address_model
+
 extends: [base_package]
 
 dependencies:
-  when platform == 'linux':
-    build: [bzip2, mpi, zlib, patchelf, {{build_with}}]
-  when platform != 'linux':
-    build: [bzip2, mpi, zlib, {{build_with}}]
+  # Remove patchelf when platform != 'linux'
+  build: [bzip2, mpi, zlib, patchelf, +python]
 
 sources:
 - url: http://downloads.sourceforge.net/boost/boost_1_55_0.tar.bz2
@@ -45,8 +48,8 @@ build_stages:
 - name: bjam
   after: bootstrap
   handler: bash
-  when platform != 'Cygwin':
-    bash: |
+  bash:
+    when platform != 'Cygwin': |
       echo "using mpi ;" > user-config.jam
       ./bjam -q \
              toolset={{toolset}} \
@@ -64,8 +67,7 @@ build_stages:
              -sZLIB_BINARY=z \
              -sZLIB_INCLUDE=${ZLIB_DIR}/include \
              -sZLIB_LIBPATH=${ZLIB_DIR}/lib
-  when platform == 'Cygwin':
-    bash: |
+    when platform == 'Cygwin': |
       ./bjam -q \
              toolset={{toolset}} \
              address-model={{address_model}} \
