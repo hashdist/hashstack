@@ -14,6 +14,9 @@ parameters:
   type: bool
   default: false
 
+- name: download
+  default: ''
+
 extends: [autotools_package]
 dependencies:
   build: [blas, mpi, python, +parmetis, +scotch, +suitesparse, +superlu_dist, +hypre, +mumps, +scalapack, +blacs, +ml]
@@ -36,10 +39,6 @@ build_stages:
 - name: configure ## See petsc.py for details
   mode: replace
   after: prologue
-  coptflags: {{coptflags}}
-  link: {{link}}
-  debug: {{debug}}
-#  download: [{{download}}]
 
 # PETSc 3.5 does not allow the use of the -j option to make
 -  name: make
@@ -76,3 +75,4 @@ build_stages:
 when_build_dependency:
 - when platform == 'Cygwin':
   - {prepend_path: PATH, value: '${ARTIFACT}/bin'}
+

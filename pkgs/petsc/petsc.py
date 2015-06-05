@@ -61,13 +61,13 @@ def configure(ctx, stage_args):
     if ctx.parameters.get('machine','') == 'CrayXE6':
         preConfigureCrayXE6(ctx, conf_lines)
 
-    if stage_args['coptflags']:
-        conf_lines.append('COPTFLAGS=%s' % stage_args['coptflags'])
-    if stage_args['link']:
+    if ctx.parameters['coptflags']:
+        conf_lines.append('COPTFLAGS=%s' % ctx.parameters['coptflags'])
+    if ctx.parameters['link']:
         conf_lines.append('--with-shared-libraries=%d' %
-                          bool(stage_args['link'] == 'shared'))
+                          bool(ctx.parameters['link'] == 'shared'))
     # must explicitly set --with-debugging=0 to disable debugging
-    conf_lines.append('--with-debugging=%d' % stage_args['debug'])
+    conf_lines.append('--with-debugging=%d' % int(ctx.parameters['debug']))
 
     # Special case, openssl provides ssl
     if 'OPENSSL' in ctx.dependency_dir_vars:
@@ -143,7 +143,7 @@ def configure(ctx, stage_args):
         conf_lines.append('--with-%s-dir=$%s_DIR' %
                           (dep_var.lower(),
                            dep_var))
-    for package in stage_args['download']:
+    for package in ctx.parameters.get('download', '').split(','):
         package_name = package.strip()
         conf_lines.append('--download-%s=1' % package_name)
 
