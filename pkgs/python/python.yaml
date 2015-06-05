@@ -2,9 +2,6 @@ parameters:
   - name: pyver
     default: '2.7'
 
-  - name: use_python_host_packages
-    type: bool
-
   - name: link
 
   - name: version
