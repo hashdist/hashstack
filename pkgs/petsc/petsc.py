@@ -78,12 +78,16 @@ def configure(ctx, stage_args):
         conf_lines.append('--with-ssl=0')
 
     # Special case, --with-blas-dir does not work with OpenBLAS
-    if 'OPENBLAS' in ctx.dependency_dir_vars:
+    if ctx.parameters['lapack'].kind == 'openblas':
         if ctx.parameters['platform'] == 'Darwin':
-            libopenblas = '${OPENBLAS_DIR}/lib/libopenblas.dylib'
+            libopenblas = '${LAPACK_DIR}/lib/libopenblas.dylib'
         else:
-            libopenblas = '${OPENBLAS_DIR}/lib/libopenblas.so'
+            libopenblas = '${LAPACK_DIR}/lib/libopenblas.so'
         conf_lines.append('--with-blas-lapack-lib=%s' % libopenblas)
+    elif ctx.parameters['lapack'].kind == 'accelerate':
+        pass # FIXME
+    elif ctx.parameters['lapack'].kind == 'reference':
+        pass # FIXME
     else:
         # Special case, no meaningful BLAS/LAPACK directories when using Accelerate
 
@@ -145,7 +149,8 @@ def configure(ctx, stage_args):
                            dep_var))
     for package in ctx.parameters.get('download', '').split(','):
         package_name = package.strip()
-        conf_lines.append('--download-%s=1' % package_name)
+        if package_name:
+            conf_lines.append('--download-%s=1' % package_name)
 
     # Multilinify
     for i in range(len(conf_lines) - 1):

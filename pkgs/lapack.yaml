@@ -1,3 +1,12 @@
+parameters:
+- name: kind
+  default: 'reference'
+
+  # lib/liblapack.so contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 # This is the reference implementation of Lapack from
 # http://www.netlib.org/lapack/, written in Fortran. It doesn't have any
 # machine specific optimizations (use openblas, host-lapack and similar
@@ -12,10 +21,6 @@ extends: [cmake_package]
 sources:
 - url: http://www.netlib.org/lapack/lapack-3.4.2.tgz
   key: tar.gz:mctf3kxrn3brka2gowkcmgfcemcsd2t2
-
-defaults:
-  # lib/liblapack.so contains hard-coded path
-  relocatable: false
 
 build_stages:
 - name: configure

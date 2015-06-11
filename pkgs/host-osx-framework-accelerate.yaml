@@ -1,2 +1,6 @@
+parameters:
+- name: kind
+  default: accelerate
+
 when_build_dependency:
   - {set: 'BLAS_LDFLAGS', value: '-framework Accelerate'}

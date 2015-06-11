@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [blas, lapack, mpi, parmetis]
+  build: [lapack, mpi, parmetis]
 
 defaults:
   # Skip build-time tests (not recommended)

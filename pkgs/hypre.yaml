@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [blas, gnu-sed, lapack, mpi, patchelf]
+  build: [gnu-sed, mpi, patchelf, lapack]
 
 sources:
 - key: tar.gz:qs6kil25x247lxjlzlvwdhsgbv5tpcye
@@ -44,17 +44,18 @@ build_stages:
     export CXX=${MPICXX}
     export F77=${MPIF77}
 
-- when: with_openblas
+#- when: with_openblas
+- when: lapack.kind == 'openblas'
   name: configure
   mode: update
   extra: ["--with-blas=yes",
           "--with-blas-libs=openblas",
-          "--with-blas-lib-dirs=${BLAS_DIR}/lib",
+          "--with-blas-lib-dirs=${LAPACK_DIR}/lib",
           "--with-lapack=yes",
           "--with-lapack-libs=openblas",
           "--with-lapack-lib-dirs=${LAPACK_DIR}/lib"]
 
-- when: with_accelerate and not with_openblas
+- when: lapack.kind == 'accelerate'
 # Libraries used for linking to Accelerate framework; `otool -L`
 # shows that these libraries link to the same dylibs that the
 # Accelerate framework libraries do. Using the
@@ -70,7 +71,7 @@ build_stages:
           '--with-lapack-libs="lapack clapack f77lapack"',
           "--with-lapack-lib-dirs=/usr/lib"]
 
-- when: not with_accelerate and not with_openblas
+- when: lapack.kind == 'reference'
   name: configure
   mode: update
   extra: ["--with-blas=yes",

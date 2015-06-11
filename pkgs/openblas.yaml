@@ -1,10 +1,14 @@
 parameters:
 - name: extra_flags
   default: ''
-  # build single threaded version as default
+
+# build single threaded version as default
 - name: use_thread
   type: bool
   default: false
+
+- name: kind
+  default: openblas
 
 extends: [base_package]
 

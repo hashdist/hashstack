@@ -1,7 +1,7 @@
 extends: [autotools_package]
 dependencies:
-  build: [blas]
-  run: [blas]
+  build: [lapack]
+  run: [lapack]
 
 sources:
   - url: http://www.cise.ufl.edu/research/sparse/SuiteSparse/SuiteSparse-4.0.2.tar.gz

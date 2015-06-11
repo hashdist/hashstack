@@ -21,7 +21,7 @@ sources:
     key: tar.gz:dl6tespqw6zufuqodtfmxpasggdziyrs
 
 build_stages:
-- when: locals()['ca-bundle']
+- when: ca_dash_bundle
   name: configure
   mode: override
   extra: ['--with-ca-bundle=${CA_BUNDLE_DIR}/etc/ca-bundle/ca-bundle.crt']

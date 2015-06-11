@@ -19,7 +19,7 @@ parameters:
 
 extends: [autotools_package]
 dependencies:
-  build: [blas, mpi, python, +parmetis, +scotch, +suitesparse, +superlu_dist, +hypre, +mumps, +scalapack, +blacs, +ml]
+  build: [lapack, mpi, python, +parmetis, +scotch, +suitesparse, +superlu_dist, +hypre, +mumps, +scalapack, +blacs, +ml]
 
 sources:
 - key: tar.gz:ygj3gebgevuuwg5evyrgenkhf3ry5b2d
