@@ -15,7 +15,8 @@ parameters:
     default: true
 
   - name: version
-    default: 'latest'
+    required: false
+    type: version
 
   - name: host
     type: bool

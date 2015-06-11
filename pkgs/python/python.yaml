@@ -6,6 +6,7 @@ parameters:
 
   - name: version
     default: 2.7.9
+    type: version
 
   - name: python_framework
     type: bool
@@ -20,10 +21,10 @@ extends: [autotools_package]
 sources:
 - url: http://python.org/ftp/python/{{version}}/Python-{{version}}.tgz
   key:
-    when version == '2.7.9': tar.gz:zc52gptgvqzadwv5yvlpb2t47zvmcgkg
-    when version == '3.2.6': tar.gz:7qpecklofhkhn5uwga5mvyutvz5cgehq
-    when version == '3.3.6': tar.gz:bjmk2hy555hmzefrrmgeccr2bynert3w
-    when version == '3.4.3': tar.gz:rn2d6vxj4uf7ber3t2oelxmspqdr26vf
+    when version == 2.7.9: tar.gz:zc52gptgvqzadwv5yvlpb2t47zvmcgkg
+    when version == 3.2.6: tar.gz:7qpecklofhkhn5uwga5mvyutvz5cgehq
+    when version == 3.3.6: tar.gz:bjmk2hy555hmzefrrmgeccr2bynert3w
+    when version == 3.4.3: tar.gz:rn2d6vxj4uf7ber3t2oelxmspqdr26vf
 
 dependencies:
   build: [zlib, bzip2, sqlite, openssl, launcher, ncurses, readline, +gdbm, +perl]
