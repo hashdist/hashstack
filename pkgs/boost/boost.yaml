@@ -17,6 +17,13 @@ build_stages:
   bash: |
     ./bootstrap.sh --with-toolset={{toolset}} --prefix=${ARTIFACT}
 
+- name: call_once_variadic
+  before: bjam
+  after: bootstrap
+  handler: bash
+  files: [call_once_variadic.patch]
+  bash: |
+    patch -p2 < _hashdist/call_once_variadic.patch
 
 - name: 128bitIntegerSupport1
   before: bjam
