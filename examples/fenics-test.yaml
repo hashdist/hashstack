@@ -22,48 +22,48 @@ packages:
   gdbm:
   python:
     link: shared
-  zlib:
-  bzip2:
+#  zlib:
+#  bzip2:
   sqlite:
-  openssl:
-  ncurses:
-  readline:
+#  openssl:
+#  ncurses:
+#  readline:
   mpi:
     use: mpich
   lapack:
     use: openblas
-  parmetis:
-  scotch:
-  suitesparse:
-  superlu_dist:
-  hypre:
-  petsc:
-    hypre: null
-    download: 'mumps, scalapack, blacs, ml'
-    coptflags: '-O3 -march=native -mtune=native'
-    cxxoptflags: '-O3 -march=native -mtune=native'
-    foptflags: '-O3 -march=native -mtune=native'
-  petsc4py:
-  swig:
-  boost:
-    toolset: 'gcc'
-    address_model: '64'
-  hdf5:
-  slepc:
-  slepc4py:
-  ipython:
-#  matplotlib:
-  ffc:
-  fiat:
-  instant:
-#    sources:
-#      - local: /tmp/src/instant-1.5.0
-#      #- local: /tmp/src/instant
-  ufl:
-  uflacs:
-  vtk:
-  dolfin:
-#    build_with: |
-#      openblas, hdf5, parmetis, petsc, petsc4py, suitesparse, scotch, slepc, slepc4py, vtk, zlib
+#  parmetis:
+#  scotch:
+#  suitesparse:
+#  superlu_dist:
+#  hypre:
+#  petsc:
+#    hypre: null
+#    download: 'mumps, scalapack, blacs, ml'
+#    coptflags: '-O3 -march=native -mtune=native'
+#    cxxoptflags: '-O3 -march=native -mtune=native'
+#    foptflags: '-O3 -march=native -mtune=native'
+#  petsc4py:
+#  swig:
+#  boost:
+#    toolset: 'gcc'
+#    address_model: '64'
+#  hdf5:
+#  slepc:
+#  slepc4py:
+#  ipython:
+##  matplotlib:
+#  ffc:
+#  fiat:
+#  instant:
+##    sources:
+##      - local: /tmp/src/instant-1.5.0
+##      #- local: /tmp/src/instant
+#  ufl:
+#  uflacs:
+#  vtk:
+#  dolfin:
+##    build_with: |
+##      openblas, hdf5, parmetis, petsc, petsc4py, suitesparse, scotch, slepc, slepc4py, vtk, zlib
   mpi4py:
-  mshr:
+#  mshr:
