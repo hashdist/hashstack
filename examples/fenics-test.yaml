@@ -1,0 +1,69 @@
+# This profile file controls your <#> (HashDist) build environment.
+
+# In the future, we'll provide better incorporation of
+# automatic environment detection.  For now, have a look
+# at the YAML files in the top-level directory and choose
+# the most *specific* file that matches your environment.
+
+extends:
+- file: linux.yaml  
+#- file: 
+#    when platform == 'linux': linux.yaml
+#    when platform == 'Darwin': osx.yaml
+
+# The packages list specifies all the packages that you
+# require installed.  <#> will ensure that all packages
+# and their dependencies are installed when you build this
+# profile.
+
+packages:
+  launcher:
+  cmake:
+  gdbm:
+  python:
+    link: shared
+  zlib:
+  bzip2:
+  sqlite:
+  openssl:
+  ncurses:
+  readline:
+  mpi:
+    use: mpich
+  lapack:
+    use: openblas
+  parmetis:
+  scotch:
+  suitesparse:
+  superlu_dist:
+  hypre:
+  petsc:
+    hypre: null
+    download: 'mumps, scalapack, blacs, ml'
+    coptflags: '-O3 -march=native -mtune=native'
+    cxxoptflags: '-O3 -march=native -mtune=native'
+    foptflags: '-O3 -march=native -mtune=native'
+  petsc4py:
+  swig:
+  boost:
+    toolset: 'gcc'
+    address_model: '64'
+  hdf5:
+  slepc:
+  slepc4py:
+  ipython:
+#  matplotlib:
+  ffc:
+  fiat:
+  instant:
+#    sources:
+#      - local: /tmp/src/instant-1.5.0
+#      #- local: /tmp/src/instant
+  ufl:
+  uflacs:
+  vtk:
+  dolfin:
+#    build_with: |
+#      openblas, hdf5, parmetis, petsc, petsc4py, suitesparse, scotch, slepc, slepc4py, vtk, zlib
+  mpi4py:
+  mshr:
