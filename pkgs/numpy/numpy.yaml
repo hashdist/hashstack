@@ -1,7 +1,11 @@
+parameters:
+  - name: machine
+    default: ''
+
 extends: [distutils_package]
 dependencies:
-  build: [blas]
-  run: [blas]
+  build: [lapack]
+  run: [lapack]
 
 sources:
   - key: tar.gz:zzluhi5cjpyt4a3t7lvsicyi4sgrhhtd

@@ -10,6 +10,11 @@ parameters:
 - name: kind
   default: openblas
 
+# cmake/OpenBLASConfig.cmake contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [base_package]
 
 sources:

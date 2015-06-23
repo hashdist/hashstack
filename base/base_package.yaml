@@ -33,10 +33,27 @@ parameters:
     default: false
 
   - name: pyver
-    default: '2.7'
+    default: ''
+
+  - name: python_site_packages_rel
+    default: ''
+
+  - name: python_host_packages
+    default: ''
+
+  - name: use_python_host_packages
+    type: bool
+    default: false
 
   - name: DYNAMIC_EXE_LINKER_FLAGS
     default: ''
+
+  - name: compiler
+    default: 'gcc'
+
+  - name: debug
+    type: bool
+    default: false
 
 #  - name: MAKE
 #    default: 'make'

@@ -57,10 +57,16 @@ def configure(ctx, stage_args):
         conf_lines.append('-D LIBXML2_LIBRARIES:FILEPATH="%s"' % libxml2)
         conf_lines.append('-D LIBXML2_INCLUDE_DIR:PATH="${LIBXML2_DIR}/include/libxml2"')
 
-    if 'build_type' in stage_args and stage_args['build_type'] is not None:
-        conf_lines.append('-D CMAKE_BUILD_TYPE:STRING="%s"' % stage_args['build_type'])
+    # Set the debug or release cmake flags
+    if ctx.parameters.get('debug', False):
+        conf_lines.append('-DCMAKE_BUILD_TYPE:STRING=Debug')
     else:
-        conf_lines.append('-D CMAKE_BUILD_TYPE:STRING="Release"')
+        conf_lines.append('-DCMAKE_BUILD_TYPE:STRING=Release')
+
+#    if 'build_type' in stage_args and stage_args['build_type'] is not None:
+#        conf_lines.append('-D CMAKE_BUILD_TYPE:STRING="%s"' % stage_args['build_type'])
+#    else:
+#        conf_lines.append('-D CMAKE_BUILD_TYPE:STRING="Release"')
 
     if 'CGAL' in ctx.dependency_dir_vars:
         conf_lines.append('-D CGAL_DISABLE_ROUNDING_MATH_CHECK:BOOL=ON')
@@ -70,7 +76,7 @@ def configure(ctx, stage_args):
 
     if 'PYTHON' in ctx.dependency_dir_vars:
         conf_lines.append('-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"')
-        conf_lines.append('-D PYTHON_INCLUDE_DIR:PATH="${PYTHON_DIR}/include/python${PYVER}"')
+        conf_lines.append('-D PYTHON_INCLUDE_DIR:PATH="${PYTHON_DIR}/include/python%s"' % ctx.parameters['pyver'])
 
     # Some special variables are needed to find correct HDF5
     if 'HDF5' in ctx.dependency_dir_vars:
@@ -92,13 +98,28 @@ def configure(ctx, stage_args):
         conf_lines.append('-D DOLFIN_ENABLE_UMFPACK:BOOL=OFF')
         conf_lines.append('-D DOLFIN_ENABLE_CHOLMOD:BOOL=OFF')
 
-    if 'OPENBLAS' in ctx.dependency_dir_vars:
+    if ctx.parameters['lapack'].kind == 'openblas':
         if ctx.parameters['platform'] == 'Darwin':
             libopenblas = '${OPENBLAS_DIR}/lib/libopenblas.dylib'
         else:
             libopenblas = '${OPENBLAS_DIR}/lib/libopenblas.so'
         conf_lines.append('-D LAPACK_LIBRARIES:FILEPATH="%s"' % libopenblas)
         conf_lines.append('-D BLAS_LIBRARIES:FILEPATH="%s"' % libopenblas)
+    elif ctx.parameters['lapack'].kind == 'accelerate':
+        # FIXME: not tested
+        conf_lines.append('-D BLA_VENDOR:STRING=Apple')
+    elif ctx.parameters['lapack'].kind == 'reference':
+        # FIXME: not tested
+        if ctx.parameters['platform'] == 'Darwin':
+            liblapack = '${LAPACK_DIR}/lib/liblapack.dylib'
+            libblas = '${LAPACK_DIR}/lib/libblas.dylib'
+        else:
+            liblapack = '${LAPACK_DIR}/lib/liblapack.so'
+            libblas = '${LAPACK_DIR}/lib/libblas.so'
+        conf_lines.append('-D LAPACK_LIBRARIES:FILEPATH="%s"' % liblapack)
+        conf_lines.append('-D BLAS_LIBRARIES:FILEPATH="%s"' % libblas)
+    else:
+        pass # FIXME
 
     if 'ZLIB' in ctx.dependency_dir_vars:
         conf_lines.append('-D ZLIB_ROOT="${ZLIB_DIR}"')

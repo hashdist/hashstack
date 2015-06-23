@@ -62,7 +62,11 @@ def configure(ctx, stage_args):
         preConfigureCrayXE6(ctx, conf_lines)
 
     if ctx.parameters['coptflags']:
-        conf_lines.append('COPTFLAGS=%s' % ctx.parameters['coptflags'])
+        conf_lines.append('COPTFLAGS="%s"' % ctx.parameters['coptflags'])
+    if ctx.parameters['cxxoptflags']:
+        conf_lines.append('CXXOPTFLAGS="%s"' % ctx.parameters['cxxoptflags'])
+    if ctx.parameters['foptflags']:
+        conf_lines.append('FOPTFLAGS="%s"' % ctx.parameters['foptflags'])
     if ctx.parameters['link']:
         conf_lines.append('--with-shared-libraries=%d' %
                           bool(ctx.parameters['link'] == 'shared'))
@@ -85,9 +89,20 @@ def configure(ctx, stage_args):
             libopenblas = '${LAPACK_DIR}/lib/libopenblas.so'
         conf_lines.append('--with-blas-lapack-lib=%s' % libopenblas)
     elif ctx.parameters['lapack'].kind == 'accelerate':
-        pass # FIXME
+        # Libraries used for linking to Accelerate framework; `otool -L`
+        # shows that these libraries link to the same dylibs that the
+        # Accelerate framework libraries do.
+        # FIXME: not tested
+        conf_lines.append('--with-blas-lapack-lib=[/usr/lib/libblas.dylib,/usr/lib/libcblas.dylib,/usr/lib/liblapack.dylib,/usr/lib/libclapack.dylib,/usr/lib/libf77lapack.dylib]')
     elif ctx.parameters['lapack'].kind == 'reference':
-        pass # FIXME
+        # FIXME: not tested
+        if ctx.parameters['platform'] == 'Darwin':
+            liblapack = '${LAPACK_DIR}/lib/liblapack.dylib'
+            libblas = '${LAPACK_DIR}/lib/libblas.dylib'
+        else:
+            liblapack = '${LAPACK_DIR}/lib/liblapack.so'
+            libblas = '${LAPACK_DIR}/lib/libblas.so'
+        conf_lines.append('--with-blas-lapack-lib=[%s,%s]' % (libblas, liblapack))
     else:
         # Special case, no meaningful BLAS/LAPACK directories when using Accelerate
 

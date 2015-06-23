@@ -1,11 +1,13 @@
+parameters:
+# Skip build-time tests (not recommended)
+- name: without_check
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [lapack, mpi, parmetis]
-
-defaults:
-  # Skip build-time tests (not recommended)
-  without_check: false
 
 sources:
 - key: git:749f33d8104157767d443ff1a1d151642751486d

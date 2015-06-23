@@ -1,3 +1,14 @@
+parameters:
+# Skip build-time tests (not recommended)
+- name: without_check
+  type: bool
+  default: false
+
+# Build with debug flags
+- name: debug
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
@@ -6,16 +17,6 @@ dependencies:
 sources:
 - key: tar.gz:qs6kil25x247lxjlzlvwdhsgbv5tpcye
   url: http://ftp.mcs.anl.gov/pub/petsc/externalpackages/hypre-2.9.1a.tar.gz
-
-defaults:
-  # Skip build-time tests (not recommended)
-  without_check: false
-  # Build with Accelerate framework (on OS X)
-  with_accelerate: false
-  # Build with OpenBLAS
-  with_openblas: false
-  # Build with debug flags
-  debug: false
 
 build_stages:
 # lib/Makefile treats the hypre internal BLAS & LAPACK implementations
@@ -44,7 +45,6 @@ build_stages:
     export CXX=${MPICXX}
     export F77=${MPIF77}
 
-#- when: with_openblas
 - when: lapack.kind == 'openblas'
   name: configure
   mode: update

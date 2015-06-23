@@ -29,7 +29,7 @@ def configure(ctx, stage_args):
                   '-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON']
 
     #set the debug or release cmake flags
-    if stage_args['debug']:
+    if ctx.parameters.get('debug', False):
         conf_lines.append('-DCMAKE_BUILD_TYPE:STRING=Debug')
     else:
         conf_lines.append('-DCMAKE_BUILD_TYPE:STRING=Release')

@@ -1,15 +1,17 @@
+parameters:
+  # lib/CMake/mshr/mshr-config.cmake contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
 
 dependencies:
-  build: [python, boost, dolfin, gmp, mpfr, mpi, swig, vtk, {{build_with}}]
+  build: [python, boost, dolfin, gmp, mpfr, mpi, swig, +vtk]
 
 sources:
 - key: tar.gz:6nto4vmuuwnifcj6li7p7iv4mxzzdso4
   url: https://bitbucket.org/fenics-project/mshr/downloads/mshr-1.5.0.tar.gz
-
-defaults:
-  # lib/CMake/mshr/mshr-config.cmake contains hard-coded path
-  relocatable: false
 
 build_stages:
 - name: configure

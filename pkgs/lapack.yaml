@@ -24,15 +24,14 @@ sources:
 
 build_stages:
 - name: configure
-  when compiler == 'gcc':
-      extra: ['-D CMAKE_Fortran_FLAGS_RELEASE:STRING="-O3 -fPIC -march=native -ffast-math -funroll-loops"',
-              '-D BUILD_TESTING:BOOL=OFF',
-              '-D BUILD_SHARED_LIBS:BOOL=ON',
-              ]
-  when compiler != 'gcc':
-      extra: ['-D BUILD_TESTING:BOOL=OFF',
-              '-D BUILD_SHARED_LIBS:BOOL=ON',
-              ]
+  extra:
+    when compiler == 'gcc': ['-D CMAKE_Fortran_FLAGS_RELEASE:STRING="-O3 -fPIC -march=native -ffast-math -funroll-loops"',
+                             '-D BUILD_TESTING:BOOL=OFF',
+                             '-D BUILD_SHARED_LIBS:BOOL=ON',
+                            ]
+    when compiler != 'gcc': ['-D BUILD_TESTING:BOOL=OFF',
+                             '-D BUILD_SHARED_LIBS:BOOL=ON',
+                            ]
   build_in_source: true
 
 - name: setup_builddir

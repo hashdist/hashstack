@@ -6,8 +6,7 @@ parameters:
 extends: [base_package]
 
 dependencies:
-  # Remove patchelf when platform != 'linux'
-  build: [bzip2, mpi, zlib, patchelf, +python]
+  build: [bzip2, mpi, zlib, +python]
 
 sources:
 - url: http://downloads.sourceforge.net/boost/boost_1_55_0.tar.bz2

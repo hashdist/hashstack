@@ -14,7 +14,6 @@ build_stages:
 
   - name: configure
     after: setup_builddir
-    debug: {{debug}}
 
   - name: make
     after: configure

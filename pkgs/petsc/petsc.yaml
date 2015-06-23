@@ -7,17 +7,23 @@ parameters:
 - name: coptflags
   default: '-O2'
 
+- name: cxxoptflags
+  default: '-O2'
+
+- name: foptflags
+  default: '-O2'
+
 - name: link
   default: 'shared'
-
-- name: debug
-  type: bool
-  default: false
 
 - name: download
   default: ''
 
+- name: machine
+  default: ''
+
 extends: [autotools_package]
+
 dependencies:
   build: [lapack, mpi, python, +parmetis, +scotch, +suitesparse, +superlu_dist, +hypre, +mumps, +scalapack, +blacs, +ml]
 
