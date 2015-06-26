@@ -1,15 +1,29 @@
+parameters:
+- name: version
+  type: version
+  default: 4.3.3.1
+
+- name: increase_max_dims
+  type: bool
+  default: false
+
+# lib/libnetcdf.settings contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
+- name: DYNAMIC_EXE_LINKER_FLAGS
+  default: ''
+
 extends: [autotools_package]
+
 dependencies:
   build: [mpi, hdf5, curl]
 
 sources:
-- key: tar.gz:xxpd3cyojdxnffeovvs7qlc47n2zamj3
-  url: ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-4.3.3.1.tar.gz
-
-defaults:
-  increase_max_dims: false
-  # lib/libnetcdf.settings contains hard-coded path
-  relocatable: false
+- url: ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-{{version}}.tar.gz
+  key:
+    when version == 4.3.3.1: tar.gz:xxpd3cyojdxnffeovvs7qlc47n2zamj3
 
 build_stages:
 

@@ -1,11 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 1.4.2
+
 extends: [namespace_package, libflags]
 dependencies:
   build: [bzip2, freetype, numpy, png, pkg-config, zlib]
   run: [freetype, numpy, png, python-dateutil, pyparsing, six]
 
 sources:
-- key: tar.gz:c6r4ofkpcuwy37wr6n2rpqfiyxnwvxsp
-  url: https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-1.4.2/matplotlib-1.4.2.tar.gz
+- url: https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-{{version}}/matplotlib-{{version}}.tar.gz
+  key:
+    when version == 1.4.2: tar.gz:c6r4ofkpcuwy37wr6n2rpqfiyxnwvxsp
 
 build_stages:
 

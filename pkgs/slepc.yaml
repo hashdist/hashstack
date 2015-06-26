@@ -1,14 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 3.5.2
+
+# include/slepcconf.h contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
+
 dependencies:
   build: [petsc, python]
 
 sources:
-- key: tar.gz:un55l3qom6iunhqqlbhrtqcauo5u7fac
-  url: http://www.grycap.upv.es/slepc/download/download.php?filename=slepc-3.5.2.tar.gz
-
-defaults:
-  # include/slepcconf.h contains hard-coded path
-  relocatable: false
+- url: http://www.grycap.upv.es/slepc/download/download.php?filename=slepc-{{version}}.tar.gz
+  key:
+    when version == 3.5.2: tar.gz:un55l3qom6iunhqqlbhrtqcauo5u7fac
 
 build_stages:
 - name: pre-configure

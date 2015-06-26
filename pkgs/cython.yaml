@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 0.19.2
+
 extends: [distutils_package]
 
 sources:
-  - url: http://cython.org/release/Cython-0.19.2.tar.gz
-    key: tar.gz:yw2vwc6ubyr2ts6nfqn557uxoh6fqnut
+  - url: http://cython.org/release/Cython-{{version}}.tar.gz
+    key:
+      when version == 0.19.2: tar.gz:yw2vwc6ubyr2ts6nfqn557uxoh6fqnut
 
 when_build_dependency:
   - prepend_path: PATH

@@ -1,11 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 4.0.2
+
 extends: [autotools_package]
+
 dependencies:
   build: [lapack]
-#  run: [lapack]
+  run: [lapack]
 
 sources:
-  - url: http://www.cise.ufl.edu/research/sparse/SuiteSparse/SuiteSparse-4.0.2.tar.gz
-    key: tar.gz:so2zfcmh7yaqqcft7x7t47w66qx3fwgp
+  - url: http://www.cise.ufl.edu/research/sparse/SuiteSparse/SuiteSparse-{{version}}.tar.gz
+    key:
+      when version == 4.0.2: tar.gz:so2zfcmh7yaqqcft7x7t47w66qx3fwgp
 
 build_stages:
   - name: configure

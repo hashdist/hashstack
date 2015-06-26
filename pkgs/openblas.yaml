@@ -1,4 +1,8 @@
 parameters:
+- name: version
+  type: version
+  default: 0.2.13
+
 - name: extra_flags
   default: ''
 
@@ -18,31 +22,17 @@ parameters:
 extends: [base_package]
 
 sources:
-- key: tar.gz:l4pzq2qzackjawfvpddbyk3fwtpdetyz
-  url: https://github.com/xianyi/OpenBLAS/archive/v0.2.13.tar.gz
+- url: https://github.com/xianyi/OpenBLAS/archive/v{{version}}.tar.gz
+  key:
+    when version == 0.2.13: tar.gz:l4pzq2qzackjawfvpddbyk3fwtpdetyz
+    when version == 0.2.14: tar.gz:eqi4j5lpi55ufx7vjwzlp76aw7hvho4x
 
 build_stages:
-- when: use_thread
-  name: use_thread
-  after: prologue
-  before: make_and_install
-  handler: bash
-  bash: |
-    export USE_THREAD=1
-
-- when: not use_thread
-  name: use_thread
-  after: prologue
-  before: make_and_install
-  handler: bash
-  bash: |
-    export USE_THREAD=0
-
 - name: make_and_install
   after: prologue
   handler: bash
   bash: |
-    make USE_THREAD=${USE_THREAD} {{extra_flags}} -j${HASDIST_CPU_COUNT}
+    make USE_THREAD={{int(use_thread)}} {{extra_flags}} -j${HASDIST_CPU_COUNT}
     make {{extra_flags}} PREFIX=${ARTIFACT} install
 
 when_build_dependency:

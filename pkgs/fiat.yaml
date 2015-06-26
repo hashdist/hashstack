@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 1.5.0
+
 extends: [distutils_package]
+
 dependencies:
-  build: []
   run: [numpy, sympy]
 
 sources:
-- key: tar.gz:fmct7kpxaom7reb3tb7zrjh2fmdn7fkz
-  url: https://bitbucket.org/fenics-project/fiat/downloads/fiat-1.5.0.tar.gz
+- url: https://bitbucket.org/fenics-project/fiat/downloads/fiat-{{version}}.tar.gz
+  key:
+    when version == 1.5.0: tar.gz:fmct7kpxaom7reb3tb7zrjh2fmdn7fkz

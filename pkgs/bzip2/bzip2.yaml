@@ -1,12 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 1.0.6
+
 extends: [base_package]
 
-#when platform == 'linux':
-dependencies:
-  build: [patchelf]
-
 sources:
-- url: http://bzip.org/1.0.6/bzip2-1.0.6.tar.gz
-  key: tar.gz:ukci6nh42xlm6r666acgd7fvfcqeqtmo
+- url: http://bzip.org/{{version}}/bzip2-{{version}}.tar.gz
+  key:
+    when version == 1.0.6: tar.gz:ukci6nh42xlm6r666acgd7fvfcqeqtmo
 
 build_stages:
 

@@ -1,3 +1,8 @@
+parameters:
+- name: version
+  type: version
+  default: 7.37.0
+
 extends: [autotools_package]
 
 # optionally build with ca-bundle package as a parameter if you want to
@@ -11,14 +16,12 @@ extends: [autotools_package]
 # option. Please refer to the curl man page and also http://curl.haxx.se/docs/ssl-compared.html
 # and http://curl.haxx.se/docs/sslcerts.html
 dependencies:
-    build: [openssl, libidn, zlib, +ca-bundle]
-
-defaults:
-  use_ca_bundle: false
+  build: [openssl, libidn, zlib, +ca-bundle]
 
 sources:
-  - url: http://curl.haxx.se/download/curl-7.37.0.tar.gz
-    key: tar.gz:dl6tespqw6zufuqodtfmxpasggdziyrs
+- url: http://curl.haxx.se/download/curl-{{version}}.tar.gz
+  key:
+    when version == 7.37.0: tar.gz:dl6tespqw6zufuqodtfmxpasggdziyrs
 
 build_stages:
 - when: ca_dash_bundle

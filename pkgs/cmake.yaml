@@ -1,11 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 3.2.2
+
 extends: [autotools_package]
 
 dependencies:
   build: [zlib, bzip2, curl, openssl, libidn, expat]
 
 sources:
-- key: tar.gz:vxuu43rwaodxivs7flwyqzsbkrbuit5x
-  url: http://www.cmake.org/files/v3.2/cmake-3.2.2.tar.gz
+- url: http://www.cmake.org/files/v{{'.'.join(str(version).split('.')[:-1])}}/cmake-{{version}}.tar.gz
+  key:
+    when version == 3.2.2: tar.gz:vxuu43rwaodxivs7flwyqzsbkrbuit5x
 
 build_stages:
 - when: platform == 'Darwin'

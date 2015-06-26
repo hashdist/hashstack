@@ -1,11 +1,13 @@
+parameters:
+- name: version
+  type: version
+  default: 1.6.1
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/s/six/six-1.6.1.tar.gz
-   key: tar.gz:2q4su7ensgyalqack2fil6xwc7dheqoi
+ - url: https://pypi.python.org/packages/source/s/six/six-{{version}}.tar.gz
+   key:
+     when version == 1.6.1: tar.gz:2q4su7ensgyalqack2fil6xwc7dheqoi
 
 licenses: [mit]

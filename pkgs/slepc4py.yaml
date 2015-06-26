@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 3.5.1
+
 extends: [distutils_package]
+
 dependencies:
   build: [cython, mpi, numpy, petsc, petsc4py, slepc]
   run: [mpi, numpy, petsc, petsc4py, slepc]
 
 sources:
-- key: tar.gz:qrh2verdcq3iikmm5tlwcpunzqmwszmx
-  url: https://bitbucket.org/slepc/slepc4py/downloads/slepc4py-3.5.1.tar.gz
+- url: https://bitbucket.org/slepc/slepc4py/downloads/slepc4py-{{version}}.tar.gz
+  key:
+    when version == 3.5.1: tar.gz:qrh2verdcq3iikmm5tlwcpunzqmwszmx

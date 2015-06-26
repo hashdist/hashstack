@@ -1,17 +1,30 @@
+parameters:
+- name: version
+  type: version
+  default: 4.0.3
+
+# lib/libmetis.so contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
+# Skip build-time tests (not recommended)
+- name: without_check
+  type: bool
+  default: false
+
+- name: DYNAMIC_EXE_LINKER_FLAGS
+  default: ''
+
 extends: [base_package]
 
 dependencies:
   build: [cmake, mpi]
 
 sources:
-- url: http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/parmetis-4.0.3.tar.gz
-  key: tar.gz:6lm2emnxz6l7d7xg5dewmmit5p3meqgu
-
-defaults:
-  # lib/libmetis.so contains hard-coded path
-  relocatable: false
-  # Skip build-time tests (not recommended)
-  without_check: false
+- url: http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/parmetis-{{version}}.tar.gz
+  key:
+    when version == 4.0.3: tar.gz:6lm2emnxz6l7d7xg5dewmmit5p3meqgu
 
 build_stages:
 - name: setup_builddir

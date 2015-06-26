@@ -1,4 +1,8 @@
 parameters:
+- name: version
+  type: version
+  default: 3.0.5
+
 - name: relocatable
   type: bool
   default: false
@@ -9,20 +13,15 @@ dependencies:
   build: [pcre, python, +perl]
 
 sources:
-- key: tar.gz:t5glt2hscpyedbjwi32y7zpiikgwgjin
-  url: http://downloads.sourceforge.net/swig/swig-3.0.5.tar.gz
+- url: http://downloads.sourceforge.net/swig/swig-{{version}}.tar.gz
+  key:
+    when version == 3.0.5: tar.gz:t5glt2hscpyedbjwi32y7zpiikgwgjin
 
 build_stages:
-- name: set-SWIG_VERSION
-  before: configure
-  handler: bash
-  bash: |
-    export SWIG_VERSION=$(grep PACKAGE_VERSION= configure | sed -E "s/.*='([0-9]+\.[0-9]+).*/\1/")
-
 - name: configure
   extra: ['--with-pcre-prefix=${PCRE_DIR}',
           '--without-octave',
-          '--with-swiglibdir=${ARTIFACT}/share/swig${SWIG_VERSION}']
+          '--with-swiglibdir=${ARTIFACT}/share/swig{{version}}']
 
 when_build_dependency:
 - set: SWIG_EXECUTABLE

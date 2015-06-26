@@ -1,4 +1,8 @@
 parameters:
+- name: version
+  type: version
+  default: 2.9.1a0
+
 # Skip build-time tests (not recommended)
 - name: without_check
   type: bool
@@ -15,8 +19,9 @@ dependencies:
   build: [gnu-sed, mpi, patchelf, lapack]
 
 sources:
-- key: tar.gz:qs6kil25x247lxjlzlvwdhsgbv5tpcye
-  url: http://ftp.mcs.anl.gov/pub/petsc/externalpackages/hypre-2.9.1a.tar.gz
+  when version == 2.9.1a0:
+  - url: http://ftp.mcs.anl.gov/pub/petsc/externalpackages/hypre-2.9.1a.tar.gz
+    key: tar.gz:qs6kil25x247lxjlzlvwdhsgbv5tpcye
 
 build_stages:
 # lib/Makefile treats the hypre internal BLAS & LAPACK implementations

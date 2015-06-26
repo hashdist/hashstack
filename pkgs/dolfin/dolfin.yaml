@@ -4,22 +4,266 @@ parameters:
   type: bool
   default: false
 
+- name: version
+  type: version
+  default: 1.5.0
+
 extends: [cmake_package]
 
 dependencies:
-  build: [lapack, boost, bzip2, eigen, ffc, fiat, instant, libxml2, mpi, numpy, pkg-config, ply, python, six, swig, sympy, ufl, +zlib, +hdf5, +parmetis, +petsc, +petsc4py, +suitesparse, +scotch, +slepc, +slepc4py, +vtk]
+  build:
+    - boost
+    - bzip2
+    - eigen
+    - ffc
+    - fiat
+    - +hdf5
+    - instant
+    - lapack
+    - libxml2
+    - mpi
+    - numpy
+    - +parmetis
+    - +pastix
+    - +petsc
+    - +petsc4py
+    - pkg-config
+    - ply
+    - python
+    - +qt
+    - +scotch
+    - +slepc
+    - +slepc4py
+    - six
+    - +sphinx
+    - +suitesparse
+    - swig
+    - sympy
+    - +trilinos
+    - ufl
+    - +vtk
+    - +zlib
 
 sources:
-- key: tar.gz:2omag5d7u5jyxnjmz7bepbcn7wqkxcs5
-  url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-1.5.0.tar.gz
+- url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-{{version}}.tar.gz
+  key:
+    when version == 1.5.0: tar.gz:2omag5d7u5jyxnjmz7bepbcn7wqkxcs5
 
-build_stages: 
-- name: configure ## See dolfin.py for details
-  mode: replace
-  after: setup_builddir
-#  build_type: {{build_type}}
+constraints:
+- python and swig
+- python and numpy
 
-- when: platform == 'linux' 
+build_stages:
+- name: configure
+  extra: ['-D DOLFIN_ENABLE_DOCS:BOOL=OFF',
+          '-D EIGEN3_INCLUDE_DIR:PATH="${EIGEN_DIR}/include/eigen3"',
+          '-D BOOST_ROOT:PATH="${BOOST_DIR}"',
+          '-D Boost_USE_MULTITHREADED:BOOL=${BOOST_USE_MULTITHREADED}',
+          '-D DOLFIN_ENABLE_UNIT_TESTS:BOOL=OFF']
+
+- when: platform == 'Cygwin'
+  name: configure
+  mode: update
+  extra: ['-D LIBXML2_LIBRARIES:FILEPATH="${LIBXML2_DIR}/lib/libxml2.dll.a"',
+          '-D LIBXML2_INCLUDE_DIR:PATH="${LIBXML2_DIR}/include/libxml2"']
+
+- when: swig
+  name: configure
+  mode: update
+  extra: ['-D SWIG_EXECUTABLE:FILEPATH="${SWIG_EXECUTABLE}"']
+
+- when: python
+  name: configure
+  mode: update
+  extra: ['-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"',
+          '-D PYTHON_INCLUDE_DIR:PATH="${PYTHON_DIR}/include/python{{pyver}}"']
+
+- when: not python
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_PYTHON:BOOL=OFF']
+
+- when: hdf5
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_HDF5:BOOL=ON',
+          '-D HDF5_INCLUDE_DIRS="${HDF5_DIR}/include"',
+          '-D HDF5_ROOT:PATH="${HDF5_DIR}"',
+          '-D HDF5_C_COMPILER_EXECUTABLE="${HDF5_DIR}/bin/h5pcc"']
+
+- when: not hdf5
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_HDF5:BOOL=OFF']
+
+# SuiteSparse provides UMFPACK and CHOLMOD
+- when: suitesparse
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_UMFPACK:BOOL=ON',
+          '-D DOLFIN_ENABLE_CHOLMOD:BOOL=ON',
+          '-D UMFPACK_DIR:PATH="${SUITESPARSE_DIR}"',
+          '-D CHOLMOD_DIR:PATH="${SUITESPARSE_DIR}"',
+          '-D AMD_DIR:PATH="${SUITESPARSE_DIR}"',
+          '-D CAMD_DIR:PATH="${SUITESPARSE_DIR}"',
+          '-D COLAMD_DIR:PATH="${SUITESPARSE_DIR}"',
+          '-D CCOLAMD_DIR:PATH="${SUITESPARSE_DIR}"']
+
+- when: not suitesparse
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_UMFPACK:BOOL=OFF',
+          '-D DOLFIN_ENABLE_CHOLMOD:BOOL=OFF']
+
+- when: lapack.kind == 'reference'
+  name: configure
+  mode: update
+  extra:
+    when platform == 'Darwin':
+      ['-D LAPACK_LIBRARIES:FILEPATH="${LAPACK_DIR}/lib/liblapack.dylib"',
+       '-D BLAS_LIBRARIES:FILEPATH="${LAPACK_DIR}/lib/libblas.dylib"']
+    when platform == 'linux':
+      ['-D LAPACK_LIBRARIES:FILEPATH="${LAPACK_DIR}/lib/liblapack.so"',
+       '-D BLAS_LIBRARIES:FILEPATH="${LAPACK_DIR}/lib/libblas.so"']
+
+- when: lapack.kind == 'openblas'
+  name: configure
+  mode: update
+  extra:
+    when platform == 'Darwin':
+      ['-D LAPACK_LIBRARIES:FILEPATH="${OPENBLAS_DIR}/lib/libopenblas.dylib"',
+       '-D BLAS_LIBRARIES:FILEPATH="${OPENBLAS_DIR}/lib/libopenblas.dylib"']
+    when platform == 'linux':
+      ['-D LAPACK_LIBRARIES:FILEPATH="${OPENBLAS_DIR}/lib/libopenblas.so"',
+       '-D BLAS_LIBRARIES:FILEPATH="${OPENBLAS_DIR}/lib/libopenblas.so"']
+
+- when: lapack.kind == 'accelerate'
+  name: configure
+  mode: update
+  extra: ['-D BLA_VENDOR:STRING=Apple']
+
+- when: petsc
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_PETSC:BOOL=ON']
+
+- when: not petsc
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_PETSC:BOOL=OFF']
+
+- when: petsc4py
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_PETSC4PY:BOOL=ON']
+
+- when: not petsc4py
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_PETSC4PY:BOOL=OFF']
+
+- when: slepc
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_SLEPC:BOOL=ON']
+
+- when: not slepc
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_SLEPC:BOOL=OFF']
+
+- when: slepc4py
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_SLEPC4PY:BOOL=ON']
+
+- when: not slepc4py
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_SLEPC4PY:BOOL=OFF']
+
+- when: scotch
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_SCOTCH:BOOL=ON']
+
+- when: not scotch
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_SOCTCH:BOOL=OFF']
+
+- when: parmetis
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_PARMETIS:BOOL=ON']
+
+- when: not parmetis
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_PARMETIS:BOOL=OFF']
+
+- when: sphinx
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_SPHINX:BOOL=ON']
+
+- when: not sphinx
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_SPHINX:BOOL=OFF']
+
+- when: qt
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_QT:BOOL=ON']
+
+- when: not qt
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_QT:BOOL=OFF']
+
+- when: pastix
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_PASTIX:BOOL=ON']
+
+- when: not pastix
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_PASTIX:BOOL=OFF']
+
+- when: trilinos
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_TRILINOS:BOOL=ON']
+
+- when: not trilinos
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_TRILINOS:BOOL=OFF']
+
+- when: zlib
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_ZLIB:BOOL=ON',
+          '-D ZLIB_ROOT="${ZLIB_DIR}"']
+
+- when: not zlib
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_ZLIB:BOOL=OFF']
+
+- when: vtk
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_VTK:BOOL=ON']
+
+- when: not vtk
+  name: configure
+  mode: update
+  extra: ['-D DOLFIN_ENABLE_VTK:BOOL=OFF']
+
+- when: platform == 'linux'
   name: fix-rpath
   after: install
   handler: bash
@@ -38,8 +282,8 @@ build_stages:
 
 - when: platform == 'Cygwin'
   name: dll_fix
-  handler: bash
   after: install
+  handler: bash
   bash: |
     install dolfin/cyg*.dll ${ARTIFACT}/bin
     install dolfin/swig/modules/**/*.dll ${ARTIFACT}/lib/python{{pyver}}/site-packages/dolfin/cpp

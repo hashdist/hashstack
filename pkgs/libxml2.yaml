@@ -1,10 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 2.9.1
+
+# /lib/xml2Conf.sh contains absolute path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
+
 dependencies:
   build: [zlib]
-
-defaults:
-  # /lib/xml2Conf.sh contains absolute path
-  relocatable: false
 
 build_stages:
   - name: configure
@@ -12,8 +19,9 @@ build_stages:
     extra: ['--without-python']
 
 sources:
-  - url: http://xmlsoft.org/sources/libxml2-2.9.1.tar.gz
-    key: tar.gz:7u6gjs3g6lcouj7jgtjhlecnslhmjffi
+  - url: http://xmlsoft.org/sources/libxml2-{{version}}.tar.gz
+    key:
+      when version == 2.9.1: tar.gz:7u6gjs3g6lcouj7jgtjhlecnslhmjffi
 
 when_build_dependency:
   - prepend_path: PKG_CONFIG_PATH

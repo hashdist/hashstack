@@ -1,9 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 1.2.8
+
 extends: [autotools_package]
 
 sources:
-- key: tar.gz:gzsyzn3iuvgb2tpmipbrc3bh5wet5cfq
-  url: http://downloads.sourceforge.net/project/libpng/zlib/1.2.8/zlib-1.2.8.tar.gz
-
+- url: http://downloads.sourceforge.net/project/libpng/zlib/{{version}}/zlib-{{version}}.tar.gz
+  key:
+    when version == 1.2.8: tar.gz:gzsyzn3iuvgb2tpmipbrc3bh5wet5cfq
 
 build_stages:
 

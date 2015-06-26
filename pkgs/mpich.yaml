@@ -1,4 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 3.0.3
+
+# bin/mpicc contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
+
 dependencies:
   build: [libxml2, pkg-config]
 
@@ -13,12 +24,9 @@ build_stages:
     extra: ['--disable-f77', '--disable-fc']
 
 sources:
-  - url: http://www.mpich.org/static/tarballs/3.0.3/mpich-3.0.3.tar.gz
-    key: tar.gz:jj5yo7oe3e45wwngkuqqn35bud5kdfkr
-
-defaults:
-  # bin/mpicc contains hard-coded path
-  relocatable: false
+  - url: http://www.mpich.org/static/tarballs/{{version}}/mpich-{{version}}.tar.gz
+    key:
+      when version == 3.0.3: tar.gz:jj5yo7oe3e45wwngkuqqn35bud5kdfkr
 
 when_build_dependency:
   - {set: 'MPICC', value: "${ARTIFACT}/bin/mpicc"}

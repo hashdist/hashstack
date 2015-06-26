@@ -1,3 +1,8 @@
+parameters:
+- name: version
+  type: version
+  default: 2.3.1
+
 extends: [distutils_package]
 
 dependencies:
@@ -5,8 +10,9 @@ dependencies:
   run: [numpy]
 
 sources:
-- key: tar.gz:ir7flvmjhsriluiylkjyksfbf47x2sxu
-  url: https://pypi.python.org/packages/source/h/h5py/h5py-2.3.1.tar.gz
+- url: https://pypi.python.org/packages/source/h/h5py/h5py-{{version}}.tar.gz
+  key:
+    when version 2.3.1: tar.gz:ir7flvmjhsriluiylkjyksfbf47x2sxu
 
 build_stages:
 - name: install

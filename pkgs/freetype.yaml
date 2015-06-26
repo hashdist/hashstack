@@ -1,11 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 2.4.11
+
 extends: [autotools_package]
+
 dependencies:
   build: [zlib, bzip2]
   run: [zlib, bzip2]
 
 sources:
-- url: http://download.savannah.gnu.org/releases/freetype/freetype-2.4.11.tar.gz
-  key: tar.gz:fgtq4vmghzfws73nt465yqc2rc4duml6
+- url: http://download.savannah.gnu.org/releases/freetype/freetype-{{version}}.tar.gz
+  key:
+    when version == 2.4.11: tar.gz:fgtq4vmghzfws73nt465yqc2rc4duml6
 
 build_stages:
 

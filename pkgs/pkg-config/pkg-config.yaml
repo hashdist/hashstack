@@ -1,16 +1,23 @@
+parameters:
+- name: version
+  type: version
+  default: 0.9.6
+
+# has a compiled-in default search path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   # for the pkg-config wrapper
-#  run: [python]
-
-defaults:
-  # has a compiled-in default search path
-  relocatable: false
+  run: [python]
 
 sources:
-- key: tar.bz2:yqfhovb74xdslg4bh5yn3lzctqtwbisq
-  url: http://rabbit.dereferenced.org/~nenolod/distfiles/pkgconf-0.9.6.tar.bz2
+- url: http://rabbit.dereferenced.org/~nenolod/distfiles/pkgconf-{{version}}.tar.bz2
+  key:
+    when version == 0.9.6: tar.bz2:yqfhovb74xdslg4bh5yn3lzctqtwbisq
 
 #build_stages:
 # - name: install_wrapper

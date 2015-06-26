@@ -1,9 +1,16 @@
+parameters:
+- name: version
+  type: version
+  default: 3.2.1
+
+# share/pkgconfig/eigen3.pc contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
 
-defaults:
-  # share/pkgconfig/eigen3.pc contains hard-coded path
-  relocatable: false
-
 sources:
-- key: tar.bz2:m3tpf3phruhpmufoswvfod2urqevnefq
-  url: http://bitbucket.org/eigen/eigen/get/3.2.1.tar.bz2
+- url: http://bitbucket.org/eigen/eigen/get/{{version}}.tar.bz2
+  key:
+    when version == 3.2.1: tar.bz2:m3tpf3phruhpmufoswvfod2urqevnefq

@@ -1,4 +1,8 @@
 parameters:
+- name: version
+  type: version
+  default: 3.5.2
+
 # include/petscconfiginfo.h contains absolute path
 - name: relocatable
   type: bool
@@ -22,14 +26,18 @@ parameters:
 - name: machine
   default: ''
 
+- name: DYNAMIC_EXE_LINKER_FLAGS
+  default: ''
+
 extends: [autotools_package]
 
 dependencies:
   build: [lapack, mpi, python, +parmetis, +scotch, +suitesparse, +superlu_dist, +hypre, +mumps, +scalapack, +blacs, +ml]
 
 sources:
-- key: tar.gz:ygj3gebgevuuwg5evyrgenkhf3ry5b2d
-  url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.5.2.tar.gz
+- url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-{{version}}.tar.gz
+  key:
+    when version == 3.5.2: tar.gz:ygj3gebgevuuwg5evyrgenkhf3ry5b2d
 
 build_stages: 
 

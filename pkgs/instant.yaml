@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 1.5.0
+
 extends: [distutils_package]
+
 dependencies:
-  build: []
   run: [cmake, numpy, swig]
 
 sources:
-- key: tar.gz:g3qefxrg3f7v4pkd6l2skrgzdoqpctq4
-  url: https://bitbucket.org/fenics-project/instant/downloads/instant-1.5.0.tar.gz
+- url: https://bitbucket.org/fenics-project/instant/downloads/instant-{{version}}.tar.gz
+  key:
+    when version == 1.5.0: tar.gz:g3qefxrg3f7v4pkd6l2skrgzdoqpctq4

@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 1.5.0
+
 extends: [distutils_package]
+
 dependencies:
-  build: []
   run: [ffc, numpy, six, ufl]
 
 sources:
-- key: tar.gz:7asppyqwc774lcorerypjhybucqslgmy
-  url: https://bitbucket.org/fenics-project/uflacs/downloads/uflacs-1.5.0.tar.gz
+- url: https://bitbucket.org/fenics-project/uflacs/downloads/uflacs-{{version}}.tar.gz
+  key:
+    when version == 1.5.0: tar.gz:7asppyqwc774lcorerypjhybucqslgmy

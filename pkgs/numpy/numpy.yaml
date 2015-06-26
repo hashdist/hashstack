@@ -1,4 +1,8 @@
 parameters:
+  - name: version
+    type: version
+    default: 1.8.2
+
   - name: machine
     default: ''
 
@@ -8,8 +12,9 @@ dependencies:
   run: [lapack]
 
 sources:
-  - key: tar.gz:zzluhi5cjpyt4a3t7lvsicyi4sgrhhtd
-    url: http://downloads.sourceforge.net/numpy/numpy-1.8.2.tar.gz
+  - url: http://downloads.sourceforge.net/numpy/numpy-{{version}}.tar.gz
+    key:
+      when version == 1.8.2: tar.gz:zzluhi5cjpyt4a3t7lvsicyi4sgrhhtd
 
 build_stages:
 

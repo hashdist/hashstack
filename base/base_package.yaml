@@ -45,9 +45,6 @@ parameters:
     type: bool
     default: false
 
-  - name: DYNAMIC_EXE_LINKER_FLAGS
-    default: ''
-
   - name: compiler
     default: 'gcc'
 

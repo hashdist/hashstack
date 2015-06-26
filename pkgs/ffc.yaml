@@ -1,15 +1,23 @@
+parameters:
+- name: version
+  type: version
+  default: 1.5.0
+
+# share/ufc/UFCConfig.cmake contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [distutils_package]
+
 dependencies:
   build: [numpy, swig]
   run: [fiat, instant, numpy, six, ufl]
 
 sources:
-- key: tar.gz:ovn6mbmx2zxrhqpbcnzz4643mihoijy6
-  url: https://bitbucket.org/fenics-project/ffc/downloads/ffc-1.5.0.tar.gz
-
-defaults:
-  # share/ufc/UFCConfig.cmake contains hard-coded path
-  relocatable: false
+- url: https://bitbucket.org/fenics-project/ffc/downloads/ffc-{{version}}.tar.gz
+  key:
+    when version == 1.5.0: tar.gz:ovn6mbmx2zxrhqpbcnzz4643mihoijy6
 
 when_build_dependency:
 - prepend_path: PATH

@@ -1,4 +1,8 @@
 parameters:
+- name: version
+  type: version
+  default: 3.4.2
+
 - name: kind
   default: 'reference'
 
@@ -19,8 +23,9 @@ parameters:
 extends: [cmake_package]
 
 sources:
-- url: http://www.netlib.org/lapack/lapack-3.4.2.tgz
-  key: tar.gz:mctf3kxrn3brka2gowkcmgfcemcsd2t2
+- url: http://www.netlib.org/lapack/lapack-{{version}}.tgz
+  key:
+    when version == 3.4.2: tar.gz:mctf3kxrn3brka2gowkcmgfcemcsd2t2
 
 build_stages:
 - name: configure

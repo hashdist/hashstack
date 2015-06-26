@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 1.5.0
+
 extends: [distutils_package]
+
 dependencies:
-  build: []
   run: [numpy, six]
 
 sources:
-- key: tar.gz:fb42lmetoubgo35fk5s3zobdp73y5c3q
-  url: https://bitbucket.org/fenics-project/ufl/downloads/ufl-1.5.0.tar.gz
+- url: https://bitbucket.org/fenics-project/ufl/downloads/ufl-{{version}}.tar.gz
+  key:
+    when version == 1.5.0: tar.gz:fb42lmetoubgo35fk5s3zobdp73y5c3q
