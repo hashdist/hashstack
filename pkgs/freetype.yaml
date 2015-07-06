@@ -4,8 +4,8 @@ dependencies:
   run: [zlib, bzip2]
 
 sources:
-- url: http://download.savannah.gnu.org/releases/freetype/freetype-2.4.11.tar.gz
-  key: tar.gz:fgtq4vmghzfws73nt465yqc2rc4duml6
+- key: tar.bz2:qru7xajeozhykau4zashympbgkrmlziq
+  url: http://downloads.sourceforge.net/project/freetype/freetype2/2.6/freetype-2.6.tar.bz2
 
 build_stages:
 
