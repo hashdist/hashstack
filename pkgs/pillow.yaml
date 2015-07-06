@@ -3,8 +3,8 @@ dependencies:
   build: [zlib, png, freetype, openjpeg]
 
 sources:
-- key: tar.gz:q5qmcgfaefplufr7o6bbcdt67tn3cx4k
-  url: https://pypi.python.org/packages/source/P/Pillow/Pillow-2.8.1.tar.gz
+- key: tar.gz:b4lz27tv47edwy2bxfmvziptstphbaki
+  url: https://pypi.python.org/packages/source/P/Pillow/Pillow-2.9.0.tar.gz
 
 build_stages:
 - name: build_ext_options
