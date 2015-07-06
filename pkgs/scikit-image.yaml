@@ -1,7 +1,7 @@
 extends: [setuptools_package]
 dependencies:
   build: [numpy, scipy, cython, six]
-  run: [numpy, scipy, six]
+  run: [numpy, scipy, six, pillow]
 
 sources:
 - key: tar.gz:o2hfndzstglgykklp24m2ekpyzeppp5o
