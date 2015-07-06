@@ -1,4 +1,4 @@
-extends: [setuptools_package]
+extends: [setuptools_package, libflags]
 dependencies:
   build: [zlib, png, freetype, openjpeg]
 
@@ -12,4 +12,5 @@ build_stages:
   before: install
   handler: bash
   bash: |
+       export MAX_CONCURRENCY=1
        export SETUPTOOLS_PACKAGE_EXTRA_OPTIONS="build_ext --enable-zlib --enable-freetype --enable-jpeg2000 --include-dirs=${ZLIB_DIR}/include:${PNG_DIR}/include:${FREETYPE_DIR}/include:${OPENJPEG_DIR}/include --library-dirs=${ZLIB_DIR}/lib:${PNG_DIR}/lib:${FREETYPE_DIR}/lib:${OPENJPEG_DIR}/lib"
