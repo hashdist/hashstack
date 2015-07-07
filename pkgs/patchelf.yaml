@@ -1,7 +1,11 @@
 parameters:
-  # It'd cause some complexity to wire up patchelf to patch patchelf, and besides
-  # we know it doesn't link to any shared libs in Hashdist, so just disable
-  # relative_rpath and the PATCHELF env-var will never be used.
+- name: version
+  type: version
+  default: 0.8
+
+# It'd cause some complexity to wire up patchelf to patch patchelf, and besides
+# we know it doesn't link to any shared libs in Hashdist, so just disable
+# relative_rpath and the PATCHELF env-var will never be used.
 - name: relative_rpath
   type: bool
   default: false
@@ -9,8 +13,9 @@ parameters:
 extends: [autotools_package]
 
 sources:
-- url: http://releases.nixos.org/patchelf/patchelf-0.8/patchelf-0.8.tar.bz2
-  key: tar.bz2:zgpyjujegrzubq3ha4ej5shxauykxvlo
+- url: http://releases.nixos.org/patchelf/patchelf-{{version}}/patchelf-{{version}}.tar.bz2
+  key:
+    when version == 0.8: tar.bz2:zgpyjujegrzubq3ha4ej5shxauykxvlo
 
 when_build_dependency:
 - set: PATCHELF

@@ -16,7 +16,7 @@ parameters:
 extends: [autotools_package]
 
 dependencies:
-  build: [gnu-sed, mpi, patchelf, lapack]
+  build: [gnu-sed, mpi, lapack]
 
 sources:
   when version == 2.9.1a0:

@@ -1,10 +1,12 @@
+parameters:
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
 
 dependencies:
   build: [boost, cheetah, python]
-
-defaults:
-  relocatable: false
 
 sources:
 - key: git:9eb403f4299ea036a8fff2dc22209d3ae06374ed

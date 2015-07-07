@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 1.2.2
+
 extends: [distutils_package]
 
 sources:
-- key: tar.gz:dzvyiiupdv3zc33kmb5gaofyxuxapefe
-  url: https://pypi.python.org/packages/source/P/Paver/Paver-1.2.2.tar.gz
+- url: https://pypi.python.org/packages/source/P/Paver/Paver-{{version}}.tar.gz
+  key:
+    when version == 1.2.2: tar.gz:dzvyiiupdv3zc33kmb5gaofyxuxapefe

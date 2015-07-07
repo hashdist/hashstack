@@ -1,10 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 1.5.1.1
+
 extends: [distutils_package]
+
 dependencies:
   build: [cln, ginac, pkg-config, swig]
 
 sources:
-- key: tar.gz:4am3idfmfgyhbzzegk4xzscxnaw2ifxf
-  url: http://downloads.sourceforge.net/swiginac.berlios/swiginac-1.5.1.1.tgz
+- url: http://downloads.sourceforge.net/swiginac.berlios/swiginac-{{version}}.tgz
+  key:
+    when version == 1.5.1.1: tar.gz:4am3idfmfgyhbzzegk4xzscxnaw2ifxf
 
 build_stages:
 - name: build

@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 1.3.4
+
 extends: [setuptools_package]
 
 sources:
-- key: tar.gz:o26ghjhc2xs2bx3xzj6rr4hvnywent5w
-  url: https://pypi.python.org/packages/source/n/nose/nose-1.3.4.tar.gz
+- url: https://pypi.python.org/packages/source/n/nose/nose-{{version}}.tar.gz
+  key:
+    when version == 1.3.4: tar.gz:o26ghjhc2xs2bx3xzj6rr4hvnywent5w

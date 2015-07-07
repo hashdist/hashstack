@@ -1,13 +1,20 @@
+parameters:
+- name: version
+  type: version
+  default: 1.1.28
+
+# /lib/python2.7/site-packages/libxsltmod.la contains absolute path
+# why is a .la file there to start with?
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 sources:
-  - url: http://xmlsoft.org/sources/libxslt-1.1.28.tar.gz
-    key: tar.gz:l7drkgsxxcoahv5yexpvud5obkgv6blh
-
-defaults:
-  # /lib/python2.7/site-packages/libxsltmod.la contains absolute path
-  # why is a .la file there to start with?
-  relocatable: false
+- url: http://xmlsoft.org/sources/libxslt-{{version}}.tar.gz
+  key:
+    when version == 1.1.28: tar.gz:l7drkgsxxcoahv5yexpvud5obkgv6blh
 
 dependencies:
   build:

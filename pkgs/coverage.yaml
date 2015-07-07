@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 3.7.1
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/c/coverage/coverage-3.7.1.tar.gz
-   key: tar.gz:2gxkdrfkmg4dm3lkilotmudcf67zyy2o
+- url: https://pypi.python.org/packages/source/c/coverage/coverage-{{version}}.tar.gz
+  key:
+    when version == 3.7.1: tar.gz:2gxkdrfkmg4dm3lkilotmudcf67zyy2o

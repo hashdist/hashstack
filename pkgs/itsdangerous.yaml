@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.24
+
 extends: [distutils_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/i/itsdangerous/itsdangerous-0.24.tar.gz
-   key: tar.gz:zoz7z6gt4m67qylqt3fprhm6myu474fc
+- url: https://pypi.python.org/packages/source/i/itsdangerous/itsdangerous-{{version}}.tar.gz
+  key:
+    when version == 0.24: tar.gz:zoz7z6gt4m67qylqt3fprhm6myu474fc

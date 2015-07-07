@@ -1,19 +1,24 @@
+parameters:
+- name: version
+  type: version
+  default: 2.8.0
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [pkg-config, freetype, libxml2, zlib, bzip2, python]
   run: [pkg-config]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:7ivby3xkmvgz7tt2jmjcb4imthg6zben
-  url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.8.0.tar.gz
-#- key: tar.gz:zj7ckby46bcl3tnppreiiusdyek3sju3
-#  url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.9.0.tar.gz
-#- key: tar.bz2:3rrei5jtxsueirr2hq75icb3k7eq6gfh
-#  url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-2.11.1.tar.bz2
+- url: http://www.freedesktop.org/software/fontconfig/release/fontconfig-{{version}}.tar.gz
+  key:
+    when version == 2.8.0: tar.gz:7ivby3xkmvgz7tt2jmjcb4imthg6zben
+    when version == 2.9.0: tar.gz:zj7ckby46bcl3tnppreiiusdyek3sju3
+    when version == 2.11.1: tar.gz:w2ygnr644p2dn7oa365otu3bekzybfhu
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

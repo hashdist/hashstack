@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 2.1.0
+
 extends: [autotools_package]
 
 sources:
-- url: http://downloads.sourceforge.net/project/expat/expat/2.1.0/expat-2.1.0.tar.gz
-  key: tar.gz:qi3qkrzpqfw7ehepnkqcnxiwfmuaqbud
+- url: http://downloads.sourceforge.net/project/expat/expat/{{version}}/expat-{{version}}.tar.gz
+  key:
+    when version == 2.1.0: tar.gz:qi3qkrzpqfw7ehepnkqcnxiwfmuaqbud

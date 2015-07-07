@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 4.0
+
 extends: [distutils_package]
 
 sources:
-- key: zip:5kj4htmwm3deqjr56tnk3rptjlvsoqk5
-  url: https://pypi.python.org/packages/source/k/keyring/keyring-4.0.zip
+- url: https://pypi.python.org/packages/source/k/keyring/keyring-{{version}}.zip
+  key:
+    when version == 4.0: zip:5kj4htmwm3deqjr56tnk3rptjlvsoqk5

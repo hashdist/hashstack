@@ -1,3 +1,7 @@
+parameters:
+- name: HOST_PKG_CONFIG_EXECUTABLE
+  default: '/usr/bin/pkg-config'
+
 when_build_dependency:
 - set: PKG_CONFIG_EXECUTABLE
   value: '{{HOST_PKG_CONFIG_EXECUTABLE}}'

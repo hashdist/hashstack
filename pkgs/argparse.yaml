@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 1.2.1
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/a/argparse/argparse-1.2.1.tar.gz
-   key: tar.gz:3wxuwctbqm22gk3gmtkk4a4kdxupxlnd
+- url: https://pypi.python.org/packages/source/a/argparse/argparse-{{version}}.tar.gz
+  key:
+    when version == 1.2.1: tar.gz:3wxuwctbqm22gk3gmtkk4a4kdxupxlnd

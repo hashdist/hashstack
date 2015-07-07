@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.9.4
+
 extends: [setuptools_package]
 
 sources:
- - url: https://pypi.python.org/packages/source/W/Werkzeug/Werkzeug-0.9.4.tar.gz
-   key: tar.gz:yg5ppi7ixzypgtmtd3qxgkb7ibuhppj5
+- url: https://pypi.python.org/packages/source/W/Werkzeug/Werkzeug-{{version}.tar.gz
+  key:
+    when version == 0.9.4: tar.gz:yg5ppi7ixzypgtmtd3qxgkb7ibuhppj5

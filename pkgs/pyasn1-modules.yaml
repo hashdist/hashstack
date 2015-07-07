@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.0.5
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/p/pyasn1-modules/pyasn1-modules-0.0.5.tar.gz
-   key: tar.gz:xzs7adwsryyhk3y66ojxpszyesakenug
+- url: https://pypi.python.org/packages/source/p/pyasn1-modules/pyasn1-modules-{{version}}.tar.gz
+  key:
+    when version == 0.0.5: tar.gz:xzs7adwsryyhk3y66ojxpszyesakenug

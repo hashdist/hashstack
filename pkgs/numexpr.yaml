@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 2.4
+
 extends: [distutils_package]
+
 dependencies:
   build: [numpy]
   run: [numpy]
 
 sources:
-  - key: tar.gz:wpk7tggr4se4ny7gollvyltljkdr2z76
-    url: https://github.com/pydata/numexpr/archive/v2.4.tar.gz
+- url: https://github.com/pydata/numexpr/archive/v{{version}}.tar.gz
+  key:
+    when version == 2.4: tar.gz:wpk7tggr4se4ny7gollvyltljkdr2z76

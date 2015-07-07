@@ -1,9 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 4.2
+
 extends: [autotools_package]
+
 dependencies:
   build: [netcdf4, hdf5]
 
 sources:
-- url: ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-cxx-4.2.tar.gz
-  key: tar.gz:sxwwvne2b3qacjk6vrhejkwllssovfv2
-
-
+- url: ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-cxx-{{version}}.tar.gz
+  key:
+    when version == 4.2: tar.gz:sxwwvne2b3qacjk6vrhejkwllssovfv2

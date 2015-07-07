@@ -1,3 +1,7 @@
+parameters:
+- name: HOST_CMAKE
+  default: '/usr/bin/cmake'
+
 when_build_dependency:
 - set: CMAKE
   value: '{{HOST_CMAKE}}'

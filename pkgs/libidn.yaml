@@ -1,11 +1,18 @@
-extends:  [autotools_package]
+parameters:
+- name: version
+  type: version
+  default: 1.28
+
+- name: relocatable
+  type: bool
+  default: false
+
+extends: [autotools_package]
 
 sources:
-- key: tar.gz:3u2xvfuejgv4s7d6l6qirjfdqtpfpszw
-  url: http://ftpmirror.gnu.org/libidn/libidn-1.28.tar.gz
-
-defaults:
-  relocatable: false
+- url: http://ftpmirror.gnu.org/libidn/libidn-{{version}}.tar.gz
+  key:
+    when version == 1.28: tar.gz:3u2xvfuejgv4s7d6l6qirjfdqtpfpszw
 
 when_build_dependency:
   - prepend_path: PKG_CONFIG_PATH

@@ -1,9 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 0.5
+
 extends: [setuptools_package]
+
 dependencies:
   run: [numpy]
 
 sources:
-- key: tar.gz:36tbip4bzxitlhsoaj5d2m4r4gb2lq5k
-  url: https://pypi.python.org/packages/source/r/rdp/rdp-0.5.tar.gz
-
-
+- url: https://pypi.python.org/packages/source/r/rdp/rdp-{{version}}.tar.gz
+  key:
+    when version == 0.5: tar.gz:36tbip4bzxitlhsoaj5d2m4r4gb2lq5k

@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 1.4.3
+
 extends: [base_package]
 
 sources:
-- url: http://tetgen.org/files/tetgen1.4.3.tar.gz
-  key: tar.gz:sutrdoygw73e7wcv5msmgpyi4p5pic65
+- url: http://tetgen.org/files/tetgen{{version}}.tar.gz
+  key:
+    when version == 1.4.3: tar.gz:sutrdoygw73e7wcv5msmgpyi4p5pic65
 
 build_stages:
 - name: make

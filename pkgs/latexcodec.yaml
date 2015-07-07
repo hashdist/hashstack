@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.3.0
+
 extends: [setuptools_package]
 
 sources:
-  - url: https://pypi.python.org/packages/source/l/latexcodec/latexcodec-0.3.0.zip
-    key: zip:rgemrc3jaftyojy6qbbp7kkinviuwunv
+- url: https://pypi.python.org/packages/source/l/latexcodec/latexcodec-{{version}}.zip
+  key:
+    when version == 0.3.0: zip:rgemrc3jaftyojy6qbbp7kkinviuwunv

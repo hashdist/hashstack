@@ -1,3 +1,6 @@
+parameters:
+- name: HOST_SLEPC_DIR
+
 when_build_dependency:
 - {set: 'SLEPC_DIR', value: '{{HOST_SLEPC_DIR}}'}
 

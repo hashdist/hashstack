@@ -1,7 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 3.4.3
+
 extends: [distutils_package]
 
 dependencies:
   build: [python]
+
+sources:
+- url: https://pypi.python.org/packages/source/s/setuptools/setuptools-{{version}}.tar.gz
+  key:
+    when version == 3.4.3: tar.gz:yfr3o4jkjyuvq7cmwfn52gmjt7xmiopn
 
 build_stages:
   - name: install
@@ -16,10 +26,6 @@ build_stages:
     handler: bash
     bash: |
       ${PYTHON} setup.py install --prefix=. --root=${ARTIFACT}/Python.framework/Versions/{{pyver}} --single-version-externally-managed
-
-sources:
-  - url: https://pypi.python.org/packages/source/s/setuptools/setuptools-3.4.3.tar.gz
-    key: tar.gz:yfr3o4jkjyuvq7cmwfn52gmjt7xmiopn
 
 when_build_dependency:
   - when: not python_framework

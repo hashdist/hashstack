@@ -1,7 +1,13 @@
-extends: [autotools_package]
+parameters:
+- name: version
+  type: version
+  default: 2.24.8
 
-defaults:
-  relocatable: false
+- name: relocatable
+  type: bool
+  default: false
+
+extends: [autotools_package]
 
 dependencies:
   build:
@@ -22,10 +28,10 @@ dependencies:
     - pkg-config
 
 sources:
-- key: tar.bz2:vqrsljstckjcuzzcu7acuoe7h5ahfv46
-  url: http://ftp.gnome.org/pub/gnome/sources/gtk+/2.24/gtk+-2.24.8.tar.bz2
-#- key: tar.bz2:rwm3w6cvln6uvhdnikberfp3jujn3opt
-#  url: http://ftp.gnome.org/pub/gnome/sources/gtk+/2.23/gtk+-2.23.3.tar.bz2
+- url: http://ftp.gnome.org/pub/gnome/sources/gtk+/{{'.'.join(str(version).split('.')[:-1])}}/gtk+-{{version}}.tar.bz2
+  key:
+    when version == 2.24.8: tar.bz2:vqrsljstckjcuzzcu7acuoe7h5ahfv46
+    when version == 2.23.3: tar.bz2:rwm3w6cvln6uvhdnikberfp3jujn3opt
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

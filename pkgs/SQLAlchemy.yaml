@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.7.10
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
-- url: https://pypi.python.org/packages/source/S/SQLAlchemy/SQLAlchemy-0.7.10.tar.gz
-  key: tar.gz:o6vdtvs4tucd5otlumu3gwp7qz2cj7lm
+- url: https://pypi.python.org/packages/source/S/SQLAlchemy/SQLAlchemy-{{version}}.tar.gz
+  key:
+    when version == 0.7.10: tar.gz:o6vdtvs4tucd5otlumu3gwp7qz2cj7lm

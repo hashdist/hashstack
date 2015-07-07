@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 1.0.1
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/m/mock/mock-1.0.1.zip
-   key: zip:r6bqqdnkesoqg3f4z64k4xgg74ahxcgw
+- url: https://pypi.python.org/packages/source/m/mock/mock-{{version}}.zip
+  key:
+    when version == 1.0.1: zip:r6bqqdnkesoqg3f4z64k4xgg74ahxcgw

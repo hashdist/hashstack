@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 1.1.5
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/z/zbase32/zbase32-1.1.5.tar.gz
-   key: tar.gz:tms4gs5fq3f3vvcrpl2rnzzdlgng6oh4
+- url: https://pypi.python.org/packages/source/z/zbase32/zbase32-{{version}}.tar.gz
+  key:
+    when version == 1.1.5: tar.gz:tms4gs5fq3f3vvcrpl2rnzzdlgng6oh4

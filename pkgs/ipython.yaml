@@ -1,7 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 3.1.0
+
 extends: [distutils_package]
+
 dependencies:
   run: [pyzmq, tornado, jinja2, jsonschema, pygments, sphinx]
 
 sources:
-  - url: https://pypi.python.org/packages/source/i/ipython/ipython-3.1.0.tar.gz
-    key: tar.gz:kmqjfu7qn6bldwgr4xbxbf7k4gp46as7
+- url: https://pypi.python.org/packages/source/i/ipython/ipython-{{version}}.tar.gz
+  key:
+    when version == 3.1.0: tar.gz:kmqjfu7qn6bldwgr4xbxbf7k4gp46as7

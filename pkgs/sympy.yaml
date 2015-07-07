@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.7.5
+
 extends: [distutils_package]
 
 sources:
-  - url: https://github.com/sympy/sympy/releases/download/sympy-0.7.5/sympy-0.7.5.tar.gz
-    key: tar.gz:f34xasf27eiwt62zq7nd3rgvfbkaolfm
+- url: https://github.com/sympy/sympy/releases/download/sympy-{{version}}/sympy-{{version}}.tar.gz
+  key:
+    when version == 0.7.5: tar.gz:f34xasf27eiwt62zq7nd3rgvfbkaolfm

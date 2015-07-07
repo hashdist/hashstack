@@ -1,15 +1,22 @@
-extends: [autotools_package]
+parameters:
+- name: version
+  type: version
+  default: 0.22.5
 
-defaults:
-  relocatable: false
+- name: relocatable
+  type: bool
+  default: false
+
+extends: [autotools_package]
 
 dependencies:
   build: [pkg-config, fontconfig, freetype, png, libtiff, zlib, glib2, cairo]
   run: [pkg-config]
 
 sources:
-- key: tar.gz:65bkhehrx5fgqjcs6wlhrzq23u5i6k4y
-  url: http://poppler.freedesktop.org/poppler-0.22.5.tar.gz
+- url: http://poppler.freedesktop.org/poppler-{{version}}.tar.gz
+  key:
+    when version == 0.22.5: tar.gz:65bkhehrx5fgqjcs6wlhrzq23u5i6k4y
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

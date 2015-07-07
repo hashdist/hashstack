@@ -1,14 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 0.64
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
+
 dependencies:
   build: [gnu-sed]
   run: [gnu-sed]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:ys75gkbccsrir2gt5eq24tks447cjrh6
-  url: http://download.savannah.gnu.org/releases/quilt/quilt-0.64.tar.gz
+- url: http://download.savannah.gnu.org/releases/quilt/quilt-{{version}}.tar.gz
+  key:
+    when version == 0.64: tar.gz:ys75gkbccsrir2gt5eq24tks447cjrh6
 
 build_stages:
 - name: configure

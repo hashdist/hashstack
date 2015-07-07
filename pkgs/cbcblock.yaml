@@ -1,7 +1,10 @@
 extends: [distutils_package]
+
 dependencies:
-  build: []
-  run: [dolfin, numpy, petsc4py, scipy, trilinos, ufl]
+  run: [dolfin, numpy, +petsc4py, scipy, +trilinos, ufl]
+
+constraints:
+- petsc4py or trilinos
 
 sources:
 - key: git:567730c8448f19674588667c4ec959026c2b78f4

@@ -38,6 +38,7 @@ sources:
 - url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-{{version}}.tar.gz
   key:
     when version == 3.5.2: tar.gz:ygj3gebgevuuwg5evyrgenkhf3ry5b2d
+    when version == 3.6.0: tar.gz:i3sewvxz6fr6newhdm27lvvzwz2gvm2i
 
 build_stages: 
 

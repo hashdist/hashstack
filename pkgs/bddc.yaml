@@ -6,10 +6,6 @@ sources:
 - key: git:acd093697417f49ec856b69e2d8b442e5adbbe85
   url: https://github.com/certik/bddc.git
 
-defaults:
-  # Build in Debug mode (debug symbols, bounds checks, ...)
-  debug: false
-
 build_stages:
 
 - when: debug

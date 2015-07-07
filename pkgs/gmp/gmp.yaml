@@ -1,11 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 6.0.0a0
+
 extends: [autotools_package]
 
 dependencies:
   build: [m4]
 
 sources:
-- key: tar.bz2:p6hjvacltrwqofsm65kca67ihdwocimu
-  url: http://mirrors.kernel.org/gnu/gmp/gmp-6.0.0a.tar.bz2
+  when version == 6.0.0a0:
+  - key: tar.bz2:p6hjvacltrwqofsm65kca67ihdwocimu
+    url: http://mirrors.kernel.org/gnu/gmp/gmp-6.0.0a.tar.bz2
 
 build_stages:
 - name: rpath_patch

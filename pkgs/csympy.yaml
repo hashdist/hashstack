@@ -1,4 +1,11 @@
+parameters:
+# lib/python2.7/site-packages/csympy/lib/csympy_wrapper.so contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
+
 dependencies:
   build: [python, cython, numpy, gmp]
   run: [python, numpy, gmp]
@@ -6,10 +13,6 @@ dependencies:
 sources:
 - key: git:c7308bec766a0d54f3faea5f50d5798ae1b73271
   url: https://github.com/sympy/csympy
-
-defaults:
-  # lib/python2.7/site-packages/csympy/lib/csympy_wrapper.so contains hard-coded path
-  relocatable: false
 
 build_stages:
 - name: configure

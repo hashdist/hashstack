@@ -1,15 +1,21 @@
+parameters:
+- name: version
+  type: version
+  default: 1.43.3
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [pkg-config, python, glib2, cairo, freetype, fontconfig, libffi]
   run: [pkg-config]
 
-defaults:
-  relocatable: false
-
 sources:
+- url: http://ftp.gnome.org/pub/GNOME/sources/gobject-introspection/{{'.'.join(str(version).split('.')[:-1])}}/gobject-introspection-{{version}}.tar.xz
 - key: tar.xz:zdqaqmojot5flm77djgcvdgtw7b67tfv
-  url: http://ftp.gnome.org/pub/GNOME/sources/gobject-introspection/1.43/gobject-introspection-1.43.3.tar.xz
 
 build_stages:
 - name: configure

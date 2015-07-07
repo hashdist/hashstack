@@ -1,3 +1,6 @@
+parameters:
+- name: HOST_PETSC_DIR
+
 when_build_dependency:
   - {set: 'PETSC_DIR', value: '{{HOST_PETSC_DIR}}'}
   - {set: 'PETSC_ARCH', value: '{{HOST_PETSC_ARCH}}'}

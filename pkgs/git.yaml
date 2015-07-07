@@ -1,16 +1,25 @@
+parameters:
+- name: version
+  type: version
+  default: 2.4.0
+# /bin/git contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
+- name: disable_crypto
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [curl, pcre, openssl, libiconv, gettext, expat, zlib, perl]
 
 sources:
-- key: tar.gz:2wghm2ua3bvf4gcgybghiymotc76yfmh
-  url: https://www.kernel.org/pub/software/scm/git/git-2.4.0.tar.gz
-
-defaults:
-  # /bin/git contains hard-coded path
-  relocatable: false
-  disable_crypto: false
+- url: https://www.kernel.org/pub/software/scm/git/git-{{version}}.tar.gz
+  key:
+    when version == 2.4.0: tar.gz:2wghm2ua3bvf4gcgybghiymotc76yfmh
 
 build_stages:
 

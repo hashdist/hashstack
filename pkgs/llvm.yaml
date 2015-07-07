@@ -1,11 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 3.4
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
 
 sources:
-- url: http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz
-  key: tar.gz:ewswclljfreeqg43hf7cwvpuq4hei6lg
-
-defaults:
-  relocatable: false
+- url: http://llvm.org/releases/{{version}}/llvm-{{version}}.src.tar.gz
+  key:
+    when version == 3.4: tar.gz:ewswclljfreeqg43hf7cwvpuq4hei6lg
 
 build_stages:
 - name: configure

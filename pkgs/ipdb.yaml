@@ -1,9 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 0.8
+
 extends: [setuptools_package]
 
 dependencies:
-  build: []
   run: [ipython]
 
 sources:
- - url: https://pypi.python.org/packages/source/i/ipdb/ipdb-0.8.zip
-   key: zip:bvfdh44omz5azahmdjna4rup4whfzxdb
+- url: https://pypi.python.org/packages/source/i/ipdb/ipdb-{{version}}.zip
+  key:
+    when version == 0.8: zip:bvfdh44omz5azahmdjna4rup4whfzxdb

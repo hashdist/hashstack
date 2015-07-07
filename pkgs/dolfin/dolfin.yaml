@@ -1,12 +1,12 @@
 parameters:
+- name: version
+  type: version
+  default: 1.5.0
+
 # share/dolfin/DOLFINConfig.cmake contains hard-coded path
 - name: relocatable
   type: bool
   default: false
-
-- name: version
-  type: version
-  default: 1.5.0
 
 extends: [cmake_package]
 

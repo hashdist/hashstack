@@ -1,3 +1,9 @@
+parameters:
+# share/julia/base/build_h.jl contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [base_package, libflags]
 
 dependencies:
@@ -6,10 +12,6 @@ dependencies:
 sources:
 - url: https://github.com/JuliaLang/julia
   key: git:95c9f9bfa1c2d385f3d8ade99c572500a6294bd6
-
-defaults:
-  # share/julia/base/build_h.jl contains hard-coded path
-  relocatable: false
 
 build_stages:
 

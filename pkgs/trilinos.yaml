@@ -1,18 +1,30 @@
+parameters:
+- name: version
+  type: version
+  default: 11.14.2
+
+# include/trilinos/Makefile.export.Trilinos contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
+# Build Teuchos in Debug mode (RCP/Ptr dangling pointer checks, bounds
+# checks, ...)
+- name: teuchos_debug
+  type: bool
+  default: false
+
 extends: [cmake_package]
+
 dependencies:
-  build: [python, swig, mpi, numpy, openblas, suitesparse, boost, netcdf4,
+  build: [python, swig, mpi, numpy, lapack, suitesparse, boost, netcdf4,
           hdf5, glm]
 
 sources:
-- key: tar.bz2:wdbi4nvxaxpwimfb6p5cvszc4v52xnc5
-  url: http://trilinos.org/oldsite/download/files/trilinos-11.14.2-Source.tar.bz2
-
-defaults:
-  # include/trilinos/Makefile.export.Trilinos contains hard-coded path
-  relocatable: false
-  # Build Teuchos in Debug mode (RCP/Ptr dangling pointer checks, bounds
-  # checks, ...)
-  teuchos_debug: false
+# FIXME: looks like this url does not work
+- url: http://trilinos.org/oldsite/download/files/trilinos-{{version}}.tar.bz2
+  key:
+    when version == 11.14.2: tar.bz2:wdbi4nvxaxpwimfb6p5cvszc4v52xnc5
 
 build_stages:
 - name: configure
@@ -29,10 +41,6 @@ build_stages:
           '-D BUILD_SHARED_LIBS:BOOL=ON',
           '-D TPL_ENABLE_MPI:BOOL=ON',
           '-D TPL_ENABLE_UMFPACK:BOOL=ON',
-          '-D BLAS_LIBRARY_NAMES:STRING=openblas',
-          '-D BLAS_LIBRARY_DIRS:PATH=${OPENBLAS_DIR}/lib',
-          '-D LAPACK_LIBRARY_NAMES:STRING=openblas',
-          '-D LAPACK_LIBRARY_DIRS:PATH=${OPENBLAS_DIR}/lib',
           '-D UMFPACK_INCLUDE_DIRS:PATH=${SUITESPARSE_DIR}/include/suitesparse',
           '-D UMFPACK_LIBRARY_DIRS:PATH=${SUITESPARSE_DIR}/lib',
           '-D UMFPACK_LIBRARY_NAMES:STRING="umfpack;cholmod;camd;ccolamd;colamd;amd;suitesparseconfig"',
@@ -40,6 +48,30 @@ build_stages:
           '-D Trilinos_ENABLE_DEVELOPMENT_MODE:BOOL=OFF',
           '-D PYTHON_EXECUTABLE:FILEPATH=${PYTHON}']
 
+- when: lapack.kind == 'reference'
+  name: configure
+  mode: update
+  extra: ['-D BLAS_LIBRARY_NAMES:STRING=blas',
+          '-D BLAS_LIBRARY_DIRS:PATH=${LAPACK_DIR}/lib',
+          '-D LAPACK_LIBRARY_NAMES:STRING=lapack',
+          '-D LAPACK_LIBRARY_DIRS:PATH=${LAPACK_DIR}/lib']
+
+- when: lapack.kind == 'openblas'
+  name: configure
+  mode: update
+  extra: ['-D BLAS_LIBRARY_NAMES:STRING=openblas',
+          '-D BLAS_LIBRARY_DIRS:PATH=${OPENBLAS_DIR}/lib',
+          '-D LAPACK_LIBRARY_NAMES:STRING=openblas',
+          '-D LAPACK_LIBRARY_DIRS:PATH=${OPENBLAS_DIR}/lib']
+
+- when: lapack.kind == 'accelerate'
+  name: configure
+  mode: update
+  extra: ['-D BLAS_LIBRARY_NAMES:STRING="blas;cblas"',
+          '-D BLAS_LIBRARY_DIRS:PATH=/usr/lib',
+          '-D LAPACK_LIBRARY_NAMES:STRING="lapack;clapack;f77lapack"',
+          '-D LAPACK_LIBRARY_DIRS:PATH=/usr/lib']
+          
 - when: teuchos_debug
   name: configure
   mode: update

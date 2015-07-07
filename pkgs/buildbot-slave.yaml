@@ -1,3 +1,8 @@
+parameters:
+- name: version
+  type: version
+  default: 0.8.10
+
 extends: [distutils_package]
 
 dependencies:
@@ -5,5 +10,6 @@ dependencies:
   run: [Twisted, zope-interface]
 
 sources:
-- key: zip:kwq5k3st37bhcksx4m5ulmlvdrb2jvrj
-  url: https://pypi.python.org/packages/source/b/buildbot-slave/buildbot-slave-0.8.10.zip
+- url: https://pypi.python.org/packages/source/b/buildbot-slave/buildbot-slave-{{version}}.zip
+  key:
+    when version == 0.8.10: zip:kwq5k3st37bhcksx4m5ulmlvdrb2jvrj

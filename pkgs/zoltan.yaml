@@ -1,14 +1,23 @@
+parameters:
+- name: version
+  type: version
+  default: 3.8
+
+#include/Makefile.export.zoltan.macros
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
+
 dependencies:
-  build: [mpi, {{build_with}}]
+  # FIXME: add optional dependencies using '+'
+  build: [mpi] #, {{build_with}}]
 
 sources:
-- key: tar.gz:lpoumvepxhdtwis3xtz5ebwfldbrrszj
-  url: http://www.cs.sandia.gov/~kddevin/Zoltan_Distributions/zoltan_distrib_v3.8.tar.gz
-
-defaults:
-  #include/Makefile.export.zoltan.macros
-  relocatable: false
+- url: http://www.cs.sandia.gov/~kddevin/Zoltan_Distributions/zoltan_distrib_v{{version}}.tar.gz
+  key:
+    when version == 3.8: tar.gz:lpoumvepxhdtwis3xtz5ebwfldbrrszj
 
 build_stages:
 

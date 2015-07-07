@@ -1,14 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 3.3.3
+
+# lib/libfftw3.la contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
+
 dependencies:
   build: [mpi]
 
 sources:
-- url: http://www.fftw.org/fftw-3.3.3.tar.gz
-  key: tar.gz:qxg7ycqluegy7jhq7dtthkwbuwjwzbmy
-
-defaults:
-  # lib/libfftw3.la contains hard-coded path
-  relocatable: false
+- url: http://www.fftw.org/fftw-{{version}}.tar.gz
+  key:
+    when version == 3.3.3: tar.gz:qxg7ycqluegy7jhq7dtthkwbuwjwzbmy
 
 build_stages:
 - name: configure

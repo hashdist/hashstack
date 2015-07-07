@@ -1,11 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 2.7.1
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:ybpsqzumgr2lyy5nzvekxlusduk6ohbf
-  url: http://ftp.heanet.ie/mirrors/gnu/patch/patch-2.7.1.tar.gz
+- url: http://ftp.heanet.ie/mirrors/gnu/patch/patch-{{version}}.tar.gz
+  key:
+    when version == 2.7.1: tar.gz:ybpsqzumgr2lyy5nzvekxlusduk6ohbf
 
 when_build_dependency:
 - prepend_path: PATH

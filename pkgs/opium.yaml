@@ -1,8 +1,13 @@
+parameters:
+- name: version
+  type: version
+  default: 3.7
+
 extends: [autotools_package]
 
 sources:
-  - url: http://downloads.sourceforge.net/project/opium/opium/opium-v3.7/opium-v3.7-src.tgz
-    key: tar.gz:3gcxjnvjhrv6afk33lqpp7p5kbss6y64
+- url: http://downloads.sourceforge.net/project/opium/opium/opium-v{{version}}/opium-v{{version}}-src.tgz
+  key: tar.gz:3gcxjnvjhrv6afk33lqpp7p5kbss6y64
 
 build_stages:
   - name: make

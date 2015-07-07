@@ -1,3 +1,19 @@
+parameters:
+- name: HOST_MPICC
+  default: '/usr/bin/mpicc'
+
+- name: HOST_MPICXX
+  default: '/usr/bin/mpicxx'
+
+- name: HOST_MPIF77
+  default: '/usr/bin/mpif77'
+
+- name: HOST_MPIF90
+  default: '/usr/bin/mpif90'
+
+- name: HOST_MPIEXEC
+  default: '/usr/bin/mpiexec'
+
 when_build_dependency:
   - {set: 'MPICC', value: '{{HOST_MPICC}}'}
   - {set: 'MPICXX', value: '{{HOST_MPICXX}}'}

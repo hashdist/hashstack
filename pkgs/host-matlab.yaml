@@ -1,2 +1,5 @@
+parameters:
+- name: HOST_MATLAB
+
 when_build_dependency:
   - {set: 'MATLAB', value: '{{HOST_MATLAB}}'}

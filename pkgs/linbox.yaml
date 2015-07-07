@@ -1,11 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 1.3.2
+
 extends: [autotools_package]
 
 dependencies:
   build: [gmp, givaro, fflas_ffpack, ntl]
 
 sources:
-- url: http://www.linalg.org/linbox-1.3.2.tar.gz
-  key: tar.gz:2bhupkoy3ivksse7e56evoqrsq6dwixb
+- url: http://www.linalg.org/linbox-{{version}}.tar.gz
+  key:
+    when version == 1.3.2: tar.gz:2bhupkoy3ivksse7e56evoqrsq6dwixb
 
 build_stages:
 - name: configure

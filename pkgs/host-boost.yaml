@@ -1,3 +1,7 @@
+parameters:
+- name: HOST_BOOST_ROOT
+  default: '/usr'
+
 extends: [host_package]
 
 when_build_dependency:

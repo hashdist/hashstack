@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 1.11
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:rwis6rhqlufrljff3fvhn6cs5ec5aun3
-  url: http://ftp.heanet.ie/mirrors/gnu/gdbm/gdbm-1.11.tar.gz
+- url: http://ftp.heanet.ie/mirrors/gnu/gdbm/gdbm-{{version}}.tar.gz
+  key:
+    when version == 1.11: tar.gz:rwis6rhqlufrljff3fvhn6cs5ec5aun3

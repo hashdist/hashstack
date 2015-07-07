@@ -1,11 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 1.900.1
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 sources:
-- key: zip:noifvhbkzixcovkeeetgn3x4j22e3foq
-  url: http://www.ece.uvic.ca/~frodo/jasper/software/jasper-1.900.1.zip
-
-defaults:
-  relocatable: false
+- url: http://www.ece.uvic.ca/~frodo/jasper/software/jasper-{{version}}.zip
+  key:
+    when version == 1.900.1: zip:noifvhbkzixcovkeeetgn3x4j22e3foq
 
 build_stages:
 - name: configure

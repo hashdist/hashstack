@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 1.11.6
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.11.6.tar.gz
-   key: tar.gz:hz5eyfi6f3ux6uo3aik37uvaooyevepj
+- url: https://pypi.python.org/packages/source/v/virtualenv/virtualenv-{{version}}.tar.gz
+  key:
+    when version == 1.11.6: tar.gz:hz5eyfi6f3ux6uo3aik37uvaooyevepj

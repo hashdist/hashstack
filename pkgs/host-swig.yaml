@@ -1,3 +1,7 @@
+parameters:
+- name: HOST_SWIG_EXECUTABLE
+  default: '/usr/bin/swig'
+
 when_build_dependency:
 - set: SWIG_EXECUTABLE
   value: '{{HOST_SWIG_EXECUTABLE}}'

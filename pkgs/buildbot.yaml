@@ -1,3 +1,8 @@
+parameters:
+- name: version
+  type: version
+  default: 0.8.10
+
 extends: [distutils_package]
 
 dependencies:
@@ -5,5 +10,6 @@ dependencies:
   run: [SQLAlchemy, SQLAlchemy-Migrate, jinja2, Twisted, sqlite, python-dateutil, Tempita, decorator, MarkupSafe, zope-interface]
 
 sources:
-- key: zip:tsyafdgdsontllm5ujazrcbcnysx3o2g
-  url: https://pypi.python.org/packages/source/b/buildbot/buildbot-0.8.10.zip
+- url: https://pypi.python.org/packages/source/b/buildbot/buildbot-{{version}}.zip
+  key:
+    when version == 0.8.10: zip:tsyafdgdsontllm5ujazrcbcnysx3o2g

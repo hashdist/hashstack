@@ -1,12 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 0.5.4
+
 extends: [setuptools_package]
 
 dependencies:
   build: [six, cffi, cryptography-vectors, openssl, pytest, pycparser]
-  run: []
 
 sources:
-- key: tar.gz:kz2zthzxitf4gktazmf3uzg6efafvphn
-  url: https://pypi.python.org/packages/source/c/cryptography/cryptography-0.5.4.tar.gz
+- url: https://pypi.python.org/packages/source/c/cryptography/cryptography-{{version}}.tar.gz
+  key:
+    when version == 0.5.4: tar.gz:kz2zthzxitf4gktazmf3uzg6efafvphn
 
 build_stages:
 - name: install

@@ -1,15 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 2.42.1
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [pkg-config, libffi, zlib, python]
   run: [pkg-config]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.xz:r47qqzjibzc3rtuebylw56b3z7krcfej
-  url: http://ftp.gnome.org/pub/gnome/sources/glib/2.42/glib-2.42.1.tar.xz
+- url: http://ftp.gnome.org/pub/gnome/sources/glib/{{'.'.join(str(version).split('.')[:-1])}}/glib-{{version}}.tar.xz
+  key:
+    when version == 2.42.1: tar.xz:r47qqzjibzc3rtuebylw56b3z7krcfej
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

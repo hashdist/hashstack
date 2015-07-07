@@ -1,13 +1,21 @@
+parameters:
+- name: version
+  type: version
+  default: 1.9.1
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [base_package]
+
 dependencies:
   build: [node]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:uwx36n3nhdu7dwxtwp46sffv3t3orhtw
-  url: https://github.com/jashkenas/coffeescript/archive/1.9.1.tar.gz
+- url: https://github.com/jashkenas/coffeescript/archive/{{version}}.tar.gz
+  key:
+    when version == 1.9.1: tar.gz:uwx36n3nhdu7dwxtwp46sffv3t3orhtw
 
 build_stages:
 -  name: install
