@@ -27,13 +27,13 @@ packages:
   blas:
     use: host-osx-framework-accelerate
   daetk:
-  matplotlib:
   mpi:
     use: mpich
   mpi4py:
   nose:
   hdf5:
   ipython:
+  matplotlib:
   petsc:
     build_with: |
       parmetis      
@@ -49,9 +49,15 @@ packages:
   sphinx:
   superlu:
   sympy:
-  triangle:
   tetgen:
+  triangle:
   memory_profiler:
   ipdb:
   pip:
   doxygen:
+  scipy:
+  ode:
+  h5py:
+  netcdf4:
+  netcdf4f:
+  netcdf4cpp:
