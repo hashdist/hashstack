@@ -54,3 +54,4 @@ packages:
   memory_profiler:
   ipdb:
   pip:
+  doxygen:
