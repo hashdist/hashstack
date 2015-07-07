@@ -53,3 +53,10 @@ packages:
   memory_profiler:
   ipdb:
   pip:
+  doxygen:
+  scipy:
+  ode:
+  h5py:
+  netcdf4:
+  netcdf4f:
+  netcdf4cpp:
