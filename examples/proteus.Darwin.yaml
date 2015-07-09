@@ -61,3 +61,5 @@ packages:
   netcdf4:
   netcdf4f:
   netcdf4cpp:
+  python-netcdf4:
+
