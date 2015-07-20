@@ -4,5 +4,5 @@ dependencies:
   run: [numpy, scipy]
 
 sources:
-  - url: https://pypi.python.org/packages/source/s/scikit-learn/scikit-learn-0.14.1.tar.gz
-    key: tar.gz:gsbbxd2gbpnxvouoxcbdko5mxuawog73
+- key: tar.gz:ybzb4kkqk3evy4ac4blsn4v5e4nhsi7i
+  url: https://pypi.python.org/packages/source/s/scikit-learn/scikit-learn-0.16.1.tar.gz
