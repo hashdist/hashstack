@@ -6,10 +6,17 @@ dependencies:
 
 defaults:
   relocatable: false
+  version: 4.9.2
 
-sources:
-- key: tar.bz2:eaqmtauvqvvkcp62b4xtur4ujedvp7be
-  url: http://ftpmirror.gnu.org/gcc/gcc-4.9.2/gcc-4.9.2.tar.bz2
+when version == '4.9.2':
+    sources:
+    - key: tar.bz2:eaqmtauvqvvkcp62b4xtur4ujedvp7be
+      url: http://ftpmirror.gnu.org/gcc/gcc-4.9.2/gcc-4.9.2.tar.bz2
+when version == '5.1.0':
+    sources:
+    - key: tar.bz2:w7np36e4xmhcamz5x5nvgsjrtlqg4pi2
+      url: http://ftpmirror.gnu.org/gcc/gcc-5.1.0/gcc-5.1.0.tar.bz2
+
 
 build_stages:
   # Make gcc automatically embed RPATH to the proper libstdc++, libgfortran,
@@ -21,6 +28,16 @@ build_stages:
     bash: |
       patch -up1 < _hashdist/rpath.patch
       sed -i "s|@@ARTIFACT@@|${ARTIFACT}|g" gcc/config/i386/gnu-user.h gcc/config/i386/gnu-user64.h
+
+  - when: platform == 'Darwin'
+    name: fix_object_h
+    before: configure
+    handler: bash
+    bash: |
+      if [ -f /usr/include/dispatch/object.h ]; then
+        mkdir -p "$ARTIFACT/include/dispatch"
+        sed 's+typedef void (\^dispatch_block_t)(void)+typedef void* dispatch_block_t+' /usr/include/dispatch/object.h > "$ARTIFACT/include/dispatch/object.h"
+      fi
 
   - name: link_lib64_to_lib
     after: install
