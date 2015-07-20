@@ -53,3 +53,5 @@ packages:
   memory_profiler:
   ipdb:
   pip:
+  h5py:
+  ode:
