@@ -69,7 +69,7 @@ packages:
   python-netcdf4:
   ipdb:
   pip:
- # ode:
- # pyode:
+  h5py:
+  ode:
  # vtk:
  # pyvtk:
