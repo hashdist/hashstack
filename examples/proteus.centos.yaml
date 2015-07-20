@@ -61,3 +61,5 @@ packages:
   tetgen:
   triangle:
   memory_profiler:
+  h5py:
+  ode:
