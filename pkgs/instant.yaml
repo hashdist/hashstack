@@ -1,7 +1,6 @@
 extends: [distutils_package]
 dependencies:
-  build: []
-  run: [cmake, numpy, swig]
+  run: [cmake, flufl_lock, numpy, swig]
 
 sources:
 - key: tar.gz:g3qefxrg3f7v4pkd6l2skrgzdoqpctq4

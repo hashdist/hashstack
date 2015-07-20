@@ -17,6 +17,13 @@ build_stages:
   bash: |
     ./bootstrap.sh --with-toolset={{toolset}} --prefix=${ARTIFACT}
 
+- name: call_once_variadic
+  before: bjam
+  after: bootstrap
+  handler: bash
+  files: [call_once_variadic.patch]
+  bash: |
+    patch -p2 < _hashdist/call_once_variadic.patch
 
 - name: 128bitIntegerSupport1
   before: bjam
@@ -42,6 +49,15 @@ build_stages:
   bash: |
     patch -p2 < _hashdist/boost_1_55_fix_warnings.patch
 
+- name: set-address_model
+  before: bjam
+  handler: bash
+  bash: |
+    address_model={{address_model}}
+    if [ -z ${address_model} ]; then
+        address_model=$(getconf LONG_BIT)
+    fi
+
 - name: bjam
   after: bootstrap
   handler: bash
@@ -50,7 +66,7 @@ build_stages:
       echo "using mpi ;" > user-config.jam
       ./bjam -q \
              toolset={{toolset}} \
-             address-model={{address_model}} \
+             address-model=${address_model} \
              -j ${HASHDIST_CPU_COUNT} \
              --user-config=user-config.jam \
              --build-dir=_build\
@@ -68,7 +84,7 @@ build_stages:
     bash: |
       ./bjam -q \
              toolset={{toolset}} \
-             address-model={{address_model}} \
+             address-model=${address_model} \
              -j ${HASHDIST_CPU_COUNT} \
              --without-context \
              --without-coroutine \

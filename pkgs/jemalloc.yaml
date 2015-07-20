@@ -1,0 +1,18 @@
+extends: [autotools_package]
+
+sources:
+- key: tar.bz2:4fwccwo5hsa4ulodwxe66dkd4hzpiwye
+  url: https://github.com/jemalloc/jemalloc/releases/download/3.6.0/jemalloc-3.6.0.tar.bz2
+
+defaults:
+  # bin/jemalloc.sh contains hard-coded path
+  relocatable: false
+
+build_stages:
+- when: compiler == 'gcc'
+  name: optimization_flags
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    export EXTRA_CFLAGS="-march=native -ffast-math"
