@@ -1,0 +1,18 @@
+extends: [cmake_package]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:mmkq6ev7pr6ftdvflnzhdwm7zy2j744g
+  url: http://sourceforge.net/projects/arma/files/armadillo-5.100.2.tar.gz
+
+build_stages:
+  - name: setup_builddir
+    after: prologue
+    mode: replace
+    handler: bash
+    bash: |
+
+  - name: configure
+    build_in_source: true

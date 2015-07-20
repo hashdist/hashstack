@@ -1,0 +1,9 @@
+extends: [autotools_package]
+
+sources:
+- key: tar.bz2:gxhbhknaon6s3yog7lfvypaehd34qo2f
+  url: http://www.open-mpi.org/software/hwloc/v1.10/downloads/hwloc-1.10.1.tar.bz2
+
+defaults:
+  # bin/hwloc-assembler-remote contains hard-coded path
+  relocatable: false
