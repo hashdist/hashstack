@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:qzyak52jc74ztbkp7uyd7prxspbqyloj
+   url: https://pypi.python.org/packages/source/f/fastcache/fastcache-1.0.2.tar.gz
