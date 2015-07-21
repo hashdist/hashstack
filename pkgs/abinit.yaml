@@ -1,8 +1,20 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [python, lapack]
+  build: [python, lapack, patchelf]
 
 sources:
 - key: tar.gz:5pikhk6qdw2dos7nucjnd4lmtyangj3r
   url: http://ftp.abinit.org/abinit-7.10.4.tar.gz
+
+build_stages:
+  - name: final
+    after: install
+    handler: bash
+    when platform == 'linux':
+      bash: |
+        old_rpath=$(patchelf --print-rpath ${ARTIFACT}/bin/abinit)
+        for f in ${ARTIFACT}/bin/*
+        do
+            ${PATCHELF} --set-rpath "${old_rpath}:${LAPACK_DIR}/lib" $f
+        done
