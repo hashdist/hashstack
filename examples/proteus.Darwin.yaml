@@ -56,10 +56,9 @@ packages:
   pip:
   doxygen:
   scipy:
-  ode:
-  h5py:
   netcdf4:
   netcdf4f:
   netcdf4cpp:
   python-netcdf4:
-
+  h5py:
+  ode:

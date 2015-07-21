@@ -1,0 +1,7 @@
+# Joblib version 0.9.0b2 for simple parallel python loops.
+
+extends: [setuptools_package]
+
+sources:
+  - key: tar.gz:ggsl323ify27x6na4zsbbo76ealp7vis
+    url: https://pypi.python.org/packages/source/j/joblib/joblib-0.9.0b2.tar.gz

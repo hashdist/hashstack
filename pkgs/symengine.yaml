@@ -1,0 +1,21 @@
+extends: [cmake_package]
+dependencies:
+  build: [python, cython, numpy, gmp]
+  run: [python, numpy, gmp]
+
+sources:
+- key: git:4fcf1b48cbebf0cfe09faec3f64df4af4b679eaa
+  url: https://github.com/sympy/symengine
+
+defaults:
+  # lib/python2.7/site-packages/csympy/lib/csympy_wrapper.so contains hard-coded path
+  relocatable: false
+
+build_stages:
+- name: configure
+  extra: [
+        '-D WITH_PYTHON:BOOL=ON',
+        '-D PYTHON_INSTALL_PATH:PATH=$ARTIFACT/{{python_site_packages_rel}}',
+        '-D BUILD_TESTS:BOOL=NO',
+        '-D BUILD_BENCHMARKS:BOOL=NO',
+    ]
