@@ -14,7 +14,7 @@ extends:
 # profile.
 
 packages:
-
+  clawpack:
   launcher:
   cmake:
     use: host-cmake
@@ -25,13 +25,15 @@ packages:
       bzip2, sqlite
   blas:
     use: host-blas
+  lapack:
+    use: host-lapack
   daetk:
   mpi:
     use: mpich
   mpi4py:
   nose:
+  coverage:
   hdf5:
-  ipython:
   matplotlib:
   petsc:
     build_with: |
@@ -51,13 +53,30 @@ packages:
   tetgen:
   triangle:
   memory_profiler:
-  ipdb:
-  pip:
-  doxygen:
-  scipy:
+  boost:
+    toolset: gcc
+    address_model: 64
+    build_with: |
+      python
   netcdf4:
+  python-netcdf4:
   netcdf4f:
   netcdf4cpp:
-  python-netcdf4:
+  jasper:
+  grib_api:
+  pyproj:
+  pygrib:
+  scipy:
+  ipython:
+  terminado:
   h5py:
+  pydap:
+  leafletwidget:
+  geojson:
+  rdp:
+  rtree:
   ode:
+  ipdb:
+  pip:
+  pexpect:
+  doxygen:
