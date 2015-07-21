@@ -80,3 +80,4 @@ packages:
   pip:
   pexpect:
   doxygen:
+  pcs_api:
