@@ -1,5 +1,9 @@
 extends: [distutils_package]
 
+dependencies:
+  build: [mpmath, fastcache]
+  run: [mpmath, fastcache]
+
 sources:
-- key: tar.gz:36rze7u357p2pwt2db4dzs6c7zejzzge
-  url: https://github.com/sympy/sympy/releases/download/sympy-0.7.6/sympy-0.7.6.tar.gz
+- key: git:488f3c206f16d4307c52ec65e3d6de4f6e42e747
+  url: https://github.com/sympy/sympy
