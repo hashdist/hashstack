@@ -25,7 +25,6 @@ parameters:
   HOST_MPIF77: /apps/openmpi/1.6.5/bin/mpif77
   HOST_MPIF90: /apps/openmpi/1.6.5/bin/mpif90
   HOST_MPIEXEC: /apps/openmpi/1.6.5/bin/mpiexec
-  HOST_CMAKE: /w/srobertp/software/cmake-2.8.11.2/bin/cmake
   PATH: |
     /usr/bin:/bin:/usr/sbin:/sbin
 
@@ -33,7 +32,6 @@ parameters:
 packages:
   launcher:
   cmake:
-    use: host-cmake
   python:
     host: false
     link: shared
