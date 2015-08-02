@@ -28,6 +28,9 @@ def preConfigureCrayXE6(ctx, conf_lines):
 def preConfigureSGIICEX(ctx, conf_lines):
     conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
                '--known-mpi-shared-libraries=1',
+                   'CFLAGS=-fPIC',
+                   'FCFLAGS=-fPIC',
+                   '--with-pic',
                '--with-batch',
                '--known-level1-dcache-size=16384',
                '--known-level1-dcache-linesize=64',
