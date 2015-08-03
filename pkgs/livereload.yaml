@@ -1,0 +1,5 @@
+extends: [setuptools_package]
+
+sources:
+ - key: tar.gz:lwv23hchyu2gqjcimxlhrawmf5nc5ru3
+   url: https://pypi.python.org/packages/source/l/livereload/livereload-2.3.2.tar.gz

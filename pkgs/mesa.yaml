@@ -6,7 +6,7 @@ dependencies:
 
 sources:
 - key: tar.bz2:a2rdiese5oc4fa7vt5ybmhqg33iqn6bv
-  url: ftp://ftp.freedesktop.org/pub/mesa/10.2.4/MesaLib-10.2.4.tar.bz2
+  url: ftp://ftp.freedesktop.org/pub/mesa/older-versions/10.x/10.2.4/MesaLib-10.2.4.tar.bz2
 
 build_stages:
 # Needed because of https://bugs.freedesktop.org/show_bug.cgi?id=63615

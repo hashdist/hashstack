@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: [yaml, python-markdown, livereload, ghp_import]
+
+sources:
+ - key: tar.gz:5bywnfxh5lrfod3vex4octke7zz7p4gi
+   url: https://pypi.python.org/packages/source/m/mkdocs/mkdocs-0.12.2.tar.gz

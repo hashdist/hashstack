@@ -22,6 +22,7 @@ build_stages:
   handler: bash
   bash: |
     ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
+       ${SETUPTOOLS_PACKAGE_EXTRA_OPTIONS} \
        install \
        --prefix=. --root=${ARTIFACT} \
        --single-version-externally-managed

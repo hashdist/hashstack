@@ -1,0 +1,34 @@
+extends: [cmake_package]
+dependencies:
+  build: [mpi, parmetis, zoltan]
+
+sources:
+- key: git:1d2f5438d3dff3f1120649577bb2a05f9ac8c556
+  url: https://github.com/SCOREC/core.git
+
+defaults:
+  relocatable: false
+
+build_stages:
+
+- name: setup_builddir
+  after: prologue
+  handler: bash
+  bash: |
+    mkdir -p _build
+    cd _build
+
+- name: configure
+  extra: [
+  '-DCMAKE_C_COMPILER=${MPICC}',
+  '-DCMAKE_CXX_COMPILER=${MPICXX}',
+  '-DENABLE_ZOLTAN=ON',
+  '-DMETIS_LIBRARY=${PARMETIS_DIR}/lib/libmetis.so',
+  '-DPARMETIS_LIBRARY=${PARMETIS_DIR}/lib/libparmetis.so',
+  '-DPARMETIS_INCLUDE_DIR=${PARMETIS_DIR}/include',
+  '-DZOLTAN_LIBRARY=${ZOLTAN_DIR}/lib/libzoltan.a',
+  '-DZOLTAN_INCLUDE_DIR=${ZOLTAN_DIR}/include',
+  '-DBUILD_SHARED_LIBS=True',
+  '-DSIM_MPI=mpich2',
+  ]
+
