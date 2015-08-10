@@ -20,6 +20,7 @@ packages:
     use: host-cmake
   python:
     host: false
+    link: shared
     build_with: |
       bzip2, sqlite
   blas:

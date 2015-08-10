@@ -6,6 +6,9 @@ sources:
   - url: git@github.com:SCOREC/core-sim.git
     key: git:7592ccb9976693511de5608943349daaede431a2
     
+#defaults:
+#  relocatable: true
+
 build_stages:
 
 - name: setup_builddir
