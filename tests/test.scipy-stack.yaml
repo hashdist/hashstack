@@ -1,0 +1,24 @@
+# This builds the IPython, NumPy, SciPy, SymPy stack from scratch
+
+extends:
+- file: linux.yaml
+
+parameters:
+  # These are already set in config.yaml, but we set them again for clarity:
+  pyver: '2.7'
+  python_site_packages_rel: 'lib/python2.7/site-packages'
+  python_host_packages: '/usr/lib/python2.7/dist-packages'
+
+packages:
+
+  launcher:
+  blas:
+    use: host-blas
+  python:
+  sqlite:
+    use: host-sqlite
+  ipython:
+  nose:
+  numpy:
+  sphinx:
+  sympy:

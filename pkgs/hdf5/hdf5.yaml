@@ -3,8 +3,12 @@ dependencies:
   build: [mpi, zlib, szip]
 
 sources:
-- url: http://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.11/src/hdf5-1.8.11.tar.bz2
-  key: tar.bz2:l2q3vax4o42q5zriw6k243w6ax7ov4og
+- key: tar.bz2:yl22ieqqpk5g7gp5pjfj3nwol5p4qfy6
+  url: http://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.13/src/hdf5-1.8.13.tar.bz2
+
+defaults:
+  # /bin/h5pcc contains hard-coded path
+  relocatable: false
 
 build_stages:
 - name: set-cc-compiler
@@ -13,15 +17,6 @@ build_stages:
   handler: bash
   bash: |
     export CC=${MPICC}
-
-- when: platform == 'Cygwin'
-  files: [fix_get_console.patch]
-  name: fix_get_console
-  handler: bash
-  before: configure
-  bash: |
-    patch -p2 < _hashdist/fix_get_console.patch
-    autoconf
 
 - when: machine == 'CrayXE6'
   name: make_exe_builds_static
@@ -45,18 +40,6 @@ build_stages:
           '--enable-largefile=yes',
           '--with-default-api-version=v18']
 
-- when: platform == 'Cygwin'
-  name: configure
-  extra: ['--with-zlib=${ZLIB_DIR}',
-          '--with-szlib=${SZIP_DIR}',
-          '--with-pthread',
-          '--enable-unsupported',
-          '--enable-shared',
-          '--enable-production=yes',
-          '--disable-parallel',
-          '--enable-largefile=yes',
-          '--with-default-api-version=v18']
-
 - when: machine == 'CrayXE6'
   name: configure
   extra: ['--enable-static-exec',
@@ -68,7 +51,8 @@ build_stages:
           '--enable-production=yes',
           '--enable-parallel=yes',
           '--enable-largefile=yes',
-          '--with-default-api-version=v18']
+          '--with-default-api-version=v18',
+          '--with-pic']
 
 
 when_build_dependency:

@@ -1,0 +1,18 @@
+extends: [autotools_package]
+dependencies:
+  build: [zlib]
+  run: [zlib]
+
+sources:
+- key: tar.gz:5inoxyucggktp6znjv4al5dy3vha4bod
+  url: http://download.osgeo.org/libtiff/tiff-4.0.3.tar.gz
+
+build_stages:
+- name: configure
+  extra: ['--with-zlib-include-dir=${ZLIB_DIR}/include',
+          '--with-zlib-lib-dir=${ZLIB_DIR}/lib'
+         ]
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'

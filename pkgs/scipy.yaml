@@ -1,8 +1,0 @@
-extends: [distutils_package]
-dependencies:
-  build: [pcre,swig,numpy]
-  run: [numpy]
-
-sources:
-  - url: http://downloads.sourceforge.net/scipy/scipy-0.12.0.tar.gz
-    key: tar.gz:xft6qaw27yw3aq6pxxyaipqtcl445hat

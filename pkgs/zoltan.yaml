@@ -3,8 +3,13 @@ dependencies:
   build: [mpi, {{build_with}}]
 
 sources:
-- url: http://www.cs.sandia.gov/~kddevin/Zoltan_Distributions/zoltan_distrib_v3.8.tar.gz
-  key: tar.gz:lpoumvepxhdtwis3xtz5ebwfldbrrszj
+- key: tar.gz:lpoumvepxhdtwis3xtz5ebwfldbrrszj
+  url: http://www.cs.sandia.gov/~kddevin/Zoltan_Distributions/zoltan_distrib_v3.8.tar.gz
+
+defaults:
+  #include/Makefile.export.zoltan.macros
+  relocatable: false
+>>>>>>> mainline/master
 
 build_stages:
 
@@ -19,7 +24,12 @@ build_stages:
     after: setup_builddir
     handler: bash
     bash: |
+#<<<<<<< HEAD
       export MPI_DIR=$MPI_ROOT
+#=======
+#      export MPI_DIR=$(dirname $(dirname $MPICC) )
+#      export LD_LIBRARY_PATH=${MPI_DIR}/lib
+#>>>>>>> mainline/master
 
   - name: configure
     after: setEnv

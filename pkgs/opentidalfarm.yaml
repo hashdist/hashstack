@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: []
+  run: [dolfin, dolfin-adjoint, numpy, uptide, utm, yaml]
+
+sources:
+- key: zip:iwqk2qwfxfobtgq7gi3maqzyauzuypfm
+  url: https://github.com/OpenTidalFarm/OpenTidalFarm/archive/opentidalfarm-1.5.zip

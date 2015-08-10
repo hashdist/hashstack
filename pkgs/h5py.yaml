@@ -1,16 +1,16 @@
 extends: [distutils_package]
 
 dependencies:
-  build: [mpi,hdf5,python,cython,numpy]
-  run: [mpi,hdf5,python,cython,numpy]
+  build: [hdf5, mpi4py, mpi, numpy, cython]
+  run: [numpy]
 
 sources:
-  - url: https://pypi.python.org/packages/source/h/h5py/h5py-2.2.1.tar.gz
-    key: tar.gz:wriqzn2k54zsqr64rdr562iq26xwrryj
+- key: tar.gz:ir7flvmjhsriluiylkjyksfbf47x2sxu
+  url: https://pypi.python.org/packages/source/h/h5py/h5py-2.3.1.tar.gz
 
 build_stages:
-  - name: set-CFLAGS
-    before: install
-    handler: bash
-    bash: |
-      export CFLAGS="-I${MPI_DIR}/include"
+- name: install
+  after: setup_dirs
+  handler: bash
+  bash: |
+    CC=${MPICC} ${PYTHON} setup.py install --mpi --prefix=${ARTIFACT} 

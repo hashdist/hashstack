@@ -1,11 +1,16 @@
 extends: [autotools_package]
 dependencies:
-  build: [cmake, blas, mpi, {{build_with}}]
+  build: [blas, mpi, python, {{build_with}}]
 
 sources:
-- url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.4.4.tar.gz
-  key: tar.gz:hotnsuydbi6ok23sbfnn55ik7p323inj
+- key: tar.gz:ygj3gebgevuuwg5evyrgenkhf3ry5b2d
+  url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.5.2.tar.gz
 
+defaults:
+  # /include/petscconfiginfo.h contains absolute path
+  relocatable: false
+  fortran: false
+  debug: false
 
 build_stages: 
 
@@ -13,18 +18,10 @@ build_stages:
 - when: platform == 'Cygwin'
   name: fix_dll_detection
   files: [fix_dll_link_detection.patch]
-  before: set_petsc_arch
-  handler: bash
-  bash: |
-    patch -p1 < _hashdist/fix_dll_link_detection.patch
-
-# Need to explicitly provide a PETSc arch to use later
-- when: platform == 'Cygwin'
-  name: set_petsc_arch
   before: configure
   handler: bash
   bash: |
-    export PETSC_ARCH=arch-mswin-c-opt
+    patch -p1 < _hashdist/fix_dll_link_detection.patch
 
 - name: configure ## See petsc.py for details
   mode: replace
@@ -34,22 +31,20 @@ build_stages:
   debug: {{debug}}
   download: [{{download}}]
 
-# Disable Parallel Builds
-
-# PETSc 3.4 does not allow the use of the -j option to make
-- name: make
-  mode: replace
-  handler: bash
-  after: configure
-  bash: |
-    PETSC_DIR=$(pwd) make
-
-- name: install
-  mode: replace
-  handler: bash
-  after: make
-  bash: |
-    PETSC_DIR=$(pwd) make install
+# PETSc 3.5 does not allow the use of the -j option to make
+-  name: make
+   mode: replace
+   handler: bash
+   after: configure
+   bash: |
+     make
+ 
+-  name: install
+   mode: replace
+   handler: bash
+   after: make
+   bash: |
+     make install
 
 # Special case for OS X, post-fix library rpaths with install_name_tool
 - when: platform == 'Darwin'
@@ -60,11 +55,14 @@ build_stages:
     install_name_tool -change libmetis.dylib ${PARMETIS_DIR}/lib/libmetis.dylib ${ARTIFACT}/lib/libpetsc.dylib
     install_name_tool -change libparmetis.dylib ${PARMETIS_DIR}/lib/libparmetis.dylib ${ARTIFACT}/lib/libpetsc.dylib
 
-# Special case for need to move DLLs into appropriate directories
+# Special case for Cygwin, move DLLs into appropriate directories
 - when: platform == 'Cygwin'
   name: dll_fix
   handler: bash
   after: install
   bash: |
-    install $PETSC_ARCH/cyg*.dll $ARTIFACT/bin
-    install $PETSC_ARCH/lib/cyg*.dll $ARTIFACT/bin
+    find arch-mswin-*/ -name "*.dll" -exec install -v {} ${ARTIFACT}/bin \;
+
+when_build_dependency:
+- when platform == 'Cygwin':
+  - {prepend_path: PATH, value: '${ARTIFACT}/bin'}

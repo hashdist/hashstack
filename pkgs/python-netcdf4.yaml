@@ -8,5 +8,12 @@ sources:
     key: tar.gz:th26v25of6xje5m5co3zbxpeejvsxded
 
 build_stages:
+- name: set_mpi_wrapper
+  handler: bash
+  after: prologue
+  before: install
+  bash: |
+    export CC=$MPICC
+
 - name: libflags
   before: install

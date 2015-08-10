@@ -1,0 +1,16 @@
+extends: [autotools_package]
+
+dependencies:
+    build: [libsdl2, freetype, bzip2]
+    run: [libsdl2, freetype, bzip2]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:q4ugavcd5iomuxfnkao4gtoazmkrgxi6
+  url: http://www.libsdl.org/projects/SDL_ttf/release/SDL2_ttf-2.0.12.tar.gz
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'

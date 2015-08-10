@@ -1,0 +1,40 @@
+extends: [autotools_package]
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build: [berkeleydb-5, gdbm, {{build_with}}]
+
+sources:
+- key: tar.gz:j2gcrllozsezal44wltw6kavxmnifb66
+  url: http://www.cpan.org/src/5.0/perl-5.20.0.tar.gz
+
+build_stages:
+- name: configure
+  after: prologue
+  mode: replace
+  handler: bash
+  bash: |
+    ./Configure -de -Dprefix=${ARTIFACT} -Duserelocatableinc
+
+#- name: make_test
+#  after: make
+#  handler: bash
+#  bash: |
+#    make test
+#
+
+# Maybe do this for the user at somepoint
+#
+#    ${ARTIFACT}/bin/perl -MCPAN -e 'install local::lib'
+#    ${ARTIFACT}/bin/perl -MCPAN -Mlocal::lib -e 'CPAN::install(LWP)'
+
+profile_links:
+  - name: perl_binary
+    before: everything
+    copy: 'bin/perl'
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

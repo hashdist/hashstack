@@ -1,5 +1,8 @@
 extends: [distutils_package]
+dependencies:
+  build: []
+  run: [numpy, sympy]
 
 sources:
-- url: https://bitbucket.org/fenics-project/fiat.git
-  key: git:fbac61d3513b5e95552571b8faa9576ff567c385
+- key: tar.gz:fmct7kpxaom7reb3tb7zrjh2fmdn7fkz
+  url: https://bitbucket.org/fenics-project/fiat/downloads/fiat-1.5.0.tar.gz

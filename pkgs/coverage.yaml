@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/c/coverage/coverage-3.7.1.tar.gz
+   key: tar.gz:2gxkdrfkmg4dm3lkilotmudcf67zyy2o

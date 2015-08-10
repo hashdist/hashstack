@@ -1,0 +1,27 @@
+extends: [base_package]
+
+dependencies:
+  build: [golang, gox, {{build_with}}]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: git:f1970370ef337a6361a8a39bb4b17ddf625e4378
+  url: https://github.com/mitchellh/packer.git
+
+build_stages:
+- name: make-install
+  handler: bash
+  bash: |
+    export GOROOT=${GOLANG_DIR}/go
+    export GOPATH=${ARTIFACT}/go-packer
+    export GOBIN=${ARTIFACT}/bin
+    mkdir -p $GOBIN $GOPATH
+    mkdir -p ${GOPATH}/src/github.com/mitchellh
+    cp -a ${BUILD} ${GOPATH}/src/github.com/mitchellh/packer
+    cd ${GOPATH}/src/github.com/mitchellh/packer
+    make updatedeps
+    unset GOBIN
+    make dev
+    mv ${GOPATH}/bin/* ${ARTIFACT}/bin/

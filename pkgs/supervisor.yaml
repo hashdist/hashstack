@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [meld3, superlance]
+  run: [meld3, superlance]
+
+sources:
+- key: tar.gz:4mwfi37i2ktoa6pmjam4jh6siu2nib22
+  url: http://pypi.python.org/packages/source/s/supervisor/supervisor-3.1.3.tar.gz

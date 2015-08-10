@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: [cython, mpi, numpy, petsc, petsc4py, slepc]
+  run: [mpi, numpy, petsc, petsc4py, slepc]
+
+sources:
+- key: tar.gz:qrh2verdcq3iikmm5tlwcpunzqmwszmx
+  url: https://bitbucket.org/slepc/slepc4py/downloads/slepc4py-3.5.1.tar.gz

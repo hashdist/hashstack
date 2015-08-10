@@ -4,5 +4,5 @@ dependencies:
   run: [python]
 
 sources:
-  - url: https://pyproj.googlecode.com/files/pyproj-1.9.3.tar.gz
-    key: tar.gz:sexnq3c6ib7qshiphudwlffpj62wtyt4
+- key: git:bb005aca2d933d77b78c0018f8b5d04c471b4608
+  url: https://github.com/jswhit/pyproj.git

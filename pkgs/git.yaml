@@ -1,0 +1,36 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [curl, pcre, openssl, libiconv, gettext, expat, zlib, perl]
+
+sources:
+- key: tar.gz:2wghm2ua3bvf4gcgybghiymotc76yfmh
+  url: https://www.kernel.org/pub/software/scm/git/git-2.4.0.tar.gz
+
+defaults:
+  # /bin/git contains hard-coded path
+  relocatable: false
+  disable_crypto: false
+
+build_stages:
+
+- name: perl_path
+  before: configure
+  handler: bash
+  bash: |
+    export PERL_PATH="/usr/bin/env perl"
+
+- when: platform == 'Darwin' and disable_crypto
+  name: fix_crypto_compile_failure
+  before: configure
+  handler: bash
+  bash: |
+    export NO_APPLE_COMMON_CRYPTO=1
+
+- name: configure
+  mode: override
+  extra: ['--with-libpcre=${PCRE_DIR}', '--with-zlib=${ZLIB_DIR}', '--with-iconv=${LIBICONV_DIR}', '--with-expat=${EXPAT_DIR}', '--with-curl=${CURL_DIR}']
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

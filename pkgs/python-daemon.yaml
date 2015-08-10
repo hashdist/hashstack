@@ -1,0 +1,8 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [docutils]
+
+sources:
+ - url: https://pypi.python.org/packages/source/p/python-daemon/python-daemon-2.0.5.tar.gz
+   key: tar.gz:v7pe7jbt3fgqa4qg5yy2bfa5kw26wizk

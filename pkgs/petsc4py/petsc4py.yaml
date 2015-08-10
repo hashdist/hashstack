@@ -39,4 +39,4 @@ build_stages:
 
 sources:
   - url: https://bitbucket.org/petsc/petsc4py.git
-    key: git:f4c5dc2139024e671b3f09c2565e00320e8d51cc
+    key: git:4d49c3210c267dd5f8dd507c9e3352b92370560c

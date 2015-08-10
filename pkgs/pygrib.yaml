@@ -1,12 +1,12 @@
 extends: [distutils_package]
 
 dependencies:
-  build: [python,jasper,grib_api,pyproj,numpy]
-  run: [python,pyproj]
+  build: [python, jasper, grib_api, pyproj, numpy]
+  run: [python, pyproj]
 
 sources:
-  - url: https://pygrib.googlecode.com/files/pygrib-1.9.8.tar.gz
-    key: tar.gz:u4hhkrnmmbciyv2qjzajx4ne3em2l5mb
+- key: git:db179ce3dccee59bb41ca812c4b02750be74239f
+  url: https://github.com/jswhit/pygrib.git
 
 build_stages:
 - name: create-setup.cfg

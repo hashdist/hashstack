@@ -1,2 +1,4 @@
 when_build_dependency:
   - {set: 'BLAS_LDFLAGS', value: '-lblas'}
+  - when platform == 'Cygwin':
+    - {prepend_path: PATH, value: '/usr/lib/lapack'}

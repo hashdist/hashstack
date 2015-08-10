@@ -1,0 +1,72 @@
+extends: [autotools_package]
+
+# see https://gcc.gnu.org/install/prerequisites.html
+dependencies:
+  build: [zlib, mpfr, mpc, gmp, isl, cloog, gnu-sed, {{build_with}}]
+
+defaults:
+  relocatable: false
+  version: 4.9.2
+
+when version == '4.9.2':
+    sources:
+    - key: tar.bz2:eaqmtauvqvvkcp62b4xtur4ujedvp7be
+      url: http://ftpmirror.gnu.org/gcc/gcc-4.9.2/gcc-4.9.2.tar.bz2
+when version == '5.1.0':
+    sources:
+    - key: tar.bz2:w7np36e4xmhcamz5x5nvgsjrtlqg4pi2
+      url: http://ftpmirror.gnu.org/gcc/gcc-5.1.0/gcc-5.1.0.tar.bz2
+
+
+build_stages:
+  # Make gcc automatically embed RPATH to the proper libstdc++, libgfortran,
+  # libgcc and libquadmath libraries:
+  - name: rpath_patch
+    before: configure
+    files: [rpath.patch]
+    handler: bash
+    bash: |
+      patch -up1 < _hashdist/rpath.patch
+      sed -i "s|@@ARTIFACT@@|${ARTIFACT}|g" gcc/config/i386/gnu-user.h gcc/config/i386/gnu-user64.h
+
+  - when: platform == 'Darwin'
+    name: fix_object_h
+    before: configure
+    handler: bash
+    bash: |
+      if [ -f /usr/include/dispatch/object.h ]; then
+        mkdir -p "$ARTIFACT/include/dispatch"
+        sed 's+typedef void (\^dispatch_block_t)(void)+typedef void* dispatch_block_t+' /usr/include/dispatch/object.h > "$ARTIFACT/include/dispatch/object.h"
+      fi
+
+  - name: link_lib64_to_lib
+    after: install
+    handler: bash
+    bash: |
+      # Create symbolic links from lib64/* to lib/
+      cd ${ARTIFACT}/lib
+      ln -s ../lib64/* .
+
+  # the checks will continue to run and not stop if there are errors,
+  # this is here really for post build review.
+  - name: make_check
+    after: install
+    handler: bash
+    bash: |
+##WIP      echo | ${ARTIFACT}/bin/gcc -v -x c -E -
+##WIP      echo | ${ARTIFACT}/bin/gcc -v -x c++ -E -
+##WIP      ${ARTIFACT}/bin/gcc -Wl,--verbose
+##WIP      ${ARTIFACT}/bin/gfortran -Wl, --verbose
+##WIP
+##WIP       echo "run gcc checks"
+##WIP       make -k check
+##WIP       echo "    ok"
+##WIP 
+##WIP       echo "run test summary script"
+##WIP       ./contrib/test_summary
+##WIP       echo "    ok"
+##WIP
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

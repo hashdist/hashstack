@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - url: https://pypi.python.org/packages/source/m/meld3/meld3-1.0.0.tar.gz
+   key: tar.gz:k62b5253lkbnjkjimceweyleilrdt3dn

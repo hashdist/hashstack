@@ -1,6 +1,7 @@
 extends:
- - file: common.yaml
+ - file: config.yaml
 
 parameters:
   platform: linux
+  fortran: true
   PATH: /usr/bin:/bin

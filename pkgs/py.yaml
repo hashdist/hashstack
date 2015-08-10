@@ -1,0 +1,5 @@
+extends: [setuptools_package]
+
+sources:
+  - url: https://pypi.python.org/packages/source/p/py/py-1.4.20.tar.gz
+    key: tar.gz:epez3gplwkta5nychn2xpp6jrcwlacja

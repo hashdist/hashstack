@@ -1,0 +1,16 @@
+extends: [base_package]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: git:f7174a25b47675ed8429f432ef3a682c55c2fcf1
+  url: https://github.com/getpelican/pelican-plugins
+
+build_stages:
+
+- name: make-install
+  handler: bash
+  bash: |
+    install -d ${ARTIFACT}/share/pelican-plugins
+    cp -r ./* ${ARTIFACT}/share/pelican-plugins

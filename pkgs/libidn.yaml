@@ -1,0 +1,12 @@
+extends:  [autotools_package]
+
+sources:
+- key: tar.gz:3u2xvfuejgv4s7d6l6qirjfdqtpfpszw
+  url: http://ftpmirror.gnu.org/libidn/libidn-1.28.tar.gz
+
+defaults:
+  relocatable: false
+
+when_build_dependency:
+  - prepend_path: PKG_CONFIG_PATH
+    value: '${ARTIFACT}/lib/pkgconfig'

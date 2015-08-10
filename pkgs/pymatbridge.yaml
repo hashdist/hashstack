@@ -4,8 +4,8 @@ dependencies:
   run: [python, ipython, zmq, pyzmq, matlab]
 
 sources:
-  - url: https://github.com/arokem/python-matlab-bridge.git
-    key: git:1c589c39713218f38b9e59e882330b7a1355d8a1
+- key: git:1c589c39713218f38b9e59e882330b7a1355d8a1
+  url: https://github.com/arokem/python-matlab-bridge.git
 
 build_stages:
 - when: platform == 'linux'

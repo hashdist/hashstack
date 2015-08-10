@@ -1,0 +1,11 @@
+extends: [base_package]
+
+sources:
+- key: git:669732c2fd05199054ae7d4c76a88c7eb3040bf1
+  url: http://repo.or.cz/guilt.git
+
+build_stages:
+- name: make-install
+  handler: bash
+  bash: |
+    make install PREFIX=${ARTIFACT}

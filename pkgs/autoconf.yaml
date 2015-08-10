@@ -1,0 +1,15 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [coreutils, diffutils, m4, gawk]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:svf5ngzzd3obfvveuunc3ukhmvb5uxdl
+  url: http://ftp.heanet.ie/mirrors/gnu/autoconf/autoconf-2.69.tar.gz
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

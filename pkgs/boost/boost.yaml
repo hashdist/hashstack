@@ -1,0 +1,116 @@
+extends: [base_package]
+
+dependencies:
+  when platform == 'linux':
+    build: [bzip2, mpi, zlib, patchelf, {{build_with}}]
+  when platform != 'linux':
+    build: [bzip2, mpi, zlib, {{build_with}}]
+
+sources:
+- url: http://downloads.sourceforge.net/boost/boost_1_55_0.tar.bz2
+  key: tar.bz2:77yaai65pfeg2rcmryuzel2aolq5iup4
+
+build_stages:
+- name: bootstrap
+  after: prologue
+  handler: bash
+  bash: |
+    ./bootstrap.sh --with-toolset={{toolset}} --prefix=${ARTIFACT}
+
+- name: call_once_variadic
+  before: bjam
+  after: bootstrap
+  handler: bash
+  files: [call_once_variadic.patch]
+  bash: |
+    patch -p2 < _hashdist/call_once_variadic.patch
+
+- name: 128bitIntegerSupport1
+  before: bjam
+  after: bootstrap
+  handler: bash
+  files: [128bitIntegers.patch]
+  bash: |
+    patch -p2 < _hashdist/128bitIntegers.patch
+
+- name: 128bitIntegerSupport2
+  before: bjam
+  after: 128bitIntegerSupport1
+  handler: bash
+  files: [128bitIntegers2.patch]
+  bash: |
+    patch -p2 < _hashdist/128bitIntegers2.patch
+
+- name: boost_1_55_fix_warnings
+  before: bjam
+  after: 128bitIntegerSupport2
+  handler: bash
+  files: [boost_1_55_fix_warnings.patch]
+  bash: |
+    patch -p2 < _hashdist/boost_1_55_fix_warnings.patch
+
+- name: set-address_model
+  before: bjam
+  handler: bash
+  bash: |
+    address_model={{address_model}}
+    if [ -z ${address_model} ]; then
+        address_model=$(getconf LONG_BIT)
+    fi
+
+- name: bjam
+  after: bootstrap
+  handler: bash
+  when platform != 'Cygwin':
+    bash: |
+      echo "using mpi ;" > user-config.jam
+      ./bjam -q \
+             toolset={{toolset}} \
+             address-model=${address_model} \
+             -j ${HASHDIST_CPU_COUNT} \
+             --user-config=user-config.jam \
+             --build-dir=_build\
+             link=shared \
+             install \
+             -sNO_BZIP2=0 \
+             -sBZIP2_BINARY=bz2 \
+             -sBZIP2_INCLUDE=${BZIP2_DIR}/include \
+             -sBZIP2_LIBPATH=${BZIP2_DIR}/lib \
+             -sNO_ZLIB=0 \
+             -sZLIB_BINARY=z \
+             -sZLIB_INCLUDE=${ZLIB_DIR}/include \
+             -sZLIB_LIBPATH=${ZLIB_DIR}/lib
+  when platform == 'Cygwin':
+    bash: |
+      ./bjam -q \
+             toolset={{toolset}} \
+             address-model=${address_model} \
+             -j ${HASHDIST_CPU_COUNT} \
+             --without-context \
+             --without-coroutine \
+             --without-mpi \
+             --without-python \
+             --build-dir=_build\
+             link=shared \
+             install \
+             -sNO_BZIP2=0 \
+             -sBZIP2_BINARY=bz2 \
+             -sBZIP2_INCLUDE=${BZIP2_DIR}/include \
+             -sBZIP2_LIBPATH=${BZIP2_DIR}/lib \
+             -sNO_ZLIB=0 \
+             -sZLIB_BINARY=z \
+             -sZLIB_INCLUDE=${ZLIB_DIR}/include \
+             -sZLIB_LIBPATH=${ZLIB_DIR}/lib
+
+- when: platform == 'linux'
+  name: rpath_fix
+  after: bjam
+  handler: bash
+  bash: |
+    for lib in ${ARTIFACT}/lib/*.so.*; do
+        ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BZIP2_DIR}/lib:${ZLIB_DIR}/lib ${lib}
+    done
+
+when_build_dependency:
+- set: BOOST_MULTITHREADED
+  value: "OFF"

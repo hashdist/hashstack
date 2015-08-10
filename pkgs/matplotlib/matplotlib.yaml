@@ -1,20 +1,13 @@
 extends: [namespace_package, libflags]
 dependencies:
-  build: [freetype, numpy, png]
-  run: [freetype, numpy, png, python-dateutil, pyparsing]
+  build: [bzip2, freetype, numpy, png, pkg-config, zlib]
+  run: [freetype, numpy, png, python-dateutil, pyparsing, six]
 
 sources:
-  - url: https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-1.3.1/matplotlib-1.3.1.tar.gz
-    key: tar.gz:5ilgphmuo2vsovyqf2ade7zr5ohgylfq
+- key: tar.gz:c6r4ofkpcuwy37wr6n2rpqfiyxnwvxsp
+  url: https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-1.4.2/matplotlib-1.4.2.tar.gz
 
 build_stages:
-
-- name: png_freetype_fix
-  before: install
-  handler: bash
-  bash: |
-    export PKG_CONFIG_PATH="$PNG_DIR/lib/pkgconfig:$FREETYPE_DIR/lib/pkgconfig"
-
 
 # This patch did not go into v1.3.1 :(
 - when: platform == 'Cygwin'

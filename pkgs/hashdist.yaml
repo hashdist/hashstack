@@ -1,0 +1,8 @@
+extends: [distutils_package]
+
+dependencies:
+   run: [git, mercurial, pyliblzma]
+
+sources:
+ - key: git:167460666cccfbd9bc01f0b4ed5f5c67596c5a6b
+   url: https://github.com/hashdist/hashdist

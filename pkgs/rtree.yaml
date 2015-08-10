@@ -13,5 +13,5 @@ build_stages:
     sed -i -e "s|CDLL(lib_name)|CDLL('${LIBSPATIALINDEX_DIR}/lib/'+lib_name)|g" rtree/core.py
 
 sources:
-- url: https://pypi.python.org/packages/source/R/Rtree/Rtree-0.7.0.tar.gz
-  key: tar.gz:z6kqsl4g4znjefsflhsu6cbegpon6g6t
+- key: tar.gz:z6kqsl4g4znjefsflhsu6cbegpon6g6t
+  url: https://pypi.python.org/packages/source/R/Rtree/Rtree-0.7.0.tar.gz

@@ -1,8 +1,9 @@
-# Hashstack <#>
+# HashStack <#>
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/hashdist/hashstack?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-Hashstack is a collection of software profiles that builds on various architectures (Linux, Windows, Mac, clusters, ...) and allows optional reuse of system-wide packages (compilers, Lapack, Python, ...).
+HashStack is a collection of software profiles that builds on various architectures (Linux, Windows, Mac, clusters, ...) and allows optional reuse of system-wide packages (compilers, LAPACK, Python, ...).
 
-To build these profiles, you need the [hit](https://github.com/hashdist/hashdist) tool from Hashdist.
+To build these profiles, you need the [hit](https://github.com/hashdist/hashdist) tool from HashDist.
 Read [hit's documentation](http://hashdist.readthedocs.org/) about how to use it.
 
 ## Usage
@@ -28,12 +29,12 @@ hit init-home
 
 This will install one particular profile:
 ```
-git clone https://github.com/hashdist/hashstack2
-cd hashstack2
+git clone https://github.com/hashdist/hashstack
+cd hashstack
 cp cloud.sagemath.yaml default.yaml
 hit build
 ```
 You can now for example run the IPython Notebook as follows:
 ```
-default/bin/ipython notebook
+./default/bin/ipython notebook
 ```

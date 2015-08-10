@@ -1,0 +1,16 @@
+extends: [base_package]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: git:0d473861e930e91a4a85a1770d926a62c05b8268
+  url: https://github.com/DandyDev/pelican-bootstrap3
+
+build_stages:
+
+- name: make-install
+  handler: bash
+  bash: |
+    install -d ${ARTIFACT}/share/pelican-bootstrap3
+    cp -r ./* ${ARTIFACT}/share/pelican-bootstrap3

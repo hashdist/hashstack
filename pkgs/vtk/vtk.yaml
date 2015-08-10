@@ -1,0 +1,98 @@
+extends: [cmake_package]
+dependencies:
+  build:
+    - python
+    - setuptools
+    - libtiff
+    - when platform == 'linux':
+        - patchelf
+    - when vtk_use_tk:
+        - tk
+
+sources:
+- url: http://www.vtk.org/files/release/5.10/vtk-5.10.1.tar.gz
+  key: tar.gz:6grebqpv6dme4j5vp2lc7dskpcywnms3
+
+defaults:
+  # lib/vtk-5.10/libvtkHybrid.so.5.10.1 contains hard-coded path
+  relocatable: false
+  vtk_use_tk: false
+
+build_stages:
+
+- name: setup_dirs
+  after: prologue
+  before: setup_builddir
+  handler: bash
+  bash: |
+    export PYTHONPATH=${ARTIFACT}/{{python_site_packages_rel}}:$PYTHONPATH
+    mkdir -p ${ARTIFACT}/{{python_site_packages_rel}}
+
+- name: glx_glext_legacy_patch
+  files: [GLX_GLEXT_LEGACY.patch]
+  handler: bash
+  before: setup_builddir
+  bash: |
+    patch -p1 < _hashdist/GLX_GLEXT_LEGACY.patch
+
+- when: platform == 'Cygwin'
+  files: [vtk-5.10.1-cygwin.patch]
+  name: vtk_cygwin_patch
+  handler: bash
+  before: setup_builddir
+  bash: |
+    patch -p1 < _hashdist/vtk-5.10.1-cygwin.patch
+
+- when: platform == 'Darwin'
+  files: [vtk-disable-gc.patch]
+  name: vtk_disable_gc_patch
+  handler: bash
+  before: setup_builddir
+  bash: |
+    patch -p1 < _hashdist/vtk-disable-gc.patch
+
+- name: configure
+  extra: 
+    - '-D BUILD_TESTING:BOOL=OFF'
+    - '-D BUILD_EXAMPLES:BOOL=OFF'
+    - '-D BUILD_SHARED_LIBS:BOOL=ON'
+    - '-D VTK_WRAP_PYTHON:BOOL=ON'
+    - '-D VTK_WRAP_TCL:BOOL=OFF'
+    - '-D VTK_USE_GL2PS:BOOL=ON'
+    - '-D VTK_PYTHON_SETUP_ARGS:STRING="--prefix=. --root=${ARTIFACT} --single-version-externally-managed"'
+    - '-D CMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib/vtk-5.10"'
+    - '-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"'
+    - '-D VTK_USE_SYSTEM_TIFF:BOOL=ON'
+
+- when: vtk_use_tk
+  name: configure
+  mode: update
+  extra: ['-D VTK_USE_TK:BOOL=ON']
+
+- when: not vtk_use_tk
+  name: configure
+  mode: update
+  extra: ['-D VTK_USE_TK:BOOL=OFF']
+
+- when: platform == 'linux'
+  name: rpath_fix
+  after: install
+  handler: bash
+  bash: |
+    for lib in ${ARTIFACT}/lib/python{{pyver}}/site-packages/vtk/*.so; do
+        ${PATCHELF} --set-rpath ${ARTIFACT}/lib/vtk-5.10 ${lib}
+    done
+
+profile_links:
+- name: python_packages
+  link: 'lib/python{{pyver}}/site-packages/*'
+  dirs: true
+
+- name: python_exclude
+  after: python_packages
+  before: everything
+  exclude: 'lib/python{{pyver}}/site-packages/**/*'
+
+when_build_dependency:
+- prepend_path: PYTHONPATH
+  value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'
