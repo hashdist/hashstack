@@ -3,5 +3,5 @@ dependencies:
   build: [mpi, hdf5, netcdf4]
 
 sources:
-- url: ftp://ftp.unidata.ucar.edu/pub/netcdf/netcdf-fortran-4.2.tar.gz
-  key: tar.gz:a2pbud5vbfzpfayjeeeypjivmm3ju3o3
+- url: https://github.com/Unidata/netcdf-fortran/archive/v4.4.2.tar.gz
+  key: tar.gz:6itec5ahjlym6mzlrxij4tqyiul2fvkp
