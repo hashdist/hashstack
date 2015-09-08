@@ -102,8 +102,8 @@ packages:
   pexpect:
   pcs_api:
   #pythreejs:
-#  scorec:
-#  simmetrix:
-#  zoltan:
-#    build_with: |
-#      parmetis
+  scorec:
+  simmetrix:
+  zoltan:
+    build_with: |
+      parmetis
