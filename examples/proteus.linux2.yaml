@@ -12,6 +12,9 @@ parameters:
 # at the YAML files in the top-level directory and choose
 # the most *specific* file that matches your environment.
 
+parameters:
+  airgap: True
+
 extends:
 - file: debian.yaml
 
@@ -29,6 +32,7 @@ packages:
     link: shared
     build_with: |
       bzip2, sqlite
+    link: shared
   blas:
     use: host-blas
   daetk:
@@ -37,6 +41,8 @@ packages:
   mpi4py:
   nose:
   hdf5:
+  pygments:
+  tornado:
   matplotlib:
   pyzmq:
   parmetis:

@@ -38,6 +38,7 @@ packages:
     link: shared
     build_with: |
       openssl,bzip2,sqlite
+    link: shared
   blas:
     use: host-acml-blas
   lapack:
@@ -48,8 +49,10 @@ packages:
   mpi4py:
   nose:
   hdf5:
-  matplotlib:
+  pygments:
+  tornado:
   pyzmq:
+  matplotlib:
   parmetis:
     without_check: true
   petsc:

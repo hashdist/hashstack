@@ -5,6 +5,9 @@
 # at the YAML files in the top-level directory and choose
 # the most *specific* file that matches your environment.
 
+parameters:
+  airgap: True
+
 extends:
 - file: osx.yaml
 
@@ -33,7 +36,10 @@ packages:
   mpi4py:
   nose:
   hdf5:
-  ipython:
+  pygments:
+  tornado:
+  pyzmq:
+  parmetis:
   petsc:
     build_with: |
       parmetis      
@@ -49,7 +55,6 @@ packages:
   sphinx:
   superlu:
   sympy:
-  triangle:
   tetgen:
   memory_profiler:
   ipdb:

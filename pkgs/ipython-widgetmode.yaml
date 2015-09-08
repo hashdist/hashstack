@@ -1,0 +1,10 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [ipython]
+  run: [ipython]
+
+sources:
+  - url: https://github.com/erdc-cm/ipython-widgetmode
+    key: git:4707fa6552351fd5357700ffbda8055d925864ae
+
