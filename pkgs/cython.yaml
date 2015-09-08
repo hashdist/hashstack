@@ -1,8 +1,8 @@
 extends: [distutils_package]
 
 sources:
-  - url: http://cython.org/release/Cython-0.19.2.tar.gz
-    key: tar.gz:yw2vwc6ubyr2ts6nfqn557uxoh6fqnut
+  - key: tar.gz:cqyh46tjv6na2dqaetkenl36khga4psn
+    url: http://cython.org/release/Cython-0.22.tar.gz
 
 when_build_dependency:
   - prepend_path: PATH

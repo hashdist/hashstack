@@ -1,8 +1,11 @@
 extends: [autotools_package]
 
 sources:
-  - url: http://www.ece.uvic.ca/~frodo/jasper/software/jasper-1.900.1.zip
-    key: zip:noifvhbkzixcovkeeetgn3x4j22e3foq
+- key: zip:noifvhbkzixcovkeeetgn3x4j22e3foq
+  url: http://www.ece.uvic.ca/~frodo/jasper/software/jasper-1.900.1.zip
+
+defaults:
+  relocatable: false
 
 build_stages:
 - name: configure

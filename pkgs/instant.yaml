@@ -1,5 +1,7 @@
 extends: [distutils_package]
+dependencies:
+  run: [cmake, flufl_lock, numpy, swig]
 
 sources:
-- url: https://bitbucket.org/fenics-project/instant.git
-  key: git:01dbde95710a0b9751fa0378e165192e6e723cd6
+- key: tar.gz:g3qefxrg3f7v4pkd6l2skrgzdoqpctq4
+  url: https://bitbucket.org/fenics-project/instant/downloads/instant-1.5.0.tar.gz

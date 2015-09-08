@@ -4,5 +4,13 @@ dependencies:
   run: [geos]
 
 sources:
-- url: https://pypi.python.org/packages/source/S/Shapely/Shapely-1.3.2.tar.gz
-  key: tar.gz:t4g6khdrg4745zewf547jaj5m7vb44i7
+- key: git:76f5832e8df80ed86493fb4eb7a0cd7a17976822
+  url: git@github.com:Toblerity/Shapely.git
+
+build_stages:
+- name: check
+  after: install
+  handler: bash
+  bash: |
+    ${PYTHON} -c "from shapely import geos"
+

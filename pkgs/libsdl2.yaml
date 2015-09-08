@@ -1,0 +1,12 @@
+extends: [autotools_package]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:uwtju2v7qc6m44j7vbzwa5zv7zys6rbh
+  url: https://www.libsdl.org/release/SDL2-2.0.3.tar.gz
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'

@@ -1,0 +1,5 @@
+extends: [distutils_package]
+
+sources:
+- key: tar.gz:hkphxj6oviico26p5birbicggoatgrca
+  url: https://pypi.python.org/packages/source/c/clint/clint-0.4.1.tar.gz

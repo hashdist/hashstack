@@ -1,0 +1,167 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [blas, gnu-sed, lapack, mpi]
+
+sources:
+- key: tar.gz:qs6kil25x247lxjlzlvwdhsgbv5tpcye
+  url: http://ftp.mcs.anl.gov/pub/petsc/externalpackages/hypre-2.9.1a.tar.gz
+
+defaults:
+  # Skip build-time tests (not recommended)
+  without_check: false
+  # Build with Accelerate framework (on OS X)
+  with_accelerate: false
+  # Build with OpenBLAS
+  with_openblas: false
+  # Build with debug flags
+  debug: false
+
+build_stages:
+# lib/Makefile treats the hypre internal BLAS & LAPACK implementations
+# as dependencies for libHYPRE.a (the hypre library). When building with
+# an external BLAS library, strip out these dependencies.
+- name: external-BLAS
+  before: configure
+  handler: bash
+  bash: |
+    sed -i 's/.*BLASFILES.*//g' src/lib/Makefile
+    sed -i 's/.*LAPACKFILES.*//g' src/lib/Makefile
+
+- name: enter-src-dir
+  before: configure
+  after: external-BLAS
+  handler: bash
+  bash: |
+     cd src
+
+- name: set-compiler
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    export CC=${MPICC}
+    export CXX=${MPICXX}
+    export F77=${MPIF77}
+
+- when: with_openblas
+  name: configure
+  mode: update
+  extra: ["--with-blas=yes",
+          "--with-blas-libs=openblas",
+          "--with-blas-lib-dirs=${BLAS_DIR}/lib",
+          "--with-lapack=yes",
+          "--with-lapack-libs=openblas",
+          "--with-lapack-lib-dirs=${LAPACK_DIR}/lib"]
+
+- when: with_accelerate and not with_openblas
+# Libraries used for linking to Accelerate framework; `otool -L`
+# shows that these libraries link to the same dylibs that the
+# Accelerate framework libraries do. Using the
+# "-framework Accelerate" flag would be preferable, but setting
+# CFLAGS, etc. overrides the flags in the Makefile and results
+# in errors.
+  name: configure
+  mode: update
+  extra: ["--with-blas=yes",
+          '--with-blas-libs="blas cblas"',
+          "--with-blas-lib-dirs=/usr/lib",
+          "--with-lapack=yes",
+          '--with-lapack-libs="lapack clapack f77lapack"',
+          "--with-lapack-lib-dirs=/usr/lib"]
+
+- when: not with_accelerate and not with_openblas
+  name: configure
+  mode: update
+  extra: ["--with-blas=yes",
+          '--with-blas-libs=blas',
+          "--with-blas-lib-dirs=${BLAS_DIR}/lib",
+          "--with-lapack=yes",
+          '--with-lapack-libs=lapack',
+          "--with-lapack-lib-dirs=${LAPACK_DIR}/lib"]
+
+- when: debug
+  name: configure
+  mode: update
+  extra: ["--enable-debug"]
+
+- when: not fortran
+  name: configure
+  mode: update
+  extra: ["--disable-fortran"]
+
+- name: configure
+  mode: update
+  extra: ["--with-MPI",
+          "--with-MPI-include=${MPI_DIR}/include",
+          "--with-MPI-lib-dirs=${MPI_DIR}/lib",
+# MPI library strings for linking depends on compilers
+# enabled. Only the C library strings are needed (without the
+# lib), because hypre is a C library.
+          '--with-MPI-lib="mpi"']
+
+- name: configure
+  mode: update
+  extra: ["--without-babel",
+          "--without-mli",
+          "--without-fei",
+          "--without-superlu"]
+
+- when: platform != 'Darwin'
+  name: configure
+  mode: update
+  extra: ["--enable-shared"]
+
+### needs to fix rpath on the real library not the link
+- when: platform == 'linux'
+  name: rpath-fix
+  after: install
+  handler: bash
+  bash: |
+    oldRPath=$(${PATCHELF} --print-rpath ${ARTIFACT}/lib/libHYPRE-*.so)
+    ${PATCHELF} --set-rpath ${oldRPath}:${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib ${ARTIFACT}/lib/libHYPRE-*.so
+
+- when: platform != 'linux'
+  name: rpath-fix
+  after: install
+  handler: bash
+  bash: |
+
+- when: not without_check and platform == 'linux'
+  name: check
+  after: rpath-fix
+  handler: bash
+  bash: |
+    make check
+    make test
+    ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib test/ij
+    ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib test/struct
+    ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib test/sstruct
+    ./test/ij
+    ./test/struct
+    ./test/sstruct -in test/sstruct.in.default -solver 40 -rhsone
+
+- when: not without_check and platform != 'linux'
+  name: check
+  after: rpath-fix
+  handler: bash
+  bash: |
+    make check
+    make test
+    ./test/ij
+    ./test/struct
+    ./test/sstruct -in test/sstruct.in.default -solver 40 -rhsone
+
+- when: without_check
+  name: check
+  after: rpath-fix
+  handler: bash
+  bash: |
+
+- name: caveats
+  after: check
+  handler: bash
+  bash: |
+    echo "Please register for hypre at:"
+    echo
+    echo "https://computation.llnl.gov/project/linear_solvers/download/hypre-2.9.0b_reg.php"

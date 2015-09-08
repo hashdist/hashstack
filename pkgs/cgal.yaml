@@ -3,14 +3,18 @@ dependencies:
   build: [zlib, boost, gmp, mpfr]
 
 sources:
-- url: https://gforge.inria.fr/frs/download.php/32360/CGAL-4.2.tar.bz2
-  key: tar.bz2:67wy5ys57vr4ba36wltoptr3cbhflpad
+- key: tar.gz:4tvxmvt432ec6grz63evantnmvx4rqfl
+  url: https://gforge.inria.fr/frs/download.php/file/34512/CGAL-4.5.2.tar.gz
+
+defaults:
+  # lib/CGAL/CGALConfig.cmake contains hard-coded path
+  relocatable: false
 
 build_stages:
 - name: configure
   extra: ['-D BUILD_SHARED_LIBS:BOOL=ON',
-          '-D WITH_CGAL_Core:BOOL=OFF',
-          '-D WITH_CGAL_ImageIO:BOOL=OFF',
+          '-D WITH_CGAL_Core:BOOL=ON',
+          '-D WITH_CGAL_ImageIO:BOOL=ON',
           '-D WITH_CGAL_Qt3:BOOL=OFF',
           '-D WITH_CGAL_Qt4:BOOL=OFF',
           '-D ZLIB_ROOT:PATH=${ZLIB_DIR}',

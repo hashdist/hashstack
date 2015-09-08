@@ -1,12 +1,16 @@
 # This profile file controls your <#> (HashDist) build environment.
+package_dirs:
+- roams_pkgs
+
+parameters:
+  HOST_MATLAB: '/home/cekees/MATLAB/R2015a/bin/matlab'
+  HOST_SIMMETRIX_LIB: /usr/local/simmetrix/9.0-150831/lib/x64_rhel6_gcc44
+  HOST_SIMMETRIX_INCLUDE: /usr/local/simmetrix/9.0-150831/include
 
 # In the future, we'll provide better incorporation of
 # automatic environment detection.  For now, have a look
 # at the YAML files in the top-level directory and choose
 # the most *specific* file that matches your environment.
-
-parameters:
-  airgap: True
 
 extends:
 - file: debian.yaml
@@ -17,15 +21,14 @@ extends:
 # profile.
 
 packages:
-
+  clawpack:
   launcher:
   cmake:
-    use: host-cmake
   python:
     host: false
+    link: shared
     build_with: |
       bzip2, sqlite
-    link: shared
   blas:
     use: host-blas
   daetk:
@@ -36,8 +39,9 @@ packages:
   hdf5:
   pygments:
   tornado:
-  pyzmq:
   matplotlib:
+  pyzmq:
+  parmetis:
   petsc:
     build_with: |
       parmetis
@@ -48,27 +52,60 @@ packages:
     debug: false
   petsc4py:
     with_conf: true
+  pillow:
   pytables:
   sphinx:
+  sphinx-bootstrap-theme:
   superlu:
   sympy:
   tetgen:
   triangle:
+  memory_profiler:
+  boost:
+    toolset: gcc
+    address_model: 64
+    build_with: |
+      python
+
+  cgal:
+  pycgal:
+  netcdf4:
+  netcdf4f:
+  python-netcdf4:
+  vapory:
   jasper:
   grib_api:
   pyproj:
   pygrib:
-  adh:  
+#  adh:  
   stwave:  
   scipy:
   ipython:
+  terminado:
   h5py:
   pydap:
-  leafletwidget:
+  leafletwidget: 
+    sources:
+      - key: git:f9147c5b13a69b80bc28d3574f7ba6b2c576aed2
+        url: https://github.com/erdc-cm/leafletwidget.git
   geojson:
   rdp:
-  ipython-widgetmode:
   ipython-d3plot:
   ipython-gridwidget:
   shapely:
   rtree:
+  matlab:
+    use: host-matlab
+  pymatbridge:
+  ode:
+  ipdb:
+  pip:
+  jupyter-pip:
+  pexpect:
+  pcs_api:
+  #pythreejs:
+  scorec:
+  simmetrix:
+  zoltan:
+    build_with: |
+      parmetis

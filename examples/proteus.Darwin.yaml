@@ -11,6 +11,9 @@ parameters:
 extends:
 - file: osx.yaml
 
+parameters:
+  fortran: true
+
 # The packages list specifies all the packages that you 
 # require installed.  <#> will ensure that all packages
 # and their dependencies are installed when you build this
@@ -47,27 +50,13 @@ packages:
     debug: false
   petsc4py:
     with_conf: true
+  pillow:
   pytables:
   sphinx:
   superlu:
   sympy:
   tetgen:
-  triangle:
-  jasper:
-  grib_api:
-  pyproj:
-  pygrib:
-  adh:  
-  stwave:  
-  scipy:
-  ipython:
-  h5py:
-  pydap:
-  leafletwidget:
-  geojson:
-  rdp:
-  ipython-widgetmode:
-  ipython-d3plot:
-  ipython-gridwidget:
-  shapely:
-  rtree:
+  memory_profiler:
+  ipdb:
+  pip:
+  pexpect:

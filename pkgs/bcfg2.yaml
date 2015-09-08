@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [ lockfile, lxml, python-daemon ]
+  run: [ lockfile, lxml, python-daemon ]
+
+sources:
+- key: tar.gz:m6xs5ibzyfm2rdvcsec7ibmjwz32ba2z
+  url: http://ftp.mcs.anl.gov/pub/bcfg/bcfg2-1.3.5.tar.gz

@@ -1,0 +1,13 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [pkg-config]
+  run: [pkg-config]
+
+sources:
+- key: tar.gz:f3ldtjyvkyd4bf6caknpl5bioklfsuea
+  url: http://sparsehash.googlecode.com/files/sparsehash-2.0.2.tar.gz
+
+when_build_dependency:
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'

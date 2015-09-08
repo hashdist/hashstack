@@ -1,0 +1,8 @@
+extends: [setuptools_package]
+dependencies:
+  build: [python]
+  run: [python]
+
+sources:
+  - url: git://repo.or.cz/stgit.git
+    key: git:4a0c142ef8d3569194da2dcc5a60cfa968523cbb

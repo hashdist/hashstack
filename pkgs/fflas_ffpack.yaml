@@ -1,0 +1,12 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [gmp]
+
+sources:
+- url: https://dl.dropboxusercontent.com/u/65439/fflas-ffpack-1.6.0-repacked.tar.gz
+  key: tar.gz:vkt2lpggv3znteasyq32kfbnjcfnz54n
+
+build_stages:
+- name: configure
+  extra: ['--with-gmp=$GMP_DIR']

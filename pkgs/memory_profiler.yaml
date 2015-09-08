@@ -1,0 +1,10 @@
+extends: [setuptools_package]
+
+dependencies:
+  run:
+    - when platform != 'Cygwin':
+        - psutil
+
+sources:
+  - url: https://github.com/fabianp/memory_profiler.git
+    key: git:8d72e54c395d7d721bd4101a7f8fed3c6ecc9b41

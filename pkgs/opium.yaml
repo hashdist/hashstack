@@ -10,7 +10,8 @@ build_stages:
     mode: override
     handler: bash
     bash: |
-      make -j ${HASHDIST_CPU_COUNT} NOOPT=
+      # Parallel build fails:
+      make -j 1 NOOPT=
 
 
   - name: install

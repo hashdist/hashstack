@@ -17,5 +17,8 @@ build_stages:
     aclocal
     autoheader
     automake --force-missing --add-missing
-    export PKG_CONFIG_PATH="$LIBPO6_DIR/lib/pkgconfig"
     autoconf || true
+
+when_build_dependency:
+  - prepend_path: PKG_CONFIG_PATH
+    value: '${ARTIFACT}/lib/pkgconfig'

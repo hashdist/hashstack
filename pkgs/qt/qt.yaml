@@ -3,8 +3,13 @@ dependencies:
   build: [zlib, png]
 
 sources:
-- url: http://download.qt-project.org/official_releases/qt/4.8/4.8.5/qt-everywhere-opensource-src-4.8.5.tar.gz
-  key: tar.gz:5nzi7atiqmo4inz34zadw7ov2xo6apaw
+- key: tar.gz:rmkn3envfbrobg4onkldkb5xjpbfqb4h
+  url: http://download.qt-project.org/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.tar.gz
+
+defaults:
+  # bin/qmake contains hard-coded path
+  relocatable: false
+
 
 #on the mac we need to pass the sdk and arch down
 build_stages:
@@ -36,3 +41,7 @@ build_stages:
           '-I${PNG_DIR}/include',
           '-I${ZLIB_DIR}/include',
           ]
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

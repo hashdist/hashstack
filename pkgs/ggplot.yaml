@@ -1,0 +1,25 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run:
+    - matplotlib
+    - six
+    - brewer2mpl
+    - pandas
+    - patsy
+    - statsmodels
+    - scipy
+
+sources:
+ - url: https://github.com/yhat/ggplot/
+   key: git:0f3774e6a645796b843d3ce77fb388958773338e
+
+licenses: [bsd-2-clause]
+
+build_stages:
+- name: test
+  after: install
+  handler: bash
+  bash: |
+    $PYTHON -c 'from ggplot import *'

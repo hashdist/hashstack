@@ -1,8 +1,37 @@
 extends: [autotools_package]
 
+dependencies:
+  build: [zlib, bzip2, curl, openssl, libidn, expat, ncurses]
+
 sources:
-- url: http://www.cmake.org/files/v2.8/cmake-2.8.12.1.tar.gz
-  key: tar.gz:7iumcj4r2zgdnotlnsygfjfuxvbcgbj7
+- key: tar.gz:vxuu43rwaodxivs7flwyqzsbkrbuit5x
+  url: http://www.cmake.org/files/v3.2/cmake-3.2.2.tar.gz
+
+build_stages:
+- when: platform == 'Darwin'
+  name: fix_deployment_target
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    unset MACOSX_DEPLOYMENT_TARGET
+
+- name: configure
+  extra: ['--parallel=${HASHDIST_CPU_COUNT}',
+          '--system-bzip2',
+          '--system-curl',
+          '--system-expat',
+          #'--system-jsoncpp',
+          #'--system-libarchive',
+          '--system-zlib',
+          '--',
+          '-DCMAKE_PREFIX_PATH=${CURL_DIR}/lib;${ZLIB_DIR}/lib;${BZIP2_DIR}/lib;${EXPAT_DIR}/lib;${NCURSES_DIR}/lib',
+          '-DCURL_INCLUDE_DIR=${CURL_DIR}/include',
+          '-DZLIB_INCLUDE_DIR=${ZLIB_DIR}/include',
+          '-DBZIP2_INCLUDE_DIR=${BZIP2_DIR}/include',
+          '-DEXPAT_INCLUDE_DIR=${EXPAT_DIR}/include',
+          '-DCURSES_INCLUDE_DIR=${NCURSES_DIR}/include',
+          ]
 
 when_build_dependency:
 - set: CMAKE

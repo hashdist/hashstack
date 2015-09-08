@@ -1,8 +1,9 @@
 extends: [setuptools_package]
+
 dependencies:
   build: [paramiko, jinja2, yaml]
   run: [paramiko, jinja2, yaml]
 
 sources:
-  - url: https://github.com/ansible/ansible.git
-    key: git:fc0288301799d2e263f2a25753c3aa97992ca0b2
+- key: tar.gz:wimt7wneaynlmjh2m4yrpfsbtj2z3ydl
+  url: https://pypi.python.org/packages/source/a/ansible/ansible-1.9.0.1.tar.gz

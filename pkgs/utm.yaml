@@ -1,0 +1,5 @@
+extends: [distutils_package]
+
+sources:
+- key: tar.gz:kcojf7kzlae5ipwqbmxrml4vgltcb3ly
+  url: https://pypi.python.org/packages/source/u/utm/utm-0.3.1.tar.gz

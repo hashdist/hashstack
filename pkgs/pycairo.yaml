@@ -1,0 +1,35 @@
+extends: [autotools_package]
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build: [cairo, pkg-config, python]
+  run: []
+
+sources:
+#- key: tar.bz2:2mcdt4dmf3a2hhrhizggzauln35m4ozc
+# url: http://cairographics.org/releases/py2cairo-1.10.0.tar.bz2
+#- key: tar.gz:wfpxcam6ilqg3bxx5d7flb7qpq66ljm2
+#  url: http://cairographics.org/releases/py2cairo-1.8.10.tar.gz
+- key: tar.gz:f5jftgkdzib4r7ztnihijmoiw5htbyvd
+  url: http://cairographics.org/releases/pycairo-1.8.8.tar.gz
+
+#build_stages:
+#- name: make_install
+#  handler: bash
+#  bash: |
+#    ./waf configure --prefix=${ARTIFACT}
+#    ./waf build
+#    ./waf install
+
+build_stages:
+- name: configure
+  extra: ['CAIRO_CFLAGS=-I${CAIRO_DIR}/include/cairo']
+
+when_build_dependency:
+
+- prepend_path: PYTHONPATH
+  value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'

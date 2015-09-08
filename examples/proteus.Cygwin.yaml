@@ -29,6 +29,7 @@ packages:
     use: host-freetype
   mpi:
     use: host-mpi
+  mpi4py:
   nose:
   hdf5:
   pygments:
@@ -51,18 +52,8 @@ packages:
   sympy:
   tetgen:
   triangle:
-  jasper:
-    use: host-jasper 
-  grib_api:
-  pyproj:
-  pygrib:
-  adh:  
-  stwave:  
-  scipy:
-  ipython:
-  pydap:
-  leafletwidget:
-  geojson:
-  rdp:
-  shapely:
-  rtree:
+  zmq: 
+  memory_profiler:
+  ipdb:
+  pip:
+>>>>>>> mainline/master

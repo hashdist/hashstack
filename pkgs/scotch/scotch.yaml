@@ -1,0 +1,41 @@
+extends: [base_package]
+
+dependencies:
+  build: [mpi, flex, bison, zlib]
+
+sources:
+- url: http://fenicsproject.org/pub/software/contrib/scotch_6.0.0_esmumps.tar.gz
+  key: tar.gz:qidbe7idrpnindo2lrnh6yhpqispfy3i
+
+build_stages:
+- when: platform == 'Darwin'
+  name: configure
+  files: [Make.inc.darwin]
+  after: prologue
+  handler: bash
+  bash: |
+    cp _hashdist/Make.inc.darwin src/Makefile.inc
+
+- when: platform != 'Darwin'
+  name: configure
+  files: [Make.inc.linux]
+  after: prologue
+  handler: bash
+  bash: |
+    cp _hashdist/Make.inc.linux src/Makefile.inc
+
+- name: make
+  after: configure
+  handler: bash
+  bash: |
+    make -C src ptscotch
+    make -C src ptesmumps
+
+- name: install
+  after: make
+  handler: bash
+  bash: |
+    make -C src install prefix=${ARTIFACT}
+    make -C src ptesmumps install prefix=${ARTIFACT}
+    cp -f lib/*scotc*[^m].a ${ARTIFACT}/lib
+    cp -f lib/*esmumps.a ${ARTIFACT}/lib

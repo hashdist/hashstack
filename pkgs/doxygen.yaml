@@ -1,13 +1,8 @@
-extends: [autotools_package]
+extends: [cmake_package]
 
 dependencies:
-  build: [bison]
+  build: [bison, flex, libiconv]
 
 sources:
 - url: https://github.com/doxygen/doxygen.git
-  key: git:1134237afe25f86fcf7c7e2a76a3542eee8acc79
-
-build_stages:
-  - name: configure
-    mode: override
-    extra: ['--bison=$BISON_DIR/bin/bison']
+  key: git:45e153f2238d0fa031d147cfe207e52b913845eb

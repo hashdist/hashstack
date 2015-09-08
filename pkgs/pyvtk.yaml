@@ -1,0 +1,5 @@
+extends: [distutils_package]
+
+sources:
+- key: tar.gz:j6lr4iploo2e7vg5kk7ndlxkpb46bwpi
+  url: https://pypi.python.org/packages/source/P/PyVTK/PyVTK-0.4.85.tar.gz

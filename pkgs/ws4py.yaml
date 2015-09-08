@@ -1,0 +1,5 @@
+extends: [distutils_package]
+
+sources:
+- key: git:84e85899a653d836c75d84acb423f57bcaa316b5
+  url: https://github.com/Lawouach/WebSocket-for-Python

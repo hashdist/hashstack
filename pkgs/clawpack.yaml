@@ -1,8 +1,8 @@
 extends: [distutils_package]
 dependencies:
   build: [numpy]
-  run: [numpy]
+  run: [numpy, matplotlib]
 
 sources:
-  - url: https://github.com/clawpack/clawpack/releases/download/v5.1.0/clawpack-5.1.0.tar.gz
-    key: tar.gz:3lbzkt7xgmgb2xl6cvx5vduwoutmannv
+- key: tar.gz:ths6trvj5trqhvsgfjwnj5oopcml3oui
+  url: https://pypi.python.org/packages/source/c/clawpack/clawpack-5.2.2.tar.gz

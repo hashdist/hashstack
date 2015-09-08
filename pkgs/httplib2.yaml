@@ -1,5 +1,6 @@
 extends: [distutils_package]
 
 sources:
-  - url: https://github.com/jcgregorio/httplib2
-    key: git:0197ec868a4fc638c08358b94200ffd6ddb1bf50
+- key: git:0197ec868a4fc638c08358b94200ffd6ddb1bf50
+  url: https://github.com/jcgregorio/httplib2
+

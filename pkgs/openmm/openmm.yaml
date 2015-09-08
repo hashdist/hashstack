@@ -1,0 +1,69 @@
+extends: [cmake_package]
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build: [doxygen, swig, fftw, python]
+  run: [fftw, python]
+
+sources:
+- key: tar.gz:zgvxlrz3df6xfypendstpv7fvrqouzfv
+  url: https://github.com/pandegroup/openmm/archive/6.3beta1.tar.gz
+
+# just build the cpu platform for now...
+build_stages:
+- name: configure
+  extra: ['-DOPENMM_BUILD_CUDA_LIB=OFF', '-DOPENMM_BUILD_OPENCL_LIB=OFF']
+
+- when: platform == 'Cygwin'
+  name: cygwin-patch
+  before: configure
+  files: ['fftw_link_order.patch']
+  handler: bash
+  bash: |
+    patch -p0 < _hashdist/fftw_link_order.patch
+
+# from distutils_package
+- name: setup_dirs
+  after: install
+  handler: bash
+  bash: |
+    export PYTHONPATH=${ARTIFACT}/{{python_site_packages_rel}}:$PYTHONPATH
+    mkdir -p ${ARTIFACT}/{{python_site_packages_rel}}
+
+- name: install_python_wrapper
+  after: setup_dirs
+  handler: bash
+  bash: |
+    cd python
+    export OPENMM_INCLUDE_PATH=${ARTIFACT}/include
+    export OPENMM_LIB_PATH=${ARTIFACT}/lib
+    ${PYTHON} setup.py install --prefix=${ARTIFACT}
+
+# from distutils_package
+- name: cleanup
+  after: install_python_wrapper
+  handler: bash
+  bash: |
+    rm -rf ${ARTIFACT}/{{python_site_packages_rel}}/*.pth
+
+#
+# all of the below is from distutils
+#
+
+profile_links:
+
+  - name: python_packages
+    link: 'lib/python{{pyver}}/site-packages/*'
+    dirs: true
+
+  - name: python_exclude
+    after: python_packages
+    before: everything
+    exclude: 'lib/python{{pyver}}/site-packages/**/*'
+
+when_build_dependency:
+
+  - prepend_path: PYTHONPATH
+    value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'

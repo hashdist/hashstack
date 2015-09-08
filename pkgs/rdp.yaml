@@ -3,7 +3,7 @@ dependencies:
   run: [numpy]
 
 sources:
-  - url: https://pypi.python.org/packages/source/r/rdp/rdp-0.5.tar.gz
-    key: tar.gz:36tbip4bzxitlhsoaj5d2m4r4gb2lq5k
+- key: tar.gz:36tbip4bzxitlhsoaj5d2m4r4gb2lq5k
+  url: https://pypi.python.org/packages/source/r/rdp/rdp-0.5.tar.gz
 
 

@@ -1,0 +1,10 @@
+extends: [autotools_package]
+dependencies:
+  build: [python]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:vr7hrlpjhzrt47wwfbjsxohgkdflude4
+  url: http://nodejs.org/dist/v0.12.2/node-v0.12.2.tar.gz

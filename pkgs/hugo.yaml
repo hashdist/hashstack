@@ -1,0 +1,24 @@
+extends: [base_package]
+
+dependencies:
+  build: [golang, {{build_with}}]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: git:ecb2aca6a2f75a703d64a88e30a8a11e2fe6eaac
+  url: https://github.com/spf13/hugo.git
+
+build_stages:
+- name: make-install
+  handler: bash
+  bash: |
+    export GOROOT=${GOLANG_DIR}/go
+    export GOPATH=${ARTIFACT}/go-hugo
+    export GOBIN=${ARTIFACT}/bin
+    mkdir -p $GOBIN $GOPATH
+    mkdir -p ${GOPATH}/src/github.com/spf13/
+    cp -a ${BUILD} ${GOPATH}/src/github.com/spf13/hugo
+    cd ${GOPATH}/src/github.com/spf13/hugo
+    go get -v
