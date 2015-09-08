@@ -1,9 +1,5 @@
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
  - key: tar.gz:ubi7atxi5qzqkbk2wngypm3mtjcjg5pa
    url: https://pypi.python.org/packages/source/o/oauthlib/oauthlib-0.7.2.tar.gz

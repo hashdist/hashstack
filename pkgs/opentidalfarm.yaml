@@ -4,5 +4,5 @@ dependencies:
   run: [dolfin, dolfin-adjoint, numpy, uptide, utm, yaml]
 
 sources:
-- key: zip:sm5us4vazil5w5ewbe4aiipk5t5f2rzf
-  url: https://github.com/OpenTidalFarm/OpenTidalFarm/archive/f13dddda1420ca757542dbfe0c336fc5386bef72.zip
+- key: zip:iwqk2qwfxfobtgq7gi3maqzyauzuypfm
+  url: https://github.com/OpenTidalFarm/OpenTidalFarm/archive/opentidalfarm-1.5.zip
