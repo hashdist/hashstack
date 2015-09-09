@@ -1,7 +1,7 @@
 from hashdist import build_stage
 
 def preConfigureCrayXE6(ctx, conf_lines):
-    conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
+    conf_lines += ['LDFLAGS=-dynamic /usr/lib64/libcpuset.so.1 /usr/lib64/libbitmask.so.1',
                '--known-mpi-shared-libraries=1',
                '--with-batch',
                '--known-level1-dcache-size=16384',
@@ -28,9 +28,7 @@ def preConfigureCrayXE6(ctx, conf_lines):
 def preConfigureSGIICEX(ctx, conf_lines):
     conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
                '--known-mpi-shared-libraries=1',
-                   'CFLAGS=-fPIC',
-                   'FCFLAGS=-fPIC',
-                   '--with-pic',
+               '--with-pic',
                '--with-batch',
                '--known-level1-dcache-size=16384',
                '--known-level1-dcache-linesize=64',
@@ -162,12 +160,12 @@ def configure(ctx, stage_args):
             continue
         if dep_var == 'MPI':
             conf_lines.append('--with-mpi-compilers')
-            conf_lines.append('CC=$MPICC')
-            conf_lines.append('CXX=$MPICXX')
+            conf_lines.append('CC=/work1/home/cekees/bin/mpicc')
+            conf_lines.append('CXX=/work1/home/cekees/bin/mpicxx')
             if ctx.parameters['fortran']:
-                conf_lines.append('F77=$MPIF77')
-                conf_lines.append('F90=$MPIF90')
-                conf_lines.append('FC=$MPIF90')
+                conf_lines.append('F77=/work1/home/cekees/bin/mpif90')
+                conf_lines.append('F90=/work1/home/cekees/bin/mpif90')
+                conf_lines.append('FC=/work1/home/cekees/bin/mpif90')
             else:
                 conf_lines.append('--with-fc=0')
             continue
