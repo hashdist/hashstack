@@ -30,7 +30,6 @@ packages:
   blas:
     use: host-osx-framework-accelerate
   daetk:
-  matplotlib:
   mpi:
     use: mpich
   mpi4py:
@@ -40,6 +39,8 @@ packages:
   tornado:
   pyzmq:
   parmetis:
+  ipython:
+  matplotlib:
   petsc:
     build_with: |
       parmetis      
@@ -56,7 +57,16 @@ packages:
   superlu:
   sympy:
   tetgen:
+  triangle:
   memory_profiler:
   ipdb:
   pip:
   pexpect:
+  doxygen:
+  scipy:
+  netcdf4:
+  netcdf4f:
+  netcdf4cpp:
+  python-netcdf4:
+  h5py:
+  ode:

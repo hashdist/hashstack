@@ -56,4 +56,5 @@ packages:
   memory_profiler:
   ipdb:
   pip:
->>>>>>> mainline/master
+  h5py:
+  ode:

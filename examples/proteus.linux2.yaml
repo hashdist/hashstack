@@ -31,11 +31,14 @@ packages:
       bzip2, sqlite
   blas:
     use: host-blas
+  lapack:
+    use: host-lapack
   daetk:
   mpi:
     use: mpich
   mpi4py:
   nose:
+  coverage:
   hdf5:
   pygments:
   tornado:
@@ -66,6 +69,7 @@ packages:
     address_model: 64
     build_with: |
       python
+<<<<<<< HEAD
 
   cgal:
   pycgal:
@@ -73,17 +77,27 @@ packages:
   netcdf4f:
   python-netcdf4:
   vapory:
+=======
+  netcdf4:
+  python-netcdf4:
+  netcdf4f:
+  netcdf4cpp:
+>>>>>>> add_location
   jasper:
   grib_api:
   pyproj:
   pygrib:
+<<<<<<< HEAD
 #  adh:  
   stwave:  
+=======
+>>>>>>> add_location
   scipy:
   ipython:
   terminado:
   h5py:
   pydap:
+<<<<<<< HEAD
   leafletwidget: 
     sources:
       - key: git:f9147c5b13a69b80bc28d3574f7ba6b2c576aed2
@@ -109,3 +123,15 @@ packages:
   zoltan:
     build_with: |
       parmetis
+=======
+  leafletwidget:
+  geojson:
+  rdp:
+  rtree:
+  ode:
+  ipdb:
+  pip:
+  pexpect:
+  doxygen:
+  pcs_api:
+>>>>>>> add_location
