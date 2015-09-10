@@ -1,4 +1,6 @@
 *~
 *.pyc
 *.pyo
+default
+default.yaml
 
