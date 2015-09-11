@@ -120,5 +120,6 @@ packages:
   ipdb:
   pip:
   pexpect:
-  doxygen:
   pcs_api:
+  jupyter-pip:
+  pythreejs:
