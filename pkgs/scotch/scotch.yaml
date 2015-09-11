@@ -1,7 +1,7 @@
 extends: [base_package]
 
 dependencies:
-  build: [mpi, flex, bison]
+  build: [mpi, flex, bison, zlib]
 
 sources:
 - url: http://fenicsproject.org/pub/software/contrib/scotch_6.0.0_esmumps.tar.gz
