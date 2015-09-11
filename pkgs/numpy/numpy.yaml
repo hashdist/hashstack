@@ -39,7 +39,7 @@ build_stages:
       cat > site.cfg << EOF
       [DEFAULT]
       library_dirs = ${ACML_DIR}/gfortran64/lib
-      libraries = acml
+      libraries = acml, gfortran
       EOF
 
   - when: machine == 'CrayXE6'
@@ -48,7 +48,7 @@ build_stages:
     before: install
     handler: bash
     bash: |
-      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${ACML_DIR}/gfortran64/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${ACML_DIR}/gfortran64/lib $(${PYTHON_DIR}/bin/python-config --ldflags -lgfortran)"
       export LAPACK=acml
       export BLAS=acml
       export ATLAS=None
