@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:qifbrcbadryabaludn4ekdzcn4koh7qk
+   url: https://pypi.python.org/packages/source/b/blosc/blosc-1.2.7.tar.gz
