@@ -160,12 +160,12 @@ def configure(ctx, stage_args):
             continue
         if dep_var == 'MPI':
             conf_lines.append('--with-mpi-compilers')
-            conf_lines.append('CC=/work1/home/cekees/bin/mpicc')
-            conf_lines.append('CXX=/work1/home/cekees/bin/mpicxx')
+            conf_lines.append('CC=mpicc')
+            conf_lines.append('CXX=mpicxx')
             if ctx.parameters['fortran']:
-                conf_lines.append('F77=/work1/home/cekees/bin/mpif90')
-                conf_lines.append('F90=/work1/home/cekees/bin/mpif90')
-                conf_lines.append('FC=/work1/home/cekees/bin/mpif90')
+                conf_lines.append('F77=mpif90')
+                conf_lines.append('F90=mpif90')
+                conf_lines.append('FC=mpif90')
             else:
                 conf_lines.append('--with-fc=0')
             continue
