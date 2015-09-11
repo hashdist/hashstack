@@ -4,5 +4,23 @@ dependencies:
   run: [paramiko]
 
 sources:
-  - url: https://pypi.python.org/packages/source/F/Fabric/Fabric-1.8.0.tar.gz
-    key: tar.gz:ab3mo2v654775els4euq43sipyr2oiu3
+- key: tar.gz:mzvd3kjconjs2osj3unmkpr5oiof5qxs
+  url: https://pypi.python.org/packages/source/F/Fabric/Fabric-1.10.2.tar.gz
+
+
+build_stages:
+
+# Due to this error:
+#
+# [profile|ERROR] hit command failed: [Errno 13] [Errno 13] Permission denied: '/Users/jtang/.hashdist/bld/profile/t63wczbqichu/lib/python2.7/site-packages/tests/etree13' in silent_makedirs(u'/Users/jtang/.hashdist/bld/profile/t63wczbqichu/lib/python2.7/site-packages/tests/etree13',)
+#
+# The following step works around the above error
+
+- name: install
+  after: setup_dirs
+  handler: bash
+  bash: |
+    # build
+    $PYTHON setup.py build
+    # install
+    $PYTHON setup.py install --prefix=$ARTIFACT

@@ -11,7 +11,7 @@ sources:
   key: tar.bz2:vxjlkxz3yoglkevur6wx24xuhmi66jce
 
 build_stages:
-- when: platform == 'Darwin'
+- when: platform == 'Darwin' or platform == 'Cygwin'
   name: remove-no-undefined
   after: configure
   before: make
