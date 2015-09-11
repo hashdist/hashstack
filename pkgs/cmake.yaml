@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [zlib, bzip2, curl, openssl, libidn, expat]
+  build: [zlib, bzip2, curl, openssl, libidn, expat, ncurses]
 
 sources:
 - key: tar.gz:vxuu43rwaodxivs7flwyqzsbkrbuit5x
@@ -25,11 +25,12 @@ build_stages:
           #'--system-libarchive',
           '--system-zlib',
           '--',
-          '-DCMAKE_PREFIX_PATH=${CURL_DIR}/lib;${ZLIB_DIR}/lib;${BZIP2_DIR}/lib;${EXPAT_DIR}/lib',
+          '-DCMAKE_PREFIX_PATH=${CURL_DIR}/lib;${ZLIB_DIR}/lib;${BZIP2_DIR}/lib;${EXPAT_DIR}/lib;${NCURSES_DIR}/lib',
           '-DCURL_INCLUDE_DIR=${CURL_DIR}/include',
           '-DZLIB_INCLUDE_DIR=${ZLIB_DIR}/include',
           '-DBZIP2_INCLUDE_DIR=${BZIP2_DIR}/include',
           '-DEXPAT_INCLUDE_DIR=${EXPAT_DIR}/include',
+          '-DCURSES_INCLUDE_DIR=${NCURSES_DIR}/include',
           ]
 
 when_build_dependency:

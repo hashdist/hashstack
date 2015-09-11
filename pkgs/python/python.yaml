@@ -27,6 +27,37 @@ defaults:
   relocatable: false
 
 build_stages:
+  - when: platform == 'Cygwin'
+    name: configure
+    mode: update
+    extra: ['--with-system-ffi', '--with-system-expat', '--with-dbmliborder=gdbm', '--with-libc=', '--with-libm=' ]
+
+  - when: platform == 'Cygwin'
+    name: cygwin-patch
+    # patches adapted from https://github.com/cygwinports/python
+    before: configure
+    files:
+      - '2.5.2-ctypes-util-find_library.patch'
+      - '2.5.2-tkinter-x11.patch'
+      - '2.6.5-FD_SETSIZE.patch'
+      - '2.6.5-export-PySignal_SetWakeupFd.patch'
+      - '2.6.5-ncurses-abi6.patch'
+      - '2.7.3-dbm.patch'
+      - '2.7.3-dylib.patch'
+      - '2.7.3-getpath-exe-extension.patch'
+      - '2.7.3-no-libm.patch'
+    handler: bash
+    bash: |
+      patch -p0 < _hashdist/2.5.2-ctypes-util-find_library.patch
+      patch -p0 < _hashdist/2.5.2-tkinter-x11.patch
+      patch -p0 < _hashdist/2.6.5-FD_SETSIZE.patch
+      patch -p0 < _hashdist/2.6.5-export-PySignal_SetWakeupFd.patch
+      patch -p0 < _hashdist/2.6.5-ncurses-abi6.patch
+      patch -p0 < _hashdist/2.7.3-dbm.patch
+      patch -p0 < _hashdist/2.7.3-dylib.patch
+      patch -p0 < _hashdist/2.7.3-getpath-exe-extension.patch
+      patch -p0 < _hashdist/2.7.3-no-libm.patch
+
   - when: link == 'shared'
     name: configure
     mode: update

@@ -8,13 +8,21 @@ dependencies:
   run: [fftw, python]
 
 sources:
-- key: tar.gz:ptxuz5m2urk5vmurmi36vyhgl6ldoedj
-  url: https://github.com/pandegroup/openmm/archive/6.2beta1.tar.gz
+- key: tar.gz:zgvxlrz3df6xfypendstpv7fvrqouzfv
+  url: https://github.com/pandegroup/openmm/archive/6.3beta1.tar.gz
 
 # just build the cpu platform for now...
 build_stages:
 - name: configure
   extra: ['-DOPENMM_BUILD_CUDA_LIB=OFF', '-DOPENMM_BUILD_OPENCL_LIB=OFF']
+
+- when: platform == 'Cygwin'
+  name: cygwin-patch
+  before: configure
+  files: ['fftw_link_order.patch']
+  handler: bash
+  bash: |
+    patch -p0 < _hashdist/fftw_link_order.patch
 
 # from distutils_package
 - name: setup_dirs
