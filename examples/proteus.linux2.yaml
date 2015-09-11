@@ -106,20 +106,9 @@ packages:
   jupyter-pip:
   pexpect:
   pcs_api:
-  #pythreejs:
   scorec:
   simmetrix:
   zoltan:
     build_with: |
       parmetis
-  leafletwidget:
-  geojson:
-  rdp:
-  rtree:
-  ode:
-  ipdb:
-  pip:
-  pexpect:
-  pcs_api:
-  jupyter-pip:
   pythreejs:
