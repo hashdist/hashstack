@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [trollius, eventlet]
+  run: [trollius, eventlet]
+
+sources:
+ - key: tar.gz:7z4mfmrhzydxwfmb4kxcyby7guirdueh
+   url: https://pypi.python.org/packages/source/a/aioeventlet/aioeventlet-0.4.tar.gz
