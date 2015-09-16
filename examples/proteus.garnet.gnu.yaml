@@ -67,7 +67,9 @@ packages:
   scipy:
   netcdf4f:
   python-netcdf4:
- # ode:
- # pyode:
+  ipdb:
+  pip:
+  h5py:
+  ode:
  # vtk:
  # pyvtk:
