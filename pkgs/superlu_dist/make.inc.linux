@@ -11,7 +11,7 @@ ARCH         = ar
 ARCHFLAGS    = cr
 RANLIB       = ranlib
 CC           = $(MPICC)
-CFLAGS       = -O2 -fPIC $(INCS)
+CFLAGS       = -O2 -fPIC -std=c99 $(INCS)
 NOOPTS       = -fPIC
 LOADER       = $(MPICC)
 LOADOPTS     =
