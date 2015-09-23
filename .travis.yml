@@ -56,7 +56,7 @@ script:
 # Beware of Travis-munging: https://github.com/travis-ci/travis-ci/issues/497
   - if [[ -z "${PYVER}" ]]; then hit build -v $TEST_PROFILE 2>&1 | pv -i 15 -n | cat > log.txt; fi
   - if [[ -n "${PYVER}" ]]; then hit build -v $TEST_PROFILE pyver=$PYVER python_site_packages_rel=lib/python${PYVER}/site-packages 2>&1 | pv -i 15 -n | cat > log.txt; fi
-  - tail -n 60 log.txt
+  - tail -n 100 log.txt
 verify:
   - if [[ "${TEST_PROFILE}" == "test.matplotlib.yaml" ]]; then
       ./test.matplotlib/bin/python -c "from mpl_toolkits.mplot3d import Axes3D"
