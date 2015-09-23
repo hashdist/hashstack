@@ -45,7 +45,7 @@ before_install:
       sudo apt-get install python-scipy;
     fi
   - if [[ "${TEST_PROFILE}" == "test.dolfin.yaml" ]]; then
-      sudo apt-get install cmake libopenmpi-dev python-dev libblas-dev liblapack-dev wget libboost-all-dev;
+      sudo apt-get install cmake libopenmpi-dev python-dev libblas-dev liblapack-dev wget libboost-program-options1.48-dev libboost-filesystem1.48-dev libboost-serialization1.48-dev libboost-thread1.48-dev libboost-iostreams1.48-dev libboost-math1.48-dev libboost-timer1.48-dev libboost-chrono1.48-dev;
     fi
 install:
   - git clone https://github.com/hashdist/hashdist
