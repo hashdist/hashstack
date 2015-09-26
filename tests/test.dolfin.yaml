@@ -13,8 +13,6 @@ packages:
   blas:
     use: host-blas
   swig:
-    use: host-swig
   boost:
-    toolset: gcc
-    address_model: 64
+    use: host-boost
   dolfin:
