@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [ipython, pip, jupyter-pip]
+
+sources:
+  - key: git:ac189124bb54fe5a5e65ad6299a21becfbab94c7
+    url: https://github.com/jasongrout/pythreejs
+
