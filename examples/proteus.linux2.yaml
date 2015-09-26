@@ -17,11 +17,13 @@ packages:
   clawpack:
   launcher:
   cmake:
+  openssl:
+    use: host-openssl
   python:
     host: false
     link: shared
     build_with: |
-      bzip2, sqlite
+      bzip2, sqlite, openssl
   blas:
     use: host-blas
   lapack:
@@ -35,6 +37,7 @@ packages:
   hdf5:
   matplotlib:
   petsc:
+    version: 3.6.1
     build_with: |
       parmetis
     download: |
@@ -43,6 +46,7 @@ packages:
     link: shared
     debug: false
   petsc4py:
+    version: 3.6.0
     with_conf: true
   pillow:
   pytables:
