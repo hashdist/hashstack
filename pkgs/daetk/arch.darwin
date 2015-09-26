@@ -1,4 +1,4 @@
-include ${PETSC}/conf/variables
+include ${PETSC}/lib/petsc/conf/variables
 PREFIX=${ARTIFACT}
 ARCHIVE_SUFFIX = .dylib
 
