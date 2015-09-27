@@ -1,8 +1,8 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: []
-  run: []
+  build: [functools32]
+  run: [functools, functools32]
 
 sources:
  - key: tar.gz:lldrnfam7v3benu64f34bv74b24iqm23

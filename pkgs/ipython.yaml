@@ -1,10 +1,7 @@
 extends: [setuptools_package]
-dependencies:
-  run: [pyzmq, tornado, jinja2, jsonschema, pygments, sphinx]
 
 dependencies:
-  build: []
-  run: []
+  run: [pyzmq, tornado, jinja2, jsonschema, pygments, sphinx]
 
 sources:
  - key: zip:lj4uy5zujfgpqu3km7kqttyuip2oksei

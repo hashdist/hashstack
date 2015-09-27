@@ -85,3 +85,4 @@ packages:
   pcs_api:
   jupyter-pip:
   pythreejs:
+  jupyter:
