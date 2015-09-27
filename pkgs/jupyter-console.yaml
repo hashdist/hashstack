@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: zip:jewvtqfsjiwar3uq2gsvbhwsa2aw3odc
+   url: https://pypi.python.org/packages/source/j/jupyter_console/jupyter_console-4.0.2.zip
