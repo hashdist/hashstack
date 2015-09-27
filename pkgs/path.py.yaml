@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:fyij7ebk5vfhtgoumxsozbcwyeis4zly
+   url: https://pypi.python.org/packages/source/p/path.py/path.py-8.1.1.tar.gz

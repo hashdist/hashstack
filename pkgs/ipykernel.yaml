@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: zip:ec43ioxiux6apa7c2pnmmhvmsjpfbo3j
+   url: https://pypi.python.org/packages/source/i/ipykernel/ipykernel-4.0.3.zip

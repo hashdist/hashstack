@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: zip:3sls4bqjjonplocvwppuuzddsxsd2he5
+   url: https://pypi.python.org/packages/source/s/simplegeneric/simplegeneric-0.8.1.zip

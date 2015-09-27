@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:lldrnfam7v3benu64f34bv74b24iqm23
+   url: https://pypi.python.org/packages/source/n/notebook/notebook-4.0.5.tgz

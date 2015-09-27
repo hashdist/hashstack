@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [MarkupSafe, backports.ssl-match-hostname, certifi, decorator, functools, ipykernel, ipython, ipython-genutils, ipywidgets, jinja2, jsonschema, jupyter-client, jupyter-console, jupyter-core, mistune, nbconvert, nbformat, notebook, path.py, pickleshare, ptyprocess, pygments, pyzmq, qtconsole, simplegeneric, terminado, tornado, traitlets]
+  run: [MarkupSafe, backports.ssl-match-hostname, certifi, decorator, functools, ipykernel, ipython, ipython-genutils, ipywidgets, jinja2, jsonschema, jupyter-client, jupyter-console, jupyter-core, mistune, nbconvert, nbformat, notebook, path.py, pickleshare, ptyprocess, pygments, pyzmq, qtconsole, simplegeneric, terminado, tornado, traitlets]
+
+sources:
+ - key: zip:hypymb3lxn6iyidyfe4qgbncwh7ig3kh
+   url: https://pypi.python.org/packages/source/j/jupyter/jupyter-1.0.0.zip
