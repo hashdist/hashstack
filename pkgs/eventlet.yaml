@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [libevent]
+  run: []
+
+sources:
+ - key: tar.gz:q4q6s4kov74nedzea7qnhkaanhnwwv6j
+   url: https://pypi.python.org/packages/source/e/eventlet/eventlet-0.17.4.tar.gz

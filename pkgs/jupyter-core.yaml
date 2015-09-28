@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: zip:jzu3pjn2eej5krt6em4zivsdkysqpur7
+   url: https://pypi.python.org/packages/source/j/jupyter_core/jupyter_core-4.0.6.zip

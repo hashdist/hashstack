@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:vdqofu5dde56hyhrcmst6qlhluthtur4
+   url: https://pypi.python.org/packages/source/t/trollius/trollius-2.0.tar.gz
