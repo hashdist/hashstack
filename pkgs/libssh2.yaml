@@ -1,11 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 1.4.3
+
 extends: [autotools_package]
 
 dependencies:
   run: [pkg-config]
 
 sources:
-- key: tar.gz:5ldpqx457hns4y4gsbvgej7lftl3gjcx
-  url: http://www.libssh2.org/download/libssh2-1.4.3.tar.gz
+- key:
+    when version == 1.4.3: tar.gz:5ldpqx457hns4y4gsbvgej7lftl3gjcx
+  url: http://www.libssh2.org/download/libssh2-{{version}}.tar.gz
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

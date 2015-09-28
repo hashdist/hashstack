@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 4.1.1
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:kvsgjpjojpc2b6wukjvvsyr6jpsawtbp
-  url: http://ftp.heanet.ie/mirrors/gnu/gawk/gawk-4.1.1.tar.gz
+- key:
+    when version == 4.1.1: tar.gz:kvsgjpjojpc2b6wukjvvsyr6jpsawtbp
+  url: http://ftp.heanet.ie/mirrors/gnu/gawk/gawk-{{version}}.tar.gz

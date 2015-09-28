@@ -1,14 +1,21 @@
+parameters:
+- name: version
+  type: version
+  default: 2.24
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [zlib]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.bz2:4xumlpuwmtt7p6lobuezdeiqvnnnlf3z
-  url: http://ftp.heanet.ie/mirrors/gnu/binutils/binutils-2.24.tar.bz2
+- key:
+    when version == 2.24: tar.bz2:4xumlpuwmtt7p6lobuezdeiqvnnnlf3z
+  url: http://ftp.heanet.ie/mirrors/gnu/binutils/binutils-{{version}}.tar.bz2
 
 build_stages:
 

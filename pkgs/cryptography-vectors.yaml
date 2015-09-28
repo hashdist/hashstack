@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.5.2
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/c/cryptography-vectors/cryptography_vectors-0.5.2.tar.gz
-   key: tar.gz:eg5zt22n64eveviamrqefa3fmoxz6fci
+- url: https://pypi.python.org/packages/source/c/cryptography-vectors/cryptography_vectors-{{version}}.tar.gz
+  key:
+    when version == 0.5.2: tar.gz:eg5zt22n64eveviamrqefa3fmoxz6fci

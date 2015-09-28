@@ -120,6 +120,12 @@ def configure(ctx, stage_args):
         conf_lines.append('--with-scotch-dir=${SCOTCH_DIR}')
         conf_lines.append('--with-ptscotch-dir=${SCOTCH_DIR}')
 
+    if 'ML' in ctx.dependency_dir_vars:
+        conf_lines.append('--with-ml=1')
+#        conf_lines.append('--with-ml-lib=${ML_DIR}/lib/libml.a')
+        conf_lines.append('--with-ml-lib="-L${ML_DIR}/lib -lml -lstdc++"')
+        conf_lines.append('--with-ml-include=${ML_DIR}/include')
+
     # Special case, Trilinos provides ML
     if 'TRILINOS' in ctx.dependency_dir_vars:
         if ctx.parameters['platform'] == 'Darwin':
@@ -146,7 +152,7 @@ def configure(ctx, stage_args):
 
     for dep_var in ctx.dependency_dir_vars:
         if dep_var in ['BLAS', 'HYPRE', 'LAPACK', 'OPENBLAS', 'PARMETIS',
-                       'SCOTCH', 'TRILINOS', 'SUITESPARSE']:
+                       'SCOTCH', 'TRILINOS', 'SUITESPARSE', 'ML']:
             continue
         if dep_var == 'MPI':
             conf_lines.append('--with-mpi-compilers')

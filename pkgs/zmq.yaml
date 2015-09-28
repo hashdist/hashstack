@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 3.2.4
+
 extends: [autotools_package]
 
 sources:
-  - url: http://download.zeromq.org/zeromq-3.2.4.tar.gz
-    key: tar.gz:36lkcqoilns4fs3mbwzceiysmyr2bhxm
+- url: http://download.zeromq.org/zeromq-{{version}}.tar.gz
+  key:
+    when version == 3.2.4: tar.gz:36lkcqoilns4fs3mbwzceiysmyr2bhxm
 
 build_stages:
 - when: platform == 'Cygwin' 

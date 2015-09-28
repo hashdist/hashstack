@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 2.6
+
 extends: [distutils_package]
 
 sources:
-  - url: https://pypi.python.org/packages/source/p/pycrypto/pycrypto-2.6.tar.gz
-    key: tar.gz:okj4tv7iv4xejkbpq3vzyoyfrcapjpgi
+- url: https://pypi.python.org/packages/source/p/pycrypto/pycrypto-{{version}}.tar.gz
+  key:
+    when version == 2.6: tar.gz:okj4tv7iv4xejkbpq3vzyoyfrcapjpgi

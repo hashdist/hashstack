@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.23
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/M/MarkupSafe/MarkupSafe-0.23.tar.gz
-   key: tar.gz:utwbv72zxfnbjnc6wlrdoynac6pjqmm5
+- url: https://pypi.python.org/packages/source/M/MarkupSafe/MarkupSafe-{{version}}.tar.gz
+  key:
+    when version == 0.23: tar.gz:utwbv72zxfnbjnc6wlrdoynac6pjqmm5

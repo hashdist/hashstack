@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 4.1
+
 extends: [distutils_package]
+
 dependencies:
   run: [backports-ssl_match_hostname]
 
-
 sources:
-  - url: https://pypi.python.org/packages/source/t/tornado/tornado-4.1.tar.gz
-    key: tar.gz:tgv5hlw6ixetoojun3ttqttraeqbehbx
+- url: https://pypi.python.org/packages/source/t/tornado/tornado-{{version}}.tar.gz
+  key:
+    when version == 4.1: tar.gz:tgv5hlw6ixetoojun3ttqttraeqbehbx

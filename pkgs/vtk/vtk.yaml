@@ -1,4 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 5.10.1
+
+# lib/vtk-5.10/libvtkHybrid.so.5.10.1 contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
+
 dependencies:
   build:
     - python
@@ -6,17 +17,12 @@ dependencies:
     - libtiff
     - when platform == 'linux':
         - patchelf
-    - when vtk_use_tk:
-        - tk
+    - +tk
 
 sources:
-- url: http://www.vtk.org/files/release/5.10/vtk-5.10.1.tar.gz
-  key: tar.gz:6grebqpv6dme4j5vp2lc7dskpcywnms3
-
-defaults:
-  # lib/vtk-5.10/libvtkHybrid.so.5.10.1 contains hard-coded path
-  relocatable: false
-  vtk_use_tk: false
+- url: http://www.vtk.org/files/release/{{'.'.join(str(version).split('.')[:-1])}}/vtk-{{version}}.tar.gz
+  key:
+    when version == 5.10.1: tar.gz:6grebqpv6dme4j5vp2lc7dskpcywnms3
 
 build_stages:
 
@@ -64,12 +70,12 @@ build_stages:
     - '-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"'
     - '-D VTK_USE_SYSTEM_TIFF:BOOL=ON'
 
-- when: vtk_use_tk
+- when: tk
   name: configure
   mode: update
   extra: ['-D VTK_USE_TK:BOOL=ON']
 
-- when: not vtk_use_tk
+- when: not tk
   name: configure
   mode: update
   extra: ['-D VTK_USE_TK:BOOL=OFF']

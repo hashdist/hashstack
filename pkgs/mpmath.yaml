@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.19
+
 extends: [distutils_package]
 
 sources:
-- key: tar.gz:ndo7mqtnzwsekmrum7mjrewsz7532gxa
-  url: http://mpmath.org/files/mpmath-0.19.tar.gz
+- key:
+    when version == 0.19: tar.gz:ndo7mqtnzwsekmrum7mjrewsz7532gxa
+  url: http://mpmath.org/files/mpmath-{{version}}.tar.gz

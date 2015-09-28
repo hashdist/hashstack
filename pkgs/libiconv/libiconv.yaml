@@ -1,15 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 1.14
+
+# /lib/libcharset.so.1.0.0 contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [gettext-bootstrap]
 
 sources:
-  - url: http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz
-    key: tar.gz:okze33ix22drspbtm3ioxz6n4htlddyn
-
-defaults:
-  # /lib/libcharset.so.1.0.0 contains hard-coded path
-  relocatable: false
+- url: http://ftp.gnu.org/pub/gnu/libiconv/libiconv-{{version}}.tar.gz
+  key:
+    when version == 1.14: tar.gz:okze33ix22drspbtm3ioxz6n4htlddyn
 
 build_stages:
   - when: platform == 'linux'

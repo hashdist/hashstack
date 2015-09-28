@@ -1,15 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 3.4
+
+# include/c++/v1/cmake_install.cmake contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
 
 dependencies:
   build: [clang, libstdcxx]
 
 sources:
-- url: http://llvm.org/releases/3.4/libcxx-3.4.src.tar.gz
-  key: tar.gz:xwpsaatz6dvrt7bi5uwz2yd57u4ofz6z
-
-defaults:
-  # include/c++/v1/cmake_install.cmake contains hard-coded path
-  relocatable: false
+- url: http://llvm.org/releases/{{version}}/libcxx-{{version}}.src.tar.gz
+  key:
+    when version == 3.4: tar.gz:xwpsaatz6dvrt7bi5uwz2yd57u4ofz6z
 
 build_stages:
 - name: setup_compilers

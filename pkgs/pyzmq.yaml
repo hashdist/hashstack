@@ -1,4 +1,10 @@
+parameters:
+- name: version
+  type: version
+  default: 14.3.1
+
 extends: [distutils_package]
+
 dependencies:
   build: 
     - numpy
@@ -6,8 +12,9 @@ dependencies:
     - zmq
 
 sources:
-  - url: https://pypi.python.org/packages/source/p/pyzmq/pyzmq-14.3.1.tar.gz
-    key: tar.gz:adrghqtkkjhycetsi7tpg7f7ij7n345d
+- url: https://pypi.python.org/packages/source/p/pyzmq/pyzmq-{{version}}.tar.gz
+  key:
+    when version == 14.3.1: tar.gz:adrghqtkkjhycetsi7tpg7f7ij7n345d
 
 build_stages:
 

@@ -1,11 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 2.0.3
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:uwtju2v7qc6m44j7vbzwa5zv7zys6rbh
-  url: https://www.libsdl.org/release/SDL2-2.0.3.tar.gz
+- key:
+    when version == 2.0.3: tar.gz:uwtju2v7qc6m44j7vbzwa5zv7zys6rbh
+  url: https://www.libsdl.org/release/SDL2-{{version}}.tar.gz
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

@@ -1,15 +1,22 @@
-extends: [cmake_package]
+parameters:
+- name: version
+  type: version
+  default: 6.2b1
 
-defaults:
-  relocatable: false
+- name: relocatable
+  type: bool
+  default: false
+
+extends: [cmake_package]
 
 dependencies:
   build: [doxygen, swig, fftw, python]
   run: [fftw, python]
 
 sources:
-- key: tar.gz:ptxuz5m2urk5vmurmi36vyhgl6ldoedj
-  url: https://github.com/pandegroup/openmm/archive/6.2beta1.tar.gz
+  when version == 6.2b1:
+  - key: tar.gz:ptxuz5m2urk5vmurmi36vyhgl6ldoedj
+    url: https://github.com/pandegroup/openmm/archive/6.2beta1.tar.gz
 
 # just build the cpu platform for now...
 build_stages:

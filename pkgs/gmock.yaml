@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 1.7.0
+
 extends: [cmake_package]
 
 sources:
-- key: zip:e36lwwjfw5fnl7eme2yesxp4sy2t6tkv
-  url: https://googlemock.googlecode.com/files/gmock-1.7.0.zip
+- key:
+    when version == 1.7.0: zip:e36lwwjfw5fnl7eme2yesxp4sy2t6tkv
+  url: https://googlemock.googlecode.com/files/gmock-{{version}}.zip
 
 build_stages:
 - name: configure

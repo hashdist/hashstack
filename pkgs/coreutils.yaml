@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 8.23
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.xz:5rb4uw6pyyreflgli237cipww2co4ipm
-  url: http://ftp.gnu.org/gnu/coreutils/coreutils-8.23.tar.xz
+- key:
+    when version == 8.23: tar.xz:5rb4uw6pyyreflgli237cipww2co4ipm
+  url: http://ftp.gnu.org/gnu/coreutils/coreutils-{{version}}.tar.xz

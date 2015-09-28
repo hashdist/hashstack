@@ -1,14 +1,21 @@
-extends: [autotools_package]
+parameters:
+- name: version
+  type: version
+  default: 1.0.0
 
-defaults:
-  relocatable: false
+- name: relocatable
+  type: bool
+  default: false
+
+extends: [autotools_package]
 
 dependencies:
   build: [bison, flex, pcc-libs]
 
 sources:
-- key: tar.gz:labnxosg23vd7g5nvjk3sbckaqllwqia
-  url: http://pcc.ludd.ltu.se/ftp/pub/pcc-releases/pcc-1.0.0.tgz
+- key:
+    when version == 1.0.0: tar.gz:labnxosg23vd7g5nvjk3sbckaqllwqia
+  url: http://pcc.ludd.ltu.se/ftp/pub/pcc-releases/pcc-{{version}}.tgz
 
 build_stages:
 - name: configure

@@ -1,11 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 1.5.3
+
 extends: [base_package]
 
 dependencies:
   build: [python]
 
 sources:
-- key: tar.gz:psktwwt4e3h42cbiqlr7hywnbd7orbek
-  url: https://github.com/martine/ninja/archive/v1.5.3.tar.gz
+- key:
+    when version == 1.5.3: tar.gz:psktwwt4e3h42cbiqlr7hywnbd7orbek
+  url: https://github.com/martine/ninja/archive/v{{version}}.tar.gz
 
 build_stages:
 - name: build

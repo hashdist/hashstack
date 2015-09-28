@@ -1,14 +1,24 @@
-when platform != 'linux':
-  extends: [distutils_package]
-when platform == 'linux':
-  extends: [distutils_package, libflags]
+parameters:
+- name: version
+  type: version
+  default: 0.13.3
+
+# FIXME: this does not work:
+#when platform != 'linux':
+#  extends: [distutils_package]
+#when platform == 'linux':
+#  extends: [distutils_package, libflags]
+extends: [distutils_package, libflags]
+#extends: [distutils_package]
+
 dependencies:
   build: [lapack, numpy]
   run: [lapack, numpy]
 
 sources:
-  - url: http://downloads.sourceforge.net/scipy/scipy-0.13.3.tar.gz
-    key: tar.gz:vhrty7xamdbvzvog5y5mtzpjxo4zegox
+- url: http://downloads.sourceforge.net/scipy/scipy-{{version}}.tar.gz
+  key:
+    when version == 0.13.3: tar.gz:vhrty7xamdbvzvog5y5mtzpjxo4zegox
 
 build_stages:
   - when: platform == 'linux'

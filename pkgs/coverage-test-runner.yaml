@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 1.10
+
 extends: [setuptools_package]
 
 dependencies:
   build: [coverage]
 
 sources:
-- key: tar.gz:kuh377rcaadwbdtkuqmqie2dehjpwmvp
-  url: http://code.liw.fi/debian/pool/main/p/python-coverage-test-runner/python-coverage-test-runner_1.10.orig.tar.gz
+- key:
+    when version == 1.10: tar.gz:kuh377rcaadwbdtkuqmqie2dehjpwmvp
+  url: http://code.liw.fi/debian/pool/main/p/python-coverage-test-runner/python-coverage-test-runner_{{version}}.orig.tar.gz

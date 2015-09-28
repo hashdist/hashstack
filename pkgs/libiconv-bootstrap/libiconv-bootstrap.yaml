@@ -1,12 +1,19 @@
+paramters:
+- name: version
+  type: version
+  default: 1.14
+
+# /bin/iconv contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 sources:
-  - url: http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz
-    key: tar.gz:okze33ix22drspbtm3ioxz6n4htlddyn
-
-defaults:
-  # /bin/iconv contains hard-coded path
-  relocatable: false
+- url: http://ftp.gnu.org/pub/gnu/libiconv/libiconv-{{version}}.tar.gz
+  key:
+    when version == 1.14: tar.gz:okze33ix22drspbtm3ioxz6n4htlddyn
 
 build_stages:
   - when: platform == 'linux'

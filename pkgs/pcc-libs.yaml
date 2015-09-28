@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 1.0.0
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:7cnmstrqsj5crr4pzc4lp7xwc7xk7bb6
-  url: http://pcc.ludd.ltu.se/ftp/pub/pcc-releases/pcc-libs-1.0.0.tgz
+- key:
+    when version == 1.0.0: tar.gz:7cnmstrqsj5crr4pzc4lp7xwc7xk7bb6
+  url: http://pcc.ludd.ltu.se/ftp/pub/pcc-releases/pcc-libs-{{version}}.tgz

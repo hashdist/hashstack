@@ -6,7 +6,6 @@ parameters:
 extends: [setuptools_package]
 
 sources:
-  - url: http://www.dabeaz.com/ply/ply-{{version}}.tar.gz
-    key:
-      when version == 3.4: tar.gz:v5bv6enxxxlj3jp7xq76zogxbjyhh3ev
-
+- url: http://www.dabeaz.com/ply/ply-{{version}}.tar.gz
+  key:
+    when version == 3.4: tar.gz:v5bv6enxxxlj3jp7xq76zogxbjyhh3ev

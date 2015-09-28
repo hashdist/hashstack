@@ -1,21 +1,34 @@
+parameters:
+- name: version
+  type: version
+  default: 4.8.6
+
+# bin/qmake contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
+- name: toolset
+  default: ''
+
+- name: arch
+  default: ''
+
 extends: [autotools_package]
+
 dependencies:
   build: [zlib, png]
 
 sources:
-- key: tar.gz:rmkn3envfbrobg4onkldkb5xjpbfqb4h
-  url: http://download.qt-project.org/archive/qt/4.8/4.8.6/qt-everywhere-opensource-src-4.8.6.tar.gz
-
-defaults:
-  # bin/qmake contains hard-coded path
-  relocatable: false
-
+- key:
+    when version == 4.8.6: tar.gz:rmkn3envfbrobg4onkldkb5xjpbfqb4h
+  url: http://download.qt-project.org/archive/qt/{{'.'.join(str(version).split('.')[:-1])}}/{{version}}/qt-everywhere-opensource-src-{{version}}.tar.gz
 
 #on the mac we need to pass the sdk and arch down
 build_stages:
 - name: configure
-  platform: {{toolset}}
-  arch: {{arch}}
+  platform: '{{toolset}}'
+  arch: '{{arch}}'
   extra: ['-release',
           '-fast',
           '-nomake demos',

@@ -1,3 +1,9 @@
+parameters:
+# include/mpqc/mpqc_config.h contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
 
 dependencies:
@@ -6,10 +12,6 @@ dependencies:
 sources:
 - key: git:f15663dbdeed58492f3c07c90c586acb5fa34662
   url: https://github.com/ValeevGroup/mpqc
-
-defaults:
-  # include/mpqc/mpqc_config.h contains hard-coded path
-  relocatable: false
 
 build_stages:
 

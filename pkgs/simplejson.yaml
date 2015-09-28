@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 3.6.0
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/s/simplejson/simplejson-3.6.0.tar.gz
-   key: tar.gz:xjqzm5qvvkr72cgv7frxhzx2j3s6amm4
+- url: https://pypi.python.org/packages/source/s/simplejson/simplejson-{{version}}.tar.gz
+  key:
+    when version == 3.6.0: tar.gz:xjqzm5qvvkr72cgv7frxhzx2j3s6amm4

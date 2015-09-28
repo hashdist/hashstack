@@ -1,7 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.9.6.3
+
 extends: [cmake_package]
-dependencies:
-  build: []
 
 sources:
-- key: zip:crsrwvvrb6tibasenlfpniirnvllov6i
-  url: http://downloads.sourceforge.net/project/ogl-math/glm-0.9.6.3/glm-0.9.6.3.zip
+- key:
+    when version == 0.9.6.3: zip:crsrwvvrb6tibasenlfpniirnvllov6i
+  url: http://downloads.sourceforge.net/project/ogl-math/glm-{{version}}/glm-{{version}}.zip

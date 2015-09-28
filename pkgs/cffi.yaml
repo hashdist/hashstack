@@ -1,12 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 0.8.2
+
 extends: [setuptools_package]
 
 dependencies:
   build: [pycparser, libffi]
-  run: []
 
 sources:
- #- url: https://pypi.python.org/packages/source/c/cffi/cffi-0.8.6.tar.gz
- # key: tar.gz:euznty5pty6g2d3rb7eywauvwvr4p444
-
- - url: https://pypi.python.org/packages/source/c/cffi/cffi-0.8.2.tar.gz
-   key: tar.gz:qgjdsnsa666dathiezu3gxvzawjfm2rq
+- url: https://pypi.python.org/packages/source/c/cffi/cffi-{{version}}.tar.gz
+  key:
+    when version == 0.8.6: tar.gz:euznty5pty6g2d3rb7eywauvwvr4p444
+    when version == 0.8.2: tar.gz:qgjdsnsa666dathiezu3gxvzawjfm2rq

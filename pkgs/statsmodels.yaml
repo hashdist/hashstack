@@ -1,3 +1,8 @@
+parameters:
+- name: version
+  type: version
+  default: 0.5.0
+
 extends: [setuptools_package]
 
 dependencies:
@@ -18,7 +23,8 @@ dependencies:
     - python-dateutil
 
 sources:
- - url: https://pypi.python.org/packages/source/s/statsmodels/statsmodels-0.5.0.zip
-   key: zip:a5wvmk2kguemavjoqksqzjt2z6betxxe
+- url: https://pypi.python.org/packages/source/s/statsmodels/statsmodels-{{version}}.zip
+  key:
+    when version == 0.5.0: zip:a5wvmk2kguemavjoqksqzjt2z6betxxe
 
 licenses: [bsd-3-clause]

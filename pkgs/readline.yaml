@@ -1,10 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 6.2
+
 extends: [autotools_package]
+
 dependencies:
   build: [ncurses]
 
 sources:
-  - url: http://ftp.gnu.org/gnu/readline/readline-6.2.tar.gz
-    key: tar.gz:pgtjmbykawgcgpds3vvmnfycdtdevpk6
+- url: http://ftp.gnu.org/gnu/readline/readline-{{version}}.tar.gz
+  key:
+    when version == 6.2: tar.gz:pgtjmbykawgcgpds3vvmnfycdtdevpk6
 
 build_stages:
   - name: configure

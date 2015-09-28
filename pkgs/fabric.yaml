@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 1.8.0
+
 extends: [setuptools_package]
+
 dependencies:
   build: [paramiko]
   run: [paramiko]
 
 sources:
-  - url: https://pypi.python.org/packages/source/F/Fabric/Fabric-1.8.0.tar.gz
-    key: tar.gz:ab3mo2v654775els4euq43sipyr2oiu3
+- url: https://pypi.python.org/packages/source/F/Fabric/Fabric-{{version}}.tar.gz
+  key:
+    when version == 1.8.0: tar.gz:ab3mo2v654775els4euq43sipyr2oiu3

@@ -1,3 +1,8 @@
+parameters:
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
@@ -6,9 +11,6 @@ dependencies:
 sources:
   - url: https://www.openssl.org/source/openssl-1.0.1g.tar.gz
     key: tar.gz:kpfyddb3sdsqpkbur5hv5lw3axml7zjv
-
-defaults:
-  relocatable: false
 
 build_stages:
 # We need to patch the docs because openssl's documentation is invalid

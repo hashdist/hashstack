@@ -1,11 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 5.2
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [findutils, ncurses, gzip]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:nogkgdu3n4etwvh6arbz4vkf4vsmmnuy
-  url: http://ftp.heanet.ie/mirrors/gnu/texinfo/texinfo-5.2.tar.g
+- key:
+    when version == 5.2: tar.gz:nogkgdu3n4etwvh6arbz4vkf4vsmmnuy
+  url: http://ftp.heanet.ie/mirrors/gnu/texinfo/texinfo-{{version}}.tar.gz

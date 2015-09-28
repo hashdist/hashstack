@@ -1,14 +1,21 @@
+parameters:
+- name: version
+  type: version
+  default: 0.28
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
-
-sources:
-- key: tar.gz:5mpywlflvv7qpnxejvqgveoxhyppzjfu
-  url: http://pkgs.fedoraproject.org/repo/pkgs/libcanberra/libcanberra-0.28.tar.gz/c198b4811598c4c161ff505e4531b02c/libcanberra-0.28.tar.gz
-
-defaults:
-  relocatable: false
 
 dependencies:
   build: [gtk2, pkg-config, libvorbis]
+
+sources:
+  when version == 0.28:
+  - key: tar.gz:5mpywlflvv7qpnxejvqgveoxhyppzjfu
+    url: http://pkgs.fedoraproject.org/repo/pkgs/libcanberra/libcanberra-0.28.tar.gz/c198b4811598c4c161ff505e4531b02c/libcanberra-0.28.tar.gz
 
 build_stages:
 - name: configure

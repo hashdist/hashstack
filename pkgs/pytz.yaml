@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 2013b0
+
 extends: [distutils_package]
 
 sources:
+  when version == 2013b0:
   - url: https://pypi.python.org/packages/source/p/pytz/pytz-2013b.tar.bz2
     key: tar.bz2:mxvuttafw6ix7xogdyp6nwfekewcsxfv

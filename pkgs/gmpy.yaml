@@ -1,11 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 2.0.5
+
 extends: [distutils_package, libflags]
 
 dependencies:
   build: [gmp, mpfr, mpc]
 
 sources:
-- key: zip:afhl7oib7xq5qi57u265ocv5pgw76nwa
-  url: https://pypi.python.org/packages/source/g/gmpy2/gmpy2-2.0.5.zip
+- key:
+    when version == 2.0.5: zip:afhl7oib7xq5qi57u265ocv5pgw76nwa
+  url: https://pypi.python.org/packages/source/g/gmpy2/gmpy2-{{version}}.zip
 
 build_stages:
 - name: install

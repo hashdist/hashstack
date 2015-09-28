@@ -19,13 +19,13 @@ sources:
   key:
     when version == 0.9.6: tar.bz2:yqfhovb74xdslg4bh5yn3lzctqtwbisq
 
-#build_stages:
-# - name: install_wrapper
-#   after: install
-#   files: [pkg-config-wrapper]
-#   handler: bash
-#   bash: |
-#     install -c -m 755 _hashdist/pkg-config-wrapper "${ARTIFACT}"/bin/pkg-config
+build_stages:
+ - name: install_wrapper
+   after: install
+   files: [pkg-config-wrapper]
+   handler: bash
+   bash: |
+     install -c -m 755 _hashdist/pkg-config-wrapper "${ARTIFACT}"/bin/pkg-config
 
 when_build_dependency:
 - prepend_path: PATH

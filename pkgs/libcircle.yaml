@@ -1,7 +1,9 @@
-extends: [autotools_package]
+parameters:
+- name: relocatable
+  type: bool
+  default: false
 
-defaults:
-  relocatable: false
+extends: [autotools_package]
 
 dependencies:
   build: [mpi, pkg-config]

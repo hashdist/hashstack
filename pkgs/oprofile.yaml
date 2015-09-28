@@ -1,9 +1,16 @@
+parameters:
+- name: version
+  type: version
+  default: 0.9.9
+
+# bin/opannotate contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 sources:
-  - url: http://downloads.sourceforge.net/project/oprofile/oprofile/oprofile-0.9.9/oprofile-0.9.9.tar.gz
-    key: tar.gz:dzjdiag2vot3rugrkju6s55arnao37vf
-
-defaults:
-  # bin/opannotate contains hard-coded path
-  relocatable: false
+- url: http://downloads.sourceforge.net/project/oprofile/oprofile/oprofile-{{version}}/oprofile-{{version}}.tar.gz
+  key:
+    when version == 0.9.9: tar.gz:dzjdiag2vot3rugrkju6s55arnao37vf

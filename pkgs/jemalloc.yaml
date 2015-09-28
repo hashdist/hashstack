@@ -1,12 +1,19 @@
+parameters:
+- name: version
+  type: version
+  default: 3.6.0
+
+# bin/jemalloc.sh contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 sources:
-- key: tar.bz2:4fwccwo5hsa4ulodwxe66dkd4hzpiwye
-  url: https://github.com/jemalloc/jemalloc/releases/download/3.6.0/jemalloc-3.6.0.tar.bz2
-
-defaults:
-  # bin/jemalloc.sh contains hard-coded path
-  relocatable: false
+- key:
+    when version == 3.6.0: tar.bz2:4fwccwo5hsa4ulodwxe66dkd4hzpiwye
+  url: https://github.com/jemalloc/jemalloc/releases/download/{{version}}/jemalloc-{{version}}.tar.bz2
 
 build_stages:
 - when: compiler == 'gcc'

@@ -1,16 +1,20 @@
+parameters:
+# lib/paraview-4.1/libvtkRenderingVolume-pv4.1.so.1 contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
+
 dependencies:
+  # FIXME: add optional dependencies with a '+'
   build: [boost, png, qt, zlib, bzip2, gdal, hdf5,
           mpi, netcdf4, netcdf4cpp, freetype,
-          python, numpy, matplotlib, libxml2, {{build_with}}]
+          python, numpy, matplotlib, libxml2, +mesa]#{{build_with}}]
 
 sources:
 - key: git:f7aac037722d9d13b75d9fdb15a1053c0874c6c6
   url: https://github.com/Kitware/ParaView.git
-
-defaults:
-  # lib/paraview-4.1/libvtkRenderingVolume-pv4.1.so.1 contains hard-coded path
-  relocatable: false
 
 build_stages:
 - name: patch4

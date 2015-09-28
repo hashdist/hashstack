@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 3.1.2
+
 extends: [distutils_package]
 
 sources:
-- key: tar.gz:lw7fz2zxa7rxquunze2gv4uasglwbkq2
-  url: http://mercurial.selenic.com/release/mercurial-3.1.2.tar.gz
+- key:
+    when version == 3.1.2: tar.gz:lw7fz2zxa7rxquunze2gv4uasglwbkq2
+  url: http://mercurial.selenic.com/release/mercurial-{{version}}.tar.gz
 
 when_build_dependency:
   - prepend_path: PATH

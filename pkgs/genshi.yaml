@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.7
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
--  key: zip:ptgbosdhel3aawcwn3pqmd6iy2xqvqkv
-   url: https://pypi.python.org/packages/source/G/Genshi/Genshi-0.7.zip
+- url: https://pypi.python.org/packages/source/G/Genshi/Genshi-{{version}}.zip
+  key:
+    when version == 0.7: zip:ptgbosdhel3aawcwn3pqmd6iy2xqvqkv

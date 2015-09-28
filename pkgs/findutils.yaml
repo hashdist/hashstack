@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 4.4.2
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:inhtfulrzpaklzzm7rjxfrx4jsyonapy
-  url: http://ftp.heanet.ie/mirrors/gnu/findutils/findutils-4.4.2.tar.gz
+- url: http://ftp.heanet.ie/mirrors/gnu/findutils/findutils-{{version}}.tar.gz
+  key:
+    when version == 4.4.2: tar.gz:inhtfulrzpaklzzm7rjxfrx4jsyonapy

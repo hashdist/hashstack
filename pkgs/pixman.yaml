@@ -1,15 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 0.32.6
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [pkg-config, png, zlib]
   run: [pkg-config]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:hx7nco4amdvnvpykjfc4obc3o6j4y7r6
-  url: http://cairographics.org/releases/pixman-0.32.6.tar.gz
+- key:
+    when version == 0.32.6: tar.gz:hx7nco4amdvnvpykjfc4obc3o6j4y7r6
+  url: http://cairographics.org/releases/pixman-{{version}}.tar.gz
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

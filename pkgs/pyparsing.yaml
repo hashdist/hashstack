@@ -1,11 +1,13 @@
+parameters:
+- name: version
+  type: version
+  default: 2.0.1
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/p/pyparsing/pyparsing-2.0.1.zip
-   key: zip:pylwn3tuptfht7qxfntq7vj66wh4kxjl
+- url: https://pypi.python.org/packages/source/p/pyparsing/pyparsing-{{version}}.zip
+  key:
+    when version == 2.0.1: zip:pylwn3tuptfht7qxfntq7vj66wh4kxjl
 
 licenses: [MIT]

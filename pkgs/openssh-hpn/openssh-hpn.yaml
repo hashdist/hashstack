@@ -1,10 +1,13 @@
+parameters:
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
-  build: [openssl, pkg-config, zlib, {{build_with}}]
-
-defaults:
-  relocatable: false
+  # FIXME: add optional dependencies with a '+'
+  build: [openssl, pkg-config, zlib]#, {{build_with}}]
 
 sources:
 - key: tar.gz:p4u3tuvnm4vob6pb3s77q4p4lqxgbimu

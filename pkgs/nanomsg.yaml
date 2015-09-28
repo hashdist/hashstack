@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.3b0
+
 extends: [autotools_package]
 
 sources:
+  when version == 0.3b0:
   - url: http://download.nanomsg.org/nanomsg-0.3-beta.tar.gz
     key: tar.gz:rikddcnlndcxl4ibrwrmulhzepyu3yy3

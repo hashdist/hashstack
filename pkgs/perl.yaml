@@ -1,14 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 5.20.0
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-  relocatable: false
-
 dependencies:
-  build: [berkeleydb-5, gdbm, {{build_with}}]
+  # FIXME: add optional dependencies with a '+'
+  build: [berkeleydb-5, gdbm]#, {{build_with}}]
 
 sources:
-- key: tar.gz:j2gcrllozsezal44wltw6kavxmnifb66
-  url: http://www.cpan.org/src/5.0/perl-5.20.0.tar.gz
+- key:
+    when version == 5.20.0: tar.gz:j2gcrllozsezal44wltw6kavxmnifb66
+  url: http://www.cpan.org/src/5.0/perl-{{version}}.tar.gz
 
 build_stages:
 - name: configure

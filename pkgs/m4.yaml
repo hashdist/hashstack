@@ -1,14 +1,19 @@
-extends: [autotools_package]
-dependencies:
-  build: []
+parameters:
+- name: version
+  type: version
+  default: 1.4.17
 
-defaults:
-  # /bin/m4 contains hard-coded path
-  relocatable: false
+# /bin/m4 contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
+extends: [autotools_package]
 
 sources:
-  - url: http://ftp.gnu.org/gnu/m4/m4-1.4.17.tar.bz2
-    key: tar.bz2:rzhb7frzgijw5vc5zvnpwddoen7jnjx4
+- url: http://ftp.gnu.org/gnu/m4/m4-{{version}}.tar.bz2
+  key:
+    when version == 1.4.17: tar.bz2:rzhb7frzgijw5vc5zvnpwddoen7jnjx4
 
 when_build_dependency:
   - prepend_path: PATH

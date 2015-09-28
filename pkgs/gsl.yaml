@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 1.16
+
 extends: [autotools_package]
 
 sources:
-- url: http://mirror.nexcess.net/gnu/gsl/gsl-1.16.tar.gz
-  key: tar.gz:oo6c6unzbuvhqdtnezwuhzehwpn5pckf
+- url: http://mirror.nexcess.net/gnu/gsl/gsl-{{version}}.tar.gz
+  key:
+    when version == 1.16: tar.gz:oo6c6unzbuvhqdtnezwuhzehwpn5pckf

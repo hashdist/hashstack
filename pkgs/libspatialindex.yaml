@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 1.8.1
+
 extends: [autotools_package]
 
 sources:
-- key: tar.bz2:tzl3a7gnmszjicwee44tqluejetrn4mg
-  url: http://download.osgeo.org/libspatialindex/spatialindex-src-1.8.1.tar.bz2
+- key:
+    when version == 1.8.1: tar.bz2:tzl3a7gnmszjicwee44tqluejetrn4mg
+  url: http://download.osgeo.org/libspatialindex/spatialindex-src-{{version}}.tar.bz2

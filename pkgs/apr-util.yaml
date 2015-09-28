@@ -1,16 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 1.5.4
+
+# lib/libaprutil-1.so.0.5.4 contains hardwired path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [apr]
-  run: []
-
-# lib/libaprutil-1.so.0.5.4 contains hardwired path
-defaults:
-  relocatable: false
 
 sources:
-- key: tar.bz2:u3hte4mjzig7f645kyz5omtmiyh6fnqw
-  url: http://apache.spinellicreations.com/apr/apr-util-1.5.4.tar.bz2
+- key:
+    when version == 1.5.4: tar.bz2:u3hte4mjzig7f645kyz5omtmiyh6fnqw
+  url: http://apache.spinellicreations.com/apr/apr-util-{{version}}.tar.bz2
 
 build_stages:
   - name: configure

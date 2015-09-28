@@ -1,11 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 1.5
+
 extends: [distutils_package]
+
 dependencies:
   build: [gccxml, libadjoint, petsc, slepc]
   run: [dolfin, ffc, fiat, instant, libadjoint, numpy, scipy, ufl]
 
 sources:
-- key: tar.gz:6jw62mw6yaevobxwnm5zphguxgrnqhzz
-  url: https://bitbucket.org/dolfin-adjoint/dolfin-adjoint/get/dolfin-adjoint-1.5.tar.gz
+- key:
+    when version == 1.5: tar.gz:6jw62mw6yaevobxwnm5zphguxgrnqhzz
+  url: https://bitbucket.org/dolfin-adjoint/dolfin-adjoint/get/dolfin-adjoint-{{version}}.tar.gz
 
 when_build_dependency:
 - prepend_path: PATH

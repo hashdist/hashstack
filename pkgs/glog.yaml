@@ -1,3 +1,8 @@
+parameters:
+- name: version
+  type: version
+  default: 0.3.3
+
 extends: [autotools_package]
 
 dependencies:
@@ -5,8 +10,9 @@ dependencies:
   run: [pkg-config]
 
 sources:
-- key: tar.gz:7p4qyiufxicwdw32id4kj3x3tkuwhz6t
-  url: http://google-glog.googlecode.com/files/glog-0.3.3.tar.gz
+- key:
+    when version == 0.3.3: tar.gz:7p4qyiufxicwdw32id4kj3x3tkuwhz6t
+  url: http://google-glog.googlecode.com/files/glog-{{version}}.tar.gz
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

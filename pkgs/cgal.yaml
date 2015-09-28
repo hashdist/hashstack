@@ -1,14 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 4.2
+
+# lib/CGAL/CGALConfig.cmake contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
+
 dependencies:
   build: [zlib, boost, gmp, mpfr]
 
 sources:
-- url: https://gforge.inria.fr/frs/download.php/32360/CGAL-4.2.tar.bz2
-  key: tar.bz2:67wy5ys57vr4ba36wltoptr3cbhflpad
-
-defaults:
-  # lib/CGAL/CGALConfig.cmake contains hard-coded path
-  relocatable: false
+  when version == 4.2:
+  - url: https://gforge.inria.fr/frs/download.php/32360/CGAL-4.2.tar.bz2
+    key: tar.bz2:67wy5ys57vr4ba36wltoptr3cbhflpad
 
 build_stages:
 - name: configure

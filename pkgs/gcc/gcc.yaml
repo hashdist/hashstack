@@ -1,15 +1,23 @@
+parameters:
+- name: version
+  type: version
+  default: 4.9.2
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 # see https://gcc.gnu.org/install/prerequisites.html
 dependencies:
-  build: [zlib, mpfr, mpc, gmp, isl, cloog, gnu-sed, {{build_with}}]
-
-defaults:
-  relocatable: false
+  # FIXME: add optional dependencies with a '+'
+  build: [zlib, mpfr, mpc, gmp, isl, cloog, gnu-sed]#, {{build_with}}]
 
 sources:
-- key: tar.bz2:eaqmtauvqvvkcp62b4xtur4ujedvp7be
-  url: http://ftpmirror.gnu.org/gcc/gcc-4.9.2/gcc-4.9.2.tar.bz2
+- key:
+    when version == 4.9.2: tar.bz2:eaqmtauvqvvkcp62b4xtur4ujedvp7be
+  url: http://ftpmirror.gnu.org/gcc/gcc-{{version}}/gcc-{{version}}.tar.bz2
 
 build_stages:
   # Make gcc automatically embed RPATH to the proper libstdc++, libgfortran,

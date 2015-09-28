@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 2.7.3
+
 extends: [setuptools_package]
 
 dependencies:
   run: [MarkupSafe]
 
 sources:
-- key: tar.gz:fyskyxiajw2xcslwubfmb2amnx3oi7uy
-  url: https://pypi.python.org/packages/source/J/Jinja2/Jinja2-2.7.3.tar.gz
+- key:
+    when version == 2.7.3: tar.gz:fyskyxiajw2xcslwubfmb2amnx3oi7uy
+  url: https://pypi.python.org/packages/source/J/Jinja2/Jinja2-{{version}}.tar.gz

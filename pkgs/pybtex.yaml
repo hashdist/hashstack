@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 0.16
+
 extends: [setuptools_package]
+
 dependencies:
   build: [yaml]
   run: [yaml]
 
 sources:
-  - url: https://pypi.python.org/packages/source/p/pybtex/pybtex-0.16.tar.bz2
-    key: tar.bz2:b7kxnz7zgmt4nhnggjvqrigoowjbxnzh
+- url: https://pypi.python.org/packages/source/p/pybtex/pybtex-{{version}}.tar.bz2
+  key:
+    when version == 0.16: tar.bz2:b7kxnz7zgmt4nhnggjvqrigoowjbxnzh

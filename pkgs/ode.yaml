@@ -1,15 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 0.13
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:76y7d3stirmjjzqe5ioftrhbr4ui3wj5
-  url: http://sourceforge.net/projects/opende/files/ODE/0.13/ode-0.13.tar.gz
+- key:
+    when version == 0.13: tar.gz:76y7d3stirmjjzqe5ioftrhbr4ui3wj5
+  url: http://sourceforge.net/projects/opende/files/ODE/{{version}}/ode-{{version}}.tar.gz
 
 dependencies:
-  build: [python,cython,pkg-config]
-  run: [python,cython,pkg-config]
+  build: [python, cython, pkg-config]
+  run: [python, cython, pkg-config]
 
 build_stages:
 - name: configure

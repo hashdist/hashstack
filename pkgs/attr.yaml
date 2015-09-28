@@ -1,14 +1,21 @@
+parameters:
+- name: version
+  type: version
+  default: 2.4.47
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-    relocatable: false
-
 dependencies:
-    build: [pkg-config]
+  build: [pkg-config]
 
 sources:
-- key: tar.gz:ev3s6zj2ywzohtxlrhpvbzdirci6eh3s
-  url: http://download.savannah.gnu.org/releases/attr/attr-2.4.47.src.tar.gz
+- key:
+    when version == 2.4.47: tar.gz:ev3s6zj2ywzohtxlrhpvbzdirci6eh3s
+  url: http://download.savannah.gnu.org/releases/attr/attr-{{version}}.src.tar.gz
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

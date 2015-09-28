@@ -1,11 +1,13 @@
+parameters:
+- name: version
+  type: version
+  default: 1.1.6
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/c/cvxopt/cvxopt-1.1.6.tar.gz
-   key: tar.gz:d2kamzsqxas6py3nk2xicu2vimabz74g
+- url: https://pypi.python.org/packages/source/c/cvxopt/cvxopt-{{version}}.tar.gz
+  key:
+    when version == 1.1.6: tar.gz:d2kamzsqxas6py3nk2xicu2vimabz74g
 
 licenses: [gplv3]

@@ -1,11 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 5.100.2
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:mmkq6ev7pr6ftdvflnzhdwm7zy2j744g
-  url: http://sourceforge.net/projects/arma/files/armadillo-5.100.2.tar.gz
+- key:
+    when version == 5.100.2: tar.gz:mmkq6ev7pr6ftdvflnzhdwm7zy2j744g
+  url: http://sourceforge.net/projects/arma/files/armadillo-{{version}}.tar.gz
 
 build_stages:
   - name: setup_builddir
@@ -14,5 +21,6 @@ build_stages:
     handler: bash
     bash: |
 
-  - name: configure
-    build_in_source: true
+# FIXME: why doesn't this work:
+#  - name: configure
+#    build_in_source: true

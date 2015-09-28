@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 0.13.0
+
 extends: [setuptools_package]
+
 dependencies:
   build: [numpy, python-dateutil, pytz]
   run: [numpy, python-dateutil, pytz]
 
 sources:
-  - url: https://pypi.python.org/packages/source/p/pandas/pandas-0.13.0.tar.gz
-    key: tar.gz:loz7pjpsj7ucqdue4vah3qjjgzhhqjol
+- url: https://pypi.python.org/packages/source/p/pandas/pandas-{{version}}.tar.gz
+  key:
+    when version == 0.13.0: tar.gz:loz7pjpsj7ucqdue4vah3qjjgzhhqjol

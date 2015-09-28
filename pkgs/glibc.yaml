@@ -1,14 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 2.19
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
-   build: [{{build_with}}]
-
-defaults:
-  relocatable: false
+  # FIXME: add optional dependencies with a '+'
+  build: []#{{build_with}}]
 
 sources:
-- key: tar.bz2:fyut64kbq4cemmzgjtm44amdy4gdvkla
-  url: http://ftp.heanet.ie/mirrors/gnu/glibc/glibc-2.19.tar.bz2
+- key:
+    when version == 2.19: tar.bz2:fyut64kbq4cemmzgjtm44amdy4gdvkla
+  url: http://ftp.heanet.ie/mirrors/gnu/glibc/glibc-{{version}}.tar.bz2
 
 build_stages:
  - name: prologue

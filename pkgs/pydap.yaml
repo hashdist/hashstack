@@ -1,3 +1,8 @@
+parameters:
+- name: version
+  type: version
+  default: 3.1.1
+
 extends: [namespace_package]
 
 dependencies:
@@ -5,5 +10,6 @@ dependencies:
   run: [httplib2]
 
 sources:
-- key: tar.gz:ggxvshjej45j2n42b4bbousdqlkhh7je
-  url: https://pypi.python.org/packages/source/P/Pydap/Pydap-3.1.1.tar.gz
+- key:
+    when version == 3.1.1: tar.gz:ggxvshjej45j2n42b4bbousdqlkhh7je
+  url: https://pypi.python.org/packages/source/P/Pydap/Pydap-{{version}}.tar.gz

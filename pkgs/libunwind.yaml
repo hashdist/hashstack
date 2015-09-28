@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 1.1
+
 extends: [autotools_package]
 
 sources:
-  - url: http://download.savannah.gnu.org/releases/libunwind/libunwind-1.1.tar.gz
-    key: tar.gz:tx7a7sxcvbtn5hjzildgtfpewrqcgbcg
+- url: http://download.savannah.gnu.org/releases/libunwind/libunwind-{{version}}.tar.gz
+  key:
+    when version == 1.1: tar.gz:tx7a7sxcvbtn5hjzildgtfpewrqcgbcg

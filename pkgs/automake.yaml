@@ -1,14 +1,21 @@
+parameters:
+- name: version
+  type: version
+  default: 1.15
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [autoconf]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.xz:teemowvl2sorgzq5nxfrxq4ceuwsftdx
-  url: http://ftp.gnu.org/gnu/automake/automake-1.15.tar.xz
+- url: http://ftp.gnu.org/gnu/automake/automake-{{version}}.tar.xz
+  key:
+    when version == 1.15: tar.xz:teemowvl2sorgzq5nxfrxq4ceuwsftdx
 
 when_build_dependency:
 - prepend_path: PATH

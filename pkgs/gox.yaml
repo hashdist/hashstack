@@ -1,10 +1,13 @@
+parameters:
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [base_package]
 
 dependencies:
-  build: [golang, {{build_with}}]
-
-defaults:
-  relocatable: false
+  # FIXME: add optional dependencies with a '+'
+  build: [golang]#, {{build_with}}]
 
 sources:
 - key: git:e8e6fd4fe12510cc46893dff18c5188a6a6dc549

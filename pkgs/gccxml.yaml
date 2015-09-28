@@ -1,18 +1,35 @@
 parameters:
-# bin/gccxml_cc1plus contains hard-coded path
+- name: version
+  type: version
+  default: 7.9
+
+# lib/libbfd.a contains hard-coded path
 - name: relocatable
   type: bool
   default: false
 
-extends: [cmake_package]
+extends: [autotools_package]
 
 dependencies:
-  build: [{{build_with}}]
+  # FIXME: add optional dependencies with a '+'
+  build: [python, expat, xz, ncurses, libiconv, zlib, readline]#, {{build_with}}]
 
 sources:
-- key: git:ab651a2aa866351bdd089a4bf1d57f6a9bec2a66
-  url: https://github.com/gccxml/gccxml.git
+- key:
+    when version == 7.9: tar.xz:tmyvmunbmuuppl4mpwbii2m7wdewlxzr
+  url: https://ftp.gnu.org/gnu/gdb/gdb-{{version}}.tar.xz
 
-when_build_dependency:
-- prepend_path: PATH
-  value: '${ARTIFACT}/bin'
+build_stages:
+  - name: configure
+    global_flags: true
+    extra: ['--with-system-readline']
+
+  - name: fail_on_osx
+    before: prologue
+    mode: replace
+    when: platform == 'Darwin'
+    handler: bash
+    bash: |
+      echo "Does not work on OSX (well), unless users sign the binary, so not building on OSX"
+      echo "See http://wiki.lazarus.freepascal.org/GDB_on_OS_X_Mavericks_and_Xcode_5"
+      exit 1

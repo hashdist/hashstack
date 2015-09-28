@@ -1,3 +1,13 @@
+parameters:
+- name: version
+  type: version
+  default: 6.09
+
+# lib/python2.7/site-packages/exodus.py contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
 
 dependencies:
@@ -5,12 +15,9 @@ dependencies:
   run: [numpy]
 
 sources:
-- key: tar.gz:4fg3jqpczketyrqcavidnobhxazsorsd
-  url: http://downloads.sourceforge.net/project/exodusii/exodus-6.09.tar.gz
-
-defaults:
-  # lib/python2.7/site-packages/exodus.py contains hard-coded path
-  relocatable: false
+- key:
+    when version == 6.09: tar.gz:4fg3jqpczketyrqcavidnobhxazsorsd
+  url: http://downloads.sourceforge.net/project/exodusii/exodus-{{version}}.tar.gz
 
 build_stages:
 

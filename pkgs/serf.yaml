@@ -1,15 +1,21 @@
+parameters:
+- name: version
+  type: version
+  default: 1.3.8
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [base_package]
 
 dependencies:
   build: [apr, apr-util, openssl, scons, python]
-  run: []
-
-defaults:
-  relocatable: false
 
 sources:
-- key: tar.bz2:4biaxydf3o6ojeceta33wkvwetsg2zh4
-  url: http://serf.googlecode.com/svn/src_releases/serf-1.3.8.tar.bz2
+- url: http://serf.googlecode.com/svn/src_releases/serf-{{version}}.tar.bz2
+  key:
+    when version == 1.3.8: tar.bz2:4biaxydf3o6ojeceta33wkvwetsg2zh4
 
 build_stages:
 - name: build-install

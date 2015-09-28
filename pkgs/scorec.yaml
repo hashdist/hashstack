@@ -1,13 +1,16 @@
+parameters:
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
+
 dependencies:
   build: [mpi, parmetis, zoltan]
 
 sources:
 - key: git:1d2f5438d3dff3f1120649577bb2a05f9ac8c556
   url: https://github.com/SCOREC/core.git
-
-defaults:
-  relocatable: false
 
 build_stages:
 

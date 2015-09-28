@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 0.9.3
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:megt5rze7pnkmvfp4ph7ec47jviexy75
-  url: http://ftp.heanet.ie/mirrors/gnu/libunistring/libunistring-0.9.3.tar.gz
+- key:
+    when version == 0.9.3: tar.gz:megt5rze7pnkmvfp4ph7ec47jviexy75
+  url: http://ftp.heanet.ie/mirrors/gnu/libunistring/libunistring-{{version}}.tar.gz

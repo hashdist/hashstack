@@ -1,33 +1,65 @@
+# FIXME: this needs more work
+parameters:
+- name: version
+  type: version
+  default: 2.0.2
+
+# lib/libscalapack.so contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
 
 dependencies:
   build: [lapack, mpi]
 
 sources:
-- url: http://www.netlib.org/scalapack/scalapack.tgz
-  key: tar.gz:br2k5ltjb7s64tnxsjxutroqxnu44cpo
-
-defaults:
-  # lib/libscalapack.so contains hard-coded path
-  relocatable: false
+- url: http://www.netlib.org/scalapack/scalapack-{{version}}.tgz
+  key:
+    when version == 2.0.2: tar.gz:br2k5ltjb7s64tnxsjxutroqxnu44cpo
 
 build_stages:
-- name: configure
-  when compiler == 'gcc':
-      extra: ['-D CMAKE_Fortran_FLAGS_RELEASE:STRING="-O3 -fPIC -march=native -ffast-math -funroll-loops"',
-              '-D BUILD_TESTING:BOOL=OFF',
-              '-D BUILD_SHARED_LIBS:BOOL=ON',
-              '-D LAPACK_LIBRARIES:STRING="${LAPACK_DIR}/lib/liblapack.so"',
-              '-D BLAS_LIBRARIES:STRING="${LAPACK_DIR}/lib/libblas.so"',
-              ]
-  when compiler != 'gcc':
-      extra: ['-D BUILD_TESTING:BOOL=OFF',
-              '-D BUILD_SHARED_LIBS:BOOL=ON',
-              '-D LAPACK_LIBRARIES:STRING="${LAPACK_DIR}/lib/liblapack.so"',
-              '-D BLAS_LIBRARIES:STRING="${LAPACK_DIR}/lib/libblas.so"',
-              ]
-  build_in_source: true
-
 - name: setup_builddir
   mode: override
   bash: |
+
+- name: configure
+  extra: ['-D BUILD_TESTING:BOOL=OFF',
+          '-D BUILD_SHARED_LIBS:BOOL=ON',
+          '-D LAPACK_LIBRARIES:STRING="${LAPACK_DIR}/lib/liblapack.so"',
+          '-D BLAS_LIBRARIES:STRING="${LAPACK_DIR}/lib/libblas.so"']
+  # FIXME: how to deal with this?
+  #build_in_source: true
+
+- when: compiler == 'gcc'
+  name: configure
+  mode: update
+  extra: ['-D CMAKE_Fortran_FLAGS_RELEASE:STRING="-O3 -fPIC -march=native -ffast-math -funroll-loops"']
+
+- when: lapack.kind == 'reference'
+  name: configure
+  mode: update
+  extra:
+    when platform == 'Darwin':
+      ['-D LAPACK_LIBRARIES:FILEPATH="${LAPACK_DIR}/lib/liblapack.dylib"',
+       '-D BLAS_LIBRARIES:FILEPATH="${LAPACK_DIR}/lib/libblas.dylib"']
+    when platform == 'linux':
+      ['-D LAPACK_LIBRARIES:FILEPATH="${LAPACK_DIR}/lib/liblapack.so"',
+       '-D BLAS_LIBRARIES:FILEPATH="${LAPACK_DIR}/lib/libblas.so"']
+
+- when: lapack.kind == 'openblas'
+  name: configure
+  mode: update
+  extra:
+    when platform == 'Darwin':
+      ['-D LAPACK_LIBRARIES:FILEPATH="${OPENBLAS_DIR}/lib/libopenblas.dylib"',
+       '-D BLAS_LIBRARIES:FILEPATH="${OPENBLAS_DIR}/lib/libopenblas.dylib"']
+    when platform == 'linux':
+      ['-D LAPACK_LIBRARIES:FILEPATH="${OPENBLAS_DIR}/lib/libopenblas.so"',
+       '-D BLAS_LIBRARIES:FILEPATH="${OPENBLAS_DIR}/lib/libopenblas.so"']
+
+- when: lapack.kind == 'accelerate'
+  name: configure
+  mode: update
+  extra: ['-D BLA_VENDOR:STRING=Apple']

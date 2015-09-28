@@ -1,11 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 1.5
+# FIXME: why does not the following work?
+#  default:
+#    # dateutil 2.0 doesn't work in Python 2.7, so we need to keep using
+#    # dateutil 1.5 for Python 2.7:
+#    when pyver == '2.7': 1.5
+#    when pyver != '2.7': 2.0
+
 extends: [setuptools_package]
 
 sources:
-  when pyver == '2.7':
-    # dateutil 2.0 doesn't work in Python 2.7, so we need to keep using
-    # dateutil 1.5 for Python 2.7:
-    - key: tar.gz:ycfmu7mf7d4o5vq6qozueo4csjrmlfvj
-      url: http://labix.org/download/python-dateutil/python-dateutil-1.5.tar.gz
-  when pyver != '2.7':
-    - key: tar.gz:rkvrfuhjisztwxrupphrsy4btwfnsjoa
-      url: https://labix.org/download/python-dateutil/python-dateutil-2.0.tar.gz
+- key:
+    when version == 2.0: tar.gz:rkvrfuhjisztwxrupphrsy4btwfnsjoa
+    when version == 1.5: tar.gz:ycfmu7mf7d4o5vq6qozueo4csjrmlfvj
+  url: http://labix.org/download/python-dateutil/python-dateutil-{{version}}.tar.gz

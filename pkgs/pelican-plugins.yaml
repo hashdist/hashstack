@@ -1,7 +1,9 @@
-extends: [base_package]
+parameters:
+- name: relocatable
+  type: bool
+  default: false
 
-defaults:
-  relocatable: false
+extends: [base_package]
 
 sources:
 - key: git:f7174a25b47675ed8429f432ef3a682c55c2fcf1

@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 0.10.8
+
 extends: [setuptools_package]
 
 dependencies:
   build: [pip]
 
 sources:
- - key: tar.gz:u5awkddjpk7j3u62aabzuv5elik2n3wq
-   url: https://pypi.python.org/packages/source/p/pbr/pbr-0.10.8.tar.gz
+- key:
+    when version == 0.10.8: tar.gz:u5awkddjpk7j3u62aabzuv5elik2n3wq
+  url: https://pypi.python.org/packages/source/p/pbr/pbr-{{version}}.tar.gz

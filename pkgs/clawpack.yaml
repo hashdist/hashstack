@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 5.2.2
+
 extends: [distutils_package]
+
 dependencies:
   build: [numpy]
   run: [numpy, matplotlib]
 
 sources:
-- key: tar.gz:ths6trvj5trqhvsgfjwnj5oopcml3oui
-  url: https://pypi.python.org/packages/source/c/clawpack/clawpack-5.2.2.tar.gz
+- key:
+    when version == 5.2.2: tar.gz:ths6trvj5trqhvsgfjwnj5oopcml3oui
+  url: https://pypi.python.org/packages/source/c/clawpack/clawpack-{{version}}.tar.gz

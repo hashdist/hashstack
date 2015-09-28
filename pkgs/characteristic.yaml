@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.1.0
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/c/characteristic/characteristic-0.1.0.tar.gz
-   key: tar.gz:2rypvrekzs6kiebyumq2xugbu5bix3xv
+- url: https://pypi.python.org/packages/source/c/characteristic/characteristic-{{version}}.tar.gz
+  key:
+    when version == 0.1.0: tar.gz:2rypvrekzs6kiebyumq2xugbu5bix3xv

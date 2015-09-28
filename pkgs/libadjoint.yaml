@@ -1,14 +1,23 @@
+parameters:
+- name: version
+  type: version
+  default: 1.5
+
+# lib/python2.7/site-packages/libadjoint/clibadjoint.py contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
+
 dependencies:
-  build: [gccxml, mpi, petsc, slepc, {{build_with}}]
+  # FIXME: add optional dependencies with a '+'
+  build: [gccxml, mpi, petsc, slepc]#, {{build_with}}]
 
 sources:
-- key: tar.gz:pvs4t2nxqssi6mwagvg5oqqhryhhj7ft
-  url: https://bitbucket.org/dolfin-adjoint/libadjoint/get/libadjoint-1.5.tar.gz
-
-defaults:
-  # lib/python2.7/site-packages/libadjoint/clibadjoint.py contains hard-coded path
-  relocatable: false
+- key:
+    when version == 1.5: tar.gz:pvs4t2nxqssi6mwagvg5oqqhryhhj7ft
+  url: https://bitbucket.org/dolfin-adjoint/libadjoint/get/libadjoint-{{version}}.tar.gz
 
 build_stages:
 - name: configure

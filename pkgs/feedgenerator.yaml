@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 1.7
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/f/feedgenerator/feedgenerator-1.7.tar.gz
-   key: tar.gz:lvvqweatjlbzfpqmbq5dtqhb27u4c7gh
+- url: https://pypi.python.org/packages/source/f/feedgenerator/feedgenerator-{{version}}.tar.gz
+  key:
+    when version == 1.7: tar.gz:lvvqweatjlbzfpqmbq5dtqhb27u4c7gh

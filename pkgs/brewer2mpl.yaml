@@ -1,11 +1,13 @@
+parameters:
+- name: version
+  type: version
+  default: 1.4
+
 extends: [distutils_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/b/brewer2mpl/brewer2mpl-1.4.zip
-   key: zip:ccqcg7onidtntp2g4xvktjnuqztwhvl6
+- url: https://pypi.python.org/packages/source/b/brewer2mpl/brewer2mpl-{{versoion}}.zip
+  key:
+    when version == 1.4: zip:ccqcg7onidtntp2g4xvktjnuqztwhvl6
 
 licenses: [mit]

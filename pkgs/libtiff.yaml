@@ -1,11 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 4.0.3
+
 extends: [autotools_package]
+
 dependencies:
   build: [zlib]
   run: [zlib]
 
 sources:
-- key: tar.gz:5inoxyucggktp6znjv4al5dy3vha4bod
-  url: http://download.osgeo.org/libtiff/tiff-4.0.3.tar.gz
+- key:
+    when version == 4.0.3: tar.gz:5inoxyucggktp6znjv4al5dy3vha4bod
+  url: http://download.osgeo.org/libtiff/tiff-{{version}}.tar.gz
 
 build_stages:
 - name: configure

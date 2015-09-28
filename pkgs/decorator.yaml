@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 3.4.2
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - key: tar.gz:omqaalhgdxvgvisk3skf3hlyggzwnfkt
-   url: https://pypi.python.org/packages/source/d/decorator/decorator-3.4.2.tar.gz
+- key:
+    when version == 3.4.2: tar.gz:omqaalhgdxvgvisk3skf3hlyggzwnfkt
+  url: https://pypi.python.org/packages/source/d/decorator/decorator-{{version}}.tar.gz

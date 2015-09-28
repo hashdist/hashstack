@@ -1,9 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 0.10.1
+
 extends: [setuptools_package]
 
 dependencies:
-  build: []
   run: [jinja2, werkzeug, itsdangerous]
 
 sources:
- - url: https://pypi.python.org/packages/source/F/Flask/Flask-0.10.1.tar.gz
-   key: tar.gz:jsbyfh7yhvaiwxq5jgkuoitfieosyqkb
+- url: https://pypi.python.org/packages/source/F/Flask/Flask-{{version}}.tar.gz
+  key:
+    when version == 0.10.1: tar.gz:jsbyfh7yhvaiwxq5jgkuoitfieosyqkb

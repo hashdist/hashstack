@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.23
+
 extends: [setuptools_package]
 
 sources:
-- key: tar.gz:d3gvrx7qasp5ztw3ntkb74g5yumxdskd
-  url: http://code.liw.fi/debian/pool/main/p/python-ttystatus/python-ttystatus_0.23.orig.tar.gz
+- key:
+    when version == 0.23: tar.gz:d3gvrx7qasp5ztw3ntkb74g5yumxdskd
+  url: http://code.liw.fi/debian/pool/main/p/python-ttystatus/python-ttystatus_{{version}}.orig.tar.gz

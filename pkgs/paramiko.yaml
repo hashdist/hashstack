@@ -1,7 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 1.10.1
+
 extends: [distutils_package]
+
 dependencies:
   run: [pycrypto]
 
 sources:
-  - url: https://pypi.python.org/packages/source/p/paramiko/paramiko-1.10.1.tar.gz
-    key: tar.gz:l6wa3oz5osml6st6doh2zeqmxclxvehc
+- url: https://pypi.python.org/packages/source/p/paramiko/paramiko-{{version}}.tar.gz
+  key:
+    when version == 1.10.1: tar.gz:l6wa3oz5osml6st6doh2zeqmxclxvehc

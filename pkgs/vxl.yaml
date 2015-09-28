@@ -1,3 +1,9 @@
+parameters:
+# /share/vxl/cmake/VXLConfig.cmake contains absolute path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
 dependencies:
   build: [png]
@@ -5,10 +11,6 @@ dependencies:
 sources:
 - url: http://git.code.sf.net/p/vxl/git
   key: git:e456b35d322eea055567819408c6dff5c887d149
-
-defaults:
-  # /share/vxl/cmake/VXLConfig.cmake contains absolute path
-  relocatable: false
 
 build_stages:
 - name: configure

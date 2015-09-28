@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 1.6
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:s7vyhn3d3hs22nptkh7fkf7gw4ksdv5k
-  url: http://ftp.heanet.ie/mirrors/gnu/gzip/gzip-1.6.tar.gz
+- key:
+    when version == 1.6: tar.gz:s7vyhn3d3hs22nptkh7fkf7gw4ksdv5k
+  url: http://ftp.heanet.ie/mirrors/gnu/gzip/gzip-{{version}}.tar.gz

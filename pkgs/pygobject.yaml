@@ -1,27 +1,27 @@
+parameters:
+- name: version
+  type: version
+  default: 2.21.3
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [pkg-config, glib2, gobject-introspection, libffi, pycairo, cairo, python]
-  run: []
-
-defaults:
-  relocatable: false
 
 sources:
-#- url: https://pypi.python.org/packages/source/P/PyGObject/pygobject-2.28.3.tar.bz2
-#  key: tar.bz2:pwuiyfu2k3x4zriwz26zen62h7srri2d
-#- key: tar.bz2:uhp7xyvi4dkjawkfktwy2bxq5zfdogwl
-#  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.27/pygobject-2.27.91.tar.bz2
-#- key: tar.bz2:kvkkz744e63eofcbioyele2zqzheu3zp
-#  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.26/pygobject-2.26.0.tar.bz2
-#- key: tar.bz2:ctochpmk3m3cnt52u6356edqzdncmdta
-- key: tar.bz2:gwr5yoozqi2gwviqb72truih7wakdr5n
-  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.21/pygobject-2.21.3.tar.bz2
-#  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.21/pygobject-2.21.5.tar.bz2
-#- key: tar.bz2:ihushi7uijvd4gpw2fkmijhd3ldphhpp
-#  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.20/pygobject-2.20.0.tar.bz2
-#- key: tar.bz2:iz7lhhygmzh3ro5zvnahufny2vvghkjk
-#  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/2.90/pygobject-2.90.4.tar.bz2
+- key:
+    when version == 2.90.4: tar.bz2:iz7lhhygmzh3ro5zvnahufny2vvghkjk
+    when version == 2.28.3: tar.bz2:pwuiyfu2k3x4zriwz26zen62h7srri2d
+    when version == 2.27.91: tar.bz2:uhp7xyvi4dkjawkfktwy2bxq5zfdogwl
+    when version == 2.26.0: tar.bz2:kvkkz744e63eofcbioyele2zqzheu3zp
+    when version == 2.21.5: tar.bz2:ctochpmk3m3cnt52u6356edqzdncmdta
+    when version == 2.21.3: tar.bz2:gwr5yoozqi2gwviqb72truih7wakdr5n
+    when version == 2.20.0: tar.bz2:ihushi7uijvd4gpw2fkmijhd3ldphhpp
+  url: http://ftp.gnome.org/pub/GNOME/sources/pygobject/{{'.'.join(str(version).split('.')[:-1])}}/pygobject-{{version}}.tar.bz2
 
 build_stages:
 - name: configure

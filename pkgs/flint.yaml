@@ -1,4 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 2.4.4
+
+# lib/libflint.a contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
+
 when platform == 'linux':
   dependencies:
     build: [patchelf, gmp, mpfr]
@@ -7,12 +18,9 @@ when platform != 'linux':
     build: [gmp, mpfr]
 
 sources:
-- url: http://www.flintlib.org/flint-2.4.4.tar.gz
-  key: tar.gz:yr4z5e4u54dnpodcl575os5c3dfbcxn3
-
-defaults:
-  # lib/libflint.a contains hard-coded path
-  relocatable: false
+- url: http://www.flintlib.org/flint-{{version}}.tar.gz
+  key:
+    when version == 2.4.4: tar.gz:yr4z5e4u54dnpodcl575os5c3dfbcxn3
 
 build_stages:
   - name: configure

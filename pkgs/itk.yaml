@@ -1,14 +1,19 @@
+parameters:
+- name: version
+  type: version
+  default: 4.6.1
+
+# lib/libITKIOIPL-4.6.so.1 contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
-dependencies:
-  build: []
 
 sources:
-- key: tar.gz:5vbpstamb36ohtc4xthhgbjnwqbj75kp
-  url: http://downloads.sourceforge.net/project/itk/itk/4.6/InsightToolkit-4.6.1.tar.gz
-
-defaults:
-  # lib/libITKIOIPL-4.6.so.1 contains hard-coded path
-  relocatable: false
+- key:
+    when version == 4.6.1: tar.gz:5vbpstamb36ohtc4xthhgbjnwqbj75kp
+  url: http://downloads.sourceforge.net/project/itk/itk/{{'.'.join(str(version).split('.')[:-1])}}/InsightToolkit-{{version}}.tar.gz
 
 build_stages:
 - name: configure

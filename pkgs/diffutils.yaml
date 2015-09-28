@@ -1,11 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 3.3
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.xz:ujpitkflmx662fzr4qmgxyn3exg2sz4d
-  url: http://ftp.gnu.org/gnu/diffutils/diffutils-3.3.tar.xz
+- key:
+    when version == 3.3: tar.xz:ujpitkflmx662fzr4qmgxyn3exg2sz4d
+  url: http://ftp.gnu.org/gnu/diffutils/diffutils-{{version}}.tar.xz
 
 when_build_dependency:
 - prepend_path: PATH

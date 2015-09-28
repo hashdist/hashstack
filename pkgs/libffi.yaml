@@ -1,14 +1,21 @@
+parameters:
+- name: version
+  type: version
+  default: 3.0.13
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [gnu-sed]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:dxo54faayo6lo5e5hgahdl4iypshkqcy
-  url: ftp://sourceware.org/pub/libffi/libffi-3.0.13.tar.gz
+- key:
+    when version == 3.0.13: tar.gz:dxo54faayo6lo5e5hgahdl4iypshkqcy
+  url: ftp://sourceware.org/pub/libffi/libffi-{{version}}.tar.gz
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

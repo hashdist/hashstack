@@ -1,3 +1,8 @@
+parameters:
+- name: version
+  type: version
+  default: 2.0
+
 extends: [autotools_package]
 
 dependencies:
@@ -5,8 +10,9 @@ dependencies:
   run: [pkg-config]
 
 sources:
-- key: tar.gz:qal6pn4ed2a7nlcunjlzalob7eg7crhq
-  url: https://github.com/schuhschuh/gflags/archive/v2.0.tar.gz
+- key:
+    when version == 2.0: tar.gz:qal6pn4ed2a7nlcunjlzalob7eg7crhq
+  url: https://github.com/schuhschuh/gflags/archive/v{{version}}.tar.gz
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

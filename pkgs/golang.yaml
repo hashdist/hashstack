@@ -1,16 +1,24 @@
+parameters:
+- name: version
+  type: version
+  default: 1.4.1
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [base_package]
 
 dependencies:
   # would be nice to have gnu-awk, perl, subversion and bzr as extra dependencies]
-  build: [mercurial, git, {{build_with}}]
-  run: [mercurial, git, {{build_with}}]
-
-defaults:
-  relocatable: false
+  # FIXME: add optional dependencies with a '+'
+  build: [mercurial, git]#, {{build_with}}]
+  run: [mercurial, git]#, {{build_with}}]
 
 sources:
-- key: tar.gz:mztfabp2ynn2qmx7gnexpzsy7fqrbhmj
-  url: http://golang.org/dl/go1.4.1.src.tar.gz
+- key:
+    when version == 1.4.1: tar.gz:mztfabp2ynn2qmx7gnexpzsy7fqrbhmj
+  url: http://golang.org/dl/go{{version}}.src.tar.gz
 
 build_stages:
 - name: make-install

@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 1.0.7
+
 extends: [distutils_package]
+
 dependencies:
   build: [matplotlib, geos, numpy]
   run: [matplotlib, geos, numpy]
 
 sources:
-  - url: http://downloads.sourceforge.net/project/matplotlib/matplotlib-toolkits/basemap-1.0.7/basemap-1.0.7.tar.gz
-    key: tar.gz:4b7mfygwhmsmtlwslie75cx7ewmpqkuf
+- url: http://downloads.sourceforge.net/project/matplotlib/matplotlib-toolkits/basemap-{{version}}/basemap-{{version}}.tar.gz
+  key:
+    when version == 1.0.7: tar.gz:4b7mfygwhmsmtlwslie75cx7ewmpqkuf

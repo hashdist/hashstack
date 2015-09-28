@@ -1,14 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 8.6.1
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
-  build: [zlib, {{build_with}}]
-
-defaults:
-  relocatable: false
+  # FIXME: add optional dependencies with a '+'
+  build: [zlib]#, {{build_with}}]
 
 sources:
-- key: tar.gz:c3xhnesi4zf2dsxgwsbu7tcoj3oxi4gy
-  url: http://prdownloads.sourceforge.net/tcl/tcl8.6.1-src.tar.gz
+- key:
+    when version == 8.6.1: tar.gz:c3xhnesi4zf2dsxgwsbu7tcoj3oxi4gy
+  url: http://prdownloads.sourceforge.net/tcl/tcl{{version}}.tar.gz
 
 build_stages:
 - name: configure

@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 5.3.28
+
 extends: [autotools_package]
 
 sources:
-- key: tar.gz:4cuzfv2aocmjf2a7twj7a3npgbopop5y
-  url: http://download.oracle.com/berkeley-db/db-5.3.28.tar.gz
+- key:
+    when version == 5.3.28: tar.gz:4cuzfv2aocmjf2a7twj7a3npgbopop5y
+  url: http://download.oracle.com/berkeley-db/db-{{version}}.tar.gz
 
 build_stages:
 - name: xcode_4_6

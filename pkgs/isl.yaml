@@ -1,3 +1,8 @@
+parameters:
+- name: version
+  type: version
+  default: 0.12.2
+
 extends: [autotools_package]
 
 dependencies:
@@ -5,8 +10,9 @@ dependencies:
   run: [gmp, pkg-config]
 
 sources:
-- key: tar.bz2:6sz5x3uxckcqabxej4g3eebuigvt2e5u
-  url: http://isl.gforge.inria.fr/isl-0.12.2.tar.bz2
+- key:
+    when version == 0.12.2: tar.bz2:6sz5x3uxckcqabxej4g3eebuigvt2e5u
+  url: http://isl.gforge.inria.fr/isl-{{version}}.tar.bz2
 
 build_stages:
   - name: configure

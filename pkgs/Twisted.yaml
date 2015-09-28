@@ -1,3 +1,8 @@
+parameters:
+- name: version
+  type: version
+  default: 14.0.0
+
 extends: [distutils_package]
 
 dependencies:
@@ -5,8 +10,9 @@ dependencies:
   run: [zope-interface, service_identity, pyOpenSSL]
 
 sources:
- - url: https://pypi.python.org/packages/source/T/Twisted/Twisted-14.0.0.tar.bz2
-   key: tar.bz2:xx6zmgwcefxvyznqp4wduxsrc33hco4m
+- url: https://pypi.python.org/packages/source/T/Twisted/Twisted-{{version}}.tar.bz2
+  key:
+    when version == 14.0.0: tar.bz2:xx6zmgwcefxvyznqp4wduxsrc33hco4m
 
 when_build_dependency:
  - prepend_path: PYTHONPATH

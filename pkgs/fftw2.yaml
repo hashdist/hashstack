@@ -1,11 +1,18 @@
 # This is the FFTW 2 (last updated in 1999), for backwards compatibility
+parameters:
+- name: version
+  type: version
+  default: 2.1.5
+
 extends: [autotools_package]
+
 dependencies:
   build: [mpi]
 
 sources:
-- url: http://www.fftw.org/fftw-2.1.5.tar.gz
-  key: tar.gz:7acx7lq4px4lteiwpa7ph2kknjcfddkj
+- url: http://www.fftw.org/fftw-{{version}}.tar.gz
+  key:
+    when version == 2.1.5: tar.gz:7acx7lq4px4lteiwpa7ph2kknjcfddkj
 
 build_stages:
 - name: configure

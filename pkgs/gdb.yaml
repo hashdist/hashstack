@@ -1,15 +1,23 @@
+parameters:
+- name: version
+  type: version
+  default: 7.9
+
+# lib/libbfd.a contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
-  build: [python, expat, xz, ncurses, libiconv, zlib, readline, {{build_with}}]
+  # FIXME: add optional dependencies with a '+'
+  build: [python, expat, xz, ncurses, libiconv, zlib, readline]#, {{build_with}}]
 
 sources:
-- key: tar.xz:tmyvmunbmuuppl4mpwbii2m7wdewlxzr
-  url: https://ftp.gnu.org/gnu/gdb/gdb-7.9.tar.xz
-
-defaults:
-  # lib/libbfd.a contains hard-coded path
-  relocatable: false
+- key:
+    when version == 7.9: tar.xz:tmyvmunbmuuppl4mpwbii2m7wdewlxzr
+  url: https://ftp.gnu.org/gnu/gdb/gdb-{{version}}.tar.xz
 
 build_stages:
   - name: configure

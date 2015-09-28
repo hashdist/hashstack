@@ -1,0 +1,89 @@
+parameters:
+# include/Makefile.export.ml.macros contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
+extends: [autotools_package]
+
+dependencies:
+  build: [lapack, mpi]
+
+sources:
+- key: git:3edc7782780b5874ee4bfce3898436c7bca3fcc6
+  url: https://bitbucket.org/petsc/pkg-ml.git
+
+build_stages:
+- name: set-cflags-and-cxxflags
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    export CFLAGS="${CFLAGS} -fPIC -DMPICH_SKIP_MPICXX -DOMPI_SKIP_MPICXX"
+    export CXXFLAGS="${CXXFLAGS} -fPIC -DMPICH_SKIP_MPICXX -DOMPI_SKIP_MPICXX"
+
+- when: fortran
+  name: set-fflags
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    export FFLAGS="${FFLAGS} -fPIC -DMPICH_SKIP_MPICXX -DOMPI_SKIP_MPICXX"
+
+- name: configure
+  extra: ['--disable-ml-epetra',
+          '--disable-ml-aztecoo',
+          '--disable-ml-examples',
+          '--disable-tests',
+          '--enable-mpi',
+          'CC=${MPICC}',
+          'CXX=${MPICXX}']
+
+- name: configure
+  mode: update
+  extra:
+    when fortran: ['F77=${MPIF77}']
+    when not fortran: ['F77=""']
+
+- when: lapack.kind == 'openblas'
+  name: configure
+  mode: update
+  extra:
+    when platform == 'Darwin':
+      ['--with-blas=${LAPACK_DIR}/lib/libopenblas.dylib',
+       '--with-lapack=${LAPACK_DIR}/lib/libopenblas.dylib']
+    when platform != 'Darwin':
+      ['--with-blas=${LAPACK_DIR}/lib/libopenblas.so',
+       '--with-lapack=${LAPACK_DIR}/lib/libopenblas.so']
+
+- when: lapack.kind == 'accelerate'
+# Libraries used for linking to Accelerate framework; `otool -L`
+# shows that these libraries link to the same dylibs that the
+# Accelerate framework libraries do. Using the
+# "-framework Accelerate" flag would be preferable, but setting
+# CFLAGS, etc. overrides the flags in the Makefile and results
+# in errors.
+  name: configure
+  mode: update
+  # FIXME: this is not tested
+  extra: ["--with-blas=/usr/lib/libblas.dylib,/usr/lib/libcblas.dylib",
+          '--with-lapack="/usr/lib/lapack.dylib,/usr/lib/clapack.dylib,/usr/lib/f77lapack.dylib"']
+
+- when: lapack.kind == 'reference'
+  name: configure
+  mode: update
+  extra:
+    when platform == 'Darwin':
+      ["--with-blas=${LAPCK_DIR}/lib/libblas.dylib",
+       "--with-lapack=${LAPACK_DIR}/lib/liblapack.dylib"]
+    when platform != 'Darwin':
+      ["--with-blas=${LAPCK_DIR}/lib/libblas.so",
+       "--with-lapack=${LAPACK_DIR}/lib/liblapack.so"]
+
+- name: caveats
+  after: install
+  handler: bash
+  bash: |
+    echo "Please register for ml at:"
+    echo
+    echo "http://trilinos.org"

@@ -1,11 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 0.8.6
+
 extends: [base_package]
 
 dependencies:
   build: [berkeleydb, boost]
 
 sources:
-  - url: https://github.com/bitcoin/bitcoin/archive/v0.8.6.tar.gz
-    key: tar.gz:e36uqwbd5yk2qi6kkgs2y7wymzaht3yv
+- url: https://github.com/bitcoin/bitcoin/archive/v{{version}}.tar.gz
+  key:
+    when version == 0.8.6: tar.gz:e36uqwbd5yk2qi6kkgs2y7wymzaht3yv
 
 build_stages:
 

@@ -36,7 +36,7 @@ build_stages:
 - when: machine == 'CrayXE6'
   name: configure
   mode: override
-  append: {LDFLAGS: {{DYNAMIC_EXE_LINKER_FLAGS}}}
+  append: {LDFLAGS: '{{DYNAMIC_EXE_LINKER_FLAGS}}'}
   extra: ['--host=cray','--with-pic']
 
 - when: increase_max_dims

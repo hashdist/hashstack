@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 3.4.2
+
 extends: [autotools_package]
 
 sources:
-  - url: http://download.osgeo.org/geos/geos-3.4.2.tar.bz2
-    key: tar.bz2:cxul7x36feehvfl3k2wfipvjvabscsa4
+- url: http://download.osgeo.org/geos/geos-{{version}}.tar.bz2
+  key:
+    when version == 3.4.2: tar.bz2:cxul7x36feehvfl3k2wfipvjvabscsa4
 
 when_build_dependency:
   - prepend_path: PATH

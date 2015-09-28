@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 1.2.0
+
 extends: [setuptools_package]
 
 sources:
- - url: https://pypi.python.org/packages/source/b/breathe/breathe-1.2.0.tar.gz
-   key: tar.gz:ct6te5lyy26tg43sp5vatkuzdtb25q2j
+- url: https://pypi.python.org/packages/source/b/breathe/breathe-{{version}}.tar.gz
+  key:
+    when version == 1.2.0: tar.gz:ct6te5lyy26tg43sp5vatkuzdtb25q2j

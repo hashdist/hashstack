@@ -1,8 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 0.5.3
+
 extends: [setuptools_package, libflags]
 
 dependencies:
   build: [xz]
 
 sources:
- - url: https://pypi.python.org/packages/source/p/pyliblzma/pyliblzma-0.5.3.tar.bz2
-   key: tar.bz2:bdlwf43nlzm7xg5q4ixaadbqbmq7s7rv
+- url: https://pypi.python.org/packages/source/p/pyliblzma/pyliblzma-{{version}}.tar.bz2
+  key:
+    when version == 0.5.3: tar.bz2:bdlwf43nlzm7xg5q4ixaadbqbmq7s7rv

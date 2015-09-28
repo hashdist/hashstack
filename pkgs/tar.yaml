@@ -1,8 +1,15 @@
+parameters:
+- name: version
+  type: version
+  default: 1.27
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.bz2:ei4mlrr4p3fmzslc6ecifv3iow2fz3p6
-  url: http://ftp.heanet.ie/mirrors/gnu/tar/tar-1.27.tar.bz2
+- key:
+    when version == 1.27: tar.bz2:ei4mlrr4p3fmzslc6ecifv3iow2fz3p6
+  url: http://ftp.heanet.ie/mirrors/gnu/tar/tar-{{version}}.tar.bz2

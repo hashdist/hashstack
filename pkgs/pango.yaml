@@ -1,19 +1,24 @@
-extends: [autotools_package]
+parameters:
+- name: version
+  type: version
+  default: 1.29.5
 
-defaults:
-  relocatable: false
+- name: relocatable
+  type: bool
+  default: false
+
+extends: [autotools_package]
 
 dependencies:
   build: [pkg-config, glib2, cairo, gobject-introspection, fontconfig, freetype, atk]
   run: [pkg-config]
 
 sources:
-#- key: tar.bz2:r47kvnig6yj52jn3d6tf5kd2crovepig
-#  url: http://ftp.gnome.org/pub/gnome/sources/pango/1.28/pango-1.28.1.tar.bz2
-#- key: tar.bz2:p2ydlpgbbxibk2ncctk6fpbug7pjlwnm
-#  url: http://ftp.gnome.org/pub/gnome/sources/pango/1.28/pango-1.28.4.tar.bz2
-- key: tar.bz2:f7du3sywfxkhcgml4ltiwewoouup4bm4
-  url: http://ftp.gnome.org/pub/gnome/sources/pango/1.29/pango-1.29.5.tar.bz2
+- key:
+    when version == 1.29.5: tar.bz2:f7du3sywfxkhcgml4ltiwewoouup4bm4
+    when version == 1.28.4: tar.bz2:p2ydlpgbbxibk2ncctk6fpbug7pjlwnm
+    when version == 1.28.1: tar.bz2:r47kvnig6yj52jn3d6tf5kd2crovepig
+  url: http://ftp.gnome.org/pub/gnome/sources/pango/{{'.'.join(str(version).split('.')[:-1])}}/pango-{{version}}.tar.bz2
 
 build_stages:
 - name: configure

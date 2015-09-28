@@ -1,11 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 1.6.14
+
 extends: [autotools_package]
+
 dependencies:
   build: [zlib]
   run: [zlib]
 
 sources:
-- key: tar.gz:43flhdyfdp6gneu6ozwb4z7lu35pvspa
-  url: http://sourceforge.net/projects/libpng/files/libpng16/older-releases/1.6.14/libpng-1.6.14.tar.gz
+- key:
+    when version == 1.6.14: tar.gz:43flhdyfdp6gneu6ozwb4z7lu35pvspa
+  url: http://sourceforge.net/projects/libpng/files/libpng16/older-releases/{{version}}/libpng-{{version}}.tar.gz
 
 when_build_dependency:
   - prepend_path: PKG_CONFIG_PATH

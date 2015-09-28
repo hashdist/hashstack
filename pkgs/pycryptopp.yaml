@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.6.0.1206569328141510525648634803928199668821045408958
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/p/pycryptopp/pycryptopp-0.6.0.1206569328141510525648634803928199668821045408958.tar.gz
-   key: tar.gz:cfqvrel32jb5ujybz7v2tjrxjbklzgsz
+ - url: https://pypi.python.org/packages/source/p/pycryptopp/pycryptopp-{{version}}.tar.gz
+   key:
+     when version == 0.6.0.1206569328141510525648634803928199668821045408958: tar.gz:cfqvrel32jb5ujybz7v2tjrxjbklzgsz

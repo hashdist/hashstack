@@ -1,16 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 5.17.4
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [gc, guile, libxml2, pkg-config]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:zusyl5dzjuhj27zmwc426tzl2quzi3tr
-  url: http://ftp.heanet.ie/mirrors/gnu/autogen/rel5.17.4/autogen-5.17.4.tar.gz
-#- key: tar.gz:opifu2eraxvzxc7fj4zetdez3w6tmb3w
-#  url: http://ftp.heanet.ie/mirrors/gnu/autogen/rel5.18.3/autogen-5.18.3.tar.gz
+- key:
+    when version == 5.18.3: tar.gz:opifu2eraxvzxc7fj4zetdez3w6tmb3w
+    when version == 5.17.4: tar.gz:zusyl5dzjuhj27zmwc426tzl2quzi3tr
+  url: http://ftp.heanet.ie/mirrors/gnu/autogen/rel{{version}}/autogen-{{version}}.tar.gz
 
 when_build_dependency:
 - prepend_path: PATH

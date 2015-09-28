@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 2.5.1
+
 extends: [distutils_package]
 
 sources:
-- key: tar.gz:pn3tl36twhrdepoj7txqmczybuc7l4ml
-  url: https://pypi.python.org/packages/source/r/requests/requests-2.5.1.tar.gz
+- url: https://pypi.python.org/packages/source/r/requests/requests-{{version}}.tar.gz
+  key:
+    when version == 2.5.1: tar.gz:pn3tl36twhrdepoj7txqmczybuc7l4ml

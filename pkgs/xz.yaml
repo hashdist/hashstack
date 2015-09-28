@@ -1,12 +1,19 @@
+parameters:
+- name: version
+  type: version
+  default: 5.0.5
+
+# bin/lzmainfo contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 sources:
-- url: http://tukaani.org/xz/xz-5.0.5.tar.bz2
-  key: tar.bz2:czweruueeum3yt4wgm577hrgl6gn3jcn
-
-defaults:
-  # bin/lzmainfo contains hard-coded path
-  relocatable: false
+- url: http://tukaani.org/xz/xz-{{version}}.tar.bz2
+  key:
+    when version == 5.0.5: tar.bz2:czweruueeum3yt4wgm577hrgl6gn3jcn
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

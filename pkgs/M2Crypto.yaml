@@ -1,12 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 0.22.3
+
 extends: [setuptools_package]
 
 dependencies:
   build: [openssl, swig]
-  run: []
 
 sources:
- - url: https://pypi.python.org/packages/source/M/M2Crypto/M2Crypto-0.22.3.tar.gz
-   key: tar.gz:mby37sax3fdsh2nulcqbbvlfgziqj6ck
+- url: https://pypi.python.org/packages/source/M/M2Crypto/M2Crypto-{{version}}.tar.gz
+  key:
+    when version == 0.22.3: tar.gz:mby37sax3fdsh2nulcqbbvlfgziqj6ck
 
 build_stages:
 

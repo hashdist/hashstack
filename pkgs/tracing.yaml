@@ -1,6 +1,12 @@
+parameters:
+- name: version
+  type: version
+  default: 0.8
+
 extends: [setuptools_package]
 
 sources:
-- key: tar.gz:qcfamtgf7umxf6yhu7lswqdjzp7sqswh
-  url: http://code.liw.fi/debian/pool/main/p/python-tracing/python-tracing_0.8.orig.tar.gz
+- key:
+    when version == 0.8: tar.gz:qcfamtgf7umxf6yhu7lswqdjzp7sqswh
+  url: http://code.liw.fi/debian/pool/main/p/python-tracing/python-tracing_{{version}}.orig.tar.gz
 

@@ -1,3 +1,8 @@
+parameters:
+- name: version
+  type: version
+  default: 2.0.2
+
 extends: [autotools_package]
 
 dependencies:
@@ -5,8 +10,9 @@ dependencies:
   run: [pkg-config]
 
 sources:
-- key: tar.gz:f3ldtjyvkyd4bf6caknpl5bioklfsuea
-  url: http://sparsehash.googlecode.com/files/sparsehash-2.0.2.tar.gz
+- key:
+    when version == 2.0.2: tar.gz:f3ldtjyvkyd4bf6caknpl5bioklfsuea
+  url: http://sparsehash.googlecode.com/files/sparsehash-{{version}}.tar.gz
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

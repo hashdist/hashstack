@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.6.4
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/f/foolscap/foolscap-0.6.4.zip
-   key: zip:pduwcp4zk5pbnth6hdtqvivuh7njqfqx
+- url: https://pypi.python.org/packages/source/f/foolscap/foolscap-{{version}}.zip
+  key:
+    when version == 0.6.4: zip:pduwcp4zk5pbnth6hdtqvivuh7njqfqx

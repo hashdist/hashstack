@@ -1,11 +1,13 @@
+parameters:
+- name: version
+  type: version
+  default: 4.3.2
+
 extends: [distutils_package]
 
 sources:
- - url: https://pypi.python.org/packages/source/b/beautifulsoup4/beautifulsoup4-4.3.2.tar.gz
-   key: tar.gz:ukzjxucizix6ksqenmuxocleooehfklu
-
-dependencies:
-  build: []
-  run: []
+- url: https://pypi.python.org/packages/source/b/beautifulsoup4/beautifulsoup4-{{version}}.tar.gz
+  key:
+    when version == 4.3.2: tar.gz:ukzjxucizix6ksqenmuxocleooehfklu
 
 licenses: [mit]

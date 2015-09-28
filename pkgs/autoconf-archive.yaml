@@ -1,3 +1,8 @@
+parameters:
+- name: version
+  type: version
+  default: 2014.02.28
+
 extends: [autotools_package]
 
 dependencies:
@@ -5,5 +10,6 @@ dependencies:
   run: [autoconf]
 
 sources:
-- key: tar.bz2:vza5dtgp5slciig3ey7czooeb74emkxv
-  url: http://ftp.heanet.ie/mirrors/gnu/autoconf-archive/autoconf-archive-2014.02.28.tar.bz2
+- url: http://ftp.heanet.ie/mirrors/gnu/autoconf-archive/autoconf-archive-{{version}}.tar.bz2
+  key:
+    when version == 2014.02.28: tar.bz2:vza5dtgp5slciig3ey7czooeb74emkxv

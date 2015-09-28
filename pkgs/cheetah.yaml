@@ -1,9 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 2.4.4
+
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
- - url: https://pypi.python.org/packages/source/C/Cheetah/Cheetah-2.4.4.tar.gz
-   key: tar.gz:xyyiekpqyhs6ll2pe7l64bwzboyz42xt
+- url: https://pypi.python.org/packages/source/C/Cheetah/Cheetah-{{version}}.tar.gz
+  key:
+    when version == 2.4.4: tar.gz:xyyiekpqyhs6ll2pe7l64bwzboyz42xt

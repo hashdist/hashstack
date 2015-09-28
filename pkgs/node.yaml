@@ -1,10 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 0.12.2
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
+
 dependencies:
   build: [python]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:vr7hrlpjhzrt47wwfbjsxohgkdflude4
-  url: http://nodejs.org/dist/v0.12.2/node-v0.12.2.tar.gz
+- key:
+    when version == 0.12.2: tar.gz:vr7hrlpjhzrt47wwfbjsxohgkdflude4
+  url: http://nodejs.org/dist/v{{version}}/node-v{{version}}.tar.gz

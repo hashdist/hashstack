@@ -1,10 +1,17 @@
+parameters:
+- name: version
+  type: version
+  default: 4.10.0
+
 extends: [base_package]
+
 dependencies:
-  build: [scalapack, blas, mpi, lapack]
+  build: [scalapack, mpi, lapack]
 
 sources:
-- url: http://ftp.de.debian.org/debian/pool/main/m/mumps/mumps_4.10.0.dfsg.orig.tar.gz
-  key: tar.gz:y5rtto5fc24wumbbv6j5tiy3b67vu2gp
+  when version == 4.10.0:
+  - url: http://ftp.de.debian.org/debian/pool/main/m/mumps/mumps_4.10.0.dfsg.orig.tar.gz
+    key: tar.gz:y5rtto5fc24wumbbv6j5tiy3b67vu2gp
 
 build_stages:
 

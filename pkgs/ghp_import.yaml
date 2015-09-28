@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 0.4.1
+
 extends: [distutils_package]
 
 sources:
- - key: tar.gz:mbmicdq4i3otwwy652d6ea557pkwnyim
-   url: https://pypi.python.org/packages/source/g/ghp-import/ghp-import-0.4.1.tar.gz
+- key:
+    when version == 0.4.1: tar.gz:mbmicdq4i3otwwy652d6ea557pkwnyim
+  url: https://pypi.python.org/packages/source/g/ghp-import/ghp-import-{{version}}.tar.gz

@@ -1,15 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 2.2.0
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
   build: [pkg-config, glib2]
   run: [pkg-config]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.bz2:2ia6h5marlxqwgxmej337jqqot3iqy7e
-  url: http://ftp.gnome.org/pub/gnome/sources/atk/2.2/atk-2.2.0.tar.bz2
+- key:
+    when version == 2.2.0: tar.bz2:2ia6h5marlxqwgxmej337jqqot3iqy7e
+  url: http://ftp.gnome.org/pub/gnome/sources/atk/{{'.'.join(str(version).split('.')[:-1])}}/atk-{{version}}.tar.bz2
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

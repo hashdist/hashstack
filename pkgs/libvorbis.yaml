@@ -1,15 +1,21 @@
+parameters:
+- name: version
+  type: version
+  default: 1.3.4
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
-
-sources:
-- key: tar.gz:53qjucqt5q4gml7zjeli72exujoskjss
-  url: http://downloads.xiph.org/releases/vorbis/libvorbis-1.3.4.tar.gz
-
-defaults:
-  relocatable: false
 
 dependencies:
   build: [libogg]
-  run: []
+
+sources:
+- url: http://downloads.xiph.org/releases/vorbis/libvorbis-{{version}}.tar.gz
+  key:
+    when version == 1.3.4: tar.gz:53qjucqt5q4gml7zjeli72exujoskjss
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

@@ -1,9 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 1.8
+
 extends: [setuptools_package]
 
 dependencies:
   build: [cliapp, larch, tracing, ttystatus, paramiko, pycrypto, coverage-test-runner]
 
 sources:
-- key: tar.gz:64cgtqu6hulmocan762dhsacp2s7f64p
-  url: http://code.liw.fi/debian/pool/main/o/obnam/obnam_1.8.orig.tar.gz
-
+- url: http://code.liw.fi/debian/pool/main/o/obnam/obnam_{{version}}.orig.tar.gz
+  key:
+    when version == 1.8: tar.gz:64cgtqu6hulmocan762dhsacp2s7f64p

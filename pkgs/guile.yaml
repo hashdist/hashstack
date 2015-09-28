@@ -1,15 +1,23 @@
+parameters:
+- name: version
+  type: version
+  default: 2.0.11
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
 dependencies:
-  build: [gmp, libunistring, pkg-config, libffi, readline, gc, libtool, {{build_with}}]
+  # FIXME: add optional dependencies with a '+'
+  build: [gmp, libunistring, pkg-config, libffi, readline, gc, libtool] #, {{build_with}}]
   run: [libtool]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.gz:4z4gze2di35c4ohenwgydjrcxmobnujq
-  url: http://ftp.heanet.ie/mirrors/gnu/guile/guile-2.0.11.tar.gz
+- url: http://ftp.heanet.ie/mirrors/gnu/guile/guile-{{version}}.tar.gz
+  key:
+    when version == 2.0.11: tar.gz:4z4gze2di35c4ohenwgydjrcxmobnujq
 
 build_stages:
 - name: configure

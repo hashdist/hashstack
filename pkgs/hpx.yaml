@@ -1,14 +1,22 @@
+parameters:
+- name: version
+  type: version
+  default: 0.9.10
+
+# include/hpx/config/defines.hpp_wrapper.so contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
+
 dependencies:
   build: [boost, pkg-config, hwloc, python, jemalloc]
 
 sources:
-- key: tar.gz:7eccd2gwhff5lsudl7frmc4ztafl4uuj
-  url: https://github.com/STEllAR-GROUP/hpx/archive/0.9.10.tar.gz
-
-defaults:
-  # include/hpx/config/defines.hpp_wrapper.so contains hard-coded path
-  relocatable: false
+- key:
+    when verison == 0.9.10: tar.gz:7eccd2gwhff5lsudl7frmc4ztafl4uuj
+  url: https://github.com/STEllAR-GROUP/hpx/archive/{{version}}.tar.gz
 
 build_stages:
 - name: configure

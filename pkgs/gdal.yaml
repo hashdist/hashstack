@@ -1,12 +1,14 @@
+parameters:
+# /lib/libgdal.so contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
 
 sources:
 - url: http://vtk.org/files/support/gdal_5b8309b.tar.gz
   key: tar.gz:gaxwgrpc6co6xhtqumnjpv6kgv5k5kxr
-
-defaults:
-  # /lib/libgdal.so contains hard-coded path
-  relocatable: false
 
 build_stages:
 - name: configure

@@ -1,5 +1,11 @@
+parameters:
+- name: version
+  type: version
+  default: 1.6
+
 extends: [distutils_package]
 
 sources:
-  - url: https://pypi.python.org/packages/source/P/Pygments/Pygments-1.6.tar.gz
-    key: tar.gz:pgpnjsxxoulokrcaqbwy3hgyfj3apx67
+- url: https://pypi.python.org/packages/source/P/Pygments/Pygments-{{version}}.tar.gz
+  key:
+    when version == 1.6: tar.gz:pgpnjsxxoulokrcaqbwy3hgyfj3apx67

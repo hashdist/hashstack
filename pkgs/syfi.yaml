@@ -1,14 +1,17 @@
+parameters:
+# lib/libsyfi.so.1.1.0 contains hard-coded path
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [cmake_package]
+
 dependencies:
   build: [cln, ffc, ginac, numpy, pkg-config, python, swig, swiginac, ufl]
 
 sources:
 - key: tar.gz:s6pdahk5rv2bmzsssa2xemnuaa7nzug7
   url: http://fenicsproject.org/pub/software/syfi/syfi-snapshot-20130304.tar.gz
-
-defaults:
-  # lib/libsyfi.so.1.1.0 contains hard-coded path
-  relocatable: false
 
 build_stages:
 - when: platform == 'linux' 

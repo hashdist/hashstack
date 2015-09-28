@@ -1,11 +1,18 @@
+parameters:
+- name: version
+  type: version
+  default: 3.10.1
+
+- name: relocatable
+  type: bool
+  default: false
+
 extends: [autotools_package]
 
-defaults:
-  relocatable: false
-
 sources:
-- key: tar.bz2:7ist3qtn3ntbwytj35mbitx7mb7kh53k
-  url: http://valgrind.org/downloads/valgrind-3.10.1.tar.bz2
+- url: http://valgrind.org/downloads/valgrind-{{version}}.tar.bz2
+  key:
+    when version == 3.10.1: tar.bz2:7ist3qtn3ntbwytj35mbitx7mb7kh53k
 
 when_build_dependency:
 - prepend_path: PATH

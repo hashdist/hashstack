@@ -1,9 +1,14 @@
+parameters:
+- name: version
+  type: version
+  default: 0.7.1
+
 extends: [setuptools_package]
 
 dependencies:
   build: [SQLAlchemy]
-  run: []
 
 sources:
-- url: http://sqlalchemy-migrate.googlecode.com/files/sqlalchemy-migrate-0.7.1.tar.gz
-  key: tar.gz:chv65glggemnstnn6qidl5z3wll2ydse
+- url: http://sqlalchemy-migrate.googlecode.com/files/sqlalchemy-migrate-{{version}}.tar.gz
+  key:
+    when version == 0.7.1: tar.gz:chv65glggemnstnn6qidl5z3wll2ydse

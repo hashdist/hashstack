@@ -1,19 +1,24 @@
-extends: [autotools_package]
+parameters:
+- name: version
+  type: version
+  default: 1.12.0
 
-defaults:
-  relocatable: false
+- name: relocatable
+  type: bool
+  default: false
+
+extends: [autotools_package]
 
 dependencies:
   build: [python, pkg-config, png, pixman, fontconfig, freetype, zlib]
   run: [pkg-config]
 
 sources:
-#- key: tar.gz:k4v23ikvs3wiocbzfwy27c4tugxxlssh
-#  url: http://cairographics.org/releases/cairo-1.8.10.tar.gz
-#- key: tar.gz:giayy6mygwhoxqvnk6h7rwcvtu2pzabf
-#  url: http://cairographics.org/releases/cairo-1.10.2.tar.gz
-- key: tar.gz:v5s3ozw76en46pf2d6jnskq3ykhxrxbj
-  url: http://www.cairographics.org/releases/cairo-1.12.0.tar.gz
+- key:
+    when version == 1.12.0: tar.gz:v5s3ozw76en46pf2d6jnskq3ykhxrxbj
+    when version == 1.10.2: tar.gz:giayy6mygwhoxqvnk6h7rwcvtu2pzabf
+    when version == 1.8.10: tar.gz:k4v23ikvs3wiocbzfwy27c4tugxxlssh
+  url: http://www.cairographics.org/releases/cairo-{{version}}.tar.gz
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
