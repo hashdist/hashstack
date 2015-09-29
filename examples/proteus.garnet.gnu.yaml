@@ -29,6 +29,8 @@ parameters:
 packages:
   launcher:
   cmake:
+  openssl:
+    use: host-openssl
   python:
     host: false
     build_with: |
@@ -48,6 +50,7 @@ packages:
   parmetis:
     without_check: true
   petsc:
+    version: 3.6.1
     build_with: |
       parmetis
     download: |
@@ -56,6 +59,7 @@ packages:
     link: shared
     debug: false
   petsc4py:
+    version: 3.6.0
     with_conf: true
   pytables:
   sphinx:
@@ -67,8 +71,9 @@ packages:
   scipy:
   netcdf4f:
   python-netcdf4:
+  ipdb:
+  pip:
   h5py:
   ode:
- # pyode:
  # vtk:
  # pyvtk:

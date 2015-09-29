@@ -1,5 +1,9 @@
-extends: [distutils_package]
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
 
 sources:
-  - url: https://github.com/jakevdp/ipywidgets.git
-    key: git:ada858e19e6b641800e75e47f5f2104286eb3158
+ - key: tar.gz:e4bshfiaqf7eh7vqsb5h4d3wy6nyvhgn
+   url: https://pypi.python.org/packages/source/i/ipywidgets/ipywidgets-4.0.3.tar.gz

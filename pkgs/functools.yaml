@@ -1,0 +1,9 @@
+extends: [distutils_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:lfxnrgm55zazyb2juqn73wboi2l6qdvc
+   url: https://pypi.python.org/packages/source/f/functools/functools-0.5.tar.gz

@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: zip:spzyh4dhfa3yjpwsd4g6cufmb64557t7
+   url: https://pypi.python.org/packages/source/n/nbconvert/nbconvert-4.0.0.zip

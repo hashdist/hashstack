@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - key: tar.gz:omqaalhgdxvgvisk3skf3hlyggzwnfkt
-   url: https://pypi.python.org/packages/source/d/decorator/decorator-3.4.2.tar.gz
+ - key: tar.gz:llimcd5ngfsiz75bl3qgidxoas53docd
+   url: https://pypi.python.org/packages/source/d/decorator/decorator-4.0.4.tar.gz
