@@ -30,6 +30,29 @@ build_stages:
       export LAPACK=None
       export BLAS=None
 
+  - when: machine == 'SGIICEX'
+    name: create-site.cfg
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      cat > site.cfg << EOF
+      [mkl]
+      library_dirs = /app/intel/compilers/14/mkl/lib/intel64
+      mkl_libs = mkl_rt,pthread,m
+      EOF
+
+  - when: machine == 'SGIICEX'
+    name: set-LDFLAGS
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LAPACK=None
+      export BLAS=None
+      export ATLAS=None
+
   - when: machine == 'CrayXE6'
     name: create-site.cfg
     after: prologue
