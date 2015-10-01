@@ -2,13 +2,19 @@ extends: [autotools_package]
 dependencies:
   build: [petsc, python]
 
-sources:
-- key: tar.gz:un55l3qom6iunhqqlbhrtqcauo5u7fac
-  url: http://slepc.upv.es/download/download.php?filename=slepc-3.5.2.tar.gz
+when version == '3.6.1':
+  sources:
+  - key: tar.gz:ycrzs42hcrfrixwg66b75lofaikcr4c2
+    url: http://slepc.upv.es/download/download.php?filename=slepc-3.6.1.tar.gz
+when version == '3.5.2':
+  sources:
+  - key: tar.gz:un55l3qom6iunhqqlbhrtqcauo5u7fac
+    url: http://slepc.upv.es/download/download.php?filename=slepc-3.5.2.tar.gz
 
 defaults:
   # include/slepcconf.h contains hard-coded path
   relocatable: false
+  version: '3.5.2'
 
 build_stages:
 - name: pre-configure

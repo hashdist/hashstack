@@ -4,5 +4,5 @@ dependencies:
   run: [ffc, numpy, six, ufl]
 
 sources:
-- key: tar.gz:7asppyqwc774lcorerypjhybucqslgmy
-  url: https://bitbucket.org/fenics-project/uflacs/downloads/uflacs-1.5.0.tar.gz
+- key: tar.gz:x2ybjis6ms5zjw3hodnelft2gsq32t4x
+  url: https://bitbucket.org/fenics-project/uflacs/downloads/uflacs-1.6.0.tar.gz

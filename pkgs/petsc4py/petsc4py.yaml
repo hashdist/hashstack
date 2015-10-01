@@ -3,6 +3,9 @@ dependencies:
   build: [mpi, petsc, numpy, cython]
   run: [mpi, petsc, numpy]
 
+defaults:
+  version: '3.5'
+
 build_stages:
   - when: platform == 'Cygwin'
     name: fix_libpetsc4py_decls_detection
@@ -13,12 +16,21 @@ build_stages:
       ${PYTHON} conf/cythonize.py
       patch -p1 < _hashdist/fix_libpetsc4py_decls.patch
 
-  - name: with_conf
+  - when: version == '3.5'
+    name: with_conf
     handler: bash
     files: [petsc4py_install_conf.patch]
     before: install
     bash: |
       patch -up1 < _hashdist/petsc4py_install_conf.patch
+
+  - when: version == '3.6.0'
+    name: with_conf
+    handler: bash
+    files: [petsc4py_install_conf_3.6.0.patch]
+    before: install
+    bash: |
+      patch -up1 < _hashdist/petsc4py_install_conf_3.6.0.patch
 
   - when: platform == 'Cygwin'
     name: explicit_build
@@ -37,6 +49,11 @@ build_stages:
 #      PATH=$PATH:$PETSC_DIR/bin \
 #      $PYTHON runtests.py)
 
-sources:
+when version == '3.6.0':
+  sources:
+  - key: tar.gz:oisw2tnx6vupm6eiqsnav3xrnzikgmkr
+    url: https://bitbucket.org/petsc/petsc4py/downloads/petsc4py-3.6.0.tar.gz
+when version == '3.5':
+  sources:
   - url: https://bitbucket.org/petsc/petsc4py.git
     key: git:4d49c3210c267dd5f8dd507c9e3352b92370560c

@@ -5,8 +5,8 @@ dependencies:
   build: [petsc, parmetis, mpi]
 
 sources:
-- key: zip:yawhbsslqygw5lq5sps4xsyoco72jabt
-  url: https://github.com/erdc-cm/daetk/archive/ahmadia/petsc_3_5.zip
+- url: https://github.com/erdc-cm/daetk.git
+  key: git:e05b9975a2d413148ce122a274be675b27f9450d
 
 build_stages:
 - when: platform == 'Darwin'
@@ -24,6 +24,24 @@ build_stages:
     export PETSC_DIR=$PETSC_DIR
     export PETSC=$PETSC_DIR
     export MPI=$MPI_DIR
+    touch dep.txt
+
+- when: machine == 'SGIICEX'
+  name: configure
+  mode: replace
+  files: [arch.linux, archive.linux, sources.linux]
+  after: prologue
+  handler: bash
+  bash: |
+    cp _hashdist/arch.linux config/linux
+    cp _hashdist/archive.linux config/linux.archive
+    cp _hashdist/sources.linux config/linux.sources
+    export DAETK_DIR=`pwd`
+    export DAETK_ARCH=linux
+    export PETSC_DIR=$PETSC_DIR
+    export PETSC=$PETSC_DIR
+    export MPI=$MPI_DIR
+    export MPIF77=mpif90
     touch dep.txt
 
 - when: platform == 'linux'
