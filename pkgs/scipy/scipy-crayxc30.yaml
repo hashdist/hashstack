@@ -1,0 +1,33 @@
+when: machine == 'CrayXC30'
+
+extends: [distutils_package]
+dependencies:
+  build: [blas, lapack, numpy]
+  run: [blas, lapack, numpy]
+
+sources:
+  - url: http://downloads.sourceforge.net/scipy/scipy-0.13.3.tar.gz
+    key: tar.gz:vhrty7xamdbvzvog5y5mtzpjxo4zegox
+
+build_stages:
+  - name: create-site.cfg
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      cat > site.cfg << EOF
+      [DEFAULT]
+      library_dirs = ${CRAY_LIBSCI_PREFIX_DIR}/lib
+      libraries = sci_gnu
+      EOF
+
+  - name: set-LDFLAGS
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${CRAY_LIBSCI_PREFIX_DIR}/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export ATLAS=None
+      export LAPACK=sci_gnu
+      export BLAS=sci_gnu
+

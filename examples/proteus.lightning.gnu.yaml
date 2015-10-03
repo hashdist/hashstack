@@ -14,7 +14,7 @@ extends:
 # profile.
 
 parameters:
-  machine: CrayXE6
+  machine: CrayXC30
   HOST_MPICC: cc
   HOST_MPICXX: CC
   HOST_MPIF77: ftn
@@ -48,6 +48,7 @@ packages:
   parmetis:
     without_check: true
   petsc:
+    version: 3.6.1
     build_with: |
       parmetis
     download: |
@@ -56,6 +57,7 @@ packages:
     link: shared
     debug: false
   petsc4py:
+    version: 3.6.0
     with_conf: true
   pytables:
   sphinx:
@@ -69,6 +71,7 @@ packages:
   python-netcdf4:
   h5py:
   ode:
+  pip:
  # pyode:
  # vtk:
  # pyvtk:

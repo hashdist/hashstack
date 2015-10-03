@@ -18,7 +18,7 @@ build_stages:
   bash: |
     export CC=${MPICC}
 
-- when: machine == 'CrayXE6'
+- when: machine == 'CrayXE6' or machine == 'CrayXC30'
   name: make_exe_builds_static
   handler: bash
   after: configure
@@ -40,7 +40,7 @@ build_stages:
           '--enable-largefile=yes',
           '--with-default-api-version=v18']
 
-- when: machine == 'CrayXE6'
+- when: machine == 'CrayXE6' or machine == 'CrayXC30'
   name: configure
   extra: ['--enable-static-exec',
           '--with-zlib=${ZLIB_DIR}',

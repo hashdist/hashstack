@@ -19,7 +19,7 @@ build_stages:
   bash: |
     export CC=$MPICC
 
-- when: machine == 'CrayXE6'
+- when: machine == 'CrayXE6' or machine == 'CrayXC30'
   name: configure
   mode: override
   append: {LDFLAGS: {{DYNAMIC_EXE_LINKER_FLAGS}}}
