@@ -30,6 +30,8 @@ def preConfigureSGIICEX(ctx, conf_lines):
                '--known-mpi-shared-libraries=1',
                '--with-pic',
                '--with-batch',
+               '--known-sdot-returns-double=0',
+               '--known-snrm2-returns-double=0',
                '--known-level1-dcache-size=16384',
                '--known-level1-dcache-linesize=64',
                '--known-level1-dcache-assoc=4',
