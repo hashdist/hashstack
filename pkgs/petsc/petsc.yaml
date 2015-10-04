@@ -2,15 +2,21 @@ extends: [autotools_package]
 dependencies:
   build: [blas, mpi, python, {{build_with}}]
 
-sources:
-- key: tar.gz:ygj3gebgevuuwg5evyrgenkhf3ry5b2d
-  url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.5.2.tar.gz
+when version == '3.6.1':
+  sources:
+  - key: tar.gz:v2wbaflfus5gbhb7h4j23jdvoif42mve
+    url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.6.1.tar.gz
+when version == '3.5.2':
+  sources:
+  - key: tar.gz:ygj3gebgevuuwg5evyrgenkhf3ry5b2d
+    url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.5.2.tar.gz
 
 defaults:
   # /include/petscconfiginfo.h contains absolute path
   relocatable: false
   fortran: false
   debug: false
+  version: '3.5.2'
 
 build_stages: 
 

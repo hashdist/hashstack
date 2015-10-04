@@ -4,8 +4,8 @@ dependencies:
   run: [freetype, numpy, png, python-dateutil, pyparsing, six]
 
 sources:
-- key: tar.gz:c6r4ofkpcuwy37wr6n2rpqfiyxnwvxsp
-  url: https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-1.4.2/matplotlib-1.4.2.tar.gz
+- key: git:21f46ff14ea65eeb725a4fd6c36642dddf3fea79
+  url: https://github.com/matplotlib/matplotlib.git
 
 build_stages:
 

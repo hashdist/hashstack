@@ -8,8 +8,8 @@ defaults:
   without_check: false
 
 sources:
-- key: git:749f33d8104157767d443ff1a1d151642751486d
-  url: https://bitbucket.org/petsc/pkg-superlu_dist.git
+- key: tar.gz:45sq4rovsk4ic4dsml525zepvgg2yqzh
+  url: https://bitbucket.org/petsc/pkg-superlu_dist/get/v4.0-p3.tar.gz
 
 build_stages:
 - when: platform == 'Darwin'
@@ -44,7 +44,7 @@ build_stages:
     mkdir -p ${ARTIFACT}/lib/
     mkdir -p ${ARTIFACT}/include/superlu_dist
     cp -f lib/libsuperlu_dist.a ${ARTIFACT}/lib/
-    ln -s ./libsuperlu_dist.a ${ARTIFACT}/lib/libsuperlu_dist_3.3.a
+    ln -s ./libsuperlu_dist.a ${ARTIFACT}/lib/libsuperlu_dist_4.0.a
     cp -f SRC/*.h ${ARTIFACT}/include/superlu_dist/
     cp -f SRC/*.h ${ARTIFACT}/include/
 

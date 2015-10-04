@@ -2,15 +2,15 @@ extends: [base_package]
 
 dependencies:
   # would be nice to have gnu-awk, perl, subversion and bzr as extra dependencies]
-  build: [mercurial, git, {{build_with}}]
+  build: [mercurial, git, golang14, {{build_with}}]
   run: [mercurial, git, {{build_with}}]
 
 defaults:
   relocatable: false
 
 sources:
-- key: tar.gz:mztfabp2ynn2qmx7gnexpzsy7fqrbhmj
-  url: http://golang.org/dl/go1.4.1.src.tar.gz
+- key: tar.gz:vceyopuy3gtsvy4wvg352wl4fhonocok
+  url: https://storage.googleapis.com/golang/go1.5.1.src.tar.gz
 
 build_stages:
 - name: make-install
@@ -22,11 +22,13 @@ build_stages:
 
     # setup some environment variables that the go build system might expect
     # see http://golang.org/doc/install/source#environment
+    export GOROOT_BOOTSTRAP=${GOLANG14_DIR}/go14
     export GOROOT=${ARTIFACT}/go
     export GOROOT_FINAL=${ARTIFACT}/go
     export GOBIN=${ARTIFACT}/go/bin
+    # golang 1.5 needs sysctl to check the arch
+    export PATH=${PATH}:/usr/sbin
 
-    # 'build' go
     cd ${ARTIFACT}/go/src
     bash all.bash
 

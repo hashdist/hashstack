@@ -30,6 +30,29 @@ build_stages:
       export LAPACK=None
       export BLAS=None
 
+  - when: machine == 'SGIICEX'
+    name: create-site.cfg
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      cat > site.cfg << EOF
+      [mkl]
+      library_dirs = /app/intel/compilers/14/mkl/lib/intel64
+      mkl_libs = mkl_rt,pthread,m
+      EOF
+
+  - when: machine == 'SGIICEX'
+    name: set-LDFLAGS
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LAPACK=None
+      export BLAS=None
+      export ATLAS=None
+
   - when: machine == 'CrayXE6' or machine == 'viutill'
     name: create-site.cfg
     after: prologue
@@ -39,7 +62,7 @@ build_stages:
       cat > site.cfg << EOF
       [DEFAULT]
       library_dirs = ${ACML_DIR}/gfortran64/lib
-      libraries = acml
+      libraries = acml, gfortran
       EOF
 
   - when: machine == 'CrayXE6' or machine == 'viutill'
@@ -48,7 +71,7 @@ build_stages:
     before: install
     handler: bash
     bash: |
-      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${ACML_DIR}/gfortran64/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${ACML_DIR}/gfortran64/lib $(${PYTHON_DIR}/bin/python-config --ldflags -lgfortran)"
       export LAPACK=acml
       export BLAS=acml
       export ATLAS=None
