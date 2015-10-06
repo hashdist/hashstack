@@ -16,6 +16,10 @@ profile_links:
     link: 'lib/ruby/gems/2.2.0/**/bin/*'
 
 build_stages:
+  - name: configure
+    mode: override
+    extra: ['--enable-shared']
+
   - name: test_modules
     after: install
     handler: bash
