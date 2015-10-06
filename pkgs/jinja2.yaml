@@ -1,9 +1,4 @@
 extends: [setuptools_package]
-dependencies:
-  run: [MarkupSafe]
-
-dependencies:
-  run: [MarkupSafe]
 
 dependencies:
   run: [MarkupSafe]

@@ -4,5 +4,5 @@ dependencies:
   run: [mpi, numpy]
 
 sources:
-  - url: https://bitbucket.org/mpi4py/mpi4py.git
-    key: git:d5da39a2e334e585b97e83928995cca917610129
+  - key: tar.gz:466sarfkvrng5kd2q6zozrz3gef3n37f
+    url: https://bitbucket.org/mpi4py/mpi4py/downloads/mpi4py-1.3.1.tar.gz

@@ -5,6 +5,16 @@ sources:
     key: tar.gz:36lkcqoilns4fs3mbwzceiysmyr2bhxm
 
 build_stages:
+#- when: machine == 'SGIICEX'
+#  name: configure
+#  mode: replace
+#  after: prologue
+#  handler: bash
+#  bash: |
+#    export CC=gcc
+#    export CXX=g++
+#    ./configure --prefix=${ARTIFACT}
+
 - when: platform == 'Cygwin' 
   name: make
   mode: replace
