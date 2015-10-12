@@ -50,6 +50,7 @@ packages:
   openssl:
     use: host-openssl
   petsc:
+    version: 3.6.1
     build_with: |
       parmetis
     download: |
@@ -58,6 +59,7 @@ packages:
     link: shared
     debug: false
   petsc4py:
+    version: 3.6.0
     with_conf: true
   pillow:
   pytables:
