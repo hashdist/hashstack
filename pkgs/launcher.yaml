@@ -2,7 +2,7 @@
 # Symlinking the launcher interferes with its operation
 
 sources:
-  - key: zip:slyumqagxmfjx6m6ojeqdtfyb4ovy2n3
+  - key: zip:o43b655jkwfuule3aakccf4tof2hopxx
     url: https://github.com/hashdist/hdist-launcher/archive/master.zip
 
 build_stages:

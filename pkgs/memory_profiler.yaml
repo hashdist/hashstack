@@ -6,5 +6,5 @@ dependencies:
         - psutil
 
 sources:
-  - key: zip:few273yb2e2ajccdejrrqeoc7qcdibs2
+  - key: zip:wvduptrbkbg5vawy62qeb6imwemivp2l
     url: https://github.com/fabianp/memory_profiler/archive/master.zip

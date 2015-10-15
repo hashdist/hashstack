@@ -38,7 +38,7 @@ build_stages:
     bash: |
       cat > site.cfg << EOF
       [mkl]
-      library_dirs = /app/intel/compilers/14/mkl/lib/intel64
+      library_dirs = /p/home/apps/intel/parallel_studio_2016/compilers_and_libraries_2016.0.109/linux/mkl/lib/intel64_lin
       mkl_libs = mkl_rt,pthread,m
       EOF
 

@@ -52,7 +52,7 @@ def preConfigureSGIICEX(ctx, conf_lines):
                '--known-mpi-c-double-complex=1',
                '--known-mpi-int64_t=1',
                '--with-pthread=1',
-               '--with-blas-lapack-lib=[mkl_rt]']
+               '--with-blas-lapack-lib="${BLAS_LDFLAGS}"']
 
 @build_stage()
 def configure(ctx, stage_args):

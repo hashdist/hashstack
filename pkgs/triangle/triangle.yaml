@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 sources:
-- key: zip:o7nx2phmkqftlmbclqbpue5xrnfiimyj
+- key: zip:ukx6sgjrlf6eh2e3sc4llkzdj2lq2q2m
   url: https://github.com/erdc-cm/triangle/archive/master.zip
 
 build_stages: 

@@ -44,10 +44,10 @@ ARCH         = ar
 ARCHFLAGS    = cr
 RANLIB       = ranlib
 
-CC           = icc
+CC           = gcc
 CFLAGS       = -O3 -fPIC
 NOOPTS       = -fPIC
-FORTRAN	     = ifort
+FORTRAN	     = gfortran
 FFLAGS       = -O2 -fPIC
 LOADER       = $(FORTRAN)
 LOADOPTS     =
