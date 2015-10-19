@@ -14,4 +14,5 @@ defaults:
 build_stages:
 - name: configure
   extra: ['-D BUILD_SHARED_LIBS:BOOL=ON',
-          '-D BOOST_ROOT:PATH="${BOOST_DIR}"']
+          '-D BOOST_ROOT:PATH="${BOOST_DIR}"',
+          '-D CMAKE_MACOSX_RPATH:BOOL=ON']
