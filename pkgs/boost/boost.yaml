@@ -117,7 +117,7 @@ build_stages:
   handler: bash
   bash: |
     for boostlib in ${ARTIFACT}/lib/libboost_*.dylib; do
-        install_name_tool -add_rpath ${ARTIFACT}/lib/ ${boostlib}
+        install_name_tool -add_rpath @loader_path ${boostlib}
         install_name_tool -id @rpath/$(basename ${boostlib}) ${boostlib}
         otool -L ${boostlib} | while read line; do
             set +e  # do not fail on grep below
