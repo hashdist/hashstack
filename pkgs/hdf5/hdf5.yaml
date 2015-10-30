@@ -18,15 +18,16 @@ build_stages:
   bash: |
     export CC=${MPICC}
 
-- when: machine == 'CrayXE6'
+- when: machine == 'CrayXC30'
   name: make_exe_builds_static
   handler: bash
   after: configure
   before: make
   bash: |
-    for f in {test,testpar,tools/*,perform,hl/*,hl/*/*}/Makefile 
+    for f in {src,test,testpar,tools/*,perform,hl/*,hl/*/*}/Makefile 
     do 
       sed -i 's/CCLD = $(CC)/CCLD = $(CC) -static/g' $f
+      sed -i "s/sed -e 's\/-L\/:\/g' -e 's\/ \/\/g'/sed -e 's\/-L\/:\/g' -e 's\/-rpath=\/:\/g' -e 's\/-Wl,\/\/g' -e 's\/ \/\/g'/g" $f
     done
 
 - name: configure
@@ -40,7 +41,7 @@ build_stages:
           '--enable-largefile=yes',
           '--with-default-api-version=v18']
 
-- when: machine == 'CrayXE6'
+- when: machine == 'CrayXC30'
   name: configure
   extra: ['--enable-static-exec',
           '--with-zlib=${ZLIB_DIR}',

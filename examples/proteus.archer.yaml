@@ -1,0 +1,75 @@
+# This profile file controls your <#> (HashDist) build environment.
+
+# In the future, we'll provide better incorporation of
+# automatic environment detection.  For now, have a look
+# at the YAML files in the top-level directory and choose
+# the most *specific* file that matches your environment.
+
+extends:
+- file: archer.yaml
+
+# The packages list specifies all the packages that you
+# require installed.  <#> will ensure that all packages
+# and their dependencies are installed when you build this
+# profile.
+
+parameters:
+  machine: CrayXC30
+  HOST_MPICC: cc
+  HOST_MPICXX: CC
+  HOST_MPIF77: ftn
+  HOST_MPIF90: ftn
+  HOST_MPIEXEC: aprun
+  PATH: |
+    /usr/bin:/bin:/usr/sbin:/sbin
+  PROLOGUE: |
+    source /opt/modules/default/init/bash; export MODULEPATH=/opt/cray/craype/default/modulefiles:/opt/cray/ari/modulefiles:/opt/cray/modulefiles:/opt/modulefiles:/cm/local/modulefiles:/cm/shared/modulefiles:/opt/modules/packages-archer; export MODULESHOME=/opt/modules/default; export MODULE_VERSION=3.2.10; export MODULE_VERSION_STACK=3.2.10; export CRAY_CPU_TARGET=ivybridge; echo "unloading modules"; module unload PrgEnv-cray; echo "loading modules"; module load PrgEnv-gnu; module load cray-mpich; module load cray-libsci; module load cray-tpsl; echo "setting default compilers"; export CC=gcc; export CXX=g++; export FC=gfortran; export F77=gfortran; export F90=gfortran; export CPP=cpp;
+  DYNAMIC_EXE_LINKER_FLAGS: -dynamic
+
+packages:
+  launcher:
+  cmake:
+  python:
+    host: false
+    build_with: |
+      openssl,bzip2,sqlite
+  blas:
+    use: openblas
+  lapack:
+#    use: host-acml-lapack
+  daetk:
+  mpi:
+    use: host-mpi
+  mpi4py:
+  nose:
+  hdf5:
+  ipython:
+  matplotlib:
+  parmetis:
+    without_check: true
+  petsc:
+    build_with: |
+      parmetis
+    download: |
+      ptscotch, superlu, superlu_dist, spooles, hypre, blacs, scalapack, mumps
+    coptflags: -O2
+    link: shared
+    debug: false
+  petsc4py:
+    with_conf: true
+  pytables:
+  sphinx:
+  superlu:
+  sympy:
+  tetgen:
+  triangle:
+  memory_profiler:
+  scipy:
+#  netcdf4f:
+#  python-netcdf4:
+  h5py:
+  ode:
+ # pyode:
+ # vtk:
+ # pyvtk:
+
