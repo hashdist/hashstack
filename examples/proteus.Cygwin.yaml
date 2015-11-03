@@ -14,21 +14,26 @@ extends:
 # profile.
 
 packages:
-
+  ssl:
+    use: host-ssl
+  openssl:
+    use: host-openssl
+  sqlite:
+    use: host-sqlite
   launcher:
   cmake:
-    use: host-cmake
   python:
-    host: true 
+    link: shared
+    host: false 
     build_with: |
-
+      ssl, openssl,bzip2, sqlite
   blas:
-    use: host-blas
+    use: openblas
   daetk:
   freetype:
     use: host-freetype
   mpi:
-    use: host-mpi
+    use: mpich
   mpi4py:
   nose:
   hdf5:

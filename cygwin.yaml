@@ -3,17 +3,8 @@ extends:
 
 parameters:
   platform: Cygwin
-  HOST_MPICC: /usr/bin/mpicc
-  HOST_MPICXX: /usr/bin/mpic++
-  HOST_MPIF77: /usr/bin/mpif77
-  HOST_MPIF90: /usr/bin/mpif90
-  HOST_MPIEXEC: /usr/bin/mpiexec
-  HOST_CMAKE: /usr/bin/cmake
-  HOST_PYTHON: /usr/bin/python
-  HOST_PKG_CONFIG_EXECUTABLE: /usr/bin/pkgconfig
-  HOST_SWIG_EXECUTABLE: /usr/bin/swig
 
 packages:
   blas:
-    use: host-blas
+    use: openblas
   ipython:

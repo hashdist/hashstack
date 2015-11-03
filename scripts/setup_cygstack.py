@@ -60,5 +60,5 @@ with open(cygstack) as packages:
             continue
 
         print('installing', package)
-        call = ['setup-x86_64.exe', '-q', '-P', package]
+        call = ['setup-x86_64.exe', '-B', '-q', '-P', package]
         subprocess.check_call(call)

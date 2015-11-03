@@ -8,10 +8,8 @@ build_stages:
 - name: configure
   mode: override
   extra: ['-DCMAKE_BUILD_TYPE:STRING=" "']
-
 - when: platform == 'Cygwin'
   name: configure
-  handler: bash
-  mode: replace
-  bash: |
-    cmake -DBUILD_SHARED_LIBS=true .
+  mode: override
+  extra: ['-DCMAKE_BUILD_TYPE:STRING=" "', '-D BUILD_SHARED_LIBS:BOOL=ON']
+
