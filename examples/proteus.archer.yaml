@@ -48,6 +48,8 @@ packages:
   parmetis:
     without_check: true
   petsc:
+    version: 3.6.1
+    without_check: true
     build_with: |
       parmetis
     download: |
@@ -56,6 +58,7 @@ packages:
     link: shared
     debug: false
   petsc4py:
+    version: 3.6.0
     with_conf: true
   pytables:
   sphinx:
