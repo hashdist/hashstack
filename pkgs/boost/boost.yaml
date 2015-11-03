@@ -111,6 +111,24 @@ build_stages:
         ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BZIP2_DIR}/lib:${ZLIB_DIR}/lib ${lib}
     done
 
+- when: platform == 'Darwin'
+  name: rpath_fix
+  after: bjam
+  handler: bash
+  bash: |
+    for boostlib in ${ARTIFACT}/lib/libboost_*.dylib; do
+        install_name_tool -add_rpath @loader_path ${boostlib}
+        install_name_tool -id @rpath/$(basename ${boostlib}) ${boostlib}
+        otool -L ${boostlib} | while read line; do
+            set +e  # do not fail on grep below
+            lib=$(echo $line | sed 's/\(libboost_.*\.dylib\).*/\1/' | grep ^libboost_)
+            set -e
+            if [ ! -z ${lib} ]; then
+                install_name_tool -change ${lib} @rpath/${lib} ${boostlib}
+            fi
+        done
+    done
+
 when_build_dependency:
 - set: BOOST_MULTITHREADED
   value: "OFF"

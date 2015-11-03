@@ -30,13 +30,24 @@ build_stages:
     export SuperLUroot=`pwd`
     export BLASLIB=$BLAS_LDFLAGS
 
+- when: machine == 'SGIICEX'
+  name: configure
+  mode: replace
+  files: [make.inc.sgiicex]
+  after: prologue
+  handler: bash
+  bash: |
+    cp _hashdist/make.inc.sgiicex make.inc
+    export SuperLUroot=`pwd`
+    export BLASLIB=$BLAS_LDFLAGS
+
 - name: make
   mode: replace
   handler: bash
   after: configure
   bash: |
     mkdir lib
-    make lib
+    make superlulib
 
 - name: install
   handler: bash
