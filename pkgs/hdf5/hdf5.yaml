@@ -24,9 +24,10 @@ build_stages:
   after: configure
   before: make
   bash: |
-    for f in {test,testpar,tools/*,perform,hl/*,hl/*/*}/Makefile 
+    for f in {src,test,testpar,tools/*,perform,hl/*,hl/*/*}/Makefile 
     do 
       sed -i 's/CCLD = $(CC)/CCLD = $(CC) -static/g' $f
+      sed -i "s/sed -e 's\/-L\/:\/g' -e 's\/ \/\/g'/sed -e 's\/-L\/:\/g' -e 's\/-rpath=\/:\/g' -e 's\/-Wl,\/\/g' -e 's\/ \/\/g'/g" $f
     done
 
 - name: configure
