@@ -21,6 +21,16 @@ build_stages:
 - name: libflags
   before: install
 
+- when: platform == 'linux'
+  name: rpath_fix
+  after: install
+  handler: bash
+  bash: |
+    for lib in ${ARTIFACT}/lib/python{{pyver}}/site-packages/matplotlib/*.so; do
+        old_rpath=$(${PATCHELF} --print-rpath ${lib})
+        ${PATCHELF} --set-rpath $old_rpath:${BZIP2_DIR}/lib:${FREETYPE_DIR}/lib:${PNG_DIR}/lib:${ZLIB_DIR} ${lib}
+    done
+
 profile_links:
   - name: mpl_packages
     link: 'lib/python{{pyver}}/site-packages/mpl_toolkits/**/*'
