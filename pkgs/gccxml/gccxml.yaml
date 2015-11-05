@@ -10,6 +10,14 @@ defaults:
   # bin/gccxml_cc1plus contains hard-coded path
   relocatable: false
 
+build_stages:
+- name: fix_redefinition
+  files: [fix_redefinition.patch]
+  before: configure
+  handler: bash
+  bash: |
+    patch -p1 < _hashdist/fix_redefinition.patch
+
 when_build_dependency:
 - prepend_path: PATH
   value: '${ARTIFACT}/bin'

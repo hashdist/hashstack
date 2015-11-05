@@ -1,0 +1,22 @@
+diff -Nru bzip2-1.0.6.orig/Makefile bzip2-1.0.6/Makefile
+--- bzip2-1.0.6.orig/Makefile	2015-10-12 11:12:14.472230144 +0200
++++ bzip2-1.0.6/Makefile	2015-10-12 11:13:20.700385199 +0200
+@@ -15,7 +15,6 @@
+ SHELL=/bin/sh
+ 
+ # To assist in cross-compiling
+-CC=gcc
+ AR=ar
+ RANLIB=ranlib
+ LDFLAGS=
+diff -Nru bzip2-1.0.6.orig/Makefile-libbz2_so bzip2-1.0.6/Makefile-libbz2_so
+--- bzip2-1.0.6.orig/Makefile-libbz2_so	2015-10-12 11:12:14.476230153 +0200
++++ bzip2-1.0.6/Makefile-libbz2_so	2015-10-12 11:13:35.368419526 +0200
+@@ -22,7 +22,6 @@
+ 
+ 
+ SHELL=/bin/sh
+-CC=gcc
+ BIGFILES=-D_FILE_OFFSET_BITS=64
+ CFLAGS=-fpic -fPIC -Wall -Winline -O2 -g $(BIGFILES)
+ 
