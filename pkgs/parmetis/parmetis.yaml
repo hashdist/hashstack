@@ -45,7 +45,8 @@ build_stages:
       -DCMAKE_VERBOSE_MAKEFILE=1
       -DGKLIB_PATH=${BUILD}/metis/GKlib
       -DCMAKE_INSTALL_PREFIX=${ARTIFACT}
-      -DSHARED=1
+      -DCMAKE_LEGACY_CYGWIN_WIN32=0
+      -DSHARED=0
       -DOPENMP=0
       -DCMAKE_C_COMPILER=${MPICC}
       -DCMAKE_CXX_COMPILER=${MPICXX}
@@ -88,14 +89,14 @@ build_stages:
     make -C _build_metis install
     make -C _build_parmetis install
 
-- when: platform == 'Cygwin'
-  name: copy_dlls
-  after: install
-  before: check
-  handler: bash
-  bash: |
-    install _build_metis/libmetis/cygmetis.dll ${ARTIFACT}/bin
-    install _build_parmetis/libparmetis/cygparmetis.dll ${ARTIFACT}/bin
+#- when: platform == 'Cygwin'
+#  name: copy_dlls
+#  after: install
+#  before: check
+#  handler: bash
+#  bash: |
+#    install _build_metis/libmetis/cygmetis.dll ${ARTIFACT}/bin
+#    install _build_parmetis/libparmetis/cygparmetis.dll ${ARTIFACT}/bin
 
 - when: platform == 'Darwin'
   name: rpath_fix
@@ -111,6 +112,13 @@ build_stages:
   handler: bash
   bash: |
     ${MPIEXEC} -np 4 ${ARTIFACT}/bin/ptest ${BUILD}/Graphs/rotor.graph
+
+- when: without_check
+  name: check
+  after: install
+  handler: bash
+  bash: |
+    echo "skipping parmetis checks"
 
 when_build_dependency:
 - {prepend_path: PATH, value: '${ARTIFACT}/bin'}

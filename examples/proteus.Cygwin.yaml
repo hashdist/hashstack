@@ -13,8 +13,13 @@ extends:
 # and their dependencies are installed when you build this
 # profile.
 parameters:
-  pyver: 2.7
-
+  pyver: '2.7'
+  HOST_MPICC: /usr/bin/mpicc
+  HOST_MPICXX: /usr/bin/mpicxx
+  HOST_MPIF77: /usr/bin/mpif77
+  HOST_MPIF90: /usr/bin/mpif90
+  HOST_MPIEXEC: /usr/bin/mpiexec
+ 
 packages:
   launcher:
   sqlite:
@@ -23,27 +28,33 @@ packages:
     use: host-openssl
   cmake:
   python:
+    host: true
   blas:
     use: openblas
   daetk:
   freetype:
     use: host-freetype
   mpi:
-    use: mpich
+    use: host-mpi
   mpi4py:
   nose:
   hdf5:
   ipython:
   matplotlib:
+  parmetis:
+    link: static
+    without_check: false
   petsc:
-    build_with: |
-
-    download: |
-      parmetis, metis
+    version: 3.6.1
     coptflags: -O2
+    build_with: |
+      parmetis
+    download: |
+
     link: shared
     debug: false
   petsc4py:
+    version: 3.6.0
     with_conf: true
   pytables:
   sphinx:
@@ -57,3 +68,4 @@ packages:
   pip:
   h5py:
   ode:
+  pcs_api:

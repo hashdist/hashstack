@@ -13,4 +13,8 @@ build_stages:
   after: setup_dirs
   handler: bash
   bash: |
-    CC=${MPICC} ${PYTHON} setup.py install --mpi --prefix=${ARTIFACT} 
+    export CC=${MPICC}
+    export CXX=${MPICXX}
+    export LDSHARED=${MPICC}
+    export LDFLAGS='-shared'
+    ${PYTHON} setup.py install --mpi --hdf5=${HDF5_ROOT} --hdf5-version=1.8.13 --prefix=${ARTIFACT} 

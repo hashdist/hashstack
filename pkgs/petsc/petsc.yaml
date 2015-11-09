@@ -68,6 +68,7 @@ build_stages:
   after: install
   bash: |
     find arch-mswin-*/ -name "*.dll" -exec install -v {} ${ARTIFACT}/bin \;
+    find arch-mswin-*/ -name "*.so.*" -exec install -v {} ${ARTIFACT}/bin \;
 
 when_build_dependency:
 - when platform == 'Cygwin':
