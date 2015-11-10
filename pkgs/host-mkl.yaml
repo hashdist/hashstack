@@ -1,0 +1,7 @@
+when_build_dependency:
+- {set: 'BLAS_LDFLAGS', value: '-Wl,-rpath,{{HOST_MKLPATH}} -L{{HOST_MKLPATH}} -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm'}
+- {set: 'LAPACK_LDFLAGS', value: '-Wl,-rpath,{{HOST_MKLPATH}} -L{{HOST_MKLPATH}} -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lpthread -lm'}
+- {set: 'MKLPATH', value: '{{HOST_MKLPATH}}'}
+- {set: 'MKLROOT', value: '{{HOST_MKLROOT}}'}
+- {set: 'BLAS_DIR', value: '{{HOST_MKLPATH}}'}
+- {set: 'LAPACK_DIR', value: '{{HOST_MKLPATH}}'}

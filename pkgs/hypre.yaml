@@ -14,6 +14,8 @@ defaults:
   with_accelerate: false
   # Build with OpenBLAS
   with_openblas: false
+  # Build with Intel MKL
+  with_mkl: false
   # Build with debug flags
   debug: false
 
@@ -54,7 +56,17 @@ build_stages:
           "--with-lapack-libs=openblas",
           "--with-lapack-lib-dirs=${LAPACK_DIR}/lib"]
 
-- when: with_accelerate and not with_openblas
+- when: with_mkl
+  name: configure
+  mode: update
+  extra: ["--with-blas=yes",
+          '--with-blas-libs="mkl_intel_lp64 mkl_sequential mkl_core pthread m"',
+          "--with-blas-lib-dirs=${MKLPATH}",
+          "--with-lapack=yes",
+          '--with-lapack-libs="mkl_intel_lp64 mkl_sequential mkl_core pthread m"',
+          "--with-lapack-lib-dirs=${MKLPATH}"]
+
+- when: with_accelerate and not (with_openblas or with_mkl)
 # Libraries used for linking to Accelerate framework; `otool -L`
 # shows that these libraries link to the same dylibs that the
 # Accelerate framework libraries do. Using the
@@ -70,7 +82,7 @@ build_stages:
           '--with-lapack-libs="lapack clapack f77lapack"',
           "--with-lapack-lib-dirs=/usr/lib"]
 
-- when: not with_accelerate and not with_openblas
+- when: not with_accelerate and not with_openblas and not with_mkl
   name: configure
   mode: update
   extra: ["--with-blas=yes",
@@ -119,7 +131,7 @@ build_stages:
   handler: bash
   bash: |
     oldRPath=$(${PATCHELF} --print-rpath ${ARTIFACT}/lib/libHYPRE-*.so)
-    ${PATCHELF} --set-rpath ${oldRPath}:${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib ${ARTIFACT}/lib/libHYPRE-*.so
+    ${PATCHELF} --set-rpath ${oldRPath}:${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib:${MKLPATH} ${ARTIFACT}/lib/libHYPRE-*.so
 
 - when: platform != 'linux'
   name: rpath-fix
@@ -134,9 +146,9 @@ build_stages:
   bash: |
     make check
     make test
-    ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib test/ij
-    ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib test/struct
-    ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib test/sstruct
+    ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib:${MKLPATH} test/ij
+    ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib:${MKLPATH} test/struct
+    ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BLAS_DIR}/lib:${LAPACK_DIR}/lib:${MPI_DIR}/lib:${MKLPATH} test/sstruct
     ./test/ij
     ./test/struct
     ./test/sstruct -in test/sstruct.in.default -solver 40 -rhsone

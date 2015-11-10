@@ -37,6 +37,14 @@ build_stages:
   bash: |
     patch -p1 < _hashdist/fix___cdecl_redefined.patch
 
+# need to add -fPIC to CFLAGS when using Intel compiler
+- name: set-cflags
+  after: setup_builddir
+  before: configure
+  handler: bash
+  bash: |
+    export CFLAGS="${CFLAGS} -fPIC"
+
 - name: cmake-flags
   after: setup_builddir
   handler: bash

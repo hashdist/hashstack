@@ -29,7 +29,7 @@ def configure(ctx, stage_args):
     conf_lines = [pjoin(configure_path, 'configure') + ' --prefix="${ARTIFACT}"']
 
     if 'extra' in stage_args:
-        conf_lines.append(' '.join('"%s"' % arg for arg in stage_args['extra']))
+        conf_lines.append(' '.join('%s' % arg for arg in stage_args['extra']))
     for i in range(len(conf_lines) - 1):
         conf_lines[i] = conf_lines[i] + ' \\'
         conf_lines[i + 1] = '  ' + conf_lines[i + 1]

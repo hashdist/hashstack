@@ -6,18 +6,58 @@ dependencies:
   build: [lapack, numpy]
   run: [lapack, numpy]
 
+defaults:
+  # Build with Intel MKL
+  with_mkl: false
+
 sources:
   - url: http://downloads.sourceforge.net/scipy/scipy-0.13.3.tar.gz
     key: tar.gz:vhrty7xamdbvzvog5y5mtzpjxo4zegox
 
 build_stages:
-  - when: platform == 'linux'
-    name: set-lapack-paths
-    after: libflags
+#  - when: platform == 'linux'
+#    name: set-lapack-paths
+#    after: libflags
+#    before: install
+#    handler: bash
+#    bash: |
+#      export LDFLAGS="$LDFLAGS -shared"
+#      export ATLAS=$LAPACK_DIR
+#      export BLAS=$LAPACK_DIR
+#      export LAPACK=$LAPACK_DIR
+
+
+  - when: with_mkl
+    name: create-site.cfg
+    after: prologue
     before: install
     handler: bash
     bash: |
-      export LDFLAGS="$LDFLAGS -shared"
-      export ATLAS=$LAPACK_DIR
-      export BLAS=$LAPACK_DIR
-      export LAPACK=$LAPACK_DIR
+      cat > site.cfg << EOF
+      [mkl]
+      library_dirs = ${MKLPATH}
+      include_dirs = ${MKLROOT}/include
+      mkl_libs = mkl_intel_lp64, mkl_sequential, mkl_core
+      lapack_libs = mkl_intel_lp64, mkl_sequential, mkl_core
+      EOF
+
+  - when: with_mkl
+    name: set-LDFLAGS
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${MKLPATH} $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LAPACK=None
+      export BLAS=None
+      export ATLAS=None
+
+# Make sure that the fortran objects are compiled with -fPIC
+  - when: platform == 'linux'
+    name: compile-fc-with-fPIC
+    after: setup_dirs
+    before: install
+    handler: bash
+    bash: |
+      export FFLAGS="$FFLAGS -fPIC"
+      export FCFLAGS="$FCFLAGS -fPIC"

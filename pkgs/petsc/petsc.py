@@ -114,11 +114,13 @@ def configure(ctx, stage_args):
             libopenblas = '${OPENBLAS_DIR}/lib/libopenblas.so'
         conf_lines.append('--with-blas-lapack-lib=%s' % libopenblas)
     else:
-        # Special case, no meaningful BLAS/LAPACK directories when using Accelerate
-
-        if ctx.parameters['platform'] != 'Darwin':
-            conf_lines.append('--with-blas-dir=$BLAS_DIR')
-            conf_lines.append('--with-lapack-dir=$LAPACK_DIR')
+        conf_lines.append('--with-blas-lapack-lib="${LAPACK_LDFLAGS}"')
+#
+#        # Special case, no meaningful BLAS/LAPACK directories when using Accelerate
+#
+#        if ctx.parameters['platform'] != 'Darwin':
+#            conf_lines.append('--with-blas-dir=$BLAS_DIR')
+#            conf_lines.append('--with-lapack-dir=$LAPACK_DIR')
 
     # Special case, ParMETIS also provides METIS
     if 'PARMETIS' in ctx.dependency_dir_vars:

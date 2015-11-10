@@ -3,6 +3,10 @@ dependencies:
   build: [blas]
   run: [blas]
 
+defaults:
+  # Build with Intel MKL
+  with_mkl: false
+
 sources:
   - key: tar.gz:zzluhi5cjpyt4a3t7lvsicyi4sgrhhtd
     url: http://downloads.sourceforge.net/numpy/numpy-1.8.2.tar.gz
@@ -49,6 +53,31 @@ build_stages:
     handler: bash
     bash: |
       export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LAPACK=None
+      export BLAS=None
+      export ATLAS=None
+
+  - when: with_mkl
+    name: create-site.cfg
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      cat > site.cfg << EOF
+      [mkl]
+      library_dirs = ${MKLPATH}
+      include_dirs = ${MKLROOT}/include
+      mkl_libs = mkl_intel_lp64, mkl_sequential, mkl_core
+      lapack_libs = mkl_intel_lp64, mkl_sequential, mkl_core
+      EOF
+
+  - when: with_mkl
+    name: set-LDFLAGS
+    after: prologue
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${MKLPATH} $(${PYTHON_DIR}/bin/python-config --ldflags)"
       export LAPACK=None
       export BLAS=None
       export ATLAS=None
