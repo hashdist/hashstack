@@ -1,0 +1,20 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [protobuf, jemalloc, ncurses, boost, python, curl, openssl]
+
+sources:
+- key: tar.gz:pfj3jbvo6d7ma5wdvxyzr6zezfu6grhs
+  url: http://download.rethinkdb.com/dist/rethinkdb-2.1.5-2.tgz
+
+build_stages:
+- name: build flags
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    export CXXFLAGS="-I${JEMALLOC_DIR}/include -I${PROTOBUF_DIR}/include -Wno-error=unused-parameter $CXXFLAGS"
+    export LDFLAGS="-L${JEMALLOC_DIR}/lib -L${PROTOBUF_DIR}/lib "
+
+- name: configure
+  extra: ['--dynamic', 'jemalloc']
