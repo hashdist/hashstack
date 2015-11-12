@@ -2,7 +2,7 @@
 """
 Install 64-bit Cygwin dependences needed by HashStack.
 
-This utility script uses Cygwin's setup-x86_64.exe program to install
+This utility script uses Cygwin's setup-x86.exe program to install
 dependencies needed both to run HashStack as well as dependencies for
 commonly installed packages within HashStack.  This script is mostly
 scaffolding to get users up and running on HashStack and is a first
@@ -60,5 +60,5 @@ with open(cygstack) as packages:
             continue
 
         print('installing', package)
-        call = ['setup-x86_64.exe', '-q', '-P', package]
+        call = ['setup-x86.exe', '-q', '-P', package]
         subprocess.check_call(call)
