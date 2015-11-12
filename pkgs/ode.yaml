@@ -14,6 +14,8 @@ dependencies:
 build_stages:
 - name: configure
   extra: [
+    "--disable-threading-intf",
+    "--disable-demos",
     "--enable-double-precision",
     "--with-trimesh=opcode",
     "--enable-new-trimesh",

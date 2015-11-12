@@ -20,4 +20,4 @@ build_stages:
   after: setup_dirs
   handler: bash
   bash: |
-    CC=${MPICC} CXX=${MPICXX} ${PYTHON} setup.py install --prefix=${ARTIFACT} --lflags="-Wl,-rpath,${HDF5_DIR}/lib -L${HDF5_DIR}/lib -lhdf5 -Wl,-rpath,${ZLIB_DIR}/lib -L${ZLIB_DIR} -lz -Wl,-rpath,${SZIP_DIR}/lib -L${SZIP_DIR}/lib -lszip"
+    LDSHARED=${MPICC} CC=${MPICC} CXX=${MPICXX} ${PYTHON} setup.py install --prefix=${ARTIFACT} --lflags="-shared -Wl,-rpath,${HDF5_DIR}/lib -L${HDF5_DIR}/lib -lhdf5 -Wl,-rpath,${ZLIB_DIR}/lib -L${ZLIB_DIR} -lz -Wl,-rpath,${SZIP_DIR}/lib -L${SZIP_DIR}/lib -lszip"

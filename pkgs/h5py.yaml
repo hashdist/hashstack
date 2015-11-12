@@ -1,7 +1,7 @@
 extends: [distutils_package]
 
 dependencies:
-  build: [hdf5, mpi4py, mpi, numpy, cython]
+  build: [zlib, szip, hdf5, mpi4py, mpi, numpy, cython]
   run: [numpy]
 
 sources:
@@ -17,4 +17,4 @@ build_stages:
     export CXX=${MPICXX}
     export LDSHARED=${MPICC}
     export LDFLAGS='-shared'
-    ${PYTHON} setup.py install --mpi --hdf5=${HDF5_ROOT} --hdf5-version=1.8.13 --prefix=${ARTIFACT} 
+    ${PYTHON} setup.py build_ext --mpi --hdf5=${HDF5_ROOT} --hdf5-version=1.8.13 -L${HDF5_DIR}'/lib' -L${ZLIB_DIR}'/lib' -L${SZIP_DIR}'/lib' --libraries='hdf5,hdf5_hl,szip,z' install --prefix=${ARTIFACT}

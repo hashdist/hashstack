@@ -30,7 +30,9 @@ packages:
   python:
     host: true
   blas:
-    use: openblas
+    use: host-blas
+  lapack:
+    use: host-lapack
   daetk:
   freetype:
     use: host-freetype
@@ -39,11 +41,10 @@ packages:
   mpi4py:
   nose:
   hdf5:
-  ipython:
   matplotlib:
   parmetis:
     link: static
-    without_check: false
+    without_check: true 
   petsc:
     version: 3.6.1
     coptflags: -O2
@@ -62,9 +63,7 @@ packages:
   sympy:
   tetgen:
   triangle:
-  zmq: 
   memory_profiler:
-  ipdb:
   pip:
   h5py:
   ode:

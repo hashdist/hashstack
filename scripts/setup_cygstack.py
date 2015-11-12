@@ -22,10 +22,10 @@ parser.add_argument("CYGSTACK", nargs="?", default="cygstack.txt",
 args = parser.parse_args()
 
 try:
-    subprocess.check_call(['which', 'setup-x86_64.exe'])
+    subprocess.check_call(['which', 'setup-x86.exe'])
 except:
-    sys.stderr.write('Unable to find setup-x86_64.exe, please put it on your PATH and re-execute this script.\n')
-    sys.stderr.write('You could try: \n\nwget http://cygwin.com/setup-x86_64.exe -O /usr/bin/setup-x86_64.exe\n')
+    sys.stderr.write('Unable to find setup-x86.exe, please put it on your PATH and re-execute this script.\n')
+    sys.stderr.write('You could try: \n\nwget http://cygwin.com/setup-x86.exe -O /usr/bin/setup-x86.exe\n')
     sys.exit(1)
 
 subprocess.check_call(['cygcheck','-c'])
