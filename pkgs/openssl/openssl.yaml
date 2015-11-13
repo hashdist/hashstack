@@ -23,6 +23,7 @@ build_stages:
 - name: configure
   handler: bash
   mode: replace
+  after: prologue
   bash: |
     #./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include -Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib
     ./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include $OPENSSL_EXTRA_FLAGS
