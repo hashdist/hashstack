@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:qn2yv6sejjj2fkhpeocsyb3jn3obngoh
+   url: https://pypi.python.org/packages/source/s/schematics/schematics-1.1.1.tar.gz
