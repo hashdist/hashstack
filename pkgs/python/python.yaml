@@ -16,6 +16,10 @@ when pyver == '3.4':
     sources:
     - key: tar.gz:rn2d6vxj4uf7ber3t2oelxmspqdr26vf
       url: https://www.python.org/ftp/python/3.4.3/Python-3.4.3.tgz
+when pyver == '3.5':
+    sources:
+    - key: tar.gz:lbhd2wqcnewkkl6okbpgr3gxojekn4wj
+      url: https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tgz
 
 
 
