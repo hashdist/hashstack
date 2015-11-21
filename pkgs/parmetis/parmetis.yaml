@@ -89,15 +89,6 @@ build_stages:
     make -C _build_metis install
     make -C _build_parmetis install
 
-#- when: platform == 'Cygwin'
-#  name: copy_dlls
-#  after: install
-#  before: check
-#  handler: bash
-#  bash: |
-#    install _build_metis/libmetis/cygmetis.dll ${ARTIFACT}/bin
-#    install _build_parmetis/libparmetis/cygparmetis.dll ${ARTIFACT}/bin
-
 - when: platform == 'Darwin'
   name: rpath_fix
   handler: bash
