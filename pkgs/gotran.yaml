@@ -4,5 +4,5 @@ dependencies:
   run: [instant, modelparameters, numpy, sympy]
 
 sources:
-- key: git:6b600fd9cb4bda8666e6b628430d34546fc1f9f2
+- key: git:cac1f5d42bac85a047b6a444bce9d03b8d173bc4
   url: https://bitbucket.org/johanhake/gotran.git
