@@ -3,11 +3,15 @@ extends: [autotools_package]
 dependencies:
   build: [pkg-config, zlib, patchelf]
 
-# Do not use https to download openssl: fails on OSX due to
-# limitations of Apple's ancient openssl (no TLSv1.1 support)
+# Do not use https to download openssl from openssl.org: fails on OSX
+# due to limitations of Apple's ancient openssl (no TLSv1.1 support)
+#
+# Also, openssl.org urls are not stable, they move old packages
+# whenever an update appears. Use github to download.
 sources:
-  - url: http://www.openssl.org/source/openssl-1.0.2d.tar.gz
-    key: tar.gz:m4odmsdxqvriu4btotdffljm5pvel6us
+- key: tar.gz:t5bu2nuiewp4s3pl7gykraprotzuzf5e
+  url: https://github.com/openssl/openssl/archive/OpenSSL_1_0_2e.tar.gz
+
 
 defaults:
   relocatable: false
