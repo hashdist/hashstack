@@ -2,8 +2,8 @@ extends: [autotools_package]
 
 when pyver == '2.7':
     sources:
-    - key: tar.gz:5wum43xmaptutenlwu4ec4hhyzp425jc
-      url: http://python.org/ftp/python/2.7.10/Python-2.7.10.tgz
+    - key: tar.gz:qkjjxfx5nl6i3kbywfera4dyyax2c5cl
+      url: http://python.org/ftp/python/2.7.11/Python-2.7.11.tgz
 when pyver == '3.2':
     sources:
     - key: tar.gz:7qpecklofhkhn5uwga5mvyutvz5cgehq
@@ -18,8 +18,8 @@ when pyver == '3.4':
       url: https://www.python.org/ftp/python/3.4.3/Python-3.4.3.tgz
 when pyver == '3.5':
     sources:
-    - key: tar.gz:lbhd2wqcnewkkl6okbpgr3gxojekn4wj
-      url: https://www.python.org/ftp/python/3.5.0/Python-3.5.0.tgz
+    - key: tar.gz:nb7am7m7heo2mrkchr7nvaqfxlu5gxw4
+      url: https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tgz
 
 
 
