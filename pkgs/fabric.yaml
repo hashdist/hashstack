@@ -16,11 +16,8 @@ build_stages:
 #
 # The following step works around the above error
 
-- name: install
-  after: setup_dirs
+- name: fix_install
+  after: install
   handler: bash
   bash: |
-    # build
-    $PYTHON setup.py build
-    # install
-    $PYTHON setup.py install --prefix=$ARTIFACT
+    rm -r $ARTIFACT/{{python_site_packages_rel}}/tests
