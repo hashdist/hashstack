@@ -199,5 +199,8 @@ profile_links:
   - name: python_exclude
     after: python_packages
     before: everything
-
     exclude: 'lib/python{{pyver}}/site-packages/**/*'
+
+  - name: exclude_python3_cache
+    before: python_exclude
+    link: 'lib/python{{pyver}}/site-packages/__pycache__/*'
