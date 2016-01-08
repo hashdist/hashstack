@@ -7,8 +7,8 @@ dependencies:
     build: [bzip2, mpi, zlib, {{build_with}}]
 
 sources:
-- url: http://downloads.sourceforge.net/boost/boost_1_55_0.tar.bz2
-  key: tar.bz2:77yaai65pfeg2rcmryuzel2aolq5iup4
+- key: tar.bz2:oj5jgizc3fbipnrkxmn5fvaxepxminlk
+  url: http://downloads.sourceforge.net/boost/boost_1_59_0.tar.bz2
 
 build_stages:
 - name: bootstrap
@@ -17,33 +17,9 @@ build_stages:
   bash: |
     ./bootstrap.sh --with-toolset={{toolset}} --prefix=${ARTIFACT}
 
-- name: call_once_variadic
-  before: bjam
-  after: bootstrap
-  handler: bash
-  files: [call_once_variadic.patch]
-  bash: |
-    patch -p2 < _hashdist/call_once_variadic.patch
-
-- name: 128bitIntegerSupport1
-  before: bjam
-  after: bootstrap
-  handler: bash
-  files: [128bitIntegers.patch]
-  bash: |
-    patch -p2 < _hashdist/128bitIntegers.patch
-
-- name: 128bitIntegerSupport2
-  before: bjam
-  after: 128bitIntegerSupport1
-  handler: bash
-  files: [128bitIntegers2.patch]
-  bash: |
-    patch -p2 < _hashdist/128bitIntegers2.patch
-
 - name: boost_1_55_fix_warnings
   before: bjam
-  after: 128bitIntegerSupport2
+  after: bootstrap
   handler: bash
   files: [boost_1_55_fix_warnings.patch]
   bash: |
