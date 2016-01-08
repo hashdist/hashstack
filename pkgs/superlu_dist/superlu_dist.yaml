@@ -15,6 +15,7 @@ build_stages:
 - when: platform == 'Darwin'
   name: configure
   mode: replace
+  after: prologue
   files: [make.inc.darwin]
   handler: bash
   bash: |
@@ -23,6 +24,7 @@ build_stages:
 - when: platform == 'linux' or platform == 'Cygwin'
   name: configure
   mode: replace
+  after: prologue
   files: [make.inc.linux]
   handler: bash
   bash: |
