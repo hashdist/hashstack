@@ -1,0 +1,101 @@
+# The following debian packages should be installed when using this
+# profile:
+# 
+# git curl python-dev time build-essential gfortran freeglut3-dev
+
+# This profile file controls your <#> (HashDist) build environment.
+
+# In the future, we'll provide better incorporation of
+# automatic environment detection.  For now, have a look
+# at the YAML files in the top-level directory and choose
+# the most *specific* file that matches your environment.
+
+extends:
+- file: linux.yaml
+
+parameters:
+  pyver: '3.5'
+  python_site_packages_rel: 'lib/python3.5/site-packages'
+
+# The packages list specifies all the packages that you
+# require installed.  <#> will ensure that all packages
+# and their dependencies are installed when you build this
+# profile.
+
+packages:
+  launcher:
+  cmake:
+  python:
+    link: shared
+  mpi:
+    use: mpich
+  blas:
+    use: openblas
+  lapack:
+    use: openblas
+  hypre:
+    with_openblas: true
+    without_check: true
+  petsc:
+    version: '3.6.1'
+    build_with: |
+      openblas, parmetis, scotch, suitesparse, superlu_dist, hypre
+    download: |
+      mumps, scalapack, blacs
+#      mumps, scalapack, blacs, ml
+    coptflags: -O2
+    link: shared
+    debug: false
+  petsc4py:
+    version: '3.6.0'
+  slepc:
+    version: '3.6.1'
+  slepc4py:
+    version: '3.6.0'
+  swig:
+  boost:
+    toolset: gcc
+  ipython:
+  matplotlib:
+  setuptools:
+    sources:
+    - key: tar.gz:7ehnr23qwffqlff2otu54t74ubamb3eo
+      url: https://pypi.python.org/packages/source/s/setuptools/setuptools-19.2.tar.gz
+  mpi4py:
+    sources:
+    - key: tar.gz:mvb2awcru6vb43iwlztt2qrlujhelra6
+      url: https://bitbucket.org/mpi4py/mpi4py/downloads/mpi4py-2.0.0.tar.gz
+  vtk:
+    vtk_wrap_python: false
+  ffc:
+    sources:
+    - key: git:3ac2dad202525b5e7cb04b17c9c1f5df716334bd
+      url: https://bitbucket.org/fenics-project/ffc.git
+  fiat:
+    sources:
+    - key: git:5b7f77abcea7d7e9b67b597a32543a12547ddf9b
+      url: https://bitbucket.org/fenics-project/fiat.git
+  instant:
+    sources:
+    - key: git:406c1a85a8a90aa8a156a03b0e020abe035e056e
+      url: https://bitbucket.org/fenics-project/instant.git
+  ufl:
+    sources:
+    - key: git:f3d31f2aea32141b2789a42839d0b22d188b6f2a
+      url: https://bitbucket.org/fenics-project/ufl.git
+  uflacs:
+    sources:
+    - key: git:073fd2bb24bef7929bf6c12b55b78904311a9245
+      url: https://bitbucket.org/fenics-project/uflacs.git
+  dolfin:
+    sources:
+    - key: git:5daf94104076908757b97d2a8b4b51d7639fb011
+      url: https://bitbucket.org/fenics-project/dolfin.git
+    build_with: |
+      openblas, hdf5, parmetis, petsc, petsc4py, suitesparse, scotch, slepc, slepc4py, vtk, zlib
+  mshr:
+    sources:
+    - key: git:6e7cd5cd80e2d0c5c3040b19ac9f08b506be6727
+      url: https://bitbucket.org/fenics-project/mshr.git
+    build_with: |
+      vtk

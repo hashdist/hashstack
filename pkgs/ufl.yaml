@@ -6,3 +6,10 @@ dependencies:
 sources:
 - key: tar.gz:y5oepapfcbcqj4kyznbm3b5m575jauxi
   url: https://bitbucket.org/fenics-project/ufl/downloads/ufl-1.6.0.tar.gz
+
+build_stages:
+- name: set-LANG
+  before: install
+  handler: bash
+  bash: |
+    export LANG=en_US.utf8

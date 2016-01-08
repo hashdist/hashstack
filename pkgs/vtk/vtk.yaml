@@ -17,10 +17,12 @@ defaults:
   # lib/vtk-5.10/libvtkHybrid.so.5.10.1 contains hard-coded path
   relocatable: false
   vtk_use_tk: false
+  vtk_wrap_python: true
 
 build_stages:
 
-- name: setup_dirs
+- when: vtk_wrap_python
+  name: setup_dirs
   after: prologue
   before: setup_builddir
   handler: bash
@@ -56,13 +58,22 @@ build_stages:
     - '-D BUILD_TESTING:BOOL=OFF'
     - '-D BUILD_EXAMPLES:BOOL=OFF'
     - '-D BUILD_SHARED_LIBS:BOOL=ON'
-    - '-D VTK_WRAP_PYTHON:BOOL=ON'
     - '-D VTK_WRAP_TCL:BOOL=OFF'
     - '-D VTK_USE_GL2PS:BOOL=ON'
-    - '-D VTK_PYTHON_SETUP_ARGS:STRING="--prefix=. --root=${ARTIFACT} --single-version-externally-managed"'
     - '-D CMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib/vtk-5.10"'
     - '-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"'
     - '-D VTK_USE_SYSTEM_TIFF:BOOL=ON'
+
+- when: vtk_wrap_python
+  name: configure
+  mode: update
+  extra: ['-D VTK_WRAP_PYTHON:BOOL=ON',
+          '-D VTK_PYTHON_SETUP_ARGS:STRING="--prefix=. --root=${ARTIFACT} --single-version-externally-managed"']
+
+- when: not vtk_wrap_python
+  name: configure
+  mode: update
+  extra: ['-D VTK_WRAP_PYTHON:BOOL=OFF']
 
 - when: vtk_use_tk
   name: configure
@@ -74,7 +85,7 @@ build_stages:
   mode: update
   extra: ['-D VTK_USE_TK:BOOL=OFF']
 
-- when: platform == 'linux'
+- when: vtk_wrap_python and platform == 'linux'
   name: rpath_fix
   after: install
   handler: bash
@@ -83,7 +94,7 @@ build_stages:
         ${PATCHELF} --set-rpath ${ARTIFACT}/lib/vtk-5.10 ${lib}
     done
 
-- when: platform == 'Darwin'
+- when: vtk_wrap_python and platform == 'Darwin'
   name: rpath_fix
   after: install
   handler: bash
@@ -103,15 +114,18 @@ build_stages:
     done
 
 profile_links:
-- name: python_packages
+- when: vtk_wrap_python
+  name: python_packages
   link: 'lib/python{{pyver}}/site-packages/*'
   dirs: true
 
-- name: python_exclude
+- when: vtk_wrap_python
+  name: python_exclude
   after: python_packages
   before: everything
   exclude: 'lib/python{{pyver}}/site-packages/**/*'
 
 when_build_dependency:
-- prepend_path: PYTHONPATH
+- when: vtk_wrap_python
+  prepend_path: PYTHONPATH
   value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'

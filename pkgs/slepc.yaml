@@ -26,6 +26,16 @@ build_stages:
     export PETSC_DIR=${PETSC_DIR}
     unset PETSC_ARCH
 
+- name: configure
+  mode: replace
+  after: prologue
+  handler: bash
+  bash: |
+    (
+    export LDFLAGS="-L${PETSC_DIR}/lib -Wl,-rpath=${PETSC_DIR}/lib"
+    python2 ./configure --prefix=${ARTIFACT}
+    )
+
 # SLEPc 3.5 does not allow the use of the -j option to make
 -  name: make
    mode: replace

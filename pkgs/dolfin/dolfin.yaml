@@ -29,6 +29,12 @@ build_stages:
   bash: |
     export PYVER={{pyver}}
 
+- name: set-LANG
+  before: configure
+  handler: bash
+  bash: |
+    export LANG=en_US.utf8
+
 - name: configure ## See dolfin.py for details
   mode: replace
   after: set_python_version
