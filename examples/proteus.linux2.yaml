@@ -30,7 +30,7 @@ packages:
     use: host-lapack
   daetk:
   mpi:
-    use: mpich
+    use: host-mpi
   mpi4py:
   nose:
   coverage:
@@ -87,4 +87,3 @@ packages:
   jupyter-pip:
   pythreejs:
   jupyter:
-  chrono:
