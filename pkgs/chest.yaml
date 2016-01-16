@@ -2,7 +2,7 @@ extends: [setuptools_package]
 
 dependencies:
   build: []
-  run: []
+  run: [heapdict]
 
 sources:
  - key: tar.gz:6liqgdkhed6uydfsldbtqpklvn3ez7se
