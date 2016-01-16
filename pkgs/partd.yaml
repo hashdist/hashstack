@@ -2,7 +2,7 @@ extends: [setuptools_package]
 
 dependencies:
   build: []
-  run: []
+  run: [locket]
 
 sources:
  - key: tar.gz:bofc6mj5a5kivnp3zke7vyt5mphic4e6
