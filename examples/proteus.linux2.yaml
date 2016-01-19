@@ -87,4 +87,4 @@ packages:
   jupyter-pip:
   pythreejs:
   jupyter:
-  chrono:
+#  chrono:
