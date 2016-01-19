@@ -1,8 +1,0 @@
-extends: [cmake_package]
-
-dependencies:
-  build: [bison, flex, libiconv]
-
-sources:
-- url: https://github.com/doxygen/doxygen.git
-  key: git:45e153f2238d0fa031d147cfe207e52b913845eb
