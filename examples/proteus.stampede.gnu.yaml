@@ -6,42 +6,55 @@
 # the most *specific* file that matches your environment.
 
 extends:
-- file: debian.yaml
+- file: linux.yaml
 
 # The packages list specifies all the packages that you
 # require installed.  <#> will ensure that all packages
 # and their dependencies are installed when you build this
 # profile.
 
+parameters:
+  machine: PowerEdge
+  PATH: /usr/lib64/qt-3.3/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/opt/ofed/bin:/opt/ofed/sbin
+  HOST_MPICC: /opt/apps/gcc4_9/mvapich2/2.1/bin/mpicc
+  HOST_MPICXX: /opt/apps/gcc4_9/mvapich2/2.1/bin/mpicxx
+  HOST_MPIF77: /opt/apps/gcc4_9/mvapich2/2.1/bin/mpif77
+  HOST_MPIF90: /opt/apps/gcc4_9/mvapich2/2.1/bin/mpif90
+  HOST_MPIEXEC: /opt/apps/gcc4_9/mvapich2/2.1/bin/mpiexec
+  HOST_OPENSSL: /usr/bin/openssl
+  PETSC_ARCH: linux-gnu-cxx-opt
+  HOST_CMAKE: /opt/apps/cmake/3.1.0/bin/cmake
+  PROLOGUE: export USER=user; export MODULEPATH=/opt/modulefiles:/opt/apps/modulefiles; source /opt/apps/lmod/lmod/init/bash; module load TACC;  module swap intel gcc; module load cmake;
+
 packages:
   clawpack:
   launcher:
   cmake:
-  openssl:
-    use: host-openssl
+    use: host-cmake
   python:
     host: false
     link: shared
     build_with: |
-      bzip2, sqlite, openssl
+      bzip2, sqlite
   blas:
-    use: host-blas
+    use: openblas
   lapack:
-    use: host-lapack
   daetk:
   mpi:
-    use: mpich
+    use: host-mpi
   mpi4py:
   nose:
   coverage:
   hdf5:
   matplotlib:
+  openssl:
+    use: host-openssl
   petsc:
     version: 3.6.1
     build_with: |
       parmetis
     download: |
-      superlu, superlu_dist, spooles, hypre, blacs, scalapack, mumps
+      superlu, superlu_dist, spooles, hypre, blacs, scalapack, f2cblaslapack
     coptflags: -O2
     link: shared
     debug: false
@@ -51,7 +64,6 @@ packages:
   pillow:
   pytables:
   sphinx:
-  sphinx-bootstrap-theme:
   superlu:
   sympy:
   tetgen:
@@ -86,5 +98,3 @@ packages:
   pcs_api:
   jupyter-pip:
   pythreejs:
-  jupyter:
-  chrono:
