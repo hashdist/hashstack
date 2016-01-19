@@ -1,0 +1,80 @@
+From b08c89d503fe6fc5c3faf5cb896a4e6bcd837a4f Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Petr=20P=C3=ADsa=C5=99?= <ppisar@redhat.com>
+Date: Tue, 15 Sep 2015 10:57:48 +0200
+Subject: [PATCH] Avoid floor_log2() redefinition with C99
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+GCC 5.1 defaults to gnu11 which forbirs redefinitions. This patch
+comes from <https://gcc.gnu.org/ml/gcc-patches/2009-06/msg01249.html>.
+
+<https://github.com/gccxml/gccxml/issues/11>
+
+Signed-off-by: Petr Písař <ppisar@redhat.com>
+---
+ GCC/gcc/toplev.c | 4 ++--
+ GCC/gcc/toplev.h | 7 ++++---
+ 2 files changed, 6 insertions(+), 5 deletions(-)
+
+diff --git a/GCC/gcc/toplev.c b/GCC/gcc/toplev.c
+index 3526010..419dc00 100644
+--- a/GCC/gcc/toplev.c
++++ b/GCC/gcc/toplev.c
+@@ -537,7 +537,7 @@ read_integral_parameter (const char *p, const char *pname, const int  defval)
+    for floor_log2 and exact_log2; see toplev.h.  That construct, however,
+    conflicts with the ISO C++ One Definition Rule.   */
+
+-#if GCC_VERSION < 3004 || !defined (__cplusplus)
++#if GCC_VERSION < 3004
+
+ /* Given X, an unsigned number, return the largest int Y such that 2**Y <= X.
+    If X is 0, return -1.  */
+@@ -589,7 +589,7 @@ exact_log2 (unsigned HOST_WIDE_INT x)
+ #endif
+ }
+
+-#endif /*  GCC_VERSION < 3004 || !defined (__cplusplus)  */
++#endif /*  GCC_VERSION < 3004 */
+
+ /* Handler for fatal signals, such as SIGSEGV.  These are transformed
+    into ICE messages, which is much more user friendly.  In case the
+diff --git a/GCC/gcc/toplev.h b/GCC/gcc/toplev.h
+index c935f7e..1edd5e5 100644
+--- a/GCC/gcc/toplev.h
++++ b/GCC/gcc/toplev.h
+@@ -151,6 +151,7 @@ extern void decode_d_option     (const char *);
+ /* Return true iff flags are set as if -ffast-math.  */
+ extern bool fast_math_flags_set_p  (void);
+
++#if GCC_VERSION < 3004
+ /* Return log2, or -1 if not exact.  */
+ extern int exact_log2                  (unsigned HOST_WIDE_INT);
+
+@@ -158,7 +159,7 @@ extern int exact_log2                  (unsigned HOST_WIDE_INT);
+ extern int floor_log2                  (unsigned HOST_WIDE_INT);
+
+ /* Inline versions of the above for speed.  */
+-#if GCC_VERSION >= 3004
++#else /* GCC_VERSION >= 3004 */
+ # if HOST_BITS_PER_WIDE_INT == HOST_BITS_PER_LONG
+ #  define CLZ_HWI __builtin_clzl
+ #  define CTZ_HWI __builtin_ctzl
+@@ -170,13 +171,13 @@ extern int floor_log2                  (unsigned HOST_WIDE_INT);
+ #  define CTZ_HWI __builtin_ctz
+ # endif
+
+-extern inline int
++static inline int
+ floor_log2 (unsigned HOST_WIDE_INT x)
+ {
+   return x ? HOST_BITS_PER_WIDE_INT - 1 - (int) CLZ_HWI (x) : -1;
+ }
+
+-extern inline int
++static inline int
+ exact_log2 (unsigned HOST_WIDE_INT x)
+ {
+   return x == (x & -x) && x ? (int) CTZ_HWI (x) : -1;
+-- 
+2.4.3

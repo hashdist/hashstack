@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:qs3ujncggklaaqnr5f3r3lpncmzugytu
+   url: https://pypi.python.org/packages/source/f/flatdict/flatdict-1.2.0.tar.gz

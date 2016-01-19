@@ -1,0 +1,10 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [libevent, ncurses]
+
+sources:
+- key: tar.gz:gfle467uxtxs335tzm2ltzmwxvb2he34
+  url: https://github.com/tmux/tmux/releases/download/2.1/tmux-2.1.tar.gz
+
+  

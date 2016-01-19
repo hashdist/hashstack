@@ -3,5 +3,5 @@ dependencies:
   run: [cmake, flufl_lock, numpy, swig]
 
 sources:
-- key: tar.gz:g3qefxrg3f7v4pkd6l2skrgzdoqpctq4
-  url: https://bitbucket.org/fenics-project/instant/downloads/instant-1.5.0.tar.gz
+- key: tar.gz:end6aiuvggljbfmrd7nr3yyl2555274b
+  url: https://bitbucket.org/fenics-project/instant/downloads/instant-1.6.0.tar.gz

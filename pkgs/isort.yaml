@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:3hvxdsk225ldmyciiam332l627nuf7qt
+   url: https://pypi.python.org/packages/source/i/isort/isort-4.1.2.tar.gz

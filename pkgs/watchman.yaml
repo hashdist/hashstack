@@ -1,0 +1,20 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [python]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:cdi6cnhg74iqardctjix47djauh3tzfc
+  url: https://github.com/facebook/watchman/archive/v3.8.0.tar.gz
+
+build_stages:
+- name: autogen
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    echo "Running autogen.sh"
+    ./autogen.sh

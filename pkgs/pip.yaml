@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - url: https://pypi.python.org/packages/source/p/pip/pip-6.1.1.tar.gz
-   key: tar.gz:rhz3mjwsexqi47za3biejl5eb5qs5mzi
+- key: tar.gz:zichtbxqkkgpvf22ct5z67yqmjy5jygd
+  url: https://pypi.python.org/packages/source/p/pip/pip-7.1.2.tar.gz
