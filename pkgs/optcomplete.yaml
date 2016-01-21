@@ -1,0 +1,5 @@
+extends: [distutils_package]
+
+sources:
+- key: tar.gz:v4restb5hqtdy6qqef23vxsn43cx7pfs
+  url: https://bitbucket.org/blais/optcomplete/get/477883477317.tar.gz

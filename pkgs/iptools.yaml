@@ -1,0 +1,5 @@
+extends: [setuptools_package]
+
+sources:
+- key: tar.gz:b4byows35v2axjf7itpmw2tym6omvekk
+  url: https://pypi.python.org/packages/source/i/iptools/iptools-0.6.1.tar.gz
