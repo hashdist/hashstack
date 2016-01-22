@@ -1,5 +1,13 @@
 extends: [setuptools_package]
 
 sources:
- - key: tar.gz:u2jqmtif7wjagwmju2w5x2jmx2zsshar
-   url: https://pypi.python.org/packages/source/f/flufl.lock/flufl.lock-2.3.1.tar.gz
+- key: tar.gz:ojrzvsr66a3zv3yslrzunmccneodiuqv
+  url: https://pypi.python.org/packages/source/f/flufl.lock/flufl.lock-2.4.1.tar.gz
+
+build_stages:
+# Fix for issue #911
+- name: copy-missing-init-file
+  after: install
+  handler: bash
+  bash: |
+    cp flufl/__init__.py ${ARTIFACT}/{{python_site_packages_rel}}/flufl/
