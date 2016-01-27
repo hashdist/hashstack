@@ -23,12 +23,14 @@ parameters:
   PATH: |
     /usr/bin:/bin:/usr/sbin:/sbin
   PROLOGUE: |
-    source /opt/modules/default/init/bash; export MODULEPATH=/opt/cray/gem/modulefiles:/opt/cray/xt-asyncpe/default/modulefiles:/opt/modulefiles:/opt/cray/modulefiles:/cm/local/modulefiles:/cm/shared/modulefiles:/usr/local/modulefiles/COTS:/usr/local/modulefiles/unsupported; export MODULESHOME=/opt/modules/3.2.6.7; export MODULE_VERSION=3.2.6.7; export MODULE_VERSION_STACK=3.2.6.7; echo "unloading modules"; module unload PrgEnv-pgi; echo "loading modules"; module load PrgEnv-gnu/4.2.34; module load cray-mpich/6.0.0; module unload cray-libsci; module load acml/5.3.1; echo "setting default compilers"; export CC=gcc; export CXX=g++; export FC=gfortran; export F77=gfortran; export F90=gfortran; export CPP=cpp;
+    source /opt/modules/default/init/bash; export MODULEPATH=/opt/cray/gem/modulefiles:/opt/cray/craype/default/modulefiles:/opt/cray/modulefiles:/opt/modulefiles:/cm/local/modulefiles:/cm/shared/modulefiles:/usr/local/modulefiles/COTS:/usr/local/modulefiles/unsupported; export MODULESHOME=/opt/modules/3.2.10.3; export MODULE_VERSION=3.2.10.3; export MODULE_VERSION_STACK=3.2.10.3; echo "unloading modules"; module purge; echo "loading modules"; module load modules/3.2.10.3 eswrap/1.1.0-1.020200.1231.0 java/jdk1.7.0_45 craype-network-gemini craype-interlagos craype/2.2.1 cray-mpich/7.1.0 pbs/12.1.404 gcc/4.9.2 udreg/2.3.2-1.0502.10518.2.17.gem ugni/6.0-1.0502.10863.8.28.gem pmi/5.0.6-1.0000.10439.140.3.gem dmapp/7.0.1-1.0502.11080.8.74.gem gni-headers/4.0-1.0502.10859.7.8.gem xpmem/0.1-2.0502.64982.5.3.gem dvs/2.5_0.9.0-1.0502.2188.1.113.gem alps/5.2.4-2.0502.9774.31.12.gem rca/1.0.0-2.0502.60530.1.63.gem atp/1.7.5 PrgEnv-gnu/5.2.82 acml/5.3.1; echo "setting default compilers"; export CC=gcc; export CXX=g++; export FC=gfortran; export F77=gfortran; export F90=gfortran; export CPP=cpp;
   DYNAMIC_EXE_LINKER_FLAGS: -dynamic
 
 packages:
   launcher:
   cmake:
+  openssl:
+    use: host-openssl
   python:
     host: false
     build_with: |
@@ -48,6 +50,7 @@ packages:
   parmetis:
     without_check: true
   petsc:
+    version: 3.6.1
     build_with: |
       parmetis
     download: |
@@ -56,6 +59,7 @@ packages:
     link: shared
     debug: false
   petsc4py:
+    version: 3.6.0
     with_conf: true
   pytables:
   sphinx:

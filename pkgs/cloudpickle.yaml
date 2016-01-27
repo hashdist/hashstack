@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:gqmdap2ey3cnvime6hodnsgaw77yeyof
+   url: https://pypi.python.org/packages/source/c/cloudpickle/cloudpickle-0.1.1.tar.gz
