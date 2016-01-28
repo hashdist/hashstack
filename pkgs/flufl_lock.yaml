@@ -10,4 +10,4 @@ build_stages:
   after: install
   handler: bash
   bash: |
-    cp flufl/__init__.py ${ARTIFACT}/{{python_site_packages_rel}}/flufl/
+    cp flufl/__init__.py ${ARTIFACT}/lib/python{{pyver}}/site-packages/flufl/
