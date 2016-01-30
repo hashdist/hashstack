@@ -61,7 +61,7 @@ build_stages:
     bash: |
       cat > site.cfg << EOF
       [DEFAULT]
-      library_dirs = ${ACML_DIR}/gfortran64/lib
+      library_dirs = /opt/acml/${ACML_VERSION}/${PE_ACML_DEFAULT_DIR_GNU}/lib
       libraries = acml, gfortran
       EOF
 
