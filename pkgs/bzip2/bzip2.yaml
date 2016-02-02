@@ -12,10 +12,10 @@ build_stages:
 
 - name: patch
   before: make-configure
-  files: [clang-fix.patch]
+  files: [compiler-fix.patch]
   handler: bash
   bash: |
-    patch -up1 < _hashdist/clang-fix.patch
+    patch -up1 < _hashdist/compiler-fix.patch
 
 - name: make-configure
   after: prologue

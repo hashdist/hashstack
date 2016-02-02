@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: [heapdict]
+
+sources:
+ - key: tar.gz:6liqgdkhed6uydfsldbtqpklvn3ez7se
+   url: https://pypi.python.org/packages/source/c/chest/chest-0.2.3.tar.gz

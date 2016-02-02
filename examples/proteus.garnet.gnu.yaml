@@ -117,3 +117,6 @@ packages:
 #  ipdb:
   pip:
   pexpect:
+  ipdb:
+ # vtk:
+ # pyvtk:

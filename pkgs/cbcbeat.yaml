@@ -1,0 +1,8 @@
+extends: [distutils_package]
+dependencies:
+  build: []
+  run: [dolfin, dolfin-adjoint, ffc, fiat, gotran, instant, ufl]
+
+sources:
+- key: tar.gz:xd6zwhubeh6cvcq5roqvgd5lkydvea7h
+  url: https://bitbucket.org/meg/cbcbeat/get/3ae776e2c47a.tar.gz

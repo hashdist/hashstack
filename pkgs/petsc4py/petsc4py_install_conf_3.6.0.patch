@@ -1,0 +1,34 @@
+diff --git a/conf/petscconf.py b/conf/petscconf.py
+index 8cd322c..65337b3 100644
+--- a/conf/petscconf.py
++++ b/conf/petscconf.py
+@@ -14,8 +14,8 @@ __all__ = ['setup',
+ 
+ # --------------------------------------------------------------------
+ 
+-from conf.baseconf import setup, Extension
+-from conf.baseconf import config, build, build_src, build_ext, install
+-from conf.baseconf import clean, test, sdist
++from .baseconf import setup, Extension
++from .baseconf import config, build, build_src, build_ext, install
++from .baseconf import clean, test, sdist
+ 
+ # --------------------------------------------------------------------
+diff --git a/setup.py b/setup.py
+index 381d006..369e9b1 100755
+--- a/setup.py
++++ b/setup.py
+@@ -114,9 +114,11 @@ def run_setup():
+             setup_args['setup_requires'] = ['Cython>='+CYTHON]
+     #
+     setup(packages     = ['petsc4py',
+-                          'petsc4py.lib',],
++                          'petsc4py.lib',
++                          'petsc4py.conf'],
+           package_dir  = {'petsc4py'     : 'src',
+-                          'petsc4py.lib' : 'src/lib'},
++                          'petsc4py.lib' : 'src/lib',
++                          'petsc4py.conf': 'conf'},
+           package_data = {'petsc4py'     : ['include/petsc4py/*.h',
+                                             'include/petsc4py/*.i',
+                                             'include/petsc4py/*.pxd',

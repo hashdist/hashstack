@@ -6,5 +6,6 @@ defaults:
   relocatable: false
 
 sources:
-- key: tar.gz:vr7hrlpjhzrt47wwfbjsxohgkdflude4
-  url: http://nodejs.org/dist/v0.12.2/node-v0.12.2.tar.gz
+- key: tar.gz:nggzmyqgpltkecrfq3s4bfszonp4abih
+  url: https://nodejs.org/dist/v5.0.0/node-v5.0.0.tar.gz
+

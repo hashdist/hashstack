@@ -1,0 +1,9 @@
+extends: [autotools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:ohbmjhyk3lnm7w7ggmvdolbyz6oiw6ev
+   url: https://sourceforge.net/projects/levent/files/libevent/libevent-2.0/libevent-2.0.22-stable.tar.gz

@@ -2,8 +2,8 @@ extends: [autotools_package]
 
 when pyver == '2.7':
     sources:
-    - key: tar.gz:zc52gptgvqzadwv5yvlpb2t47zvmcgkg
-      url: http://python.org/ftp/python/2.7.9/Python-2.7.9.tgz
+    - key: tar.gz:qkjjxfx5nl6i3kbywfera4dyyax2c5cl
+      url: http://python.org/ftp/python/2.7.11/Python-2.7.11.tgz
 when pyver == '3.2':
     sources:
     - key: tar.gz:7qpecklofhkhn5uwga5mvyutvz5cgehq
@@ -16,6 +16,10 @@ when pyver == '3.4':
     sources:
     - key: tar.gz:rn2d6vxj4uf7ber3t2oelxmspqdr26vf
       url: https://www.python.org/ftp/python/3.4.3/Python-3.4.3.tgz
+when pyver == '3.5':
+    sources:
+    - key: tar.gz:nb7am7m7heo2mrkchr7nvaqfxlu5gxw4
+      url: https://www.python.org/ftp/python/3.5.1/Python-3.5.1.tgz
 
 
 
@@ -195,5 +199,8 @@ profile_links:
   - name: python_exclude
     after: python_packages
     before: everything
-
     exclude: 'lib/python{{pyver}}/site-packages/**/*'
+
+  - name: exclude_python3_cache
+    before: python_exclude
+    link: 'lib/python{{pyver}}/site-packages/__pycache__/*'

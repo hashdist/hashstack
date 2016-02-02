@@ -69,24 +69,34 @@ packages:
     address_model: 64
     build_with: |
       python
+<<<<<<< HEAD
   cgal:
   pycgal:
   netcdf4:
   netcdf4f:
   python-netcdf4:
   vapory:
+=======
+  netcdf4:
+  python-netcdf4:
+  netcdf4f:
+>>>>>>> origin/master
   netcdf4cpp:
   jasper:
   grib_api:
   pyproj:
   pygrib:
+<<<<<<< HEAD
 #  adh:  
   stwave:  
+=======
+>>>>>>> origin/master
   scipy:
   ipython:
   terminado:
   h5py:
   pydap:
+<<<<<<< HEAD
   leafletwidget: 
     sources:
       - key: git:f9147c5b13a69b80bc28d3574f7ba6b2c576aed2
@@ -111,4 +121,16 @@ packages:
   zoltan:
     build_with: |
       parmetis
+=======
+  leafletwidget:
+  geojson:
+  rdp:
+  rtree:
+  ode:
+  ipdb:
+  pip:
+  pexpect:
+  pcs_api:
+  jupyter-pip:
+>>>>>>> origin/master
   pythreejs:
