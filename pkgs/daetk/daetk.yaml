@@ -4,9 +4,17 @@ extends: [autotools_package]
 dependencies:
   build: [petsc, parmetis, mpi]
 
-sources:
-- url: https://github.com/erdc-cm/daetk.git
-  key: git:e05b9975a2d413148ce122a274be675b27f9450d
+defaults:
+  petscversion: '3.6.1'
+
+when petscversion == '3.6.1':
+  sources:
+  - url: https://github.com/erdc-cm/daetk.git
+    key: git:1d61f1a6942730ed5b964f5b9241568ca4acf0b6
+when petscversion == '3.5.2':
+  sources:
+  - url: https://github.com/erdc-cm/daetk.git
+    key: git:e05b9975a2d413148ce122a274be675b27f9450d
 
 build_stages:
 - when: platform == 'Darwin'
