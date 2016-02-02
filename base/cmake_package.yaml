@@ -15,6 +15,7 @@ build_stages:
   - name: configure
     after: setup_builddir
     debug: {{debug}}
+    empty_osx_deployment_target: {{empty_osx_deployment_target}}
 
   - name: make
     after: configure
