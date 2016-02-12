@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:bmkawsuuutyzkgeh3g6oizinuii7pfqa
+   url: https://pypi.python.org/packages/source/t/traitlets/traitlets-4.0.0.tar.gz

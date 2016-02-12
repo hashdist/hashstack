@@ -17,8 +17,8 @@ build_stages:
     bash: |
       cat > site.cfg << EOF
       [DEFAULT]
-      library_dirs = ${CRAY_LIBSCI_PREFIX_DIR}/lib
-      libraries = sci_gnu
+      library_dirs = /opt/acml/${ACML_VERSION}/${PE_ACML_DEFAULT_DIR_GNU}/lib
+      libraries = acml
       EOF
 
   - name: set-LDFLAGS
@@ -26,8 +26,8 @@ build_stages:
     before: install
     handler: bash
     bash: |
-      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${CRAY_LIBSCI_PREFIX_DIR}/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=/opt/acml/${ACML_VERSION}/${PE_ACML_DEFAULT_DIR_GNU}/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
       export ATLAS=None
-      export LAPACK=sci_gnu
-      export BLAS=sci_gnu
+      export LAPACK=acml
+      export BLAS=acml
 
