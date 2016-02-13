@@ -53,7 +53,7 @@ build_stages:
       export BLAS=None
       export ATLAS=None
 
-  - when: machine == 'CrayXC30'
+  - when: machine == 'CrayXC30' or machine == 'CrayXC40'
     name: create-site.cfg
     after: prologue
     before: install
