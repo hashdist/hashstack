@@ -65,7 +65,7 @@ build_stages:
       libraries = sci_gnu
       EOF
 
-  - when: machine == 'CrayXC30'
+  - when: machine == 'CrayXC30' or machine == 'CrayXC40'
     name: set-LDFLAGS
     after: prologue
     before: install

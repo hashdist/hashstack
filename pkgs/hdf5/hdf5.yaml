@@ -24,7 +24,7 @@ build_stages:
     export MACHTYPE=x86_64-suse-linux
     export CPU=x86_64
 
-- when: machine == 'CrayXE6' or machine == 'CrayXC30'
+- when: machine == 'CrayXE6' or machine == 'CrayXC30' or machine == 'CrayXC40'
   name: make_exe_builds_static
   handler: bash
   after: configure
@@ -50,7 +50,7 @@ build_stages:
           '--enable-largefile=yes',
           '--with-default-api-version=v18']
 
-- when: machine == 'CrayXE6' or machine == 'CrayXC30'
+- when: machine == 'CrayXE6' or machine == 'CrayXC30' or machine == 'CrayXC40'
   name: configure
   extra: ['--enable-static-exec',
           '--with-zlib=${ZLIB_DIR}',
