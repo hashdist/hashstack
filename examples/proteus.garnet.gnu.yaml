@@ -75,5 +75,6 @@ packages:
   pip:
   h5py:
   ode:
+  pcs_api:
  # vtk:
  # pyvtk:
