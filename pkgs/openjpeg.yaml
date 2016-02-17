@@ -10,8 +10,8 @@ defaults:
   relocatable: false
 
 sources:
-- key: tar.gz:cizlxakp3cgy5uyuzfhqx7v3appikwky
-  url: http://sourceforge.net/projects/openjpeg.mirror/files/2.1.0/openjpeg-2.1.0.tar.gz
+- key: tar.gz:zgii7k2eimvc5usvbrcxzn7hg3ng27bs
+  url: http://sourceforge.net/projects/openjpeg.mirror/files/openjpeg-1.5.0.tar.gz
 
 build_stages:
 
