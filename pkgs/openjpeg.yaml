@@ -1,12 +1,10 @@
 extends: [cmake_package]
 
-defaults:
-  version: '1.5'
-
 dependencies:
   build: []
 
 defaults:
+  version: 1.5
   relocatable: false
 
 when version == '1.5':
@@ -20,10 +18,10 @@ when version == '2.1':
 
 # grib_api, at least, expects not to find this namespaced
 build_stages:
-when version == '1.5':
-  - name: fix_include
-    after: install
-    handler: bash
-    bash: |
-      ln -s ${ARTIFACT}/include/openjpeg-1.5/openjpeg.h ${ARTIFACT}/include/openjpeg.h
+- when: version == '1.5'
+  name: fix_include
+  after: install
+  handler: bash
+  bash: |
+    ln -s ${ARTIFACT}/include/openjpeg-1.5/openjpeg.h ${ARTIFACT}/include/openjpeg.h
 
