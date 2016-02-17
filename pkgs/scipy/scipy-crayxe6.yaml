@@ -17,7 +17,7 @@ build_stages:
     bash: |
       cat > site.cfg << EOF
       [DEFAULT]
-      library_dirs = ${ACML_DIR}/gfortran64/lib
+      library_dirs = /opt/acml/${ACML_VERSION}/${PE_ACML_DEFAULT_DIR_GNU}/lib
       libraries = acml
       EOF
 
@@ -26,7 +26,7 @@ build_stages:
     before: install
     handler: bash
     bash: |
-      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${ACML_DIR}/gfortran64/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=/opt/acml/${ACML_VERSION}/${PE_ACML_DEFAULT_DIR_GNU}/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
       export ATLAS=None
       export LAPACK=acml
       export BLAS=acml

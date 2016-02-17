@@ -1,8 +1,8 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 dependencies:
   build: []
   run: [numpy, sympy]
 
 sources:
-- key: git:d7cf2148d6a2cf8703d2deb0d72514f4f0323827
+- key: git:9067fa5abfce360c04ce2e954c6f45dde504ced9
   url: https://bitbucket.org/johanhake/modelparameters.git

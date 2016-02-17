@@ -31,7 +31,7 @@ build_stages:
   after: prologue
   handler: bash
   bash: |
-    make USE_THREAD=${USE_THREAD} {{extra_flags}} -j${HASDIST_CPU_COUNT}
+    make USE_THREAD=${USE_THREAD} {{extra_flags}} -j${HASHDIST_CPU_COUNT}
     make {{extra_flags}} PREFIX=${ARTIFACT} install
 
 when_build_dependency:

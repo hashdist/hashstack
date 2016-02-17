@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:zfyvb4gv4bxpzx4hiuwlslzf2e2rd5pz
+   url: https://pypi.python.org/packages/source/b/bloscpack/bloscpack-0.10.0.tar.gz

@@ -1,0 +1,30 @@
+extends: [cmake_package]
+
+sources:
+- url: https://github.com/projectchrono/chrono.git
+  key: git:a181c70e4ae83bd698e0e96e853c9a73636ccf4f
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build:
+    - python
+    - irrlicht
+    - zlib
+    - openjpeg
+    - png
+    - swig
+
+build_stages:
+- name: configure
+  extra:
+    - '-DENABLE_MODULE_VEHICLE=ON'
+    - '-DENABLE_MODULE_IRRLICHT:BOOL=ON'
+    - '-DENABLE_MODULE_PYTHON:BOOL=OFF'
+    - '-DPYTHON_INCLUDE_DIR:PATH="${PYTHON_DIR}/include/python2.7"'
+    - '-DPYTHON_LIBRARY:FILEPATH:="${PYTHON_DIR}/lib/libpython2.7.so"'
+    - '-DPYTHON_LIBRARY_DEBUG:FILEPATH:="${PYTHON_DIR}/lib/libpython2.7.so"'
+    - '-DPYTHON_EXECUTABLE:FILEPATH:="${PYTHON_DIR}/bin/python"'
+    
+
