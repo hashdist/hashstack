@@ -24,6 +24,8 @@ packages:
   clawpack:
   launcher:
   cmake:
+  openjpeg:
+    version: '2.1'
   openssl:
     use: host-openssl
   python:
