@@ -6,5 +6,5 @@ dependencies:
 
 sources:
  - key: tar.gz:ohbmjhyk3lnm7w7ggmvdolbyz6oiw6ev
- - url: https://github.com/libevent/libevent/releases/download/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz
+   url: https://github.com/libevent/libevent/releases/download/release-2.0.22-stable/libevent-2.0.22-stable.tar.gz
 
