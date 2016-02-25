@@ -3,15 +3,19 @@ when platform != 'linux':
 when platform == 'linux':
   extends: [distutils_package, libflags]
 dependencies:
-  build: [lapack, numpy]
-  run: [lapack, numpy]
+  build: [blas, lapack, numpy]
+  run: [blas, lapack, numpy]
 
 sources:
   - url: http://downloads.sourceforge.net/scipy/scipy-0.13.3.tar.gz
     key: tar.gz:vhrty7xamdbvzvog5y5mtzpjxo4zegox
 
+defaults:
+  # Build with OpenBLAS
+  with_openblas: false
+
 build_stages:
-  - when: platform == 'linux'
+  - when: platform == 'linux' and not with_openblas
     name: set-lapack-paths
     after: libflags
     before: install
@@ -21,3 +25,24 @@ build_stages:
       export ATLAS=$LAPACK_DIR
       export BLAS=$LAPACK_DIR
       export LAPACK=$LAPACK_DIR
+
+  - when: platform == 'linux' and with_openblas
+    name: set-lapack-paths
+    after: libflags
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${BLAS_DIR}/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      #export ATLAS=None
+      export LAPACK=${BLAS_DIR}/lib/libopenblas.so
+      export BLAS=${BLAS_DIR}/lib/libopenblas.so
+
+# Make sure that the fortran objects are compiled with -fPIC
+  - when: platform == 'linux'
+    name: compile-fc-with-fPIC
+    after: setup_dirs
+    before: install
+    handler: bash
+    bash: |
+      export FFLAGS="$FFLAGS -fPIC"
+      export FCFLAGS="$FCFLAGS -fPIC"
