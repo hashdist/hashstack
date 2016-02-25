@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [blas, mpi, python, {{build_with}}]
+  build: [blas, lapack, mpi, python, {{build_with}}]
 
 when version == '3.6.1':
   sources:

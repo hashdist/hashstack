@@ -117,8 +117,8 @@ def configure(ctx, stage_args):
         # Special case, no meaningful BLAS/LAPACK directories when using Accelerate
 
         if ctx.parameters['platform'] != 'Darwin':
-            conf_lines.append('--with-blas-dir=$BLAS_DIR')
-            conf_lines.append('--with-lapack-dir=$LAPACK_DIR')
+            conf_lines.append('--with-blas-lib=$BLAS_DIR/lib/libblas.so')
+            conf_lines.append('--with-lapack-lib=$LAPACK_DIR/lib/liblapack.so')
 
     # Special case, ParMETIS also provides METIS
     if 'PARMETIS' in ctx.dependency_dir_vars:
