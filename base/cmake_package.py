@@ -38,6 +38,9 @@ def configure(ctx, stage_args):
     if stage_args.get('empty_osx_deployment_target', False):
         conf_lines.append('-DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=""')
 
+    if stage_args.get('cmake_osx_sysroot', False):
+        conf_lines.append('-DCMAKE_OSX_SYSROOT:STRING=%s' % stage_args['cmake_osx_sysroot'])
+
     #cmake needs to be given all the dependency dirs as prefix paths
     #so that we search the hashdist directories before the system directories
     #CMake doesn't use the CPPFLAGS implicitly to find libraries

@@ -15,6 +15,8 @@ build_stages:
   - name: configure
     after: setup_builddir
     debug: {{debug}}
+    empty_osx_deployment_target: {{empty_osx_deployment_target}}
+    cmake_osx_sysroot: {{cmake_osx_sysroot}}
 
   - name: make
     after: configure

@@ -49,7 +49,10 @@ build_stages:
   after: install
   handler: bash
   bash: |
-    # FIXME: use install_name_tool to fix rpath
+    for lib in ${ARTIFACT}/lib/python{{pyver}}/site-packages/dolfin/cpp/_*.so; do
+        install_name_tool -add_rpath ${BOOST_DIR}/lib ${lib}
+        install_name_tool -add_rpath ${VTK_DIR}/lib/vtk-5.10 ${lib}
+    done
 
 - when: platform == 'Cygwin'
   name: dll_fix

@@ -59,7 +59,10 @@ build_stages:
   before: configure
   handler: bash
   bash: |
-    CMAKE_FLAGS="${CMAKE_FLAGS} -DCMAKE_MACOSX_RPATH:BOOL=ON"
+    CMAKE_FLAGS="
+      ${CMAKE_FLAGS}
+      -DCMAKE_MACOSX_RPATH:BOOL=ON
+      -DCMAKE_OSX_SYSROOT:STRING=/"
 
 - name: configure
   after: cmake-flags
