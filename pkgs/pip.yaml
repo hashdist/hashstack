@@ -1,9 +1,5 @@
 extends: [setuptools_package]
 
-dependencies:
-  build: []
-  run: []
-
 sources:
-- key: tar.gz:zichtbxqkkgpvf22ct5z67yqmjy5jygd
-  url: https://pypi.python.org/packages/source/p/pip/pip-7.1.2.tar.gz
+- key: tar.gz:gd4ywzxt7yigtrjjusivs7juuhbcjjug
+  url: https://pypi.python.org/packages/source/p/pip/pip-8.0.3.tar.gz
