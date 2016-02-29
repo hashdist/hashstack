@@ -1,0 +1,25 @@
+extends: [distutils_package]
+dependencies:
+  build:
+    - numpy
+    - cython
+    - zmq
+
+sources:
+- key: zip:qofsjfbfwfurfauaojvq5kf4nyawkwlb
+  url: https://pypi.python.org/packages/source/p/pyzmq/pyzmq-14.7.0.zip
+
+build_stages:
+- name: fix_distutils_rpath_flag
+  files: [fix_distutils_rpath_flag.patch]
+  before: configure
+  handler: bash
+  bash: |
+    patch -p1 < _hashdist/fix_distutils_rpath_flag.patch
+
+- name: configure
+  after: setup_dirs
+  before: install
+  handler: bash
+  bash: |
+    ${PYTHON} setup.py configure --zmq=${ZMQ_DIR}

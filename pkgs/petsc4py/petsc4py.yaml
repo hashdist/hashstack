@@ -24,6 +24,14 @@ build_stages:
     bash: |
       patch -up1 < _hashdist/petsc4py_install_conf.patch
 
+  - when: version == '3.6.0'
+    name: with_conf
+    handler: bash
+    files: [petsc4py_install_conf_3.6.0.patch]
+    before: install
+    bash: |
+      patch -up1 < _hashdist/petsc4py_install_conf_3.6.0.patch
+
   - when: platform == 'Cygwin'
     name: explicit_build
     after: fix_libpetsc4py_decls_detection

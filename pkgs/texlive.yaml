@@ -1,0 +1,24 @@
+extends: [base_package]
+
+sources:
+- key: tar.xz:5wn426645cm4hqt4c2umlqybprhqtyox
+  url: ftp://tug.org/historic/systems/texlive/2015/texlive-20150521-source.tar.xz
+
+defaults:
+  # File lib/x86_64-unknown-linux-gnu/pkgconfig/synctex.pc contains hardwired
+  # paths
+  relocatable: false
+
+# The code below is following the instructions how to build Tex Live from:
+# https://www.tug.org/texlive/doc/tlbuild.html
+
+build_stages:
+- name: build
+  after: prologue
+  handler: bash
+  bash: |
+    mkdir build
+    cd build
+    ../configure --prefix="${ARTIFACT}" --without-x --disable-xetex --disable-xindy -C
+    make -j ${HASHDIST_CPU_COUNT}
+    make install

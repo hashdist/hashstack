@@ -5,8 +5,8 @@ dependencies:
   run: [pkg-config]
 
 sources:
-- key: tar.bz2:co74llsuhtz2ugakyjefyc6issk6hltr
-  url: http://protobuf.googlecode.com/files/protobuf-2.5.0.tar.bz2
+- key: tar.bz2:5zcfmewvitmillreb754x6jgp6vj6wj3
+  url: https://github.com/google/protobuf/releases/download/v2.6.1/protobuf-2.6.1.tar.bz2
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

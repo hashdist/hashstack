@@ -1,9 +1,21 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: []
+  build: [cryptopp]
   run: []
 
 sources:
  - url: https://pypi.python.org/packages/source/p/pycryptopp/pycryptopp-0.6.0.1206569328141510525648634803928199668821045408958.tar.gz
    key: tar.gz:cfqvrel32jb5ujybz7v2tjrxjbklzgsz
+
+build_stages:
+- name: install
+  after: setup_dirs
+  handler: bash
+  bash: |
+    mkdir -p $ARTIFACT/lib/python2.7/site-packages
+    export PYTHONPATH=$PYTHONPATH:$ARTIFACT/lib/python2.7/site-packages
+    # build
+    $PYTHON setup.py build --disable-embedded-cryptopp build_ext -I${CRYPTOPP_DIR}/include -L${CRYPTOPP_DIR}/lib
+    # install
+    $PYTHON setup.py install --prefix=${ARTIFACT}

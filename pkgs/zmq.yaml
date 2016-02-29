@@ -1,10 +1,13 @@
 extends: [autotools_package]
 
 sources:
-  - url: http://download.zeromq.org/zeromq-3.2.4.tar.gz
-    key: tar.gz:36lkcqoilns4fs3mbwzceiysmyr2bhxm
+- key: tar.gz:mgzrzaynwn3xo7sboi22etjwmcslzq7u
+  url: http://download.zeromq.org/zeromq-4.1.3.tar.gz
 
 build_stages:
+- name: configure
+  extra: ['--with-libsodium=no']
+
 - when: platform == 'Cygwin' 
   name: make
   mode: replace
@@ -30,3 +33,9 @@ build_stages:
 
     mkdir -p $ARTIFACT/lib
     install libzmq.dll.a $ARTIFACT/lib
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
+- prepend_path: PKG_CONFIG_PATH
+  value: '${ARTIFACT}/lib/pkgconfig'

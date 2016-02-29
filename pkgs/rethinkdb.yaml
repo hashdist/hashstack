@@ -1,0 +1,22 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [zlib, protobuf, jemalloc, ncurses, boost, python, curl, openssl]
+
+sources:
+- key: tar.gz:pfj3jbvo6d7ma5wdvxyzr6zezfu6grhs
+  url: http://download.rethinkdb.com/dist/rethinkdb-2.1.5-2.tgz
+
+build_stages:
+- name: configure
+  extra: 
+  - --dynamic
+  - jemalloc
+  - LDFLAGS=$LDFLAGS
+  - CXXFLAGS=$CPPFLAGS
+
+# Workaround for https://github.com/rethinkdb/rethinkdb/issues/5062
+- name: make
+  mode: override
+  bash: |
+    make -j ${HASHDIST_CPU_COUNT} ALLOW_WARNINGS=1 VERBOSE=1
