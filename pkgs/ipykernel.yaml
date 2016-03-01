@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - key: zip:ec43ioxiux6apa7c2pnmmhvmsjpfbo3j
-   url: https://pypi.python.org/packages/source/i/ipykernel/ipykernel-4.0.3.zip
+ - key: zip:jel6deigqeydi7lfpbwr2mpg7sfoedsz
+   url: https://pypi.python.org/packages/source/i/ipykernel/ipykernel-4.3.1.zip

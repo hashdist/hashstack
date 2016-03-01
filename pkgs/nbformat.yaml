@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - key: zip:4fxkyjfnjezejxxhpkhu6lokr7rahjgh
-   url: https://pypi.python.org/packages/source/n/nbformat/nbformat-4.0.0.zip
+ - key: zip:3sdv5ahsufylg2iza7qequchaj65c7lw
+   url: https://pypi.python.org/packages/source/n/nbformat/nbformat-4.0.1.zip
