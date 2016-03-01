@@ -1,5 +1,9 @@
 extends: [setuptools_package]
 
+dependencies:
+  build: [vcversioner]
+  run: [vcversioner]
+
 sources:
-- key: tar.gz:ckmkf4ns6tckpojbztgrlhsoil3npmh3
-  url: https://pypi.python.org/packages/source/j/jsonschema/jsonschema-2.4.0.tar.gz
+ - key: zip:sceestney5cjpj5cpbbk4tfjym2vwx3x
+   url: https://pypi.python.org/packages/source/j/jsonschema/jsonschema-2.5.1.zip

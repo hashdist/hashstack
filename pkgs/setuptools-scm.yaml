@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: zip:kegdkoasc6njrntukm2yp5vmw4mt66yt
+   url: https://pypi.python.org/packages/source/s/setuptools_scm/setuptools_scm-1.10.1.zip
