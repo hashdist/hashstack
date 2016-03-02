@@ -1,8 +1,8 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: []
-  run: []
+  build: [setuptools-scm]
+  run: [setuptools-scm]
 
 sources:
  - key: tar.gz:fyij7ebk5vfhtgoumxsozbcwyeis4zly

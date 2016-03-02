@@ -1,7 +1,9 @@
 extends: [setuptools_package]
 
 dependencies:
-  run: [pyzmq, tornado, jinja2, jsonschema, pygments, sphinx]
+  run: [pyzmq, tornado, jinja2, jsonschema, pygments, sphinx, pexpect,
+        traitlets, simplegeneric, pickleshare, decorator, ipython-genutils,
+        path_py]
 
 sources:
  - key: zip:lj4uy5zujfgpqu3km7kqttyuip2oksei
