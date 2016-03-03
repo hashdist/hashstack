@@ -4,7 +4,7 @@ dependencies:
   build: [cgal,python,swig]
 
 sources:
-- key: git:28817d133f4a7d64c7048fefde6ba7fd2bda1ad4
+- key: git:6d44cbe100d5a139888126f5fb3383264efeded6
   url: https://github.com/CGAL/cgal-swig-bindings.git
 
 build_stages:

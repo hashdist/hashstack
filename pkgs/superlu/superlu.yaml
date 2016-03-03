@@ -5,7 +5,7 @@ dependencies:
 
 sources:
 - url: https://github.com/erdc-cm/superlu
-  key: git:55f7d100d8a5ffa2222534126c2b52986d4ff5bb
+  key: git:51cd6c3f05d4701fa7163aee4e356e11ac81153e
 
 build_stages:
 - when: platform == 'Darwin'
@@ -56,5 +56,5 @@ build_stages:
   bash: |
     mkdir ${ARTIFACT}/lib/
     mkdir ${ARTIFACT}/include/
-    cp lib/libsuperlu_4.1.a ${ARTIFACT}/lib/
+    cp lib/libsuperlu_4.3.a ${ARTIFACT}/lib/
     cp SRC/*.h ${ARTIFACT}/include/
