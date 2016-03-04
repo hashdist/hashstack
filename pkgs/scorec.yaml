@@ -3,7 +3,7 @@ dependencies:
   build: [mpi, parmetis, zoltan, simmetrix]
 
 sources:
-  - url: git@github.com:SCOREC/core-sim.git
+  - url: https://github.com/SCOREC/core-sim.git
     key: git:5bba53b5599baf2dc62c1d3a958af43ff42c8b17
     
 defaults:

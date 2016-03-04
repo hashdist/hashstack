@@ -106,15 +106,12 @@ packages:
   rtree:
   matlab:
     use: host-matlab
-  pymatbridge:
   ode:
   ipdb:
   pip:
   jupyter-pip:
   pexpect:
   pcs_api:
-  scorec:
-  simmetrix:
   zoltan:
     build_with: |
       parmetis

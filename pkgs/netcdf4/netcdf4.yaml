@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [mpi, hdf5, curl]
+  build: [mpi, hdf5, curl, zlib, szip]
 
 sources:
 - key: tar.gz:6lxhr2zray34ab7qaht4ddrno46sh42f
