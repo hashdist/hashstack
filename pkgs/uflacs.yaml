@@ -1,7 +1,7 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 dependencies:
-  build: []
-  run: [ffc, numpy, six, ufl]
+  build: [numpy, six, ufl]
+  run: [numpy, six, ufl]
 
 sources:
 - key: tar.gz:x2ybjis6ms5zjw3hodnelft2gsq32t4x

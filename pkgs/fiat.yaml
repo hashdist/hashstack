@@ -1,6 +1,6 @@
 extends: [setuptools_package]
 dependencies:
-  build: []
+  build: [numpy, sympy]
   run: [numpy, sympy]
 
 sources:

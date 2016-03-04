@@ -1,7 +1,7 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 dependencies:
-  build: [numpy, swig]
-  run: [fiat, instant, numpy, six, ufl]
+  build: [fiat, instant, numpy, six, ufl, swig]
+  run: [fiat, instant, numpy, six, ufl, swig]
 
 sources:
 - key: tar.gz:haxhoe76owljjzpqoudlcrho5llidylj

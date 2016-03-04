@@ -1,6 +1,6 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 dependencies:
-  build: []
+  build: [numpy, six]
   run: [numpy, six]
 
 sources:

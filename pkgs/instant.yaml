@@ -1,5 +1,6 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 dependencies:
+  build: [numpy]
   run: [cmake, flufl_lock, numpy, swig]
 
 sources:
