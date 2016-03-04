@@ -92,7 +92,6 @@ packages:
   grib_api:
   pyproj:
   pygrib:
-  stwave:  
   scipy:
   ipython:
   terminado:
