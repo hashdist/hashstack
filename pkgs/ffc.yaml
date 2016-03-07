@@ -1,4 +1,4 @@
-extends: [setuptools_package]
+extends: [pip_package]
 dependencies:
   build: [fiat, instant, numpy, six, ufl, swig]
   run: [fiat, instant, numpy, six, ufl, swig]
@@ -14,3 +14,5 @@ defaults:
 when_build_dependency:
 - prepend_path: PATH
   value: '${ARTIFACT}/bin'
+- set: UFC_DIR
+  value: '${ARTIFACT}'
