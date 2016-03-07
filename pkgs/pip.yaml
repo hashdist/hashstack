@@ -3,3 +3,7 @@ extends: [setuptools_package]
 sources:
 - key: tar.gz:gd4ywzxt7yigtrjjusivs7juuhbcjjug
   url: https://pypi.python.org/packages/source/p/pip/pip-8.0.3.tar.gz
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'
