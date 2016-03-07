@@ -1,0 +1,29 @@
+# pip_package.yaml
+# Use for installing Python packages using pip.
+
+extends: [base_package]
+
+dependencies:
+  build: [python, pip, setuptools]
+  run: [python, pip, setuptools]
+
+build_stages:
+
+- name: install
+  handler: bash
+  bash: |
+    pip install --verbose --no-deps --upgrade --prefix=${ARTIFACT} .
+
+profile_links:
+- name: python_packages
+  link: 'lib/python{{pyver}}/site-packages/*'
+  dirs: true
+
+- name: python_exclude
+  after: python_packages
+  before: everything
+  exclude: 'lib/python{{pyver}}/site-packages/**/*'
+
+when_build_dependency:
+- prepend_path: PYTHONPATH
+  value: '${ARTIFACT}/lib/python{{pyver}}/site-packages'
