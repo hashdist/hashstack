@@ -1,4 +1,4 @@
-extends: [setuptools_package]
+extends: [pip_package]
 dependencies:
   build: [numpy, six]
   run: [numpy, six]
