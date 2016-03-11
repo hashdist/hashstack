@@ -118,3 +118,4 @@ packages:
   pythreejs:
   jupyter:
   chrono:
+  ipyparallel:
