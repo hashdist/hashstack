@@ -8,5 +8,13 @@ sources:
   key: tar.gz:7acx7lq4px4lteiwpa7ph2kknjcfddkj
 
 build_stages:
+- name: f77_fix
+  mode: replace
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    export F77=gfortran
+
 - name: configure
   extra: ['--enable-mpi', '--enable-sse2', '--enable-avx']
