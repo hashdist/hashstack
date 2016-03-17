@@ -1,11 +1,11 @@
 extends: [cmake_package]
 dependencies:
-  build: [boost, gmp, mpfr]
-  run: [boost, gmp, mpfr]
+  build: [boost, gmp, mpfr, bzip2]
+  run: [boost, gmp, mpfr, bzip2]
 
 sources:
-- key: git:4c4f9c841bb17648dbe040aab766cb53d173afda
-  url: https://github.com/bluescarni/piranha.git
+- key: git:02ac6db75dc012ed435d13279a6d2d385a46a4d4
+  url: https://github.com/bluescarni/piranha
 
 build_stages:
 - name: configure

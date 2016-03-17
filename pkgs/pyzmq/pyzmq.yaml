@@ -6,8 +6,8 @@ dependencies:
     - zmq
 
 sources:
-- key: tar.gz:o6mu7abwaseoofj6mtszlhofi4ktdule
-  url: https://pypi.python.org/packages/source/p/pyzmq/pyzmq-14.7.0.tar.gz
+- key: zip:qofsjfbfwfurfauaojvq5kf4nyawkwlb
+  url: https://pypi.python.org/packages/source/p/pyzmq/pyzmq-14.7.0.zip
 
 build_stages:
 - name: fix_distutils_rpath_flag

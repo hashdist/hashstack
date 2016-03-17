@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [six]
+  run: [six]
+
+sources:
+ - key: tar.gz:vncv3mg6ab3shtxejsdng7bfov2h6fmh
+   url: https://pypi.python.org/packages/source/w/workerpool/workerpool-0.9.4.tar.gz

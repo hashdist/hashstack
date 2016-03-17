@@ -1,0 +1,5 @@
+extends: [setuptools_package]
+
+sources:
+ - key: tar.gz:5d5vf54iqcxammzwzfhllod3dapgudgd
+   url: https://pypi.python.org/packages/source/i/iso8601/iso8601-0.1.11.tar.gz
