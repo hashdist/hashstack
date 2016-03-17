@@ -33,7 +33,7 @@ build_stages:
   bash: |
     make clean
     make install PREFIX=${ARTIFACT}
-    cp -dR libbz2.* ${ARTIFACT}/lib
+    cp -av libbz2.* ${ARTIFACT}/lib
     rm -v ${ARTIFACT}/bin/{bunzip2,bzcat}
 
 - name: final

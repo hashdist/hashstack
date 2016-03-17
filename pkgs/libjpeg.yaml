@@ -1,0 +1,12 @@
+extends: [autotools_package]
+
+dependencies:
+    build: [libtool]
+
+sources:
+- key: tar.gz:oxb6yja6tglfat7afkpnjujpc23uvxtr
+  url: http://downloads.sourceforge.net/project/libjpeg/libjpeg/6b/jpegsrc.v6b.tar.gz
+
+build_stages:
+- name: configure
+  extra: ['--enable-shared']

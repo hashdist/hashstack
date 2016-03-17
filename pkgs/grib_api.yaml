@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-    build: [jasper, openjpeg]
+    build: [jasper, openjpeg, libjpeg]
 
 defaults:
   relocatable: false
