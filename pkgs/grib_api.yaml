@@ -1,16 +1,17 @@
 extends: [autotools_package]
 
 dependencies:
-    build: [jasper, openjpeg, libjpeg]
+    build: [jasper, netcdf4]
 
 defaults:
   relocatable: false
 
 sources:
-- key: tar.gz:fvfqkqzmtao4yk2zmb6vb3vscsx63q4u
-  url: https://software.ecmwf.int/wiki/download/attachments/3473437/grib_api-1.12.3.tar.gz
+- key: tar.gz:uqvzwc6wxurwjcl4cp7k7ue23otkklqf
+  url: https://software.ecmwf.int/wiki/download/attachments/3473437/grib_api-1.14.7-Source.tar.gz
 
 build_stages:
   - name: configure
     mode: override
-    extra: ['--with-jasper=${JASPER_DIR}']
+    extra: ['--with-jasper=${JASPER_DIR}',
+            '--with-netcdf=${NETCDF4_DIR}']
