@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:3q5cwlm5caz5x4tvqy3gvzq3tv6ejwgd
+   url: https://pypi.python.org/packages/source/c/certifi/certifi-2015.9.6.2.tar.gz
