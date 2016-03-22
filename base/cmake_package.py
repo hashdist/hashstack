@@ -18,6 +18,7 @@ def configure(ctx, stage_args):
           set_env_flags: true # default
           build_in_source: false # default
           debug: false # default
+          empty_osx_deployment_target: false # default
 
     If set_env_flags is set, CPPFLAGS and LDFLAGS will be set, as appropriate
     for the platform.
@@ -34,7 +35,7 @@ def configure(ctx, stage_args):
     else:
         conf_lines.append('-DCMAKE_BUILD_TYPE:STRING=Release')
 
-    if ctx.parameters['platform'] == 'Darwin':
+    if stage_args.get('empty_osx_deployment_target', False):
         conf_lines.append('-DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=""')
 
     #cmake needs to be given all the dependency dirs as prefix paths

@@ -1,0 +1,23 @@
+diff -Nru pyzmq-14.7.0.orig/setup.py pyzmq-14.7.0/setup.py
+--- pyzmq-14.7.0.orig/setup.py	2015-11-18 15:20:43.692602552 +0100
++++ pyzmq-14.7.0/setup.py	2015-11-18 16:33:16.406493141 +0100
+@@ -45,6 +45,19 @@
+ from distutils.command.sdist import sdist
+ from distutils.version import LooseVersion as V
+ 
++# Normalize linker flags for runtime library dirs
++from distutils.unixccompiler import UnixCCompiler
++rpath_option_orig = UnixCCompiler.runtime_library_dir_option
++def rpath_option(compiler, dir):
++    option = rpath_option_orig(compiler, dir)
++    if sys.platform.startswith('linux'):
++        if option.startswith('-R'):
++            option =  option.replace('-R', '-Wl,-rpath,', 1)
++        elif option.startswith('-Wl,-R,'):
++            option =  option.replace('-Wl,-R,', '-Wl,-rpath,', 1)
++    return option
++UnixCCompiler.runtime_library_dir_option = rpath_option
++
+ from unittest import TextTestRunner, TestLoader
+ from glob import glob
+ from os.path import splitext, basename, join as pjoin

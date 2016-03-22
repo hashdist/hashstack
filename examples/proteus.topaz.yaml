@@ -1,0 +1,76 @@
+# This profile file controls your <#> (HashDist) build environment.
+
+# In the future, we'll provide better incorporation of
+# automatic environment detection.  For now, have a look
+# at the YAML files in the top-level directory and choose
+# the most *specific* file that matches your environment.
+
+extends:
+- file: suse.yaml
+
+# The packages list specifies all the packages that you
+# require installed.  <#> will ensure that all packages
+# and their dependencies are installed when you build this
+# profile.
+
+parameters:
+  machine: SGIICEX
+  HOST_MPICC: mpicc
+  HOST_MPICXX: mpicxx
+  HOST_MPIF77: mpif90
+  HOST_MPIF90: mpif90
+  HOST_MPIEXEC: mpiexec_mpt
+  PATH: |
+    /p/home/cekees/bin:/p/home/cekees/proteus/topaz/bin:/apps/gnu_compiler/4.9.3/bin:/usr/local/krb5/bin:/opt/pbs/12.2.7.152442/bin:/p/home/apps/sgi/mpt-2.12-sgi712r26/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/lib64/mpi/gcc/openmpi/bin:/p/home/cekees/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/krb5.20150813/bin:/usr/local/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/pbs/SLB:/app/unsupported/local/bin:/app/unsupported/local/fta/bin:.
+  PROLOGUE: |
+    export HOSTTYPE=x86_64; export VENDOR=unknown; export OSTYPE=linux; export MACHTYPE=x86_64-suse-linux; export CPU=x86_64; export  INPUTRC=/etc/inputrc; export JAVA_BINDIR=/usr/lib64/jvm/jre/bin; export JAVA_ROOT=/usr/lib64/jvm/jre; export JAVA_HOME=/usr/lib64/jvm/jre; export JRE_HOME=/usr/lib64/jvm/jre; export MODULESHOME=/p/home/apps/modules_dest/Modules/3.2.10; export LD_LIBRARY_PATH=/p/home/apps/sgi/mpt-2.12-sgi712r26/lib:/p/home/cekees/proteus/topaz/lib:/apps/gnu_compiler/4.9.3/lib64:/p/home/apps/sgi/mpt-2.12-sgi712r26/lib:/usr/lib64/mpi/gcc/openmpi/lib64; export MODULE_VERSION=3.2.10; export MODULE_VERSION_STACK=3.2.10; export MODULEPATH=/p/home/apps/modules_dest/Modules/versions:/p/home/apps/modules_dest/Modules/$MODULE_VERSION/modulefiles:/p/home/apps/modules_dest/Modules/modulefiles:/p/home/apps/modulefiles/devel:/p/home/apps/modulefiles/modulefiles:/p/home/apps/modulefiles/apps:/p/home/apps/modulefiles/unsupported; export LOADEDMODULES=mpi/sgimpt/2.12-11218:pbs/12.2.7.152442:compiler/gcc/4.9.3; export BC_HOST=topaz; export CPATH=/p/home/apps/sgi/mpt-2.12-sgi712r26/include; export _LMFILES_=/p/home/apps/modulefiles/devel/mpi/sgimpt/2.12-11218:/p/home/apps/modulefiles/modulefiles/pbs/12.2.7.152442:/p/home/apps/modulefiles/devel/compiler/gcc/4.9.3; export FPATH=/p/home/apps/sgi/mpt-2.12-sgi712r26/include; export LIBRARY_PATH=/p/home/apps/sgi/mpt-2.12-sgi712r26/lib; export MPI_ROOT=/p/home/apps/sgi/mpt-2.12-sgi712r26; export MPT_VERSION=2.12; export ENV=/etc/bash.bashrc; export CC=gcc; export CXX=g++; export F77=gfortran; export F90=gfortran; export I_MPI_CC=gcc; export I_MPI_CXX=g++; export I_MPI_F77=gfortran; export I_MPI_F90=gfortran; export I_MPI_FC=gfortran; export MPICC_CC=gcc; export MPICXX_CXX=g++; export MPIF90_F90=gfortran; export FC=gfortran;
+
+  DYNAMIC_EXE_LINKER_FLAGS: -Bdynamic
+
+packages:
+  launcher:
+  cmake:
+  python:
+    host: false
+    build_with: |
+      openssl,bzip2,sqlite
+  blas:
+    use: openblas
+  lapack:
+  daetk:
+  mpi:
+    use: host-mpi
+  mpi4py:
+  nose:
+  hdf5:
+  ipython:
+  matplotlib:
+  parmetis:
+    without_check: true
+  petsc:
+    version: 3.6.1
+    build_with: |
+      parmetis
+    coptflags: -O2
+    link: shared
+    debug: false
+    fortran: false
+  petsc4py:
+    version: 3.6.0
+    with_conf: true
+  pytables:
+  sphinx:
+  superlu:
+  sympy:
+  tetgen:
+  triangle:
+  memory_profiler:
+  scipy:
+  netcdf4f:
+  python-netcdf4:
+  h5py:
+  ode:
+  pip:
+ # pyode:
+ # vtk:
+ # pyvtk:

@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [paramiko, boto, workerpool, jinja2, decorator, iptools, optcomplete, pycrypto, python-scp, iso8601]
+  run: [paramiko, boto, workerpool, jinja2, decorator, iptools, optcomplete, pycrypto, python-scp, iso8601]
+
+sources:
+- key: tar.gz:mxpszaz5whosc2kwamy3xjr3sp365nn2
+  url: https://pypi.python.org/packages/source/S/StarCluster/StarCluster-0.95.6.tar.gz

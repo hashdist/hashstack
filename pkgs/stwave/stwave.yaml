@@ -1,0 +1,42 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [mpi]
+
+sources:
+- url: https://github.com/erdc-cm/stwave.git
+  key: git:99a9e19704aca4490cdda89a01d88b4e2cf06135
+
+build_stages:
+- name: configure
+  mode: replace
+  files: [Makefile.linux, cmplrflags.linux.mk]
+  after: prologue
+  handler: bash
+  bash: |
+    cp _hashdist/Makefile.linux work/Makefile
+    cp _hashdist/cmplrflags.linux.mk work/cmplrflags.mk
+
+- name: make
+  mode: replace
+  handler: bash
+  after: configure
+  bash: |
+    set -e
+    cd work
+    make BUILDTYPE=stwave stwave
+#    make BUILDTYPE=stwave_ep stwave_ep
+#    make BUILDTYPE=stwave_p stwave_p
+#    make BUILDTYPE=libstw.a libstw.a
+
+- name: install
+  handler: bash
+  mode: replace
+  after: make
+  bash: |
+    mkdir $ARTIFACT/bin
+    mkdir $ARTIFACT/lib
+    cp stwave $ARTIFACT/bin
+#    cp stwave_ep $ARTIFACT/bin
+#    cp stwave_p $ARTIFACT/bin
+#    cp libstw.a $ARTIFACT/lib

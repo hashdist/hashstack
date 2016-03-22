@@ -1,9 +1,9 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: [functools32]
-  run: [functools, functools32]
+  build: [functools32, ipython-genutils]
+  run: [functools, functools32, ipython-genutils]
 
 sources:
- - key: tar.gz:lldrnfam7v3benu64f34bv74b24iqm23
-   url: https://pypi.python.org/packages/source/n/notebook/notebook-4.0.5.tgz
+ - key: tar.gz:wwlug65dgu4ceeai4ip6u4onahw2twqv
+   url: https://pypi.python.org/packages/source/n/notebook/notebook-4.1.0.tar.gz
