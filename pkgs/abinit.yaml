@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [python, lapack, patchelf, netcdf4, netcdf4f]
+  build: [python, lapack, patchelf, netcdf4, netcdf4f, mpi]
 
 sources:
 - key: tar.gz:5e3wuprupef45eezf4uol6ufks2rxjdh
@@ -10,10 +10,21 @@ sources:
 
 build_stages:
 
+- name: mpi_setup
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    export CC=$MPICC
+    export CXX=$MPICXX
+    export FC=$MPIF90
+    export F77=$MPIF77
+
 - name: configure
   mode: update
   extra: [
       "--disable-fallbacks",
+      "--enable-mpi=yes",
       "--with-trio-flavor=netcdf",
       "--with-netcdf-incs=-I${NETCDF4_DIR}/include -I${NETCDF4F_DIR}/include",
       "--with-netcdf-libs=-L${NETCDF4_DIR}/lib -Wl,-rpath=${NETCDF4_DIR}/lib -lnetcdf -L${NETCDF4F_DIR}/lib -Wl,-rpath=${NETCDF4F_DIR}/lib -lnetcdff",
