@@ -1,0 +1,14 @@
+extends: [base_package]
+
+sources:
+- key: zip:rhy3xbk4sji4drsecvwyffqmogvgr2bx
+  url: https://stockfish.s3.amazonaws.com/stockfish-7-src.zip
+
+build_stages:
+- name: make-install
+  after: prologue
+  handler: bash
+  bash: |
+    cd src
+    make build ARCH=x86-64-modern -j ${HASHDIST_CPU_COUNT}
+    make install PREFIX=${ARTIFACT}
