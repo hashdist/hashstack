@@ -4,8 +4,9 @@ dependencies:
   build: [python, lapack, patchelf]
 
 sources:
-- key: tar.gz:5pikhk6qdw2dos7nucjnd4lmtyangj3r
-  url: http://ftp.abinit.org/abinit-7.10.4.tar.gz
+- key: tar.gz:5e3wuprupef45eezf4uol6ufks2rxjdh
+  url: http://ftp.abinit.org/abinit-7.10.5.tar.gz
+
 
 build_stages:
   - name: final
