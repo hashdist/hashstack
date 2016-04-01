@@ -39,9 +39,9 @@ packages:
   petsc:
     version: 3.6.1
     build_with: |
-      parmetis
+      parmetis, superlu
     download: |
-      superlu, superlu_dist, spooles, hypre, blacs, scalapack, mumps
+      superlu_dist, spooles, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
     debug: false
