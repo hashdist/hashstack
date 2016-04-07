@@ -63,7 +63,7 @@ packages:
       superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
-    debug: false
+    debug: true
   petsc4py:
     version: 3.6.0
     with_conf: true
@@ -119,3 +119,4 @@ packages:
   jupyter:
   chrono:
   ipyparallel:
+  sphinxtogithub:
