@@ -66,3 +66,5 @@ packages:
   jupyter:
   functools:
     use: host-functools
+  yaml:
+  
