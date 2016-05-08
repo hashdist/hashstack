@@ -1,0 +1,8 @@
+extends: [setuptools_package]
+
+dependencies:
+  run: [urwid]
+
+sources:
+ - key: tar.gz:23cfh5kt2qkmbnsweqvbfxznaqinwvef
+   url: https://pypi.python.org/packages/f2/bf/a3a767b90a659e2b5a1ab8ded3138875ad68589741f598a938abe47773ad/pudb-2016.1.tar.gz
