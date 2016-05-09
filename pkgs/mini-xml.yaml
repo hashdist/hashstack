@@ -1,0 +1,5 @@
+extends: [autotools_package]
+
+sources:
+ - key: tar.gz:zxwvizj4lbfsjrfhrj72dm5ug56utlcp
+   url: http://www.msweet.org/files/project3/mxml-2.9.tar.gz

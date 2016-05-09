@@ -18,8 +18,8 @@ build_stages:
       ${PYTHON} setup.py install --prefix=. --root=${ARTIFACT}/Python.framework/Versions/{{pyver}} --single-version-externally-managed
 
 sources:
-  - url: https://pypi.python.org/packages/source/s/setuptools/setuptools-3.4.3.tar.gz
-    key: tar.gz:yfr3o4jkjyuvq7cmwfn52gmjt7xmiopn
+- key: tar.gz:et6pyfjwjkp6bgrcb435fxhnzbexsxr5
+  url: https://pypi.python.org/packages/source/s/setuptools/setuptools-20.2.2.tar.gz
 
 when_build_dependency:
   - when: not python_framework

@@ -4,8 +4,8 @@ defaults:
   relocatable: false
 
 sources:
-- key: tar.gz:fb24zqusktjtoxnltrmtbrbn6nbpcshy
-  url: http://www.hboehm.info/gc/gc_source/libatomic_ops-7.4.0.tar.gz
+- key: tar.gz:at5gcx3ctesuppf5uvrcmdriwuclytag
+  url: http://www.ivmaisoft.com/_bin/atomic_ops/libatomic_ops-7.4.2.tar.gz
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
