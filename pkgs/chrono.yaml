@@ -9,6 +9,7 @@ defaults:
 
 dependencies:
   build:
+    - bzip2
     - python
     - irrlicht
     - zlib
