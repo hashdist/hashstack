@@ -32,14 +32,6 @@ build_stages:
     patch -p1 < _hashdist/no_unused_but_set_variable.patch
     patch -p1 < _hashdist/clang_max_jbufs.patch
 
-- when: platform == 'Darwin'
-  name: fix_clang_730_error
-  files: [fix_clang_730_error.patch]
-  before: configure
-  handler: bash
-  bash: |
-    patch -p1 < _hashdist/fix_clang_730_error.patch
-
 - when: platform == 'Cygwin'
   name: fix___cdecl_redefined
   files: [fix___cdecl_redefined.patch]
