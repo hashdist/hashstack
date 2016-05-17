@@ -17,6 +17,8 @@ packages:
   clawpack:
   launcher:
   cmake:
+  openjpeg:
+    version: '2.1'
   openssl:
     use: host-openssl
   python:
@@ -30,21 +32,25 @@ packages:
     use: host-lapack
   daetk:
   mpi:
-    use: mpich
+    use: host-mpi
   mpi4py:
   nose:
   coverage:
   hdf5:
+  pygments:
+  tornado:
   matplotlib:
+  pyzmq:
+  parmetis:
   petsc:
     version: 3.6.1
     build_with: |
-      parmetis
+      parmetis, superlu
     download: |
-      superlu, superlu_dist, spooles, hypre, blacs, scalapack, mumps
+      superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
-    debug: false
+    debug: true
   petsc4py:
     version: 3.6.0
     with_conf: true
@@ -62,9 +68,12 @@ packages:
     address_model: 64
     build_with: |
       python
+  cgal:
+  pycgal:
   netcdf4:
-  python-netcdf4:
   netcdf4f:
+  python-netcdf4:
+  vapory:
   netcdf4cpp:
   jasper:
   grib_api:
@@ -75,16 +84,26 @@ packages:
   terminado:
   h5py:
   pydap:
-  leafletwidget:
   geojson:
   rdp:
+  ipython-d3plot:
+  ipython-gridwidget:
+  shapely:
   rtree:
+  matlab:
+    use: host-matlab
   ode:
   ipdb:
   pip:
+  jupyter-pip:
   pexpect:
   pcs_api:
-  jupyter-pip:
+  zoltan:
+    build_with: |
+      parmetis
+  leafletwidget:
   pythreejs:
   jupyter:
-#  chrono:
+  chrono:
+  ipyparallel:
+  sphinxtogithub:

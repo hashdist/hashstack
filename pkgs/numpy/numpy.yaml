@@ -1,4 +1,5 @@
-extends: [setuptools_package]
+extends: [distutils_package]
+
 dependencies:
   build: [blas, cython]
   run: [blas, cython]

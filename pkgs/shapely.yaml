@@ -5,7 +5,7 @@ dependencies:
 
 sources:
 - key: git:76f5832e8df80ed86493fb4eb7a0cd7a17976822
-  url: git@github.com:Toblerity/Shapely.git
+  url: https://github.com/Toblerity/Shapely.git
 
 build_stages:
 - name: check

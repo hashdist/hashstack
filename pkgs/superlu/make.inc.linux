@@ -21,7 +21,7 @@ PLAT = _linux
 #
 #  The name of the libraries to be created/linked to
 #
-SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_4.1.a
+SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_4.3.a
 
 #BLASLIB   	= $(SuperLUroot)/lib/libblas.a
 

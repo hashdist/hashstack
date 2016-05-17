@@ -5,6 +5,9 @@
 # at the YAML files in the top-level directory and choose
 # the most *specific* file that matches your environment.
 
+parameters:
+  airgap: True
+
 extends:
 - file: osx_clt.yaml
 
@@ -32,6 +35,10 @@ packages:
   mpi4py:
   nose:
   hdf5:
+  pygments:
+  tornado:
+  pyzmq:
+  parmetis:
   ipython:
   matplotlib:
   petsc:
@@ -57,6 +64,7 @@ packages:
   memory_profiler:
   ipdb:
   pip:
+  pexpect:
   doxygen:
   netcdf4:
   netcdf4cpp:

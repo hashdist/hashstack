@@ -48,7 +48,7 @@ before_install:
       sudo apt-get install cmake libopenmpi-dev python-dev libblas-dev liblapack-dev wget libboost-program-options1.48-dev libboost-filesystem1.48-dev libboost-serialization1.48-dev libboost-thread1.48-dev libboost-iostreams1.48-dev libboost-math1.48-dev libboost-timer1.48-dev libboost-chrono1.48-dev;
     fi
 install:
-  - git clone https://github.com/hashdist/hashdist
+  - git clone https://github.com/hashdist/hashdist -b cekees/add_bld_mirrors
   - export PATH=`pwd`/hashdist/bin:$PATH
 script:
   - cp tests/$TEST_PROFILE $TEST_PROFILE

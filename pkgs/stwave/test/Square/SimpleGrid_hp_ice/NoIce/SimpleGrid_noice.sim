@@ -1,0 +1,115 @@
+# STWAVE_SIM_FILE
+# written from SMS 11.0.00 64-bit
+#
+#
+##############################################
+#
+# Standard Input Section
+#
+&std_parms
+  iplane = 0,
+  iprp = 0,
+  icur = 0,
+  ibreak = 1,
+  irs = 1,
+  nselct = 0,
+  nnest = 0,
+  nstations = 0,
+  ibnd = 0,
+  ifric = 4,
+  idep_opt = 0,
+  isurge = 0,
+  iwind = 0,
+  i_bc1 = 2,
+  i_bc2 = 3,
+  i_bc3 = 0,
+  i_bc4 = 3
+/
+#
+# Runtime Parameters Section
+#
+&run_parms
+  idd_spec_type = 1,
+  numsteps = 3,
+  n_grd_part_i = 1,
+  n_grd_part_j = 1,
+  n_init_iters = 20,
+  init_iters_stop_value = 0.1,
+  init_iters_stop_percent = 100.0,
+  n_final_iters = 20,
+  final_iters_stop_value = 0.05,
+  final_iters_stop_percent = 99.8
+/
+#
+# Spatial Grid Parameters Section
+#
+&spatial_grid_parms
+  coord_sys = 'LOCAL',
+  x0 = 0.0,
+  y0 = 0.0,
+  azimuth = 0.0,
+  dx = 800.0,
+  dy = 800.0,
+  n_cell_i = 71,
+  n_cell_j = 88
+/
+#
+# Input Files Section
+#
+&input_files
+  DEP = "SimpleGrid.dep",
+  SPEC = "SimpleGrid.eng",
+  FRIC = "SimpleGrid.friction.in",
+  io_type_dep = 1,
+  io_type_surge = 1,
+  io_type_wind = 1,
+  io_type_spec = 1,
+  io_type_fric = 1
+/
+#
+# Output Files Section
+#
+&output_files
+  WAVE = "SimpleGrid.wave.out",
+  OBSE = "SimpleGrid.obse.out",
+  BREAK = "SimpleGrid.break.out",
+  RADS = "SimpleGrid.rads.out",
+  SELH = "SimpleGrid.selh.out",
+  STATION = "SimpleGrid.station.out",
+  NEST = "SimpleGrid.nest.out",
+  LOGS = "SimpleGrid.log.out",
+  TP = "SimpleGrid.Tp.out",
+  XMDF_SPATIAL = "SimpleGrid.spatial.out.h5",
+  io_type_tp = 1,
+  io_type_nest = 1,
+  io_type_selh = 1,
+  io_type_rads = 1,
+  io_type_break = 1,
+  io_type_obse = 1,
+  io_type_wave = 1,
+  io_type_station = 1
+/
+#
+# Snap IDDs
+#
+@snap_idds
+  idds(1) = 1,
+  idds(2) = 2,
+  idds(3) = 3
+/
+#
+# Spatially Constant Winds
+#
+@const_wind
+  umag_const_in(1) = 2.0, udir_const_in(1) = 25.0,
+  umag_const_in(2) = 3.0, udir_const_in(2) = 0.0,
+  umag_const_in(3) = 2.5, udir_const_in(3) = 335.0
+/
+#
+# Spatially Constant Water Level Adjustment
+#
+@const_surge
+  dadd_const_in(1) = 0.8,
+  dadd_const_in(2) = 1,
+  dadd_const_in(3) = 0.75
+/
