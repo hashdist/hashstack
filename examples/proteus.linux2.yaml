@@ -32,7 +32,7 @@ packages:
     use: host-lapack
   daetk:
   mpi:
-    use: host-mpi
+    use: mpich
   mpi4py:
   nose:
   coverage:
