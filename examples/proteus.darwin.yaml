@@ -21,6 +21,8 @@ packages:
 
   launcher:
   cmake:
+  openjpeg:
+    version: '2.1'
   python:
     host: false
     build_with: |
