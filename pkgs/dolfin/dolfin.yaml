@@ -15,8 +15,8 @@ dependencies:
   run: [ply]
 
 sources:
-- key: tar.gz:m7vkyx7m43tr3icvtngkqqrrk346tguv
-  url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-1.6.0.tar.gz
+- key: tar.gz:miuljvsbqknezuzbig742il2cwlke7kz
+  url: https://bitbucket.org/fenics-project/dolfin/downloads/dolfin-2016.1.0.tar.gz
 
 defaults:
   # share/dolfin/DOLFINConfig.cmake contains hard-coded path

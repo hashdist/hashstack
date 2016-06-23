@@ -1,0 +1,8 @@
+extends: [pip_package]
+dependencies:
+  build: [mpi4py, numpy, six]
+  run: [mpi4py, numpy, six]
+
+sources:
+- key: tar.gz:amakzmnzx6kojxrgbznuf5jklopvcwsw
+  url: https://bitbucket.org/fenics-project/dijitso/downloads/dijitso-2016.1.0.tar.gz

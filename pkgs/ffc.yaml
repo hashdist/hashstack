@@ -4,8 +4,8 @@ dependencies:
   run: [fiat, instant, numpy, six, ufl, swig]
 
 sources:
-- key: tar.gz:haxhoe76owljjzpqoudlcrho5llidylj
-  url: https://bitbucket.org/fenics-project/ffc/downloads/ffc-1.6.0.tar.gz
+- key: tar.gz:kjbqzzgh2v6odoa6wx5tasmser6jis6g
+  url: https://bitbucket.org/fenics-project/ffc/downloads/ffc-2016.1.0.tar.gz
 
 defaults:
   # share/ufc/UFCConfig.cmake contains hard-coded path

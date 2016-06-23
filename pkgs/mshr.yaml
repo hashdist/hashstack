@@ -4,8 +4,8 @@ dependencies:
   build: [python, boost, dolfin, gmp, mpfr, mpi, swig, {{build_with}}]
 
 sources:
-- key: tar.gz:afm2l4z7m53oxkxxf4dsfxmth4jnxmsg
-  url: https://bitbucket.org/fenics-project/mshr/downloads/mshr-1.6.0.tar.gz
+- key: tar.gz:5ehq6cmiyeclibycpkxslq2h7jxjtrf7
+  url: https://bitbucket.org/fenics-project/mshr/downloads/mshr-2016.1.0.tar.gz
 
 defaults:
   # lib/CMake/mshr/mshr-config.cmake contains hard-coded path
