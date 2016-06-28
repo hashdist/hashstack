@@ -18,6 +18,6 @@ build_stages:
     handler: bash
     bash: |
       export LDFLAGS="$LDFLAGS -shared"
-      export ATLAS=$LAPACK_DIR
-      export BLAS=$LAPACK_DIR
+      #export ATLAS=$LAPACK_DIR
+      #export BLAS=$LAPACK_DIR
       export LAPACK=$LAPACK_DIR
