@@ -7,8 +7,8 @@ dependencies:
   run: [lapack, numpy]
 
 sources:
-  - url: http://downloads.sourceforge.net/scipy/scipy-0.13.3.tar.gz
-    key: tar.gz:vhrty7xamdbvzvog5y5mtzpjxo4zegox
+- key: tar.gz:trgnf6abhtcaqqrqudufrv3effr5xlp5
+  url: https://github.com/scipy/scipy/releases/download/v0.17.1/scipy-0.17.1.tar.gz
 
 build_stages:
   - when: platform == 'linux'
