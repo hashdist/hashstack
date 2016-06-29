@@ -8,8 +8,8 @@ dependencies:
   run: [python, pip, setuptools]
 
 build_stages:
-
 - name: install
+  after: prologue
   handler: bash
   bash: |
     pip install --verbose --no-deps --upgrade --prefix=${ARTIFACT} .
