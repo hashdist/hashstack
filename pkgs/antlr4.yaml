@@ -1,0 +1,22 @@
+extends: [distutils_package]
+
+when pyver == '2.7':
+    sources:
+     - key: tar.gz:m4eyt2henzjr3cqq2u73zbh2lgb2fe6i
+       url: https://pypi.python.org/packages/e2/f1/beaa5d5fb2f7df7dde80fd7354aac713c16e26f1ff270014bdbaadc53a58/antlr4-python2-runtime-4.5.3.tar.gz
+when pyver == '3.2':
+    sources:
+     - key: tar.gz:2sihktsxotsywtuhbj7lup4xbbwb6n4t
+       url: https://pypi.python.org/packages/6d/a7/13e7b9e14d405974fcdbd4c1eb64864e0c48c98c2d3013f46cff79c370fa/antlr4-python3-runtime-4.5.3.tar.gz
+when pyver == '3.3':
+    sources:
+     - key: tar.gz:2sihktsxotsywtuhbj7lup4xbbwb6n4t
+       url: https://pypi.python.org/packages/6d/a7/13e7b9e14d405974fcdbd4c1eb64864e0c48c98c2d3013f46cff79c370fa/antlr4-python3-runtime-4.5.3.tar.gz
+when pyver == '3.4':
+    sources:
+     - key: tar.gz:2sihktsxotsywtuhbj7lup4xbbwb6n4t
+       url: https://pypi.python.org/packages/6d/a7/13e7b9e14d405974fcdbd4c1eb64864e0c48c98c2d3013f46cff79c370fa/antlr4-python3-runtime-4.5.3.tar.gz
+when pyver == '3.5':
+    sources:
+     - key: tar.gz:2sihktsxotsywtuhbj7lup4xbbwb6n4t
+       url: https://pypi.python.org/packages/6d/a7/13e7b9e14d405974fcdbd4c1eb64864e0c48c98c2d3013f46cff79c370fa/antlr4-python3-runtime-4.5.3.tar.gz

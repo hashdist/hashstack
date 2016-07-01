@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: zip:3sdv5ahsufylg2iza7qequchaj65c7lw
+   url: https://pypi.python.org/packages/source/n/nbformat/nbformat-4.0.1.zip

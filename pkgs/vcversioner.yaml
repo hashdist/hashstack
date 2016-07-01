@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:vtkdnbxjfzwixpvu6lxpkraikz5hvxvj
+   url: https://pypi.python.org/packages/source/v/vcversioner/vcversioner-2.14.0.0.tar.gz

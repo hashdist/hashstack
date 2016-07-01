@@ -1,0 +1,12 @@
+extends: [autotools_package]
+dependencies:
+  build: [nasm]
+
+sources:
+- key: tar.gz:kin3luyehz5may6ogatntjm4ykvs5frw
+  url: http://downloads.sourceforge.net/project/libjpeg-turbo/1.4.2/libjpeg-turbo-1.4.2.tar.gz
+
+when_build_dependency:
+  - prepend_path: PKG_CONFIG_PATH
+    value: '${ARTIFACT}/lib/pkgconfig'
+
