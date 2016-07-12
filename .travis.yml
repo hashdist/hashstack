@@ -21,33 +21,33 @@ sudo: required
 dist: trusty
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get install gfortran pv
+  - sudo apt-get -y install gfortran pv
   - if [[ "${TEST_PROFILE}" == "test.packages1.yaml" ]]; then
-      sudo apt-get install liblapack-dev;
+      sudo apt-get -y install liblapack-dev;
     fi
   - if [[ "${TEST_PROFILE}" == "test.packages2.yaml" ]]; then
-      sudo apt-get install mpich2 liblapack-dev;
+      sudo apt-get -y install mpich2 liblapack-dev;
     fi
   - if [[ "${TEST_PROFILE}" == "test.packages3.yaml" ]]; then
-      sudo apt-get install mpich2 liblapack-dev;
+      sudo apt-get -y install mpich2 liblapack-dev;
     fi
   - if [[ "${TEST_PROFILE}" == "test.cmake.yaml" ]]; then
-       sudo apt-get install mpich2;
+       sudo apt-get -y install mpich2;
     fi
   - if [[ "${TEST_PROFILE}" == "test.boost.yaml" ]]; then
-      sudo apt-get install mpich2;
+      sudo apt-get -y install mpich2;
     fi
   - if [[ "${TEST_PROFILE}" == "test.clawpack.gitsubmodules.yaml" ]]; then
-      sudo apt-get install liblapack-dev;
+      sudo apt-get -y install liblapack-dev;
     fi
   - if [[ "${TEST_PROFILE}" == "test.netcdf4.yaml" ]]; then
-      sudo apt-get install mpich2;
+      sudo apt-get -y install mpich2;
     fi
   - if [[ "${TEST_PROFILE}" == "test.host-scipy.yaml" ]]; then
-      sudo apt-get install python-scipy;
+      sudo apt-get -y install python-scipy;
     fi
   - if [[ "${TEST_PROFILE}" == "test.dolfin.yaml" ]]; then
-      sudo apt-get install cmake libopenmpi-dev python-dev libblas-dev liblapack-dev wget libboost-all-dev;
+      sudo apt-get -y install cmake libopenmpi-dev python-dev libblas-dev liblapack-dev wget libboost-all-dev;
     fi
 install:
   - git clone https://github.com/hashdist/hashdist
