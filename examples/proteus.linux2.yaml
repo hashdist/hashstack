@@ -104,6 +104,6 @@ packages:
   leafletwidget:
   pythreejs:
   jupyter:
-  chrono:
+#  chrono:
   ipyparallel:
   sphinxtogithub:
