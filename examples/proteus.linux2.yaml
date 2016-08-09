@@ -107,4 +107,4 @@ packages:
 #  chrono:
   ipyparallel:
   pytest:
-  sphinxtogithub:
+  pytest-xdist:

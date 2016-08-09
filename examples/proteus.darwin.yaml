@@ -77,4 +77,5 @@ packages:
   functools:
     use: host-functools
   yaml:
-  
+  pytest:
+  pytest-xdist:
