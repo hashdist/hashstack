@@ -1,8 +1,7 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: [pytest,py]
-  run: [pytest,py]
+  build: [pytest,py,apipkg,execnet]
 
 sources:
  - key: zip:jjpbdgisf6rj4max3diyt5m4zroyf2cb
