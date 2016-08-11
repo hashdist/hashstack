@@ -1,8 +1,4 @@
-extends: [setuptools_package]
-
-dependencies:
-  build: []
-  run: []
+extends: [distutils_package]
 
 sources:
  - url: https://pypi.python.org/packages/source/p/pyparsing/pyparsing-2.0.1.zip

@@ -1,0 +1,178 @@
+diff --git a/cmake/modules/FindAMD.cmake b/cmake/modules/FindAMD.cmake
+index 5b2ed26..15d13ec 100644
+--- a/cmake/modules/FindAMD.cmake
++++ b/cmake/modules/FindAMD.cmake
+@@ -40,6 +40,11 @@ message(STATUS "Checking for package 'AMD'")
+ find_path(AMD_INCLUDE_DIRS amd.h
+  HINTS ${AMD_DIR}/include $ENV{AMD_DIR}/include
+  PATH_SUFFIXES suitesparse ufsparse
++ NO_DEFAULT_PATH
++ DOC "Directory where the AMD header is located"
++ )
++find_path(AMD_INCLUDE_DIRS amd.h
++ PATH_SUFFIXES suitesparse ufsparse
+  DOC "Directory where the AMD header is located"
+  )
+ mark_as_advanced(AMD_INCLUDE_DIRS)
+diff --git a/cmake/modules/FindBLASHeader.cmake b/cmake/modules/FindBLASHeader.cmake
+index c17997d..c25a45f 100644
+--- a/cmake/modules/FindBLASHeader.cmake
++++ b/cmake/modules/FindBLASHeader.cmake
+@@ -39,6 +39,10 @@ message(STATUS "Checking for package 'BLAS'")
+ # Check for header file
+ find_path(BLASHEADER_INCLUDE_DIRS cblas.h
+  HINTS ${BLASHEADER_DIR}/include $ENV{BLASHEADER_DIR}/include
++ NO_DEFAULT_PATH
++ DOC "Directory where the BLAS header is located"
++ )
++find_path(BLASHEADER_INCLUDE_DIRS cblas.h
+  DOC "Directory where the BLAS header is located"
+  )
+ mark_as_advanced(BLASBLASHEADER_INCLUDE_DIRS)
+diff --git a/cmake/modules/FindCHOLMOD.cmake b/cmake/modules/FindCHOLMOD.cmake
+index 3dc6c17..00829f3 100644
+--- a/cmake/modules/FindCHOLMOD.cmake
++++ b/cmake/modules/FindCHOLMOD.cmake
+@@ -56,6 +56,11 @@ find_package(ParMETIS 4.0.2 QUIET)
+ find_path(CHOLMOD_INCLUDE_DIRS cholmod.h
+   HINTS ${CHOLMOD_DIR}/include $ENV{CHOLMOD_DIR}/include
+   PATH_SUFFIXES suitesparse ufsparse
++  NO_DEFAULT_PATH
++  DOC "Directory where the CHOLMOD header is located"
++ )
++find_path(CHOLMOD_INCLUDE_DIRS cholmod.h
++  PATH_SUFFIXES suitesparse ufsparse
+   DOC "Directory where the CHOLMOD header is located"
+  )
+ 
+diff --git a/cmake/modules/FindCppUnit.cmake b/cmake/modules/FindCppUnit.cmake
+index bcd7c2a..9c5b6d1 100644
+--- a/cmake/modules/FindCppUnit.cmake
++++ b/cmake/modules/FindCppUnit.cmake
+@@ -44,6 +44,10 @@ set(CPPUNIT_VERSION ${PC_CPPUNIT_VERSION})
+ find_path(CPPUNIT_INCLUDE_DIRS cppunit/Test.h
+  HINTS ${PC_CPPUNIT_INCLUDEDIR} ${CPPUNIT_DIR}/include $ENV{CPPUNIT_DIR}/include
+  DOC "Directory where the CPPUNIT header is located"
++ NO_DEFAULT_PATH
++ )
++find_path(CPPUNIT_INCLUDE_DIRS cppunit/Test.h
++ DOC "Directory where the CPPUNIT header is located"
+  )
+ 
+ # Check for library
+diff --git a/cmake/modules/FindEigen3.cmake b/cmake/modules/FindEigen3.cmake
+index c1999bf..a0cd6ee 100644
+--- a/cmake/modules/FindEigen3.cmake
++++ b/cmake/modules/FindEigen3.cmake
+@@ -72,6 +72,10 @@ else (EIGEN3_INCLUDE_DIR)
+       ${CMAKE_INSTALL_PREFIX}/include
+       ${KDE4_INCLUDE_DIR}
+       PATH_SUFFIXES eigen3 eigen
++      NO_DEFAULT_PATH
++    )
++  find_path(EIGEN3_INCLUDE_DIR NAMES signature_of_eigen3_matrix_library
++      PATH_SUFFIXES eigen3 eigen
+     )
+ 
+   if(EIGEN3_INCLUDE_DIR)
+diff --git a/cmake/modules/FindMPI.cmake b/cmake/modules/FindMPI.cmake
+index 2c657b2..4214021 100644
+--- a/cmake/modules/FindMPI.cmake
++++ b/cmake/modules/FindMPI.cmake
+@@ -335,6 +335,9 @@ function (interrogate_mpi_compiler lang try_libs)
+           set(MPI_HEADER_PATH "MPI_HEADER_PATH-NOTFOUND" CACHE FILEPATH "Cleared" FORCE)
+           find_path(MPI_HEADER_PATH mpi.h
+             HINTS ${_MPI_BASE_DIR} ${_MPI_PREFIX_PATH}
++            PATH_SUFFIXES include
++	    NO_DEFAULT_PATH)
++          find_path(MPI_HEADER_PATH mpi.h
+             PATH_SUFFIXES include)
+           set(MPI_INCLUDE_PATH_WORK ${MPI_HEADER_PATH})
+         endif()
+@@ -418,6 +421,9 @@ function (interrogate_mpi_compiler lang try_libs)
+       # make sure it works for MS MPI, though, since there are no compiler wrappers for that.
+       find_path(MPI_HEADER_PATH mpi.h
+         HINTS ${_MPI_BASE_DIR} ${_MPI_PREFIX_PATH}
++        PATH_SUFFIXES include Inc
++	NO_DEFAULT_PATH)
++      find_path(MPI_HEADER_PATH mpi.h
+         PATH_SUFFIXES include Inc)
+       set(MPI_INCLUDE_PATH_WORK ${MPI_HEADER_PATH})
+ 
+diff --git a/cmake/modules/FindPETSc.cmake b/cmake/modules/FindPETSc.cmake
+index e7ce0fb..1a62fb1 100644
+--- a/cmake/modules/FindPETSc.cmake
++++ b/cmake/modules/FindPETSc.cmake
+@@ -81,6 +81,10 @@ endforeach()
+ find_path(PETSC_DIR include/petsc.h
+   HINTS ${PETSC_DIR} $ENV{PETSC_DIR}
+   PATHS ${petsc_dir_locations}
++  NO_DEFAULT_PATH
++  DOC "PETSc directory")
++find_path(PETSC_DIR include/petsc.h
++  PATHS ${petsc_dir_locations}
+   DOC "PETSc directory")
+ 
+ # Report result of search for PETSC_DIR
+diff --git a/cmake/modules/FindParMETIS.cmake b/cmake/modules/FindParMETIS.cmake
+index f174d12..168d95b 100644
+--- a/cmake/modules/FindParMETIS.cmake
++++ b/cmake/modules/FindParMETIS.cmake
+@@ -38,6 +38,10 @@
+ if (MPI_CXX_FOUND)
+   find_path(PARMETIS_INCLUDE_DIRS parmetis.h
+     HINTS ${PARMETIS_DIR}/include $ENV{PARMETIS_DIR}/include ${PETSC_DIR}/include ${PETSC_DIR}/${PETSC_ARCH}/include
++    NO_DEFAULT_PATH
++    DOC "Directory where the ParMETIS header files are located"
++  )
++  find_path(PARMETIS_INCLUDE_DIRS parmetis.h
+     DOC "Directory where the ParMETIS header files are located"
+   )
+ 
+diff --git a/cmake/modules/FindSCOTCH.cmake b/cmake/modules/FindSCOTCH.cmake
+index 58b96b4..cbfb1a6 100644
+--- a/cmake/modules/FindSCOTCH.cmake
++++ b/cmake/modules/FindSCOTCH.cmake
+@@ -50,6 +50,11 @@ message(STATUS "Checking for package 'SCOTCH-PT'")
+ find_path(SCOTCH_INCLUDE_DIRS ptscotch.h
+   HINTS ${SCOTCH_DIR}/include $ENV{SCOTCH_DIR}/include ${PETSC_DIR}/include ${PETSC_DIR}/${PETSC_ARCH}/include
+   PATH_SUFFIXES scotch
++  NO_DEFAULT_PATH
++  DOC "Directory where the SCOTCH-PT header is located"
++  )
++find_path(SCOTCH_INCLUDE_DIRS ptscotch.h
++  PATH_SUFFIXES scotch
+   DOC "Directory where the SCOTCH-PT header is located"
+   )
+ 
+diff --git a/cmake/modules/FindSLEPc.cmake b/cmake/modules/FindSLEPc.cmake
+index 2618c96..479d713 100644
+--- a/cmake/modules/FindSLEPc.cmake
++++ b/cmake/modules/FindSLEPc.cmake
+@@ -72,6 +72,10 @@ endforeach()
+ find_path(SLEPC_DIR include/slepc.h
+   HINTS ${SLEPC_DIR} $ENV{SLEPC_DIR}
+   PATHS ${slepc_dir_locations}
++  NO_DEFAULT_PATH
++  DOC "SLEPc directory")
++find_path(SLEPC_DIR include/slepc.h
++  PATHS ${slepc_dir_locations}
+   DOC "SLEPc directory")
+ 
+ # Report result of search for SLEPC_DIR
+diff --git a/cmake/modules/FindUMFPACK.cmake b/cmake/modules/FindUMFPACK.cmake
+index e55dfdf..6e8e982 100644
+--- a/cmake/modules/FindUMFPACK.cmake
++++ b/cmake/modules/FindUMFPACK.cmake
+@@ -17,6 +17,11 @@ find_package(CHOLMOD QUIET)
+ find_path(UMFPACK_INCLUDE_DIRS umfpack.h
+  PATHS ${UMFPACK_DIR}/include $ENV{UMFPACK_DIR}/include
+  PATH_SUFFIXES suitesparse ufsparse
++ NO_DEFAULT_PATH
++ DOC "Directory where the UMFPACK header is located"
++ )
++find_path(UMFPACK_INCLUDE_DIRS umfpack.h
++ PATH_SUFFIXES suitesparse ufsparse
+  DOC "Directory where the UMFPACK header is located"
+  )
+ mark_as_advanced(UMFPACK_INCLUDE_DIRS)

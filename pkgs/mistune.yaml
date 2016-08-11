@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:mb3n5x3wqneje7mzd5bxdznhthdkafml
+   url: https://pypi.python.org/packages/source/m/mistune/mistune-0.7.1.tar.gz

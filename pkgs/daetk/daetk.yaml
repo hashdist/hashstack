@@ -4,28 +4,37 @@ extends: [autotools_package]
 dependencies:
   build: [petsc, parmetis, mpi]
 
-sources:
-- url: https://github.com/erdc-cm/daetk.git
-  key: git:e05b9975a2d413148ce122a274be675b27f9450d
+defaults:
+  petscversion: '3.6.1'
+
+when petscversion == '3.6.1':
+  sources:
+  - url: https://github.com/erdc-cm/daetk.git
+    key: git:9c4107d441bc9a0e1d5a603f79874997062349e3
+when petscversion == '3.5.2':
+  sources:
+  - url: https://github.com/erdc-cm/daetk.git
+    key: git:e05b9975a2d413148ce122a274be675b27f9450d
 
 build_stages:
 - when: platform == 'Darwin'
   name: configure
   mode: replace
-  files: [arch.darwin, archive.darwin, sources.darwin]
+  files: [arch.darwin, archive.darwin, sources.darwin, remove_fortran_dependencies.patch]
   after: prologue
   handler: bash
   bash: |
     cp _hashdist/arch.darwin config/darwin
     cp _hashdist/archive.darwin config/darwin.archive
     cp _hashdist/sources.darwin config/darwin.sources
+    patch -p1 < _hashdist/remove_fortran_dependencies.patch
     export DAETK_DIR=`pwd`
     export DAETK_ARCH=darwin
     export PETSC_DIR=$PETSC_DIR
     export PETSC=$PETSC_DIR
     export MPI=$MPI_DIR
     touch dep.txt
-
+    
 - when: machine == 'SGIICEX'
   name: configure
   mode: replace

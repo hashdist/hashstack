@@ -1,0 +1,23 @@
+extends: [autotools_package]
+
+dependencies:
+    build: [libtool]
+
+sources:
+- key: tar.gz:oxb6yja6tglfat7afkpnjujpc23uvxtr
+  url: http://downloads.sourceforge.net/project/libjpeg/libjpeg/6b/jpegsrc.v6b.tar.gz
+
+build_stages:
+- name: setlibtools
+  before: configure
+  handler: bash
+  bash: |
+    ln -s ${LIBTOOL_DIR}/bin/libtool .
+    mkdir ${ARTIFACT}/include
+    mkdir ${ARTIFACT}/lib
+    mkdir ${ARTIFACT}/bin
+    mkdir -p ${ARTIFACT}/man/man1
+
+- name: configure
+  extra: ['--enable-shared',
+          '--enable-static']

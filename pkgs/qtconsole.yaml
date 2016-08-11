@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:snzrj5htlppj5yuos6yzske7rla3doqu
+   url: https://pypi.python.org/packages/source/q/qtconsole/qtconsole-4.2.0.tar.gz

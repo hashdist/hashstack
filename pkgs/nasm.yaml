@@ -3,3 +3,7 @@ extends: [autotools_package]
 sources:
 - key: tar.xz:zgkgpryheii4kugri5sa3cq2bksnmnwu
   url: http://www.nasm.us/pub/nasm/releasebuilds/2.11.08/nasm-2.11.08.tar.xz
+
+when_build_dependency:
+- prepend_path: PATH
+  value: '${ARTIFACT}/bin'

@@ -6,12 +6,9 @@
 # the most *specific* file that matches your environment.
 
 extends:
-- file: osx.yaml
+- file: debian.yaml
 
-parameters:
-  fortran: true
-
-# The packages list specifies all the packages that you 
+# The packages list specifies all the packages that you
 # require installed.  <#> will ensure that all packages
 # and their dependencies are installed when you build this
 # profile.
@@ -20,15 +17,17 @@ packages:
 
   launcher:
   cmake:
+    use: host-cmake
   python:
     host: false
+    link: shared
     build_with: |
-
+      bzip2, sqlite
   blas:
-    use: host-osx-framework-accelerate
+    use: host-blas
   daetk:
   mpi:
-    use: mpich
+    use: host-mpi
   mpi4py:
   nose:
   hdf5:
@@ -36,29 +35,31 @@ packages:
   matplotlib:
   petsc:
     build_with: |
-      parmetis      
+      parmetis
     download: |
-      superlu, superlu_dist
+      hypre, blacs, scalapack, superlu, superlu_dist
     coptflags: -O2
     link: shared
-    debug: false
+    debug: true
   petsc4py:
     with_conf: true
-  pillow:
   pytables:
+  scorec:
+  simmetrix:
   sphinx:
   superlu:
   sympy:
   tetgen:
   triangle:
-  memory_profiler:
-  ipdb:
-  pip:
-  doxygen:
-  scipy:
-  netcdf4:
-  netcdf4f:
-  netcdf4cpp:
-  python-netcdf4:
-  h5py:
-  ode:
+  zoltan:
+    build_with: |
+      parmetis
+
+parameters:
+  HOST_MPI_DIR: /usr/local/mpich3/3.1.2-thread-multiple
+  HOST_CMAKE: /usr/local/cmake/latest/bin/cmake
+  HOST_SIMMETRIX_LIB: /net/common/meshSim/9.0-140816/lib/x64_rhel5_gcc41
+  HOST_SIMMETRIX_INCLUDE: /net/common/meshSim/9.0-140816/include
+  HOST_PYTHON: python
+  HOST_PKG_CONFIG_EXECUTABLE: pkg-config
+  PATH: /usr/bin:/bin:/usr/local/mpich3/3.1.2-thread-multiple/bin/

@@ -1,18 +1,15 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [llvm]
-
+  build: [llvm, libxml2, zlib]
 
 sources:
-- url: http://llvm.org/releases/3.4/clang-3.4.src.tar.gz
-  key: tar.gz:ekuxqdntxbnh6lvz5ipx63qa3ibety6r
+- key: tar.xz:k3rbmtd4filxfvpnfi7fosc76477a3ex
+  url: http://llvm.org/releases/3.7.1/cfe-3.7.1.src.tar.xz
 
 defaults:
-  # lib/libclang.so.3.4 contains hard-coded path
   relocatable: false
 
 build_stages:
 - name: configure
-  extra: ['-D CLANG_PATH_TO_LLVM_BUILD:PATH=$LLVM_DIR',
-          '-D LLVM_MAIN_SRC_DIR:PATH=$LLVM_DIR']
+  extra: ['-D LLVM_MAIN_SRC_DIR:PATH=${LLVM_DIR}']

@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - url: https://pypi.python.org/packages/source/c/coverage/coverage-3.7.1.tar.gz
-   key: tar.gz:2gxkdrfkmg4dm3lkilotmudcf67zyy2o
+- key: zip:qoncrsiy5z3y6hp5x2vm426wjgiulywb
+  url: https://pypi.python.org/packages/source/c/coverage/coverage-4.0.1.zip

@@ -1,0 +1,36 @@
+diff --git a/sources.h b/sources.h
+index 7152d4c..765544e 100644
+--- a/sources.h
++++ b/sources.h
+@@ -4,12 +4,12 @@ SRCS  = AnalyticalJacobian.cpp CMRVecIndex.cpp  Integrator.cpp Jacobian.cpp \
+ 	VectorNorm.cpp DaeDefinition.cpp Chronograph.cpp DaspkPsol.cpp      \
+ 	FullDataFile.cpp LaFullCholeskySolver.cpp Vec.cpp BandColMat.cpp    \
+ 	DaspkRes.cpp FullDirectSolver.cpp LaFullDirectSolver.cpp          \
+-	mvm.cpp BiCGstab.cpp DASPK.cpp DataCollector.cpp     \
+-	GlobalDaeDef.cpp LiBandedDirectSolver.cpp PreCG.cpp               \
++	mvm.cpp BiCGstab.cpp  DataCollector.cpp     \
++	GlobalDaeDef.cpp  PreCG.cpp               \
+ 	WeightedRMSNorm.cpp mvv.cpp CMRVecBlasd.cpp  DataFile.cpp           \
+ 	ParameterDatabase.cpp IntVec.cpp ModifiedNewton.cpp Newton.cpp      \
+ 	PTC.cpp PTCDAE.cpp CMRVecBlass.cpp DaspkJac.cpp FLCBDF.cpp            \
+-	LaBandedDirectSolver.cpp mvblas.cpp daux.f dlinpk.f ddaspk.f    \
++	LaBandedDirectSolver.cpp mvblas.cpp     \
+ 	VectorFunction.cpp DaetkPetscVec.cpp DaetkPetscSys.cpp            \
+ 	DaetkPetscVecBlas.cpp DaetkPetscMat.cpp                         \
+ 	DaetkPetscLinearSolver.cpp DaetkPetscNumericalJacobian.cpp      \
+@@ -22,12 +22,12 @@ OBJS =  AnalyticalJacobian.o CMRVecIndex.o  Integrator.o Jacobian.o \
+ 	VectorNorm.o DaeDefinition.o Chronograph.o DaspkPsol.o      \
+ 	FullDataFile.o LaFullCholeskySolver.o Vec.o BandColMat.o    \
+ 	DaspkRes.o FullDirectSolver.o LaFullDirectSolver.o          \
+-	mvm.o BiCGstab.o DASPK.o DataCollector.o     \
+-	GlobalDaeDef.o LiBandedDirectSolver.o PreCG.o               \
++	mvm.o BiCGstab.o  DataCollector.o     \
++	GlobalDaeDef.o  PreCG.o               \
+ 	WeightedRMSNorm.o mvv.o CMRVecBlasd.o  DataFile.o           \
+ 	ParameterDatabase.o IntVec.o ModifiedNewton.o Newton.o      \
+ 	PTC.o PTCDAE.o CMRVecBlass.o DaspkJac.o FLCBDF.o            \
+-	LaBandedDirectSolver.o mvblas.o daux.o dlinpk.o ddaspk.o    \
++	LaBandedDirectSolver.o mvblas.o     \
+ 	VectorFunction.o DaetkPetscVec.o DaetkPetscSys.o            \
+ 	DaetkPetscVecBlas.o DaetkPetscMat.o                         \
+ 	DaetkPetscLinearSolver.o DaetkPetscNumericalJacobian.o      \

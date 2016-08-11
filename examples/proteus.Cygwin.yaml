@@ -32,7 +32,9 @@ packages:
   mpi4py:
   nose:
   hdf5:
-  ipython:
+  pygments:
+  tornado:
+  pyzmq:
   matplotlib:
   petsc:
     build_with: |

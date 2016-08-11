@@ -1,0 +1,8 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [pytest,py,apipkg,execnet]
+
+sources:
+ - key: zip:jjpbdgisf6rj4max3diyt5m4zroyf2cb
+   url: https://pypi.python.org/packages/9e/df/434c91ac13e96dae9bf519eb4d606d99beac835c7f859d2bca923dbb6b80/pytest-xdist-1.14.zip

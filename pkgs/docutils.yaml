@@ -1,5 +1,5 @@
 extends: [distutils_package]
 
 sources:
-  - url: https://pypi.python.org/packages/source/d/docutils/docutils-0.10.tar.gz
-    key: tar.gz:g4dcjzq3m5z5ulzpwf6mfjhk5jf3lfwd
+- key: tar.gz:y7nxc6aqvnuwl5tmrtydtcuyzhmn7gbn
+  url: https://pypi.python.org/packages/source/d/docutils/docutils-0.12.tar.gz
