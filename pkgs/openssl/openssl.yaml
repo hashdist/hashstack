@@ -1,7 +1,7 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [pkg-config, zlib, patchelf]
+  build: [pkg-config, zlib, patchelf, ca-bundle]
 
 # Do not use https to download openssl from openssl.org: fails on OSX
 # due to limitations of Apple's ancient openssl (no TLSv1.1 support)
@@ -52,6 +52,12 @@ build_stages:
   handler: bash
   bash: |
     $PATCHELF --set-rpath $ARTIFACT/lib:$ZLIB_DIR/lib $ARTIFACT/lib/engines/libgost.so
+
+- name: link_ca_bundle
+  handler: bash
+  after: install
+  bash: |
+    ln -s ${CA_BUNDLE_DIR}/etc/ca-bundle/ca-bundle.crt ${ARTIFACT}/ssl/cert.pem
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH
