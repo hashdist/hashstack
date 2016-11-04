@@ -1,8 +1,8 @@
 extends: [autotools_package]
 
 sources:
-- key: zip:tz56iqtxx4qajvzvqcufqxt32pe45gr4
-  url: http://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.8/1.8.3/irrlicht-1.8.3.zip
+  - url: http://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.8/1.8.4/irrlicht-1.8.4.zip
+    key: zip:6qvsqc6gbdsulobaebx6fkmzyvpssdpf
   
 dependencies:
   build:
