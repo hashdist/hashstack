@@ -43,16 +43,16 @@ packages:
   pyzmq:
   parmetis:
   petsc:
-    version: 3.6.1
+    version: 3.7.4
     build_with: |
-      parmetis, superlu
+      parmetis, cmake
     download: |
-      hypre, blacs, scalapack, mumps
+      superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
     debug: true
   petsc4py:
-    version: 3.6.0
+    version: 3.7.0
     with_conf: true
   pillow:
   pytables:

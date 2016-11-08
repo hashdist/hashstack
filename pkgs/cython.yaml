@@ -1,8 +1,8 @@
 extends: [distutils_package]
 
 sources:
-- key: tar.gz:nxse3dcieeuo7qjdgrsbgr5jypsqtdma
-  url: https://pypi.python.org/packages/b1/51/bd5ef7dff3ae02a2c6047aa18d3d06df2fb8a40b00e938e7ea2f75544cac/Cython-0.24.tar.gz
+- key: tar.gz:qsai7wqakcdvpeuod7vnz5a4t54otknx
+  url: https://pypi.python.org/packages/c6/fe/97319581905de40f1be7015a0ea1bd336a756f6249914b148a17eefa75dc/Cython-0.24.1.tar.gz
 
 when_build_dependency:
   - prepend_path: PATH
