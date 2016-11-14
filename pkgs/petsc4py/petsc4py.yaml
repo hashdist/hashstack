@@ -60,7 +60,7 @@ build_stages:
 when version == '3.7.0':
   sources:
   - key: tar.gz:4h62pjucmtb6ziqbj4st57spgbx2shln
-    url: https://bitbucket.org/petsc/petsc4py/downloads/petsc4py-3..0.tar.gz
+    url: https://bitbucket.org/petsc/petsc4py/downloads/petsc4py-3.7.0.tar.gz
 when version == '3.6.0':
   sources:
   - key: tar.gz:oisw2tnx6vupm6eiqsnav3xrnzikgmkr
