@@ -1,8 +1,8 @@
 extends: [cmake_package]
 
 sources:
-- url: https://github.com/projectchrono/chrono.git
-  key: git:c287bd6010fbac79b0546634499c971875423d50
+- url: https://github.com/erdc-cm/chrono.git
+  key: git:17075438d5188c0cfefa5d752f4e0dfbcb8603c1
 
 defaults:
   relocatable: false
@@ -16,16 +16,17 @@ dependencies:
     - openjpeg
     - png
     - swig
+    - blaze
+    - boost
 
 build_stages:
 - name: configure
   extra:
+#    - '-DENABLE_MODULE_PARALLEL=ON'
     - '-DENABLE_MODULE_VEHICLE=ON'
     - '-DENABLE_MODULE_IRRLICHT:BOOL=ON'
+    - '-DENABLE_MODULE_FEA:BOOL=ON'
     - '-DENABLE_MODULE_PYTHON:BOOL=OFF'
-    - '-DPYTHON_INCLUDE_DIR:PATH="${PYTHON_DIR}/include/python2.7"'
-    - '-DPYTHON_LIBRARY:FILEPATH:="${PYTHON_DIR}/lib/libpython2.7.so"'
-    - '-DPYTHON_LIBRARY_DEBUG:FILEPATH:="${PYTHON_DIR}/lib/libpython2.7.so"'
-    - '-DPYTHON_EXECUTABLE:FILEPATH:="${PYTHON_DIR}/bin/python"'
-    
-
+    - '-DCMAKE_BUILD_TYPE:STRING=Release'
+    - '-DBLAZE_DIR:PATH=${BLAZE_DIR}'
+    - '-DBOOST_DIR:PATH=${BOOST_DIR}/include'
