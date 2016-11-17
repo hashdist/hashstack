@@ -104,7 +104,8 @@ packages:
   leafletwidget:
   pythreejs:
   jupyter:
-  #chrono:
+  chrono:
   ipyparallel:
   pytest:
   pytest-xdist:
+  buildbot-worker:
