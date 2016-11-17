@@ -1,0 +1,23 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [autoconf, automake, python]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:54i22eptw6nasizke7mzgmy4zc3in7qg
+  url: https://github.com/facebook/watchman/archive/v4.5.0.tar.gz
+
+build_stages:
+- name: autogen
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    echo "Running autogen.sh"
+    ./autogen.sh
+
+- name: configure
+  extra: ['--disable-statedir']

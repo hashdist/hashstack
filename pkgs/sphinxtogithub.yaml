@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:curcwhvfl6b57xy6bgtw2txrxettujmq
+   url: https://pypi.python.org/packages/source/s/sphinxtogithub/sphinxtogithub-1.1.0.tar.gz

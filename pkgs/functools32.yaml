@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: zip:rhmcjktmgwgeegrdjv7z5yf5owjtuz6c
+   url: https://pypi.python.org/packages/source/f/functools32/functools32-3.2.3-2.zip

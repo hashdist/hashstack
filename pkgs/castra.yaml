@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: [bloscpack, blosc, numpy, pandas]
+
+sources:
+ - key: tar.gz:d5shxnku3phe4un5l3r7t7zgojtwfkp2
+   url: https://pypi.python.org/packages/source/c/castra/castra-0.1.6.tar.gz

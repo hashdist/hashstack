@@ -18,7 +18,7 @@ dependencies:
     - python-dateutil
 
 sources:
- - url: https://pypi.python.org/packages/source/s/statsmodels/statsmodels-0.5.0.zip
-   key: zip:a5wvmk2kguemavjoqksqzjt2z6betxxe
+- key: tar.gz:xzhein2k5spijc3t4wrdbxxbscwayriz
+  url: https://pypi.python.org/packages/source/s/statsmodels/statsmodels-0.6.1.tar.gz
 
 licenses: [bsd-3-clause]

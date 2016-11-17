@@ -1,0 +1,17 @@
+extends: [cmake_package]
+
+dependencies:
+  build: [bison, flex]
+
+sources:
+- key: git:b00761b30a1d399f95adfe823937c05a64476155
+  url: https://github.com/doxygen/doxygen
+
+build_stages:
+  - when: platform == 'Darwin'
+    name: patch
+    before: configure
+    files: [libiconv_plug.patch]
+    handler: bash
+    bash: |
+      patch -up1 < _hashdist/libiconv_plug.patch

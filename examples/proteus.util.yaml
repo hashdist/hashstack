@@ -48,3 +48,5 @@ packages:
   sympy:
   tetgen:
   triangle:
+  pip:
+  pexpect:

@@ -1,0 +1,81 @@
+# This profile file controls your <#> (HashDist) build environment.
+
+# In the future, we'll provide better incorporation of
+# automatic environment detection.  For now, have a look
+# at the YAML files in the top-level directory and choose
+# the most *specific* file that matches your environment.
+
+parameters:
+  airgap: True
+
+extends:
+- file: osx_clt.yaml
+
+
+# The packages list specifies all the packages that you 
+# require installed.  <#> will ensure that all packages
+# and their dependencies are installed when you build this
+# profile.
+
+packages:
+
+  launcher:
+  cmake:
+  openjpeg:
+    version: '2.1'
+  python:
+    host: false
+    build_with: |
+
+  blas:
+    use: host-osx-framework-accelerate
+  lapack:
+    use: host-osx-framework-accelerate
+  daetk:
+  mpi:
+    use: mpich
+  mpi4py:
+  nose:
+  hdf5:
+  pygments:
+  tornado:
+  pyzmq:
+  parmetis:
+  ipython:
+  matplotlib:
+  petsc:
+    version: 3.6.1
+    build_with: |
+      parmetis      
+    download: |
+      superlu 
+    coptflags: -O2
+    link: shared
+    debug: false
+    disable_fortran: true
+  petsc4py:
+    version: 3.6.0
+    with_conf: true
+  pillow:
+  pytables:
+  sphinx:
+  superlu:
+  sympy:
+  tetgen:
+  triangle:
+  memory_profiler:
+  ipdb:
+  pip:
+  pexpect:
+  doxygen:
+  netcdf4:
+  netcdf4cpp:
+  python-netcdf4:
+  h5py:
+  ode:
+  jupyter:
+  functools:
+    use: host-functools
+  yaml:
+  pytest:
+  pytest-xdist:

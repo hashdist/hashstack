@@ -8,7 +8,7 @@ dependencies:
 
 sources:
 - key: tar.gz:j2gcrllozsezal44wltw6kavxmnifb66
-  url: http://www.cpan.org/src/5.0/perl-5.20.0.tar.gz
+  url: http://www.cpan.org/src/5.0/perl-5.24.0.tar.gz
 
 build_stages:
 - name: configure

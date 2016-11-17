@@ -1,17 +1,12 @@
 extends: [cmake_package]
 
 sources:
-- key: zip:er6kddoyh5j55mjsrpqx4sy34mkrjtw7
-  url: https://googletest.googlecode.com/files/gtest-1.7.0.zip
+- key: git:d406cb18c3d73995cec51fc6b39a2aea821b68c1
+  url: https://github.com/google/googletest
 
 build_stages:
 - name: configure
   extra: ['-D BUILD_SHARED_LIBS:BOOL=ON']
 
-- name: install
-  handler: bash
-  bash: |
-    mkdir -p ${ARTIFACT}/include
-    mkdir -p ${ARTIFACT}/lib
-    cp -rv ../include/gtest ${ARTIFACT}/include/
-    cp -v libgtest* ${ARTIFACT}/lib/
+defaults:
+  relocatable: false

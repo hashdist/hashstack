@@ -1,13 +1,13 @@
 extends: [cmake_package]
 dependencies:
-  build: [mpi, parmetis, zoltan]
+  build: [mpi, parmetis, zoltan, simmetrix]
 
 sources:
-- key: git:1d2f5438d3dff3f1120649577bb2a05f9ac8c556
-  url: https://github.com/SCOREC/core.git
-
+  - url: https://github.com/SCOREC/core-sim.git
+    key: git:5bba53b5599baf2dc62c1d3a958af43ff42c8b17
+    
 defaults:
-  relocatable: false
+  relocatable: true
 
 build_stages:
 
@@ -23,12 +23,13 @@ build_stages:
   '-DCMAKE_C_COMPILER=${MPICC}',
   '-DCMAKE_CXX_COMPILER=${MPICXX}',
   '-DENABLE_ZOLTAN=ON',
-  '-DMETIS_LIBRARY=${PARMETIS_DIR}/lib/libmetis.so',
-  '-DPARMETIS_LIBRARY=${PARMETIS_DIR}/lib/libparmetis.so',
+  '-DMETIS_LIBRARY=${PARMETIS_DIR}/lib/libmetis.a',
+  '-DPARMETIS_LIBRARY=${PARMETIS_DIR}/lib/libparmetis.a',
   '-DPARMETIS_INCLUDE_DIR=${PARMETIS_DIR}/include',
   '-DZOLTAN_LIBRARY=${ZOLTAN_DIR}/lib/libzoltan.a',
   '-DZOLTAN_INCLUDE_DIR=${ZOLTAN_DIR}/include',
-  '-DBUILD_SHARED_LIBS=True',
-  '-DSIM_MPI=mpich2',
+  '-DSIM_MPI=mpich3',
+  '-DSIMMETRIX_LIB_DIR=${SIMMETRIX_LIB}',
+  '-DSIMMETRIX_INCLUDE_DIR=${SIMMETRIX_INCLUDE}'
   ]
 

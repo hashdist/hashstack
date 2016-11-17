@@ -4,8 +4,8 @@ dependencies:
   run: [curl, zlib, openssl, libyaml, libxml2, libxslt, libiconv, ncurses, readline]
 
 sources:
-- key: tar.bz2:g3hhf6ck4qjj63ggnyzqo6tz3b5qddvh
-  url: http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.3.tar.bz2
+- key: tar.gz:xb6hhdfsamv7jeqp56hdqzg4lt4ov2oy
+  url: https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.gz
 
 defaults:
   # /bin/ruby contains hard-coded path
@@ -13,9 +13,13 @@ defaults:
 
 profile_links:
   - name: gem_binaries
-    link: 'lib/ruby/gems/2.1.0/**/bin/*'
+    link: 'lib/ruby/gems/2.3.0/**/bin/*'
 
 build_stages:
+  - name: configure
+    mode: override
+    extra: ['--enable-shared']
+
   - name: test_modules
     after: install
     handler: bash

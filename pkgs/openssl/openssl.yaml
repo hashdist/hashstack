@@ -1,28 +1,21 @@
 extends: [autotools_package]
 
 dependencies:
-  build: [pkg-config, zlib, patchelf]
+  build: [pkg-config, zlib, patchelf, ca-bundle]
 
+# Do not use https to download openssl from openssl.org: fails on OSX
+# due to limitations of Apple's ancient openssl (no TLSv1.1 support)
+#
+# Also, openssl.org urls are not stable, they move old packages
+# whenever an update appears. Use github to download.
 sources:
-  - url: https://www.openssl.org/source/openssl-1.0.1g.tar.gz
-    key: tar.gz:kpfyddb3sdsqpkbur5hv5lw3axml7zjv
+- key: tar.gz:46x7fev6ehbftrvpezdjy6u3horg5gv2
+  url: https://www.openssl.org/source/openssl-1.0.2j.tar.gz
 
 defaults:
   relocatable: false
 
 build_stages:
-# We need to patch the docs because openssl's documentation is invalid
-# and newer versions of pod2man fail on invalid input. See #244.
-# This is fixed in openssl 1.0.2 (unreleased) so we can remove this patch
-# when updating.
-- name: fix_docs
-  after: prologue
-  before: configure
-  handler: bash
-  files: [0001-POD-Fix-item-numbering.patch]
-  bash: |
-    patch -p1 < _hashdist/0001-POD-Fix-item-numbering.patch
-
 - when: platform == 'linux'
   name: set_flags
   before: configure
@@ -31,9 +24,9 @@ build_stages:
     export OPENSSL_EXTRA_FLAGS="-Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib"
 
 - name: configure
-  after: fix_docs
   handler: bash
   mode: replace
+  after: prologue
   bash: |
     #./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include -Wl,-rpath=$ARTIFACT/lib -Wl,-rpath=$ZLIB_DIR/lib
     ./config --prefix=$ARTIFACT shared zlib-dynamic -I$ZLIB_DIR/include $OPENSSL_EXTRA_FLAGS
@@ -47,7 +40,6 @@ build_stages:
 
 - when: platform == 'Darwin'
   name: configure
-  after: fix_docs
   handler: bash
   mode: replace
   bash: |
@@ -60,6 +52,12 @@ build_stages:
   handler: bash
   bash: |
     $PATCHELF --set-rpath $ARTIFACT/lib:$ZLIB_DIR/lib $ARTIFACT/lib/engines/libgost.so
+
+- name: link_ca_bundle
+  handler: bash
+  after: install
+  bash: |
+    ln -s ${CA_BUNDLE_DIR}/etc/ca-bundle/ca-bundle.crt ${ARTIFACT}/ssl/cert.pem
 
 when_build_dependency:
 - prepend_path: PKG_CONFIG_PATH

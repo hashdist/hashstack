@@ -1,0 +1,5 @@
+extends: [setuptools_package]
+
+sources:
+ - key: tar.gz:3sz6yr3razwmcxhwvk25lrfetgs7ahdh
+   url: https://pypi.python.org/packages/c2/d1/7689293086a8d5320025080cde0e3155b94ae0a7496fb89a3fbaa92c354a/wcwidth-0.1.6.tar.gz

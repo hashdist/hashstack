@@ -1,11 +1,11 @@
 extends: [distutils_package]
 
 dependencies:
-  build: [python, jasper, grib_api, pyproj, numpy]
+  build: [python, jasper, grib_api, pyproj, numpy, png, zlib]
   run: [python, pyproj]
 
 sources:
-- key: git:db179ce3dccee59bb41ca812c4b02750be74239f
+- key: git:f4b24ee1142be88d66137935424a354567aec7a8
   url: https://github.com/jswhit/pygrib.git
 
 build_stages:
@@ -17,5 +17,7 @@ build_stages:
     [directories]
     grib_api_dir=${GRIB_API_DIR}
     jasper_dir=${JASPER_DIR}
+    png_dir=${PNG_DIR}
+    zlib_dir=${ZLIB_DIR}
     EOF
 
