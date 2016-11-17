@@ -38,6 +38,7 @@ build_stages:
   handler: bash
   bash: |
     cp _hashdist/make.inc.sgiicex make.inc
+    export INTEL_LICENSE_FILE=/p/home/apps/intel/parallel_studio_2016/server.lic
     export SuperLUroot=`pwd`
     export BLASLIB=$BLAS_LDFLAGS
 

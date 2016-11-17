@@ -1,4 +1,4 @@
-when: machine == 'CrayXE6'
+when: machine == 'SGIICEX'
 
 extends: [distutils_package]
 dependencies:
@@ -16,9 +16,10 @@ build_stages:
     handler: bash
     bash: |
       cat > site.cfg << EOF
-      [DEFAULT]
-      library_dirs = ${CRAY_LIBSCI_PREFIX_DIR}/lib
-      libraries = sci_gnu
+      [mkl]
+      library_dirs = /p/home/apps/intel/parallel_studio_2016/compilers_and_libraries_2016.0.109/linux/mkl/lib/intel64_lin
+      mkl_libs = mkl_rt
+      lapack_libs =
       EOF
 
   - name: set-LDFLAGS
@@ -26,8 +27,8 @@ build_stages:
     before: install
     handler: bash
     bash: |
-      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${CRAY_LIBSCI_PREFIX_DIR}/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib"
       export ATLAS=None
-      export LAPACK=sci_gnu
-      export BLAS=sci_gnu
+      export LAPACK=None
+      export BLAS=None
 
