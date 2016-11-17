@@ -1,10 +1,10 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [bison, flex, libiconv]
+  build: [bison, flex]
 
 sources:
-- key: git:fdae7519a2e29f94e65c0e718513343f07302ddb
+- key: git:b00761b30a1d399f95adfe823937c05a64476155
   url: https://github.com/doxygen/doxygen
 
 build_stages:

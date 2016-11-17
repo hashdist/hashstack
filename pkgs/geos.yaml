@@ -1,8 +1,8 @@
 extends: [autotools_package]
 
 sources:
-  - url: http://download.osgeo.org/geos/geos-3.4.2.tar.bz2
-    key: tar.bz2:cxul7x36feehvfl3k2wfipvjvabscsa4
+- key: tar.bz2:d7twitzsideeekybiobq74kc4rhiwajt
+  url: http://download.osgeo.org/geos/geos-3.6.0.tar.bz2
 
 when_build_dependency:
   - prepend_path: PATH

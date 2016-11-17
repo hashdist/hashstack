@@ -1,12 +1,11 @@
 extends: [cmake_package]
 
+dependencies:
+  build: [python]
+
 sources:
-- url: http://llvm.org/releases/3.4/llvm-3.4.src.tar.gz
-  key: tar.gz:ewswclljfreeqg43hf7cwvpuq4hei6lg
+- key: tar.xz:xz3zj3im5rbnnruczkhdkf2tlnkfkwr5
+  url: http://llvm.org/releases/3.7.1/llvm-3.7.1.src.tar.xz
 
 defaults:
   relocatable: false
-
-build_stages:
-- name: configure
-  extra: ['-D BUILD_SHARED_LIBS:BOOL=ON']

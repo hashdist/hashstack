@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [future, Twisted]
+  run: [future, Twisted]
+
+sources:
+- key: tar.gz:dwhmj7kr46r2pxkn47crfmucyiqzkhf2
+  url: https://pypi.python.org/packages/25/ba/9010e3fb14e4fa2b6e69b9bebd420cd1f23c2d7c0de06d6ac6d78afcdc6f/buildbot-worker-0.9.1.tar.gz

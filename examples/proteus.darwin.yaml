@@ -9,10 +9,8 @@ parameters:
   airgap: True
 
 extends:
-- file: osx.yaml
+- file: osx_clt.yaml
 
-parameters:
-  fortran: true
 
 # The packages list specifies all the packages that you 
 # require installed.  <#> will ensure that all packages
@@ -23,11 +21,15 @@ packages:
 
   launcher:
   cmake:
+  openjpeg:
+    version: '2.1'
   python:
     host: false
     build_with: |
 
   blas:
+    use: host-osx-framework-accelerate
+  lapack:
     use: host-osx-framework-accelerate
   daetk:
   mpi:
@@ -46,10 +48,11 @@ packages:
     build_with: |
       parmetis      
     download: |
-      superlu, superlu_dist
+      superlu 
     coptflags: -O2
     link: shared
     debug: false
+    disable_fortran: true
   petsc4py:
     version: 3.6.0
     with_conf: true
@@ -65,12 +68,14 @@ packages:
   pip:
   pexpect:
   doxygen:
-  scipy:
   netcdf4:
-  netcdf4f:
   netcdf4cpp:
   python-netcdf4:
   h5py:
   ode:
   jupyter:
- 
+  functools:
+    use: host-functools
+  yaml:
+  pytest:
+  pytest-xdist:

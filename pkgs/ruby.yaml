@@ -4,8 +4,8 @@ dependencies:
   run: [curl, zlib, openssl, libyaml, libxml2, libxslt, libiconv, ncurses, readline]
 
 sources:
-- key: tar.gz:354v6l4zqyduljawbeveabfqc3gpo7ul
-  url: https://cache.ruby-lang.org/pub/ruby/2.2/ruby-2.2.3.tar.gz
+- key: tar.gz:xb6hhdfsamv7jeqp56hdqzg4lt4ov2oy
+  url: https://cache.ruby-lang.org/pub/ruby/2.3/ruby-2.3.1.tar.gz
 
 defaults:
   # /bin/ruby contains hard-coded path
@@ -13,7 +13,7 @@ defaults:
 
 profile_links:
   - name: gem_binaries
-    link: 'lib/ruby/gems/2.2.0/**/bin/*'
+    link: 'lib/ruby/gems/2.3.0/**/bin/*'
 
 build_stages:
   - name: configure

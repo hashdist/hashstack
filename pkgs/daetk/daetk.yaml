@@ -20,20 +20,21 @@ build_stages:
 - when: platform == 'Darwin'
   name: configure
   mode: replace
-  files: [arch.darwin, archive.darwin, sources.darwin]
+  files: [arch.darwin, archive.darwin, sources.darwin, remove_fortran_dependencies.patch]
   after: prologue
   handler: bash
   bash: |
     cp _hashdist/arch.darwin config/darwin
     cp _hashdist/archive.darwin config/darwin.archive
     cp _hashdist/sources.darwin config/darwin.sources
+    patch -p1 < _hashdist/remove_fortran_dependencies.patch
     export DAETK_DIR=`pwd`
     export DAETK_ARCH=darwin
     export PETSC_DIR=$PETSC_DIR
     export PETSC=$PETSC_DIR
     export MPI=$MPI_DIR
     touch dep.txt
-
+    
 - when: machine == 'SGIICEX'
   name: configure
   mode: replace

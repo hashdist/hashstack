@@ -1,9 +1,9 @@
 when_build_dependency:
   - {set: 'MPI_ROOT', value: '{{HOST_MPI_DIR}}'}
-  - {set: 'MPICC', value: '{{HOST_MPI_DIR}}/bin/mpicc'}
-  - {set: 'MPICXX', value: '{{HOST_MPI_DIR}}/bin/mpicxx'}
-  - {set: 'MPIF77', value: '{{HOST_MPI_DIR}}/bin/mpif77'}
-  - {set: 'MPIF90', value: '{{HOST_MPI_DIR}}/bin/mpif90'}
-  - {set: 'MPIEXEC', value: '{{HOST_MPI_DIR}}/bin/mpiexec'}
+  - {set: 'MPICC', value: '{{HOST_MPICC}}'}
+  - {set: 'MPICXX', value: '{{HOST_MPICXX}}'}
+  - {set: 'MPIF77', value: '{{HOST_MPIF77}}'}
+  - {set: 'MPIF90', value: '{{HOST_MPIF90}}'}
+  - {set: 'MPIEXEC', value: '{{HOST_MPIEXEC}}'}
   - prepend_path: LD_LIBRARY_PATH
     value: ${MPI_ROOT}/lib

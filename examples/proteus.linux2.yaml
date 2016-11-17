@@ -1,17 +1,4 @@
 # This profile file controls your <#> (HashDist) build environment.
-package_dirs:
-- roams_pkgs
-
-parameters:
-  HOST_MATLAB: '/home/cekees/MATLAB/R2015a/bin/matlab'
-  HOST_SIMMETRIX_LIB: /usr/local/simmetrix/9.0-150831/lib/x64_rhel6_gcc44
-  HOST_SIMMETRIX_INCLUDE: /usr/local/simmetrix/9.0-150831/include
-  HOST_MPI_DIR: /usr
-  HOST_MPICC: /usr/bin/mpicc
-  HOST_MPICXX: /usr/bin/mpicxx
-  HOST_MPIF77: /usr/bin/mpif77
-  HOST_MPIF90: /usr/bin/mpif90
-  HOST_MPIEXEC: /usr/bin/mpiexec
 
 # In the future, we'll provide better incorporation of
 # automatic environment detection.  For now, have a look
@@ -45,7 +32,7 @@ packages:
     use: host-lapack
   daetk:
   mpi:
-    use: host-mpi
+    use: mpich
   mpi4py:
   nose:
   coverage:
@@ -56,16 +43,16 @@ packages:
   pyzmq:
   parmetis:
   petsc:
-    version: 3.6.1
+    version: 3.7.4
     build_with: |
-      parmetis, superlu
+      parmetis, cmake
     download: |
       superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
     debug: true
   petsc4py:
-    version: 3.6.0
+    version: 3.7.0
     with_conf: true
   pillow:
   pytables:
@@ -119,4 +106,6 @@ packages:
   jupyter:
   chrono:
   ipyparallel:
-  sphinxtogithub:
+  pytest:
+  pytest-xdist:
+  buildbot-worker:

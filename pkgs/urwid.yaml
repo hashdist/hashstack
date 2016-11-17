@@ -1,0 +1,5 @@
+extends: [distutils_package]
+
+sources:
+ - key: tar.gz:z7hmaprw3ys2cbz6fy24fr5qzruwtocx
+   url: https://pypi.python.org/packages/85/5d/9317d75b7488c335b86bd9559ca03a2a023ed3413d0e8bfe18bea76f24be/urwid-1.3.1.tar.gz
