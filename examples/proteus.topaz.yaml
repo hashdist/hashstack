@@ -17,6 +17,10 @@ parameters:
   machine: SGIICEX
   HOST_MPI_DIR: /p/home/apps/sgi/mpt-2.12-sgi712r26
   HOST_MPIEXEC: mpiexec_mpt
+  HOST_MPICC: /p/home/cekees/bin/mpicc
+  HOST_MPICXX: /p/home/cekees/bin/mpicxx
+  HOST_MPIF77: /p/home/cekees/bin/mpif77
+  HOST_MPIF90: /p/home/cekees/bin/mpif90
   PATH: |
     /p/home/cekees/bin:/p/home/cekees/proteus/topaz/bin:/apps/gnu_compiler/4.9.3/bin:/usr/local/krb5/bin:/opt/pbs/12.2.7.152442/bin:/p/home/apps/sgi/mpt-2.12-sgi712r26/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/lib64/mpi/gcc/openmpi/bin:/p/home/cekees/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/krb5.20150813/bin:/usr/local/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/pbs/SLB:/app/unsupported/local/bin:/app/unsupported/local/fta/bin:.
   PROLOGUE: |
@@ -69,6 +73,7 @@ packages:
   h5py:
   ode:
   pip:
+  buildbot-worker:
  # pyode:
  # vtk:
  # pyvtk:
