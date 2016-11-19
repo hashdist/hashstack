@@ -27,9 +27,9 @@ packages:
     build_with: |
       bzip2, sqlite, openssl
   blas:
-    use: host-blas
+    use: openblas
   lapack:
-    use: host-lapack
+    use: openblas
   daetk:
   mpi:
     use: mpich
