@@ -45,7 +45,7 @@ packages:
   petsc:
     version: 3.7.4
     build_with: |
-      parmetis, cmake
+      parmetis, cmake, openblas
     download: |
       superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2

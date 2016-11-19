@@ -5,8 +5,12 @@ dependencies:
   build: [petsc, parmetis, mpi]
 
 defaults:
-  petscversion: '3.6.1'
+  petscversion: '3.7.4'
 
+when petscversion == '3.7.4':
+  sources:
+  - url: https://github.com/erdc-cm/daetk.git
+    key: git:9c4107d441bc9a0e1d5a603f79874997062349e3
 when petscversion == '3.6.1':
   sources:
   - url: https://github.com/erdc-cm/daetk.git
