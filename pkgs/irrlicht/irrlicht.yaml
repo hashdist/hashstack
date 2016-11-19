@@ -10,7 +10,7 @@ dependencies:
     - openjpeg
     - png
     - bzip2
-
+    - libjpeg
 
 build_stages:
 - name: configure
@@ -24,7 +24,7 @@ build_stages:
     ln -s ${PNG_DIR}/include  source/Irrlicht/libpng
     ln -s ${ZLIB_DIR}/include  source/Irrlicht/zlib
     ln -s ${BZIP2_DIR}/include  source/Irrlicht/bzip2
-    ln -s /usr/include  source/Irrlicht/jpeglib
+    ln -s ${LIBJPEG_DIR}/include  source/Irrlicht/jpeglib
 
 - name: make
   mode: replace
