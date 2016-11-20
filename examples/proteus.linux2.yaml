@@ -28,8 +28,6 @@ packages:
       bzip2, sqlite, openssl
   blas:
     use: openblas
-  lapack:
-    use: openblas
   daetk:
   mpi:
     use: mpich

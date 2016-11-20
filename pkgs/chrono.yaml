@@ -18,6 +18,7 @@ dependencies:
     - swig
     - blaze
     - boost
+    - libjpeg
 
 build_stages:
 - name: configure

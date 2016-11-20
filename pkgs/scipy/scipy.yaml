@@ -1,14 +1,14 @@
 when platform != 'linux':
   extends: [distutils_package]
 when platform == 'linux':
-  extends: [distutils_package, libflags]
+  extends: [setuptools_package, libflags]
 dependencies:
   build: [lapack, numpy]
   run: [lapack, numpy]
 
 sources:
-- key: tar.gz:trgnf6abhtcaqqrqudufrv3effr5xlp5
-  url: https://github.com/scipy/scipy/releases/download/v0.17.1/scipy-0.17.1.tar.gz
+- key: tar.gz:rk3otsaix4x3h2cxntmm6bzcnwonygfq
+  url: https://github.com/scipy/scipy/releases/download/v0.18.1/scipy-0.18.1.tar.gz
 
 build_stages:
   - when: platform == 'linux'
@@ -19,5 +19,5 @@ build_stages:
     bash: |
       export LDFLAGS="$LDFLAGS -shared"
       #export ATLAS=$LAPACK_DIR
-      #export BLAS=$LAPACK_DIR
+      #export OPENBLAS=$BLAS_DIR
       export LAPACK=$LAPACK_DIR
