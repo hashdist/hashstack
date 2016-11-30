@@ -1,8 +1,8 @@
 extends: [cmake_package]
 
 sources:
-- url: https://github.com/erdc-cm/chrono.git
-  key: git:17075438d5188c0cfefa5d752f4e0dfbcb8603c1
+- url: https://github.com/projectchrono/chrono.git
+  key: git:40b22d221cd4a46b34a35ba27b2f7860cbd94c9b
 
 defaults:
   relocatable: false

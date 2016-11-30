@@ -28,6 +28,8 @@ packages:
       bzip2, sqlite, openssl
   blas:
     use: openblas
+  lapack:
+    use: openblas-lapack
   daetk:
   mpi:
     use: mpich
@@ -45,7 +47,7 @@ packages:
     build_with: |
       parmetis, cmake, openblas
     download: |
-      superlu_dist, hypre, blacs, scalapack, mumps
+      superlu, superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
     debug: true
@@ -56,7 +58,6 @@ packages:
   pytables:
   sphinx:
   sphinx-bootstrap-theme:
-  superlu:
   sympy:
   tetgen:
   triangle:
