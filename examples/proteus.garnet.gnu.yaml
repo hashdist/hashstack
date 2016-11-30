@@ -1,8 +1,4 @@
 # This profile file controls your <#> (HashDist) build environment.
-package_dirs:
-- roams_pkgs
-
-
 # In the future, we'll provide better incorporation of
 # automatic environment detection.  For now, have a look
 # at the YAML files in the top-level directory and choose
