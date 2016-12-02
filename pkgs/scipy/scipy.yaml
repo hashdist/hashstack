@@ -3,8 +3,8 @@ when platform != 'linux':
 when platform == 'linux':
   extends: [setuptools_package, libflags]
 dependencies:
-  build: [lapack, numpy]
-  run: [lapack, numpy]
+  build: [blas, lapack, numpy]
+  run: [blas, lapack, numpy]
 
 sources:
 - key: tar.gz:rk3otsaix4x3h2cxntmm6bzcnwonygfq
@@ -17,7 +17,8 @@ build_stages:
     before: install
     handler: bash
     bash: |
-      export LDFLAGS="$LDFLAGS -shared"
-      #export ATLAS=$LAPACK_DIR
-      #export OPENBLAS=$BLAS_DIR
-      export LAPACK=$LAPACK_DIR
+      export LDFLAGS="$LDFLAGS -shared $LAPACK_LDFLAGS $BLAS_LDFLAGS"
+      export ATLAS=None
+      export OPENBLAS=$OPENBLAS_DIR
+      export LAPACK=$LAPACK_LDFLAGS
+      export BLAS=$BLAS_LDFLAGS
