@@ -108,3 +108,6 @@ packages:
   pytest:
   pytest-xdist:
   buildbot-worker:
+  doxygen:
+  gmsh:
+  scorec:
