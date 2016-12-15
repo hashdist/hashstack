@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - url: https://pypi.python.org/packages/source/c/characteristic/characteristic-0.1.0.tar.gz
-   key: tar.gz:2rypvrekzs6kiebyumq2xugbu5bix3xv
+ - key: tar.gz:33li2tsciek62rhfza6cvea2bnqvpkkz
+   url: https://pypi.python.org/packages/dc/66/54b7a4758ea44fbc93895c7745060005272560fb2c356f2a6f7448ef9a80/characteristic-14.3.0.tar.gz

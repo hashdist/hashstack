@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:ynti45stet3ipjirf6sfhizixwzg47e6
+   url: https://pypi.python.org/packages/f2/8f/a659f0f75a3107998fe9aa7c6f6c80e248fc103e3bbf36020bc176f98bcb/widgetsnbextension-2.0.0b7.tar.gz

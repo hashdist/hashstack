@@ -1,9 +1,9 @@
 extends: [setuptools_package]
+
 dependencies:
+  build: []
   run: [numpy]
 
 sources:
-- key: tar.gz:36tbip4bzxitlhsoaj5d2m4r4gb2lq5k
-  url: https://pypi.python.org/packages/source/r/rdp/rdp-0.5.tar.gz
-
-
+ - key: tar.gz:comt3os6ul3m3jzqdhzal4woswcm2s5t
+   url: https://pypi.python.org/packages/8e/94/714899460a64e9f3c9b3bc567a2fc5292814ace1036ba2b9897d90e33b0e/rdp-0.7.tar.gz

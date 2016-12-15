@@ -2,7 +2,7 @@ extends: [setuptools_package]
 
 dependencies:
   build: [six, cffi, cryptography-vectors, openssl, pytest, pycparser, libffi]
-  run: [libffi]
+  run: [libffi, enum34]
 
 sources:
 - key: tar.gz:z6bn3lertnmh6xseer2xtnbtejgmfybt

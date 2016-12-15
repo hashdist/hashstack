@@ -1,11 +1,11 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 
 dependencies:
   build: [mpmath, fastcache]
   run: [mpmath, fastcache]
 
 defaults:
-  version: 0.7.6
+  version: 1.0.0
 
 when version == '0.7.6':
     sources:
@@ -15,3 +15,7 @@ when version == 'master':
     sources:
     - key: git:488f3c206f16d4307c52ec65e3d6de4f6e42e747
       url: https://github.com/sympy/sympy
+when version == '1.0.0':
+    sources:
+    - key: tar.gz:h2wneegyhhsnxei5efvjewfdvrxzg2ms
+      url: https://pypi.python.org/packages/f3/ae/585ca7545c7e8d3a8130cc3d0cf53cfa489c137f8257e743fd3e18d7c401/sympy-1.0.tar.gz

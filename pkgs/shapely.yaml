@@ -4,8 +4,8 @@ dependencies:
   run: [geos]
 
 sources:
-- key: git:76f5832e8df80ed86493fb4eb7a0cd7a17976822
-  url: https://github.com/Toblerity/Shapely.git
+- key: tar.gz:5zn4wajbopy7agekgdvugivu34fbvb5l
+  url: https://pypi.python.org/packages/45/35/8997278c9bf25514a781580b39e96f3c0c728d56a0003699caccd1960ab0/Shapely-1.6b2.tar.gz
 
 build_stages:
 - name: check

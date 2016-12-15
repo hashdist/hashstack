@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - url: https://pypi.python.org/packages/source/p/pyOpenSSL/pyOpenSSL-0.14.tar.gz
-   key: tar.gz:vgo3rzm4ciatrlmkolxm5xgcjncrbuxo
+ - key: tar.gz:o542ho5xjz45wi2k62qio5kwrrtwtnmc
+   url: https://pypi.python.org/packages/0c/d6/b1fe519846a21614fa4f8233361574eddb223e0bc36b182140d916acfb3b/pyOpenSSL-16.2.0.tar.gz

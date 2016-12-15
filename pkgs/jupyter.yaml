@@ -1,8 +1,8 @@
 extends: [distutils_package]
 
 dependencies:
-  build: [MarkupSafe, backports-ssl_match_hostname, certifi, decorator, functools, ipykernel, ipython, ipython-genutils, ipywidgets, jinja2, jsonschema, jupyter-client, jupyter-console, jupyter-core, mistune, nbconvert, nbformat, notebook, path_py, pickleshare, ptyprocess, pygments, pyzmq, qtconsole, simplegeneric, terminado, tornado, traitlets]
-  run: [MarkupSafe, backports-ssl_match_hostname, certifi, decorator, functools, ipykernel, ipython, ipython-genutils, ipywidgets, jinja2, jsonschema, jupyter-client, jupyter-console, jupyter-core, mistune, nbconvert, nbformat, notebook, path_py, pickleshare, ptyprocess, pygments, pyzmq, qtconsole, simplegeneric, terminado, tornado, traitlets]
+  build: [MarkupSafe, certifi, decorator, functools, ipykernel, ipython, ipython-genutils, ipywidgets, jinja2, jsonschema, jupyter-client, jupyter-console, jupyter-core, mistune, nbconvert, nbformat, notebook, path_py, pickleshare, ptyprocess, pygments, pyzmq, qtconsole, simplegeneric, terminado, tornado, traitlets]
+  run: [MarkupSafe, certifi, decorator, functools, ipykernel, ipython, ipython-genutils, ipywidgets, jinja2, jsonschema, jupyter-client, jupyter-console, jupyter-core, mistune, nbconvert, nbformat, notebook, path_py, pickleshare, ptyprocess, pygments, pyzmq, qtconsole, simplegeneric, terminado, tornado, traitlets]
 
 sources:
  - key: zip:hypymb3lxn6iyidyfe4qgbncwh7ig3kh

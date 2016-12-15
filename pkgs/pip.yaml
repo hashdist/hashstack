@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
-- key: tar.gz:zichtbxqkkgpvf22ct5z67yqmjy5jygd
-  url: https://pypi.python.org/packages/source/p/pip/pip-7.1.2.tar.gz
+ - key: tar.gz:bhzehynhwrq7mvgcnjzf7i3teen3p7yx
+   url: https://pypi.python.org/packages/11/b6/abcb525026a4be042b486df43905d6893fb04f05aac21c32c638e939e447/pip-9.0.1.tar.gz

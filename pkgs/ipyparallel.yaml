@@ -5,12 +5,5 @@ dependencies:
   run: [ipython, futures, jupyter, tornado, ipykernel, jupyter-client, pyzmq, decorator, ipython-genutils, certifi, backports-ssl_match_hostname, traitlets, jupyter-core, pexpect, pickleshare, path_py, simplegeneric]
 
 sources:
- - key: git:4e2d0e439d74561d32d98238fb62fb920d58d7b8 
-   url: https://github.com/ipython/ipyparallel
-
-#build_stages:
-# - name: nbextension
-#   after: install
-#   handler: bash
-#   bash: |
-#     ${ARTIFACT}/bin/ipcluster nbextension enable
+ - key: zip:necquvy667m645djt43dwmanr6fsq46z
+   url: https://pypi.python.org/packages/32/95/61fe56b500cacc7c4690fc8044017d3e9f14d9e4e128b07b578865070f65/ipyparallel-5.2.0.zip

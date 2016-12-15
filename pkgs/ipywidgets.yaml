@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - key: tar.gz:z3vtexsfvxuvg7bncfp63hksfzog5ef3
-   url: https://pypi.python.org/packages/source/i/ipywidgets/ipywidgets-4.1.1.tar.gz
+ - key: tar.gz:aq2rmbcqeswklt7usvzz6lk5qfbr54h5
+   url: https://pypi.python.org/packages/0d/be/d6277db5dd835784a1c47bf3d67e388013c1c9aa0a984e05459fa5de45dc/ipywidgets-6.0.0.beta5.tar.gz

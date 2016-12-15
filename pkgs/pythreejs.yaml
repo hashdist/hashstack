@@ -2,7 +2,8 @@ extends: [setuptools_package]
 
 dependencies:
   build: [ipython, pip, jupyter-pip]
+  run: []
 
 sources:
-  - key: git:ac189124bb54fe5a5e65ad6299a21becfbab94c7
-    url: https://github.com/jasongrout/pythreejs
+ - key: tar.gz:x3h3l2fpcz3gimt23cijkcjxhszw7knn
+   url: https://pypi.python.org/packages/4f/7d/3144e69d5ad91cedc4f36986972260ab23dbc12b290a3fb1fc83b1f01b99/pythreejs-0.2.3.tar.gz

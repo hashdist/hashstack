@@ -1,0 +1,9 @@
+extends: [namespace_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:kmeli4bbxqrubfs4g4pq6bmmy2lrubcq
+   url: https://pypi.python.org/packages/7c/69/c2ce7e91c89dc073eb1aa74c0621c3eefbffe8216b3f9af9d3885265c01c/configparser-3.5.0.tar.gz
