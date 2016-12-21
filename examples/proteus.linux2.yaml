@@ -38,9 +38,9 @@ packages:
   coverage:
   hdf5:
   pygments:
-  tornado:
+#  tornado:
   matplotlib:
-  pyzmq:
+#  pyzmq:
   parmetis:
   petsc:
     version: 3.7.4
@@ -79,32 +79,33 @@ packages:
   pyproj:
   pygrib:
   scipy:
-  ipython:
-  terminado:
+#  ipython:
+#  terminado:
   h5py:
   pydap:
   geojson:
   rdp:
-  ipython-d3plot:
-  ipython-gridwidget:
-  shapely:
-  rtree:
-  matlab:
+#  ipython-d3plot:
+#  ipython-gridwidget:
+#  shapely:
+#  rtree:
+#  matlab:
     use: host-matlab
   ode:
-  ipdb:
+#  ipdb:
   pip:
-  jupyter-pip:
+#  jupyter-pip:
   pexpect:
   pcs_api:
   zoltan:
     build_with: |
       parmetis
-  leafletwidget:
-  pythreejs:
-  jupyter:
+#  leafletwidget:
+#  pythreejs:
+#  jupyter:
   chrono:
-  ipyparallel:
+#  ipyparallel:
   pytest:
   pytest-xdist:
-  buildbot-worker:
+#  buildbot-worker:
+  julia:
