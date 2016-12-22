@@ -93,24 +93,24 @@ packages:
   sphinx:
   sphinx-bootstrap-theme:
   pyzmq:
-  #rtree:
   vapory:
   tornado:
   ipython:
   terminado:
   geojson:
-  #ipython-d3plot:
-  #ipython-gridwidget:
   shapely:
   matlab:
     use: host-matlab
   ipdb:
-  #jupyter-pip:
-  #leafletwidget:
-  ipywidgets:
-  ipyleaflet:
-  pythreejs:
-  jupyter:
   jupyterlab:
+  jupyter:
   ipyparallel:
   buildbot-worker:
+  #rtree:
+  #ipython-d3plot:
+  #ipython-gridwidget:
+  #jupyter-pip:
+  #leafletwidget:
+  #ipywidgets:
+  #ipyleaflet:
+  #pythreejs:

@@ -1,9 +1,20 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: []
-  run: []
+  build: [jupyter]
+  run: [jupyter]
 
 sources:
- - key: tar.gz:aq2rmbcqeswklt7usvzz6lk5qfbr54h5
-   url: https://pypi.python.org/packages/0d/be/d6277db5dd835784a1c47bf3d67e388013c1c9aa0a984e05459fa5de45dc/ipywidgets-6.0.0.beta5.tar.gz
+- key: tar.gz:xl3atdyfjxk6vtbjgs4ouo7pscfydsug
+  url: https://pypi.python.org/packages/51/b1/81b0f4ad11922a8180ce20496af28d67ecd1232fb5ad472088542bea0fae/ipywidgets-5.2.2.tar.gz
+
+#sources:
+# - key: tar.gz:aq2rmbcqeswklt7usvzz6lk5qfbr54h5
+#   url: https://pypi.python.org/packages/0d/be/d6277db5dd835784a1c47bf3d67e388013c1c9aa0a984e05459fa5de45dc/ipywidgets-6.0.0.beta5.tar.gz
+
+build_stages:
+  - name: enable
+    after: install
+    handler: bash
+    bash: |
+      ${JUPYTER_DIR}/bin/jupyter nbextension enable --py --sys-prefix widgetsnbextension
