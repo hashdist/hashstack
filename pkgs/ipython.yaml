@@ -3,7 +3,7 @@ extends: [setuptools_package]
 dependencies:
   run: [pyzmq, tornado, jinja2, jsonschema, pygments, sphinx, pexpect,
         traitlets, simplegeneric, pickleshare, decorator, ipython-genutils,
-        path_py]
+        path_py,pathlib2,backports-shutil-get-terminal-size,prompt-toolkit,html5lib]
 
 sources:
  - key: zip:fw4jh35cpqrx6mkkj4ucsqtz6xnlv77r

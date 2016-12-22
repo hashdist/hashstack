@@ -1,7 +1,7 @@
 extends: [setuptools_package]
 
 dependencies:
-  run: [backports-ssl_match_hostname]
+  run: [backports-ssl_match_hostname,backports-abc,singledispatch]
 
 sources:
  - key: tar.gz:fcmptexytdgud3vy2u5w352usxzpii5w

@@ -2,7 +2,7 @@ extends: [setuptools_package]
 
 dependencies:
   build: []
-  run: []
+  run: [html5lib]
 
 sources:
  - key: tar.gz:s6hhlbmzwvgnhsvc4fqnoqicq6nsgdvi

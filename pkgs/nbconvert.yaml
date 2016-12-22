@@ -2,7 +2,7 @@ extends: [setuptools_package]
 
 dependencies:
   build: []
-  run: [bleach, configparser]
+  run: [bleach,configparser]
 
 sources:
  - key: tar.gz:66252wawiezikhlnx5tpexmajxtaelcp

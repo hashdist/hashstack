@@ -1,4 +1,4 @@
-extends: [namespace_package]
+extends: [setuptools_package]
 
 dependencies:
   build: []

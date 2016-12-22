@@ -92,23 +92,25 @@ packages:
   matplotlib:
   sphinx:
   sphinx-bootstrap-theme:
-  #pyzmq:
+  pyzmq:
   #rtree:
-  #vapory:
-  #tornado:
-  #ipython:
-  #terminado:
+  vapory:
+  tornado:
+  ipython:
+  terminado:
   geojson:
   #ipython-d3plot:
   #ipython-gridwidget:
-  #shapely:
-  #matlab:
-  #  use: host-matlab
-  #ipdb:
+  shapely:
+  matlab:
+    use: host-matlab
+  ipdb:
   #jupyter-pip:
   #leafletwidget:
-  #pythreejs:
-  #jupyter:
-  #jupyterlab:
-  #ipyparallel:
-  #buildbot-worker:
+  ipywidgets:
+  ipyleaflet:
+  pythreejs:
+  jupyter:
+  jupyterlab:
+  ipyparallel:
+  buildbot-worker:
