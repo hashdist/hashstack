@@ -12,5 +12,5 @@ build_stages:
   after: install
   handler: bash
   bash: |
-    ${PYTHON} -c "from shapely import geos"
+    LD_LIBRARY_PATH=${GEOS_DIR}/lib:${LD_LIBRARY_PATH} ${PYTHON} -c "from shapely import geos"
 
