@@ -7,3 +7,4 @@ sources:
 when_build_dependency:
   - prepend_path: PATH
     value: '${ARTIFACT}/bin'
+  - {set: 'GEOS_CONFIG', value: '${ARTIFACT}/bin/geos-config'}
