@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: zip:d7ge4i7t5h7dqelwccrr5icmq2tivzy7
+   url: https://pypi.python.org/packages/15/32/a30896c1669a49a027899bfbead902685ae6130276aa7a834b36dbc00a2a/sanitizer-1.0.0.zip
