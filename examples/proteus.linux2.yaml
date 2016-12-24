@@ -107,6 +107,7 @@ packages:
   ipyparallel:
   buildbot-worker:
   julia:
+  pyjulia:
   vtk:
   #rtree:
   #ipython-d3plot:
