@@ -9,8 +9,11 @@ sources:
    url: https://pypi.python.org/packages/22/82/64dada5382a60471f85f16eb7d01cc1a9620aea855cd665609adf6fdbb0d/h5py-2.6.0.tar.gz
 
 build_stages:
-- name: install
-  after: setup_dirs
+- name: build_ext_options
+  mode: replace
+  before: install
   handler: bash
   bash: |
-    HDF5_VERSION='1.8.16' CC=${MPICC} ${PYTHON} setup.py configure --mpi install --prefix=${ARTIFACT} 
+       export HDF5_VERSION='1.8.16'
+       export CC=${MPICC}
+       export SETUPTOOLS_PACKAGE_EXTRA_OPTIONS="configure --mpi"

@@ -19,8 +19,8 @@ build_stages:
     cd _build
 
 - name: configure
+  debug: true
   extra: [
-  '-DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo',
   '-DCMAKE_C_COMPILER:STRING=${MPICC}',
   '-DCMAKE_CXX_COMPILER:STRING=${MPICXX}',
   '-DENABLE_ZOLTAN:BOOL=ON',
