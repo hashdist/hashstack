@@ -1,7 +1,7 @@
 extends: [base_package, libflags]
 
 dependencies:
-  build: [cmake, openblas, llvm, fftw, gmp, mpfr, pcre, zlib]
+  build: [openblas, llvm, fftw, gmp, mpfr, pcre, zlib, m4, cmake]
 
 sources:
 - key: tar.gz:omshqu3lnxgozp2w4va654fo2bg6bzww
