@@ -20,7 +20,7 @@ build_stages:
 
 - name: configure
   extra: [
-  '-DCMAKE_BUILD_TYPE:STRING=Debug',
+  '-DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo',
   '-DCMAKE_C_COMPILER:STRING=${MPICC}',
   '-DCMAKE_CXX_COMPILER:STRING=${MPICXX}',
   '-DENABLE_ZOLTAN:BOOL=ON',
