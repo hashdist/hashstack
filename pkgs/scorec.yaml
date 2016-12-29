@@ -4,7 +4,7 @@ dependencies:
 
 sources:
   - url: https://github.com/SCOREC/core.git
-    key: git:77a3ffa5639115a069066d4ca53ae7a44f884312
+    key: git:e219777edd875d35096dfedd7197300b8e2f3837
     
 defaults:
   relocatable: true
@@ -20,6 +20,7 @@ build_stages:
 
 - name: configure
   extra: [
+  '-DCMAKE_BUILD_TYPE:STRING=Debug',
   '-DCMAKE_C_COMPILER:STRING=${MPICC}',
   '-DCMAKE_CXX_COMPILER:STRING=${MPICXX}',
   '-DENABLE_ZOLTAN:BOOL=ON',
