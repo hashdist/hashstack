@@ -2,6 +2,10 @@ extends: [autotools_package]
 dependencies:
   build: [blas, mpi, python, cmake, {{build_with}}]
 
+when version == '3.7.5':
+  sources:
+  - key: tar.gz:2z3yd2x4qctstavsoeghejihe3ehth6b
+    url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.7.5.tar.gz
 when version == '3.7.4':
   sources:
   - key: tar.gz:skvlms373heeshxp77kmz27fzcqlvefe
