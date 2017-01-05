@@ -1,7 +1,7 @@
 extends: [setuptools_package]
 dependencies:
   build: [docutils, jinja2, pygments]
-  run: [jinja2, pygments, alabaster, sphinx_rtd_theme, babel, snowballstemmer, docutils, pytz]
+  run: [jinja2, pygments, alabaster, sphinx_rtd_theme, babel, snowballstemmer, docutils, pytz, imagesize]
 
 sources:
 - key: tar.gz:rzvhpiqlfx4vbxrsf7bs6o2qq2l5tvsu
