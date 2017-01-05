@@ -60,7 +60,7 @@ packages:
   parmetis:
     without_check: true
   petsc:
-    version: 3.7.4
+    version: 3.7.5
     fortran: true
     build_with: |
       parmetis, cmake, blas, lapack
@@ -78,19 +78,18 @@ packages:
   tetgen:
   triangle:
   memory_profiler:
-#  boost:
-#    toolset: gcc
-#    address_model: 64
-#    build_with: |
-#      python
-#
-#  cgal:
-#  pycgal:
+  boost:
+    toolset: gcc
+    address_model: 64
+    build_with: |
+      python
+  cgal:
+  pycgal:
   netcdf4:
     use: host-netcdf4
   netcdf4f:
     use: host-netcdf4f
-#  python-netcdf4:
+  python-netcdf4:
   vapory:
   jasper:
   #grib_api:
