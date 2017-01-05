@@ -5,6 +5,14 @@ sources:
   key: tar.gz:valnsxkwmlucpfrfvpn6u7iomikx27i7
 
 build_stages:
+- name: mkdir
+  mode: replace
+  before: configure
+  handler: bash
+  bash: |
+    echo ${ARTIFACT}
+    mkdir -p ${ARTIFACT}
+
 - name: configure
   mode: override
   extra: ['-DCMAKE_BUILD_TYPE:STRING=" "']

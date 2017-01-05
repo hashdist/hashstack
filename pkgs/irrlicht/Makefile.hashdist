@@ -61,7 +61,7 @@ LINKOBJ = $(IRRMESHOBJ) $(IRROBJ) $(IRRPARTICLEOBJ) $(IRRANIMOBJ) \
 
 ###############
 #Compiler flags
-CXXINCS = -I../../include -I${ZLIB_DIR}/include -I${OPENJPEG_DIR}/include -I${BZIP2_DIR}/include -I${PNG_DIR}/include
+CXXINCS = -I../../include -I${ZLIB_DIR}/include -I${OPENJPEG_DIR}/include -I${BZIP2_DIR}/include -I${PNG_DIR}/include -I${LIBJPEG_DIR}/include
 CPPFLAGS += $(CXXINCS) -DIRRLICHT_EXPORTS=1
 CXXFLAGS += -Wall -pipe -fno-exceptions -fno-rtti -fstrict-aliasing
 ifndef NDEBUG
@@ -88,8 +88,8 @@ STATIC_LIB = libIrrlicht.a
 LIB_PATH = ../../lib/$(SYSTEM)
 INSTALL_DIR = ${ARTIFACT}
 sharedlib install: SHARED_LIB = libIrrlicht.so
-sharedlib: LDFLAGS += -L${OPENJPEG_DIR}/lib -Wl,-rpath=${OPENJPEG_DIR}/lib -lopenjp2 -L${PNG_DIR}/lib -Wl,-rpath=${PNG_DIR}/lib -lpng -L${BZIP2_DIR}/lib -Wl,-rpath=${BZIP2_DIR}/lib -lbz2 -L${ZLIB_DIR}/lib -Wl,-rpath=${ZLIB_DIR}/lib -lz -L/usr/lib/x86_64-linux-gnu/ -Wl,-rpath=/usr/lib/x86_64-linux-gnu/ -ljpeg  -L/usr/lib/x86_64-linux-gnu -Wl,-rpath=/usr/lib/x86_64-linux-gnu -lGL -lXxf86vm 
-staticlib sharedlib: CXXINCS += -I/usr/lib/x86_64-linux-gnu
+sharedlib: LDFLAGS += -L${OPENJPEG_DIR}/lib -Wl,-rpath=${OPENJPEG_DIR}/lib -lopenjp2 -L${PNG_DIR}/lib -Wl,-rpath=${PNG_DIR}/lib -lpng -L${BZIP2_DIR}/lib -Wl,-rpath=${BZIP2_DIR}/lib -lbz2 -L${ZLIB_DIR}/lib -Wl,-rpath=${ZLIB_DIR}/lib -lz -L${LIBJPEG_DIR}/lib -Wl,-rpath=${LIBJPEG_DIR}/lib -ljpeg  -L/usr/lib/x86_64-linux-gnu -Wl,-rpath=/usr/lib/x86_64-linux-gnu -lGL -lXxf86vm 
+staticlib sharedlib: CXXINCS += -I/usr/lib/x86_64-linux-gnu -I${OPENJPEG_DIR}/include -I${PNG_DIR}/include -I${BZIP2_DIR}/include -I${ZLIB_DIR}/include -I ${LIBJPEG_DIR}/include
 
 #OSX specific options
 staticlib_osx sharedlib_osx install_osx: SYSTEM = MacOSX

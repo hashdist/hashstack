@@ -1,8 +1,10 @@
-extends: [setuptools_package]
+extends: [distutils_package]
 
 dependencies:
-  run: [pyzmq, tornado, jinja2, jsonschema, pygments, sphinx]
+  run: [pyzmq, tornado, jinja2, jsonschema, pygments, sphinx, pexpect,
+        traitlets, simplegeneric, pickleshare, decorator, ipython-genutils,
+        path_py]
 
 sources:
- - key: zip:lj4uy5zujfgpqu3km7kqttyuip2oksei
-   url: https://pypi.python.org/packages/source/i/ipython/ipython-4.0.0.zip
+ - key: git:b5734353b6d697be2bc4bc98333b0d29462533f9
+   url: https://github.com/ipython/ipython.git

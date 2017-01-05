@@ -1,2 +1,2 @@
 when_build_dependency:
-  - {set: 'HDF5_LDFLAGS', value: '-lhdf5'}
+  - {set: 'HDF5_LDFLAGS', value: '-L${HDF5_DIR} -Wl,-rpath=${HDF5_DIR}/lib -lhdf5'}

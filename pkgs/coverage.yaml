@@ -7,5 +7,3 @@ dependencies:
 sources:
 - key: zip:qoncrsiy5z3y6hp5x2vm426wjgiulywb
   url: https://pypi.python.org/packages/source/c/coverage/coverage-4.0.1.zip
-# - key: zip:56g7v6mki6xfycqubbxqcl52qjyydub5
-#   url: https://pypi.python.org/packages/source/c/coverage/coverage-4.0.2.zip

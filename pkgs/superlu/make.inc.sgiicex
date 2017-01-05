@@ -21,7 +21,7 @@ PLAT = _linux
 #
 #  The name of the libraries to be created/linked to
 #
-SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_4.1.a
+SUPERLULIB   	= $(SuperLUroot)/lib/libsuperlu_4.3.a
 
 #BLASLIB   	= $(SuperLUroot)/lib/libblas.a
 
@@ -44,10 +44,10 @@ ARCH         = ar
 ARCHFLAGS    = cr
 RANLIB       = ranlib
 
-CC           = icc
+CC           = gcc
 CFLAGS       = -O3 -fPIC
 NOOPTS       = -fPIC
-FORTRAN	     = ifort
+FORTRAN	     = gfortran
 FFLAGS       = -O2 -fPIC
 LOADER       = $(FORTRAN)
 LOADOPTS     =

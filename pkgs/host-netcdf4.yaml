@@ -1,0 +1,2 @@
+when_build_dependency:
+  - {set: 'NETCDF4_LDFLAGS', value: '-lnetcdf'}

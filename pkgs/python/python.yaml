@@ -68,7 +68,7 @@ build_stages:
     append: {LDFLAGS: "-Wl,-rpath,${ARTIFACT}/lib"}
     extra: ['--enable-shared']
 
-  - when: pyver == '3.4'
+  - when: pyver == '3.4' or pyver == '3.5'
     name: configure
     mode: update
     extra: ['--without-ensurepip']
@@ -173,6 +173,11 @@ build_stages:
       # Test sqlite3
       echo "import _sqlite3"
       $ARTIFACT/bin/python -c "import _sqlite3"
+      echo "    ok"
+
+      # Test ctypes
+      echo "import _ctypes"
+      $ARTIFACT/bin/python -c "import _ctypes"
       echo "    ok"
 
 

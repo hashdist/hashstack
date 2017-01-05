@@ -1,0 +1,29 @@
+extends: [base_package]
+
+sources:
+- key: tar.gz:t2wrktp53n3wlpfplswcnzma3hqnembl
+  url: https://bitbucket.org/blaze-lib/blaze/get/v3.0.tar.gz
+
+defaults:
+  relocatable: false
+
+build_stages:
+- name: make
+  handler: bash
+  after: prologue
+  bash: |
+    echo "blaze is headers only!"
+
+- name: install
+  handler: bash
+  after: make
+  bash: |
+    mkdir -p $ARTIFACT
+    cp -r blaze $ARTIFACT
+
+profile_links:
+- name: everything
+  link: '*/**/*'
+
+
+

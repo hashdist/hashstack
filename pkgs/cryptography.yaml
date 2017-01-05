@@ -1,12 +1,12 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: [six, cffi, cryptography-vectors, openssl, pytest, pycparser]
-  run: []
+  build: [six, cffi, cryptography-vectors, openssl, pytest, pycparser, libffi]
+  run: [libffi]
 
 sources:
-- key: tar.gz:kz2zthzxitf4gktazmf3uzg6efafvphn
-  url: https://pypi.python.org/packages/source/c/cryptography/cryptography-0.5.4.tar.gz
+- key: tar.gz:z6bn3lertnmh6xseer2xtnbtejgmfybt
+  url: https://pypi.python.org/packages/6c/c5/7fc1f8384443abd2d71631ead026eb59863a58cad0149b94b89f08c8002f/cryptography-1.5.3.tar.gz
 
 build_stages:
 - name: install
@@ -14,4 +14,4 @@ build_stages:
   #when: platform == 'Darwin'
   handler: bash
   bash: |
-    env LDFLAGS="-L${OPENSSL_DIR}/lib -Wl,-rpath,${OPENSSL_DIR}/lib" CFLAGS="-I${OPENSSL_DIR}/include" ARCHFLAGS="-arch x86_64" $PYTHON setup.py install --prefix=${ARTIFACT}
+    env LDFLAGS="-L${LIBFFI_DIR}/lib -Wl,-rpath,${LIBFFI_DIR}/lib -L${OPENSSL_DIR}/lib -Wl,-rpath,${OPENSSL_DIR}/lib" CFLAGS="-I${OPENSSL_DIR}/include" ARCHFLAGS="-arch x86_64" $PYTHON setup.py install --prefix=${ARTIFACT}

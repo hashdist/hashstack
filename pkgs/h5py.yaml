@@ -1,16 +1,16 @@
 extends: [distutils_package]
 
 dependencies:
-  build: [hdf5, mpi4py, mpi, numpy, cython]
-  run: [numpy]
+  build: [hdf5, mpi4py, mpi, numpy, cython, pkgconfig]
+  run: [numpy, mpi4py]
 
 sources:
-- key: tar.gz:ir7flvmjhsriluiylkjyksfbf47x2sxu
-  url: https://pypi.python.org/packages/source/h/h5py/h5py-2.3.1.tar.gz
+- key: tar.gz:taz57cthtyiiwvqwoczelphz6oucpmim
+  url: https://pypi.python.org/packages/source/h/h5py/h5py-2.5.0.tar.gz
 
 build_stages:
 - name: install
   after: setup_dirs
   handler: bash
   bash: |
-    CC=${MPICC} ${PYTHON} setup.py install --mpi --prefix=${ARTIFACT} 
+    HDF5_VERSION='1.8.16' CC=${MPICC} ${PYTHON} setup.py configure --mpi install --prefix=${ARTIFACT} 

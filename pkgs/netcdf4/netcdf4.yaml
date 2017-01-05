@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [mpi, hdf5, curl]
+  build: [mpi, hdf5, curl, m4, zlib, szip]
 
 sources:
 - key: tar.gz:6lxhr2zray34ab7qaht4ddrno46sh42f
@@ -23,6 +23,7 @@ build_stages:
   name: configure
   mode: override
   append: {LDFLAGS: {{DYNAMIC_EXE_LINKER_FLAGS}}}
+  append: {LDFLAGS: '-lhdf5'}
   extra: ['--host=cray','--with-pic']
 
 - when: increase_max_dims

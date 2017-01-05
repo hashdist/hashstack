@@ -1,0 +1,13 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [mini-xml, mpi]
+  run: [mini-xml, mpi]
+
+defaults:
+  # Due to: etc/skel/compiler_fragment.mk
+  relocatable: false
+
+sources:
+ - key: tar.gz:65jlecj7krj3h3chc6vnm7nhymrhwnuh
+   url: http://users.nccs.gov/~pnorbert/adios-1.9.0.tar.gz

@@ -1,0 +1,27 @@
+extends: [cmake_package]
+
+sources:
+- key: tar.gz:e72e7vd3ayu2d3w7ecpq6ipeqjkfu372
+  url: http://gmsh.info/src/gmsh-2.14.1-source.tgz
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build: [swig, python, numpy, mpi, petsc, petsc4py, tetgen, lapack, blas, parmetis, hdf5]
+  run: [swig, python, numpy, mpi, petsc, petsc4py, tetgen, lapack, blas, parmetis, hdf5]
+
+build_stages:
+- name: configure
+  extra:
+    - '-DCMAKE_CXX_COMPILER:STRING=${MPICXX}'
+    - '-DCMAKE_C_COMPILER:STRING=${MPICC}'
+    - '-DENABLE_PETSC:BOOL=OFF'
+    - '-DENABLE_PETSC4PY:BOOL=OFF'
+    - '-DENABLE_FLTK:BOOL=OFF'
+    - '-DENABLE_BUILD_STATIC:BOOL=ON'
+    - '-DENABLE_BUILD_SHARED:BOOL=OFF'
+    - '-DENABLE_WRAP_PYTHON:BOOL=OFF'
+    - '-DSKIP_BUILD_RPATH:BOOL=ON'
+    - '-DCMAKE_INSTALL_RPATH:STRING=""'
+    - '-DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=OFF'

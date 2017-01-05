@@ -4,22 +4,28 @@ defaults:
   relocatable: false
 
 build_stages:
+  - name: prologue
+    handler: bash
+    bash: |
+      {{PROLOGUE}}
+      PYTHON_DIR=$({{HOST_PYTHON}} -c "import sys;sys.stdout.write(sys.prefix)")
 
   - when: not use_python_host_packages
     # Set up links to system Python to create a "virtualenv"/clean
     # environment. Do not pull in site-packages (or dist-packages).
     # Additionally, use our own fresh site.py (since at least Debian
     # patches it to replace site-packages with dist-packages...).
+    after: prologue
     handler: bash
     files: [site.py]
     bash: |
       mkdir ${ARTIFACT}/bin
-      cp /usr/bin/python{{pyver}} ${ARTIFACT}/bin/python{{pyver}}
-      cp /usr/bin/python{{pyver}}-config ${ARTIFACT}/bin/python{{pyver}}-config
+      cp ${PYTHON_DIR}/bin/python{{pyver}} ${ARTIFACT}/bin/python{{pyver}}
+      cp ${PYTHON_DIR}/bin/python{{pyver}}-config ${ARTIFACT}/bin/python{{pyver}}-config
       ln -s python{{pyver}} ${ARTIFACT}/bin/python
       ln -s python{{pyver}}-config ${ARTIFACT}/bin/python-config
       mkdir -p ${ARTIFACT}/lib/python{{pyver}} ${ARTIFACT}/include/python{{pyver}}
-      for i in /usr/lib/python{{pyver}}/*; do
+      for i in ${PYTHON_DIR}/lib/python{{pyver}}/*; do
         ln -s $i ${ARTIFACT}/lib/python{{pyver}}
       done
 
@@ -118,7 +124,7 @@ build_stages:
       intobject.h
       "
       for i in ${PYTHON_INCLUDE_FILES}; do
-        ln -s /usr/include/python{{pyver}}/$i ${ARTIFACT}/include/python{{pyver}}
+        ln -s ${PYTHON_DIR}/include/python{{pyver}}/$i ${ARTIFACT}/include/python{{pyver}}
       done
 
       rm -f ${ARTIFACT}/lib/python{{pyver}}/dist-packages
@@ -129,11 +135,12 @@ build_stages:
   - when: use_python_host_packages
     # Simply symlink to the system Python, and rely on PYTHONPATH being set up
     # appropriately when using profile
+    after: prologue
     handler: bash
     bash: |
       mkdir ${ARTIFACT}/bin
-      ln -s /usr/bin/python{{pyver}} ${ARTIFACT}/bin/python{{pyver}}
-      ln -s /usr/bin/python{{pyver}}-config ${ARTIFACT}/bin/python{{pyver}}-config
+      ln -s ${PYTHON_DIR}/bin/python{{pyver}} ${ARTIFACT}/bin/python{{pyver}}
+      ln -s ${PYTHON_DIR}/bin/python{{pyver}}-config ${ARTIFACT}/bin/python{{pyver}}-config
       ln -s python{{pyver}} ${ARTIFACT}/bin/python
       ln -s python{{pyver}}-config ${ARTIFACT}/bin/python-config
 

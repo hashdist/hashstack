@@ -2,6 +2,10 @@ extends: [autotools_package]
 dependencies:
   build: [blas, mpi, python, {{build_with}}]
 
+when version == '3.7.4':
+  sources:
+  - key: tar.gz:skvlms373heeshxp77kmz27fzcqlvefe
+    url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.7.4.tar.gz
 when version == '3.6.1':
   sources:
   - key: tar.gz:v2wbaflfus5gbhb7h4j23jdvoif42mve
@@ -19,7 +23,6 @@ defaults:
   version: '3.5.2'
 
 build_stages: 
-
 # This patch did not go into 3.4.3 :(
 - when: platform == 'Cygwin'
   name: fix_dll_detection
@@ -43,6 +46,7 @@ build_stages:
    handler: bash
    after: configure
    bash: |
+     which cmake
      make
  
 -  name: install
