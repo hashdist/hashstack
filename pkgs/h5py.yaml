@@ -14,6 +14,17 @@ build_stages:
   before: install
   handler: bash
   bash: |
-       export HDF5_VERSION='1.8.16'
+       export HDF5_VERSION='1.8.13'
        export CC=${MPICC}
+       export CXX=${MPICXX}
        export SETUPTOOLS_PACKAGE_EXTRA_OPTIONS="configure --mpi"
+- name: install
+  after: setup_dirs
+  mode: replace
+  handler: bash
+  bash: |
+    HDF5_VERSION=1.8.13 CC=${MPICC} ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
+       ${SETUPTOOLS_PACKAGE_EXTRA_OPTIONS} \
+       install \
+       --prefix=. --root=${ARTIFACT} \
+       --single-version-externally-managed
