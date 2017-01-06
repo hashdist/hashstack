@@ -1,9 +1,13 @@
 from hashdist import build_stage
 
 def preConfigureCrayXE6(ctx, conf_lines):
-    conf_lines += ['LDFLAGS=-dynamic /usr/lib64/libcpuset.so.1 /usr/lib64/libbitmask.so.1',
+    conf_lines += ['LDFLAGS=-dynamic /usr/lib64/libcpuset.so.1 /usr/lib64/libbitmask.so.1' + 
+                   ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
+               '--known-has-attribute-aligned=1',
                '--known-mpi-shared-libraries=1',
                '--with-batch',
+               '--known-sdot-returns-double=0',
+               '--known-snrm2-returns-double=0',
                '--known-level1-dcache-size=16384',
                '--known-level1-dcache-linesize=64',
                '--known-level1-dcache-assoc=4',
@@ -162,12 +166,12 @@ def configure(ctx, stage_args):
             continue
         if dep_var == 'MPI':
             conf_lines.append('--with-mpi-compilers')
-            conf_lines.append('CC=mpicc')
-            conf_lines.append('CXX=mpicxx')
+            conf_lines.append('CC=$MPICC')
+            conf_lines.append('CXX=$MPICXX')
             if ctx.parameters['fortran']:
-                conf_lines.append('F77=mpif90')
-                conf_lines.append('F90=mpif90')
-                conf_lines.append('FC=mpif90')
+                conf_lines.append('F77=$MPIF77')
+                conf_lines.append('F90=$MPIF90')
+                conf_lines.append('FC=$MPIF90')
             else:
                 conf_lines.append('--with-fc=0')
             continue
