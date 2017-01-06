@@ -85,15 +85,15 @@ packages:
       python
   cgal:
   pycgal:
-  netcdf4:
-    use: host-netcdf4
-  netcdf4f:
-    use: host-netcdf4f
-  python-netcdf4:
-  vapory:
-  jasper:
+#  netcdf4:
+#    use: host-netcdf4
+#  netcdf4f:
+#    use: host-netcdf4f
+#  python-netcdf4:
+#  vapory:
+#  jasper:
   #grib_api:
-  pyproj:
+#  pyproj:
   #pygrib:
   #adh:
   #  link: shared  
@@ -105,13 +105,13 @@ packages:
 #        url: https://github.com/ellisonbg/ipython.git
 #
   h5py:
-  pydap:
+#  pydap:
 #  leafletwidget: 
 #    sources:
 #      - key: git:f9147c5b13a69b80bc28d3574f7ba6b2c576aed2
 #        url: https://github.com/erdc-cm/leafletwidget.git
-  geojson:
-  rdp:
+#  geojson:
+#  rdp:
 #  ipython-widgetmode:
 #  ipython-d3plot:
 #  ipython-gridwidget:
