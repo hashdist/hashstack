@@ -11,13 +11,10 @@ dependencies:
   build:
     - bzip2
     - python
-    - irrlicht
     - zlib
     - openjpeg
     - png
     - swig
-    - blaze
-    - boost
     - libjpeg
 
 build_stages:
@@ -25,7 +22,7 @@ build_stages:
   extra:
     - '-DENABLE_UNIT_CASCADE:BOOL=ON'
     - '-DENABLE_MODULE_FEA:BOOL=ON'
-    - '-DENABLE_MODULE_IRRLICHT:BOOL=ON'
+    - '-DENABLE_MODULE_IRRLICHT:BOOL=OFF'
     - '-DENABLE_MODULE_POSTPROCESS:BOOL=ON'
     - '-DENABLE_MODULE_VEHICLE:BOOL=ON'
     - '-DENABLE_MODULE_FSI:BOOL=ON'
@@ -38,5 +35,3 @@ build_stages:
     - '-DENABLE_MODULE_OPENGL:BOOL=OFF'
     - '-DENABLE_MODULE_OGRE:BOOL=OFF'
     - '-DCMAKE_BUILD_TYPE:STRING=Release'
-    - '-DBLAZE_DIR:PATH=${BLAZE_DIR}'
-    - '-DBOOST_DIR:PATH=${BOOST_DIR}/include'
