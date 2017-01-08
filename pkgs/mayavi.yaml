@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [vtk, numpy]
+  run: [vtk, numpy]
+
+sources:
+ - key: zip:am4fd27fb3noafpzn3zbehpcz7iwvopj
+   url: https://pypi.python.org/packages/8a/7d/3c3a7b60b5d87e69d194cc71de716178a7af165342f85083620c68d88260/mayavi-4.5.0.zip
