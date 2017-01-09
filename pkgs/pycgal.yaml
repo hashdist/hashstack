@@ -17,6 +17,7 @@ build_stages:
 - name: configure
   extra: ['-DBUILD_PYTHON:BOOL=ON',
           '-DBUILD_JAVA:BOOL=OFF',
+          '-DSWIG_DIR:PATH=${SWIG_DIR}',
           '-DCGAL_DIR:PATH=${CGAL_DIR}/lib/CGAL',
           '-DPYTHON_OUTDIR_PREFIX:PATH=${ARTIFACT}/{{python_site_packages_rel}}']
 - name: install
