@@ -40,10 +40,6 @@ build_stages:
     - '-DCMAKE_BUILD_TYPE:STRING=Release'
     - '-DBLAZE_DIR:PATH=${BLAZE_DIR}'
     - '-DBOOST_DIR:PATH=${BOOST_DIR}/include'
-
-#- after: install
-#  handler: bash
-#  bash: |
-#    mv lib64 lib
-#    mkdir -p lib/python2.6/site-packages/chrono
-#    mv share/chrono/python lib/python2.6/site-packages/chrono
+    - '-DPYTHON_EXECUTABLE:PATH=${PYTHON}'
+    - '-DPYTHON_INCLUDE_DIR:PATH=${PYTHON_DIR}/include/python2.7'
+    - '-DPYTHON_LIBRARY:PATH=${PYTHON_DIR}/lib/libpython2.7.so'
