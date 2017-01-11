@@ -1,8 +1,8 @@
 extends: [cmake_package]
 
 sources:
-- url: https://github.com/projectchrono/chrono.git
-  key: git:40b22d221cd4a46b34a35ba27b2f7860cbd94c9b
+- key: tar.gz:tiwcmpwvbkpyc7tyyuprtxiziaq7inho
+  url: https://github.com/projectchrono/chrono/archive/51cb0c88a3ae1eece127322fea081e9a140de3d4.tar.gz
 
 defaults:
   relocatable: false
@@ -30,7 +30,7 @@ build_stages:
     - '-DENABLE_MODULE_VEHICLE:BOOL=ON'
     - '-DENABLE_MODULE_FSI:BOOL=ON'
     - '-DENABLE_OPENMP:BOOL=ON'
-    - '-DENABLE_MODULE_PYTHON:BOOL=OFF'
+    - '-DENABLE_MODULE_PYTHON:BOOL=ON'
     - '-DENABLE_MODULE_COSIMULATION:BOOL=OFF'
     - '-DENABLE_MODULE_MATLAB:BOOL=OFF'
     - '-DENABLE_MODULE_MKL:BOOL=OFF'
@@ -40,3 +40,10 @@ build_stages:
     - '-DCMAKE_BUILD_TYPE:STRING=Release'
     - '-DBLAZE_DIR:PATH=${BLAZE_DIR}'
     - '-DBOOST_DIR:PATH=${BOOST_DIR}/include'
+
+#- after: install
+#  handler: bash
+#  bash: |
+#    mv lib64 lib
+#    mkdir -p lib/python2.6/site-packages/chrono
+#    mv share/chrono/python lib/python2.6/site-packages/chrono
