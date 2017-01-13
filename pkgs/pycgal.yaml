@@ -1,10 +1,13 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [cgal,python,swig]
+  build: [cgal,python,swig,zlib]
+
+defaults:
+  relocatable: false
 
 sources:
-- key: git:6d44cbe100d5a139888126f5fb3383264efeded6
+- key: git:97d63c81781c9c09a9ed1f6e63212393c9b5d40e
   url: https://github.com/CGAL/cgal-swig-bindings.git
 
 build_stages:
@@ -15,19 +18,16 @@ build_stages:
     export PYTHONPATH=${ARTIFACT}/{{python_site_packages_rel}}:$PYTHONPATH
     mkdir -p ${ARTIFACT}/{{python_site_packages_rel}}
 - name: configure
-  extra: ['-DBUILD_PYTHON:BOOL=ON',
+  extra: ['-DPYTHON_EXECUTABLE:PATH=${PYTHON}',
+          '-DPYTHON_INCLUDE_DIR:PATH=${PYTHON_DIR}/include/python2.7',
+          '-DPYTHON_LIBRARY:PATH=${PYTHON_DIR}/lib/libpython2.7.so',
+          '-DBUILD_PYTHON:BOOL=ON',
           '-DBUILD_JAVA:BOOL=OFF',
           '-DSWIG_DIR:PATH=${SWIG_DIR}',
+          '-DSWIG_DIR:PATH=${SWIG_DIR}',
           '-DCGAL_DIR:PATH=${CGAL_DIR}/lib/CGAL',
-          '-DPYTHON_OUTDIR_PREFIX:PATH=${ARTIFACT}/{{python_site_packages_rel}}']
-- name: install
-  mode: replace
-  handler: bash
-  after: make
-  bash: |
-    cp lib/* ${ARTIFACT}/lib
-
-  # Remove easy_install pth files
+          '-DZLIB_INCLUDE_DIR:PATH=${ZLIB_DIR}/include',
+          '-DZLIB_LIBRARY_RELEASE:PATH=${ZLIB_DIR}/lib/libz.so']
 - name: cleanup
   after: install
   handler: bash
