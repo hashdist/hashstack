@@ -63,7 +63,6 @@ packages:
     build_with: |
       python
   cgal:
-  pycgal:
   netcdf4:
   netcdf4f:
   python-netcdf4:
