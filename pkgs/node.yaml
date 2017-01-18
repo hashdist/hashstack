@@ -15,6 +15,6 @@ build_stages:
     export CXXFLAGS=-fno-delete-null-pointer-checks
 
 sources:
-- key: tar.gz:nggzmyqgpltkecrfq3s4bfszonp4abih
-  url: https://nodejs.org/dist/v5.0.0/node-v5.0.0.tar.gz
+- key: tar.gz:6asxza7ll2fq46yj3nzgjxa6spq7ajgg
+  url: https://nodejs.org/dist/v6.9.4/node-v6.9.4.tar.gz
 
