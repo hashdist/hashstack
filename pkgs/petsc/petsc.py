@@ -109,7 +109,7 @@ def configure(ctx, stage_args):
         conf_lines.append('--with-ssl=0')
 
     # Special case, --with-blas-dir does not work with OpenBLAS
-    if 'OPENBLAS' in ctx.dependency_dir_vars:
+    if 'OPENBLAS' in ctx.dependency_dir_vars or ('BLAS' in ctx.dependency_dir_vars and ctx.parameters.get('openblas') == True):
         if ctx.parameters['platform'] == 'Darwin':
             libopenblas = '${OPENBLAS_DIR}/lib/libopenblas.dylib'
         else:

@@ -42,6 +42,7 @@ packages:
   pillow:
   petsc:
     version: 3.7.5
+    openblas: true
     build_with: |
       parmetis, cmake, blas
     download: |
