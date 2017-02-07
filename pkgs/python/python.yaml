@@ -73,6 +73,11 @@ build_stages:
     mode: update
     extra: ['--without-ensurepip']
 
+  - when: pyver == '2.7'
+    name: configure
+    mode: update
+    extra: ['--enable-unicode=ucs4']
+
   - when: python_framework
     name: configure
     mode: update
