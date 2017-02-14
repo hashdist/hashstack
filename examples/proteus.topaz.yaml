@@ -50,19 +50,19 @@ packages:
   parmetis:
     without_check: true
   petsc:
-    version: 3.6.1
+    version: 3.7.5
     build_with: |
-      parmetis
+      parmetis, cmake, blas
+    download: |
+      superlu, superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
     debug: false
-    fortran: false
   petsc4py:
-    version: 3.6.0
+    version: 3.7.0
     with_conf: true
   pytables:
   sphinx:
-  superlu:
   sympy:
   tetgen:
   triangle:

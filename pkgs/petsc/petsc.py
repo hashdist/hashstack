@@ -27,6 +27,7 @@ def preConfigureCrayXE6(ctx, conf_lines):
 
 def preConfigureSGIICEX(ctx, conf_lines):
     conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
+               '--known-has-attribute-aligned=1',
                '--known-mpi-shared-libraries=1',
                '--with-pic',
                '--with-batch',
