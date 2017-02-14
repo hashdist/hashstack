@@ -31,7 +31,11 @@ def preConfigureCrayXE6(ctx, conf_lines):
 
 def preConfigureCrayXC30(ctx, conf_lines):
     conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
-               '--known-mpi-shared-libraries=1',
+                   '--with-cmake=/app/COST/cmake-3.0.0-gnu/bin/cmake',
+                   '--with-cmake-exe=/app/COST/cmake-3.0.0-gnu/bin/cmake',
+                   '--with-cmake-dir=/app/COST/cmake-3.0.0-gnu',
+              '--known-has-attribute-aligned=1',
+                '--known-mpi-shared-libraries=1',
                '--with-batch',
                '--known-sdot-returns-double=0',
                '--known-snrm2-returns-double=0',
@@ -142,8 +146,8 @@ def configure(ctx, stage_args):
     # temporaries.  Here, we force PETSc to use our ./_tmp directory
     # as its temporary directory.  This configuration change may be of
     # general use for the other build systems.
-    conf_lines = ['mkdir ${PWD}/_tmp && TMPDIR=${PWD}/_tmp',
-                  './configure --prefix="${ARTIFACT}"']
+    conf_lines = ['TMPDIR=${WORKDIR}',
+                  'PATH=/app/COST/cmake-3.0.0-gnu/bin:${PATH} ./configure --prefix="${ARTIFACT}"']
 
     if ctx.parameters.get('machine','') == 'CrayXE6':
         preConfigureCrayXE6(ctx, conf_lines)
