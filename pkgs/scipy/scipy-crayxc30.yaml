@@ -19,6 +19,10 @@ build_stages:
       [DEFAULT]
       library_dirs = ${CRAY_LIBSCI_PREFIX_DIR}/lib
       libraries = sci_gnu
+      [lapack]
+      lapack_libs = sci_gnu
+      [blas]
+      blas_libs = sci_gnu
       EOF
 
   - name: set-LDFLAGS

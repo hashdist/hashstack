@@ -2,6 +2,11 @@ extends: [distutils_package]
 
 dependencies:
   build: [python]
+  run: [python]
+
+sources:
+ - key: zip:twskbn2vxrg7qgqjtfsxkdlagwm77grx
+   url: https://pypi.python.org/packages/4a/27/cf254815e1c31b4ccd37acce8d9ed9fb923c820c589b0cb3149b3f0e3ea3/setuptools-31.0.1.zip
 
 build_stages:
   - name: install
@@ -16,10 +21,6 @@ build_stages:
     handler: bash
     bash: |
       ${PYTHON} setup.py install --prefix=. --root=${ARTIFACT}/Python.framework/Versions/{{pyver}} --single-version-externally-managed
-
-sources:
-- key: tar.gz:et6pyfjwjkp6bgrcb435fxhnzbexsxr5
-  url: https://pypi.python.org/packages/source/s/setuptools/setuptools-20.2.2.tar.gz
 
 when_build_dependency:
   - when: not python_framework

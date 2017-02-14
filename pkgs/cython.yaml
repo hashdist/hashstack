@@ -1,9 +1,9 @@
-extends: [distutils_package]
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
 
 sources:
-- key: tar.gz:nxse3dcieeuo7qjdgrsbgr5jypsqtdma
-  url: https://pypi.python.org/packages/b1/51/bd5ef7dff3ae02a2c6047aa18d3d06df2fb8a40b00e938e7ea2f75544cac/Cython-0.24.tar.gz
-
-when_build_dependency:
-  - prepend_path: PATH
-    value: '${ARTIFACT}/bin'
+ - key: tar.gz:6fa5d6ocpid3lkj7pxcthfdsaz7c24ka
+   url: https://pypi.python.org/packages/b7/67/7e2a817f9e9c773ee3995c1e15204f5d01c8da71882016cac10342ef031b/Cython-0.25.2.tar.gz

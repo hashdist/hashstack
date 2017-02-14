@@ -1,4 +1,5 @@
 extends: [setuptools_package]
+
 dependencies:
   build: [libspatialindex]
   run: [libspatialindex]
@@ -13,5 +14,5 @@ build_stages:
     sed -i -e "s|CDLL(lib_name)|CDLL('${LIBSPATIALINDEX_DIR}/lib/'+lib_name)|g" rtree/core.py
 
 sources:
-- key: tar.gz:z6kqsl4g4znjefsflhsu6cbegpon6g6t
-  url: https://pypi.python.org/packages/source/R/Rtree/Rtree-0.7.0.tar.gz
+- key: tar.gz:ns446maasy7kni63o55fs65o4k6flrh4
+  url: https://pypi.python.org/packages/b0/6c/6cc8d738f14d5efa0c38ec29403bbd9c75e64b3fe84b53290178dda0dbd9/Rtree-0.8.3.tar.gz

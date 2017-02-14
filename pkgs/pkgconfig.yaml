@@ -1,0 +1,9 @@
+extends: [setuptools_package,libflags]
+
+dependencies:
+  build: [nose]
+  run: [nose]
+
+sources:
+ - key: tar.gz:g2c3uavjw4tfjj3ew4ulkwpte7q5xv64
+   url: https://pypi.python.org/packages/9d/ba/80910bbed2b4e646a6adab4474d2e506744c260c7002a0e6b41ef8750d8d/pkgconfig-1.2.2.tar.gz

@@ -1,9 +1,0 @@
-extends: [setuptools_package]
-
-dependencies:
-  build: [ipython]
-  run: [ipython]
-
-sources:
-  - url: https://github.com/jdfreder/ipython-gridwidget
-    key: git:95540147f59d98b90744e4be847c463587a1bec0

@@ -1,12 +1,12 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 
 dependencies:
   build: [python, jasper, grib_api, pyproj, numpy, png, zlib]
   run: [python, pyproj]
 
 sources:
-- key: git:f4b24ee1142be88d66137935424a354567aec7a8
-  url: https://github.com/jswhit/pygrib.git
+ - key: tar.gz:qlvv4ybxef7x54qakip7zegftqo3maem
+   url: https://pypi.python.org/packages/3c/16/d128a64f2f5e9f776d6e080ba62551b5d103a4c0acb283204135bd23f14e/pygrib-2.0.2.tar.gz
 
 build_stages:
 - name: create-setup.cfg
@@ -20,4 +20,3 @@ build_stages:
     png_dir=${PNG_DIR}
     zlib_dir=${ZLIB_DIR}
     EOF
-

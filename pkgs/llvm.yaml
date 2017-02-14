@@ -1,7 +1,7 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [python]
+  build: [python, pyliblzma]
 
 sources:
 - key: tar.xz:xz3zj3im5rbnnruczkhdkf2tlnkfkwr5

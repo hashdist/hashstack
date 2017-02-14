@@ -3,16 +3,14 @@ dependencies:
   build: [mpi, {{build_with}}]
 
 sources:
-- key: tar.gz:lpoumvepxhdtwis3xtz5ebwfldbrrszj
-  url: http://www.cs.sandia.gov/~kddevin/Zoltan_Distributions/zoltan_distrib_v3.8.tar.gz
+- key: tar.gz:2dly7xvlpi4fzb6tmzvyvdohjcmu74cn
+  url: http://www.cs.sandia.gov/~kddevin/Zoltan_Distributions/zoltan_distrib_v3.83.tar.gz
 
 defaults:
   #include/Makefile.export.zoltan.macros
   relocatable: false
-#>>>>>>> mainline/master
 
 build_stages:
-
 - name: setup_builddir
   after: prologue
   handler: bash
@@ -25,11 +23,14 @@ build_stages:
   handler: bash
   bash: |
     export MPI_DIR=$MPI_ROOT
-#=======
-#      export MPI_DIR=$(dirname $(dirname $MPICC) )
-#      export LD_LIBRARY_PATH=${MPI_DIR}/lib
+    export CFLAGS="-m64"
+    export CXXFLAGS="-m64"
+    export CPPFLAGS="-m64"
+    export FCFLAGS="-m64"
 
 - name: configure
   after: setEnv
   configure_path: ".."
-  extra: ['--with-cflags=-fPIC', '--with-cxxflags=-fPIC']
+  extra: ['--with-cflags=-fPIC',
+          '--with-gnumake',
+          '--with-cxxflags=-fPIC']

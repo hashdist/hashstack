@@ -1,10 +1,10 @@
 extends: [cmake_package]
 dependencies:
-  build: [mpi, parmetis, zoltan, simmetrix]
+  build: [mpi, parmetis, zoltan]
 
 sources:
-  - url: https://github.com/SCOREC/core-sim.git
-    key: git:5bba53b5599baf2dc62c1d3a958af43ff42c8b17
+  - url: https://github.com/SCOREC/core.git
+    key: git:e219777edd875d35096dfedd7197300b8e2f3837
     
 defaults:
   relocatable: true
@@ -19,17 +19,14 @@ build_stages:
     cd _build
 
 - name: configure
+  debug: true
   extra: [
-  '-DCMAKE_C_COMPILER=${MPICC}',
-  '-DCMAKE_CXX_COMPILER=${MPICXX}',
-  '-DENABLE_ZOLTAN=ON',
-  '-DMETIS_LIBRARY=${PARMETIS_DIR}/lib/libmetis.a',
-  '-DPARMETIS_LIBRARY=${PARMETIS_DIR}/lib/libparmetis.a',
-  '-DPARMETIS_INCLUDE_DIR=${PARMETIS_DIR}/include',
-  '-DZOLTAN_LIBRARY=${ZOLTAN_DIR}/lib/libzoltan.a',
-  '-DZOLTAN_INCLUDE_DIR=${ZOLTAN_DIR}/include',
-  '-DSIM_MPI=mpich3',
-  '-DSIMMETRIX_LIB_DIR=${SIMMETRIX_LIB}',
-  '-DSIMMETRIX_INCLUDE_DIR=${SIMMETRIX_INCLUDE}'
+  '-DBUILD_SHARED_LIBS:BOOL=ON',
+  '-DCMAKE_C_COMPILER:STRING=${MPICC}',
+  '-DCMAKE_CXX_COMPILER:STRING=${MPICXX}',
+  '-DENABLE_ZOLTAN:BOOL=ON',
+  '-DENABLE_SIMMETRIX:BOOL=OFF',
+  '-DZOLTAN_PREFIX:PATH=${ZOLTAN_DIR}',
+  '-DPARMETIS_PREFIX:PATH=${PARMETIS_DIR}',
   ]
 

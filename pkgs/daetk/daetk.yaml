@@ -5,8 +5,12 @@ dependencies:
   build: [petsc, parmetis, mpi]
 
 defaults:
-  petscversion: '3.6.1'
+  petscversion: '3.7.5'
 
+when petscversion == '3.7.5':
+  sources:
+  - key: tar.gz:ggkr3upxu74syj5bq22fx4ha2ewzzyun
+    url: https://github.com/erdc-cm/daetk/archive/1.0.0.tar.gz
 when petscversion == '3.6.1':
   sources:
   - url: https://github.com/erdc-cm/daetk.git
@@ -68,6 +72,24 @@ build_stages:
     export PETSC_DIR=$PETSC_DIR
     export PETSC=$PETSC_DIR
     export MPI=$MPI_DIR
+    touch dep.txt
+
+- when: machine == 'SGIICEX'
+  name: configure
+  mode: replace
+  files: [arch.linux, archive.linux, sources.linux]
+  after: prologue
+  handler: bash
+  bash: |
+    cp _hashdist/arch.linux config/linux
+    cp _hashdist/archive.linux config/linux.archive
+    cp _hashdist/sources.linux config/linux.sources
+    export DAETK_DIR=`pwd`
+    export DAETK_ARCH=linux
+    export PETSC_DIR=$PETSC_DIR
+    export PETSC=$PETSC_DIR
+    export MPI=$MPI_DIR
+    export MPIF77=mpif90
     touch dep.txt
 
 - when: platform == 'Cygwin'

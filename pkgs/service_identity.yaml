@@ -5,8 +5,8 @@ dependencies:
   run: []
 
 sources:
- - url: https://pypi.python.org/packages/source/s/service_identity/service_identity-1.0.0.tar.gz
-   key: tar.gz:m6pdt7bvxqmjw5be3hgvkrpxkwzocj6e
+- key: tar.gz:ayyoeixvt6i7hw2jrpsgwhmht7zcbfk5
+  url: https://pypi.python.org/packages/f3/2a/7c04e7ab74f9f2be026745a9ffa81fd9d56139fa6f5f4b4c8a8c07b2bfba/service_identity-16.0.0.tar.gz
 
 when_build_dependency:
  - prepend_path: PYTHONPATH

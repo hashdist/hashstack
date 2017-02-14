@@ -5,9 +5,8 @@ dependencies:
   run: [blas, cython]
 
 sources:
-  - key: tar.gz:5cmod4vyscjlsu2sucsygfjkdbacbjes
-    url: https://github.com/numpy/numpy/archive/v1.11.0.tar.gz
-
+ - key: zip:7xkbtlwk62jmgebx5vtb46xok3pptebs
+   url: https://pypi.python.org/packages/e1/22/e21b5080e303898fd97c6ee2a78d21be4844b1258a57a5d5cb370b0275c0/numpy-1.12.0b1.zip
 
 build_stages:
   - when: platform == 'linux'
@@ -40,7 +39,7 @@ build_stages:
     bash: |
       cat > site.cfg << EOF
       [mkl]
-      library_dirs = /app/intel/compilers/14/mkl/lib/intel64
+      library_dirs = /p/home/apps/intel/parallel_studio_2016/compilers_and_libraries_2016.0.109/linux/mkl/lib/intel64_lin
       mkl_libs = mkl_rt,pthread,m
       EOF
 
