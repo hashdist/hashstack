@@ -1,0 +1,5 @@
+extends: [setuptools_package]
+
+sources:
+- key: tar.gz:mthr5ytndtpdy46g27iqp6bv73l4niuq
+  url: https://pypi.python.org/packages/source/e/ecdsa/ecdsa-0.13.tar.gz

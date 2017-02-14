@@ -1,0 +1,3 @@
+when_build_dependency:
+  - {set: 'SIMMETRIX_LIB', value: '{{HOST_SIMMETRIX_LIB}}'}
+  - {set: 'SIMMETRIX_INCLUDE', value: '{{HOST_SIMMETRIX_INCLUDE}}'}

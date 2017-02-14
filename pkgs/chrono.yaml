@@ -1,30 +1,45 @@
 extends: [cmake_package]
 
 sources:
-- url: https://github.com/projectchrono/chrono.git
-  key: git:a181c70e4ae83bd698e0e96e853c9a73636ccf4f
+- key: tar.gz:tiwcmpwvbkpyc7tyyuprtxiziaq7inho
+  url: https://github.com/projectchrono/chrono/archive/51cb0c88a3ae1eece127322fea081e9a140de3d4.tar.gz
 
 defaults:
   relocatable: false
 
 dependencies:
   build:
+    - bzip2
     - python
     - irrlicht
     - zlib
     - openjpeg
     - png
     - swig
+    - blaze
+    - boost
+    - libjpeg
 
 build_stages:
 - name: configure
   extra:
-    - '-DENABLE_MODULE_VEHICLE=ON'
+    - '-DENABLE_UNIT_CASCADE:BOOL=ON'
+    - '-DENABLE_MODULE_FEA:BOOL=ON'
     - '-DENABLE_MODULE_IRRLICHT:BOOL=ON'
+    - '-DENABLE_MODULE_POSTPROCESS:BOOL=ON'
+    - '-DENABLE_MODULE_VEHICLE:BOOL=ON'
+    - '-DENABLE_MODULE_FSI:BOOL=ON'
+    - '-DENABLE_OPENMP:BOOL=ON'
     - '-DENABLE_MODULE_PYTHON:BOOL=OFF'
-    - '-DPYTHON_INCLUDE_DIR:PATH="${PYTHON_DIR}/include/python2.7"'
-    - '-DPYTHON_LIBRARY:FILEPATH:="${PYTHON_DIR}/lib/libpython2.7.so"'
-    - '-DPYTHON_LIBRARY_DEBUG:FILEPATH:="${PYTHON_DIR}/lib/libpython2.7.so"'
-    - '-DPYTHON_EXECUTABLE:FILEPATH:="${PYTHON_DIR}/bin/python"'
-    
-
+    - '-DENABLE_MODULE_COSIMULATION:BOOL=OFF'
+    - '-DENABLE_MODULE_MATLAB:BOOL=OFF'
+    - '-DENABLE_MODULE_MKL:BOOL=OFF'
+    - '-DENABLE_MODULE_PARALLEL:BOOL=OFF'
+    - '-DENABLE_MODULE_OPENGL:BOOL=OFF'
+    - '-DENABLE_MODULE_OGRE:BOOL=OFF'
+    - '-DCMAKE_BUILD_TYPE:STRING=Release'
+    - '-DBLAZE_DIR:PATH=${BLAZE_DIR}'
+    - '-DBOOST_DIR:PATH=${BOOST_DIR}/include'
+    - '-DPYTHON_EXECUTABLE:PATH=${PYTHON}'
+    - '-DPYTHON_INCLUDE_DIR:PATH=${PYTHON_DIR}/include/python2.7'
+    - '-DPYTHON_LIBRARY:PATH=${PYTHON_DIR}/lib/libpython2.7.so'

@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [ply]
+  run: [ply]
+
+sources:
+ - key: tar.gz:vujmyerafpupgmtlr5ezwldgf7rbpf7n
+   url: https://pypi.python.org/packages/04/13/f920406f04f741c5a3820c3953b8db53692aef4649a3c562257b75a9efc5/xonsh-0.2.7.tar.gz

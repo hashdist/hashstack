@@ -1,11 +1,11 @@
 extends: [base_package, libflags]
 
 dependencies:
-  build: [openblas, llvm, fftw, gmp, mpfr, pcre]
+  build: [blas, llvm, fftw, gmp, mpfr, pcre, zlib, m4, cmake]
 
 sources:
-- url: https://github.com/JuliaLang/julia
-  key: git:95c9f9bfa1c2d385f3d8ade99c572500a6294bd6
+- key: tar.gz:omshqu3lnxgozp2w4va654fo2bg6bzww
+  url: https://github.com/JuliaLang/julia/releases/download/v0.5.0/julia-0.5.0-full.tar.gz
 
 defaults:
   # share/julia/base/build_h.jl contains hard-coded path
@@ -27,16 +27,14 @@ build_stages:
         USE_SYSTEM_LAPACK=1 \
         LIBLAPACK=-L$OPENBLAS_DIR/lib -lopenblas \
         LIBLAPACKNAME=$OPENBLAS_DIR/lib/libopenblas.so \
-        USE_SYSTEM_LLVM=1 \
-        LLVM_CONFIG=$LLVM_DIR/bin/llvm-config \
+        USE_SYSTEM_LLVM=0 \
         USE_SYSTEM_ZLIB=0 \
         USE_SYSTEM_SUITESPARSE=0 \
         USE_SYSTEM_ARPACK=0 \
-        USE_SYSTEM_FFTW=1 \
-        USE_SYSTEM_GMP=1 \
-        USE_SYSTEM_MPFR=1 \
-        USE_SYSTEM_PCRE=1 \
-        PCRE_CONFIG=$PCRE_DIR/bin/pcre-config \
+        USE_SYSTEM_FFTW=0 \
+        USE_SYSTEM_GMP=0 \
+        USE_SYSTEM_MPFR=0 \
+        USE_SYSTEM_PCRE=0 \
         USE_SYSTEM_LIBUNWIND=0 \
         USE_SYSTEM_READLINE=0 \
         USE_SYSTEM_GRISU=0 \

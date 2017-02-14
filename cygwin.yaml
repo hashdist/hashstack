@@ -8,6 +8,7 @@ parameters:
   HOST_MPIF77: /usr/bin/mpif77
   HOST_MPIF90: /usr/bin/mpif90
   HOST_MPIEXEC: /usr/bin/mpiexec
+  HOST_JASPER_DIR: /usr
   HOST_CMAKE: /usr/bin/cmake
   HOST_PYTHON: /usr/bin/python
   HOST_PKG_CONFIG_EXECUTABLE: /usr/bin/pkgconfig

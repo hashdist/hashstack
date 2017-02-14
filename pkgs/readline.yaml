@@ -3,8 +3,8 @@ dependencies:
   build: [ncurses]
 
 sources:
-  - url: http://ftp.gnu.org/gnu/readline/readline-6.2.tar.gz
-    key: tar.gz:pgtjmbykawgcgpds3vvmnfycdtdevpk6
+- key: tar.gz:ougug4mffbxubi3j4hspi5so3kjsxfcz
+  url: http://ftp.gnu.org/gnu/readline/readline-7.0.tar.gz
 
 build_stages:
   - name: configure

@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - key: zip:jzu3pjn2eej5krt6em4zivsdkysqpur7
-   url: https://pypi.python.org/packages/source/j/jupyter_core/jupyter_core-4.0.6.zip
+ - key: tar.gz:rhcvhgoiin7xo4mxylecyh7vmooh64ou
+   url: https://pypi.python.org/packages/bc/d0/8f57f733913fbd4ce1a01991b008bace8dcf05158080821c6de76b4c5d01/jupyter_core-4.2.1.tar.gz

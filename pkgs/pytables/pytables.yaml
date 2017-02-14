@@ -9,12 +9,13 @@ sources:
 
 build_stages:
 - name: fix_setup_paths
-  files: [pytables_fix_setup_paths.patch]
+  files: [pytables_fix_setup_paths.patch,pytables_fix_compare_version.patch]
   before: install
   handler: bash
   bash: |
     patch -p1 < _hashdist/pytables_fix_setup_paths.patch
-
+    patch -p1 < _hashdist/pytables_fix_compare_version.patch
+    
 - name: install
   mode: replace
   after: setup_dirs

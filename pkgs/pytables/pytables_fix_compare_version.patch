@@ -1,0 +1,29 @@
+diff --unified -r pytables/setup.py pytables-fix-compare-version/setup.py
+--- pytables/setup.py	2016-05-13 09:22:20.000000000 -0500
++++ pytables-fix-compare-version/setup.py	2016-05-13 09:38:24.000000000 -0500
+@@ -22,6 +22,7 @@
+ from distutils.dep_util import newer
+ from distutils.util     import convert_path
+ from distutils.ccompiler import new_compiler
++from distutils.version  import LooseVersion
+ 
+ # The minimum required versions
+ # (keep these in sync with tables.req_versions and user's guide and README)
+@@ -60,7 +61,7 @@
+                 "You need %(pkgname)s %(pkgver)s or greater to run PyTables!"
+                 % {'pkgname': pkgname, 'pkgver': pkgver} )
+     else:
+-        if mod.__version__ < pkgver:
++        if LooseVersion(mod.__version__) < LooseVersion(pkgver):
+             exit_with_error(
+                 "You need %(pkgname)s %(pkgver)s or greater to run PyTables!"
+                 % {'pkgname': pkgname, 'pkgver': pkgver} )
+@@ -84,7 +85,7 @@
+         "You need %(pkgname)s %(pkgver)s or greater to compile PyTables!"
+         % {'pkgname': 'Cython', 'pkgver': min_cython_version} )
+ 
+-if Version.version < min_cython_version:
++if LooseVersion(Version.version) < LooseVersion(min_cython_version):
+     exit_with_error(
+         "At least Cython %s is needed so as to generate extensions!"
+         % (min_cython_version) )

@@ -5,12 +5,16 @@ dependencies:
   build: [petsc, parmetis, mpi]
 
 defaults:
-  petscversion: '3.6.1'
+  petscversion: '3.7.5'
 
+when petscversion == '3.7.5':
+  sources:
+  - key: tar.gz:ggkr3upxu74syj5bq22fx4ha2ewzzyun
+    url: https://github.com/erdc-cm/daetk/archive/1.0.0.tar.gz
 when petscversion == '3.6.1':
   sources:
   - url: https://github.com/erdc-cm/daetk.git
-    key: git:1d61f1a6942730ed5b964f5b9241568ca4acf0b6
+    key: git:9c4107d441bc9a0e1d5a603f79874997062349e3
 when petscversion == '3.5.2':
   sources:
   - url: https://github.com/erdc-cm/daetk.git
@@ -20,20 +24,21 @@ build_stages:
 - when: platform == 'Darwin'
   name: configure
   mode: replace
-  files: [arch.darwin, archive.darwin, sources.darwin]
+  files: [arch.darwin, archive.darwin, sources.darwin, remove_fortran_dependencies.patch]
   after: prologue
   handler: bash
   bash: |
     cp _hashdist/arch.darwin config/darwin
     cp _hashdist/archive.darwin config/darwin.archive
     cp _hashdist/sources.darwin config/darwin.sources
+    patch -p1 < _hashdist/remove_fortran_dependencies.patch
     export DAETK_DIR=`pwd`
     export DAETK_ARCH=darwin
     export PETSC_DIR=$PETSC_DIR
     export PETSC=$PETSC_DIR
     export MPI=$MPI_DIR
     touch dep.txt
-
+    
 - when: machine == 'SGIICEX'
   name: configure
   mode: replace
@@ -67,6 +72,24 @@ build_stages:
     export PETSC_DIR=$PETSC_DIR
     export PETSC=$PETSC_DIR
     export MPI=$MPI_DIR
+    touch dep.txt
+
+- when: machine == 'SGIICEX'
+  name: configure
+  mode: replace
+  files: [arch.linux, archive.linux, sources.linux]
+  after: prologue
+  handler: bash
+  bash: |
+    cp _hashdist/arch.linux config/linux
+    cp _hashdist/archive.linux config/linux.archive
+    cp _hashdist/sources.linux config/linux.sources
+    export DAETK_DIR=`pwd`
+    export DAETK_ARCH=linux
+    export PETSC_DIR=$PETSC_DIR
+    export PETSC=$PETSC_DIR
+    export MPI=$MPI_DIR
+    export MPIF77=mpif90
     touch dep.txt
 
 - when: platform == 'Cygwin'

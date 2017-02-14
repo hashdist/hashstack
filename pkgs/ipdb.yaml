@@ -5,5 +5,5 @@ dependencies:
   run: [ipython]
 
 sources:
- - url: https://pypi.python.org/packages/source/i/ipdb/ipdb-0.8.zip
-   key: zip:bvfdh44omz5azahmdjna4rup4whfzxdb
+ - key: tar.gz:xmuurzzg3p5snb7uuwbarcz7c4fskvv2
+   url: https://pypi.python.org/packages/eb/0a/0a37dc19572580336ad3813792c0d18c8d7117c2d66fc63c501f13a7a8f8/ipdb-0.10.1.tar.gz

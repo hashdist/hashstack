@@ -1,5 +1,5 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 
 sources:
-- key: tar.gz:pn3tl36twhrdepoj7txqmczybuc7l4ml
-  url: https://pypi.python.org/packages/source/r/requests/requests-2.5.1.tar.gz
+ - key: tar.gz:5wmeggqgghrqto2lmpeb2vq4czkielfr
+   url: https://pypi.python.org/packages/5b/0b/34be574b1ec997247796e5d516f3a6b6509c4e064f2885a96ed885ce7579/requests-2.12.4.tar.gz

@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - key: tar.gz:3q5cwlm5caz5x4tvqy3gvzq3tv6ejwgd
-   url: https://pypi.python.org/packages/source/c/certifi/certifi-2015.9.6.2.tar.gz
+ - key: tar.gz:qj2254n35lyfyu3rlp6f3bljxupajsq6
+   url: https://pypi.python.org/packages/4f/75/e1bc6e363a2c76f8d7e754c27c437dbe4086414e1d6d2f6b2a3e7846f22b/certifi-2016.9.26.tar.gz

@@ -5,21 +5,14 @@ dependencies:
   run: [numpy]
 
 sources:
-- key: tar.gz:4fg3jqpczketyrqcavidnobhxazsorsd
-  url: http://downloads.sourceforge.net/project/exodusii/exodus-6.09.tar.gz
+- key: git:6c253a726e68dd9a6ecc6927803b123467b2cd42
+  url: https://github.com/certik/exodus
 
 defaults:
   # lib/python2.7/site-packages/exodus.py contains hard-coded path
   relocatable: false
 
 build_stages:
-
-- name: patch
-  before: switch_dir
-  files: [include_path_fix.patch]
-  handler: bash
-  bash: |
-    patch -up1 < _hashdist/include_path_fix.patch
 
 - name: switch_dir
   after: prologue

@@ -1,0 +1,5 @@
+extends: [cmake_package]
+
+sources:
+- key: git:d220612eba6a03f72fdd24149d3714337809aa3f
+  url: https://github.com/unittest-cpp/unittest-cpp

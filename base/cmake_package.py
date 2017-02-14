@@ -33,8 +33,11 @@ def configure(ctx, stage_args):
     if stage_args['debug']:
         conf_lines.append('-DCMAKE_BUILD_TYPE:STRING=Debug')
     else:
-        conf_lines.append('-DCMAKE_BUILD_TYPE:STRING=Release')
-
+       if stage_args['relwithdebinfo']:
+          conf_lines.append('-DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo')
+       else:
+          conf_lines.append('-DCMAKE_BUILD_TYPE:STRING=Release')
+    
     if stage_args.get('empty_osx_deployment_target', False):
         conf_lines.append('-DCMAKE_OSX_DEPLOYMENT_TARGET:STRING=""')
 

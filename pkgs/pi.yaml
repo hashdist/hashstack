@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:rvidu6idc737xttunhcbmdsewhdwjesx
+   url: https://pypi.python.org/packages/c5/49/b6bf523a86a63dd364ae0fb6df85645961af166855cf038b361a31d5d504/pi-0.1.2.tar.gz

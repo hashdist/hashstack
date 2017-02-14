@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+- key: zip:233ldbjslzvfm3okwulgn5bkz3pmux42
+  url: https://github.com/JuliaPy/pyjulia/archive/master.zip

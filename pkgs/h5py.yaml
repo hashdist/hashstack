@@ -1,16 +1,28 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 
 dependencies:
-  build: [hdf5, mpi4py, mpi, numpy, cython]
-  run: [numpy]
+  build: [hdf5, mpi4py, mpi, numpy, cython, pkgconfig, six]
+  run: [numpy, mpi4py]
 
 sources:
-- key: tar.gz:ir7flvmjhsriluiylkjyksfbf47x2sxu
-  url: https://pypi.python.org/packages/source/h/h5py/h5py-2.3.1.tar.gz
+ - key: tar.gz:wkx4gvbq2xsmgq24tfxe6tvcvoq6uvqq
+   url: https://pypi.python.org/packages/22/82/64dada5382a60471f85f16eb7d01cc1a9620aea855cd665609adf6fdbb0d/h5py-2.6.0.tar.gz
 
 build_stages:
-- name: install
-  after: setup_dirs
+- name: build_ext_options
+  mode: replace
+  before: install
   handler: bash
   bash: |
-    CC=${MPICC} ${PYTHON} setup.py install --mpi --prefix=${ARTIFACT} 
+       export HDF5_VERSION='1.8.16'
+       export SETUPTOOLS_PACKAGE_EXTRA_OPTIONS="configure --mpi"
+- name: install
+  after: setup_dirs
+  mode: replace
+  handler: bash
+  bash: |
+    CC=${MPICC} ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
+       ${SETUPTOOLS_PACKAGE_EXTRA_OPTIONS} \
+       install \
+       --prefix=. --root=${ARTIFACT} \
+       --single-version-externally-managed

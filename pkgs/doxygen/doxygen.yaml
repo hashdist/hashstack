@@ -1,11 +1,11 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [bison, flex, libiconv]
+  build: [bison, flex]
 
 sources:
-- key: git:fdae7519a2e29f94e65c0e718513343f07302ddb
-  url: https://github.com/doxygen/doxygen
+- key: tar.gz:chw522awd5akqmsoig2jnhncxz67neew
+  url: https://github.com/doxygen/doxygen/archive/Release_1_8_13.tar.gz
 
 build_stages:
   - when: platform == 'Darwin'
