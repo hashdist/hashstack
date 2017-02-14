@@ -5,9 +5,8 @@ dependencies:
   run: [blas, cython]
 
 sources:
-  - key: tar.gz:5cmod4vyscjlsu2sucsygfjkdbacbjes
-    url: https://github.com/numpy/numpy/archive/v1.11.0.tar.gz
-
+ - key: zip:7xkbtlwk62jmgebx5vtb46xok3pptebs
+   url: https://pypi.python.org/packages/e1/22/e21b5080e303898fd97c6ee2a78d21be4844b1258a57a5d5cb370b0275c0/numpy-1.12.0b1.zip
 
 build_stages:
   - when: platform == 'linux'
@@ -63,8 +62,8 @@ build_stages:
     bash: |
       cat > site.cfg << EOF
       [DEFAULT]
-      library_dirs = /opt/acml/${ACML_VERSION}/${PE_ACML_DEFAULT_DIR_GNU}/lib
-      libraries = acml, gfortran
+      library_dirs = ${CRAY_LIBSCI_PREFIX_DIR}/lib
+      libraries = sci_gnu
       EOF
 
   - when: machine == 'CrayXE6'
@@ -73,9 +72,9 @@ build_stages:
     before: install
     handler: bash
     bash: |
-      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${ACML_DIR}/gfortran64/lib $(${PYTHON_DIR}/bin/python-config --ldflags -lgfortran)"
-      export LAPACK=acml
-      export BLAS=acml
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${CRAY_LIBSCI_PREFIX_DIR}/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LAPACK=sci_gnu
+      export BLAS=sci_gnu
       export ATLAS=None
 
   - when: platform == 'Cygwin'

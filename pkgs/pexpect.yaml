@@ -1,5 +1,9 @@
 extends: [setuptools_package]
 
+dependencies:
+  build: []
+  run: []
+
 sources:
-- key: zip:4bpxtrpj4y6k7gr7yunxvgtlpdbrnxqc
-  url: https://github.com/pexpect/pexpect/archive/3.3.zip
+ - key: tar.gz:hujsiznhlnl2vamdihdfee4subwmmyh6
+   url: https://pypi.python.org/packages/e8/13/d0b0599099d6cd23663043a2a0bb7c61e58c6ba359b2656e6fb000ef5b98/pexpect-4.2.1.tar.gz

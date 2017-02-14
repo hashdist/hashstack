@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - key: tar.gz:p63nkdx75cfaq77lea3mxfzp26ujhpzt
-   url: https://pypi.python.org/packages/source/B/Babel/Babel-2.1.1.tar.gz
+ - key: tar.gz:yu24iqbyal3owoaxhtkimpsbtyrhjeq2
+   url: https://pypi.python.org/packages/6e/96/ba2a2462ed25ca0e651fb7b66e7080f5315f91425a07ea5b34d7c870c114/Babel-2.3.4.tar.gz

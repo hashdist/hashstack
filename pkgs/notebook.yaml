@@ -5,5 +5,5 @@ dependencies:
   run: [functools, functools32, ipython-genutils]
 
 sources:
- - key: tar.gz:wwlug65dgu4ceeai4ip6u4onahw2twqv
-   url: https://pypi.python.org/packages/source/n/notebook/notebook-4.1.0.tar.gz
+ - key: tar.gz:ydm35oknpxcjldwgzr3jm3e3mp4jbeva
+   url: https://pypi.python.org/packages/c4/f5/229d65cedb3da4ccf7bfaf5ad31241764174f3ac5ce1d2a646c397a91773/notebook-4.3.0.tar.gz

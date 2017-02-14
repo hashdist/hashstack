@@ -41,6 +41,7 @@ packages:
     link: shared
     build_with: |
       openssl,bzip2,sqlite
+    link: shared
   blas:
     use: host-acml-blas
   lapack:
@@ -51,8 +52,6 @@ packages:
   mpi4py:
   nose:
   hdf5:
-    use: host-hdf5
-  ipython:
   pygments:
   tornado:
   pyzmq:
@@ -87,18 +86,16 @@ packages:
 #  cgal:
 #  pycgal:
   netcdf4:
-    use: host-netcdf4
   netcdf4f:
-    use: host-netcdf4f
-#  python-netcdf4:
+  python-netcdf4:
   vapory:
   jasper:
-  #grib_api:
+  grib_api:
   pyproj:
-  #pygrib:
+  pygrib:
   #adh:
   #  link: shared  
-  #stwave:  
+  stwave:  
   scipy:
 #  ipython:
 #    sources:
@@ -122,7 +119,6 @@ packages:
 #    use: host-matlab
 #  pymatbridge:
   ode:
-  pcs_api:
 #  ipdb:
   pip:
   pexpect:

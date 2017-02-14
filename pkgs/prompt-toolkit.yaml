@@ -1,8 +1,9 @@
 extends: [setuptools_package]
 
 dependencies:
+  build: [wcwidth]
   run: [wcwidth]
 
 sources:
- - key: tar.gz:keeo3htoidjizmo4sc5fmomhqwjdckex
-   url: https://pypi.python.org/packages/0b/2c/ab26db81e5b9c2f179a2e9d797f2ce0d11f7cc3308830831de0daad8629e/prompt_toolkit-1.0.0.tar.gz
+ - key: tar.gz:zvsshm3k3qluzqinksyrspvwe22cnbqj
+   url: https://pypi.python.org/packages/83/14/5ac258da6c530eca02852ee25c7a9ff3ca78287bb4c198d0d0055845d856/prompt_toolkit-1.0.9.tar.gz

@@ -1,12 +1,12 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 
 dependencies:
   build: [zope-interface, setuptools, service_identity, pyOpenSSL, incremental]
   run: [zope-interface, service_identity, pyOpenSSL, incremental]
 
 sources:
-- key: tar.bz2:lqtur2veujngkttiejmirdktlvhvrbhf
-  url: https://pypi.python.org/packages/83/70/72e66ff483ab2cdd085082d5b88745cbec39a667a10a8b0d978749c1d615/Twisted-16.6.0rc1.tar.bz2
+ - key: tar.bz2:2d7bcxvh56gpmmwqkeb54ybvnrxjskzb
+   url: https://pypi.python.org/packages/dc/c0/a0114a6d7fa211c0904b0de931e8cafb5210ad824996cc6a9d67f3bae22c/Twisted-16.6.0.tar.bz2
 
 when_build_dependency:
  - prepend_path: PYTHONPATH

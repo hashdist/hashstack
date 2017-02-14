@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - url: https://pypi.python.org/packages/source/p/pyasn1/pyasn1-0.1.7.tar.gz
-   key: tar.gz:4t4b2u6fgp3l3fjgwbd7ar7xwea4esvr
+ - key: tar.gz:qu6kzwlnd5yb3xlhvib6zqc7kgeqcnnx
+   url: https://pypi.python.org/packages/f7/83/377e3dd2e95f9020dbd0dfd3c47aaa7deebe3c68d3857a4e51917146ae8b/pyasn1-0.1.9.tar.gz

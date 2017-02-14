@@ -1,4 +1,4 @@
-extends: [setuptools_package]
+extends: [namespace_package]
 
 sources:
 - key: tar.gz:a5aq475qtkvxxwxv4ymn4zwd3lee4lr5

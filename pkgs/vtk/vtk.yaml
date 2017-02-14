@@ -10,8 +10,8 @@ dependencies:
         - tk
 
 sources:
-- url: http://www.vtk.org/files/release/5.10/vtk-5.10.1.tar.gz
-  key: tar.gz:6grebqpv6dme4j5vp2lc7dskpcywnms3
+- key: tar.gz:l47kaajajvhxcs7jokubbjrmb4rhp65z
+  url: http://www.vtk.org/files/release/7.1/VTK-7.1.0.tar.gz
 
 defaults:
   # lib/vtk-5.10/libvtkHybrid.so.5.10.1 contains hard-coded path
@@ -27,13 +27,6 @@ build_stages:
   bash: |
     export PYTHONPATH=${ARTIFACT}/{{python_site_packages_rel}}:$PYTHONPATH
     mkdir -p ${ARTIFACT}/{{python_site_packages_rel}}
-
-- name: glx_glext_legacy_patch
-  files: [GLX_GLEXT_LEGACY.patch]
-  handler: bash
-  before: setup_builddir
-  bash: |
-    patch -p1 < _hashdist/GLX_GLEXT_LEGACY.patch
 
 - when: platform == 'Cygwin'
   files: [vtk-5.10.1-cygwin.patch]
@@ -60,7 +53,6 @@ build_stages:
     - '-D VTK_WRAP_TCL:BOOL=OFF'
     - '-D VTK_USE_GL2PS:BOOL=ON'
     - '-D VTK_PYTHON_SETUP_ARGS:STRING="--prefix=. --root=${ARTIFACT} --single-version-externally-managed"'
-    - '-D CMAKE_INSTALL_RPATH:STRING="${ARTIFACT}/lib/vtk-5.10"'
     - '-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"'
     - '-D VTK_USE_SYSTEM_TIFF:BOOL=ON'
 
@@ -73,15 +65,6 @@ build_stages:
   name: configure
   mode: update
   extra: ['-D VTK_USE_TK:BOOL=OFF']
-
-- when: platform == 'linux'
-  name: rpath_fix
-  after: install
-  handler: bash
-  bash: |
-    for lib in ${ARTIFACT}/lib/python{{pyver}}/site-packages/vtk/*.so; do
-        ${PATCHELF} --set-rpath ${ARTIFACT}/lib/vtk-5.10 ${lib}
-    done
 
 - when: platform == 'Darwin'
   name: rpath_fix

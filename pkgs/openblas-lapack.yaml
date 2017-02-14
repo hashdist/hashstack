@@ -1,3 +1,8 @@
 dependencies:
-  build: [openblas]
-  run: [openblas]
+  build: [blas]
+  run: [blas]
+
+when_build_dependency:
+- {set: 'BLAS_LDFLAGS', value: '-Wl,-rpath,${BLAS_DIR}/lib -L${BLAS_DIR}/lib -lopenblas'}
+- {set: 'LAPACK_LDFLAGS', value: '-Wl,-rpath,${BLAS_DIR}/lib -L${BLAS_DIR}/lib -lopenblas'}
+- {set: 'OPENBLAS_DIR', value: '${BLAS_DIR}'}

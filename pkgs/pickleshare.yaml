@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - key: tar.gz:yc7foridlvbx3p2vvfxwbn3renc3cjbd
-   url: https://pypi.python.org/packages/source/p/pickleshare/pickleshare-0.5.tar.gz
+ - key: tar.gz:qsusk4rh37ow7ynuxyjrsclmedvyl7y6
+   url: https://pypi.python.org/packages/69/fe/dd137d84daa0fd13a709e448138e310d9ea93070620c9db5454e234af525/pickleshare-0.7.4.tar.gz

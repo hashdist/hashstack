@@ -3,8 +3,8 @@ dependencies:
   build: [zlib, boost, gmp, mpfr]
 
 sources:
-- key: git:73b2438a26ee4024b1a2eef1af31ec80935a1a38
-  url: http://github.com/CGAL/cgal.git
+- key: tar.xz:mowf35y7sextj4xq6lsuumbvpdpvd5hm
+  url: https://github.com/CGAL/cgal/releases/download/releases%2FCGAL-4.9/CGAL-4.9.tar.xz
 
 defaults:
   # lib/CGAL/CGALConfig.cmake contains hard-coded path

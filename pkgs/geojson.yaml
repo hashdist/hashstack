@@ -1,5 +1,9 @@
 extends: [setuptools_package]
 
+dependencies:
+  build: []
+  run: []
+
 sources:
-  - url: https://github.com/frewsxcv/python-geojson/archive/1.0.7.tar.gz
-    key: tar.gz:tatursbtdhyhyix6xnxsjfnx45gs7wrz
+ - key: tar.gz:s4uu56lz7rateadtar7d7xplnpayveae
+   url: https://pypi.python.org/packages/56/2d/44abe5d3fda94b524e93a8e0f8c83d1e890a9e97e3791f40483a28ccb971/geojson-1.3.3.tar.gz
