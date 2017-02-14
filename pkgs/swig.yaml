@@ -3,8 +3,8 @@ dependencies:
   build: [pcre, python, {{build_with}}]
 
 sources:
-- key: tar.gz:t5glt2hscpyedbjwi32y7zpiikgwgjin
-  url: http://downloads.sourceforge.net/swig/swig-3.0.5.tar.gz
+- key: tar.gz:3ebr2uy5oqmifgsu2dkrytwzabybnmqt
+  url: http://downloads.sourceforge.net/swig/swig-3.0.11.tar.gz
 
 defaults:
   relocatable: false

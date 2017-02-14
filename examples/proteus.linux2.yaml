@@ -42,8 +42,9 @@ packages:
   pillow:
   petsc:
     version: 3.7.5
+    openblas: true
     build_with: |
-      parmetis, cmake, openblas
+      parmetis, cmake, blas
     download: |
       superlu, superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
@@ -63,7 +64,6 @@ packages:
     build_with: |
       python
   cgal:
-  pycgal:
   netcdf4:
   netcdf4f:
   python-netcdf4:

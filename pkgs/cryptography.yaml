@@ -14,4 +14,4 @@ build_stages:
   #when: platform == 'Darwin'
   handler: bash
   bash: |
-    env LDFLAGS="-L${LIBFFI_DIR}/lib -Wl,-rpath,${LIBFFI_DIR}/lib -L${OPENSSL_DIR}/lib -Wl,-rpath,${OPENSSL_DIR}/lib" CFLAGS="-I${OPENSSL_DIR}/include" ARCHFLAGS="-arch x86_64" $PYTHON setup.py install --prefix=${ARTIFACT}
+    LD_LIBRARY_PATH=${LIBFFI_DIR}/lib:$LD_LIBRARY_PATH LDFLAGS="-L${LIBFFI_DIR}/lib -Wl,-rpath,${LIBFFI_DIR}/lib -L${OPENSSL_DIR}/lib -Wl,-rpath,${OPENSSL_DIR}/lib" CFLAGS="-I${OPENSSL_DIR}/include -I${CFFI_DIR}/include -I${LIBFFI_DIR}/include" ARCHFLAGS="-arch x86_64" $PYTHON setup.py install --prefix=${ARTIFACT}

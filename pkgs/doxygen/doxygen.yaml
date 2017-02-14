@@ -4,8 +4,8 @@ dependencies:
   build: [bison, flex]
 
 sources:
-- key: git:b00761b30a1d399f95adfe823937c05a64476155
-  url: https://github.com/doxygen/doxygen
+- key: tar.gz:chw522awd5akqmsoig2jnhncxz67neew
+  url: https://github.com/doxygen/doxygen/archive/Release_1_8_13.tar.gz
 
 build_stages:
   - when: platform == 'Darwin'
