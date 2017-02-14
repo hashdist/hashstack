@@ -5,8 +5,8 @@ dependencies:
   run: []
 
 sources:
- - url: https://pypi.python.org/packages/source/z/zope.interface/zope.interface-4.1.1.tar.gz
-   key: tar.gz:shf2pn6nps4c632oai76o74u3q67jlss
+- key: tar.gz:q6ao62gkrq76dk5tbqcyuwibkeu5nyck
+  url: https://pypi.python.org/packages/44/af/cea1e18bc0d3be0e0824762d3236f0e61088eeed75287e7b854d65ec9916/zope.interface-4.3.3.tar.gz
 
 when_build_dependency:
  - prepend_path: PYTHONPATH

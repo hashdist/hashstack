@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:d4ubb6taiduphiocmhcnjnuzz7toanw7
+   url: https://pypi.python.org/packages/source/P/PyECLib/PyECLib-1.1.1.tar.gz

@@ -1,8 +1,8 @@
 extends: [setuptools_package]
 dependencies:
   build: [docutils, jinja2, pygments]
-  run: [jinja2, pygments]
+  run: [jinja2, pygments, alabaster, sphinx_rtd_theme, babel, snowballstemmer, docutils, pytz, imagesize]
 
 sources:
-  - url: https://pypi.python.org/packages/source/S/Sphinx/Sphinx-1.2b3.tar.gz
-    key: tar.gz:tqibhpmfmqomdxmrsrhdvuwj2l6hrlgb
+- key: tar.gz:rzvhpiqlfx4vbxrsf7bs6o2qq2l5tvsu
+  url: https://pypi.python.org/packages/b2/d5/bb4bf7fbc2e6b85d1e3832716546ecd434632d9d434a01efe87053fe5f25/Sphinx-1.5.1.tar.gz

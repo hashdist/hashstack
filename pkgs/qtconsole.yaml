@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: zip:c6ujtgnall5bsvridr6gtahazwfi4c3a
+   url: https://pypi.python.org/packages/88/fb/222f6c00f0239e9d6fa236f8ccfefa08eeff80972417d9e1e57a4089c885/qtconsole-4.2.1.zip

@@ -1,8 +1,8 @@
 extends: [autotools_package]
 
 sources:
-  - key: git:2031c7bde2dfb2189b9c724946f19c089596eac4
-    url: git@github.com:hashdist/pkg-ncurses.git
+- key: tar.gz:aypl4sgsa3ku3slsagxhpf7deeh6z5mz
+  url: https://github.com/hashdist/pkg-ncurses/archive/2031c7bde2dfb2189b9c724946f19c089596eac4.tar.gz
 
 defaults:
   relocatable: false

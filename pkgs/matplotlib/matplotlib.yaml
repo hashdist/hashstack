@@ -1,11 +1,12 @@
-extends: [namespace_package, libflags]
+extends: [namespace_package,libflags]
+
 dependencies:
   build: [bzip2, freetype, numpy, png, pkg-config, zlib]
-  run: [freetype, numpy, png, python-dateutil, pyparsing, six]
+  run: [freetype, numpy, png, python-dateutil, pyparsing, six, cycler]
 
 sources:
-- key: git:21f46ff14ea65eeb725a4fd6c36642dddf3fea79
-  url: https://github.com/matplotlib/matplotlib.git
+ - key: tar.gz:udafzuu5xqfoooev23mq52e2redgzpd4
+   url: https://pypi.python.org/packages/6f/85/439f8297eca3481c1fc2e39d07197c72ba16a8ac9cc6e6e43710ceb550a3/matplotlib-2.0.0rc1.tar.gz
 
 build_stages:
 
@@ -20,6 +21,16 @@ build_stages:
 
 - name: libflags
   before: install
+
+- when: platform == 'linux'
+  name: rpath_fix
+  after: install
+  handler: bash
+  bash: |
+    for lib in ${ARTIFACT}/lib/python{{pyver}}/site-packages/matplotlib/*.so; do
+        old_rpath=$(${PATCHELF} --print-rpath ${lib})
+        ${PATCHELF} --set-rpath $old_rpath:${BZIP2_DIR}/lib:${FREETYPE_DIR}/lib:${PNG_DIR}/lib:${ZLIB_DIR} ${lib}
+    done
 
 profile_links:
   - name: mpl_packages

@@ -1,5 +1,9 @@
-extends: [distutils_package]
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
 
 sources:
-  - url: https://pypi.python.org/packages/source/P/Pygments/Pygments-1.6.tar.gz
-    key: tar.gz:pgpnjsxxoulokrcaqbwy3hgyfj3apx67
+ - key: tar.gz:rdsmrki3fl2zmk72l2rei7wg3u2xaghi
+   url: https://pypi.python.org/packages/b8/67/ab177979be1c81bc99c8d0592ef22d547e70bb4c6815c383286ed5dec504/Pygments-2.1.3.tar.gz

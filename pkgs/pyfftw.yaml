@@ -1,0 +1,17 @@
+extends: [distutils_package]
+
+dependencies:
+  build: [fftw, mpi4py, mpi, numpy, cython]
+  run: [numpy]
+
+sources:
+- key: tar.gz:6253nl5jgccubgvsjcc2di6nxcij6ck2
+  url: https://pypi.python.org/packages/source/p/pyFFTW/pyFFTW-0.9.2.tar.gz
+
+build_stages:
+- name: install
+  after: setup_dirs
+  handler: bash
+  bash: |
+    ${PYTHON} setup.py build_ext --inplace --library-dirs=$ARTIFACT/lib --include-dirs=$ARTIFACT/include
+    ${PYTHON} setup.py install --prefix=$ARTIFACT

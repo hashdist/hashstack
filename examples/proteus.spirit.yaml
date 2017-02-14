@@ -50,9 +50,9 @@ packages:
   parmetis:
     without_check: true
   petsc:
-    version: 3.6.1
+    version: 3.7.5
     build_with: |
-      parmetis
+      parmetis, blas, lapack
     download: |
       superlu, superlu_dist, hypre
     coptflags: -O2
@@ -60,7 +60,7 @@ packages:
     debug: false
     fortran: true
   petsc4py:
-    version: 3.6.0
+    version: 3.7.0
     with_conf: true
   pytables:
   sphinx:

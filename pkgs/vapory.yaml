@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:ogxfjnih5d6swfimf3mw5xu2dsxpoti5
+   url: https://pypi.python.org/packages/9a/3b/c309825ca8fb68f83ec9d55210c625a6cb8d0fef279d0a7c1feb64027f86/Vapory-0.1.01.tar.gz

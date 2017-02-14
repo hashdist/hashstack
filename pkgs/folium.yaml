@@ -5,5 +5,5 @@ dependencies:
   run: [pandas, numpy]
 
 sources:
- - url: https://pypi.python.org/packages/source/f/folium/folium-0.1.2.tar.gz
-   key: tar.gz:itakflkweus6v3dqrjztbjbu34dgkedh
+ - url: https://github.com/wrobstory/folium
+   key: git:cc4453fb2642aa62508e02114585efb701be9d2e

@@ -3,11 +3,11 @@ dependencies:
   build: [mpi, parmetis, zoltan]
 
 sources:
-- key: git:1d2f5438d3dff3f1120649577bb2a05f9ac8c556
-  url: https://github.com/SCOREC/core.git
-
+  - url: https://github.com/SCOREC/core.git
+    key: git:e219777edd875d35096dfedd7197300b8e2f3837
+    
 defaults:
-  relocatable: false
+  relocatable: true
 
 build_stages:
 
@@ -19,16 +19,14 @@ build_stages:
     cd _build
 
 - name: configure
+  debug: true
   extra: [
-  '-DCMAKE_C_COMPILER=${MPICC}',
-  '-DCMAKE_CXX_COMPILER=${MPICXX}',
-  '-DENABLE_ZOLTAN=ON',
-  '-DMETIS_LIBRARY=${PARMETIS_DIR}/lib/libmetis.so',
-  '-DPARMETIS_LIBRARY=${PARMETIS_DIR}/lib/libparmetis.so',
-  '-DPARMETIS_INCLUDE_DIR=${PARMETIS_DIR}/include',
-  '-DZOLTAN_LIBRARY=${ZOLTAN_DIR}/lib/libzoltan.a',
-  '-DZOLTAN_INCLUDE_DIR=${ZOLTAN_DIR}/include',
-  '-DBUILD_SHARED_LIBS=True',
-  '-DSIM_MPI=mpich2',
+  '-DBUILD_SHARED_LIBS:BOOL=ON',
+  '-DCMAKE_C_COMPILER:STRING=${MPICC}',
+  '-DCMAKE_CXX_COMPILER:STRING=${MPICXX}',
+  '-DENABLE_ZOLTAN:BOOL=ON',
+  '-DENABLE_SIMMETRIX:BOOL=OFF',
+  '-DZOLTAN_PREFIX:PATH=${ZOLTAN_DIR}',
+  '-DPARMETIS_PREFIX:PATH=${PARMETIS_DIR}',
   ]
 

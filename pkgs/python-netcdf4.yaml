@@ -4,8 +4,8 @@ dependencies:
   run: [netcdf4, numpy]
 
 sources:
-  - url: http://netcdf4-python.googlecode.com/files/netCDF4-1.0.4.tar.gz
-    key: tar.gz:th26v25of6xje5m5co3zbxpeejvsxded
+ - key: tar.gz:n77ygruzpivjttl2yrfz3gezyz6bewub
+   url: https://pypi.python.org/packages/18/a8/4d17df34d66023108c04ce1fe0d7b990e74d4df455630760b9a81a8968cb/netCDF4-1.2.6.tar.gz
 
 build_stages:
 - name: set_mpi_wrapper

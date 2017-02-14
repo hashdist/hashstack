@@ -1,5 +1,5 @@
 extends: [setuptools_package]
 
 sources:
- - key: tar.gz:ubi7atxi5qzqkbk2wngypm3mtjcjg5pa
-   url: https://pypi.python.org/packages/source/o/oauthlib/oauthlib-0.7.2.tar.gz
+ - key: tar.gz:cmvni3pslzj2qszt6h6uh6aos46nulfq
+   url: https://pypi.python.org/packages/d2/4c/5ac894a469e25ebd02f6b3c2adb9f55253e6d1ca1f16a7d247ae6d48b4c8/oauthlib-2.0.1.tar.gz

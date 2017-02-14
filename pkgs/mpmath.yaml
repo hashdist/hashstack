@@ -1,5 +1,9 @@
-extends: [distutils_package]
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
 
 sources:
-- key: tar.gz:ndo7mqtnzwsekmrum7mjrewsz7532gxa
-  url: http://mpmath.org/files/mpmath-0.19.tar.gz
+ - key: tar.gz:egucjwyxm6m7ikcd4riq3jf4nwzw56jl
+   url: https://pypi.python.org/packages/b0/30/b7b20f07babf64cd3897b226f2bd4c2af65a899f1796f7723bccb4c59fa0/mpmath-all-0.19.tar.gz

@@ -26,6 +26,7 @@ build_stages:
           '-D Trilinos_ENABLE_PyTrilinos:BOOL=ON',
           '-D Trilinos_ENABLE_TESTS:BOOL=OFF',
           '-D Trilinos_ENABLE_EXAMPLES:BOOL=OFF',
+          '-D Trilinos_ENABLE_Gtest:BOOL=OFF',
           '-D BUILD_SHARED_LIBS:BOOL=ON',
           '-D TPL_ENABLE_MPI:BOOL=ON',
           '-D TPL_ENABLE_UMFPACK:BOOL=ON',

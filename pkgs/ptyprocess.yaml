@@ -1,5 +1,9 @@
-extends: [distutils_package]
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
 
 sources:
-  - key: git:2637f3ceb982fe1298553671ddf10812560629de
-    url: https://github.com/pexpect/ptyprocess.git
+ - key: tar.gz:auym4y5jffn7vz55a3w4ak3kve2wdh2i
+   url: https://pypi.python.org/packages/db/d7/b465161910f3d1cef593c5e002bff67e0384898f597f1a7fdc8db4c02bf6/ptyprocess-0.5.1.tar.gz

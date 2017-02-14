@@ -51,8 +51,7 @@ def preConfigureSGIICEX(ctx, conf_lines):
                '--known-mpi-long-double=1',
                '--known-mpi-c-double-complex=1',
                '--known-mpi-int64_t=1',
-               '--with-pthread=1',
-               '--with-blas-lapack-lib=[mkl_rt]']
+               '--with-pthread=1']
 
 @build_stage()
 def configure(ctx, stage_args):
@@ -109,7 +108,7 @@ def configure(ctx, stage_args):
         conf_lines.append('--with-ssl=0')
 
     # Special case, --with-blas-dir does not work with OpenBLAS
-    if 'OPENBLAS' in ctx.dependency_dir_vars:
+    if 'OPENBLAS' in ctx.dependency_dir_vars or ('BLAS' in ctx.dependency_dir_vars and ctx.parameters.get('openblas') == True):
         if ctx.parameters['platform'] == 'Darwin':
             libopenblas = '${OPENBLAS_DIR}/lib/libopenblas.dylib'
         else:

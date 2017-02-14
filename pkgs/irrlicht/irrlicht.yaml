@@ -1,0 +1,43 @@
+extends: [autotools_package]
+
+sources:
+  - url: http://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.8/1.8.4/irrlicht-1.8.4.zip
+    key: zip:6qvsqc6gbdsulobaebx6fkmzyvpssdpf
+  
+dependencies:
+  build:
+    - zlib
+    - openjpeg
+    - png
+    - bzip2
+    - libjpeg
+
+build_stages:
+- name: configure
+  mode: replace
+  after: prologue
+  handler: bash
+  files: [Makefile.hashdist]
+  bash: |
+    cp -f _hashdist/Makefile.hashdist source/Irrlicht/Makefile
+    rm -rf source/Irrlicht/jpeglib source/Irrlicht/libpng source/Irrlicht/bzip2 source/Irrlicht/jpeglib source/Irrlicht/zlib
+    ln -s ${PNG_DIR}/include  source/Irrlicht/libpng
+    ln -s ${ZLIB_DIR}/include  source/Irrlicht/zlib
+    ln -s ${BZIP2_DIR}/include  source/Irrlicht/bzip2
+    ln -s ${LIBJPEG_DIR}/include  source/Irrlicht/jpeglib
+
+- name: make
+  mode: replace
+  after: configure
+  handler: bash
+  bash: |
+    cd source/Irrlicht
+    make -j ${HASHDIST_CPU_COUNT} sharedlib
+
+- name: install
+  mode: replace
+  after: make
+  handler: bash
+  bash: |
+    make install
+

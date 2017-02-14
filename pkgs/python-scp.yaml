@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [paramiko]
+  run: [paramiko]
+
+sources:
+ - key: tar.gz:dd2z4sg7m75mbmdjlelatihu2ugxqgqq
+   url: https://pypi.python.org/packages/source/s/scp/scp-0.10.2.tar.gz

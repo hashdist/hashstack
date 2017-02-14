@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: [pytest,py,apipkg,execnet]
+  run: []
+
+sources:
+ - key: tar.gz:mi4dsx4l2bipskekhmipgqzq5xwoqd2e
+   url: https://pypi.python.org/packages/dc/b2/a59db3ef996b93c3ef35dbbc33557a71ef67a6839d94a52c88eeb1086002/pytest-xdist-1.15.0.tar.gz

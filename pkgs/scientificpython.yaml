@@ -4,5 +4,5 @@ dependencies:
   run: [numpy]
 
 sources:
-- url: https://sourcesup.renater.fr/frs/download.php/4411/ScientificPython-2.8.1.tar.gz
+- url: https://sourcesup.renater.fr/frs/download.php/file/4411/ScientificPython-2.8.1.tar.gz
   key: tar.gz:3hxtkrzwief3wlul4m6loqz46yqrimd2

@@ -1,6 +1,9 @@
 extends: [setuptools_package]
 
-sources:
-  - url: http://www.dabeaz.com/ply/ply-3.4.tar.gz
-    key: tar.gz:v5bv6enxxxlj3jp7xq76zogxbjyhh3ev
+dependencies:
+  build: []
+  run: []
 
+sources:
+ - key: tar.gz:bv7csqfzyvyvcojpz2vgfmeglrc6a3hb
+   url: https://pypi.python.org/packages/a8/4d/487e12d0478ee0cbb15d6fe9b8916e98fe4e2fce4cc65e4de309209c0b24/ply-3.9.tar.gz
