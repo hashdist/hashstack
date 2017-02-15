@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - key: zip:jewvtqfsjiwar3uq2gsvbhwsa2aw3odc
-   url: https://pypi.python.org/packages/source/j/jupyter_console/jupyter_console-4.0.2.zip
+ - key: zip:inpj7av5fhjtigofdmoutqvwhmrbisxw
+   url: https://pypi.python.org/packages/79/db/9a6afc84d77b41ef82397f0efc05c830efa5bb485fa933604bd90ccd75db/jupyter_console-5.0.0.zip

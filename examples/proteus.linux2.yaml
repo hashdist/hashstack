@@ -17,6 +17,8 @@ packages:
   clawpack:
   launcher:
   cmake:
+  openjpeg:
+    version: '2.1'
   openssl:
     use: host-openssl
   python:
@@ -25,9 +27,9 @@ packages:
     build_with: |
       bzip2, sqlite, openssl
   blas:
-    use: host-blas
+    use: openblas
   lapack:
-    use: host-lapack
+    use: openblas-lapack
   daetk:
   mpi:
     use: mpich
@@ -35,24 +37,23 @@ packages:
   nose:
   coverage:
   hdf5:
-  matplotlib:
+  pygments:
+  parmetis:
+  pillow:
   petsc:
-    version: 3.6.1
+    version: 3.7.5
+    openblas: true
     build_with: |
-      parmetis
+      parmetis, cmake, blas
     download: |
-      superlu, superlu_dist, spooles, hypre, blacs, scalapack, mumps
+      superlu, superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
-    debug: false
+    debug: true
   petsc4py:
-    version: 3.6.0
+    version: 3.7.0
     with_conf: true
-  pillow:
   pytables:
-  sphinx:
-  sphinx-bootstrap-theme:
-  superlu:
   sympy:
   tetgen:
   triangle:
@@ -62,29 +63,57 @@ packages:
     address_model: 64
     build_with: |
       python
+  cgal:
   netcdf4:
-  python-netcdf4:
   netcdf4f:
+  python-netcdf4:
   netcdf4cpp:
   jasper:
   grib_api:
   pyproj:
   pygrib:
   scipy:
-  ipython:
-  terminado:
   h5py:
   pydap:
-  leafletwidget:
-  geojson:
   rdp:
-  rtree:
   ode:
-  ipdb:
   pip:
   pexpect:
   pcs_api:
-  jupyter-pip:
-  pythreejs:
+  zoltan:
+    build_with: |
+      parmetis
+  chrono:
+  pytest:
+  pytest-xdist:
+  doxygen:
+  gmsh:
+  scorec:
+  matplotlib:
+  sphinx:
+  sphinx-bootstrap-theme:
+  pyzmq:
+  vapory:
+  tornado:
+  ipython:
+  terminado:
+  geojson:
+  shapely:
+  matlab:
+    use: host-matlab
+  ipdb:
+  jupyterlab:
   jupyter:
-#  chrono:
+  ipyparallel:
+  buildbot-worker:
+  julia:
+  pyjulia:
+  vtk:
+  #rtree:
+  #ipython-d3plot:
+  #ipython-gridwidget:
+  #jupyter-pip:
+  #leafletwidget:
+  #ipywidgets:
+  #ipyleaflet:
+  #pythreejs:

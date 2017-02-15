@@ -1,0 +1,18 @@
+extends: [distutils_package]
+dependencies:
+  build: [python,pyzmq, tornado, jinja2, pygments, sphinx]
+  run: [python, pyzmq, tornado, jinja2, pygments, sphinx]
+
+sources:
+  - url: https://github.com/ipython/ipython.git
+    key: git:cb06785549962f1fcdd852a7eb488d4a8db8b319
+
+build_stages:
+-   name: get submodule
+    before: install
+    handler: bash
+    bash: |
+      git clone https://github.com/ipython/ipython-components.git IPython/html/static/components
+      cd IPython/html/static/components
+      git checkout --detach d153657b19789ceeb3108f11e871e153d8f6c2d9
+      cd ${BUILD}

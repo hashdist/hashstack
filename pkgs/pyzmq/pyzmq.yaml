@@ -6,16 +6,16 @@ dependencies:
     - zmq
 
 sources:
-- key: tar.gz:o6mu7abwaseoofj6mtszlhofi4ktdule
-  url: https://pypi.python.org/packages/source/p/pyzmq/pyzmq-14.7.0.tar.gz
+ - key: tar.gz:amrfip77lk3pq7irvcqjtrgapxmkc4mq
+   url: https://pypi.python.org/packages/af/37/8e0bf3800823bc247c36715a52e924e8f8fd5d1432f04b44b8cd7a5d7e55/pyzmq-16.0.2.tar.gz
 
 build_stages:
-- name: fix_distutils_rpath_flag
-  files: [fix_distutils_rpath_flag.patch]
-  before: configure
-  handler: bash
-  bash: |
-    patch -p1 < _hashdist/fix_distutils_rpath_flag.patch
+#- name: fix_distutils_rpath_flag
+#  files: [fix_distutils_rpath_flag.patch]
+#  before: configure
+#  handler: bash
+#  bash: |
+#    patch -p1 < _hashdist/fix_distutils_rpath_flag.patch
 
 - name: configure
   after: setup_dirs

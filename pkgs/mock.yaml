@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - url: https://pypi.python.org/packages/source/m/mock/mock-1.0.1.zip
-   key: zip:r6bqqdnkesoqg3f4z64k4xgg74ahxcgw
+ - key: tar.gz:wfmlnx3w5xjdtobarveb3rdlnl6ulkcg
+   url: https://pypi.python.org/packages/0c/53/014354fc93c591ccc4abff12c473ad565a2eb24dcd82490fae33dbf2539f/mock-2.0.0.tar.gz

@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:btobtcu2iscpwp5wwpss3vn6d7ff736a
+   url: https://pypi.python.org/packages/a2/3d/161e7e5ae5be07d16be7aefd675ab4ac238603240ac880e4341a0adb015c/ipyleaflet-0.2.1.tar.gz

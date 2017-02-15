@@ -1,8 +1,9 @@
-extends: [distutils_package]
+extends: [setuptools_package]
+
 dependencies:
   build: [mpi, numpy, cython]
   run: [mpi, numpy]
 
 sources:
-  - url: https://bitbucket.org/mpi4py/mpi4py.git
-    key: git:d5da39a2e334e585b97e83928995cca917610129
+ - key: tar.gz:mvb2awcru6vb43iwlztt2qrlujhelra6
+   url: https://pypi.python.org/packages/ee/b8/f443e1de0b6495479fc73c5863b7b5272a4ece5122e3589db6cd3bb57eeb/mpi4py-2.0.0.tar.gz

@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - key: tar.gz:3s3y7mqzpne4ug33f433ar54rhanu6uq
-   url: https://pypi.python.org/packages/source/p/ptyprocess/ptyprocess-0.5.tar.gz
+ - key: tar.gz:auym4y5jffn7vz55a3w4ak3kve2wdh2i
+   url: https://pypi.python.org/packages/db/d7/b465161910f3d1cef593c5e002bff67e0384898f597f1a7fdc8db4c02bf6/ptyprocess-0.5.1.tar.gz

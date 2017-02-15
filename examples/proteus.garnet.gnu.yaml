@@ -1,5 +1,4 @@
 # This profile file controls your <#> (HashDist) build environment.
-
 # In the future, we'll provide better incorporation of
 # automatic environment detection.  For now, have a look
 # at the YAML files in the top-level directory and choose
@@ -15,6 +14,7 @@ extends:
 
 parameters:
   machine: CrayXE6
+  HOST_MATLAB: '/usr/local/applic/matlab/R2012b/bin/matlab'
   HOST_MPICC: cc
   HOST_MPICXX: CC
   HOST_MPIF77: ftn
@@ -35,6 +35,7 @@ packages:
     use: host-openssl
   python:
     host: false
+    link: shared
     build_with: |
       openssl,bzip2,sqlite
   blas:
@@ -49,6 +50,9 @@ packages:
   hdf5:
     use: host-hdf5
   ipython:
+  pygments:
+  tornado:
+  pyzmq:
   matplotlib:
   parmetis:
     without_check: true
@@ -71,12 +75,51 @@ packages:
   tetgen:
   triangle:
   memory_profiler:
-  scipy:
+#  boost:
+#    toolset: gcc
+#    address_model: 64
+#    build_with: |
+#      python
+#
+#  cgal:
+#  pycgal:
+  netcdf4:
   netcdf4f:
   python-netcdf4:
-  ipdb:
-  pip:
+  vapory:
+  jasper:
+  grib_api:
+  pyproj:
+  pygrib:
+  #adh:
+  #  link: shared  
+  stwave:  
+  scipy:
+#  ipython:
+#    sources:
+#      - key: git:68f6519cdfd23581ed7358fa1941ae1bbd76e5b3
+#        url: https://github.com/ellisonbg/ipython.git
+#
   h5py:
+  pydap:
+#  leafletwidget: 
+#    sources:
+#      - key: git:f9147c5b13a69b80bc28d3574f7ba6b2c576aed2
+#        url: https://github.com/erdc-cm/leafletwidget.git
+  geojson:
+  rdp:
+#  ipython-widgetmode:
+#  ipython-d3plot:
+#  ipython-gridwidget:
+#  shapely:
+#  rtree:
+#  matlab:
+#    use: host-matlab
+#  pymatbridge:
   ode:
+#  ipdb:
+  pip:
+  pexpect:
+  ipdb:
  # vtk:
  # pyvtk:

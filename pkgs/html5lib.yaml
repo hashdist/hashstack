@@ -1,0 +1,15 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+- key: tar.gz:eyjkdeni2wccx6qfpza3uuf3xholoisb
+  url: https://pypi.python.org/packages/ae/ae/bcb60402c60932b32dfaf19bb53870b29eda2cd17551ba5639219fb5ebf9/html5lib-0.9999999.tar.gz
+#sources:
+#- key: tar.gz:5z2hyd75gaune4ramgjwwxdf5zh6cpeo
+#  url: https://pypi.python.org/packages/17/ee/99e69cdcefc354e0c18ff2cc60aeeb5bfcc2e33f051bf0cc5526d790c445/html5lib-0.999999999.tar.gz
+#sources:
+# - key: tar.gz:bvp5ktk3fn43q5qapjymam5eai2xo5un
+#   url: https://pypi.python.org/packages/97/16/982214624095c1420c75f3bd295d9e658794aafb95fc075823de107e0ae4/html5lib-1.0b10.tar.gz

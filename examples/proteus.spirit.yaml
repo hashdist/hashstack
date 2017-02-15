@@ -1,0 +1,80 @@
+# This profile file controls your <#> (HashDist) build environment.
+
+# In the future, we'll provide better incorporation of
+# automatic environment detection.  For now, have a look
+# at the YAML files in the top-level directory and choose
+# the most *specific* file that matches your environment.
+
+extends:
+- file: suse.yaml
+
+# The packages list specifies all the packages that you
+# require installed.  <#> will ensure that all packages
+# and their dependencies are installed when you build this
+# profile.
+
+parameters:
+  machine: SGIICEX
+  HOST_MPICC: mpicc
+  HOST_MPICXX: mpicxx
+  HOST_MPIF77: mpif90
+  HOST_MPIF90: mpif90
+  HOST_MPIEXEC: mpiexec_mpt
+  PATH: |
+    /usr/bin:/bin:/usr/sbin:/sbin
+  PROLOGUE: |
+    export PATH="/app/wpostool/COST/git-2.0.2/intel/bin:/app/sgi/mpt/mpt-2.13-beta/bin:/app/intel/compilers/15/vtune_amplifier_xe/bin64:/app/intel/compilers/15/inspector_xe/bin64:/app/intel/compilers/15/bin:/app/gmpapp/gcc/platform/gcc-4.8.4/bin:/usr/local/krb5/bin:/usr/local/ossh/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/lib64/qt-3.3/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/c3/bin:/opt/pbs/default/bin:/hafs_x86_64:/hafs_x86_64/bin:/usr/bin/X11:/usr/local/bin:/app/java/jdk1.7.0_17/bin:."; export HOSTTYPE="x86_64-linux"; export VENDOR="unknown"; export OSTYPE="linux"; export MACHTYPE="x86_64"; export GROUP="0089JR40"; export HOST="spirit01"; export HOSTNAME="spirit01"; export MANPATH="/app/sgi/mpt/mpt-2.13-beta/man:/app/intel/compilers/15/vtune_amplifier_xe/man:/app/intel/compilers/15/inspector_xe/man:/app/intel/compilers/15/man/en_US:/app/gmpapp/gcc/platform/gcc-4.8.4/share/man:/usr/local/krb5/man:/usr/local/ossh/man:/opt/c3/man:/opt/pbs/default/man:/opt/sgi/share/man:/usr/share/man:/usr/local/man:/app/man:/hafs_x86_64/man:/usr/share/catman:/usr/catman:/usr/man"; export CVS_RSH="ssh"; export G_BROKEN_FILENAMES="1"; export LANG="en_US.UTF-8"; export LESSOPEN="|/usr/bin/lesspipe.sh %s"; export MODULESHOME="/hafs_x86_64/devel/share/Modules"; export MODULEPATH="/app/wpostool/COST/modules/pkgs:/app/modulefiles:/etc/modulefiles:/hafs_x86_64/modulefiles:/app/daac/modules"; export  LOADEDMODULES="costinit:shell.module:alias.module:gcc-compilers/4.8.4:intel-compilers/15.0.2:mpt/2.13-beta:git/intel/2.0.2"; export OSCAR_HOME="/opt/oscar"; export LANGUAGE="en_US.UTF-8"; export ALTAIR_LICENSE_PATH="6200@service12"; export QTDIR="/usr/lib64/qt-3.3"; export QTINC="/usr/lib64/qt-3.3/include"; export QTLIB="/usr/lib64/qt-3.3/lib"; export C3_RSH="ssh -oConnectTimeout=10 -oForwardX11=no"; export APP_AREAS="/hafs_x86_64 /hafs_x86_64/bin /hafs_x86_64/bin";  export CC="gcc"; export COST_HOME="/app/wpostool/COST"; export COST_MODULES_DIR="/app/wpostool/COST/modules/pkgs"; export CPU="x86_64"; export CSI_HOME="/hafs_x86_64"; export CXX="g++"; export DAAC_HOME="/app/daac"; export F77="gfortran"; export F90="gfortran"; export JAVA_HOME="/app/java/jdk1.7.0_17"; export KRB5_CONFIG="/etc/krb5.conf"; export KRB5_HOME="/usr/local/krb5"; export LC_ALL="C"; export LINK_TIMEOUT="3"; export MPICC_CC="gcc"; export MPICXX_CXX="g++"; export MPIF90_F90="gfortran"; export MPSCP_BLOCKED_FILE="/app/mpscp/etc/mpscp_blocked_ports"; export MPSCP_CONFIG_FILENAME="/app/mpscp/etc/mpscp_config"; export PET_HOME="/app/comenv"; export PROJECTS_HOME="/work4/projects"; export _LMFILES_="/hafs_x86_64/modulefiles/costinit:/app/startup/shell.module:/app/startup/alias.module:/hafs_x86_64/modulefiles/gcc-compilers/4.8.4:/app/modulefiles/intel-compilers/15.0.2:/app/modulefiles/mpt/2.13-beta:/app/wpostool/COST/modules/pkgs/git/intel/2.0.2"; export msas="ms1"; export CPATH="/app/sgi/mpt/mpt-2.13-beta/include:/app/intel/compilers/15/mkl/include:/app/gmpapp/gcc/platform/gcc-4.8.4/include"; export FPATH="/app/sgi/mpt/mpt-2.13-beta/include:/app/intel/compilers/15/mkl/include:/app/gmpapp/gcc/platform/gcc-4.8.4/include"; export I_MPI_CC="icc"; export I_MPI_CXX="icpc"; export I_MPI_F90="ifort"; export LD_LIBRARY_PATH="/app/wpostool/COST/git-2.0.2/intel/lib:/app/sgi/mpt/mpt-2.13-beta/lib:/app/intel/compilers/15/mkl/lib/intel64:/app/intel/compilers/15/lib/intel64:/app/gmpapp/gmp/gmp-5.1.1/lib:/app/gmpapp/mpfr/mpfr-3.1.2/lib:/app/gmpapp/mpc/mpc-1.0.1/lib:/app/gmpapp/gcc/platform/gcc-4.8.4/lib64/"; export NPATH="/app/intel/compilers/15/mkl/include:/app/gmpapp/gcc/platform/gcc-4.8.4/include"; export INTEL_LICENSE_FILE="28518@service12"; export LIBRARY_PATH="/app/sgi/mpt/mpt-2.13-beta/lib:/app/intel/compilers/15/mkl/lib/intel64"; export MKLROOT="/app/intel/compilers/15/mkl"; export NLSPATH="/app/intel/compilers/15/lib/intel64/locale/en_US/%N"; export MPI_BUFS_PER_PROC="2048"; export MPI_CONNECTIONS_THRESHOLD="8192"; export MPI_DISPLAY_SETTINGS="1"; export MPI_IB_ACCELERATE_AHS="true"; export MPI_IB_FAILOVER="127"; export MPI_IB_MAX_RDMAS="1"; export MPI_IB_PAYLOAD="128"; export MPI_IB_RECV_MSGS="16384"; export MPI_IB_RNR_TIMER="26"; export MPI_IB_THREAD="1"; export MPI_IB_TIMEOUT="22"; export MPI_MSG_RETRIES="20000000"; export MPI_ROOT="/app/sgi/mpt/mpt-2.13-beta"; export MPI_SYSLOG_COPY="1"; export MPI_VERBOSE="1"; export MPT_VERSION="2.13-beta"; export CMAKE_INCLUDE_PATH="/app/wpostool/COST/git-2.0.2/intel/include"; export CMAKE_LIBRARY_PATH="/app/wpostool/COST/git-2.0.2/intel/lib"; export CSE__INCLUDE_DIR="/app/wpostool/COST/git-2.0.2/intel/include"; export CSE__LIB_DIR="/app/wpostool/COST/git-2.0.2/intel/lib"; export CSE__PREFIX="/app/wpostool/COST/git-2.0.2/intel"; export EDITOR="emacs -nw"; export GIT_SSL_NO_VERIFY="true"; export FC="gfortran";
+
+  DYNAMIC_EXE_LINKER_FLAGS: -dynamic
+
+packages:
+  launcher:
+  git:
+  cmake:
+  python:
+    host: false
+    build_with: |
+      openssl,bzip2,sqlite
+  blas:
+    use: host-mkl-blas
+  lapack:
+    use: host-mkl-lapack
+  daetk:
+  mpi:
+    use: host-mpi
+  mpi4py:
+  nose:
+  hdf5:
+  ipython:
+  matplotlib:
+  parmetis:
+    without_check: true
+  petsc:
+    version: 3.6.1
+    build_with: |
+      parmetis
+    download: |
+      superlu, superlu_dist, hypre
+    coptflags: -O2
+    link: shared
+    debug: false
+    fortran: true
+  petsc4py:
+    version: 3.6.0
+    with_conf: true
+  pytables:
+  sphinx:
+  superlu:
+  sympy:
+  tetgen:
+  triangle:
+  memory_profiler:
+  scipy:
+  netcdf4f:
+  python-netcdf4:
+  h5py:
+  ode:
+  pip:
+ # pyode:
+ # vtk:
+ # pyvtk:

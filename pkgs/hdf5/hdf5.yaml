@@ -3,10 +3,8 @@ dependencies:
   build: [mpi, zlib, szip]
 
 sources:
-- key: tar.gz:5ulrpcv5teukoi37ga3qdcn2oz5z4opa
-  url: https://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.16/src/hdf5-1.8.16.tar.gz
-#- key: tar.bz2:yl22ieqqpk5g7gp5pjfj3nwol5p4qfy6
-#  url: http://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.13/src/hdf5-1.8.13.tar.bz2
+- key: tar.bz2:covk4w5bbnyhjhxbogebnjfux7vnrf6c
+  url: http://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.16/src/hdf5-1.8.16.tar.bz2
 
 defaults:
   # /bin/h5pcc contains hard-coded path
@@ -47,7 +45,6 @@ build_stages:
           '--enable-shared',
           '--enable-production=yes',
           '--enable-parallel=yes',
-          '--enable-largefile=yes',
           '--with-default-api-version=v18']
 
 - when: machine == 'CrayXE6' or machine == 'CrayXC30' or machine == 'CrayXC40'
@@ -60,7 +57,6 @@ build_stages:
           '--enable-shared',
           '--enable-production=yes',
           '--enable-parallel=yes',
-          '--enable-largefile=yes',
           '--with-default-api-version=v18',
           '--with-pic']
 

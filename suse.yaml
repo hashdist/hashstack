@@ -7,4 +7,5 @@ parameters:
   HOST_MPIF77: /usr/local/bin/mpif77
   HOST_MPIF90: /usr/local/bin/mpif90
   HOST_MPIEXEC: /usr/local/bin/mpiexec
+  HOST_PYTHON: /usr/bin/python
   PATH: /usr/local/bin:/usr/bin:/bin
