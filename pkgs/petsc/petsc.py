@@ -27,6 +27,9 @@ def preConfigureCrayXE6(ctx, conf_lines):
 
 def preConfigureSGIICEX(ctx, conf_lines):
     conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
+                   '--with-cmake=/app/wpostool/COST/cmake/3.2.3/gnu/bin/cmake',
+                   '--with-cmake-dir=/app/wpostool/COST/cmake/3.2.3/gnu',
+                   '--known-has-attribute-aligned=1',
                '--known-mpi-shared-libraries=1',
                '--with-pic',
                '--with-batch',
@@ -83,8 +86,8 @@ def configure(ctx, stage_args):
     # temporaries.  Here, we force PETSc to use our ./_tmp directory
     # as its temporary directory.  This configuration change may be of
     # general use for the other build systems.
-    conf_lines = ['mkdir ${PWD}/_tmp && TMPDIR=${PWD}/_tmp',
-                  './configure --prefix="${ARTIFACT}"']
+    conf_lines = ['TMPDIR=${WORKDIR}',
+                  'PATH=/app/wpostool/COST/cmake/3.2.3/gnu/bin:${PATH} ./configure --prefix="${ARTIFACT}"']
 
     if ctx.parameters.get('machine','') == 'CrayXE6':
         preConfigureCrayXE6(ctx, conf_lines)
@@ -161,12 +164,12 @@ def configure(ctx, stage_args):
             continue
         if dep_var == 'MPI':
             conf_lines.append('--with-mpi-compilers')
-            conf_lines.append('CC=mpicc')
-            conf_lines.append('CXX=mpicxx')
+            conf_lines.append('CC=${MPICC}')
+            conf_lines.append('CXX=${MPICXX}')
             if ctx.parameters['fortran']:
-                conf_lines.append('F77=mpif90')
-                conf_lines.append('F90=mpif90')
-                conf_lines.append('FC=mpif90')
+                conf_lines.append('F77=${MPIF77}')
+                conf_lines.append('F90=${MPIF90}')
+                conf_lines.append('FC=${MPIF90}')
             else:
                 conf_lines.append('--with-fc=0')
             continue

@@ -36,9 +36,9 @@ packages:
     build_with: |
       openssl,bzip2,sqlite
   blas:
-    use: host-mkl-blas
+    use: openblas
   lapack:
-    use: host-mkl-lapack
+    use: openblas-lapack
   daetk:
   mpi:
     use: host-mpi
@@ -51,6 +51,7 @@ packages:
     without_check: true
   petsc:
     version: 3.7.5
+    openblas: true
     build_with: |
       parmetis, blas, lapack
     download: |
