@@ -11,7 +11,7 @@ defaults:
   # lib/libmetis.so contains hard-coded path
   relocatable: false
   # Skip build-time tests (not recommended)
-  without_check: false
+  without_check: platform != "Darwin"
 
 build_stages:
 - name: setup_builddir
