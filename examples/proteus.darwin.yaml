@@ -33,7 +33,7 @@ packages:
     use: host-osx-framework-accelerate
   daetk:
   mpi:
-    use: openmpi
+    use: openmpi 
   mpi4py:
   nose:
   hdf5:
@@ -48,7 +48,7 @@ packages:
     build_with: |
       parmetis, cmake, suitesparse 
     download: |
-      superlu, superlu_dist 
+      superlu, superlu_dist
     coptflags: -O2
     link: shared
     debug: false
