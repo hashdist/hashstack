@@ -1,0 +1,25 @@
+extends: [cmake_package]
+
+sources:
+- key: tar.gz:acqosligttnp2ilic3y275da67n5jb2e
+  url: https://github.com/dealii/dealii/releases/download/v8.4.1/dealii-8.4.1.tar.gz
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build: [petsc,boost,hdf5,lapack,blas,mpi,bzip2,zlib,parmetis,netcdf4,suitesparse]
+  run: [petsc,boost,hdf5,lapack,blas,mpi,bzip2,zlib,parmetis,netcdf4,suitesparse]
+
+build_stages:
+- name: configure
+  extra:
+    - '-DDEAL_II_WITH_METIS:BOOL=ON'
+    - '-DDEAL_II_WITH_NETCDF:BOOL=ON'
+    - '-DDEAL_II_WITH_MPI:BOOL=ON'
+    - '-DDEAL_II_WITH_PETSC:BOOL=OFF'
+    - '-DDEAL_II_WITH_TRILINOS:BOOL=OFF'
+    - '-DDEAL_II_WITH_BOOST:BOOL=ON'
+    - '-DDEAL_II_WITH_HDF5:BOOL=ON'
+    - '-DDEAL_II_WITH_LAPACK:BOOL=ON'
+    - '-DDEAL_II_WITH_ZLIB:BOOL=ON'

@@ -17,6 +17,7 @@ build_stages:
   handler: bash
   bash: |
     export CC=${MPICC}
+    export CXX=${MPICXX}
 
 - when: machine == 'CrayXE6'
   name: make_exe_builds_static
@@ -33,6 +34,7 @@ build_stages:
   extra: ['--with-zlib=${ZLIB_DIR}',
           '--with-szlib=${SZIP_DIR}',
           '--with-pthread',
+          '--enable-cxx',
           '--enable-unsupported',
           '--enable-shared',
           '--enable-production=yes',

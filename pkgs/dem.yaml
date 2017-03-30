@@ -1,0 +1,36 @@
+extends: [cmake_package]
+
+sources:
+- key: git:e6c18c5dc342e0403ffb4dbae7da42ea613dd28f
+  url: https://github.com/arnsong/dem
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build: [dealii,suitesparse,hdf5,mpi,doxygen,tinyxml,yamlcpp]
+  run: [dealii,suitesparse,hdf5,mpi,doxygen,tinyxml,yamlcpp]
+
+build_stages:
+- name: configure
+  extra:
+    - '-DTinyXML_INCLUDE_DIR:PATH=${TINYXML_DIR}/include'
+    - '-DTinyXML_LIBRARY:PATH=${TINYXML_DIR}/lib/libtinyxml.so'
+    - '-DYamlCpp_INCLUDE_DIR:PATH=${YAMLCPP_DIR}/include'
+    - '-DYamlCpp_LIBRARY:PATH=${YAMLCPP_DIR}/lib/libyaml-cpp.so'
+    - '-DCMAKE_BUILD_TYPE:STRING=Debug'
+    - '-DCMAKE_PREFIX_PATH:PATH=${DEALII_DIR}'
+    - '-DCMAKE_CXX_COMPILER:PATH=mpicxx'
+    - '-DCMAKE_CXX_FLAGS:STRING="-I${DEALII_DIR}/include -I${SUITESPARSE_DIR}/include/suitesparse"'
+    - '-DCMAKE_CXX_FLAGS_DEBUG:STRING="-fPIC -g -I${DEALII_DIR}/include -I${SUITESPARSE_DIR}/include/suitesparse -I${TINYXML_DIR}/include -I${YAMLCPP_DIR}/include"'
+    - '-DCMAKE_CXX_FLAGS_RELEASE:STRING="-fPIC -O2 -DNDEBUG -I${DEALII_DIR}/include -I${SUITESPARSE_DIR}/include/suitesparse -I${TINYXML_DIR}/include -I${YAMLCPP_DIR}/include"'
+    - '-DCMAKE_CXX_FLAGS_RELWITHDEBINFO:STRING="-fPIC -O2 -g -DNDEBUG -I${DEALII_DIR}/include -I${SUITESPARSE_DIR}/include/suitesparse -I${TINYXML_DIR}/include -I${YAMLCPP_DIR}/include"'
+    - '-DDEM_DEALII:BOOL=ON'
+
+- name: install
+  after: make
+  handler: bash
+  bash: |
+    make install
+    mkdir ${ARTIFACT}/include
+    cp -r ../include/* ${ARTIFACT}/include

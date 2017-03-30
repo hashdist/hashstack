@@ -14,6 +14,7 @@ extends:
 # profile.
 
 packages:
+  conda:
   clawpack:
   launcher:
   cmake:
@@ -109,6 +110,10 @@ packages:
   julia:
   pyjulia:
   vtk:
+  dem:
+  #yamlcpp:
+  #tinyxml:
+  suitesparse:
   #rtree:
   #ipython-d3plot:
   #ipython-gridwidget:
