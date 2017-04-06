@@ -10,8 +10,8 @@ dependencies:
         - tk
 
 sources:
-- key: tar.gz:l47kaajajvhxcs7jokubbjrmb4rhp65z
-  url: http://www.vtk.org/files/release/7.1/VTK-7.1.0.tar.gz
+- key: tar.gz:fvon2befiake3aqxcxdrrezfsfayxnep
+  url: http://www.vtk.org/files/release/7.1/VTK-7.1.1.tar.gz
 
 defaults:
   # lib/vtk-5.10/libvtkHybrid.so.5.10.1 contains hard-coded path
@@ -51,10 +51,14 @@ build_stages:
     - '-D BUILD_SHARED_LIBS:BOOL=ON'
     - '-D VTK_WRAP_PYTHON:BOOL=ON'
     - '-D VTK_WRAP_TCL:BOOL=OFF'
-    - '-D VTK_USE_GL2PS:BOOL=ON'
-    - '-D VTK_PYTHON_SETUP_ARGS:STRING="--prefix=. --root=${ARTIFACT} --single-version-externally-managed"'
     - '-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"'
     - '-D VTK_USE_SYSTEM_TIFF:BOOL=ON'
+    - '-D VTK_Group_Imaging:BOOL=ON'
+    - '-D VTK_Group_MPI:BOOL=ON'
+    - '-D VTK_Group_Rendering:BOOL=ON'
+    - '-D VTK_Group_StandAlone:BOOL=ON'
+    - '-D VTK_Group_Views:BOOL=ON'
+    - '-D VTK_Group_Web:BOOL=ON'
 
 - when: vtk_use_tk
   name: configure
