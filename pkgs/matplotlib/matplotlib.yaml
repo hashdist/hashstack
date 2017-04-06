@@ -1,8 +1,8 @@
 extends: [namespace_package,libflags]
 
 dependencies:
-  build: [bzip2, freetype, numpy, png, pkg-config, zlib]
-  run: [freetype, numpy, png, python-dateutil, pyparsing, six, cycler]
+  build: [bzip2, freetype, numpy, png, pkg-config, zlib, functools32]
+  run: [freetype, numpy, png, python-dateutil, pyparsing, six, cycler, functools32]
 
 sources:
  - key: tar.gz:udafzuu5xqfoooev23mq52e2redgzpd4

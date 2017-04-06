@@ -95,20 +95,21 @@ packages:
   pyzmq:
   vapory:
   tornado:
-  ipython:
-  terminado:
+  #ipython:
+  #terminado:
   geojson:
   shapely:
   matlab:
     use: host-matlab
-  ipdb:
-  jupyterlab:
-  jupyter:
-  ipyparallel:
+  #ipdb:
+  #jupyterlab:
+  #jupyter:
+  #ipyparallel:
   buildbot-worker:
   julia:
   pyjulia:
-  vtk:
+  backports-shutil-get-terminal-size:
+  configparser:
   #rtree:
   #ipython-d3plot:
   #ipython-gridwidget:
