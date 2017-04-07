@@ -2,7 +2,7 @@ extends: [setuptools_package]
 
 dependencies:
   build: [pycparser, libffi]
-  run: []
+  run: [pycparser, libffi]
 
 sources:
  - key: tar.gz:ky7axvj73ib4cukxgil3hje3hk5nraj5

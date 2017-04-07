@@ -23,10 +23,8 @@ build_stages:
   handler: bash
   bash: |
     export MPI_DIR=$MPI_ROOT
-    export CFLAGS="-m64"
-    export CXXFLAGS="-m64"
-    export CPPFLAGS="-m64"
-    export FCFLAGS="-m64"
+    export CC=$MPICC
+    export CXX=$MPICXX
 
 - name: configure
   after: setEnv
