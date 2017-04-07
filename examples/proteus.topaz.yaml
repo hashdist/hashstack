@@ -29,12 +29,18 @@ parameters:
   DYNAMIC_EXE_LINKER_FLAGS: -Bdynamic
 
 packages:
+  clawpack:
   launcher:
   cmake:
+  openjpeg:
+    version: '2.1'
+  openssl:
+    use: host-openssl
   python:
     host: false
+    link: shared
     build_with: |
-      openssl,bzip2,sqlite
+      bzip2, sqlite, openssl
   blas:
     use: host-blas
   lapack:
@@ -44,11 +50,12 @@ packages:
     use: host-mpi
   mpi4py:
   nose:
+  coverage:
   hdf5:
-  ipython:
-  matplotlib:
+  pygments:
   parmetis:
     without_check: true
+  pillow:
   petsc:
     version: 3.7.5
     build_with: |
@@ -62,18 +69,67 @@ packages:
     version: 3.7.0
     with_conf: true
   pytables:
-  sphinx:
   sympy:
   tetgen:
   triangle:
   memory_profiler:
-  scipy:
+  boost:
+    toolset: gcc
+    address_model: 64
+    build_with: |
+      python
+  cgal:
+  netcdf4:
   netcdf4f:
   python-netcdf4:
+  netcdf4cpp:
+  jasper:
+  grib_api:
+  pyproj:
+  pygrib:
+  scipy:
   h5py:
+  pydap:
+  rdp:
   ode:
   pip:
+  pexpect:
+  pcs_api:
+  zoltan:
+    build_with: |
+      parmetis
+  chrono:
+  pytest:
+  pytest-xdist:
+  doxygen:
+  gmsh:
+  scorec:
+  matplotlib:
+  sphinx:
+  sphinx-bootstrap-theme:
+  pyzmq:
+  vapory:
+  tornado:
+  #ipython:
+  #terminado:
+  geojson:
+  shapely:
+  matlab:
+    use: host-matlab
+  #ipdb:
+  #jupyterlab:
+  #jupyter:
+  #ipyparallel:
   buildbot-worker:
- # pyode:
- # vtk:
- # pyvtk:
+  julia:
+  pyjulia:
+  backports-shutil-get-terminal-size:
+  configparser:
+  #rtree:
+  #ipython-d3plot:
+  #ipython-gridwidget:
+  #jupyter-pip:
+  #leafletwidget:
+  #ipywidgets:
+  #ipyleaflet:
+  #pythreejs:
