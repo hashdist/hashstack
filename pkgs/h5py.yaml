@@ -16,12 +16,13 @@ build_stages:
   bash: |
        export HDF5_VERSION='1.8.16'
        export SETUPTOOLS_PACKAGE_EXTRA_OPTIONS="configure --mpi"
+
 - name: install
   after: setup_dirs
   mode: replace
   handler: bash
   bash: |
-    CC=${MPICC} ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
+    CC=${MPICC} CXX=${MPICXX} ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
        ${SETUPTOOLS_PACKAGE_EXTRA_OPTIONS} \
        install \
        --prefix=. --root=${ARTIFACT} \

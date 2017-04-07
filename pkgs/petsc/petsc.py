@@ -31,6 +31,65 @@ def preConfigureCrayXE6(ctx, conf_lines):
                    '--known-mpi-int64_t=1',
                    '--with-pthread=1']
     
+def preConfigureCrayXC30(ctx, conf_lines):
+    conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
+               '--known-mpi-shared-libraries=1',
+               '--with-batch',
+               '--known-sdot-returns-double=0',
+               '--known-snrm2-returns-double=0',
+               '--known-level1-dcache-size=16384',
+               '--known-level1-dcache-linesize=64',
+               '--known-level1-dcache-assoc=4',
+               '--known-memcmp-ok=1',
+               '--known-sizeof-char=1',
+               '--known-sizeof-void-p=8',
+               '--known-sizeof-short=2',
+               '--known-sizeof-int=4',
+               '--known-sizeof-long=8',
+               '--known-sizeof-long-long=8',
+               '--known-sizeof-float=4',
+               '--known-sizeof-double=8',
+               '--known-sizeof-size_t=8',
+               '--known-bits-per-byte=8',
+               '--known-sizeof-MPI_Comm=4',
+               '--known-sizeof-MPI_Fint=4',
+               '--known-mpi-long-double=1',
+               '--known-mpi-c-double-complex=1',
+               '--known-mpi-int64_t=1',
+               '--with-pthread=1']
+
+def preConfigureCrayXC40(ctx, conf_lines):
+    conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
+                   '--with-cmake-exe=/app/unsupported/COST/cmake/3.2.3/gnu/bin/cmake',
+                   '--with-cmake=/app/unsupported/COST/cmake/3.2.3/gnu/bin/cmake',
+                   '--with-cmake-dir=/app/unsupported/COST/cmake/3.2.3/gnu',
+               '--known-has-attribute-aligned=1',
+               '--known-mpi-shared-libraries=1',
+               '--with-batch',
+               '--known-sdot-returns-double=0',
+               '--known-snrm2-returns-double=0',
+               '--known-level1-dcache-size=16384',
+               '--known-level1-dcache-linesize=64',
+               '--known-level1-dcache-assoc=4',
+               '--known-memcmp-ok=1',
+               '--known-sizeof-char=1',
+               '--known-sizeof-void-p=8',
+               '--known-sizeof-short=2',
+               '--known-sizeof-int=4',
+               '--known-sizeof-long=8',
+               '--known-sizeof-long-long=8',
+               '--known-sizeof-float=4',
+               '--known-sizeof-double=8',
+               '--known-sizeof-size_t=8',
+               '--known-bits-per-byte=8',
+               '--known-sizeof-MPI_Comm=4',
+               '--known-sizeof-MPI_Fint=4',
+               '--known-mpi-long-double=1',
+               '--known-mpi-c-double-complex=1',
+               '--known-mpi-int64_t=1',
+               '--with-pthread=1']
+
+>>>>>>> origin/stable/excalibur
 def preConfigureSGIICEX(ctx, conf_lines):
     conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
                '--known-has-attribute-aligned=1',
@@ -92,10 +151,14 @@ def configure(ctx, stage_args):
     # as its temporary directory.  This configuration change may be of
     # general use for the other build systems.
     conf_lines = ['TMPDIR=${WORKDIR}',
-                  'PATH=/app/COST/cmake-3.0.0-gnu/bin:${PATH} ./configure --prefix="${ARTIFACT}"']
+                  'PATH=/usr/local/usp/cmake/3.4.3-gnu/bin:${PATH} ./configure --prefix="${ARTIFACT}"']
 
     if ctx.parameters.get('machine','') == 'CrayXE6':
         preConfigureCrayXE6(ctx, conf_lines)
+    elif ctx.parameters.get('machine','') == 'CrayXC30':
+        preConfigureCrayXC30(ctx, conf_lines)
+    elif ctx.parameters.get('machine','') == 'CrayXC40':
+        preConfigureCrayXC40(ctx, conf_lines)
     elif ctx.parameters.get('machine','') == 'SGIICEX':
         preConfigureSGIICEX(ctx, conf_lines)
 

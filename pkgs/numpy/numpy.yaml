@@ -54,7 +54,7 @@ build_stages:
       export BLAS=None
       export ATLAS=None
 
-  - when: machine == 'CrayXE6'
+  - when: machine == 'CrayXC30' or machine == 'CrayXC40'
     name: create-site.cfg
     after: prologue
     before: install
@@ -66,7 +66,7 @@ build_stages:
       libraries = acml, gfortran
       EOF
 
-  - when: machine == 'CrayXE6'
+  - when: machine == 'CrayXC30' or machine == 'CrayXC40'
     name: set-LDFLAGS
     after: prologue
     before: install

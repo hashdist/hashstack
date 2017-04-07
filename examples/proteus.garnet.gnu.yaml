@@ -41,7 +41,7 @@ packages:
     host: false
     link: shared
     build_with: |
-      bzip2, sqlite, openssl
+      openssl,bzip2,sqlite
   blas:
     use: host-acml-blas
   lapack:
@@ -54,7 +54,11 @@ packages:
   coverage:
   hdf5:
     use: host-hdf5
+  ipython:
   pygments:
+  tornado:
+  pyzmq:
+  matplotlib:
   parmetis:
     without_check: true
   pillow:
