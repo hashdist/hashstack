@@ -1,4 +1,5 @@
 # This profile file controls your <#> (HashDist) build environment.
+
 # In the future, we'll provide better incorporation of
 # automatic environment detection.  For now, have a look
 # at the YAML files in the top-level directory and choose
@@ -27,17 +28,20 @@ parameters:
   DYNAMIC_EXE_LINKER_FLAGS: -dynamic
 
 packages:
+  clawpack:
   pkg-config:
     use: host-pkg-config
   launcher:
   cmake:
+  openjpeg:
+    version: '2.1'
   openssl:
     use: host-openssl
   python:
     host: false
     link: shared
     build_with: |
-      openssl,bzip2,sqlite
+      bzip2, sqlite, openssl
   blas:
     use: host-acml-blas
   lapack:
@@ -47,21 +51,19 @@ packages:
     use: host-mpi
   mpi4py:
   nose:
+  coverage:
   hdf5:
     use: host-hdf5
-  ipython:
   pygments:
-  tornado:
-  pyzmq:
-  matplotlib:
   parmetis:
     without_check: true
+  pillow:
   petsc:
     version: 3.7.5
     build_with: |
-      parmetis, blas, lapack
+      parmetis, cmake, blas, lapack
     download: |
-      superlu, superlu_dist
+      superlu, superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
     debug: false
@@ -70,52 +72,67 @@ packages:
     version: 3.7.0
     with_conf: true
   pytables:
-  sphinx:
-  superlu:
   sympy:
   tetgen:
   triangle:
   memory_profiler:
-#  boost:
-#    toolset: gcc
-#    address_model: 64
-#    build_with: |
-#      python
-#
-#  cgal:
-#  pycgal:
+  boost:
+    toolset: gcc
+    address_model: 64
+    build_with: |
+      python
+  cgal:
   netcdf4:
   netcdf4f:
   python-netcdf4:
-  #adh:
-  #  link: shared  
-  #stwave:  
+  netcdf4cpp:
+  jasper:
+  grib_api:
+  pyproj:
+  pygrib:
   scipy:
-#  ipython:
-#    sources:
-#      - key: git:68f6519cdfd23581ed7358fa1941ae1bbd76e5b3
-#        url: https://github.com/ellisonbg/ipython.git
-#
   h5py:
   pydap:
-#  leafletwidget: 
-#    sources:
-#      - key: git:f9147c5b13a69b80bc28d3574f7ba6b2c576aed2
-#        url: https://github.com/erdc-cm/leafletwidget.git
-  geojson:
   rdp:
-#  ipython-widgetmode:
-#  ipython-d3plot:
-#  ipython-gridwidget:
-#  shapely:
-#  rtree:
-#  matlab:
-#    use: host-matlab
-#  pymatbridge:
   ode:
-#  ipdb:
   pip:
   pexpect:
-  ipdb:
- # vtk:
- # pyvtk:
+  pcs_api:
+  zoltan:
+    build_with: |
+      parmetis
+  chrono:
+  pytest:
+  pytest-xdist:
+  doxygen:
+  gmsh:
+  scorec:
+  matplotlib:
+  sphinx:
+  sphinx-bootstrap-theme:
+  pyzmq:
+  vapory:
+  tornado:
+  #ipython:
+  #terminado:
+  geojson:
+  shapely:
+  matlab:
+    use: host-matlab
+  #ipdb:
+  #jupyterlab:
+  #jupyter:
+  #ipyparallel:
+  buildbot-worker:
+  julia:
+  pyjulia:
+  backports-shutil-get-terminal-size:
+  configparser:
+  #rtree:
+  #ipython-d3plot:
+  #ipython-gridwidget:
+  #jupyter-pip:
+  #leafletwidget:
+  #ipywidgets:
+  #ipyleaflet:
+  #pythreejs:

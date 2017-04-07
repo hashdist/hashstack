@@ -12,7 +12,8 @@ defaults:
 
 build_stages:
 - name: configure
-  extra: ['--disable-debug', '--enable-shared', '--enable-mpi',
+  extra: ['--disable-debug', '--disable-shared', '--enable-statis',
+          '--with-pic', '--enable-mpi',
           '--enable-sse2', '--enable-avx', '--enable-threads']
 
 - name: install
