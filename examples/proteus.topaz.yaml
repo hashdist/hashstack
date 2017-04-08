@@ -58,6 +58,7 @@ packages:
   pillow:
   petsc:
     version: 3.7.5
+    openblas: false
     build_with: |
       parmetis, cmake, blas
     download: |
@@ -109,7 +110,7 @@ packages:
   sphinx-bootstrap-theme:
   pyzmq:
   vapory:
-  tornado:
+  #tornado:
   #ipython:
   #terminado:
   geojson:
@@ -121,8 +122,8 @@ packages:
   #jupyter:
   #ipyparallel:
   buildbot-worker:
-  julia:
-  pyjulia:
+  #julia:
+  #pyjulia:
   backports-shutil-get-terminal-size:
   configparser:
   #rtree:
