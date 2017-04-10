@@ -1,7 +1,7 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: [pytest,py,apipkg,execnet]
+  build: [pytest,py,apipkg,execnet,setuptools-scm]
   run: []
 
 sources:

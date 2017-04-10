@@ -12,8 +12,7 @@ defaults:
 
 build_stages:
 - name: configure
-  extra: ['--disable-debug', '--enable-shared', '--enable-mpi',
-          '--enable-sse2', '--enable-avx', '--enable-threads']
+  extra: ['--disable-debug', '--disable-shared', '--enable-static', '--enable-mpi', '--with-pic', '--enable-sse2', '--enable-avx', '--enable-threads']
 
 - name: install
   after: make
@@ -24,7 +23,8 @@ build_stages:
     make clean
     # Build single precision library as well:
     ./configure --prefix=$ARTIFACT --enable-single --disable-debug \
-            --enable-shared --enable-mpi --enable-sse2 --enable-avx \
+            --disable-shared --enable-static --with-fpic \
+            --enable-mpi --enable-sse2 --enable-avx \
             --enable-threads
     make -j ${HASHDIST_CPU_COUNT}
     make install

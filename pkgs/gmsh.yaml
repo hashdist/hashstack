@@ -14,8 +14,8 @@ dependencies:
 build_stages:
 - name: configure
   extra:
-    - '-DENABLE_PETSC:BOOL=ON'
-    - '-DENABLE_PETSC4PY:BOOL=ON'
+    - '-DCMAKE_EXE_LINKER_FLAGS="-L/opt/cray/libsci/13.2.0/gnu/5.1/haswell/lib -lsci_gnu -lpthread"'
+    - '-DENABLE_PETSC:BOOL=OFF'
+    - '-DENABLE_PETSC4PY:BOOL=OFF'
     - '-DENABLE_FLTK:BOOL=OFF'
-    - '-DENABLE_BUILD_SHARED:BOOL=ON'
-    - '-DENABLE_WRAP_PYTHON:BOOL=ON'
+    - '-DENABLE_WRAP_PYTHON:BOOL=OFF'

@@ -62,6 +62,10 @@ def preConfigureCrayXC30(ctx, conf_lines):
 
 def preConfigureCrayXC40(ctx, conf_lines):
     conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
+                   '--with-cmake-exe=/app/unsupported/COST/cmake/3.2.3/gnu/bin/cmake',
+                   '--with-cmake=/app/unsupported/COST/cmake/3.2.3/gnu/bin/cmake',
+                   '--with-cmake-dir=/app/unsupported/COST/cmake/3.2.3/gnu',
+               '--known-has-attribute-aligned=1',
                '--known-mpi-shared-libraries=1',
                '--with-batch',
                '--known-sdot-returns-double=0',

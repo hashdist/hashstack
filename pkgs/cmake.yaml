@@ -4,8 +4,8 @@ dependencies:
   build: [zlib, bzip2, curl, openssl, libidn, expat, ncurses]
 
 sources:
-- key: tar.gz:fdxjr3caij6udjcwooch3n5jaw2zz2je
-  url: https://cmake.org/files/v3.6/cmake-3.6.1.tar.gz
+- key: tar.gz:3qjenrhg2fuoutloaqwpxjlxygwnmx7o
+  url: https://cmake.org/files/v3.7/cmake-3.7.2.tar.gz
 
 build_stages:
 - when: platform == 'Darwin'
