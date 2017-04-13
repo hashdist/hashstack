@@ -2,7 +2,7 @@ extends: [autotools_package]
 
 sources:
 - url: http://releases.nixos.org/patchelf/patchelf-0.8/patchelf-0.8.tar.bz2
-  key: tar.bz2:ud3fyg5bjceq5hzppar7jpw7p3fnkqlx
+  key: tar.bz2:zgpyjujegrzubq3ha4ej5shxauykxvlo
 
 defaults:
   # It'd cause some complexity to wire up patchelf to patch patchelf, and besides

@@ -55,7 +55,6 @@ packages:
   pygments:
   parmetis:
     without_check: true
-  pillow:
   petsc:
     version: 3.7.5
     build_with: |
@@ -78,15 +77,13 @@ packages:
     address_model: 64
     build_with: |
       python
-  cgal:
+  #cgal:
   netcdf4:
   netcdf4f:
   python-netcdf4:
   netcdf4cpp:
   jasper:
-  grib_api:
   pyproj:
-  pygrib:
   scipy:
   h5py:
   pydap:
@@ -120,9 +117,9 @@ packages:
   #jupyterlab:
   #jupyter:
   #ipyparallel:
-  buildbot-worker:
-  julia:
-  pyjulia:
+  #buildbot-worker:
+  #julia:
+  #pyjulia:
   backports-shutil-get-terminal-size:
   configparser:
   #rtree:
