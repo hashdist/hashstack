@@ -1,25 +1,33 @@
 extends: [cmake_package]
 
 sources:
-- key: tar.gz:acqosligttnp2ilic3y275da67n5jb2e
-  url: https://github.com/dealii/dealii/releases/download/v8.4.1/dealii-8.4.1.tar.gz
+- key: tar.gz:42it75xrqtiwxqszrqn2gh4hsu23ok3n
+  url: https://github.com/dealii/dealii/releases/download/v8.5.0/dealii-8.5.0.tar.gz
 
 defaults:
   relocatable: false
 
 dependencies:
-  build: [petsc,boost,hdf5,lapack,blas,mpi,bzip2,zlib,parmetis,netcdf4,suitesparse]
-  run: [petsc,boost,hdf5,lapack,blas,mpi,bzip2,zlib,parmetis,netcdf4,suitesparse]
+  build: [petsc,boost,hdf5,lapack,blas,mpi,bzip2,zlib,parmetis,netcdf4,netcdf4cpp,suitesparse]
+  run: [petsc,boost,hdf5,lapack,blas,mpi,bzip2,zlib,parmetis,netcdf4,netcdf4cpp,suitesparse]
 
 build_stages:
 - name: configure
   extra:
     - '-DDEAL_II_WITH_METIS:BOOL=ON'
-    - '-DDEAL_II_WITH_NETCDF:BOOL=ON'
+    - '-DMETIS_DIR:PATH=${PARMETIS_DIR}'
+    - '-DDEAL_II_WITH_NETCDF:BOOL=OFF'
+    - '-DNETCDF_DIR:PATH=${NETCDF4CPP_DIR}:${NETCDF4_DIR}'
     - '-DDEAL_II_WITH_MPI:BOOL=ON'
+    - '-DMPI_DIR:PATH=${MPI_DIR}'
     - '-DDEAL_II_WITH_PETSC:BOOL=OFF'
+    - '-DPETSC_DIR:PATH=${PETSC_DIR}'
     - '-DDEAL_II_WITH_TRILINOS:BOOL=OFF'
     - '-DDEAL_II_WITH_BOOST:BOOL=ON'
+    - '-DBOOST_DIR:PATH=${BOOST_DIR}'
     - '-DDEAL_II_WITH_HDF5:BOOL=ON'
+    - '-DHDF5_DIR:PATH=${HDF5_DIR}'
     - '-DDEAL_II_WITH_LAPACK:BOOL=ON'
+    - '-DLAPACK_DIR:PATH=${LAPACK_DIR}'
     - '-DDEAL_II_WITH_ZLIB:BOOL=ON'
+    - '-DZLIB_DIR:PATH=${ZLIB_DIR}'
