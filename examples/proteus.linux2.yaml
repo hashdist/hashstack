@@ -94,7 +94,7 @@ packages:
   sphinx-bootstrap-theme:
   pyzmq:
   vapory:
-  tornado:
+  #tornado:
   #ipython:
   #terminado:
   geojson:
@@ -108,8 +108,8 @@ packages:
   buildbot-worker:
   julia:
   pyjulia:
-  backports-shutil-get-terminal-size:
-  configparser:
+  #backports-shutil-get-terminal-size:
+  #configparser:
   #rtree:
   #ipython-d3plot:
   #ipython-gridwidget:
