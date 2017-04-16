@@ -108,6 +108,7 @@ packages:
   buildbot-worker:
   julia:
   pyjulia:
+  scandir:
   #backports-shutil-get-terminal-size:
   #configparser:
   #rtree:
