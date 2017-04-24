@@ -1,0 +1,6 @@
+extends: [cmake_package]
+
+sources:
+- key: tar.gz:m2gx34fehwv2a3s3g2vkiyfmsatrhssp
+  url: https://github.com/jbeder/yaml-cpp/archive/yaml-cpp-0.5.3.tar.gz
+

@@ -1,0 +1,21 @@
+extends: [base_package]
+
+defaults:
+  relocatable: false
+
+sources:
+- key: tar.gz:cw673twfrj62gcw4q6wcwb4oiql5xzjz
+  url: https://sourceforge.net/projects/tinyxml/files/tinyxml/2.6.2/tinyxml_2_6_2.tar.gz
+
+build_stages:
+  - name: install
+    after: prologue
+    handler: bash
+    bash: |
+      mkdir ${ARTIFACT}/lib
+      g++ -std=c++11 -fPIC -c tinystr.cpp  tinyxml.cpp  tinyxmlerror.cpp  tinyxmlparser.cpp
+      ar -cru ${ARTIFACT}/lib/libtinyxml.a tinystr.o  tinyxml.o  tinyxmlerror.o  tinyxmlparser.o
+      g++ tinystr.o  tinyxml.o  tinyxmlerror.o  tinyxmlparser.o -shared -o ${ARTIFACT}/lib/libtinyxml.so
+      mkdir ${ARTIFACT}/include
+      cp *.h ${ARTIFACT}/include
+      
