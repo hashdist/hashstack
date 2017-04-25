@@ -109,14 +109,14 @@ packages:
   buildbot-worker:
   julia:
   pyjulia:
+  scandir:
+  #backports-shutil-get-terminal-size:
+  #configparser:
   vtk:
   dem:
   #yamlcpp:
   #tinyxml:
   suitesparse:
-  scandir:
-  #backports-shutil-get-terminal-size:
-  #configparser:
   #rtree:
   #ipython-d3plot:
   #ipython-gridwidget:
