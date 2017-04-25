@@ -14,10 +14,6 @@ extends:
 # profile.
 
 packages:
-  conda:
-  clawpack:
-  launcher:
-  cmake:
   openjpeg:
     version: '2.1'
   openssl:
@@ -36,16 +32,12 @@ packages:
     use: mpich
   mpi4py:
   nose:
-  coverage:
   hdf5:
-  pygments:
   parmetis:
-  pillow:
   petsc:
     version: 3.7.5
-    openblas: true
     build_with: |
-      parmetis, cmake, blas
+      parmetis, cmake, openblas
     download: |
       superlu, superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
@@ -55,73 +47,22 @@ packages:
     version: 3.7.0
     with_conf: true
   pytables:
-  sympy:
   tetgen:
   triangle:
   memory_profiler:
+  scipy:
+  h5py:
+  ode:
+  zoltan:
+    build_with: |
+      parmetis
+  chrono:
+  gmsh:
+  scorec:
+  matplotlib:
+  proteus:
   boost:
     toolset: gcc
     address_model: 64
     build_with: |
       python
-  cgal:
-  netcdf4:
-  netcdf4f:
-  python-netcdf4:
-  netcdf4cpp:
-  jasper:
-  grib_api:
-  pyproj:
-  pygrib:
-  scipy:
-  h5py:
-  pydap:
-  rdp:
-  ode:
-  pip:
-  pexpect:
-  pcs_api:
-  zoltan:
-    build_with: |
-      parmetis
-  chrono:
-  pytest:
-  pytest-xdist:
-  doxygen:
-  gmsh:
-  scorec:
-  matplotlib:
-  sphinx:
-  sphinx-bootstrap-theme:
-  pyzmq:
-  vapory:
-  #tornado:
-  #ipython:
-  #terminado:
-  geojson:
-  shapely:
-  matlab:
-    use: host-matlab
-  #ipdb:
-  #jupyterlab:
-  #jupyter:
-  #ipyparallel:
-  buildbot-worker:
-  julia:
-  pyjulia:
-  vtk:
-  dem:
-  #yamlcpp:
-  #tinyxml:
-  suitesparse:
-  scandir:
-  #backports-shutil-get-terminal-size:
-  #configparser:
-  #rtree:
-  #ipython-d3plot:
-  #ipython-gridwidget:
-  #jupyter-pip:
-  #leafletwidget:
-  #ipywidgets:
-  #ipyleaflet:
-  #pythreejs:
