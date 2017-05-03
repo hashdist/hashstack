@@ -41,7 +41,7 @@ packages:
     host: false
     link: shared
     build_with: |
-      openssl,bzip2,sqlite
+      bzip2, sqlite, openssl
   blas:
     use: host-acml-blas
   lapack:
@@ -54,11 +54,7 @@ packages:
   coverage:
   hdf5:
     use: host-hdf5
-  ipython:
   pygments:
-  tornado:
-  pyzmq:
-  matplotlib:
   parmetis:
     without_check: true
   pillow:
@@ -67,7 +63,7 @@ packages:
     build_with: |
       parmetis, cmake, blas, lapack
     download: |
-      superlu, superlu_dist, hypre, blacs, scalapack, mumps
+      superlu, superlu_dist, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
     debug: false
@@ -91,9 +87,9 @@ packages:
   python-netcdf4:
   netcdf4cpp:
   jasper:
-  grib_api:
+  #grib_api:
   pyproj:
-  pygrib:
+  #pygrib:
   scipy:
   h5py:
   pydap:
@@ -128,8 +124,8 @@ packages:
   #jupyter:
   #ipyparallel:
   buildbot-worker:
-  julia:
-  pyjulia:
+  #julia:
+  #pyjulia:
   backports-shutil-get-terminal-size:
   configparser:
   #rtree:

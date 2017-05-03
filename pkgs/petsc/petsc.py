@@ -89,7 +89,6 @@ def preConfigureCrayXC40(ctx, conf_lines):
                '--known-mpi-int64_t=1',
                '--with-pthread=1']
 
->>>>>>> origin/stable/excalibur
 def preConfigureSGIICEX(ctx, conf_lines):
     conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
                '--known-has-attribute-aligned=1',
@@ -118,7 +117,7 @@ def preConfigureSGIICEX(ctx, conf_lines):
                '--known-mpi-c-double-complex=1',
                '--known-mpi-int64_t=1',
                '--with-pthread=1',
-               '--with-blas-lapack-lib="-L/app/unsupported/COST/lapack/3.5.0/gnu/lib -llapack -L/app/unsupported/COST/gotoblas2/1.13/gnu/lib -lgoto2  -llapacke  -lrefblas -ltmglib -lgfortran"']
+               '--with-blas-lapack-lib="-L/opt/acml/5.3.1/gfortran64/lib -lacml -lgfortran"']
 
 @build_stage()
 def configure(ctx, stage_args):
