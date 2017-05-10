@@ -25,6 +25,7 @@ packages:
     version: '2.1'
   python:
     host: false
+    link: shared
     build_with: |
 
   blas:
