@@ -15,7 +15,7 @@ sources:
   url: http://www.vtk.org/files/release/7.1/VTK-7.1.0.tar.gz
 
 defaults:
-  # lib/vtk-5.10/libvtkHybrid.so.5.10.1 contains hard-coded path
+  # lib/vtk-7.1/libvtkHybrid.so.7.1.0 contains hard-coded path
   relocatable: false
   vtk_use_tk: false
 
@@ -28,14 +28,6 @@ build_stages:
   bash: |
     export PYTHONPATH=${ARTIFACT}/{{python_site_packages_rel}}:$PYTHONPATH
     mkdir -p ${ARTIFACT}/{{python_site_packages_rel}}
-
-- when: platform == 'Cygwin'
-  files: [vtk-5.10.1-cygwin.patch]
-  name: vtk_cygwin_patch
-  handler: bash
-  before: setup_builddir
-  bash: |
-    patch -p1 < _hashdist/vtk-5.10.1-cygwin.patch
 
 - name: configure
   extra:

@@ -82,3 +82,9 @@ packages:
   yaml:
   pytest:
   pytest-xdist:
+  boost:
+    toolset: darwin
+  remus:
+  gdal:
+  vtk:
+  smtk:
