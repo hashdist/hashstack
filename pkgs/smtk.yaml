@@ -1,0 +1,31 @@
+extends: [cmake_package]
+dependencies:
+  build: [boost, gdal, hdf5, netcdf4, mpi, python, remus, vtk, zmq]
+
+sources:
+- url: https://gitlab.kitware.com/tjcorona/smtk.git
+  key: git:9c18b1d7207d17995ce260e095e7a5e9ae5f63cb
+
+defaults:
+  relocatable: true
+
+build_stages:
+- name: configure
+  extra: ['-D SMTK_ENABLE_VTK_SUPPORT:BOOL=ON',
+             '-D SMTK_ENABLE_DISCRETE_SESSION:BOOL=ON',
+             '-D SMTK_ENABLE_EXODUS_SESSION:BOOL=ON',
+             '-D SMTK_ENABLE_MESH_SESSION:BOOL=ON',
+             '-D SMTK_ENABLE_POLYGON_SESSION:BOOL=ON',
+             '-D SMTK_ENABLE_REMOTE_SESSION:BOOL=ON',
+             '-D SMTK_ENABLE_REMUS_SUPPORT:BOOL=ON',
+             '-D SMTK_ENABLE_PYTHON_WRAPPING:BOOL=ON',
+             '-D SMTK_USE_PYBIND11:BOOL=ON',
+             '-D SMTK_USE_SYSTEM_MOAB:BOOL=OFF',
+             '-D ENABLE_HDF5:BOOL=ON',
+             '-D ENABLE_NETCDF:BOOL=ON',
+             '-D NETCDF_ROOT:STRING=${NETCDF4_DIR}',
+             '-D VTK_DIR:STRING=${VTK_DIR}',
+             '-D PYTHON_LIBRARY:FILEPATH=${PYTHON_DIR}/lib/libpython2.7.dylib',
+             '-D PYTHON_EXECUTABLE:FILEPATH=${PYTHON_DIR}/bin/python2.7',
+             '-D PYTHON_INCLUDE_DIR:PATH=${PYTHON_DIR}/include/python2.7',
+             '-D NETCDF_C_LIBRARY=${NETCDF4_DIR}/lib/libnetcdf.dylib']
