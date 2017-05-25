@@ -1,8 +1,8 @@
 extends: [cmake_package]
 
 sources:
-- key: tar.gz:e72e7vd3ayu2d3w7ecpq6ipeqjkfu372
-  url: http://gmsh.info/src/gmsh-2.14.1-source.tgz
+- key: tar.gz:ydm74ehv6znhwwrwjt43tqya6qxln4wc
+  url: http://gmsh.info/src/gmsh-3.0.2-source.tgz
 
 defaults:
   relocatable: false
