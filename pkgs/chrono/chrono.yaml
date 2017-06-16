@@ -1,0 +1,53 @@
+extends: [cmake_package]
+
+sources:
+- key: tar.gz:o4ix5dbxuopgassafyck3rwor7sue4f4
+  url: https://github.com/projectchrono/chrono/archive/00e5309ba0d0eccf59c1054f36f1f77a55926397.tar.gz
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build:
+    - bzip2
+    - python
+    - irrlicht
+    - zlib
+    - openjpeg
+    - png
+    - swig
+    - blaze
+    - boost
+    - libjpeg
+
+build_stages:
+- name: cmakelists-patch
+  before: configure
+  files:
+    - lib64.patch
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/lib64.patch
+
+- name: configure
+  extra:
+    - '-DENABLE_UNIT_CASCADE:BOOL=ON'
+    - '-DENABLE_MODULE_FEA:BOOL=ON'
+    - '-DENABLE_MODULE_IRRLICHT:BOOL=ON'
+    - '-DENABLE_MODULE_POSTPROCESS:BOOL=ON'
+    - '-DENABLE_MODULE_VEHICLE:BOOL=ON'
+    - '-DENABLE_MODULE_FSI:BOOL=ON'
+    - '-DENABLE_OPENMP:BOOL=ON'
+    - '-DENABLE_MODULE_PYTHON:BOOL=OFF'
+    - '-DENABLE_MODULE_COSIMULATION:BOOL=OFF'
+    - '-DENABLE_MODULE_MATLAB:BOOL=OFF'
+    - '-DENABLE_MODULE_MKL:BOOL=OFF'
+    - '-DENABLE_MODULE_PARALLEL:BOOL=OFF'
+    - '-DENABLE_MODULE_OPENGL:BOOL=OFF'
+    - '-DENABLE_MODULE_OGRE:BOOL=OFF'
+    - '-DCMAKE_BUILD_TYPE:STRING=Debug'
+    - '-DBLAZE_DIR:PATH=${BLAZE_DIR}'
+    - '-DBOOST_DIR:PATH=${BOOST_DIR}/include'
+    - '-DPYTHON_EXECUTABLE:PATH=${PYTHON}'
+    - '-DPYTHON_INCLUDE_DIR:PATH=${PYTHON_DIR}/include/python2.7'
+    - '-DPYTHON_LIBRARY:PATH=${PYTHON_DIR}/lib/libpython2.7.so'
