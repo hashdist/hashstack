@@ -32,14 +32,6 @@ build_stages:
     bash: |
       patch -up1 < _hashdist/petsc4py_install_conf_3.6.0.patch
 
-  - when: version == '3.7.0'
-    name: with_conf
-    handler: bash
-    files: [petsc4py_install_conf_3.7.0.patch]
-    before: install
-    bash: |
-      patch -up1 < _hashdist/petsc4py_install_conf_3.7.0.patch
-
   - when: platform == 'Cygwin'
     name: explicit_build
     after: fix_libpetsc4py_decls_detection
@@ -57,6 +49,9 @@ build_stages:
 #      PATH=$PATH:$PETSC_DIR/bin \
 #      $PYTHON runtests.py)
 
+when version == 'master': #note, update commits on petsc and petsc4py to use master
+  - key: git:8c9fc3a08c95098a208468fe9546fa5952638d12
+    url: https://bitbucket.org/petsc/petsc4py
 when version == '3.7.0':
   sources:
   - key: tar.gz:4h62pjucmtb6ziqbj4st57spgbx2shln

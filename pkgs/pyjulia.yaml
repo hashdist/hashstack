@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
-- key: zip:233ldbjslzvfm3okwulgn5bkz3pmux42
+- key: zip:4ijldcjw3prvbgwzdeaec5w2meazhzig
   url: https://github.com/JuliaPy/pyjulia/archive/master.zip
