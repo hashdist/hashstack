@@ -14,6 +14,7 @@ build_stages:
   before: install
   handler: bash
   bash: |
-       export HDF5_VERSION='1.8.16'
+       export HDF5_VERSION='1.8.13'
        export CC=${MPICC}
        export SETUPTOOLS_PACKAGE_EXTRA_OPTIONS="configure --mpi"
+       #export HDF5_VERSION='1.8.16'

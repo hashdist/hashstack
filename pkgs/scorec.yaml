@@ -3,9 +3,9 @@ dependencies:
   build: [mpi, parmetis, zoltan]
 
 sources:
-  - url: https://github.com/SCOREC/core.git
-    key: git:e219777edd875d35096dfedd7197300b8e2f3837
-    
+  - url: https://github.com/tjcorona/core.git
+    key: git:374c1f0640d2a96242e7a5fd01fd27bd5a935b11
+
 defaults:
   relocatable: true
 
@@ -29,4 +29,3 @@ build_stages:
   '-DZOLTAN_PREFIX:PATH=${ZOLTAN_DIR}',
   '-DPARMETIS_PREFIX:PATH=${PARMETIS_DIR}',
   ]
-

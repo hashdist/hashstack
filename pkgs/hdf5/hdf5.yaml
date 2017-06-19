@@ -3,9 +3,8 @@ dependencies:
   build: [mpi, zlib, szip]
 
 sources:
-- key: tar.bz2:covk4w5bbnyhjhxbogebnjfux7vnrf6c
-  url: http://www.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.16/src/hdf5-1.8.16.tar.bz2
-
+- key: tar.bz2:yl22ieqqpk5g7gp5pjfj3nwol5p4qfy6
+  url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8.13/src/hdf5-1.8.13.tar.bz2
 defaults:
   # /bin/h5pcc contains hard-coded path
   relocatable: false
@@ -24,8 +23,8 @@ build_stages:
   after: configure
   before: make
   bash: |
-    for f in {test,testpar,tools/*,perform,hl/*,hl/*/*}/Makefile 
-    do 
+    for f in {test,testpar,tools/*,perform,hl/*,hl/*/*}/Makefile
+    do
       sed -i 's/CCLD = $(CC)/CCLD = $(CC) -static/g' $f
     done
 
@@ -37,6 +36,7 @@ build_stages:
           '--enable-shared',
           '--enable-production=yes',
           '--enable-parallel=yes',
+          '--enable-largefile=yes',
           '--with-default-api-version=v18']
 
 - when: machine == 'CrayXE6'
@@ -49,6 +49,7 @@ build_stages:
           '--enable-shared',
           '--enable-production=yes',
           '--enable-parallel=yes',
+          '--enable-largefile=yes',
           '--with-default-api-version=v18',
           '--with-pic']
 
