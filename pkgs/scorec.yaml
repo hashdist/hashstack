@@ -3,8 +3,8 @@ dependencies:
   build: [mpi, parmetis, zoltan]
 
 sources:
-  - url: https://github.com/tjcorona/core.git
-    key: git:374c1f0640d2a96242e7a5fd01fd27bd5a935b11
+  - url: https://github.com/scorec/core.git
+    key: git:dfd8e6026257595eac7464cccf43d937b7aec294
 
 defaults:
   relocatable: true

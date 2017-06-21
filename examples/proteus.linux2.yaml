@@ -89,7 +89,7 @@ packages:
   doxygen:
   gmsh:
   scorec:
-  #matplotlib:
+  matplotlib:
   sphinx:
   sphinx-bootstrap-theme:
   pyzmq:
@@ -119,3 +119,4 @@ packages:
   #ipywidgets:
   #ipyleaflet:
   #pythreejs:
+  #proteus:
