@@ -7,3 +7,15 @@ dependencies:
 sources:
  - key: tar.gz:ky7axvj73ib4cukxgil3hje3hk5nraj5
    url: https://pypi.python.org/packages/a1/32/e3d6c3a8b5461b903651dd6ce958ed03c093d2e00128e3f33ea69f1d7965/cffi-1.9.1.tar.gz
+
+build_stages:
+- name: install
+  after: setup_dirs
+  mode: replace
+  handler: bash
+  bash: |
+    PKG_CONFIG_PATH=${LIBFFI_DIR}/lib/pkgconfig:$PKG_CONFIG_PATH CFLAGS='-I${LIBFFI_DIR}/include' LDFLAGS="-L${LIBFFI}/lib -Wl,-rpath,${LIBFFI_DIR}/lib -lffi" ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
+       ${SETUPTOOLS_PACKAGE_EXTRA_OPTIONS} \
+       install \
+       --prefix=. --root=${ARTIFACT} \
+       --single-version-externally-managed

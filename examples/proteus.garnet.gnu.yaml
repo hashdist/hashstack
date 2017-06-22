@@ -36,7 +36,6 @@ packages:
   openjpeg:
     version: '2.1'
   openssl:
-    use: host-openssl
   python:
     host: false
     link: shared
@@ -81,7 +80,7 @@ packages:
     address_model: 64
     build_with: |
       python
-  cgal:
+#  cgal:
   netcdf4:
   netcdf4f:
   python-netcdf4:
@@ -105,7 +104,7 @@ packages:
   pytest:
   pytest-xdist:
   doxygen:
-  gmsh:
+#  gmsh:
   scorec:
   matplotlib:
   sphinx:

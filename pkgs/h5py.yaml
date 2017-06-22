@@ -1,7 +1,7 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: [hdf5, mpi4py, mpi, numpy, cython, pkgconfig, six]
+  build: [hdf5, mpi4py, mpi, numpy, cython, pkg-config, six]
   run: [numpy, mpi4py]
 
 sources:
@@ -22,7 +22,7 @@ build_stages:
   mode: replace
   handler: bash
   bash: |
-    CC=${MPICC} CXX=${MPICXX} ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
+    PKG_CONFIG_PATH=${HDF5_DIR}/lib/pkgconfig:$PKG_CONFIG_PATH CC=${MPICC} CXX=${MPICXX} ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
        ${SETUPTOOLS_PACKAGE_EXTRA_OPTIONS} \
        install \
        --prefix=. --root=${ARTIFACT} \

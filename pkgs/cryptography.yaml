@@ -5,13 +5,12 @@ dependencies:
   run: [libffi, enum34]
 
 sources:
-- key: tar.gz:z6bn3lertnmh6xseer2xtnbtejgmfybt
-  url: https://pypi.python.org/packages/6c/c5/7fc1f8384443abd2d71631ead026eb59863a58cad0149b94b89f08c8002f/cryptography-1.5.3.tar.gz
+- key: tar.gz:kumdg4bcogacty3h3gbgilz6gurvihqj
+  url: https://pypi.python.org/packages/2a/0c/31bd69469e90035381f0197b48bf71032991d9f07a7e444c311b4a23a3df/cryptography-1.9.tar.gz
 
 build_stages:
 - name: install
   after: setup_dirs
-  #when: platform == 'Darwin'
   handler: bash
   bash: |
-    env LDFLAGS="-L${LIBFFI_DIR}/lib -Wl,-rpath,${LIBFFI_DIR}/lib -L${OPENSSL_DIR}/lib -Wl,-rpath,${OPENSSL_DIR}/lib" CFLAGS="-I${OPENSSL_DIR}/include" ARCHFLAGS="-arch x86_64" $PYTHON setup.py install --prefix=${ARTIFACT}
+    env LDFLAGS="-L${LIBFFI_DIR}/lib -Wl,-rpath,${LIBFFI_DIR}/lib -L${OPENSSL_DIR}/lib -Wl,-rpath,${OPENSSL_DIR}/lib" CFLAGS="-I${OPENSSL_DIR}/include" ARCHFLAGS="-arch x86_64" PKG_CONFIG_PATH=${LIBFFI_DIR}/lib/pkgconfig:$PKG_CONFIG_PATH LD_LIBRARY_PATH=${LIBFFI_DIR}/lib $PYTHON setup.py install --prefix=${ARTIFACT}
