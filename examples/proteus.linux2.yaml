@@ -14,7 +14,7 @@ extends:
 # profile.
 
 packages:
-  clawpack:
+#  clawpack:
   launcher:
   cmake:
   openjpeg:
@@ -41,7 +41,7 @@ packages:
   parmetis:
   pillow:
   petsc:
-    version: 3.7.5
+    version: 3.7.6
     openblas: true
     build_with: |
       parmetis, cmake, blas
@@ -74,7 +74,7 @@ packages:
   pygrib:
   scipy:
   h5py:
-  pydap:
+#  pydap:
   rdp:
   ode:
   pip:
@@ -119,3 +119,4 @@ packages:
   #ipywidgets:
   #ipyleaflet:
   #pythreejs:
+  #proteus:

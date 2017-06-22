@@ -57,7 +57,7 @@ packages:
     without_check: true
   pillow:
   petsc:
-    version: 3.7.5
+    version: 3.7.6
     openblas: false
     build_with: |
       parmetis, cmake, blas
@@ -79,7 +79,7 @@ packages:
     address_model: 64
     build_with: |
       python
-  cgal:
+#  cgal:
   netcdf4:
   netcdf4f:
   python-netcdf4:
