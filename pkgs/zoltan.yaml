@@ -1,6 +1,6 @@
 extends: [autotools_package]
 dependencies:
-  build: [mpi, {{build_with}}]
+  build: [mpi, parmetis, {{build_with}}]
 
 sources:
 - key: tar.gz:2dly7xvlpi4fzb6tmzvyvdohjcmu74cn
@@ -33,4 +33,7 @@ build_stages:
   configure_path: ".."
   extra: ['--with-cflags=-fPIC',
           '--with-gnumake',
+          '--with-parmetis',
+          '--with-parmetis-libdir=${PARMETIS_DIR}/lib',
+          '--with-parmetis-incdir=${PARMETIS_DIR}/include',
           '--with-cxxflags=-fPIC']
