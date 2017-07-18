@@ -11,7 +11,6 @@ dependencies:
   build:
     - bzip2
     - python
-    - irrlicht
     - zlib
     - openjpeg
     - png
@@ -33,7 +32,7 @@ build_stages:
   extra:
     - '-DENABLE_UNIT_CASCADE:BOOL=ON'
     - '-DENABLE_MODULE_FEA:BOOL=ON'
-    - '-DENABLE_MODULE_IRRLICHT:BOOL=ON'
+    - '-DENABLE_MODULE_IRRLICHT:BOOL=OFF'
     - '-DENABLE_MODULE_POSTPROCESS:BOOL=ON'
     - '-DENABLE_MODULE_VEHICLE:BOOL=ON'
     - '-DENABLE_MODULE_FSI:BOOL=ON'
