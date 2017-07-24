@@ -1,7 +1,7 @@
 extends: [cmake_package]
 
 sources:
-- url: http://www.hdfgroup.org/ftp/lib-external/szip/2.1/src/szip-2.1.tar.gz
+- url: https://support.hdfgroup.org/ftp/lib-external/szip/2.1/src/szip-2.1.tar.gz
   key: tar.gz:valnsxkwmlucpfrfvpn6u7iomikx27i7
 
 build_stages:

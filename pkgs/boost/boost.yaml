@@ -7,8 +7,8 @@ dependencies:
     build: [bzip2, mpi, zlib, {{build_with}}]
 
 sources:
-- key: tar.bz2:oj5jgizc3fbipnrkxmn5fvaxepxminlk
-  url: http://downloads.sourceforge.net/boost/boost_1_59_0.tar.bz2
+- key: tar.bz2:nbvp774ytlberd3zvf5zi6ppxhzkxlqd
+  url: http://downloads.sourceforge.net/boost/boost_1_60_0.tar.bz2
 
 build_stages:
 - name: bootstrap
@@ -16,14 +16,6 @@ build_stages:
   handler: bash
   bash: |
     ./bootstrap.sh --with-toolset={{toolset}} --prefix=${ARTIFACT}
-
-- name: boost_1_55_fix_warnings
-  before: bjam
-  after: bootstrap
-  handler: bash
-  files: [boost_1_55_fix_warnings.patch]
-  bash: |
-    patch -p2 < _hashdist/boost_1_55_fix_warnings.patch
 
 - name: set-address_model
   before: bjam

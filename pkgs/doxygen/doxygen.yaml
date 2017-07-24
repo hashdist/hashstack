@@ -7,11 +7,11 @@ sources:
 - key: tar.gz:chw522awd5akqmsoig2jnhncxz67neew
   url: https://github.com/doxygen/doxygen/archive/Release_1_8_13.tar.gz
 
-build_stages:
-  - when: platform == 'Darwin'
-    name: patch
-    before: configure
-    files: [libiconv_plug.patch]
-    handler: bash
-    bash: |
-      patch -up1 < _hashdist/libiconv_plug.patch
+#build_stages:
+#  - when: platform == 'Darwin'
+#    name: patch
+#    before: configure
+#    files: [libiconv_plug.patch]
+#    handler: bash
+#    bash: |
+#      patch -up1 < _hashdist/libiconv_plug.patch

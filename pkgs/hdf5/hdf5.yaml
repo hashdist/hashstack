@@ -45,6 +45,7 @@ build_stages:
           '--enable-shared',
           '--enable-production=yes',
           '--enable-parallel=yes',
+          '--enable-largefile=yes',
           '--with-default-api-version=v18']
 
 - when: machine == 'CrayXE6' or machine == 'CrayXC30' or machine == 'CrayXC40'
@@ -57,6 +58,7 @@ build_stages:
           '--enable-shared',
           '--enable-production=yes',
           '--enable-parallel=yes',
+          '--enable-largefile=yes',
           '--with-default-api-version=v18',
           '--with-pic']
 
