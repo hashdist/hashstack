@@ -14,6 +14,7 @@ extends:
 # profile.
 
 packages:
+  recordtype:
 #  clawpack:
   launcher:
   cmake:
@@ -81,8 +82,6 @@ packages:
   pexpect:
   pcs_api:
   zoltan:
-    build_with: |
-      parmetis
   chrono:
   pytest:
   pytest-xdist:
