@@ -2,6 +2,7 @@ extends: [cmake_package]
 dependencies:
   build:
     - python
+    - gdal
     - setuptools
     - libtiff
     - when platform == 'linux':
@@ -10,11 +11,11 @@ dependencies:
         - tk
 
 sources:
-- key: tar.gz:l47kaajajvhxcs7jokubbjrmb4rhp65z
-  url: http://www.vtk.org/files/release/7.1/VTK-7.1.0.tar.gz
+- key: tar.gz:fvon2befiake3aqxcxdrrezfsfayxnep
+  url: http://www.vtk.org/files/release/7.1/VTK-7.1.1.tar.gz
 
 defaults:
-  # lib/vtk-5.10/libvtkHybrid.so.5.10.1 contains hard-coded path
+  # lib/vtk-7.1/libvtkHybrid.so.7.1.0 contains hard-coded path
   relocatable: false
   vtk_use_tk: false
 
@@ -28,24 +29,8 @@ build_stages:
     export PYTHONPATH=${ARTIFACT}/{{python_site_packages_rel}}:$PYTHONPATH
     mkdir -p ${ARTIFACT}/{{python_site_packages_rel}}
 
-- when: platform == 'Cygwin'
-  files: [vtk-5.10.1-cygwin.patch]
-  name: vtk_cygwin_patch
-  handler: bash
-  before: setup_builddir
-  bash: |
-    patch -p1 < _hashdist/vtk-5.10.1-cygwin.patch
-
-- when: platform == 'Darwin'
-  files: [vtk-disable-gc.patch]
-  name: vtk_disable_gc_patch
-  handler: bash
-  before: setup_builddir
-  bash: |
-    patch -p1 < _hashdist/vtk-disable-gc.patch
-
 - name: configure
-  extra: 
+  extra:
     - '-D BUILD_TESTING:BOOL=OFF'
     - '-D BUILD_EXAMPLES:BOOL=OFF'
     - '-D BUILD_SHARED_LIBS:BOOL=ON'
@@ -53,8 +38,18 @@ build_stages:
     - '-D VTK_WRAP_TCL:BOOL=OFF'
     - '-D VTK_USE_GL2PS:BOOL=ON'
     - '-D VTK_PYTHON_SETUP_ARGS:STRING="--prefix=. --root=${ARTIFACT} --single-version-externally-managed"'
-    - '-D PYTHON_EXECUTABLE:FILEPATH="${PYTHON}"'
+    - '-D PYTHON_EXECUTABLE:FILEPATH=${PYTHON_DIR}/bin/python2.7'
+    - '-D PYTHON_INCLUDE_DIR:PATH=${PYTHON_DIR}/include/python2.7'
+    - '-D PYTHON_LIBRARY:FILEPATH=${PYTHON_DIR}/lib/libpython2.7.dylib'
     - '-D VTK_USE_SYSTEM_TIFF:BOOL=ON'
+    - '-D Module_vtkGeovisCore:BOOL=ON'
+    - '-D Module_vtkIOGDAL:BOOL=ON'
+    - '-D Module_vtkViewsInfovis:BOOL=ON'
+    - '-D Module_vtkRenderingMatplotlib:BOOL=ON'
+    - '-D Module_vtkRenderingGL2PSOpenGL2:BOOL=ON'
+    - '-D Module_vtkTestingRendering:BOOL=ON'
+    - '-D Module_vtkIOParallelExodus:BOOL=ON'
+    - '-D GDAL_DIR:PATH=${GDAL_DIR}'
 
 - when: vtk_use_tk
   name: configure
@@ -65,25 +60,6 @@ build_stages:
   name: configure
   mode: update
   extra: ['-D VTK_USE_TK:BOOL=OFF']
-
-- when: platform == 'Darwin'
-  name: rpath_fix
-  after: install
-  handler: bash
-  bash: |
-    for vtklib in ${ARTIFACT}/lib/vtk-5.10/*.dylib; do
-        if [ ! -L ${vtklib} ]; then
-            install_name_tool -id @rpath/$(basename ${vtklib}) ${vtklib}
-            otool -L ${vtklib} | while read line; do
-                set +e
-                lib=$(echo $line | sed 's/\(lib.*\.dylib\).*/\1/' | grep ^lib)
-                set -e
-                if [ ! -z ${lib} ]; then
-                    install_name_tool -change ${lib} @rpath/${lib} ${vtklib}
-                fi
-            done
-        fi
-    done
 
 profile_links:
 - name: python_packages

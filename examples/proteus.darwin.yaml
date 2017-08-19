@@ -12,7 +12,7 @@ extends:
 - file: osx_clt.yaml
 
 
-# The packages list specifies all the packages that you 
+# The packages list specifies all the packages that you
 # require installed.  <#> will ensure that all packages
 # and their dependencies are installed when you build this
 # profile.
@@ -25,6 +25,7 @@ packages:
     version: '2.1'
   python:
     host: false
+    link: shared
     build_with: |
 
   blas:
@@ -33,7 +34,7 @@ packages:
     use: host-osx-framework-accelerate
   daetk:
   mpi:
-    use: mpich
+    use: openmpi
   mpi4py:
   nose:
   hdf5:
@@ -44,22 +45,23 @@ packages:
   ipython:
   matplotlib:
   petsc:
-    version: 3.6.1
+    version: 3.7.5
     build_with: |
-      parmetis      
+      parmetis, cmake, suitesparse
     download: |
-      superlu 
+      superlu, superlu_dist
     coptflags: -O2
     link: shared
     debug: false
     disable_fortran: true
   petsc4py:
-    version: 3.6.0
+    version: 3.7.0
     with_conf: true
   pillow:
   pytables:
+  scorec:
   sphinx:
-  superlu:
+  #superlu:
   sympy:
   tetgen:
   triangle:
@@ -73,9 +75,12 @@ packages:
   python-netcdf4:
   h5py:
   ode:
+  openblas:
   jupyter:
   functools:
     use: host-functools
   yaml:
   pytest:
   pytest-xdist:
+  boost:
+    toolset: darwin
