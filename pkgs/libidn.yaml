@@ -1,8 +1,8 @@
 extends:  [autotools_package]
 
 sources:
-- key: tar.gz:3u2xvfuejgv4s7d6l6qirjfdqtpfpszw
-  url: http://ftpmirror.gnu.org/libidn/libidn-1.28.tar.gz
+- key: tar.gz:ist2vnrvxnzbz3xwx3wmjve57umupazf
+  url: http://ftp.gnu.org/gnu/libidn/libidn-1.33.tar.gz
 
 defaults:
   relocatable: false
@@ -10,3 +10,8 @@ defaults:
 when_build_dependency:
   - prepend_path: PKG_CONFIG_PATH
     value: '${ARTIFACT}/lib/pkgconfig'
+
+build_stages:
+- name: configure
+  after: prologue
+  extra: ['--with-pic','--disable-shared']

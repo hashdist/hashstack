@@ -1,17 +1,19 @@
 extends: [autotools_package]
 dependencies:
-  build: [zlib, bzip2]
-  run: [zlib, bzip2]
+  build: [pkg-config, zlib, bzip2, png, harfbuzz]
+  run: [zlib, bzip2, png, harfbuzz]
 
 sources:
-- url: http://download.savannah.gnu.org/releases/freetype/freetype-2.4.11.tar.gz
-  key: tar.gz:fgtq4vmghzfws73nt465yqc2rc4duml6
+- key: tar.gz:gori7k5mi4mjducsgaz6thaaaw4v4vqy
+  url: http://download.savannah.gnu.org/releases/freetype/freetype-2.8.tar.gz
 
 build_stages:
 
 - name: configure
   extra: ['--with-zlib=${ZLIB_DIR}',
-          '--with-bzip2=${BZIP2_DIR}']
+          '--with-bzip2=${BZIP2_DIR}',
+          '--with-png=${PNG_DIR}',
+          '--with-harfbuzz=${HARFBUZZ_DIR}']
 
 when_build_dependency:
   - prepend_path: PATH

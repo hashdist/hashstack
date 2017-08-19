@@ -10,3 +10,12 @@ sources:
 when_build_dependency:
   - prepend_path: PKG_CONFIG_PATH
     value: '${ARTIFACT}/lib/pkgconfig'
+
+build_stages:
+- when: machine == 'CrayXC40'
+  name: setEnv
+  before: configure
+  handler: bash
+  bash: |
+    unset CC CFLAGS
+

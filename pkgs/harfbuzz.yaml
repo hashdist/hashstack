@@ -1,0 +1,5 @@
+extends: [autotools_package]
+
+sources:
+- key: tar.bz2:ztwesmh7boznbrak5yqda5kepfklmsum
+  url: https://www.freedesktop.org/software/harfbuzz/release/harfbuzz-1.4.8.tar.bz2

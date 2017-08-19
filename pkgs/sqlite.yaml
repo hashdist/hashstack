@@ -3,5 +3,14 @@ dependencies:
   build: [readline]
 
 sources:
-  - url: https://sqlite.org/2013/sqlite-autoconf-3071700.tar.gz
-    key: tar.gz:r72g2c5ktzsmbakvituct2mf6elbyclk
+- key: tar.gz:hakmn5rj76jznczlg6tqjf6p5gftm27v
+  url: http://sqlite.org/2017/sqlite-autoconf-3200000.tar.gz
+
+defaults:
+  # /bin/h5pcc contains hard-coded path
+  relocatable: false
+
+build_stages:
+- name: configure
+  after: prologue
+  extra: ['--with-pic','--disable-shared']

@@ -1,9 +1,8 @@
 extends: [autotools_package]
 
 sources:
-- key: tar.gz:gzsyzn3iuvgb2tpmipbrc3bh5wet5cfq
-  url: http://downloads.sourceforge.net/project/libpng/zlib/1.2.8/zlib-1.2.8.tar.gz
-
+- key: tar.gz:yps6t7ovabg4wvbp5ws64typ6b2emkf2
+  url: https://zlib.net/zlib-1.2.11.tar.gz
 
 build_stages:
 
@@ -34,3 +33,16 @@ build_stages:
   handler: bash
   bash: |
     make install -fwin32/Makefile.gcc SHARED_MODE=1 SHAREDLIB=cygz.dll DESTDIR=${ARTIFACT}/ BINARY_PATH=bin INCLUDE_PATH=include LIBRARY_PATH=lib
+
+- when: machine == 'CrayXC40'
+  name: setEnv
+  before: configure
+  handler: bash
+  bash: |
+    unset CC CFLAGS
+
+- when: machine == 'CrayXC40'
+  name: configure
+  after: prologue
+  extra: ['--enable-shared']
+

@@ -5,10 +5,20 @@ dependencies:
   run: [freetype, numpy, png, python-dateutil, pyparsing, six, cycler]
 
 sources:
- - key: tar.gz:udafzuu5xqfoooev23mq52e2redgzpd4
-   url: https://pypi.python.org/packages/6f/85/439f8297eca3481c1fc2e39d07197c72ba16a8ac9cc6e6e43710ceb550a3/matplotlib-2.0.0rc1.tar.gz
+- key: tar.gz:b754it5kgsulc4clyeemiupm7b4yr6ia
+  url: https://pypi.python.org/packages/f5/f0/9da3ef24ea7eb0ccd12430a261b66eca36b924aeef06e17147f9f9d7d310/matplotlib-2.0.2.tar.gz
 
 build_stages:
+- name: freetype
+  before: install
+  handler: bash
+  bash: |
+    echo "==============start with freetype setup=============="
+    export PKG_CONFIG_PATH=${FREETYPE_DIR}/lib/pkgconfig
+    pkg-config --define-variable=FREETYPE_DIR=${FREETYPE_DIR} --print-variables freetype2
+    echo "==============done with freetype setup=============="
+    echo "[test]" > setup.cfg
+    echo "local_freetype = True" >> setup.cfg
 
 # This patch did not go into v1.3.1 :(
 - when: platform == 'Cygwin'
