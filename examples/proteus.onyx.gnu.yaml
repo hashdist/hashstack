@@ -25,6 +25,16 @@ parameters:
   DYNAMIC_EXE_LINKER_FLAGS: -dynamic
 
 packages:
+  recordtype:
+  py2gmsh:
+  boost:
+    toolset: gcc
+    address_model: 64
+    build_with: |
+      python
+  chrono:
+  gmsh:
+  scorec:
   bzip2:
     use: host-bzip2
   pkg-config:
@@ -49,13 +59,12 @@ packages:
 #  jupyter:
   matplotlib:
   parmetis:
-    without_check: true
   petsc:
-    version: 3.7.5
+    version: 3.7.6
     build_with: |
-      parmetis
+      parmetis, cmake, blas
     download: |
-      superlu, superlu_dist
+      superlu, superlu_dist, ptscotch, zoltan, hypre
     coptflags: -O2
     link: shared
     debug: false

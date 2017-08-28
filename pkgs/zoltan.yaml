@@ -23,17 +23,13 @@ build_stages:
   handler: bash
   bash: |
     export MPI_DIR=$MPI_ROOT
-    export CFLAGS="-m64"
-    export CXXFLAGS="-m64"
-    export CPPFLAGS="-m64"
-    export FCFLAGS="-m64"
+    export CC=$MPICC
+    export CXX=$MPICXX
+    export FC=$MPIF90
 
 - name: configure
   after: setEnv
   configure_path: ".."
-  extra: ['--with-cflags=-fPIC',
-          '--with-gnumake',
-          '--with-parmetis',
+  extra: ['--with-parmetis',
           '--with-parmetis-libdir=${PARMETIS_DIR}/lib',
-          '--with-parmetis-incdir=${PARMETIS_DIR}/include',
-          '--with-cxxflags=-fPIC']
+          '--with-parmetis-incdir=${PARMETIS_DIR}/include']

@@ -12,12 +12,12 @@ dependencies:
     - bzip2
     - python
     - zlib
-    - openjpeg
-    - png
+#    - openjpeg
+#    - png
     - swig
     - blaze
     - boost
-    - libjpeg
+#    - libjpeg
 
 build_stages:
 - name: cmakelists-patch
@@ -50,3 +50,4 @@ build_stages:
     - '-DPYTHON_EXECUTABLE:PATH=${PYTHON}'
     - '-DPYTHON_INCLUDE_DIR:PATH=${PYTHON_DIR}/include/python2.7'
     - '-DPYTHON_LIBRARY:PATH=${PYTHON_DIR}/lib/libpython2.7.so'
+    - '-DUSE_PARALLEL_SIMD:BOOL=ON'
