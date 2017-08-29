@@ -27,6 +27,7 @@ parameters:
   DYNAMIC_EXE_LINKER_FLAGS: -dynamic
 
 packages:
+  recordtype:
   clawpack:
   pkg-config:
     use: host-pkg-config
@@ -99,7 +100,7 @@ packages:
   pytest:
   pytest-xdist:
   doxygen:
-  gmsh:
+#  gmsh:
   scorec:
   matplotlib:
   sphinx:

@@ -54,7 +54,8 @@ build_stages:
       -DCMAKE_EXE_LINKER_FLAGS={{DYNAMIC_EXE_LINKER_FLAGS}}
       -DCMAKE_INSTALL_RPATH:STRING=${ARTIFACT}/lib
       -DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON
-      -DSHARED=1"
+      -DSHARED=0
+      -DSTATIC=1"
 
 - when: platform == "Darwin"
   name: cmake-flags-Darwin
