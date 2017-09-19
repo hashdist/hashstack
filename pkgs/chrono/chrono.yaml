@@ -1,7 +1,7 @@
 extends: [cmake_package]
 
 sources:
-- key: tar.gz:io4udivr2cbv7e36kqgdzniz6jtr3xmo
+- key: tar.gz:pjfezodbo34npjl5morbfyta6un3ar2n
   url: https://github.com/projectchrono/chrono/archive/259b16507b19f1c769f848da5c91c7b67f024078.tar.gz
 
 defaults:
