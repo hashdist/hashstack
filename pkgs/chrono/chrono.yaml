@@ -1,8 +1,8 @@
 extends: [cmake_package]
 
 sources:
-- key: tar.gz:5flgofmxjfwzhhrjmtk3huz6vnesnmac
-  url: https://github.com/projectchrono/chrono/archive/7f3d61f641c41b63f58c79dc0c0355768864f911.tar.gz
+- key: tar.gz:io4udivr2cbv7e36kqgdzniz6jtr3xmo
+  url: https://github.com/projectchrono/chrono/archive/259b16507b19f1c769f848da5c91c7b67f024078.tar.gz
 
 defaults:
   relocatable: false
@@ -50,3 +50,4 @@ build_stages:
     - '-DPYTHON_EXECUTABLE:PATH=${PYTHON}'
     - '-DPYTHON_INCLUDE_DIR:PATH=${PYTHON_DIR}/include/python2.7'
     - '-DPYTHON_LIBRARY:PATH=${PYTHON_DIR}/lib/libpython2.7.so'
+    - '-DUSE_PARALLEL_SIMD:BOOL=ON'
