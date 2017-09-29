@@ -47,8 +47,8 @@ packages:
     build_with: |
       parmetis, cmake, blas
     download: |
-      superlu, superlu_dist, hypre, blacs, scalapack, mumps
-    coptflags: -O2
+      superlu, superlu_dist
+    coptflags: -O1
     link: shared
     debug: true
   petsc4py:
