@@ -47,10 +47,10 @@ packages:
     build_with: |
       parmetis, cmake, blas
     download: |
-      superlu, superlu_dist
-    coptflags: -O1
+      superlu, superlu_dist, hypre, blacs, scalapack, mumps
+    coptflags: -O2
     link: shared
-    debug: true
+    debug: false
   petsc4py:
     version: 3.7.0
     with_conf: true
@@ -85,6 +85,8 @@ packages:
   chrono:
   pytest:
   pytest-xdist:
+  pytest-cov:
+  pybind11:
   doxygen:
   gmsh:
   scorec:
