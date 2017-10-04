@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:xobntqt4tzepybxvl2sgcebeidt2nmc4
+   url: https://pypi.python.org/packages/cc/1c/7ff90f4379110d6ef92a7f44ce487f235dbb3243f17c5294a73e0156b6f4/recordtype-1.1.tar.gz

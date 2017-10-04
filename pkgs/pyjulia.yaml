@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
-- key: zip:3wholi7u2pf3tb6vxsxk4ej7kj4lvcw3
-  url: https://github.com/JuliaPy/pyjulia/archive/master.zip
+- key: zip:psxwe4bf2duqmcfx6bldagqxnh3ihlyz
+  url: https://github.com/JuliaPy/pyjulia/archive/acef65c34f22bc99ad8d54fe6e828525e917d7c4.zip

@@ -5,8 +5,8 @@ dependencies:
   run: [blas, cython]
 
 sources:
- - key: zip:7xkbtlwk62jmgebx5vtb46xok3pptebs
-   url: https://pypi.python.org/packages/e1/22/e21b5080e303898fd97c6ee2a78d21be4844b1258a57a5d5cb370b0275c0/numpy-1.12.0b1.zip
+- key: zip:g3xinvnnxk6e7itehidt7e6vkbf573jx
+  url: https://pypi.python.org/packages/bf/2d/005e45738ab07a26e621c9c12dc97381f372e06678adf7dc3356a69b5960/numpy-1.13.3.zip
 
 build_stages:
   - when: platform == 'linux'
