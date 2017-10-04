@@ -7,8 +7,8 @@ dependencies:
   run: [blas, lapack, numpy]
 
 sources:
-- key: zip:ut7wocubfotyfxbiy3uo524mrhepdyqt
-  url: https://pypi.python.org/packages/f8/85/37e205d2c48a9691078bd3cd6b22237e399dc1ba049d31ba8e57da44b5be/scipy-0.18.1.zip
+- key: tar.gz:xfuqmoqvx7msdrqquqksb4idwd3jsigs
+  url: https://pypi.python.org/packages/14/34/a66c289e70e727698cd1dd3d3680c59a60fdc42eb52a22ebb0e3484e9f7f/scipy-1.0.0rc1.tar.gz
 
 build_stages:
   - when: platform == 'linux'
