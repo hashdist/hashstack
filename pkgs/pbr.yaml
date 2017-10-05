@@ -2,7 +2,8 @@ extends: [setuptools_package]
 
 dependencies:
   build: [pip]
+  run: []
 
 sources:
- - key: tar.gz:u5awkddjpk7j3u62aabzuv5elik2n3wq
-   url: https://pypi.python.org/packages/source/p/pbr/pbr-0.10.8.tar.gz
+ - key: tar.gz:dbscrqtqgcpg7x7c2wvqssnlegxf67pk
+   url: https://pypi.python.org/packages/c3/2c/63275fab26a0fd8cadafca71a3623e4d0f0ee8ed7124a5bb128853d178a7/pbr-1.10.0.tar.gz

@@ -4,14 +4,14 @@ dependencies:
   build: [cmake, mpi]
 
 sources:
-- url: http://glaros.dtc.umn.edu/gkhome/fetch/sw/parmetis/parmetis-4.0.3.tar.gz
+- url: http://ftp.debian.org/debian/pool/non-free/p/parmetis/parmetis_4.0.3.orig.tar.gz
   key: tar.gz:6lm2emnxz6l7d7xg5dewmmit5p3meqgu
 
 defaults:
   # lib/libmetis.so contains hard-coded path
   relocatable: false
   # Skip build-time tests (not recommended)
-  without_check: false
+  without_check: platform != "Darwin"
 
 build_stages:
 - name: setup_builddir
@@ -23,11 +23,14 @@ build_stages:
 
 - when: platform == 'Darwin'
   name: no_unused_but_set_variable
-  files: [no_unused_but_set_variable.patch]
+  files:
+    - no_unused_but_set_variable.patch
+    - clang_max_jbufs.patch
   before: configure
   handler: bash
   bash: |
     patch -p1 < _hashdist/no_unused_but_set_variable.patch
+    patch -p1 < _hashdist/clang_max_jbufs.patch
 
 - when: platform == 'Cygwin'
   name: fix___cdecl_redefined
@@ -45,13 +48,13 @@ build_stages:
       -DCMAKE_VERBOSE_MAKEFILE=1
       -DGKLIB_PATH=${BUILD}/metis/GKlib
       -DCMAKE_INSTALL_PREFIX=${ARTIFACT}
-      -DSHARED=1
       -DOPENMP=0
       -DCMAKE_C_COMPILER=${MPICC}
       -DCMAKE_CXX_COMPILER=${MPICXX}
       -DCMAKE_EXE_LINKER_FLAGS={{DYNAMIC_EXE_LINKER_FLAGS}}
       -DCMAKE_INSTALL_RPATH:STRING=${ARTIFACT}/lib
-      -DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON"
+      -DCMAKE_INSTALL_RPATH_USE_LINK_PATH:BOOL=ON
+      -DSHARED=1"
 
 - when: platform == "Darwin"
   name: cmake-flags-Darwin

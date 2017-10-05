@@ -1,5 +1,9 @@
-extends: [distutils_package]
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
 
 sources:
-  - url: https://pypi.python.org/packages/source/p/pytz/pytz-2013b.tar.bz2
-    key: tar.bz2:mxvuttafw6ix7xogdyp6nwfekewcsxfv
+ - key: zip:vl57azuxl7rbp3kj27izpmtjapj3ipu4
+   url: https://pypi.python.org/packages/c3/8d/d924693a99c592b2ede575b7bffa5dbf95c9fe41e74e084d4d5a751564d0/pytz-2016.10.zip

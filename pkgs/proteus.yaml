@@ -1,11 +1,18 @@
 extends: [namespace_package]
-dependencies:
-  build: [daetk, numpy, mpi, python, cmake, cython, petsc, petsc4py, superlu, triangle]
-  run: [daetk, ipython, matplotlib, nose, mpi4py, petsc4py, pytables, sphinx, superlu, sympy, tetgen, triangle]
 
-sources:
-  - key: git:1806eeddee64277b48cfbc79155752b2617e53f8
-    url: https://github.com/erdc-cm/proteus
+dependencies:
+  build: [daetk, numpy, mpi, python, cmake, cython, petsc, petsc4py, triangle, hdf5, blas, scorec, zoltan, parmetis, chrono]
+  run: [daetk, ipython, matplotlib, nose, mpi4py, petsc4py, pytables, sphinx, sympy, tetgen, triangle, hdf5, blas, scorec, zoltan, parmetis, chrono]
+
+#sources:
+# -key:
+#  url:
+
+build_stages:
+  - before: install
+    handler: bash
+    bash: |
+      export PROTEUS_ARCH=$(python -c "import sys; print sys.platform")
 
 # Proteus is a namespace package, do *not* link the Proteus directory itself in.
 profile_links:
@@ -13,3 +20,6 @@ profile_links:
     mode: replace
     link: 'lib/python{{pyver}}/site-packages/proteus/**/*'
     dirs: true
+sources:
+- key: zip:lyy7primieclpbijip2unx6jx6u7ybms
+  url: https://github.com/erdc-cm/proteus/archive/521e7e0fafcc4a4265143a57258ead320cca3919.zip

@@ -1,0 +1,21 @@
+extends: [cmake_package]
+
+sources:
+- key: tar.gz:ydm74ehv6znhwwrwjt43tqya6qxln4wc
+  url: http://gmsh.info/src/gmsh-3.0.2-source.tgz
+
+defaults:
+  relocatable: false
+
+dependencies:
+  build: [swig, python, numpy, mpi, petsc, petsc4py, tetgen, lapack, blas, parmetis, hdf5]
+  run: [swig, python, numpy, mpi, petsc, petsc4py, tetgen, lapack, blas, parmetis, hdf5]
+
+build_stages:
+- name: configure
+  extra:
+    - '-DENABLE_PETSC:BOOL=ON'
+    - '-DENABLE_PETSC4PY:BOOL=ON'
+    - '-DENABLE_FLTK:BOOL=OFF'
+    - '-DENABLE_BUILD_SHARED:BOOL=OFF'
+    - '-DENABLE_WRAP_PYTHON:BOOL=ON'

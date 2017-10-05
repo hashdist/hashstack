@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - key: tar.gz:mb3n5x3wqneje7mzd5bxdznhthdkafml
-   url: https://pypi.python.org/packages/source/m/mistune/mistune-0.7.1.tar.gz
+ - key: tar.gz:ehioq2o7hoiyt4si4arpdslwht4qnhq2
+   url: https://pypi.python.org/packages/88/1e/be99791262b3a794332fda598a07c2749a433b9378586361ba9d8e824607/mistune-0.7.3.tar.gz

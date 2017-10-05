@@ -44,6 +44,12 @@ post_process:
       - "check-ignore=.*\\.pyc\\$"
       - "check-ignore=.*\\.pyo\\$"
 
+  - name: insert_location
+    when: relocatable !=  True
+    after: [default]
+    hit:
+      - insert-location
+
 profile_links:
   - when: platform == 'Cygwin'
     name: copy_dlls

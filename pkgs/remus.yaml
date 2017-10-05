@@ -1,0 +1,14 @@
+extends: [cmake_package]
+dependencies:
+  build: [boost, zmq]
+
+sources:
+- url: https://gitlab.kitware.com/cmb/remus.git
+  key: git:1148df5bb86a2dc9bd61d19edbe6f77c582a5641
+
+defaults:
+  relocatable: true
+
+build_stages:
+- name: configure
+  extra: ['-D BUILD_SHARED_LIBS:BOOL=ON']

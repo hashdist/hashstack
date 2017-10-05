@@ -1,0 +1,25 @@
+extends: [setuptools_package]
+
+dependencies:
+  build:
+    - ipython
+    - when airgap:
+      - requests
+  run:
+    - ipython
+
+sources:
+  - url: https://github.com/ahmadia/ipython-d3plot
+    key: git:0c856e217307619885928e6768dde5a47cc65937
+
+
+# WARNING: This installs into user's .ipython directory
+# This is not properly isolated yet.
+
+build_stages:
+  - when: airgap
+    name: airgap
+    after: install
+    handler: bash
+    bash: |
+      unset IPYTHON_DIR && ${PYTHON} install-nbextension.py

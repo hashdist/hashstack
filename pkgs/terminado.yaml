@@ -5,5 +5,5 @@ dependencies:
   run: [ptyprocess,tornado]
 
 sources:
- - key: tar.gz:mpujh37rxkcpd3t4jp6mu5twxio6mokf
-   url: https://pypi.python.org/packages/source/t/terminado/terminado-0.5.tar.gz
+ - key: tar.gz:fqf2d5reaz64zkxk27jci7h6akmamnk4
+   url: https://pypi.python.org/packages/58/59/aabe84fce2f45da10165435cec204d982863e176f6849a4a4fe2652a20a8/terminado-0.6.tar.gz

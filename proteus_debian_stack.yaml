@@ -6,59 +6,63 @@
 # the most *specific* file that matches your environment.
 
 extends:
-- file: osx.yaml
+- file: debian.yaml
 
-parameters:
-  fortran: true
-
-# The packages list specifies all the packages that you 
+# The packages list specifies all the packages that you
 # require installed.  <#> will ensure that all packages
 # and their dependencies are installed when you build this
 # profile.
 
 packages:
-
-  launcher:
-  cmake:
+  openjpeg:
+    version: '2.1'
+  openssl:
+    use: host-openssl
   python:
     host: false
+    link: shared
     build_with: |
-
+      bzip2, sqlite, openssl
   blas:
-    use: host-osx-framework-accelerate
+    use: openblas
+  lapack:
+    use: openblas-lapack
   daetk:
   mpi:
     use: mpich
   mpi4py:
   nose:
   hdf5:
-  ipython:
-  matplotlib:
+  parmetis:
   petsc:
+    version: 3.7.5
     build_with: |
-      parmetis      
+      parmetis, cmake, openblas
     download: |
-      superlu, superlu_dist
+      superlu, superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
-    debug: false
+    debug: true
   petsc4py:
+    version: 3.7.0
     with_conf: true
-  pillow:
   pytables:
-  sphinx:
-  superlu:
-  sympy:
   tetgen:
   triangle:
   memory_profiler:
-  ipdb:
-  pip:
-  doxygen:
   scipy:
-  netcdf4:
-  netcdf4f:
-  netcdf4cpp:
-  python-netcdf4:
   h5py:
   ode:
+  zoltan:
+    build_with: |
+      parmetis
+  chrono:
+  gmsh:
+  scorec:
+  matplotlib:
+  proteus:
+  boost:
+    toolset: gcc
+    address_model: 64
+    build_with: |
+      python

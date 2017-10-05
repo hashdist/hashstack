@@ -5,5 +5,5 @@ dependencies:
   run: [setuptools-scm]
 
 sources:
- - key: tar.gz:fyij7ebk5vfhtgoumxsozbcwyeis4zly
-   url: https://pypi.python.org/packages/source/p/path.py/path.py-8.1.1.tar.gz
+ - key: tar.gz:z57v4oyhn6dgsjblv6n5zuc54gwmioyu
+   url: https://pypi.python.org/packages/42/4c/3dcdf4f3f1e9d9b14f43e1dde88fe8ae30ebfe8c4d08bf58ed1a4d5a1f5a/path.py-9.0.tar.gz

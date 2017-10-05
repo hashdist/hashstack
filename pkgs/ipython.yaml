@@ -1,10 +1,10 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 
 dependencies:
   run: [pyzmq, tornado, jinja2, jsonschema, pygments, sphinx, pexpect,
         traitlets, simplegeneric, pickleshare, decorator, ipython-genutils,
-        path_py]
+        path_py,pathlib2,backports-shutil-get-terminal-size,prompt-toolkit,html5lib]
 
 sources:
- - key: zip:ktkceh6azaacpi2ezizs632e4t6crenz
-   url: https://pypi.python.org/packages/source/i/ipython/ipython-4.1.1.zip
+ - key: zip:fw4jh35cpqrx6mkkj4ucsqtz6xnlv77r
+   url: https://pypi.python.org/packages/d4/0b/70c913ed4c99eb84c589e5e25b28985ba93ca2a57e08959bb14372f7f5f8/ipython-5.1.0.zip

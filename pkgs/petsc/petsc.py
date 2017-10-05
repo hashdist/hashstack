@@ -1,7 +1,7 @@
 from hashdist import build_stage
 
 def preConfigureCrayXE6(ctx, conf_lines):
-    conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
+    conf_lines += ['LDFLAGS=-dynamic /usr/lib64/libcpuset.so.1 /usr/lib64/libbitmask.so.1',
                '--known-mpi-shared-libraries=1',
                '--with-batch',
                '--known-level1-dcache-size=16384',
@@ -30,6 +30,8 @@ def preConfigureSGIICEX(ctx, conf_lines):
                '--known-mpi-shared-libraries=1',
                '--with-pic',
                '--with-batch',
+               '--known-sdot-returns-double=0',
+               '--known-snrm2-returns-double=0',
                '--known-level1-dcache-size=16384',
                '--known-level1-dcache-linesize=64',
                '--known-level1-dcache-assoc=4',
@@ -50,7 +52,7 @@ def preConfigureSGIICEX(ctx, conf_lines):
                '--known-mpi-c-double-complex=1',
                '--known-mpi-int64_t=1',
                '--with-pthread=1',
-               '--with-blas-lapack-lib=[mkl_rt]']
+               '--with-blas-lapack-lib="-L/app/unsupported/COST/lapack/3.5.0/gnu/lib -llapack -L/app/unsupported/COST/gotoblas2/1.13/gnu/lib -lgoto2  -llapacke  -lrefblas -ltmglib -lgfortran"']
 
 @build_stage()
 def configure(ctx, stage_args):
@@ -107,7 +109,7 @@ def configure(ctx, stage_args):
         conf_lines.append('--with-ssl=0')
 
     # Special case, --with-blas-dir does not work with OpenBLAS
-    if 'OPENBLAS' in ctx.dependency_dir_vars:
+    if 'OPENBLAS' in ctx.dependency_dir_vars or ('BLAS' in ctx.dependency_dir_vars and ctx.parameters.get('openblas') == True):
         if ctx.parameters['platform'] == 'Darwin':
             libopenblas = '${OPENBLAS_DIR}/lib/libopenblas.dylib'
         else:
@@ -160,12 +162,12 @@ def configure(ctx, stage_args):
             continue
         if dep_var == 'MPI':
             conf_lines.append('--with-mpi-compilers')
-            conf_lines.append('CC=$MPICC')
-            conf_lines.append('CXX=$MPICXX')
+            conf_lines.append('CC=mpicc')
+            conf_lines.append('CXX=mpicxx')
             if ctx.parameters['fortran']:
-                conf_lines.append('F77=$MPIF77')
-                conf_lines.append('F90=$MPIF90')
-                conf_lines.append('FC=$MPIF90')
+                conf_lines.append('F77=mpif90')
+                conf_lines.append('F90=mpif90')
+                conf_lines.append('FC=mpif90')
             else:
                 conf_lines.append('--with-fc=0')
             continue

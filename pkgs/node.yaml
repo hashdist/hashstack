@@ -5,6 +5,15 @@ dependencies:
 defaults:
   relocatable: false
 
+build_stages:
+- name: pre-configure
+  after: prologue
+  before: configure
+  handler: bash
+  # workaround for https://bugs.chromium.org/p/v8/issues/detail?id=3782
+  bash: |
+    export CXXFLAGS=-fno-delete-null-pointer-checks
+
 sources:
 - key: tar.gz:nggzmyqgpltkecrfq3s4bfszonp4abih
   url: https://nodejs.org/dist/v5.0.0/node-v5.0.0.tar.gz

@@ -1,9 +1,9 @@
-extends: [namespace_package]
+extends: [setuptools_package]
 
 dependencies:
   build: [paver]
   run: [httplib2]
 
 sources:
-- key: tar.gz:ggxvshjej45j2n42b4bbousdqlkhh7je
-  url: https://pypi.python.org/packages/source/P/Pydap/Pydap-3.1.1.tar.gz
+ - key: tar.gz:q3okm2pyj3wlu37wpl37umzsv4skafr2
+   url: https://pypi.python.org/packages/c1/1d/727262a03998c7ea406d15301513d67f0815c95dac4cfbd5418d92911667/Pydap-3.2.0.tar.gz

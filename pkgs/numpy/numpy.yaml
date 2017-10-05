@@ -1,14 +1,14 @@
-extends: [distutils_package]
+extends: [setuptools_package]
+
 dependencies:
-  build: [blas]
-  run: [blas]
+  build: [blas, cython]
+  run: [blas, cython]
 
 sources:
-  - key: tar.gz:zzluhi5cjpyt4a3t7lvsicyi4sgrhhtd
-    url: http://downloads.sourceforge.net/numpy/numpy-1.8.2.tar.gz
+- key: zip:g3xinvnnxk6e7itehidt7e6vkbf573jx
+  url: https://pypi.python.org/packages/bf/2d/005e45738ab07a26e621c9c12dc97381f372e06678adf7dc3356a69b5960/numpy-1.13.3.zip
 
 build_stages:
-
   - when: platform == 'linux'
     name: create-site.cfg
     before: install
@@ -18,6 +18,7 @@ build_stages:
       [atlas]
       atlas_libs = openblas
       library_dirs = ${OPENBLAS_DIR}/lib
+      include_dirs = ${OPENBLAS_DIR}/include
       EOF
 
   - when: platform == 'linux'
@@ -38,7 +39,7 @@ build_stages:
     bash: |
       cat > site.cfg << EOF
       [mkl]
-      library_dirs = /app/intel/compilers/14/mkl/lib/intel64
+      library_dirs = /p/home/apps/intel/parallel_studio_2016/compilers_and_libraries_2016.0.109/linux/mkl/lib/intel64_lin
       mkl_libs = mkl_rt,pthread,m
       EOF
 
@@ -61,8 +62,8 @@ build_stages:
     bash: |
       cat > site.cfg << EOF
       [DEFAULT]
-      library_dirs = ${ACML_DIR}/gfortran64/lib
-      libraries = acml, gfortran
+      library_dirs = ${CRAY_LIBSCI_PREFIX_DIR}/lib
+      libraries = sci_gnu
       EOF
 
   - when: machine == 'CrayXE6'
@@ -71,9 +72,9 @@ build_stages:
     before: install
     handler: bash
     bash: |
-      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${ACML_DIR}/gfortran64/lib $(${PYTHON_DIR}/bin/python-config --ldflags -lgfortran)"
-      export LAPACK=acml
-      export BLAS=acml
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib -Wl,-rpath=${CRAY_LIBSCI_PREFIX_DIR}/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      export LAPACK=sci_gnu
+      export BLAS=sci_gnu
       export ATLAS=None
 
   - when: platform == 'Cygwin'

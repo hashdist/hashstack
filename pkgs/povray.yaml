@@ -1,0 +1,26 @@
+extends: [autotools_package]
+
+dependencies:
+  build: [boost,zlib,png]
+
+sources:
+  - url: https://github.com/POV-Ray/povray
+    key: git:39ce8a24e50651904010dda15872d63be15d7c37
+
+build_stages:
+- name: prebuild
+  after: prologue
+  before: configure
+  handler: bash
+  bash: |
+    cd unix
+    ./prebuild.sh
+    cp Makefile.in ..
+    cd ..
+
+- name: configure
+  after: prologue
+  mode: replace
+  handler: bash
+  bash: |
+     ./configure --prefix=${ARTIFACT} COMPILED_BY="hashdist <hashdist@googlegroups.com>" --with-boost=${BOOST_DIR} --with-zlib=${ZLIB_DIR} --without-libtiff --with-libpng=${PNG_DIR} --without-libjpeg NON_REDISTRIBUTABLE_BUILD=yes BOOST_MULTITHREADED="ON" LDFLAGS="-Wl,-rpath=${BOOST_DIR}/lib -L${BOOST_DIR}/lib" LIBS="-lboost_thread -lboost_system -Wl,-rpath=${ZLIB_DIR}/lib -L${ZLIB_DIR} -Wl,-rpath=${PNG_DIR}/lib -L${PNG_DIR}/lib"

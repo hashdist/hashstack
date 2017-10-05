@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+- key: zip:psxwe4bf2duqmcfx6bldagqxnh3ihlyz
+  url: https://github.com/JuliaPy/pyjulia/archive/acef65c34f22bc99ad8d54fe6e828525e917d7c4.zip

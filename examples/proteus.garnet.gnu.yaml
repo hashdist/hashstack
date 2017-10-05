@@ -1,5 +1,4 @@
 # This profile file controls your <#> (HashDist) build environment.
-
 # In the future, we'll provide better incorporation of
 # automatic environment detection.  For now, have a look
 # at the YAML files in the top-level directory and choose
@@ -15,6 +14,7 @@ extends:
 
 parameters:
   machine: CrayXE6
+  HOST_MATLAB: '/usr/local/applic/matlab/R2012b/bin/matlab'
   HOST_MPICC: cc
   HOST_MPICXX: CC
   HOST_MPIF77: ftn
@@ -23,7 +23,7 @@ parameters:
   PATH: |
     /usr/bin:/bin:/usr/sbin:/sbin
   PROLOGUE: |
-    source /opt/modules/default/init/bash; export MODULEPATH=/opt/cray/gem/modulefiles:/opt/cray/xt-asyncpe/default/modulefiles:/opt/modulefiles:/opt/cray/modulefiles:/cm/local/modulefiles:/cm/shared/modulefiles:/usr/local/modulefiles/COTS:/usr/local/modulefiles/unsupported; export MODULESHOME=/opt/modules/3.2.6.7; export MODULE_VERSION=3.2.6.7; export MODULE_VERSION_STACK=3.2.6.7; echo "unloading modules"; module unload PrgEnv-pgi; echo "loading modules"; module load PrgEnv-gnu/4.2.34; module load cray-mpich/6.0.0; module unload cray-libsci; module load acml/5.3.1; echo "setting default compilers"; export CC=gcc; export CXX=g++; export FC=gfortran; export F77=gfortran; export F90=gfortran; export CPP=cpp;
+    unset RCLOCAL_PRGENV; source /etc/bash.bashrc; source  /etc/bash.bashrc.local; module swap PrgEnv-cray PrgEnv-gnu; module load cray-mpich; module list; echo "setting default compilers"; export CC=gcc; export CXX=g++; export FC=gfortran; export F77=gfortran; export F90=gfortran; export CPP=cpp;
   DYNAMIC_EXE_LINKER_FLAGS: -dynamic
 
 packages:
@@ -31,19 +31,23 @@ packages:
   cmake:
   python:
     host: false
+    link: shared
     build_with: |
       openssl,bzip2,sqlite
+    link: shared
   blas:
-    use: host-acml-blas
+    use: host-libsci-blas
   lapack:
-    use: host-acml-lapack
+    use: host-libsci-lapack
   daetk:
   mpi:
     use: host-mpi
   mpi4py:
   nose:
   hdf5:
-  ipython:
+  pygments:
+  tornado:
+  pyzmq:
   matplotlib:
   parmetis:
     without_check: true
@@ -64,12 +68,51 @@ packages:
   tetgen:
   triangle:
   memory_profiler:
-  scipy:
+#  boost:
+#    toolset: gcc
+#    address_model: 64
+#    build_with: |
+#      python
+#
+#  cgal:
+#  pycgal:
+  netcdf4:
   netcdf4f:
   python-netcdf4:
-  ipdb:
-  pip:
+  vapory:
+  jasper:
+  grib_api:
+  pyproj:
+  pygrib:
+  #adh:
+  #  link: shared  
+  stwave:  
+  scipy:
+#  ipython:
+#    sources:
+#      - key: git:68f6519cdfd23581ed7358fa1941ae1bbd76e5b3
+#        url: https://github.com/ellisonbg/ipython.git
+#
   h5py:
+  pydap:
+#  leafletwidget: 
+#    sources:
+#      - key: git:f9147c5b13a69b80bc28d3574f7ba6b2c576aed2
+#        url: https://github.com/erdc-cm/leafletwidget.git
+  geojson:
+  rdp:
+#  ipython-widgetmode:
+#  ipython-d3plot:
+#  ipython-gridwidget:
+#  shapely:
+#  rtree:
+#  matlab:
+#    use: host-matlab
+#  pymatbridge:
   ode:
+#  ipdb:
+  pip:
+  pexpect:
+  ipdb:
  # vtk:
  # pyvtk:

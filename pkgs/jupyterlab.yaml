@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:7hxy7nctm5hl3dpdimacfr7awqbof7ur
+   url: https://pypi.python.org/packages/c4/64/fbf683c6b3c3130956aba16d617c5347309dd465ab94d3b50f8a7fb3a2b1/jupyterlab-0.11.3.tar.gz
