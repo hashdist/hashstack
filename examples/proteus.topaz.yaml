@@ -17,18 +17,19 @@ parameters:
   machine: SGIICEX
   HOST_MPI_DIR: /p/home/apps/sgi/mpt-2.12-sgi712r26
   HOST_MPIEXEC: mpiexec_mpt
-  HOST_MPICC: /p/home/cekees/bin/mpicc
-  HOST_MPICXX: /p/home/cekees/bin/mpicxx
-  HOST_MPIF77: /p/home/cekees/bin/mpif77
-  HOST_MPIF90: /p/home/cekees/bin/mpif90
+  HOST_MPICC: /p/home/apps/sgi/mpt-2.12-sgi712r26/bin/mpicc
+  HOST_MPICXX: /p/home/apps/sgi/mpt-2.12-sgi712r26/bin/mpicxx
+  HOST_MPIF77: /p/home/apps/sgi/mpt-2.12-sgi712r26/bin/mpif77
+  HOST_MPIF90: /p/home/apps/sgi/mpt-2.12-sgi712r26/bin/mpif90
   PATH: |
-    /p/home/cekees/bin:/p/home/cekees/proteus/topaz/bin:/apps/gnu_compiler/4.9.3/bin:/usr/local/krb5/bin:/opt/pbs/12.2.7.152442/bin:/p/home/apps/sgi/mpt-2.12-sgi712r26/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/lib64/mpi/gcc/openmpi/bin:/p/home/cekees/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/krb5.20150813/bin:/usr/local/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/pbs/SLB:/app/unsupported/local/bin:/app/unsupported/local/fta/bin:.
+    /apps/gnu_compiler/4.9.3/bin:/usr/local/krb5/bin:/opt/pbs/12.2.7.152442/bin:/p/home/apps/sgi/mpt-2.12-sgi712r26/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/lib64/mpi/gcc/openmpi/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/krb5.20150813/bin:/usr/local/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/pbs/SLB:/app/unsupported/local/bin:/app/unsupported/local/fta/bin:.
   PROLOGUE: |
-    export HOSTTYPE=x86_64; export VENDOR=unknown; export OSTYPE=linux; export MACHTYPE=x86_64-suse-linux; export CPU=x86_64; export  INPUTRC=/etc/inputrc; export JAVA_BINDIR=/usr/lib64/jvm/jre/bin; export JAVA_ROOT=/usr/lib64/jvm/jre; export JAVA_HOME=/usr/lib64/jvm/jre; export JRE_HOME=/usr/lib64/jvm/jre; export MODULESHOME=/p/home/apps/modules_dest/Modules/3.2.10; export LD_LIBRARY_PATH=/p/home/apps/sgi/mpt-2.12-sgi712r26/lib:/p/home/cekees/proteus/topaz/lib:/p/home/cekees/proteus/topaz/lib:/app/unsupported/COST/lapack/3.5.0/gnu/lib:/apps/gnu_compiler/4.9.3/lib64:/p/home/apps/sgi/mpt-2.12-sgi712r26/lib:/usr/lib64/mpi/gcc/openmpi/lib64; export MODULE_VERSION=3.2.10; export MODULE_VERSION_STACK=3.2.10; export MODULEPATH=/p/home/apps/modules_dest/Modules/versions:/p/home/apps/modules_dest/Modules/$MODULE_VERSION/modulefiles:/p/home/apps/modules_dest/Modules/modulefiles:/p/home/apps/modulefiles/devel:/p/home/apps/modulefiles/modulefiles:/p/home/apps/modulefiles/apps:/p/home/apps/modulefiles/unsupported; export LOADEDMODULES=mpi/sgimpt/2.12-11218:pbs/12.2.7.152442:compiler/gcc/4.9.3:costinit:lapack/gnu/3.5.0; export BC_HOST=topaz; export CPATH=/p/home/apps/sgi/mpt-2.12-sgi712r26/include; export _LMFILES_=/p/home/apps/modulefiles/devel/mpi/sgimpt/2.12-11218:/p/home/apps/modulefiles/modulefiles/pbs/12.2.7.152442:/p/home/apps/modulefiles/devel/compiler/gcc/4.9.3; export FPATH=/p/home/apps/sgi/mpt-2.12-sgi712r26/include; export LIBRARY_PATH=/p/home/apps/sgi/mpt-2.12-sgi712r26/lib; export MPI_ROOT=/p/home/apps/sgi/mpt-2.12-sgi712r26; export MPT_VERSION=2.12; export ENV=/etc/bash.bashrc; export CC=gcc; export CXX=g++; export F77=gfortran; export F90=gfortran; export I_MPI_CC=gcc; export I_MPI_CXX=g++; export I_MPI_F77=gfortran; export I_MPI_F90=gfortran; export I_MPI_FC=gfortran; export MPICC_CC=gcc; export MPICXX_CXX=g++; export MPIF90_F90=gfortran; export FC=gfortran;
+    export HOSTTYPE=x86_64; export VENDOR=unknown; export OSTYPE=linux; export MACHTYPE=x86_64-suse-linux; export CPU=x86_64; export  INPUTRC=/etc/inputrc; export JAVA_BINDIR=/usr/lib64/jvm/jre/bin; export JAVA_ROOT=/usr/lib64/jvm/jre; export JAVA_HOME=/usr/lib64/jvm/jre; export JRE_HOME=/usr/lib64/jvm/jre; export MODULESHOME=/p/home/apps/modules_dest/Modules/3.2.10; export LD_LIBRARY_PATH=/p/home/apps/sgi/mpt-2.12-sgi712r26/lib:/app/unsupported/COST/lapack/3.5.0/gnu/lib:/apps/gnu_compiler/4.9.3/lib64:/p/home/apps/sgi/mpt-2.12-sgi712r26/lib:/usr/lib64/mpi/gcc/openmpi/lib64; export MODULE_VERSION=3.2.10; export MODULE_VERSION_STACK=3.2.10; export MODULEPATH=/p/home/apps/modules_dest/Modules/versions:/p/home/apps/modules_dest/Modules/$MODULE_VERSION/modulefiles:/p/home/apps/modules_dest/Modules/modulefiles:/p/home/apps/modulefiles/devel:/p/home/apps/modulefiles/modulefiles:/p/home/apps/modulefiles/apps:/p/home/apps/modulefiles/unsupported; export LOADEDMODULES=mpi/sgimpt/2.12-11218:pbs/12.2.7.152442:compiler/gcc/4.9.3:costinit:lapack/gnu/3.5.0; export BC_HOST=topaz; export CPATH=/p/home/apps/sgi/mpt-2.12-sgi712r26/include; export _LMFILES_=/p/home/apps/modulefiles/devel/mpi/sgimpt/2.12-11218:/p/home/apps/modulefiles/modulefiles/pbs/12.2.7.152442:/p/home/apps/modulefiles/devel/compiler/gcc/4.9.3; export FPATH=/p/home/apps/sgi/mpt-2.12-sgi712r26/include; export LIBRARY_PATH=/p/home/apps/sgi/mpt-2.12-sgi712r26/lib; export MPI_ROOT=/p/home/apps/sgi/mpt-2.12-sgi712r26; export MPT_VERSION=2.12; export ENV=/etc/bash.bashrc; export CC=gcc; export CXX=g++; export F77=gfortran; export F90=gfortran; export I_MPI_CC=gcc; export I_MPI_CXX=g++; export I_MPI_F77=gfortran; export I_MPI_F90=gfortran; export I_MPI_FC=gfortran; export MPICC_CC=gcc; export MPICXX_CXX=g++; export MPIF90_F90=gfortran; export FC=gfortran;
 
   DYNAMIC_EXE_LINKER_FLAGS: -Bdynamic
 
 packages:
+  recordtype:
   clawpack:
   launcher:
   cmake:
@@ -103,7 +104,7 @@ packages:
   pytest:
   pytest-xdist:
   doxygen:
-  gmsh:
+  #gmsh:
   scorec:
   matplotlib:
   sphinx:
