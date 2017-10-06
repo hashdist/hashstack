@@ -104,7 +104,7 @@ packages:
   pytest:
   pytest-xdist:
   doxygen:
-  #gmsh:
+  gmsh:
   scorec:
   matplotlib:
   sphinx:
