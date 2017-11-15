@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:vfvjet5onytsd357et2hkyjij7i6uc3f
+   url: https://pypi.python.org/packages/c9/f7/fc9c44bf088d942c71b04646891034036a63e5bd00daff1c9a377e0f5a9f/pybind11-2.2.1.tar.gz
