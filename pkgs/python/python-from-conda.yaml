@@ -1,0 +1,63 @@
+when: conda
+
+extends: [ conda_package ]
+
+when pyver == '2.7':
+    build_stages:
+    - name: conda_install
+      pkgspec: python=2.7.14=h001abdc_23
+when pyver == '3.3':
+    build_stages:
+    - name: conda_install
+      pkgspec: python=3.3.5=3
+when pyver == '3.4':
+    build_stages:
+    - name: conda_install
+      pkgspec: python=3.4.5=0
+when pyver == '3.5':
+    build_stages:
+    - name: conda_install
+      pkgspec: python=3.5.4=he720263_23
+when pyver == '3.6':
+    build_stages:
+    - name: conda_install
+      pkgspec: python=3.5.4=he720263_23
+
+
+dependencies:
+  build: [launcher]
+  run: []
+
+defaults:
+  relocatable: false
+
+when_build_dependency:
+  - set: PYTHON
+    value: ${ARTIFACT}/bin/python
+
+  - when: pyver != '2.7'
+    set: PYTHONDONTWRITEBYTECODE
+
+  - prepend_path: PATH
+    value: '${ARTIFACT}/bin'
+
+  - prepend_path: PKG_CONFIG_PATH
+    value: '${ARTIFACT}/lib/pkgconfig'
+
+profile_links:
+  - name: python_binaries
+    before: everything
+    launcher: 'bin/*'
+
+  - name: python_packages
+    link: 'lib/pythons{{pyver}}/site-packages/*'
+    dirs: true
+
+  - name: python_exclude
+    after: python_packages
+    before: everything
+    exclude: 'lib/python{{pyver}}/site-packages/**/*'
+
+  - name: exclude_python3_cache
+    before: python_exclude
+    link: 'lib/python{{pyver}}/site-packages/__pycache_/*'

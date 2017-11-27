@@ -1,0 +1,10 @@
+# use a conda package
+
+extends: [ base_package ]
+
+dependencies:
+  build: [ conda ]
+
+build_stages:
+  - name: conda_install
+    after: prologue
