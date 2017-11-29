@@ -6,6 +6,10 @@ when version == 'master':
   sources:
   - key: git:8c405a35e3463db34467c44b5b94e7b81d895f6d
     url: https://bitbucket.org/petsc/petsc
+when version == '3.8.0':
+  sources:
+  - key: git:0e50f9e530a7b78427514d3e384f6941d4a9cc62
+    url: https://bitbucket.org/petsc/petsc
 when version == '3.7.6':
   sources:
   - key: tar.gz:wb7xwtsx25pzqj4hxwawt55y326vv3re
