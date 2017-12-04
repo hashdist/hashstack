@@ -38,3 +38,51 @@ You can now for example run the IPython Notebook as follows:
 ```
 ./default/bin/ipython notebook
 ```
+
+### Conda Python in Hashstack (experimental)
+
+The recipe for Python supports a conda based version of Python. Using
+a conda based version of Python allows using conda to install packages
+in the profile while in develop mode.
+
+
+#### Specifying the conda installation to use
+
+When using conda python, supply the path for the conda installation to
+use using the "conda_prefix" parameter. This should be the place where
+conda (anaconda or miniconda) was installed. The conda executable to use
+will be <conda-prefix>/bin/conda.
+
+
+#### Using the conda version of Python
+
+In your profile file use, use "conda: true" in the python package:
+
+```
+packages:
+  python:
+    conda: true
+	pyver: '2.7'
+```
+
+The pyver will be used to select which version of python to install
+(as would without conda). Supported versions for conda are 2.7, 3.3,
+3.4, 3.5 and 3.6.
+
+
+#### Installing conda packages inside your profile (in develop mode)
+
+Just use conda install with the '-p' parameter pointing to the profile
+in question.
+
+Bear in mind that conda automatically handles dependencies, and that
+conda might not be aware of software installed in your profile that
+has not been installed by conda.
+
+For example, to install NumPy into a profile linked as "default":
+
+```
+conda install -p default numpy
+```
+
+
