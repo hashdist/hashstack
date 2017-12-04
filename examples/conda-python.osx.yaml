@@ -1,0 +1,16 @@
+# This profile file controls your <#> (HashDist) build environment.
+
+
+extends:
+- file: osx.yaml
+
+
+parameters:
+# Specify the conda path to use. This should be the path to the conda script without
+# bin/conda
+  conda_prefix: /Users/FooBar/anaconda
+
+packages:
+  python:
+    conda: true
+    pyver: '2.7'
