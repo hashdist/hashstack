@@ -1,13 +1,20 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [python,mpi,parmetis,umfpack3]
+  build: [python,mpi,parmetis,lapack,blas]
 
 sources:
-- url: https://github.com/cekees/adh.git
-  key: git:ab5024c569e8bac972d706a3d354e43cce319ac3
+- url: git@public.git.erdc.dren.mil:adh/adh.git
+  key: git:01f9fba7f6f95b77be3560cce8bfaa87f174431e
 
 build_stages:
+- name: fix_link
+  files:
+    - fix_link.patch
+  before: configure
+  handler: bash
+  bash: |
+    patch -p1 < _hashdist/fix_link.patch
 
 - name: setup_builddir
   after: prologue
@@ -29,7 +36,7 @@ build_stages:
     '-DPARMETIS_INCLUDE_DIR:PATH=${PARMETIS_DIR}/include',
     '-DPARMETIS_LIBRARY:FILEPATH=${PARMETIS_DIR}/lib/libparmetis.dylib',
     '-DMETIS_LIBRARY=${PARMETIS_DIR}/lib/libmetis.dylib',
-    '-DPACKAGE_UMFPACK:BOOL=True',
+    '-DPACKAGE_UMFPACK:BOOL=False',
     '-DUMFPACK_INCLUDE_DIR:PATH=${UMFPACK_INCLUDE}',
     '-DUMFPACK_VERSION:STRING=3',
     '-DUMFPACK_INT_SIZE:STRING=32',
@@ -42,14 +49,52 @@ build_stages:
   extra: [
     '-DCMAKE_C_COMPILER:FILEPATH=${MPICC}',
     '-DCMAKE_CXX_COMPILER:FILEPATH=${MPICXX}',
-    '-DCMAKE_Fortran_COMPILER:FILEPATH=${MPIF90}',
     '-DCMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}',
+    '-DCMAKE_VERBOSE_MAKEFILE:BOOL=True',
+    '-DCMAKE_EXE_LINKER_FLAGS:STRING="-L${PARMETIS_DIR}/lib -Wl,-rpath=${PARMETIS_DIR}/lib -L${OPENBLAS_DIR}/lib -lm -Wl,-rpath=${OPENBLAS_DIR}/lib"',
+    '-DUSE_MPI:BOOL=ON',
+    '-DPACKAGE_MPI:BOOL=ON',
+    '-DUSE_BLAS:BOOL=ON',
+    '-DUSE_LAPACK:BOOL=ON',
+    '-DBLAS_openblas_LIBRARY:FILEPATH=${OPENBLAS_DIR}/lib/libopenblas.so',
+    '-DUSE_PARMETIS:BOOL=ON',
+    '-DPACKAGE_PARMETIS:BOOL=ON',
+    '-DPARMETIS_INCLUDE_DIR:PATH=${PARMETIS_DIR}/include',
+    '-DPARMETIS_LIBRARY:FILEPATH=${PARMETIS_DIR}/lib/libparmetis.so',
+    '-DMETIS_LIBRARY=${PARMETIS_DIR}/lib/libmetis.so',
+    '-DUSE_SUPER_LIBRARY:BOOL=False',
+    '-DPACKAGE_UMFPACK:BOOL=False',
+    '-DUMFPACK_INCLUDE_DIR:PATH=${UMFPACK_INCLUDE}',
+    '-DUMFPACK_VERSION:STRING=3',
+    '-DUMFPACK_INT_SIZE:STRING=32',
+    '-DUMFPACK_LIBRARY:FILEPATH=${UMFPACK_LIBRARY}'
+    ]
+
+- when: machine == 'CrayXE6'
+  name: configure
+  mode: override
+  extra: [
+    '-DCMAKE_C_COMPILER:FILEPATH=${MPICC}',
+    '-DCMAKE_C_FLAGS:STRING="-fPIC"',
+    '-DCMAKE_C_FLAGS_DEBUG:STRING="-g -fPIC"',
+    '-DCMAKE_C_FLAGS_OPT:STRING="-03 -fPIC"',
+    '-DCMAKE_C_FLAGS_RELEASE:STRING="-O3 -fPIC"',
+    '-DCMAKE_CXX_COMPILER:FILEPATH=${MPICXX}',
+    '-DCMAKE_CXX_FLAGS:STRING="-fPIC"',
+    '-DCMAKE_CXX_FLAGS_DEBUG:STRING="-g -fPIC"',
+    '-DCMAKE_CXX_FLAGS_RELEASE:STRING="-O3 -fPIC"',
+    '-DCMAKE_Fortran_COMPILER:FILEPATH=${MPIF90}',
+    '-DCMAKE_Fortran_FLAGS:STRING="-fPIC"',
+    '-DCMAKE_Fortran_FLAGS_DEBUG:STRING="-g -fPIC"',
+    '-DCMAKE_Fortran_FLAGS_RELEASE:STRING="-O3 -fPIC"',
+    '-DCMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}',
+    '-DCMAKE_EXE_LINKER_FLAGS:STRING="-static"',
     '-DPACKAGE_MPI:BOOL=True',
     '-DPACKAGE_PARMETIS:BOOL=True',
     '-DPARMETIS_INCLUDE_DIR:PATH=${PARMETIS_DIR}/include',
     '-DPARMETIS_LIBRARY:FILEPATH=${PARMETIS_DIR}/lib/libparmetis.so',
     '-DMETIS_LIBRARY=${PARMETIS_DIR}/lib/libmetis.so',
-    '-DPACKAGE_UMFPACK:BOOL=True',
+    '-DPACKAGE_UMFPACK:BOOL=False',
     '-DUMFPACK_INCLUDE_DIR:PATH=${UMFPACK_INCLUDE}',
     '-DUMFPACK_VERSION:STRING=3',
     '-DUMFPACK_INT_SIZE:STRING=32',
@@ -67,7 +112,7 @@ build_stages:
     '-DCMAKE_INSTALL_PREFIX:PATH=${ARTIFACT}',
     '-DPACKAGE_MPI:BOOL=True',
     '-DPACKAGE_PARMETIS:BOOL=False',
-    '-DPACKAGE_UMFPACK:BOOL=True',
+    '-DPACKAGE_UMFPACK:BOOL=False',
     '-DUMFPACK_INCLUDE_DIR:PATH=${UMFPACK_INCLUDE}',
     '-DUMFPACK_VERSION:STRING=3',
     '-DUMFPACK_INT_SIZE:STRING=32',
