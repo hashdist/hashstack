@@ -5,7 +5,7 @@ extends: [ conda_package ]
 when pyver == '2.7':
     build_stages:
     - name: conda_install
-      pkgspec: python=2.7.14=h001abdc_23
+      pkgspec: python=2.7.14=hf918d8d_16
 when pyver == '3.3':
     build_stages:
     - name: conda_install
