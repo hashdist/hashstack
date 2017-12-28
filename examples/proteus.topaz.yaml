@@ -29,6 +29,7 @@ parameters:
   DYNAMIC_EXE_LINKER_FLAGS: -Bdynamic
 
 packages:
+  recordtype:
   clawpack:
   launcher:
   cmake:
