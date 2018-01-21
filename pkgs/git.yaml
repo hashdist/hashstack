@@ -4,8 +4,8 @@ dependencies:
   build: [curl, pcre, openssl, libiconv, gettext, expat, zlib, perl]
 
 sources:
-- key: tar.gz:2wghm2ua3bvf4gcgybghiymotc76yfmh
-  url: https://www.kernel.org/pub/software/scm/git/git-2.4.0.tar.gz
+- key: tar.gz:raxstdnplavaprmxon7ljo5pxawgech6
+  url: https://www.kernel.org/pub/software/scm/git/git-2.12.0.tar.gz
 
 defaults:
   # /bin/git contains hard-coded path
