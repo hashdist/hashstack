@@ -57,7 +57,7 @@ packages:
   parmetis:
     without_check: true
   petsc:
-    version: 3.7.5
+    version: 3.7.6
     build_with: |
       parmetis, cmake, blas
     download: |

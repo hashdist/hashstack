@@ -1,8 +1,8 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: [future, Twisted]
-  run: [future, Twisted]
+  build: [future]
+  run: [future]
 
 sources:
  - key: tar.gz:hucxsgwayvlohzh6b33yseooi7vlj7f3

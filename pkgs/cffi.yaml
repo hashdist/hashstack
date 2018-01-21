@@ -7,3 +7,11 @@ dependencies:
 sources:
  - key: tar.gz:ky7axvj73ib4cukxgil3hje3hk5nraj5
    url: https://pypi.python.org/packages/a1/32/e3d6c3a8b5461b903651dd6ce958ed03c093d2e00128e3f33ea69f1d7965/cffi-1.9.1.tar.gz
+
+build_stages:
+- name: build_ext_options
+  mode: replace
+  before: install
+  handler: bash
+  bash: |
+       export SETUPTOOLS_PACKAGE_EXTRA_OPTIONS="build_ext --library-dirs=${LIBFFI_DIR}/lib --rpath=${LIBFFI_DIR}/lib"

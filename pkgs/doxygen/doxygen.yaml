@@ -1,7 +1,7 @@
 extends: [cmake_package]
 
 dependencies:
-  build: [bison, flex]
+  build: [bison, flex, python]
 
 sources:
 - key: tar.gz:chw522awd5akqmsoig2jnhncxz67neew

@@ -1,8 +1,8 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: [coverage, pytest]
-  run: [coverage, pytest]
+  build: [coverage, pytest, py]
+  run: [coverage, pytest, py]
 
 sources:
 - key: tar.gz:vczc4u7h6o4xcrkmgxpztx76eh2hjh2t
