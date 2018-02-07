@@ -15,10 +15,8 @@ extends:
 
 packages:
   recordtype:
-#  clawpack:
-  launcher:
   cmake:
-  openjpeg:
+  openjpeg: #dependency of chrono
     version: '2.1'
   openssl:
     use: host-openssl
@@ -38,9 +36,6 @@ packages:
   nose:
   coverage:
   hdf5:
-  pygments:
-  parmetis:
-  pillow:
   petsc:
     version: 3.7.6
     openblas: true
@@ -55,61 +50,56 @@ packages:
     version: 3.7.0
     with_conf: true
   pytables:
-  sympy:
-  tetgen:
-  triangle:
+  tetgen: #3D simplex mesh generator
+  triangle: #2D simplex mesh generator
   memory_profiler:
   boost:
     toolset: gcc
     address_model: 64
     build_with: |
       python
-  cgal:
-  netcdf4:
-  netcdf4f:
-  python-netcdf4:
-  netcdf4cpp:
-  jasper:
-  grib_api:
-  pyproj:
-  pygrib:
   scipy:
   h5py:
-#  pydap:
-  rdp:
-  ode:
   pip:
-  pexpect:
-  pcs_api:
-  zoltan:
   chrono:
   pytest:
   pytest-xdist:
   pytest-cov:
   pybind11:
-  doxygen:
-  gmsh:
-  scorec:
-  matplotlib:
-  sphinx:
-  sphinx-bootstrap-theme:
-  pyzmq:
-  vapory:
+  gmsh: #used for mesh generation
+  scorec: #used for MeshAdapt
+  matplotlib: # used in testing suite 
+  #pyzmq:
+  #scandir:
+  #
+  ## Optional Packages
+  #buildbot-worker:
+  #doxygen: #for building documentation
+  #sphinx: #for building website
+  #sphinx-bootstrap-theme:
+
+  #clawpack:
+  #pydap:
+  #julia:
+  #pyjulia:
+  #jasper: 
+  #grib_api:
+  #cgal: computational geometric library
+  #pyproj:
+  #pygrib:
+  #rdp: #remote desktop package
+  #vapory:
   #tornado:
   #ipython:
   #terminado:
-  geojson:
-  shapely:
-  matlab:
-    use: host-matlab
+  #geojson:
+  #shapely:
+  #matlab:
+  #  use: host-matlab
   #ipdb:
   #jupyterlab:
   #jupyter:
   #ipyparallel:
-  buildbot-worker:
-  julia:
-  pyjulia:
-  scandir:
   #backports-shutil-get-terminal-size:
   #configparser:
   #rtree:
@@ -121,3 +111,18 @@ packages:
   #ipyleaflet:
   #pythreejs:
   #proteus:
+  #sympy: #symbolic math library
+  #pcs_api: #personal cloud storage api
+  #ode: #library which has ode solvers
+  #pygments:
+  #pillow: #python imaging library
+  #launcher:
+  #netcdf4:
+  #netcdf4f:
+  #python-netcdf4:
+  #netcdf4cpp:
+  #pexpect:
+
+
+
+
