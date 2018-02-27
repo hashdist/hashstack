@@ -1,0 +1,16 @@
+extends: [base_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+- key: zip:ls75f7fuu2z2vm2zalrob45vtwixd7xb
+  url: https://www.cryptopp.com/cryptopp562.zip
+
+build_stages:
+- name: make-install
+  handler: bash
+  bash: |
+    make -j${HASHDIST_CPU_COUNT}
+    make {{extra_flags}} PREFIX=${ARTIFACT} install

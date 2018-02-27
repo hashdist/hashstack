@@ -1,0 +1,9 @@
+extends: [namespace_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: zip:fwa4xpqoomisxx7g56cxn4rdr4v2e7oq
+   url: https://pypi.python.org/packages/e8/26/a6101edcf724453845c850281b96b89a10dac6bd98edebc82634fccce6a5/enum34-1.1.6.zip

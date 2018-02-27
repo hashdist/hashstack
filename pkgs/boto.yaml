@@ -1,0 +1,5 @@
+extends: [setuptools_package]
+
+sources:
+- key: tar.gz:sugfx43gshpzc24u5pcwph7na73eeayn
+  url: https://pypi.python.org/packages/source/b/boto/boto-2.39.0.tar.gz

@@ -14,18 +14,21 @@ extends:
 # profile.
 
 packages:
-  clawpack:
-  launcher:
+  recordtype:
   cmake:
+  openjpeg: #dependency of chrono
+    version: '2.1'
+  openssl:
+    use: host-openssl
   python:
     host: false
     link: shared
     build_with: |
-      bzip2, sqlite
+      bzip2, sqlite, openssl
   blas:
-    use: host-blas
+    use: openblas
   lapack:
-    use: host-lapack
+    use: openblas-lapack
   daetk:
   mpi:
     use: mpich
@@ -33,51 +36,93 @@ packages:
   nose:
   coverage:
   hdf5:
-  matplotlib:
   petsc:
+    version: 3.7.6
+    openblas: true
     build_with: |
-      parmetis
+      parmetis, cmake, blas
     download: |
-      superlu, superlu_dist, spooles, hypre, blacs, scalapack, mumps
+      superlu, superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
     debug: false
   petsc4py:
+    version: 3.7.0
     with_conf: true
-  pillow:
   pytables:
-  sphinx:
-  superlu:
-  sympy:
-  tetgen:
-  triangle:
+  tetgen: #3D simplex mesh generator
+  triangle: #2D simplex mesh generator
   memory_profiler:
   boost:
     toolset: gcc
     address_model: 64
     build_with: |
       python
-  netcdf4:
-  python-netcdf4:
-  netcdf4f:
-  netcdf4cpp:
-  jasper:
-  grib_api:
-  pyproj:
-  pygrib:
   scipy:
-  ipython:
-  terminado:
   h5py:
-  pydap:
-  leafletwidget:
-  geojson:
-  rdp:
-  rtree:
-  ode:
-  ipdb:
   pip:
-  pexpect:
-  pcs_api:
-  jupyter-pip:
-  pythreejs:
+  chrono:
+  pytest:
+  pytest-xdist:
+  pytest-cov:
+  pybind11:
+  gmsh: #used for mesh generation
+  scorec: #used for MeshAdapt
+  matplotlib: # used in testing suite 
+  #pyzmq:
+  #scandir:
+  #
+  ## Optional Packages
+  #buildbot-worker:
+  #doxygen: #for building documentation
+  #sphinx: #for building website
+  #sphinx-bootstrap-theme:
+
+  #clawpack:
+  #pydap:
+  #julia:
+  #pyjulia:
+  #jasper: 
+  #grib_api:
+  #cgal: computational geometric library
+  #pyproj:
+  #pygrib:
+  #rdp: #remote desktop package
+  #vapory:
+  #tornado:
+  #ipython:
+  #terminado:
+  #geojson:
+  #shapely:
+  #matlab:
+  #  use: host-matlab
+  #ipdb:
+  #jupyterlab:
+  #jupyter:
+  #ipyparallel:
+  #backports-shutil-get-terminal-size:
+  #configparser:
+  #rtree:
+  #ipython-d3plot:
+  #ipython-gridwidget:
+  #jupyter-pip:
+  #leafletwidget:
+  #ipywidgets:
+  #ipyleaflet:
+  #pythreejs:
+  #proteus:
+  #sympy: #symbolic math library
+  #pcs_api: #personal cloud storage api
+  #ode: #library which has ode solvers
+  #pygments:
+  #pillow: #python imaging library
+  #launcher:
+  #netcdf4:
+  #netcdf4f:
+  #python-netcdf4:
+  #netcdf4cpp:
+  #pexpect:
+
+
+
+

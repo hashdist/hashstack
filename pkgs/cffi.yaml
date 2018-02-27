@@ -5,8 +5,5 @@ dependencies:
   run: []
 
 sources:
- #- url: https://pypi.python.org/packages/source/c/cffi/cffi-0.8.6.tar.gz
- # key: tar.gz:euznty5pty6g2d3rb7eywauvwvr4p444
-
- - url: https://pypi.python.org/packages/source/c/cffi/cffi-0.8.2.tar.gz
-   key: tar.gz:qgjdsnsa666dathiezu3gxvzawjfm2rq
+ - key: tar.gz:ky7axvj73ib4cukxgil3hje3hk5nraj5
+   url: https://pypi.python.org/packages/a1/32/e3d6c3a8b5461b903651dd6ce958ed03c093d2e00128e3f33ea69f1d7965/cffi-1.9.1.tar.gz

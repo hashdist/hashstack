@@ -52,6 +52,9 @@ def configure(ctx, stage_args):
         LDFLAGS.append(rpath_flag(ctx, '${%s_DIR}/lib' % dep_var))
     conf_lines.append('-D CMAKE_PREFIX_PATH="%s"' % ';'.join(prefix_paths))
 
+    if ctx.parameters['platform'] == 'Darwin':
+        conf_lines.append('-D CMAKE_MACOSX_RPATH:BOOL=ON')
+
     if ctx.parameters['platform'] == 'Cygwin':
         libxml2 = '${LIBXML2_DIR}/lib/libxml2.dll.a'
         conf_lines.append('-D LIBXML2_LIBRARIES:FILEPATH="%s"' % libxml2)

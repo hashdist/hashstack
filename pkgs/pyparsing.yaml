@@ -5,7 +5,7 @@ dependencies:
   run: []
 
 sources:
- - url: https://pypi.python.org/packages/source/p/pyparsing/pyparsing-2.0.1.zip
-   key: zip:pylwn3tuptfht7qxfntq7vj66wh4kxjl
+ - key: zip:bktorwgd7hcepkk2go5qjmid5lldaeq4
+   url: https://pypi.python.org/packages/30/c5/a4f214f66fbdb868d20d5811635d08e386f63a9591c5756ef717b3115796/pyparsing-2.1.10.zip
 
 licenses: [MIT]

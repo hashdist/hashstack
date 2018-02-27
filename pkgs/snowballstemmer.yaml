@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:sgpsnjulfql2oy2nvgj5sezz4kejmt4t
+   url: https://pypi.python.org/packages/20/6b/d2a7cb176d4d664d94a6debf52cd8dbae1f7203c8e42426daa077051d59c/snowballstemmer-1.2.1.tar.gz

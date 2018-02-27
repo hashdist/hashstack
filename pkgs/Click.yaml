@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:7oqp64hv5o2m5o7wjrakr66cel5xz6bf
+   url: https://pypi.python.org/packages/source/c/click/click-6.2.tar.gz

@@ -5,4 +5,4 @@ dependencies:
 
 sources:
 - key: tar.gz:x2ybjis6ms5zjw3hodnelft2gsq32t4x
-  url: https://bitbucket.org/fenics-project/uflacs/downloads/uflacs-1.6.0.tar.gz
+  url: https://bitbucket.org/fenics-project/uflacs-deprecated/downloads/uflacs-1.6.0.tar.gz

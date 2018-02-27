@@ -7,8 +7,8 @@ dependencies:
     build: [bzip2, mpi, zlib, {{build_with}}]
 
 sources:
-- url: http://downloads.sourceforge.net/boost/boost_1_55_0.tar.bz2
-  key: tar.bz2:77yaai65pfeg2rcmryuzel2aolq5iup4
+- key: tar.bz2:nbvp774ytlberd3zvf5zi6ppxhzkxlqd
+  url: http://downloads.sourceforge.net/boost/boost_1_60_0.tar.bz2
 
 build_stages:
 - name: bootstrap
@@ -16,38 +16,6 @@ build_stages:
   handler: bash
   bash: |
     ./bootstrap.sh --with-toolset={{toolset}} --prefix=${ARTIFACT}
-
-- name: call_once_variadic
-  before: bjam
-  after: bootstrap
-  handler: bash
-  files: [call_once_variadic.patch]
-  bash: |
-    patch -p2 < _hashdist/call_once_variadic.patch
-
-- name: 128bitIntegerSupport1
-  before: bjam
-  after: bootstrap
-  handler: bash
-  files: [128bitIntegers.patch]
-  bash: |
-    patch -p2 < _hashdist/128bitIntegers.patch
-
-- name: 128bitIntegerSupport2
-  before: bjam
-  after: 128bitIntegerSupport1
-  handler: bash
-  files: [128bitIntegers2.patch]
-  bash: |
-    patch -p2 < _hashdist/128bitIntegers2.patch
-
-- name: boost_1_55_fix_warnings
-  before: bjam
-  after: 128bitIntegerSupport2
-  handler: bash
-  files: [boost_1_55_fix_warnings.patch]
-  bash: |
-    patch -p2 < _hashdist/boost_1_55_fix_warnings.patch
 
 - name: set-address_model
   before: bjam
@@ -109,6 +77,24 @@ build_stages:
   bash: |
     for lib in ${ARTIFACT}/lib/*.so.*; do
         ${PATCHELF} --set-rpath ${ARTIFACT}/lib:${BZIP2_DIR}/lib:${ZLIB_DIR}/lib ${lib}
+    done
+
+- when: platform == 'Darwin'
+  name: rpath_fix
+  after: bjam
+  handler: bash
+  bash: |
+    for boostlib in ${ARTIFACT}/lib/libboost_*.dylib; do
+        install_name_tool -add_rpath @loader_path ${boostlib}
+        install_name_tool -id @rpath/$(basename ${boostlib}) ${boostlib}
+        otool -L ${boostlib} | while read line; do
+            set +e  # do not fail on grep below
+            lib=$(echo $line | sed 's/\(libboost_.*\.dylib\).*/\1/' | grep ^libboost_)
+            set -e
+            if [ ! -z ${lib} ]; then
+                install_name_tool -change ${lib} @rpath/${lib} ${boostlib}
+            fi
+        done
     done
 
 when_build_dependency:

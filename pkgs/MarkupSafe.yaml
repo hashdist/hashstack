@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - url: https://pypi.python.org/packages/source/M/MarkupSafe/MarkupSafe-0.23.tar.gz
-   key: tar.gz:utwbv72zxfnbjnc6wlrdoynac6pjqmm5
+ - key: tar.gz:utwbv72zxfnbjnc6wlrdoynac6pjqmm5
+   url: https://pypi.python.org/packages/c0/41/bae1254e0396c0cc8cf1751cb7d9afc90a602353695af5952530482c963f/MarkupSafe-0.23.tar.gz

@@ -52,7 +52,7 @@ def preConfigureSGIICEX(ctx, conf_lines):
                '--known-mpi-c-double-complex=1',
                '--known-mpi-int64_t=1',
                '--with-pthread=1',
-               '--with-blas-lapack-lib=[mkl_rt]']
+               '--with-blas-lapack-lib="-L/app/unsupported/COST/lapack/3.5.0/gnu/lib -llapack -L/app/unsupported/COST/gotoblas2/1.13/gnu/lib -lgoto2  -llapacke  -lrefblas -ltmglib -lgfortran"']
 
 def preConfigureviutill(ctx, conf_lines):
     conf_lines += ['LDFLAGS=' + ctx.parameters['DYNAMIC_EXE_LINKER_FLAGS'],
@@ -139,7 +139,7 @@ def configure(ctx, stage_args):
         conf_lines.append('--with-ssl=0')
 
     # Special case, --with-blas-dir does not work with OpenBLAS
-    if 'OPENBLAS' in ctx.dependency_dir_vars:
+    if 'OPENBLAS' in ctx.dependency_dir_vars or ('BLAS' in ctx.dependency_dir_vars and ctx.parameters.get('openblas') == True):
         if ctx.parameters['platform'] == 'Darwin':
             libopenblas = '${OPENBLAS_DIR}/lib/libopenblas.dylib'
         else:

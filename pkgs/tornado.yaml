@@ -1,8 +1,8 @@
-extends: [distutils_package]
-dependencies:
-  run: [backports-ssl_match_hostname]
+extends: [setuptools_package]
 
+dependencies:
+  run: [backports-ssl_match_hostname,backports-abc,singledispatch]
 
 sources:
-  - url: https://pypi.python.org/packages/source/t/tornado/tornado-4.1.tar.gz
-    key: tar.gz:tgv5hlw6ixetoojun3ttqttraeqbehbx
+ - key: tar.gz:fcmptexytdgud3vy2u5w352usxzpii5w
+   url: https://pypi.python.org/packages/1e/7c/ea047f7bbd1ff22a7f69fe55e7561040e3e54d6f31da6267ef9748321f98/tornado-4.4.2.tar.gz

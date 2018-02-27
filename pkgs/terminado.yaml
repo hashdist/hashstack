@@ -1,9 +1,9 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 
 dependencies:
   build: [ptyprocess,tornado]
   run: [ptyprocess,tornado]
 
 sources:
-  - key: git:d54c7b9e750bcceeca8806622fbf8177edb4ab22
-    url: https://github.com/takluyver/terminado.git
+ - key: tar.gz:fqf2d5reaz64zkxk27jci7h6akmamnk4
+   url: https://pypi.python.org/packages/58/59/aabe84fce2f45da10165435cec204d982863e176f6849a4a4fe2652a20a8/terminado-0.6.tar.gz

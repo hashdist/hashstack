@@ -10,11 +10,11 @@ build_stages:
   - when: not fortran
     name: configure
     mode: update
-    extra: ['--disable-f77', '--disable-fc']
+    extra: ['--disable-f77', '--disable-fc', '--disable-fortran']
 
 sources:
-  - url: http://www.mpich.org/static/tarballs/3.0.3/mpich-3.0.3.tar.gz
-    key: tar.gz:jj5yo7oe3e45wwngkuqqn35bud5kdfkr
+- key: tar.gz:lw2tx4xn7krchdvwucs3ypjmftf7xmn2
+  url: http://www.mpich.org/static/downloads/3.2.1/mpich-3.2.1.tar.gz
 
 defaults:
   # bin/mpicc contains hard-coded path

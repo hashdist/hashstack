@@ -1,0 +1,12 @@
+diff --git a/main/CMakeLists.txt b/main/CMakeLists.txt
+index d6224e4..0d45b9d 100644
+--- a/main/CMakeLists.txt
++++ b/main/CMakeLists.txt
+@@ -81,6 +81,7 @@ add_executable(adh ${adh_sources})
+       set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "")
+   endif(USE_NSM)
+ 
++  target_link_libraries(adh m)
+ 
+ ##############################################################################
+ 

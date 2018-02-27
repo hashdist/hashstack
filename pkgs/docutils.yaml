@@ -1,5 +1,9 @@
-extends: [distutils_package]
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
 
 sources:
-  - url: https://pypi.python.org/packages/source/d/docutils/docutils-0.10.tar.gz
-    key: tar.gz:g4dcjzq3m5z5ulzpwf6mfjhk5jf3lfwd
+ - key: tar.gz:ogga6x5wo67a6nfxqhqeeqoeaz6l3ezh
+   url: https://pypi.python.org/packages/05/25/7b5484aca5d46915493f1fd4ecb63c38c333bd32aa9ad6e19da8d08895ae/docutils-0.13.1.tar.gz

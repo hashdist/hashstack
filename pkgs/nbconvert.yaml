@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: [bleach,configparser]
+
+sources:
+ - key: tar.gz:66252wawiezikhlnx5tpexmajxtaelcp
+   url: https://pypi.python.org/packages/48/ea/1fe38e9616c6b35e4f7c535c2fb62bed01b96df89fd07ec128518a0a46b1/nbconvert-5.0.0b1.tar.gz

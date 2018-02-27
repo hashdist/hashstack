@@ -5,5 +5,5 @@ dependencies:
   run: []
 
 sources:
- - key: tar.gz:6nwtflxljuekdmub45c5wqriwxsa3wwp
-   url: https://pypi.python.org/packages/source/s/sphinx-bootstrap-theme/sphinx-bootstrap-theme-0.4.5.tar.gz
+ - key: tar.gz:i73xdhswgbacn4ufivn3wekvexjcpjxc
+   url: https://pypi.python.org/packages/8e/28/0c0c52292a8abf56687776f902fff3ab6fa8bc6a0c3f2d235f1e2304aaea/sphinx-bootstrap-theme-0.4.13.tar.gz

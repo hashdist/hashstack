@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:ide6g2agc3h57fbpo5bjuou6bj3pghhj
+   url: https://pypi.python.org/packages/source/H/HeapDict/HeapDict-1.0.0.tar.gz
