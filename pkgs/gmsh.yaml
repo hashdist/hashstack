@@ -1,8 +1,8 @@
 extends: [cmake_package]
 
 sources:
-- key: tar.gz:ydm74ehv6znhwwrwjt43tqya6qxln4wc
-  url: http://gmsh.info/src/gmsh-3.0.2-source.tgz
+- key: tar.bz2:3g4dkwnnhpt4u4luazpkw7iqwfstnrab
+  url: https://gitlab.onelab.info/gmsh/gmsh/repository/gmsh_3_0_6/archive.tar.bz2
 
 defaults:
   relocatable: false
@@ -14,6 +14,8 @@ dependencies:
 build_stages:
 - name: configure
   extra:
+    - '-DCMAKE_C_COMPILER:PATH=$MPI_ROOT/bin/mpicc'
+    - '-DCMAKE_CXX_COMPILER:PATH=$MPI_ROOT/bin/mpicxx'
     - '-DENABLE_PETSC:BOOL=ON'
     - '-DENABLE_PETSC4PY:BOOL=ON'
     - '-DENABLE_FLTK:BOOL=OFF'

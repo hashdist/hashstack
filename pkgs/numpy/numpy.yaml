@@ -15,10 +15,13 @@ build_stages:
     handler: bash
     bash: |
       cat > site.cfg << EOF
-      [atlas]
-      atlas_libs = openblas
+      [ALL]
+      extra_link_args = -shared
+      [openblas]
+      libraries = openblas
       library_dirs = ${OPENBLAS_DIR}/lib
       include_dirs = ${OPENBLAS_DIR}/include
+      runtime_library_dirs = ${OPENBLAS_DIR}/include
       EOF
 
   - when: platform == 'linux'
@@ -54,7 +57,7 @@ build_stages:
       export BLAS=None
       export ATLAS=None
 
-  - when: machine == 'CrayXE6' or machine == 'viutill'
+  - when: machine == 'CrayXE6'
     name: create-site.cfg
     after: prologue
     before: install
@@ -66,7 +69,7 @@ build_stages:
       libraries = sci_gnu
       EOF
 
-  - when: machine == 'CrayXE6' or machine == 'viutill'
+  - when: machine == 'CrayXE6'
     name: set-LDFLAGS
     after: prologue
     before: install

@@ -15,30 +15,33 @@ extends:
 
 parameters:
   machine: viutill
+  HOST_MPI_DIR: /app/openmpi/gnu/1.6.3
   HOST_MPICC: mpicc
   HOST_MPICXX: mpicxx
   HOST_MPIF77: mpif90
   HOST_MPIF90: mpif90
   HOST_MPIEXEC: mpiexec
   PATH: |
-    /usr/bin:/bin:/usr/sbin:/sbin
+    /app/openmpi/gnu/1.6.3/bin:/opt/rh/devtoolset-3/root/usr/bin:/app/totalview/8.9/toolworks/totalview.8.9.0-1/bin:/app/cwjm/20111123/bin:/opt/pbs/default/etc:/app/java/jdk1.8.0_72-64/bin:/app/SLB:/usr/KRB5/bin:/opt/pbs/default/bin:/usr/local/bin:/app/bin:/app:/app/pbstools/bin:/app/local/bin:/usr/local/FTA/bin:/usr/KRB5/bin:/usr/lib64/qt-3.3/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/adm/krb5.20150828/bin:/opt/ibutils/bin:/app/mpscp/mpscp-1.4b/bin
   PROLOGUE: |
-    source /app/modules/init/bash; export MODULEPATH=/app/modules/devel:/app/modules/COTS:/app/modules/unsupported:/app/modules/modulefiles:/opt/modulefiles; export MODULESHOME=/app/modules/modules-3.2.9c/Modules/3.2.9; export MODULE_VERSION=3.2.9; export MODULE_VERSION_STACK=3.2.8; echo "unloading modules"; module unload compiler; echo "loading modules"; module load compiler/gcc/4.9.1; module load mpi/gnu/openmpi/1.6.3; module load acml/gnu/4.4.0; echo "setting default compilers"; export CC=gcc; export CXX=g++; export FC=gfortran; export F77=gfortran; export F90=gfortran; export CPP=cpp;
+    source /app/modules/init/bash; export TERM=xterm-256color; export HOSTTYPE=x86_64-linux; export VENDOR=unknown; export OSTYPE=linux; export MACHTYPE=x86_64; export MODULE_VERSION=3.2.9; export MODULE_VERSION_STACK=3.2.9; export MODULESHOME=/app/modules/modules-3.2.9c/Modules/3.2.9; export MODULEPATH=/app/modules/devel:/app/modules/apps:/app/modules/unsupported:/app/modules/modulefiles:/opt/modulefiles; export LOADEDMODULES=java64/jdk/1.8u72:pbs:cwjm/20111123:mpscp/1.4b:totalview/8.9:compiler/gcc/4.9.2:mpi/gnu/openmpi/1.6.3; export COST_HOME=/app/projects/COST; export MOD_INIT=/app/modules/init; export LD_LIBRARY_PATH=/app/openmpi/gnu/1.6.3/lib:/opt/rh/devtoolset-3/root/usr/lib64:/opt/rh/devtoolset-3/root/usr/lib:/opt/pbs/default/lib; export CC=gcc; export COMPILER=gnu; export COMPILER_VER=4.9.2; export CXX=g++; export F77=gfortran; export F90=gfortran; export FC=gfortran; export INFOPATH=/opt/rh/devtoolset-3/root/usr/share/info; export MPICC_CC=gcc; export MPICC_CXX=g++; export MPICC_F77=gfortran; export MPICC_F90=gfortran; export MPIHOME=/app/openmpi/gnu/1.6.3; export MPI_HOME=/app/openmpi/gnu/1.6.3; export MPI_VER=openmpi-1.6.3-GNU;
   DYNAMIC_EXE_LINKER_FLAGS: -dynamic
 
 packages:
-  clawpack:
-  launcher:
+  recordtype:
   cmake:
+  openjpeg: #dependency of chrono
+    version: '2.1'
+  openssl:
   python:
     host: false
     link: shared
     build_with: |
-      openssl,bzip2,sqlite
+      bzip2, sqlite, openssl
   blas:
-    use: host-acml-blas
+    use: openblas
   lapack:
-    use: host-acml-lapack
+    use: openblas-lapack
   daetk:
   mpi:
     use: host-mpi
@@ -46,54 +49,89 @@ packages:
   nose:
   coverage:
   hdf5:
-  matplotlib:
   petsc:
-    version: 3.6.1
+    version: 3.7.6
+    openblas: true
     build_with: |
-      parmetis
+      parmetis, cmake, blas
     download: |
-      ptscotch, superlu, superlu_dist, spooles, hypre, blacs, scalapack, mumps
+      superlu, superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
     debug: false
   petsc4py:
-    version: 3.6.0
+    version: 3.7.0
     with_conf: true
-  pillow:
   pytables:
-  sphinx:
-  superlu:
-  sympy:
-  tetgen:
-  triangle:
+  tetgen: #3D simplex mesh generator
+  triangle: #2D simplex mesh generator
   memory_profiler:
-#  boost:
-#    toolset: gcc
-#    address_model: 64
-#    build_with: |
-#      python
-#  netcdf4:
-#  python-netcdf4:
-#  netcdf4f:
-#  netcdf4cpp:
-  jasper:
-  grib_api:
-  pyproj:
-  pygrib:
+  boost:
+    toolset: gcc
+    address_model: 64
+    build_with: |
+      python
   scipy:
-  ipython:
-  terminado:
   h5py:
-  pydap:
-  leafletwidget:
-  geojson:
-  rdp:
-  rtree:
-  ode:
-  ipdb:
   pip:
-  pexpect:
-#  doxygen:
-  pcs_api:
-  jupyter-pip:
-  pythreejs:
+  chrono:
+  pytest:
+  pytest-xdist:
+  pytest-cov:
+  pybind11:
+  gmsh: #used for mesh generation
+  scorec: #used for MeshAdapt
+  matplotlib: # used in testing suite 
+  #pyzmq:
+  #scandir:
+  #
+  ## Optional Packages
+  #buildbot-worker:
+  #doxygen: #for building documentation
+  #sphinx: #for building website
+  #sphinx-bootstrap-theme:
+
+  #clawpack:
+  #pydap:
+  #julia:
+  #pyjulia:
+  #jasper: 
+  #grib_api:
+  #cgal: computational geometric library
+  #pyproj:
+  #pygrib:
+  #rdp: #remote desktop package
+  #vapory:
+  #tornado:
+  #ipython:
+  #terminado:
+  #geojson:
+  #shapely:
+  #matlab:
+  #  use: host-matlab
+  #ipdb:
+  #jupyterlab:
+  #jupyter:
+  #ipyparallel:
+  #backports-shutil-get-terminal-size:
+  #configparser:
+  #rtree:
+  #ipython-d3plot:
+  #ipython-gridwidget:
+  #jupyter-pip:
+  #leafletwidget:
+  #ipywidgets:
+  #ipyleaflet:
+  #pythreejs:
+  #proteus:
+  #sympy: #symbolic math library
+  #pcs_api: #personal cloud storage api
+  #ode: #library which has ode solvers
+  #pygments:
+  #pillow: #python imaging library
+  #launcher:
+  #netcdf4:
+  #netcdf4f:
+  #python-netcdf4:
+  #netcdf4cpp:
+  #pexpect:
