@@ -1,0 +1,9 @@
+extends: [setuptools_package]
+
+dependencies:
+  build: []
+  run: []
+
+sources:
+ - key: tar.gz:mzpxltoey5uxj6tgmy5twntg3x4vgl77
+   url: https://pypi.python.org/packages/bf/ef/5f51254c3c80a30a9b6c38abedfb1e66e94bd854625f928d02598533a3e8/py2gmsh-0.1.2.tar.gz
