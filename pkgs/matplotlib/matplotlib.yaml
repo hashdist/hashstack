@@ -2,7 +2,7 @@ extends: [namespace_package,libflags]
 
 dependencies:
   build: [bzip2, freetype, numpy, png, pkg-config, zlib, functools32]
-  run: [freetype, numpy, png, python-dateutil, pyparsing, six, cycler, functools32, functools_lru_cache]
+  run: [freetype, numpy, png, python-dateutil, pyparsing, six, cycler, functools32, functools_lru_cache, kiwisolver]
 
 sources:
 - key: tar.gz:jffhabppxs7t2nenx6nvk3ydale56hhh
