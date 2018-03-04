@@ -69,6 +69,7 @@ packages:
   gmsh: #used for mesh generation
   scorec: #used for MeshAdapt
   matplotlib: # used in testing suite 
+  pcs_api: #personal cloud storage api
   #pyzmq:
   #scandir:
   #
@@ -112,7 +113,6 @@ packages:
   #pythreejs:
   #proteus:
   #sympy: #symbolic math library
-  #pcs_api: #personal cloud storage api
   #ode: #library which has ode solvers
   #pygments:
   #pillow: #python imaging library
