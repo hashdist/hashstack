@@ -101,8 +101,9 @@ packages:
   #jupyterlab:
   #jupyter:
   #ipyparallel:
-  #backports-shutil-get-terminal-size:
-  #configparser:
+  backports-abc:
+  backports-shutil-get-terminal-size:
+  configparser:
   #rtree:
   #ipython-d3plot:
   #ipython-gridwidget:
