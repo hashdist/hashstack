@@ -5,8 +5,8 @@ dependencies:
   run: [blas, cython]
 
 sources:
-- key: tar.gz:hmipjer4qbz42p7cz5k3aptoi4r5zgon
-  url: https://github.com/numpy/numpy/archive/v1.14.1.tar.gz
+- key: tar.gz:3w6nugkpjhqm6btd7katds45pi5yo3iu
+  url: https://github.com/numpy/numpy/releases/download/v1.14.2/numpy-1.14.2.tar.gz
 
 build_stages:
   - when: platform == 'linux'
