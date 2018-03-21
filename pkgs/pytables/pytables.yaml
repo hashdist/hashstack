@@ -1,24 +1,23 @@
-extends: [distutils_package]
+extends: [setuptools_package]
 dependencies:
   build: [mpi, hdf5, numpy, numexpr, cython, zlib, szip]
   run: [mpi, hdf5, numpy, numexpr, cython, zlib, szip]
 
 sources:
-  - url: https://pypi.python.org/packages/source/t/tables/tables-2.4.0.tar.gz
-    key: tar.gz:fpndwh734ihogxktg7mxa4p7if32o5bl
+- key: tar.gz:7w56utw3nowqvqhfh7d3y2lq46hbf3xu
+  url: https://pypi.python.org/packages/a2/e5/697f7ec96c4808983711635ef2e4c6b217493343938410125bcece1642cf/tables-3.4.2.tar.gz
 
 build_stages:
-- name: fix_setup_paths
-  files: [pytables_fix_setup_paths.patch,pytables_fix_compare_version.patch]
-  before: install
-  handler: bash
-  bash: |
-    patch -p1 < _hashdist/pytables_fix_setup_paths.patch
-    patch -p1 < _hashdist/pytables_fix_compare_version.patch
-    
 - name: install
   mode: replace
   after: setup_dirs
   handler: bash
   bash: |
-    CC=${MPICC} CXX=${MPICXX} ${PYTHON} setup.py install --prefix=${ARTIFACT} --lflags="-Wl,-rpath,${HDF5_DIR}/lib -L${HDF5_DIR}/lib -lhdf5 -Wl,-rpath,${ZLIB_DIR}/lib -L${ZLIB_DIR} -lz -Wl,-rpath,${SZIP_DIR}/lib -L${SZIP_DIR}/lib -lszip"
+    CC=${MPICC} CXX=${MPICXX}  ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
+       ${SETUPTOOLS_PACKAGE_EXTRA_OPTIONS} \
+       install \
+       --prefix=. --root=${ARTIFACT} \
+       --single-version-externally-managed \
+       --lflags="-Wl,-rpath,${HDF5_DIR}/lib -L${HDF5_DIR}/lib -lhdf5 \
+       -Wl,-rpath,${ZLIB_DIR}/lib -L${ZLIB_DIR} -lz \
+       -Wl,-rpath,${SZIP_DIR}/lib -L${SZIP_DIR}/lib -lszip"

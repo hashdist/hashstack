@@ -1,0 +1,346 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index b2ec692b7..da95724c5 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -141,7 +141,7 @@ endif()
+ #-----------------------------------------------------------------------------
+ 
+ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
+-set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib64)
++set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
+ 
+ #-----------------------------------------------------------------------------
+ 
+diff --git a/cmake/ChronoConfig.cmake.in b/cmake/ChronoConfig.cmake.in
+index a0115e67a..d39a73b11 100644
+--- a/cmake/ChronoConfig.cmake.in
++++ b/cmake/ChronoConfig.cmake.in
+@@ -62,7 +62,7 @@ set(CHRONO_C_FLAGS "@CH_C_FLAGS@")
+ if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+   set(CHRONO_LINKER_FLAGS "")
+ else()
+-  set(CHRONO_LINKER_FLAGS "-L@CH_BINARY_DIR@/lib64")
++  set(CHRONO_LINKER_FLAGS "-L@CH_BINARY_DIR@/lib")
+ endif()
+ 
+ list(APPEND CHRONO_INCLUDE_DIRS "@CH_INCLUDE_DIRS@")
+@@ -242,7 +242,7 @@ endforeach()
+ foreach(lib ${CHRONO_LIB_NAMES})
+   set(onelib "${lib}-NOTFOUND")
+   find_library(onelib ${lib}
+-    PATHS "@CH_BINARY_DIR@/lib64"
++    PATHS "@CH_BINARY_DIR@/lib"
+     PATH_SUFFIXES "Release"
+     NO_DEFAULT_PATH
+   )
+@@ -347,8 +347,8 @@ function(add_DLL_copy_command DLL_LIST)
+         )
+     endforeach()
+ 
+-    message("Attention: the COPY_DLLS routine will first look for Chrono libraries under the /bin and /lib64 subfolders of @CH_BINARY_DIR@")
+-	message("           If not found, it will look under /bin/Release and /lib64/Release subfolder, so copying the Release version of Chrono.")
++    message("Attention: the COPY_DLLS routine will first look for Chrono libraries under the /bin and /lib subfolders of @CH_BINARY_DIR@")
++	message("           If not found, it will look under /bin/Release and /lib/Release subfolder, so copying the Release version of Chrono.")
+ 	message("           Check the few lines above to make sure which dlls are copied!")
+ 	message("           In both cases please mind that you SHOULD NOT mix libraries and/or executables compiled with different build configurations (e.g. Release and Debug)!")
+ 
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 192facc8e..722286546 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -452,7 +452,7 @@ configure_file("${PROJECT_SOURCE_DIR}/cmake/ChronoConfig.cmake.in"
+ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
+     set(CH_CONFIG_INSTALL_PATH "cmake")
+ else()
+-    set(CH_CONFIG_INSTALL_PATH "lib64/cmake")
++    set(CH_CONFIG_INSTALL_PATH "lib/cmake")
+ endif()
+ 
+ install(FILES "${PROJECT_BINARY_DIR}/cmake/ChronoConfig.cmake.install"
+diff --git a/src/chrono/CMakeLists.txt b/src/chrono/CMakeLists.txt
+index e9c527cc1..7a7e7adfe 100644
+--- a/src/chrono/CMakeLists.txt
++++ b/src/chrono/CMakeLists.txt
+@@ -971,8 +971,8 @@ endif()
+ # Install the main ChronoEngine library
+ install(TARGETS ChronoEngine
+     RUNTIME DESTINATION bin
+-    LIBRARY DESTINATION lib64
+-    ARCHIVE DESTINATION lib64)
++    LIBRARY DESTINATION lib
++    ARCHIVE DESTINATION lib)
+ 
+ # Install all header files for the main ChronoEngine library 
+ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
+diff --git a/src/chrono_cascade/CMakeLists.txt b/src/chrono_cascade/CMakeLists.txt
+index 727e88844..1b115c6b6 100644
+--- a/src/chrono_cascade/CMakeLists.txt
++++ b/src/chrono_cascade/CMakeLists.txt
+@@ -110,8 +110,8 @@ SET (CH_CASCADELIBS "${CH_CASCADELIBS}" PARENT_SCOPE )
+ 
+ INSTALL(TARGETS ChronoEngine_cascade
+     RUNTIME DESTINATION bin
+-    LIBRARY DESTINATION lib64
+-    ARCHIVE DESTINATION lib64)
++    LIBRARY DESTINATION lib
++    ARCHIVE DESTINATION lib)
+ 
+ INSTALL(FILES ${ChronoEngine_CASCADE_HEADERS} DESTINATION include/chrono_cascade)
+ 
+diff --git a/src/chrono_cosimulation/CMakeLists.txt b/src/chrono_cosimulation/CMakeLists.txt
+index 81b604c9b..c002ec112 100644
+--- a/src/chrono_cosimulation/CMakeLists.txt
++++ b/src/chrono_cosimulation/CMakeLists.txt
+@@ -84,8 +84,8 @@ ADD_DEPENDENCIES (ChronoEngine_cosimulation ChronoEngine)
+ 	
+ INSTALL(TARGETS ChronoEngine_cosimulation
+         RUNTIME DESTINATION bin
+-        LIBRARY DESTINATION lib64
+-        ARCHIVE DESTINATION lib64)		
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib)		
+ 
+ INSTALL(FILES ${ChronoEngine_COSIMULATION_HEADERS}
+         DESTINATION include/chrono_cosimulation)
+diff --git a/src/chrono_fea/CMakeLists.txt b/src/chrono_fea/CMakeLists.txt
+index a2b56369e..e6bfb06c0 100644
+--- a/src/chrono_fea/CMakeLists.txt
++++ b/src/chrono_fea/CMakeLists.txt
+@@ -143,8 +143,8 @@ ADD_DEPENDENCIES(ChronoEngine_fea ChronoEngine)
+ 
+ INSTALL(TARGETS ChronoEngine_fea
+         RUNTIME DESTINATION bin
+-        LIBRARY DESTINATION lib64
+-        ARCHIVE DESTINATION lib64)
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib)
+ 
+ INSTALL(FILES ${ChronoEngine_FEA_HEADERS}
+         DESTINATION include/chrono_fea)
+diff --git a/src/chrono_fsi/CMakeLists.txt b/src/chrono_fsi/CMakeLists.txt
+index 5a4f6c9b4..cb70e824a 100644
+--- a/src/chrono_fsi/CMakeLists.txt
++++ b/src/chrono_fsi/CMakeLists.txt
+@@ -166,8 +166,8 @@ TARGET_LINK_LIBRARIES(ChronoEngine_fsi ${LIBRARIES})
+ 
+ INSTALL(TARGETS ChronoEngine_fsi
+         RUNTIME DESTINATION bin
+-        LIBRARY DESTINATION lib64
+-        ARCHIVE DESTINATION lib64)
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib)
+ 
+ INSTALL(FILES ${ChronoEngine_FSI_HEADERS}
+         DESTINATION include/chrono_fsi)
+diff --git a/src/chrono_irrlicht/CMakeLists.txt b/src/chrono_irrlicht/CMakeLists.txt
+index e699e16c1..e5cf7363e 100644
+--- a/src/chrono_irrlicht/CMakeLists.txt
++++ b/src/chrono_irrlicht/CMakeLists.txt
+@@ -174,8 +174,8 @@ ENDIF()
+ 
+ INSTALL(TARGETS ChronoEngine_irrlicht
+   RUNTIME DESTINATION bin
+-  LIBRARY DESTINATION lib64
+-  ARCHIVE DESTINATION lib64
++  LIBRARY DESTINATION lib
++  ARCHIVE DESTINATION lib
+ )
+ 
+ INSTALL(FILES ${ChronoEngine_IRRLICHT_HEADERS} DESTINATION include/chrono_irrlicht)
+diff --git a/src/chrono_matlab/CMakeLists.txt b/src/chrono_matlab/CMakeLists.txt
+index 4f23c1ee6..3e014748c 100644
+--- a/src/chrono_matlab/CMakeLists.txt
++++ b/src/chrono_matlab/CMakeLists.txt
+@@ -81,8 +81,8 @@ ADD_DEPENDENCIES(ChronoEngine_matlab ChronoEngine)
+ 
+ INSTALL(TARGETS ChronoEngine_matlab
+         RUNTIME DESTINATION bin
+-        LIBRARY DESTINATION lib64
+-        ARCHIVE DESTINATION lib64)       
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib)       
+ 
+ INSTALL(FILES ${ChronoEngine_MATLAB_HEADERS}
+-        DESTINATION include/chrono/unit_MATLAB)
+\ No newline at end of file
++        DESTINATION include/chrono/unit_MATLAB)
+diff --git a/src/chrono_mkl/CMakeLists.txt b/src/chrono_mkl/CMakeLists.txt
+index 4e48ce157..1e964b1e3 100644
+--- a/src/chrono_mkl/CMakeLists.txt
++++ b/src/chrono_mkl/CMakeLists.txt
+@@ -105,8 +105,8 @@ TARGET_LINK_LIBRARIES(ChronoEngine_mkl
+ 
+ INSTALL(TARGETS ChronoEngine_mkl
+         RUNTIME DESTINATION bin
+-        LIBRARY DESTINATION lib64
+-        ARCHIVE DESTINATION lib64)
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib)
+ 
+ INSTALL(FILES ${ChronoEngine_MKL_HEADERS} 
+         DESTINATION include/chrono_mkl)
+diff --git a/src/chrono_models/vehicle/CMakeLists.txt b/src/chrono_models/vehicle/CMakeLists.txt
+index 4c402121c..6e2ca67f2 100644
+--- a/src/chrono_models/vehicle/CMakeLists.txt
++++ b/src/chrono_models/vehicle/CMakeLists.txt
+@@ -207,8 +207,8 @@ target_link_libraries(ChronoModels_vehicle ${LIBRARIES})
+ 
+ install(TARGETS ChronoModels_vehicle
+         RUNTIME DESTINATION bin
+-        LIBRARY DESTINATION lib64
+-        ARCHIVE DESTINATION lib64)
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib)
+ 
+ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
+         DESTINATION include/chrono_models/vehicle
+diff --git a/src/chrono_ogre/CMakeLists.txt b/src/chrono_ogre/CMakeLists.txt
+index 0b41a2587..f04db48b6 100644
+--- a/src/chrono_ogre/CMakeLists.txt
++++ b/src/chrono_ogre/CMakeLists.txt
+@@ -128,7 +128,7 @@ TARGET_LINK_LIBRARIES(ChronoEngine_ogre ${LIBRARIES})
+ 
+ INSTALL(TARGETS ChronoEngine_ogre
+ 	RUNTIME DESTINATION bin
+-	LIBRARY DESTINATION lib64
+-	ARCHIVE DESTINATION lib64
++	LIBRARY DESTINATION lib
++	ARCHIVE DESTINATION lib
+ 	)
+ 	
+diff --git a/src/chrono_opengl/CMakeLists.txt b/src/chrono_opengl/CMakeLists.txt
+index 71f963fd1..b6b3d108a 100644
+--- a/src/chrono_opengl/CMakeLists.txt
++++ b/src/chrono_opengl/CMakeLists.txt
+@@ -291,8 +291,8 @@ TARGET_LINK_LIBRARIES(ChronoEngine_opengl ${CE_OpenGL_LIBRARIES})
+ 
+ INSTALL(TARGETS ChronoEngine_opengl
+   RUNTIME DESTINATION bin
+-  LIBRARY DESTINATION lib64
+-  ARCHIVE DESTINATION lib64)
++  LIBRARY DESTINATION lib
++  ARCHIVE DESTINATION lib)
+ 
+ INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
+     DESTINATION include/chrono_opengl
+diff --git a/src/chrono_parallel/CMakeLists.txt b/src/chrono_parallel/CMakeLists.txt
+index 2bedcd952..8b1d5ab08 100644
+--- a/src/chrono_parallel/CMakeLists.txt
++++ b/src/chrono_parallel/CMakeLists.txt
+@@ -482,8 +482,8 @@ TARGET_LINK_LIBRARIES(ChronoEngine_parallel ${CHRONO_PARALLEL_LINKED_LIBRARIES})
+ 
+ INSTALL(TARGETS ChronoEngine_parallel
+         RUNTIME DESTINATION bin
+-        LIBRARY DESTINATION lib64
+-        ARCHIVE DESTINATION lib64)
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib)
+ 
+ INSTALL(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
+         DESTINATION include/chrono_parallel
+diff --git a/src/chrono_postprocess/CMakeLists.txt b/src/chrono_postprocess/CMakeLists.txt
+index 0af4cdf72..03608f70b 100644
+--- a/src/chrono_postprocess/CMakeLists.txt
++++ b/src/chrono_postprocess/CMakeLists.txt
+@@ -56,8 +56,8 @@ ADD_DEPENDENCIES(ChronoEngine_postprocess ChronoEngine)
+ 	
+ INSTALL(TARGETS ChronoEngine_postprocess
+         RUNTIME DESTINATION bin
+-        LIBRARY DESTINATION lib64
+-        ARCHIVE DESTINATION lib64)		
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib)		
+ 
+ INSTALL(FILES ${ChronoEngine_POSTPROCESS_HEADERS}
+         DESTINATION include/chrono_postprocess)
+diff --git a/src/chrono_python/CMakeLists.txt b/src/chrono_python/CMakeLists.txt
+index 2a9327e90..8b84ca392 100644
+--- a/src/chrono_python/CMakeLists.txt
++++ b/src/chrono_python/CMakeLists.txt
+@@ -86,8 +86,8 @@ ADD_DEPENDENCIES(ChronoEngine_pyparser ChronoEngine)
+ 
+ install(TARGETS ChronoEngine_pyparser
+         RUNTIME DESTINATION bin
+-        LIBRARY DESTINATION lib64
+-        ARCHIVE DESTINATION lib64)
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib)
+ 
+ #-----------------------------------------------------------------------------
+ # Find SWIG
+diff --git a/src/chrono_vehicle/CMakeLists.txt b/src/chrono_vehicle/CMakeLists.txt
+index 230b412be..6ff8c0019 100644
+--- a/src/chrono_vehicle/CMakeLists.txt
++++ b/src/chrono_vehicle/CMakeLists.txt
+@@ -639,8 +639,8 @@ target_link_libraries(ChronoEngine_vehicle ${LIBRARIES})
+ 
+ install(TARGETS ChronoEngine_vehicle
+         RUNTIME DESTINATION bin
+-        LIBRARY DESTINATION lib64
+-        ARCHIVE DESTINATION lib64)
++        LIBRARY DESTINATION lib
++        ARCHIVE DESTINATION lib)
+ 
+ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/
+         DESTINATION include/chrono_vehicle
+diff --git a/src/demos/CMakeLists.txt b/src/demos/CMakeLists.txt
+index 057bb939d..a383510ba 100644
+--- a/src/demos/CMakeLists.txt
++++ b/src/demos/CMakeLists.txt
+@@ -8,16 +8,16 @@ set(CMAKE_SKIP_BUILD_RPATH  FALSE)
+ # (but later on when installing)
+ set(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
+ 
+-set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib64")
++set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+ 
+ # add the automatically determined parts of the RPATH
+ # which point to directories outside the build tree to the install RPATH
+ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+ 
+ # the RPATH to be used when installing, but only if it's not a system directory
+-list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/lib64" isSystemDir)
++list(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/lib" isSystemDir)
+ if("${isSystemDir}" STREQUAL "-1")
+-   set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib64")
++   set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+ endif("${isSystemDir}" STREQUAL "-1")
+ 
+ #--------------------------------------------------------------
+diff --git a/src/unit_tests/CMakeLists.txt b/src/unit_tests/CMakeLists.txt
+index 68b972948..7fb95f8f1 100644
+--- a/src/unit_tests/CMakeLists.txt
++++ b/src/unit_tests/CMakeLists.txt
+@@ -11,16 +11,16 @@ SET(CMAKE_SKIP_BUILD_RPATH  FALSE)
+ # (but later on when installing)
+ SET(CMAKE_BUILD_WITH_INSTALL_RPATH FALSE) 
+ 
+-SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib64")
++SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+ 
+ # add the automatically determined parts of the RPATH
+ # which point to directories outside the build tree to the install RPATH
+ SET(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+ 
+ # the RPATH to be used when installing, but only if it's not a system directory
+-LIST(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/lib64" isSystemDir)
++LIST(FIND CMAKE_PLATFORM_IMPLICIT_LINK_DIRECTORIES "${CMAKE_INSTALL_PREFIX}/lib" isSystemDir)
+ IF("${isSystemDir}" STREQUAL "-1")
+-   SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib64")
++   SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/lib")
+ ENDIF("${isSystemDir}" STREQUAL "-1")
+ 
+ #--------------------------------------------------------------
+diff --git a/template_project/CMakeLists.txt b/template_project/CMakeLists.txt
+index f581a8a11..c9ce7ce6a 100644
+--- a/template_project/CMakeLists.txt
++++ b/template_project/CMakeLists.txt
+@@ -59,7 +59,7 @@ project(my_project)
+ # In this example, we only request the Irrlicht module (required)
+ #--------------------------------------------------------------
+ 
+-LIST(APPEND CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}/../Chrono/lib64")
++LIST(APPEND CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}/../Chrono/lib")
+ find_package(Chrono
+              COMPONENTS Irrlicht
+              CONFIG)

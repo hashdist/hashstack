@@ -1,11 +1,11 @@
 extends: [cmake_package]
 dependencies:
-  build: [mpi, parmetis, zoltan]
+  build: [mpi, petsc, parmetis]
 
 sources:
-  - url: https://github.com/SCOREC/core.git
-    key: git:e219777edd875d35096dfedd7197300b8e2f3837
-    
+  - url: https://github.com/scorec/core.git
+    key: git:dfd8e6026257595eac7464cccf43d937b7aec294
+
 defaults:
   relocatable: true
 
@@ -21,12 +21,12 @@ build_stages:
 - name: configure
   debug: true
   extra: [
+  '-DBUILD_SHARED_LIBS:BOOL=OFF',
+  '-DCMAKE_C_COMPILER:STRING=${MPICC}',
+  '-DCMAKE_CXX_COMPILER:STRING=${MPICXX}',
   '-DBUILD_EXES:BOOL=OFF',
-  '-DBUILD_SHARED_LIBS:BOOL=ON',
-  '-DCMAKE_C_COMPILER:PATH=${MPICC}',
-  '-DCMAKE_CXX_COMPILER:PATH=${MPICXX}',
   '-DENABLE_ZOLTAN:BOOL=ON',
   '-DENABLE_SIMMETRIX:BOOL=OFF',
-  '-DZOLTAN_PREFIX:PATH=${ZOLTAN_DIR}',
+  '-DZOLTAN_PREFIX:PATH=${PETSC_DIR}',
   '-DPARMETIS_PREFIX:PATH=${PARMETIS_DIR}',
   ]

@@ -5,12 +5,8 @@
 # at the YAML files in the top-level directory and choose
 # the most *specific* file that matches your environment.
 
-parameters:
-  airgap: True
-
 extends:
-- file: osx_clt.yaml
-
+- file: debian.yaml
 
 # The packages list specifies all the packages that you
 # require installed.  <#> will ensure that all packages
@@ -18,69 +14,55 @@ extends:
 # profile.
 
 packages:
-
-  launcher:
-  cmake:
   openjpeg:
     version: '2.1'
+  openssl:
+    use: host-openssl
   python:
     host: false
     link: shared
     build_with: |
-
+      bzip2, sqlite, openssl
   blas:
-    use: host-osx-framework-accelerate
+    use: openblas
   lapack:
-    use: host-osx-framework-accelerate
+    use: openblas-lapack
   daetk:
   mpi:
-    use: openmpi
+    use: mpich
   mpi4py:
   nose:
   hdf5:
-  pygments:
-  tornado:
-  pyzmq:
   parmetis:
-  ipython:
-  matplotlib:
   petsc:
     version: 3.7.5
     build_with: |
-      parmetis, cmake, suitesparse
+      parmetis, cmake, openblas
     download: |
-      superlu, superlu_dist
+      superlu, superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
-    debug: false
-    disable_fortran: true
+    debug: true
   petsc4py:
     version: 3.7.0
     with_conf: true
-  pillow:
   pytables:
-  scorec:
-  sphinx:
-  #superlu:
-  sympy:
   tetgen:
   triangle:
   memory_profiler:
-  ipdb:
-  pip:
-  pexpect:
-  doxygen:
-  netcdf4:
-  netcdf4cpp:
-  python-netcdf4:
+  scipy:
   h5py:
   ode:
-  openblas:
-  jupyter:
-  functools:
-    use: host-functools
-  yaml:
-  pytest:
-  pytest-xdist:
+  zoltan:
+    build_with: |
+      parmetis
+  chrono:
+  gmsh:
+  scorec:
+  matplotlib:
+  proteus:
   boost:
-    toolset: darwin
+    toolset: gcc
+    address_model: 64
+    build_with: |
+      python

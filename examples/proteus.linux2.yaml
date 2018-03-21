@@ -14,7 +14,8 @@ extends:
 # profile.
 
 packages:
-  clawpack:
+  recordtype:
+#  clawpack:
   launcher:
   cmake:
   openjpeg:
@@ -41,7 +42,7 @@ packages:
   parmetis:
   pillow:
   petsc:
-    version: 3.7.5
+    version: 3.7.6
     openblas: true
     build_with: |
       parmetis, cmake, blas
@@ -49,7 +50,7 @@ packages:
       superlu, superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
-    debug: true
+    debug: false
   petsc4py:
     version: 3.7.0
     with_conf: true
@@ -74,18 +75,18 @@ packages:
   pygrib:
   scipy:
   h5py:
-  pydap:
+#  pydap:
   rdp:
   ode:
   pip:
   pexpect:
   pcs_api:
   zoltan:
-    build_with: |
-      parmetis
   chrono:
   pytest:
   pytest-xdist:
+  pytest-cov:
+  pybind11:
   doxygen:
   gmsh:
   scorec:
@@ -94,7 +95,7 @@ packages:
   sphinx-bootstrap-theme:
   pyzmq:
   vapory:
-  tornado:
+  #tornado:
   #ipython:
   #terminado:
   geojson:
@@ -108,8 +109,9 @@ packages:
   buildbot-worker:
   julia:
   pyjulia:
-  backports-shutil-get-terminal-size:
-  configparser:
+  scandir:
+  #backports-shutil-get-terminal-size:
+  #configparser:
   #rtree:
   #ipython-d3plot:
   #ipython-gridwidget:
@@ -118,3 +120,4 @@ packages:
   #ipywidgets:
   #ipyleaflet:
   #pythreejs:
+  #proteus:

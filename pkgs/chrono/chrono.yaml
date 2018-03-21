@@ -1,8 +1,8 @@
 extends: [cmake_package]
 
 sources:
-- key: tar.gz:tiwcmpwvbkpyc7tyyuprtxiziaq7inho
-  url: https://github.com/projectchrono/chrono/archive/51cb0c88a3ae1eece127322fea081e9a140de3d4.tar.gz
+- key: tar.gz:fewerd5wmhfc6evvlgnjineosbh6gyaz
+  url: https://github.com/projectchrono/chrono/archive/3.0.0.tar.gz
 
 defaults:
   relocatable: false
@@ -18,6 +18,14 @@ dependencies:
     - libjpeg
 
 build_stages:
+- name: cmakelists-patch
+  before: configure
+  files:
+    - lib64.patch
+  handler: bash
+  bash: |
+    patch -up1 < _hashdist/lib64.patch
+
 - name: configure
   extra:
     - '-DENABLE_UNIT_CASCADE:BOOL=ON'
@@ -35,3 +43,9 @@ build_stages:
     - '-DENABLE_MODULE_OPENGL:BOOL=OFF'
     - '-DENABLE_MODULE_OGRE:BOOL=OFF'
     - '-DCMAKE_BUILD_TYPE:STRING=Release'
+    - '-DBLAZE_DIR:PATH=${BLAZE_DIR}'
+    - '-DBOOST_DIR:PATH=${BOOST_DIR}/include'
+    - '-DPYTHON_EXECUTABLE:PATH=${PYTHON}'
+    - '-DPYTHON_INCLUDE_DIR:PATH=${PYTHON_DIR}/include/python2.7'
+    - '-DPYTHON_LIBRARY:PATH=${PYTHON_DIR}/lib/libpython2.7.so'
+    - '-DUSE_PARALLEL_SIMD:BOOL=ON'

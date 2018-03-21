@@ -33,6 +33,7 @@ parameters:
   DYNAMIC_EXE_LINKER_FLAGS: -dynamic
 
 packages:
+  recordtype:
   clawpack:
   pkg-config:
     use: host-pkg-config
@@ -68,7 +69,7 @@ packages:
     build_with: |
       parmetis, cmake, blas, lapack
     download: |
-      superlu, superlu_dist, hypre, blacs, scalapack, mumps
+      ptscotch, zoltan, superlu, superlu_dist, hypre, blacs, scalapack, mumps
     coptflags: -O2
     link: shared
     debug: false
@@ -85,7 +86,7 @@ packages:
     address_model: 64
     build_with: |
       python
-  cgal:
+#  cgal:
   netcdf4:
   netcdf4f:
   python-netcdf4:
@@ -109,7 +110,7 @@ packages:
   pytest:
   pytest-xdist:
   doxygen:
-  gmsh:
+#  gmsh:
   scorec:
   matplotlib:
   sphinx:
