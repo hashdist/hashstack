@@ -5,8 +5,8 @@ dependencies:
   run: [blas, cython]
 
 sources:
-- key: zip:g3xinvnnxk6e7itehidt7e6vkbf573jx
-  url: https://pypi.python.org/packages/bf/2d/005e45738ab07a26e621c9c12dc97381f372e06678adf7dc3356a69b5960/numpy-1.13.3.zip
+- key: tar.gz:3w6nugkpjhqm6btd7katds45pi5yo3iu
+  url: https://github.com/numpy/numpy/releases/download/v1.14.2/numpy-1.14.2.tar.gz
 
 build_stages:
   - when: platform == 'linux'
@@ -15,10 +15,13 @@ build_stages:
     handler: bash
     bash: |
       cat > site.cfg << EOF
-      [atlas]
-      atlas_libs = openblas
+      [ALL]
+      extra_link_args = -shared
+      [openblas]
+      libraries = openblas
       library_dirs = ${OPENBLAS_DIR}/lib
       include_dirs = ${OPENBLAS_DIR}/include
+      runtime_library_dirs = ${OPENBLAS_DIR}/include
       EOF
 
   - when: platform == 'linux'

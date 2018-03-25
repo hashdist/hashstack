@@ -7,8 +7,8 @@ dependencies:
   run: [blas, lapack, numpy]
 
 sources:
-- key: tar.gz:xfuqmoqvx7msdrqquqksb4idwd3jsigs
-  url: https://pypi.python.org/packages/14/34/a66c289e70e727698cd1dd3d3680c59a60fdc42eb52a22ebb0e3484e9f7f/scipy-1.0.0rc1.tar.gz
+- key: tar.gz:q7vb6ena5hwarqte3rsfkhkqd6rqokeu
+  url: https://github.com/scipy/scipy/releases/download/v1.0.0/scipy-1.0.0.tar.gz
 
 build_stages:
   - when: platform == 'linux'

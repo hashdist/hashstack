@@ -1,0 +1,5 @@
+extends: [setuptools_package]
+
+sources:
+ - key: tar.gz:twmgs7yir2y3b6sfcoi7sgx3ly7l3yll
+   url: https://pypi.python.org/packages/57/d4/156eb5fbb08d2e85ab0a632e2bebdad355798dece07d4752f66a8d02d1ea/backports.functools_lru_cache-1.5.tar.gz
