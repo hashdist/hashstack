@@ -52,6 +52,10 @@ build_stages:
 when version == 'master': #note, update commits on petsc and petsc4py to use master
   - key: git:8c9fc3a08c95098a208468fe9546fa5952638d12
     url: https://bitbucket.org/petsc/petsc4py
+when version == '3.8.1':
+  sources:
+  - key: tar.gz:263symzx3xcwamottufvfv7srnq6zra3
+    url: https://bitbucket.org/petsc/petsc4py/downloads/petsc4py-3.8.1.tar.gz
 when version == '3.7.0':
   sources:
   - key: tar.gz:4h62pjucmtb6ziqbj4st57spgbx2shln

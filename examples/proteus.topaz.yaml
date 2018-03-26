@@ -58,7 +58,7 @@ packages:
     without_check: true
   pillow:
   petsc:
-    version: 3.7.6
+    version: 3.8.4
     openblas: false
     build_with: |
       parmetis, cmake, blas
@@ -68,7 +68,7 @@ packages:
     link: shared
     debug: false
   petsc4py:
-    version: 3.7.0
+    version: 3.8.1
     with_conf: true
   pytables:
   sympy:

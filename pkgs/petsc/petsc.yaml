@@ -6,6 +6,10 @@ when version == 'master':
   sources:
   - key: git:8c405a35e3463db34467c44b5b94e7b81d895f6d
     url: https://bitbucket.org/petsc/petsc
+when version == '3.8.4':
+  sources:
+  - key: tar.gz:jnir6togvymxfogd2jlhhpblcjrhoxpx
+    url: http://ftp.mcs.anl.gov/pub/petsc/release-snapshots/petsc-lite-3.8.4.tar.gz
 when version == '3.7.6':
   sources:
   - key: tar.gz:wb7xwtsx25pzqj4hxwawt55y326vv3re
@@ -44,6 +48,15 @@ build_stages:
   handler: bash
   bash: |
     patch -p1 < _hashdist/fix_dll_link_detection.patch
+
+- name: find_git ## See petsc.py for details
+  mode: replace
+  after: prologue
+  before: configure
+  handler: bash 
+  bash: |
+    export PATH=/p/home/cekees/gmsh-2.13.1-Linux/bin:/p/home/cekees/bin:/p/home/cekees/proteus/topaz/bin:/app/unsupported/COST/git/2.4.4/gnu//bin:/app/unsupported/COST/tcltk/8.6.4/gnu//bin:/apps/gnu_compiler/4.9.3/bin:/usr/local/krb5/bin:/opt/pbs/13.1.1.162303/bin:/p/home/apps/sgi/mpt-2.15_sgi715r20/bin:/app/java/1.8/bin:/opt/sgi/sbin:/opt/sgi/bin:/usr/lib64/mpi/gcc/openmpi/bin:/p/home/cekees/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/krb5.20161121/bin:/usr/local/bin:/usr/bin/X11:/usr/X11R6/bin:/usr/games:/opt/c3/bin:/usr/lib/mit/bin:/usr/lib/mit/sbin:/sbin:/bin:/pbs/SLB:/app/unsupported/local/bin:/app/unsupported/local/fta/bin:/p/home/cekees/bin:.
+    export LD_LIBRARY_PATH=/p/home/apps/intel/parallel_studio_2016/compilers_and_libraries_2016.0.109/linux/mkl/lib/intel64/:/p/home/apps/sgi/mpt-2.12-sgi712r26/lib:/p/home/cekees/proteus/topaz/lib:/app/unsupported/COST/gotoblas2/1.13/gnu/lib:/app/unsupported/COST/lapack/3.5.0/gnu:/app/unsupported/COST/dependencies/openssl/1.0.2n/gnu/lib:/app/unsupported/COST/dependencies/curl/7.43.0/gnu/lib:/app/unsupported/COST/git/2.4.4/gnu//lib:/app/unsupported/COST/tcltk/8.6.4/gnu//lib:/app/unsupported/COST/lapack/3.5.0/gnu//lib:/apps/gnu_compiler/4.9.3/lib64:/p/home/apps/sgi/mpt-2.15_sgi715r20/lib:/usr/lib64/mpi/gcc/openmpi/lib64    export PATH=/app/unsupported/COST/git/2.4.4/gnu/bin:$PATH
 
 - name: configure ## See petsc.py for details
   mode: replace
