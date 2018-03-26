@@ -7,8 +7,8 @@ dependencies:
   run: [blas, lapack, numpy]
 
 sources:
-- key: tar.gz:yqr2iuiwqrkuswg2wvpsq567pdtwlncp
-  url: https://github.com/scipy/scipy/archive/v1.0.0.tar.gz
+- key: tar.gz:q444m6cc5wnbynggfvwmuyyb2cw6idkq
+  url: https://github.com/scipy/scipy/releases/download/v1.0.1/scipy-1.0.1.tar.gz
 
 build_stages:
   - when: platform == 'linux'
@@ -17,6 +17,7 @@ build_stages:
     before: install
     handler: bash
     bash: |
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
       echo "[ALL]" > site.cfg
       echo "extra_link_args = -shared" >> site.cfg
       echo "[openblas]" >> site.cfg
@@ -24,3 +25,17 @@ build_stages:
       echo "library_dirs = ${OPENBLAS_DIR}/lib" >> site.cfg
       echo "include_dirs = ${OPENBLAS_DIR}/lib" >> site.cfg
       echo "runtime_library_dirs = ${OPENBLAS_DIR}/lib" >> site.cfg
+
+  - name: install
+    after: setup_dirs
+    mode: replace
+    handler: bash
+    bash: |
+      ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
+         ${SETUPTOOLS_PACKAGE_EXTRA_OPTIONS} \
+         build
+      ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
+         ${SETUPTOOLS_PACKAGE_EXTRA_OPTIONS} \
+         install \
+         --prefix=. --root=${ARTIFACT} \
+         --single-version-externally-managed
