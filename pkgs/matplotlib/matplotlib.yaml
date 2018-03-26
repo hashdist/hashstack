@@ -2,12 +2,12 @@ extends: [namespace_package,libflags]
 
 dependencies:
   build: [bzip2, freetype, numpy, png, pkg-config, zlib, functools32]
-  run: [freetype, numpy, png, python-dateutil, pyparsing, six, cycler, functools32]
+  run: [freetype, numpy, png, python-dateutil, pyparsing, six, cycler, functools32, functools_lru_cache, kiwisolver]
 
 sources:
-- key: tar.gz:b754it5kgsulc4clyeemiupm7b4yr6ia
-  url: https://pypi.python.org/packages/f5/f0/9da3ef24ea7eb0ccd12430a261b66eca36b924aeef06e17147f9f9d7d310/matplotlib-2.0.2.tar.gz
-
+- key: tar.gz:whp5fpwf7lssiru2arvt3eedo4x3ihcu
+  url: https://github.com/matplotlib/matplotlib/archive/v2.2.0.tar.gz
+  
 build_stages:
 - name: freetype
   before: install

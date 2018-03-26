@@ -5,8 +5,8 @@ dependencies:
   run: [numpy, mpi4py]
 
 sources:
-- key: tar.gz:pesugew7fzqvjresr5pdwixxukchw3s7
-  url: https://pypi.python.org/packages/11/6b/32cee6f59e7a03ab7c60bb250caff63e2d20c33ebca47cf8c28f6a2d085c/h5py-2.7.0.tar.gz
+- key: tar.gz:dafgrayr5atp62xg2o62tnocsk4qwkdy
+  url: https://pypi.python.org/packages/41/7a/6048de44c62fc5e618178ef9888850c3773a9e4be249e5e673ebce0402ff/h5py-2.7.1.tar.gz
 
 build_stages:
 - name: build_ext_options
@@ -14,7 +14,7 @@ build_stages:
   before: install
   handler: bash
   bash: |
-       export HDF5_VERSION='1.8.17'
+       export HDF5_VERSION='1.8.19'
        export CC=${MPICC}
        export SETUPTOOLS_PACKAGE_EXTRA_OPTIONS="configure --mpi"
 

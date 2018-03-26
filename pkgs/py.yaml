@@ -1,5 +1,9 @@
 extends: [setuptools_package]
 
+dependencies:
+  build: []
+  run: []
+
 sources:
- - key: tar.gz:uzibsy6hex6ckvg2x7worlu2r626csoa
-   url: https://pypi.python.org/packages/f4/9a/8dfda23f36600dd701c6722316ba8a3ab4b990261f83e7d3ffc6dfedf7ef/py-1.4.31.tar.gz
+- key: tar.gz:zimjiprienkbo5ldc2723jwns2zdzzqn
+  url: https://pypi.python.org/packages/90/e3/e075127d39d35f09a500ebb4a90afd10f9ef0a1d28a6d09abeec0e444fdd/py-1.5.2.tar.gz

@@ -4,7 +4,7 @@ dependencies:
 
 sources:
 - key: tar.gz:uqzvqsprt6xirqte7ug7arv4ginhrrjw
-  url: https://support.hdfgroup.org/ftp/HDF5/current18/src/hdf5-1.8.19.tar.gz
+  url: https://support.hdfgroup.org/ftp/HDF5/releases/hdf5-1.8/hdf5-1.8.19/src/hdf5-1.8.19.tar.gz
 
 defaults:
   # /bin/h5pcc contains hard-coded path

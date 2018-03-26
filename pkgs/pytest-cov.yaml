@@ -1,9 +1,9 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: [coverage, pytest]
-  run: [coverage, pytest]
+  build: [coverage, pytest, py]
+  run: [coverage, pytest, py]
 
 sources:
-- key: tar.gz:vczc4u7h6o4xcrkmgxpztx76eh2hjh2t
-  url: https://pypi.python.org/packages/source/p/pytest-cov/pytest-cov-2.2.1.tar.gz
+- key: tar.gz:aovhklhrdw2b2ka6uhmapwkuytw2gxh2
+  url: https://pypi.python.org/packages/24/b4/7290d65b2f3633db51393bdf8ae66309b37620bc3ec116c5e357e3e37238/pytest-cov-2.5.1.tar.gz
