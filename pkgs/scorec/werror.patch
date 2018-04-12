@@ -1,0 +1,36 @@
+diff --git a/cmake/bob.cmake b/cmake/bob.cmake
+index 63780b94..9e6d5c34 100644
+--- a/cmake/bob.cmake
++++ b/cmake/bob.cmake
+@@ -55,14 +55,14 @@ function(bob_begin_cxx_flags)
+   endif()
+   if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
+     if (${PROJECT_NAME}_CXX_WARNINGS)
+-      set(FLAGS "${FLAGS} -Werror -Weverything")
++      set(FLAGS "${FLAGS}")
+       set(FLAGS "${FLAGS} -Wno-padded")
+       set(FLAGS "${FLAGS} -Wno-float-equal")
+       set(FLAGS "${FLAGS} -Wno-weak-template-vtables")
+     endif()
+   elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
+     if (${PROJECT_NAME}_CXX_WARNINGS)
+-      set(FLAGS "${FLAGS} -Werror -Wall -Wextra")
++      set(FLAGS "${FLAGS}")
+     endif()
+   elseif(${CMAKE_CXX_COMPILER_ID} STREQUAL "Intel")
+   else()
+diff --git a/mpich3-gcc4.9.2-config.sh b/mpich3-gcc4.9.2-config.sh
+index c1edb6af..785e2852 100755
+--- a/mpich3-gcc4.9.2-config.sh
++++ b/mpich3-gcc4.9.2-config.sh
+@@ -5,8 +5,8 @@ PREFIX=/lore/seol/mpich3-gcc4.9.2-install
+ cmake .. \
+   -DCMAKE_C_COMPILER="/usr/local/mpich3/latest/bin/mpicc" \
+   -DCMAKE_CXX_COMPILER="/usr/local/mpich3/latest/bin/mpicxx" \
+-  -DCMAKE_C_FLAGS=" -g -O2 -Wall -Wextra -Werror" \
+-  -DCMAKE_CXX_FLAGS=" -g -O2 -Wall -Wextra -Werror" \
++  -DCMAKE_C_FLAGS=" -g -O2 -Wall -Wextra " \
++  -DCMAKE_CXX_FLAGS=" -g -O2 -Wall -Wextra " \
+   -DENABLE_ZOLTAN=ON \
+   -DZOLTAN_INCLUDE_DIR="$ZOLTAN_DIR/include" \
+   -DZOLTAN_LIBRARY="$ZOLTAN_DIR/lib/libzoltan.a" \
