@@ -20,7 +20,6 @@ packages:
   openjpeg: #dependency of chrono
     version: '2.1'
   openssl:
-    use: host-openssl
   python:
     host: false
     link: shared
@@ -32,18 +31,19 @@ packages:
     use: openblas-lapack
   daetk:
   mpi:
-    use: host-mpi
+    use: mpich
   mpi4py:
   nose:
   coverage:
   hdf5:
   petsc:
     version: 3.7.6
+    fortran: false
     openblas: true
     build_with: |
       parmetis, cmake, blas
     download: |
-      superlu, superlu_dist, hypre, blacs, scalapack, mumps
+      superlu, superlu_dist, hypre, blacs
     coptflags: -O2
     link: shared
     debug: false
@@ -59,7 +59,7 @@ packages:
     address_model: 64
     build_with: |
       python
-  scipy:
+#  scipy:
   h5py:
   pip:
   chrono:

@@ -4,5 +4,5 @@ defaults:
   relocatable: false
 
 sources:
-- key: tar.gz:rwis6rhqlufrljff3fvhn6cs5ec5aun3
-  url: http://ftp.heanet.ie/mirrors/gnu/gdbm/gdbm-1.11.tar.gz
+- key: tar.gz:zxhp6ah74akesw7nhlwxdr4rbkuix4ut
+  url: ftp://ftp.gnu.org/gnu/gdbm/gdbm-1.14.1.tar.gz

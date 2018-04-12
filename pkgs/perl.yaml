@@ -4,7 +4,7 @@ defaults:
   relocatable: false
 
 dependencies:
-  build: [berkeleydb-5, gdbm, {{build_with}}]
+  build: [berkeleydb-5, {{build_with}}]
 
 sources:
 - key: tar.gz:j2gcrllozsezal44wltw6kavxmnifb66

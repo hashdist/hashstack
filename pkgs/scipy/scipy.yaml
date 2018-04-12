@@ -1,14 +1,12 @@
-when platform != 'linux':
-  extends: [distutils_package]
-when platform == 'linux':
-  extends: [setuptools_package, libflags]
+extends: [setuptools_package, libflags]
+
 dependencies:
-  build: [blas, lapack, numpy]
+  build: [blas, lapack, numpy, cython]
   run: [blas, lapack, numpy]
 
 sources:
-- key: tar.gz:q7vb6ena5hwarqte3rsfkhkqd6rqokeu
-  url: https://github.com/scipy/scipy/releases/download/v1.0.0/scipy-1.0.0.tar.gz
+- key: tar.gz:q444m6cc5wnbynggfvwmuyyb2cw6idkq
+  url: https://github.com/scipy/scipy/releases/download/v1.0.1/scipy-1.0.1.tar.gz
 
 build_stages:
   - when: platform == 'linux'
@@ -17,8 +15,25 @@ build_stages:
     before: install
     handler: bash
     bash: |
-      export LDFLAGS="$LDFLAGS -shared $LAPACK_LDFLAGS $BLAS_LDFLAGS"
-      export ATLAS=None
-      export OPENBLAS=$OPENBLAS_DIR
-      export LAPACK=$LAPACK_LDFLAGS
-      export BLAS=$BLAS_LDFLAGS
+      export LDFLAGS="-shared -Wl,-rpath=${PYTHON_DIR}/lib $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      echo "[ALL]" > site.cfg
+      echo "extra_link_args = -shared" >> site.cfg
+      echo "[openblas]" >> site.cfg
+      echo "libraries = openblas" >> site.cfg
+      echo "library_dirs = ${OPENBLAS_DIR}/lib" >> site.cfg
+      echo "include_dirs = ${OPENBLAS_DIR}/lib" >> site.cfg
+      echo "runtime_library_dirs = ${OPENBLAS_DIR}/lib" >> site.cfg
+
+  - name: install
+    after: setup_dirs
+    mode: replace
+    handler: bash
+    bash: |
+      ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
+         ${SETUPTOOLS_PACKAGE_EXTRA_OPTIONS} \
+         build
+      ${PYTHON} -c 'import setuptools; __file__="setup.py"; exec(open(__file__).read())' \
+         ${SETUPTOOLS_PACKAGE_EXTRA_OPTIONS} \
+         install \
+         --prefix=. --root=${ARTIFACT} \
+         --single-version-externally-managed

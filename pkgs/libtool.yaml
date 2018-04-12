@@ -4,8 +4,8 @@ defaults:
   relocatable: false
 
 sources:
-- key: tar.gz:wog6isdcvgdsspgt3dp24hcatviuw3co
-  url: http://ftp.heanet.ie/mirrors/gnu/libtool/libtool-2.4.2.tar.gz
+- key: tar.gz:4o6u2xj5ajndnqq522xx5kayukx42tp4
+  url: https://ftp.gnu.org/gnu/libtool/libtool-2.4.6.tar.gz
 
 when_build_dependency:
 - prepend_path: PATH

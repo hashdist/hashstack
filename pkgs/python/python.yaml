@@ -27,7 +27,7 @@ when pyver == '3.6':
 
 
 dependencies:
-  build: [zlib, bzip2, sqlite, openssl, launcher, ncurses, readline, gdbm, {{build_with}}]
+  build: [zlib, bzip2, sqlite, openssl, launcher, ncurses, readline, {{build_with}}]
   run: []
 
 defaults:

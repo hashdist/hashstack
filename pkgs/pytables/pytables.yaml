@@ -20,4 +20,4 @@ build_stages:
        --single-version-externally-managed \
        --lflags="-Wl,-rpath,${HDF5_DIR}/lib -L${HDF5_DIR}/lib -lhdf5 \
        -Wl,-rpath,${ZLIB_DIR}/lib -L${ZLIB_DIR} -lz \
-       -Wl,-rpath,${SZIP_DIR}/lib -L${SZIP_DIR}/lib -lszip"
+       -Wl,-rpath,${SZIP_DIR}/lib -L${SZIP_DIR}/lib -lszip-shared"
