@@ -24,6 +24,19 @@ build_stages:
       echo "include_dirs = ${OPENBLAS_DIR}/lib" >> site.cfg
       echo "runtime_library_dirs = ${OPENBLAS_DIR}/lib" >> site.cfg
 
+  - when: platform == 'Darwin'
+    name: set-lapack-paths
+    after: libflags
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="-undefined dynamic_lookup $(${PYTHON_DIR}/bin/python-config --ldflags)"
+      echo "[openblas]" >> site.cfg
+      echo "libraries = openblas" >> site.cfg
+      echo "library_dirs = ${OPENBLAS_DIR}/lib" >> site.cfg
+      echo "include_dirs = ${OPENBLAS_DIR}/lib" >> site.cfg
+      echo "runtime_library_dirs = ${OPENBLAS_DIR}/lib" >> site.cfg
+
   - name: install
     after: setup_dirs
     mode: replace

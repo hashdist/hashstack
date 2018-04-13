@@ -59,7 +59,7 @@ packages:
     address_model: 64
     build_with: |
       python
-#  scipy:
+  scipy:
   h5py:
   pip:
   chrono:

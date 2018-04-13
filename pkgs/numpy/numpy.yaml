@@ -34,6 +34,29 @@ build_stages:
       export LAPACK=None
       export BLAS=None
 
+  - when: platform == 'Darwin'
+    name: create-site.cfg
+    before: install
+    handler: bash
+    bash: |
+      cat > site.cfg << EOF
+      [openblas]
+      libraries = openblas
+      library_dirs = ${OPENBLAS_DIR}/lib
+      include_dirs = ${OPENBLAS_DIR}/include
+      runtime_library_dirs = ${OPENBLAS_DIR}/include
+      EOF
+
+  - when: platform == 'Darwin'
+    name: set-LDFLAGS
+    before: install
+    handler: bash
+    bash: |
+      export LDFLAGS="$(${PYTHON_DIR}/bin/python-config --ldflags)"
+      #export ATLAS=None
+      export LAPACK=None
+      export BLAS=None
+
   - when: machine == 'SGIICEX'
     name: create-site.cfg
     after: prologue
