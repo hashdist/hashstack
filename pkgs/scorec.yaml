@@ -4,7 +4,7 @@ dependencies:
 
 sources:
   - url: https://github.com/scorec/core.git
-    key: git:dfd8e6026257595eac7464cccf43d937b7aec294
+    key: git:844be1286c68b7217337fb487ea584a819aca295
 
 defaults:
   relocatable: true
@@ -26,7 +26,13 @@ build_stages:
   '-DCMAKE_CXX_COMPILER:STRING=${MPICXX}',
   '-DBUILD_EXES:BOOL=OFF',
   '-DENABLE_ZOLTAN:BOOL=ON',
+  '-DSCOREC_CXX_OPTIMIZE=ON',
+  '-DMDS_ID_TYPE="int"',
+  '-DPCU_COMPRESS=ON',
+  '-DENABLE_FPP=ON',
   '-DENABLE_SIMMETRIX:BOOL=OFF',
   '-DZOLTAN_PREFIX:PATH=${PETSC_DIR}',
   '-DPARMETIS_PREFIX:PATH=${PARMETIS_DIR}',
+  '-DCMAKE_BUILD_TYPE=Release',
+  '-DSCOREC_CXX_WARNINGS=OFF'
   ]
