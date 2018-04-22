@@ -2,9 +2,13 @@ extends: [cmake_package]
 dependencies:
   build: [mpi, parmetis, zoltan]
 
+#changing git->zip b/c of ssl issues on hpcmp platforms
+#sources:
+#  - url: https://github.com/scorec/core.git
+#    key: git:fc94c3d4b013d7535e43549577b2c5f619d43d4b
 sources:
-  - url: https://github.com/scorec/core.git
-    key: git:844be1286c68b7217337fb487ea584a819aca295
+- key: zip:ttofytsvsn7wiy5mw3utbdbmobbw7zr7
+  url: https://github.com/SCOREC/core/archive/fc94c3d4b013d7535e43549577b2c5f619d43d4b.zip
 
 defaults:
   relocatable: true
