@@ -1,6 +1,6 @@
 extends: [cmake_package]
 dependencies:
-  build: [mpi, petsc, parmetis]
+  build: [mpi, petsc, parmetis, bzip2]
 
 sources:
   - url: https://github.com/scorec/core.git
@@ -25,13 +25,12 @@ build_stages:
   '-DCMAKE_C_COMPILER:STRING=${MPICC}',
   '-DCMAKE_CXX_COMPILER:STRING=${MPICXX}',
   '-DBUILD_EXES:BOOL=OFF',
-  '-DENABLE_ZOLTAN:BOOL=ON',
+  '-DENABLE_ZOLTAN:BOOL=OFF',
   '-DSCOREC_CXX_OPTIMIZE=ON',
   '-DMDS_ID_TYPE="int"',
   '-DPCU_COMPRESS=ON',
   '-DENABLE_FPP=ON',
   '-DENABLE_SIMMETRIX:BOOL=OFF',
-  '-DZOLTAN_PREFIX:PATH=${PETSC_DIR}',
   '-DPARMETIS_PREFIX:PATH=${PARMETIS_DIR}',
   '-DCMAKE_BUILD_TYPE=Release',
   '-DSCOREC_CXX_WARNINGS=OFF'
