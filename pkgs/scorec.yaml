@@ -3,8 +3,13 @@ dependencies:
   build: [mpi, petsc, parmetis]
 
 sources:
-  - url: https://github.com/scorec/core.git
-    key: git:844be1286c68b7217337fb487ea584a819aca295
+- key: zip:pgt25wxmlhtixbumap2eyt5ylgepkqzh
+  url: https://github.com/SCOREC/core/archive/844be1286c68b7217337fb487ea584a819aca295.zip
+
+#Switch back to and archived zip as above before committing to hashstack 
+#sources:
+#  - url: https://github.com/scorec/core.git
+#    key: git:844be1286c68b7217337fb487ea584a819aca295
 
 defaults:
   relocatable: true
