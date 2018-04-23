@@ -1,6 +1,6 @@
 extends: [cmake_package]
 dependencies:
-  build: [mpi, parmetis, zoltan]
+  build: [mpi, parmetis, zoltan, bzip2]
 
 #changing git->zip b/c of ssl issues on hpcmp platforms
 #sources:
