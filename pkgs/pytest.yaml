@@ -1,8 +1,8 @@
 extends: [setuptools_package]
 
 dependencies:
-  build: [py,funcsigs,pluggy,attrs]
-  run: [py,funcsigs,pluggy,attrs]
+  build: [py,funcsigs,pluggy,attrs,setuptools-scm]
+  run: [py,funcsigs,pluggy,attrs,setuptools-scm]
 
 sources:
 - key: tar.gz:txolq6oizscz2jkaebfvhgibd6cc4xui
