@@ -22,14 +22,14 @@ build_stages:
     mkdir -p _build
     cd _build
 
-- when: platform == 'Darwin'
-  name: turn_off_werror
-  files:
-    - werror.patch
-  before: setup_builddir
-  handler: bash
-  bash: |
-    patch -p1 < _hashdist/werror.patch
+#- when: platform == 'Darwin'
+#  name: turn_off_werror
+#  files:
+#    - werror.patch
+#  before: setup_builddir
+#  handler: bash
+#  bash: |
+#    patch -p1 < _hashdist/werror.patch
 
 - name: configure
   debug: true

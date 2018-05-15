@@ -31,7 +31,7 @@ packages:
     use: openblas-lapack
   daetk:
   mpi:
-    use: mpich
+    use: host-mpi
   mpi4py:
   nose:
   coverage:
