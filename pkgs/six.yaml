@@ -5,7 +5,7 @@ dependencies:
   run: []
 
 sources:
- - key: tar.gz:cbpy22dbn6berysl6dutolxqju6mcaie
-   url: https://pypi.python.org/packages/b3/b2/238e2590826bfdd113244a40d9d3eb26918bd798fc187e2360a8367068db/six-1.10.0.tar.gz
+- key: tar.gz:oduko67o2rlc47yu7yr2pbvvj5rjny2d
+  url: https://files.pythonhosted.org/packages/16/d8/bc6316cf98419719bd59c91742194c111b6f2e85abac88e496adefaf7afe/six-1.11.0.tar.gz
 
 licenses: [mit]
