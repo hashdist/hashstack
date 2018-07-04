@@ -14,12 +14,12 @@ extends:
 # profile.
 
 packages:
+  future:
   recordtype:
   cmake:
   openjpeg: #dependency of chrono
     version: '2.1'
   openssl:
-    use: host-openssl
   python:
     host: false
     link: shared
