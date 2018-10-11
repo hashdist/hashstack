@@ -64,7 +64,9 @@ packages:
     build_with: |
       parmetis, cmake, blas
     download: |
-      superlu, superlu_dist, ptscotch, zoltan, hypre
+      superlu, ptscotch, zoltan, hypre, mumps, scalapack
+#    use_downloaded: |
+#      superlu_dist
     coptflags: -O2
     link: shared
     debug: false
@@ -82,7 +84,7 @@ packages:
   netcdf4f:
   python-netcdf4:
   h5py:
-  ode:
+ # ode:
   pip:
  # pyode:
  # vtk:
