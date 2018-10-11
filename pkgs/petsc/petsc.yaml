@@ -52,6 +52,7 @@ build_stages:
   link: {{link}}
   debug: {{debug}}
   download: [{{download}}]
+  use_downloaded: [{{use_downloaded}}]
 
 # PETSc 3.5 does not allow the use of the -j option to make
 -  name: make
